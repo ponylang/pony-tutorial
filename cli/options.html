@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="en"><head><title>cli/options</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="cli/options"><meta name="groc-project-path" content="cli/options.c"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path">cli/options.c</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><p>Command Line Interface</p></div></div><div class="code"><div class="wrapper">use <span class="hljs-string">"options"</span>
+
+<span class="hljs-function">actor Main
+  new <span class="hljs-title">create</span><span class="hljs-params">(env: Env)</span> </span>=&gt;</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Simply provide the environment to the option parser.
+Since the environment reference is val (deeply immutable)
+the option parser will clone argv.</p>
+<p>... </p></div></div><div class="code"><div class="wrapper">    var opt = Options(env)
+
+    opt
+      .usage_text(
+        <span class="hljs-string">""</span><span class="hljs-string">"
+        ponyc [OPTIONS] &lt;package directory&gt;
+
+        The package directory defaults to the current directory.
+
+        Often needed options:
+        "</span><span class="hljs-string">""</span>
+        )
+      .add(<span class="hljs-string">"opt"</span>, <span class="hljs-string">"O"</span>, <span class="hljs-string">"Optimise the output."</span>, None)
+      .add(<span class="hljs-string">"path"</span>, <span class="hljs-string">"p"</span>, <span class="hljs-string">"Add an additional search path."</span>, StringArgument)
+      .add(<span class="hljs-string">"output"</span>, <span class="hljs-string">"o"</span>, <span class="hljs-string">"Write output to this directory."</span>, StringArgument)
+      .usage_text(<span class="hljs-string">"Rarely needed options:"</span>)
+      .add(<span class="hljs-string">"ieee-math"</span>, None, <span class="hljs-string">"Force strict IEEE 754 compliance."</span>, None)
+      .add(<span class="hljs-string">"cpu"</span>, <span class="hljs-string">"c"</span>, <span class="hljs-string">"Set the target CPU."</span>, StringArgument)
+      .add(<span class="hljs-string">"features"</span>, <span class="hljs-string">"f"</span>, <span class="hljs-string">"CPU features to enable or disable."</span>,
+        StringArgument)
+      .add(<span class="hljs-string">"triple"</span>, None, <span class="hljs-string">"Set the target triple."</span>, None)
+      .usage_text(<span class="hljs-string">"Debugging options:"</span>)
+      .add(<span class="hljs-string">"pass"</span>, <span class="hljs-string">"r"</span>, <span class="hljs-string">"Restrict phases."</span>, StringArgument)
+        .param(<span class="hljs-string">"parse"</span>, None)
+        .param(<span class="hljs-string">"parsefix"</span>, None)
+        .param(<span class="hljs-string">"sugar"</span>, None)
+        .param(<span class="hljs-string">"scope1"</span>, None)
+        .param(<span class="hljs-string">"name"</span>, None)
+        .param(<span class="hljs-string">"flatten"</span>, None)
+        .param(<span class="hljs-string">"traits"</span>, None)
+        .param(<span class="hljs-string">"scope2"</span>, None)
+        .param(<span class="hljs-string">"expr"</span>, None)
+        .param(<span class="hljs-string">"ir"</span>, <span class="hljs-string">"Output LLVM IR."</span>)
+        .param(<span class="hljs-string">"bitcode"</span>, <span class="hljs-string">"Output LLVM bitcode."</span>)
+        .param(<span class="hljs-string">"asm"</span>, <span class="hljs-string">"Output assembly"</span>)
+        .param(<span class="hljs-string">"obj"</span>, <span class="hljs-string">"Output an object file."</span>)
+        .param(<span class="hljs-string">"all"</span>, <span class="hljs-string">"The default: generate an executable."</span>)
+      .add(<span class="hljs-string">"ast"</span>, <span class="hljs-string">"a"</span>, <span class="hljs-string">"Output an abstract syntax tree."</span>, None)
+      .add(<span class="hljs-string">"trace"</span>, <span class="hljs-string">"t"</span>, <span class="hljs-string">"Enable parse trace."</span>, None)
+      .add(<span class="hljs-string">"width"</span>, <span class="hljs-string">"w"</span>, <span class="hljs-string">"Width to target when printing the AST."</span>, I64Argument)
+      .add(<span class="hljs-string">"immerr"</span>, None, <span class="hljs-string">"Report errors immediately rather than deferring."</span>,
+        None)
+
+    <span class="hljs-keyword">for</span> option in opt <span class="hljs-keyword">do</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Since short option names are optional, matching is based on the
+long opt. </p></div></div><div class="code"><div class="wrapper">      match option
+      | (<span class="hljs-string">"opt"</span>, None) =&gt;
+          env.out.print(<span class="hljs-string">"Output will be optimised!"</span>)
+      | (<span class="hljs-string">"path"</span>, var arg: String) =&gt;
+          env.out.print(<span class="hljs-string">"Search path: "</span> + arg)
+      | (<span class="hljs-string">"output"</span>, var arg: String) =&gt;
+          env.out.print(<span class="hljs-string">"Output path: "</span> + arg)
+      | (<span class="hljs-string">"ieee-math"</span>, None) =&gt;
+          env.out.print(<span class="hljs-string">"Enforce IEEE 754 math"</span>)
+      | (<span class="hljs-string">"cpu"</span>, var arg: String) =&gt;
+          env.out.print(<span class="hljs-string">"Target CPU: "</span> + arg)
+      | (<span class="hljs-string">"features"</span>, var arg: String) =&gt;
+          env.out.print(<span class="hljs-string">"Feature settings: "</span> + arg)
+      | (<span class="hljs-string">"triple"</span>, var arg: String) =&gt;
+          env.out.print(<span class="hljs-string">"Target triple: "</span> + arg)
+      | (<span class="hljs-string">"pass"</span>, var arg: String) =&gt;
+          env.out.print(<span class="hljs-string">"Restrict phase to: "</span> + arg)
+      | (<span class="hljs-string">"ast"</span>, None) =&gt;
+          env.out.print(<span class="hljs-string">"Printing an AST!"</span>)
+      | (<span class="hljs-string">"trace"</span>, None) =&gt;
+          env.out.print(<span class="hljs-string">"Enable trace parse!"</span>)
+      | (<span class="hljs-string">"width"</span>, var arg: I64) =&gt;
+          env.out.print(<span class="hljs-string">"Target AST width: "</span> + arg.<span class="hljs-built_in">string</span>())
+      | (<span class="hljs-string">"immerr"</span>, None) =&gt;
+          env.out.print(<span class="hljs-string">"Errors will be reported immediately!"</span>)
+      | ParseError =&gt; env.out.print(<span class="hljs-string">"Giving up!"</span>) <span class="hljs-comment">//opt.usage()</span>
+      end
+    end</div></div></div></div></body></html>
