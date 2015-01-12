@@ -1,11 +1,17 @@
-"""
-Command Line Interface
-"""
+/* Command Line Interface
+ *
+ */
 
 use "options"
 
 actor Main
   new create(env: Env) =>
+    /* Simply provide the environment to the option parser.
+     * Since the environment reference is val (deeply immutable)
+     * the option parser will clone argv.
+     *
+     * ... 
+     */
     var opt = Options(env)
 
     opt
@@ -50,8 +56,8 @@ actor Main
         None)
 
     for option in opt do
-      //Since short option names are optional, matching is based on the
-      //long opt.
+      /* Since short option names are optional, matching is based on the
+       * long opt. */
       match option
       | ("opt", None) =>
           env.out.print("Output will be optimised!")

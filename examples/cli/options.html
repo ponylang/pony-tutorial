@@ -1,12 +1,10 @@
-<!DOCTYPE html><html lang="en"><head><title>examples/cli/options</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="examples/cli/options"><meta name="groc-project-path" content="examples/cli/options.c"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">examples/cli/options.c</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="hljs-string">""</span><span class="hljs-string">"
-Command Line Interface
-"</span><span class="hljs-string">""</span>
-
-use <span class="hljs-string">"options"</span>
+<!DOCTYPE html><html lang="en"><head><title>examples/cli/options</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="examples/cli/options"><meta name="groc-project-path" content="examples/cli/options.c"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">examples/cli/options.c</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><p>Command Line Interface</p></div></div><div class="code"><div class="wrapper">use <span class="hljs-string">"options"</span>
 
 <span class="hljs-function">actor Main
-  new <span class="hljs-title">create</span><span class="hljs-params">(env: Env)</span> </span>=&gt;
-    var opt = Options(env)
+  new <span class="hljs-title">create</span><span class="hljs-params">(env: Env)</span> </span>=&gt;</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Simply provide the environment to the option parser.
+Since the environment reference is val (deeply immutable)
+the option parser will clone argv.</p>
+<p>... </p></div></div><div class="code"><div class="wrapper">    var opt = Options(env)
 
     opt
       .usage_text(
@@ -49,10 +47,8 @@ use <span class="hljs-string">"options"</span>
       .add(<span class="hljs-string">"immerr"</span>, None, <span class="hljs-string">"Report errors immediately rather than deferring."</span>,
         None)
 
-    <span class="hljs-keyword">for</span> option in opt <span class="hljs-keyword">do</span>
-      <span class="hljs-comment">//Since short option names are optional, matching is based on the</span>
-      <span class="hljs-comment">//long opt.</span>
-      match option
+    <span class="hljs-keyword">for</span> option in opt <span class="hljs-keyword">do</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Since short option names are optional, matching is based on the
+long opt. </p></div></div><div class="code"><div class="wrapper">      match option
       | (<span class="hljs-string">"opt"</span>, None) =&gt;
           env.out.print(<span class="hljs-string">"Output will be optimised!"</span>)
       | (<span class="hljs-string">"path"</span>, var arg: String) =&gt;
