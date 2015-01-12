@@ -17,20 +17,50 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "projectPath": "README.md",
         "targetPath": "index",
         "pageTitle": "index",
-        "firstHeader": {
-          "type": "heading",
-          "data": {
-            "level": 1,
-            "title": "Pony Tutorials",
-            "slug": "pony-tutorials",
-            "isFileHeader": true
-          },
-          "depth": 1
-        },
-        "title": "Pony Tutorials"
+        "title": "index"
+      },
+      "depth": 1
+    }, {
+      "type": "folder",
+      "data": {
+        "path": "examples",
+        "title": "examples"
       },
       "depth": 1,
-      "outline": []
+      "children": [
+        {
+          "type": "folder",
+          "data": {
+            "path": "examples/cli",
+            "title": "cli"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".c", ".h"],
+                  "pygmentsLexer": "c",
+                  "highlightJS": "cpp",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "C"
+                },
+                "sourcePath": "/Users/sblessing/Development/Causality/Pony/pony-tutorial/examples/cli/options.c",
+                "projectPath": "examples/cli/options.c",
+                "targetPath": "examples/cli/options",
+                "pageTitle": "examples/cli/options",
+                "title": "options"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }
+      ]
     }
   ];
 
