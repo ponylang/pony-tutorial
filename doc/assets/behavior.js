@@ -17,10 +17,62 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "projectPath": "README.md",
         "targetPath": "index",
         "pageTitle": "index",
-        "title": "index"
+        "firstHeader": {
+          "type": "heading",
+          "data": {
+            "level": 1,
+            "title": "Getting help",
+            "slug": "getting-help",
+            "isFileHeader": true
+          },
+          "depth": 1
+        },
+        "title": "Getting help"
       },
       "depth": 1,
-      "outline": []
+      "outline": [
+        {
+          "type": "heading",
+          "data": {
+            "level": 1,
+            "title": "Editor support",
+            "slug": "editor-support"
+          },
+          "depth": 1
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 1,
+            "title": "Building on Linux",
+            "slug": "building-on-linux"
+          },
+          "depth": 1
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 1,
+            "title": "Building on Mac OSX",
+            "slug": "building-on-mac-osx"
+          },
+          "depth": 1
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 1,
+            "title": "Building on Windows",
+            "slug": "building-on-windows"
+          },
+          "depth": 1
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 1,
+            "title": "Known problems",
+            "slug": "known-problems"
+          },
+          "depth": 1
+        }
+      ]
     }
   ];
 
