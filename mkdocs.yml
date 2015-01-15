@@ -1,0 +1,6 @@
+site_name: Pony Tutorial
+pages:
+- [index.md, Home]
+- ["getting-started/what-you-need-to-start.md"]
+- ["getting-started/helloworld.md"]
+theme: readthedocs
