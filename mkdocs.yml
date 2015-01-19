@@ -29,7 +29,7 @@ pages:
 - ["actors/capabilities.md"]
 - ["actors/recover-and-consume.md", "Actors", "recover and consume"]
 - ["actors/arrow-types.md"]
-- ["exceptions/try-else-then.md", "Exceptions", "try-else-then"]
+- ["exceptions/exceptions.md", "Exceptions", "Exceptions"]
 - ["traits-interfaces/traits.md", "Traits and Interfaces"]
 - ["traits-interfaces/interfaces.md", "Traits and Interfaces"]
 - ["packages/package-system.md"]
