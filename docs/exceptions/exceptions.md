@@ -1,10 +1,10 @@
 # Exceptions
 
-Pony provides a simple exception mechanism to simplify error handling. At any point the code may decide to declare an `error` has occured. Code execution halts at that point and the call chain is unwound until the nearest enclosing error handler is found. This is all checked at compile time so errors cannot cause the whole program to crash.
+Pony provides a simple exception mechanism to aid error handling. At any point the code may decide to declare an `error` has occured. Code execution halts at that point and the call chain is unwound until the nearest enclosing error handler is found. This is all checked at compile time so errors cannot cause the whole program to crash.
 
 ## Throwing and catching
 
-An error is raised simply with the command `error`. Error handlers are declared using the try-else syntax.
+An error is raised with the command `error`. Error handlers are declared using the try-else syntax.
 
 ```
 try
@@ -24,7 +24,7 @@ In either case execution will then carry on will whatever code comes after the t
 
 __Do I have to provide an error handler?__ No. The try block will catch any errors regardless. If you don't provide an error handler then no other action will be taken.
 
-If you want to do something that might raise an error, but you don't care if it does you can simply put in it a try block without an else.
+If you want to do something that might raise an error, but you don't care if it does you can just put in it a try block without an else.
 
 ```
 try
@@ -36,7 +36,7 @@ __Is there anything my error handler has to do?__ No. If you provide an error ha
 
 ## Partial functions
 
-Pony does not require that all errors are caught immediately as in our previous examples. Instead functions can throw errors that are caught by whatever code calls them. These are called partial functions (this is a mathmetical term meaning a function that does not have a defined result for all possible inputs, ie arguments). Partial functions __must__ be marked as such in Pony with a `?`.
+Pony does not require that all errors are caught immediately as in our previous examples. Instead functions can throw errors that are caught by whatever code calls them. These are called partial functions (this is a mathmetical term meaning a function that does not have a defined result for all possible inputs, i.e. arguments). Partial functions __must__ be marked as such in Pony with a `?`.
 
 ```
 fun factorial(x: I32): I32 ? =>
@@ -50,11 +50,13 @@ fun factorial(x: I32): I32 ? =>
 
 Everywhere that an error can be generated in Pony (an error command, a call to a partial function or certain built-in language constructs) must appear within a try block or a function that is marked as partial. This is checked at compile time, ensuring that an error cannot escape handling and crash the program.
 
-## Parital constructors and behaviours
+## Partial constructors and behaviours
 
 Constructors may also be marked as partial. If a constructor raises an error then the construction is considered to have failed and the object under construction is discarded without ever being returned to the caller.
 
-Behaviours cannot be partial.
+When an actor constructor is called the actor is created and a reference to it is returned immediately. However the constructor code is executed asynchronously at some later time. If an actor constructor were to raise an error it would already be too late to report this to the caller. For this reason constructors for actors may not be partial.
+
+Behaviours are also executed asynchronously and so cannot be partial for the same reason.
 
 ## Try-then blocks
 
@@ -76,7 +78,7 @@ The callE() will always be excuted. If callB() returns true then the sequence ex
 
 __Do I have to have an else error handler to have a then block?__ No. You can have a try-then block without an else if you like.
 
-__Will my then block really always be executed, even if I return inside the try?__ Yes, your then block will __always__ be executed when the try block is complete. The only way it won't be is if the try never completes (due to an inifinte loop), the machine is powered off or the process is killed (and then, maybe).
+__Will my then block really always be executed, even if I return inside the try?__ Yes, your `then` expression will __always__ be executed when the try block is complete. The only way it won't be is if the try never completes (due to an inifinite loop), the machine is powered off or the process is killed (and then, maybe).
 
 ## Language constructs that can raise errors
 
@@ -84,10 +86,10 @@ The only language construct that can raise an error, other than the error comman
 
 ## Comparison to exceptions in other languages
 
-Pony exceptions behave very much the same as those in C++, Java and C#. The key difference is that Pony exceptions do not have a type or instance associted with them. This makes them the same as C++ exceptions would be if a fixed literal was always thrown, eg `throw 3;`. This difference simplifies exception handling for the programmer and allows for much better runtime handling performance.
+Pony exceptions behave very much the same as those in C++, Java, C#, Python and Ruby. The key difference is that Pony exceptions do not have a type or instance associated with them. This makes them the same as C++ exceptions would be if a fixed literal was always thrown, eg `throw 3;`. This difference simplifies exception handling for the programmer and allows for much better runtime error handling performance.
 
-The try `else` block is just like a `catch(...)` in C++ or `catch(Exception e)` in Java or C#. Since exceptions do not have types there is no need for handlers to specify types or to have multiple handlers in a single try block.
+The `else` handler in a `try` expression is just like a `catch(...)` in C++, `catch(Exception e)` in Java or C#, `except:` in Python or `rescue` in Ruby. Since exceptions do not have types there is no need for handlers to specify types or to have multiple handlers in a single try block.
 
-The try 'then' block is just like a `finally` in Java or C#.
+The `then` block in a `try` expression is just like a `finally` in Java, C# or Python and `ensure` in Ruby.
 
-If required, error handlers can "rethrow" simply by using the `error` command within the handler. Since exceptions have no type or instance this is not "the same" exception that was caught by the handler, the question of whether two exceptions "are the same" doesn't mean anything.
+If required, error handlers can "rethrow" by using the `error` command within the handler.
