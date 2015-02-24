@@ -1,8 +1,6 @@
-# What you need to start
-
 To get started, you'll need a text editor and the [ponyc](https://github.com/CausalityLtd/ponyc) compiler. That's it.
 
-## A text editor
+# A text editor
 
 While you can write code using any editor, it's nice to use one with some support for the language. Here are some:
 
@@ -13,7 +11,7 @@ While you can write code using any editor, it's nice to use one with some suppor
 
 If you have a favourite editor that isn't supported, we'd love to help you build a Pony package for it.
 
-## The compiler
+# The compiler
 
 Pony is a _compiled_ language, rather than an _interpreted_ one. In fact, it goes even further: Pony is an _ahead-of-time_ (AOT) compiled language, rather than a _just-in-time_ (JIT) compiled language.
 
@@ -33,7 +31,7 @@ $ ./helloworld.py
 
 When you use Pony, you don't do any of that!
 
-## Compiling your program
+# Compiling your program
 
 If you are in the same directory as your program, you can just do:
 

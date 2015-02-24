@@ -6,6 +6,7 @@ pages:
 - ["installation/windows.md", "Installation", "Windows"]
 - ["getting-started/what-you-need-to-start.md"]
 - ["getting-started/helloworld.md"]
+- ["getting-started/how-it-works.md"]
 - ["types/classes.md", "Types", "Classes"]
 - ["types/primitives.md", "Types", "Primitives"]
 - ["types/type-alias.md", "Types", "Type aliases"]

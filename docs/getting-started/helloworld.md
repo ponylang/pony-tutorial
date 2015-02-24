@@ -1,5 +1,3 @@
-# Hello, world!
-
 Our first program will be a very traditional one. We're going to print "Hello, world!". First, create a directory called `helloworld`:
 
 ```
@@ -9,7 +7,7 @@ $ cd helloworld
 
 __Does the name of the directory matter?__ Yes, it does. It's the name of your program! When your program is compiled, the resulting executable binary will have the same name as the directory your program lives in.
 
-## The code
+# The code
 
 Then, create a file in that directory called `main.pony`. 
 
@@ -23,7 +21,7 @@ actor Main
     env.out.print("Hello, world!")
 ```
 
-## Compiling the program
+# Compiling the program
 
 Now compile it:
 
@@ -41,7 +39,7 @@ Look at that! It built the current directory, `.`, plus the stuff that is built 
 
 __Wait, it linked too?__ Yes. You won't need a build system (like `make`) for Pony. It handles that for you (including handling the order of dependencies when you link to C libraries, but we'll get to that later).
 
-## Running the program
+# Running the program
 
 Now we can run the program:
 
