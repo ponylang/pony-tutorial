@@ -1,8 +1,6 @@
-# Sugar
-
 Pony allows you to omit certain small details from your code and will put them back in for you. This is done to help make your code less cluttered and more readable. Using sugar is entirely optional, you can always write out the full version if you prefer.
 
-## Apply
+# Apply
 
 Many Pony classes have a function called `apply` which performs whatever action is most common for that type. Pony allows you to omit the word `apply` and just attempt to do a call directly on the object. So:
 
@@ -36,7 +34,7 @@ __Do I still need to provide the arguments to apply?__ Yes, only the `apply` wil
 
 __How do I call a function foo if apply is added?__ The `apply` sugar is only added when calling an object, not when calling a method. The compiler can tell the difference and only adds the `apply` when appropriate.
 
-## Create
+# Create
 
 To create an object you need to specify the type and call a constructor. Pony allows you to miss out the constructor and will insert a call to `create()` for you. So:
 
@@ -68,9 +66,9 @@ __What if I want to use a constructor that isn't named create?__ Then the sugar 
 
 __If the create I want to call takes no arguments can I still put in the parentheses?__ No. Calls of the form `Type()` use the combined create-apply sugar (see below). To get `Type.create()` just use `Type`.
 
-## Combined create-apply
+# Combined create-apply
 
-If a type has a create constructor that takes no arguments then the create and apply sugar can be used together. Just call on the type and calls to create and apply will be added. The call to create will take to arguments and the call to apply will take whatever arguments are supplied.
+If a type has a create constructor that takes no arguments then the create and apply sugar can be used together. Just call on the type and calls to create and apply will be added. The call to create will take no arguments and the call to apply will take whatever arguments are supplied.
 
 ```
 var foo = Foo()
@@ -86,7 +84,7 @@ var bar = Bar.create().apply(x, 37 where crash = false)
 
 __What if the create has default arguments? Does I get the combined create-apply sugar if I want to use the defaults?__ The combined create-apply sugar can only be used when the create constructor has no arguments. If there are default arguments then this sugar cannot be used.
 
-## Update
+# Update
 
 The `update` sugar allows any class to use an assignment to accept data. Many languages allow this for assigning into collections, for example a simple C array, `a[3] = x;`.
 
