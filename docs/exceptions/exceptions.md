@@ -1,8 +1,6 @@
-# Exceptions
-
 Pony provides a simple exception mechanism to aid error handling. At any point the code may decide to declare an `error` has occured. Code execution halts at that point and the call chain is unwound until the nearest enclosing error handler is found. This is all checked at compile time so errors cannot cause the whole program to crash.
 
-## Throwing and catching
+# Throwing and catching
 
 An error is raised with the command `error`. Error handlers are declared using the try-else syntax.
 
@@ -34,7 +32,7 @@ end
 
 __Is there anything my error handler has to do?__ No. If you provide an error handler then it must contain some code, but it is entirely up to you what it does.
 
-## Partial functions
+# Partial functions
 
 Pony does not require that all errors are caught immediately as in our previous examples. Instead functions can throw errors that are caught by whatever code calls them. These are called partial functions (this is a mathmetical term meaning a function that does not have a defined result for all possible inputs, i.e. arguments). Partial functions __must__ be marked as such in Pony with a `?`.
 
@@ -50,7 +48,7 @@ fun factorial(x: I32): I32 ? =>
 
 Everywhere that an error can be generated in Pony (an error command, a call to a partial function or certain built-in language constructs) must appear within a try block or a function that is marked as partial. This is checked at compile time, ensuring that an error cannot escape handling and crash the program.
 
-## Partial constructors and behaviours
+# Partial constructors and behaviours
 
 Constructors may also be marked as partial. If a constructor raises an error then the construction is considered to have failed and the object under construction is discarded without ever being returned to the caller.
 
@@ -58,7 +56,7 @@ When an actor constructor is called the actor is created and a reference to it i
 
 Behaviours are also executed asynchronously and so cannot be partial for the same reason.
 
-## Try-then blocks
+# Try-then blocks
 
 In addition to an `else` error handler a try command can have a `then` block. This is executed after the rest of the try, whether or not an error is caught. Expanding our example from earlier:
 
@@ -80,11 +78,11 @@ __Do I have to have an else error handler to have a then block?__ No. You can ha
 
 __Will my then block really always be executed, even if I return inside the try?__ Yes, your `then` expression will __always__ be executed when the try block is complete. The only way it won't be is if the try never completes (due to an inifinite loop), the machine is powered off or the process is killed (and then, maybe).
 
-## Language constructs that can raise errors
+# Language constructs that can raise errors
 
 The only language construct that can raise an error, other than the error command or calling a partial method, is the `as` command. This converts the given value to the specified type, if it can be. If it can't then an error is raised. This means that the `as` command can only be used inside a try block or a partial method.
 
-## Comparison to exceptions in other languages
+# Comparison to exceptions in other languages
 
 Pony exceptions behave very much the same as those in C++, Java, C#, Python and Ruby. The key difference is that Pony exceptions do not have a type or instance associated with them. This makes them the same as C++ exceptions would be if a fixed literal was always thrown, eg `throw 3;`. This difference simplifies exception handling for the programmer and allows for much better runtime error handling performance.
 
