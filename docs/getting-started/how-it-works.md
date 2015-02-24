@@ -56,4 +56,4 @@ __What's an Env, anyway?__ It's the "environment" your program was invoked with.
 
 # That's it!
 
-Really, that's it. The program begins by creating a `Main` actor, and in the constructor, we print "Wello, world!" to __stdout__.
+Really, that's it. The program begins by creating a `Main` actor, and in the constructor, we print "Hello, world!" to __stdout__.
