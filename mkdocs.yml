@@ -8,6 +8,7 @@ pages:
 - ["getting-started/helloworld.md"]
 - ["getting-started/how-it-works.md"]
 - ["getting-started/whitespace.md"]
+- ["types/static-vs-dynamic.md"]
 - ["types/classes.md", "Types", "Classes"]
 - ["types/primitives.md", "Types", "Primitives"]
 - ["types/type-alias.md", "Types", "Type aliases"]

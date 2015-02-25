@@ -35,7 +35,7 @@ In Pony, you don't end an expression with a `;`, unlike C, C++, Java, C#, etc. I
 
 However, sometimes it's convenient to put more than one expression on the same line. When you want to do that, you __must__ separate them with a `;`.
 
-__Why? Can't the compiler tell an expression has finished?__ Yes, it can. The compiler doesn't really need the `;`. However, it turns out the programmer does! By requiring a `;` between expressions on the same line, it turns out the compiler can catch some pretty common syntax errors for you.
+__Why? Can't the compiler tell an expression has finished?__ Yes, it can. The compiler doesn't really need the `;`. However, it turns out the programmer does! By requiring a `;` between expressions on the same line, the compiler can catch some pretty common syntax errors for you.
 
 # Docstrings
 
