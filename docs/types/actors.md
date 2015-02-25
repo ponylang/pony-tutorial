@@ -21,7 +21,7 @@ actor Aardvark
     name = name'
 
   be eat(amount: U64) =>
-    _hunger_level = (_hunger_level - amount).min(0)
+    _hunger_level = _hunger_level - amount.min(_hunger_level)
 ```
 
 Here we have an `Aardvark` that can eat asynchronously. Clever Aardvark.

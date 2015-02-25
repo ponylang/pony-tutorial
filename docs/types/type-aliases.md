@@ -25,19 +25,21 @@ A union type is a form of _closed world_ type. That is, it says every type that 
 If a type is complicated, it can be nice to give it a mnemonic name. For example, if we want to say that a type must implement more than one trait, we could say:
 
 ```
-trait HasName
+interface HasName
   fun name(): String
  
-trait HasAge
+interface HasAge
   fun age(): U32
 
-trait HasAddress
+interface HasAddress
   fun address(): String
 
 type Person is (HasName & HasAge & HasAddress)
 ```
 
-There's another new concept here, the type is has a `&` in it. This is similar to the `|` of a __union__ type: it means this is an __intersection__ type. That is, it's something that must be _all_ of a `HasName`, a `HasAge` _and_ a 'HasAddress'.
+There's another new concept here: the type has a `&` in it. This is similar to the `|` of a __union__ type: it means this is an __intersection__ type. That is, it's something that must be _all_ of `HasName`, `HasAge` _and_ `HasAddress`.
+
+There's yet another new concept here too, but it's an easy one. `HasName`, `HasAge` and `HasAddress` are all __interfaces__. A Pony interface is like a Go interface: anything that provides that interface _is_ that interface, whether or not it declares that it is. There are also __traits__, which have to be declared, but we'll cover both interfaces and traits in more detail later.
 
 But the use of `type` here is exactly the same as the enumeration example above, it's just providing a name for a type that is otherwise a bit tedious to type out over and over.
 
@@ -55,7 +57,7 @@ And again the use of `type` just provides a more convenient way to refer to the 
 HashSet[A, HashIs[A!]]
 ```
 
-That's another __generic type__. It means a `SetIs` is really a kind of `HashSet`.
+That's another __generic type__. It means a `SetIs` is really a kind of `HashSet`. Another concept has snuck in, which is `!` types. This is a type that is the __alias__ of another type. That's tricky stuff that you only need when writing complex generic types, so we'll leave it for later.
 
 One more example, again from the standard library, is the `Map` type that gets used a lot. It's actually a type alias. Here's the real definition of `Map`:
 
