@@ -1,10 +1,16 @@
-An __actor__ is similar to a __class__, but there is one critical difference: an actor can have __behaviours__.
+An __actor__ is similar to a __class__, but with one critical difference: an actor can have __behaviours__.
 
 # Behaviours
 
-A __behaviour__ is like a __function__, but instead of being introduced with the keyword `fun`, it is introduced with the keyword `be`.
+A __behaviour__ is like a __function__, except that functions are _synchronous_ and behaviours are _asynchronous_. In other words, when you call a function, the body of the function is executed immediately, and the result of the call is the result of the body of the function. This is just like method invocation in any other object-oriented language.
+
+But when you call a behaviour, the body is __not__ executed immediately. Instead, the body of the behaviour will execute at some indeterminate time in the future.
+
+A behaviour looks like a function, but instead of being introduced with the keyword `fun`, it is introduced with the keyword `be`.
 
 Like a function, a behaviour can have parameters. Unlike a function, it doesn't have a receiver capability (a behaviour can be called on a receiver of any capability) and you can't specify a return type.
+
+__So what does a behaviour return?__ All behaviours always return the receiver. They can't return something they calculate (since they haven't run yet), so returning the receiver is a convenience to allow chaining calls on the receiver.
 
 ```
 actor Aardvark
@@ -20,19 +26,11 @@ actor Aardvark
 
 Here we have an `Aardvark` that can eat asynchronously. Clever Aardvark.
 
-# Asynchronocity
+# Concurrent
 
-The difference between functions and behaviours is that functions are _synchronous_ and behaviours are _asynchronous_. In other words, when you call a function, the body of the function is executed immediately, and the result of the call is the result of the body of the function. This is just like method invocation in any other object-oriented language.
+Since behaviours are asynchronous, it's ok to run the body of a bunch of behaviours at the same time. This is exactly what Pony does. The Pony runtime has its own scheduler, which by default has a number of threads equal to the number of CPU cores on your machine. Each scheduler thread can be executing an actor behaviour at any given time, so Pony programs are naturally concurrent.
 
-But when you call a behaviour, the body is __not__ immediately executed. Instead, the body of the behaviour will execute at some indeterminate time in the future.
-
-__So what does a behaviour return?__ All behaviours always return the receiver. They can't return something they calculate (since they haven't run yet), so returning the receiver is a convenience to allow chaining calls on the receiver.
-
-# Parallelism
-
-Since behaviours are asynchronous, it's ok to run the body of a bunch of behaviours at the same time. This is exactly what Pony does. The Pony runtime has its own scheduler, which by default has a number of threads equal to the number of CPU cores on your machine. Each scheduler thread can be executing an actor behaviour at any given time, so Pony programs are naturally parallel.
-
-# Sequentiality
+# Sequential
 
 Actors themselves, however, are sequential. That is, each actor will only execute one behaviour at a time. This means all the code in an actor can be written without caring about concurrency: no need for locks or semaphores or anything like that.
 
