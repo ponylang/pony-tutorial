@@ -81,4 +81,4 @@ type Float is (F32 | F64)
 
 Those are all type aliases used by the standard library.
 
-__Are those type aliases for type expressions that contain type aliases?__ Yes! Fun, and convenient.
+__Is `Number` a type alias for a type expression that contains other type aliases?__ Yes! Fun, and convenient.
