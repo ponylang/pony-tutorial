@@ -1,6 +1,4 @@
-There's yet another new concept here too, but it's an easy one. `HasName`, `HasAge` and `HasAddress` are all __interfaces__. A Pony interface is like a Go interface: anything that provides that interface _is_ that interface, whether or not it declares that it is. There are also __traits__, which have to be declared, but we'll cover both interfaces and traits in more detail later.
-
-Like other object-oriented languages, Pony has __subtyping__. That is, there are _category_ types that other types can be members of.
+Like other object-oriented languages, Pony has __subtyping__. That is, some types serve as _categories_ that other types can be members of.
 
 There are two kinds of __subtyping__ in programming languages: __nominal__ and __structural__. They're subtly different, and most programming languages only have one or the other. Pony has both!
 
