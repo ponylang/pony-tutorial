@@ -12,6 +12,7 @@ pages:
 - ["types/classes.md"]
 - ["types/primitives.md"]
 - ["types/actors.md"]
+- ["types/traits-and-interfaces.md"]
 - ["types/type-aliases.md"]
 - ["variables/variables.md"]
 - ["control-structures/conditionals.md", "Basic control structures", "Conditionals"]

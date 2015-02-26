@@ -39,8 +39,6 @@ type Person is (HasName & HasAge & HasAddress)
 
 There's another new concept here: the type has a `&` in it. This is similar to the `|` of a __union__ type: it means this is an __intersection__ type. That is, it's something that must be _all_ of `HasName`, `HasAge` _and_ `HasAddress`.
 
-There's yet another new concept here too, but it's an easy one. `HasName`, `HasAge` and `HasAddress` are all __interfaces__. A Pony interface is like a Go interface: anything that provides that interface _is_ that interface, whether or not it declares that it is. There are also __traits__, which have to be declared, but we'll cover both interfaces and traits in more detail later.
-
 But the use of `type` here is exactly the same as the enumeration example above, it's just providing a name for a type that is otherwise a bit tedious to type out over and over.
 
 Another example, this time from the standard library, is `SetIs`. Here's the actual definition:
