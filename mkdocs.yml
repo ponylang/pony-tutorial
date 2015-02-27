@@ -15,6 +15,7 @@ pages:
 - ["types/traits-and-interfaces.md"]
 - ["types/type-aliases.md"]
 - ["types/type-expressions.md"]
+- ["capabilities/introduction.md"]
 - ["variables/variables.md"]
 - ["control-structures/conditionals.md", "Basic control structures", "Conditionals"]
 - ["control-structures/operator-precedence.md", "Basic control structures", "Operator precedence"]
