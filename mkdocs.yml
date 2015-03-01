@@ -18,6 +18,7 @@ pages:
 - ["capabilities/introduction.md"]
 - ["variables/variables.md"]
 - ["control-structures/control-structures.md"]
+- ["expressions/infix-ops.md"]
 - ["methods/methods.md"]
 - ["actors/behaviours.md"]
 - ["actors/capabilities.md"]
