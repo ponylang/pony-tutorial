@@ -33,7 +33,7 @@ Repeated use of a single operator however is fine:
 1 + 2 + 3
 ```
 
-# Operator overloading
+# Operator aliasing
 
 Most infix operators in Pony are actually aliases for functions. The left operand is the receiver the function is called on and the right operand is passed as an argument. For example the following expressions are equivalent:
 
@@ -103,7 +103,7 @@ For `and`, if the first operand is __false__ then the second operand is not eval
 
 For `or`, if the first operand is __true__ then the second operand is not evaluated, since it cannot affect the result.
 
-This is a special feature built into the compiler, it cannot be used with operator overloading for any other type.
+This is a special feature built into the compiler, it cannot be used with operator aliasing for any other type.
 
 # Unary operators
 
