@@ -52,7 +52,7 @@ fun test(a: Wombat iso) =>
   var b: Wombat iso = consume a // Allowed!
 ```
 
-The compiler is happy with that, because by __consuming__ `a`, you've told the compiler to complain if you try to use `a` again without assigning to it.
+The compiler is happy with that, because by __consuming__ `a`, you've told the compiler to complain if you try to use `a` again without assigning to it. The variable effectively has _no value_ after you consume it, so the compiler won't let you access it.
 
 ```
 fun test(a: Wombat iso) =>
@@ -62,20 +62,23 @@ fun test(a: Wombat iso) =>
 
 Here's an example of that. When you try to assign `a` to `c`, the compiler will complain.
 
-__Can I `consume` a field?__ Definitely not! There's no way to be sure no other alias to the object will access that field. But there's a way to do what you want to do: _destructive read_.
+__Can I `consume` a field?__ Definitely not! Consuming something means it has no value. There's no way to be sure no other alias to the object will access that field, and if we tried to access a field that had no value, we would crash. But there's a way to do what you want to do: _destructive read_.
 
 # Destructive read
 
 There's another way to _move_ a value from one name to another. Earlier, we talked about how assignment in Pony returns the _old_ value of the left-hand side, rather than the new value. This is called _destructive read_, and we can use it to do what we want to do, even with fields.
 
 ```
-fun test(a: Wombat iso, b: Wombat iso) =>
-  var c: Wombat iso = b = consume a // Allowed!
+class Aardvark
+  var buddy: Wombat iso
+
+  fun test(a: Wombat iso) =>
+    var b: Wombat iso = buddy = consume a // Allowed!
 ```
 
-Here, we consume `a`, assign it to `b`, and assign the _old_ value of `b` to `c`. We could also create a new `Wombat` and assign it to `a` instead of consuming it.
+Here, we consume `a`, assign it to the field `buddy`, and assign the _old_ value of `buddy` to `b`.
 
-__Why is it ok to destructively read fields when we can't consume them?__ Because when we do a destructive read, the field always has _some_ value, so if any other alias to the object needs that field, it's ok.
+__Why is it ok to destructively read fields when we can't consume them?__ Because when we do a destructive read, the field always has a value, since we assign to it. So, unlike `consume`, there's no time when the field has no value, so it's safe and the compiler doesn't complain.
 
 # Ephemeral types
 
