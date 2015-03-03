@@ -18,6 +18,7 @@ pages:
 - ["capabilities/type-qualifiers.md"]
 - ["capabilities/guarantees.md"]
 - ["capabilities/aliasing.md"]
+- ["capabilities/combining-capabilities.md"]
 - ["expressions/variables.md"]
 - ["expressions/infix-ops.md"]
 - ["expressions/control-structures.md"]
