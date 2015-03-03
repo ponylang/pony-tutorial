@@ -4,7 +4,11 @@ Since types are guarantees, it's useful to talk about what guarantees a capabili
 
 We're going to talk about capability guarantees in terms of what's _denied_. By this, we mean: what can other variables _not_ do when you have a variable with a certain capability?
 
-When we talk about what's denied and we say _this_ actor, we mean the actor that can reach the variable that has the type we're interested in. When we say _other_ actors, we mean any other possible actor. When we say _all_ actors we mean both _this_ actor and _other_ actors.
+We need to distinguish between the actor that contains the variable in question and _other_ actors.
+
+This is important because data reads and writes from other actors may occur concurrently. If two actors can both read the same data and one of them changes it then it will change under the feet of the other actor. This leads to data-races and the need for locks. By ensuring this situation can never occur Pony eliminates the need for locks.
+
+All code within any one actor always executes concurrently. This means that data accesses from multiple variables within a single actor do not suffer from data-races.
 
 # Mutable capabilities
 
@@ -21,7 +25,7 @@ __Why can they be used to write?__ Because they all stop _other_ actors from rea
 The __immutable__ capabilities are `val` and `box`. These capabilities are __immutable__ because they can be used to read from an object, but not to write to it.
 
 * If an actor has a `val` variable, no other variable can be used by _any_ actor to write to that object. This means that the object can't _ever_ change. It is _globally immutable_.
-* If an actor has a `box` variable, no other variable can be used by _other_ actors to write to that object. This means that other actors may be able to read the object and other variables in this actor may be able to write to it (although not both). In either case it is safe for us to read. The object is _locally immutable_.
+* If an actor has a `box` variable, no other variable can be used by _other_ actors to write to that object. This means that other actors may be able to read the object and other variables in the same actor may be able to write to it (although not both). In either case it is safe for us to read. The object is _locally immutable_.
 
 __Why can they be used to read but not write?__ Because these capabilities only stop _other_ actors from writing to the object. That means there is no guarantee that _other_ actors aren't reading from the object, which means it's not safe for us to write to it. It's safe for more than one actor to read from an object at the same time though, so we're allowed to do that.
 
