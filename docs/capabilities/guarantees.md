@@ -20,10 +20,10 @@ __Why can they be used to write?__ Because they all stop _other_ actors from rea
 
 The __immutable__ capabilities are `val` and `box`. These capabilities are __immutable__ because they can be used to read from an object, but not to write to it.
 
-* If an actor has a `val` variable, no other variable can be used by _any_ actor to write to that object.
-* If an actor has a `box` variable, no other variable can be used by _other_ actors to write to that object.
+* If an actor has a `val` variable, no other variable can be used by _any_ actor to write to that object. This means that the object can't _ever_ change. It is _globally immutable_.
+* If an actor has a `box` variable, no other variable can be used by _other_ actors to write to that object. This means that other actors may be able to read the object and other variables in this actor may be able to write to it (although not both). In either case it is safe for us to read. The object is _locally immutable_.
 
-__Why can they be used to read but not write?__ Because they only stop _other_ actors from writing to the object. That means they make no guarantee that _other_ actors aren't reading from the object. It's safe for more than one actor to read from an object at the same time though, so we're allowed to do that.
+__Why can they be used to read but not write?__ Because these capabilities only stop _other_ actors from writing to the object. That means there is no guarantee that _other_ actors aren't reading from the object, which means it's not safe for us to write to it. It's safe for more than one actor to read from an object at the same time though, so we're allowed to do that.
 
 # Opaque capabilities
 

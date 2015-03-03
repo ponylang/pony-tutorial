@@ -77,7 +77,7 @@ class Aardvark
 
 Here, we consume `a`, assign it to the field `buddy`, and assign the _old_ value of `buddy` to `b`.
 
-__Why is it ok to destructively read fields when we can't consume them?__ Because when we do a destructive read, we assign to the field so it always has a value. So, unlike `consume`, there's no time when the field is empty, so it's safe and the compiler doesn't complain.
+__Why is it ok to destructively read fields when we can't consume them?__ Because when we do a destructive read, we assign to the field so it always has a value. Unlike `consume`, there's no time when the field is empty. That means it's safe and the compiler doesn't complain.
 
 # Ephemeral types
 
