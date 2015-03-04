@@ -20,6 +20,7 @@ pages:
 - ["capabilities/aliasing.md"]
 - ["capabilities/combining-capabilities.md"]
 - ["capabilities/passing-and-sharing.md"]
+- ["capabilities/capability-subtyping.md"]
 - ["expressions/variables.md"]
 - ["expressions/infix-ops.md"]
 - ["expressions/control-structures.md"]
