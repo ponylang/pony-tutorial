@@ -19,6 +19,7 @@ pages:
 - ["capabilities/guarantees.md"]
 - ["capabilities/aliasing.md"]
 - ["capabilities/passing-and-sharing.md"]
+- ["capabilities/capability-subtyping.md"]
 - ["expressions/variables.md"]
 - ["expressions/infix-ops.md"]
 - ["expressions/control-structures.md"]
