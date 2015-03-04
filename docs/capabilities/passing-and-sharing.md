@@ -23,7 +23,7 @@ __So I should use `val` when I want to share an immutable object amongst actors?
 
 The second guarantee is what `tag` does. Not the part about only one actor writing (that's guaranteed by any mutable capability), but the part about not being able to read from or write to an object. That means you can freely pass `tag` objects to other actors, without needing to give up the ability to read from or write to that object.
 
-__What's the point in sending a tag reference to another actor if it can't then read of write the fields?__ Because tags __can__ be used to __identify__ objects and sometimes that's all you need. Also, if the object is an actor you can call behaviours on it even though you only have a tag reference.
+__What's the point in sending a tag reference to another actor if it can't then read of write the fields?__ Because `tag` __can__ be used to __identify__ objects and sometimes that's all you need. Also, if the object is an actor you can call behaviours on it even though you only have a `tag`.
 
 __So I should use `tag` when I want to share the identity of a mutable object amongst actors?__ Yes! Or, really, the identity of anything, whether it's mutable, immutable, or even an actor.
 
