@@ -4,24 +4,34 @@ This is because all the guarantees that the __origin__ capability makes have to 
 
 # Viewpoint adaptation
 
-This process is called __viewpoint adaptation__. That is, the __origin__ has a __viewpoint__, and can "see" its fields only from that __viewpoint__.
+The process of combining origin and field capabilties is called __viewpoint adaptation__. That is, the __origin__ has a __viewpoint__, and can "see" its fields only from that __viewpoint__.
 
-Let's start with a table. In this table, the capabilities in the columns on the left-hand side are the __origin__ capabilities. The capabilities in the rows are the resulting capability when you read a field.
-
----
-
-| &#x25B7; | iso | trn | ref | val | box | tag |
-|----------|-----|-----|-----|-----|-----|-----|
-| __iso__  | iso | tag | tag | val | tag | tag |
-| __trn__  | iso | trn | box | val | box | tag |
-| __ref__  | iso | trn | ref | val | box | tag |
-| __val__  | val | val | val | val | val | tag |
-| __box__  | tag | box | box | val | box | tag |
-| __tag__  | n/a | n/a | n/a | n/a | n/a | n/a |
+Let's start with a table. This shows how __fields__ of each capability "look" to __origins__ of each capability.
 
 ---
 
-For example, if you have a `trn` origin and you read a `ref` field, you get a `box` result.
+| &#x25B7;        | iso field | trn field | ref field | val field | box field | tag field |
+|-----------------|-----------|-----------|-----------|-----------|-----------|-----------|
+| __iso origin__  | iso       | tag       | tag       | val       | tag       | tag       |
+| __trn origin__  | iso       | trn       | box       | val       | box       | tag       |
+| __ref origin__  | iso       | trn       | ref       | val       | box       | tag       |
+| __val origin__  | val       | val       | val       | val       | val       | tag       |
+| __box origin__  | tag       | box       | box       | val       | box       | tag       |
+| __tag origin__  | n/a       | n/a       | n/a       | n/a       | n/a       | n/a       |
+
+---
+
+For example, if you have a `trn` origin and you read a `ref` field, you get a `box` result:
+
+```
+class Foo
+  var x: String ref
+
+class Bar
+  fun f() =>
+    var y: Foo trn = getTrnFoo()
+    var z: String box = y.x
+```
 
 # Explaining why
 
