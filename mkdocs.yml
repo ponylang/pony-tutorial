@@ -18,6 +18,7 @@ pages:
 - ["capabilities/type-qualifiers.md"]
 - ["capabilities/guarantees.md"]
 - ["capabilities/aliasing.md"]
+- ["capabilities/combining-capabilities.md"]
 - ["capabilities/passing-and-sharing.md"]
 - ["capabilities/capability-subtyping.md"]
 - ["expressions/variables.md"]

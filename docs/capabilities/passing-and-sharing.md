@@ -6,7 +6,7 @@ For an object to be mutable, we need to be sure that no _other_ actor can read f
 
 But what if we want to pass a mutable object from one actor to another? To do that, we need to be sure that the actor that is _sending_ the mutable object also _gives up_ the ability to both read from and write to that object.
 
-This is exactly what `iso` does. It is _read and write unique_, so if you send an `iso` object to another actor, you will be giving up the ability to read from or write to that object.
+This is exactly what `iso` does. It is _read and write unique_, there can only be one reference at a time that can be used for reading or writing. If you send an `iso` object to another actor, you will be giving up the ability to read from or write to that object.
 
 __So I should use `iso` when I want to pass a mutable object between actors?__ Yes! If you don't need to pass it, you can just use `ref` instead.
 
@@ -19,9 +19,11 @@ If you want to __share__ an object amongst actors, then we have to make one of t
 
 The first guarantee is exactly what `val` does. It is _globally immutable_, so we know that _no_ actor can ever write to that object. As a result, you can freely send `val` objects to other actors, without needing to give up the ability to read from that object.
 
-__So I should use `val` when I want to share an immutable object amongst actors?__ Yes! If you don't need to share it, you can just use `ref` instead.
+__So I should use `val` when I want to share an immutable object amongst actors?__ Yes! If you don't need to share it, you can just use `ref` instead, or `box` if you want it to be immutable.
 
 The second guarantee is what `tag` does. Not the part about only one actor writing (that's guaranteed by any mutable capability), but the part about not being able to read from or write to an object. That means you can freely pass `tag` objects to other actors, without needing to give up the ability to read from or write to that object.
+
+__What's the point in sending a tag reference to another actor if it can't then read of write the fields?__ Because tags __can__ be used to __identify__ objects and sometimes that's all you need. Also, if the object is an actor you can call behaviours on it even though you only have a tag reference.
 
 __So I should use `tag` when I want to share the identity of a mutable object amongst actors?__ Yes! Or, really, the identity of anything, whether it's mutable, immutable, or even an actor.
 
