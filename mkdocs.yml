@@ -1,10 +1,9 @@
 site_name: Pony Tutorial
 pages:
-- [index.md, Home]
-- ["installation/mac-osx.md", "Installation", "Mac OSX"]
-- ["installation/linux.md", "Installation", "Linux"]
-- ["installation/windows.md", "Installation", "Windows"]
+- ["index.md", Home]
+- ["index.md", "Getting started", "Welcome!"]
 - ["getting-started/what-you-need-to-start.md"]
+- ["getting-started/installation.md"]
 - ["getting-started/helloworld.md"]
 - ["getting-started/how-it-works.md"]
 - ["getting-started/whitespace.md"]
