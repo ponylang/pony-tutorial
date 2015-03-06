@@ -15,7 +15,7 @@ pages:
 - ["types/traits-and-interfaces.md"]
 - ["types/type-aliases.md"]
 - ["types/type-expressions.md"]
-- ["capabilities/type-qualifiers.md"]
+- ["capabilities/introduction.md"]
 - ["capabilities/guarantees.md"]
 - ["capabilities/aliasing.md"]
 - ["capabilities/combining-capabilities.md"]
