@@ -8,7 +8,7 @@ We need to distinguish between the actor that contains the variable in question 
 
 This is important because data reads and writes from other actors may occur concurrently. If two actors can both read the same data and one of them changes it then it will change under the feet of the other actor. This leads to data-races and the need for locks. By ensuring this situation can never occur Pony eliminates the need for locks.
 
-All code within any one actor always executes concurrently. This means that data accesses from multiple variables within a single actor do not suffer from data-races.
+All code within any one actor always executes sequentially. This means that data accesses from multiple variables within a single actor do not suffer from data-races.
 
 # Mutable capabilities
 
