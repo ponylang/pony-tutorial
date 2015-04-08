@@ -76,24 +76,28 @@ You do not have to worry about any of this if you don't want to. You can simply 
 
 The full list of infix operators that are aliases for functions is:
 
-<pre>
-+    add()      Addition
--    sub()      Subtraction
-*    mul()      Multiplication
-/    div()      Division
-%    mod()      Modulus
-<<   shl()      Left bit shift
->>   shr()      Right bit shift
-and  op_and()   And, both bitwise and logical
-or   op_or()    Or, both bitwise and logical
-xor  op_xor()   Xor, both bitwise and logical
-==   eq()       Equality
-!=   ne()       Non-equality
-<    lt()       Less then
-<=   le()       Less than or equal
->=   ge()       Greater than or equal
->    gt()       Greater than
-</pre>
+---
+
+Operator | Method   | Description
+---------|----------|------------
++        | add()    | Addition
+-        | sub()    | Subtraction
+*        | mul()    | Multiplication
+/        | div()    | Division
+%        | mod()    | Modulus
+<<       | shl()    | Left bit shift
+>>       | shr()    | Right bit shift
+and      | op_and() | And, both bitwise and logical
+or       | op_or()  | Or, both bitwise and logical
+xor      | op_xor() | Xor, both bitwise and logical
+==       | eq()     | Equality
+!=       | ne()     | Non-equality
+<        | lt()     | Less then
+<=       | le()     | Less than or equal
+>=       | ge()     | Greater than or equal
+>        | gt()     | Greater than
+
+---
 
 # Short circuiting
 
@@ -116,7 +120,11 @@ x.neg()
 
 The full list of unary operators that are aliases for functions is:
 
-```pony
--    neg()      Arithmetic negation
-!    op_not()   Not, both bitwise and logical
-```
+---
+
+Operator | Method   | Description
+---------|----------|------------
+-        | neg()    | Arithmetic negation
+!        | op_not() | Not, both bitwise and logical
+
+---
