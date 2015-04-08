@@ -12,7 +12,7 @@ Like a function, a behaviour can have parameters. Unlike a function, it doesn't 
 
 __So what does a behaviour return?__ All behaviours always return the receiver. They can't return something they calculate (since they haven't run yet), so returning the receiver is a convenience to allow chaining calls on the receiver.
 
-```
+```pony
 actor Aardvark
   let name: String
   var _hunger_level: U64 = 0

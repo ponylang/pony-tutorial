@@ -23,7 +23,7 @@ Let's start with a table. This shows how __fields__ of each capability "look" to
 
 For example, if you have a `trn` origin and you read a `ref` field, you get a `box` result:
 
-```
+```pony
 class Foo
   var x: String ref
 

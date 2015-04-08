@@ -21,7 +21,7 @@ As an example, in some languages you have to define a type that represents a mut
 
 A capability comes at the end of a type. So, for example:
 
-```
+```pony
 String iso // An isolatated string, which is mutable and read/write unique.
 String trn // A transition string, which is mutable and write unique.
 String ref // A string reference, which is mutable.
@@ -32,7 +32,7 @@ String tag // A string tag, which is opaque.
 
 __What does it mean when a type doesn't specify a capability?__ It means you are using the _default_ capability for that type. When you define a type, if you don't specify the default capability, it's `ref`, but you can set it to anything convenient. Here's an example from the standard library:
 
-```
+```pony
 class String val
 ```
 

@@ -1,6 +1,6 @@
 Our first program will be a very traditional one. We're going to print "Hello, world!". First, create a directory called `helloworld`:
 
-```
+```bash
 $ mkdir helloworld
 $ cd helloworld
 ```
@@ -15,7 +15,7 @@ __Does the name of the file matter?__ Not to the compiler, no. Pony doesn't care
 
 In your file, put the following code:
 
-```
+```pony
 actor Main
   new create(env: Env) =>
     env.out.print("Hello, world!")
@@ -25,7 +25,7 @@ actor Main
 
 Now compile it:
 
-```
+```bash
 $ ponyc
 Building .
 Building builtin
@@ -43,7 +43,7 @@ __Wait, it linked too?__ Yes. You won't need a build system (like `make`) for Po
 
 Now we can run the program:
 
-```
+```bash
 $ ./helloworld
 Hello, world!
 ```

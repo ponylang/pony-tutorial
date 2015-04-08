@@ -1,6 +1,6 @@
 Let's look at our `helloworld` code again:
 
-```
+```pony
 actor Main
   new create(env: Env) =>
     env.out.print("Hello, world!")
@@ -10,7 +10,7 @@ Let's go through that line by line.
 
 # Line 1
 
-```
+```pony
 actor Main
 ```
 
@@ -22,7 +22,7 @@ A Pony program has to have a `Main` actor. It's kind of like the `main` function
 
 # Line 2
 
-```
+```pony
   new create(env: Env) =>
 ```
 
@@ -40,7 +40,7 @@ __Wait, what's the body?__ It's the code that comes after the `=>`.
 
 # Line 3
 
-```
+```pony
     env.out.print("Hello, world!")
 ```
 

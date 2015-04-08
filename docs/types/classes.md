@@ -1,6 +1,6 @@
 Just like other object-oriented language, Pony has __classes__. A class is declared with the keyword `class`, and it has to have a name that starts with a capital letter, like this:
 
-```
+```pony
 class Wombat
 ```
 
@@ -18,7 +18,7 @@ A class is composed of:
 
 These are just like fields in C structs or fields in classes in C++, C#, Java, Python, Ruby, or basically any language, really. There are two kinds of fields: var fields and let fields. A var field can be assigned to over and over again, but a let field is assigned to in the constructor and never again.
 
-```
+```pony
 class Wombat
   let name: String
   var _hunger_level: U64
@@ -34,7 +34,7 @@ Pony constructors have names. Other than that, they are just like constructors i
 
 Constructors are introduced with the __new__ keyword.
 
-```
+```pony
 class Wombat
   let name: String
   var _hunger_level: U64
@@ -60,7 +60,7 @@ Every constructor has to set every field in an object. If it doesn't, the compil
 
 Sometimes it's convenient to set a field the same way for all constructors.
 
-```
+```pony
 class Wombat
   let name: String
   var _hunger_level: U64
@@ -81,7 +81,7 @@ Here, every `Wombat` begins a little bit thirsty, regardless of which constructo
 
 Functions in Pony are like methods in Java, C#, C++, Ruby, Python, or pretty much any other object oriented language. They are introduced with the keyword `fun`. They can have parameters, like constructors do, and they can also have a result type (if no result type is given, it defaults to `None`).
 
-```
+```pony
 class Wombat
   let name: String
   var _hunger_level: U64
@@ -126,7 +126,7 @@ __Wait, seriously? The _old_ value?__ Yes. In Pony, assignment is an expression 
 
 __...why?__ It's called a "destructive read", and it lets you do awesome things with a capabilities type system. We'll talk about that more later. For now, we'll just mention that you can also use it to implement a _swap_ operation. In most languages, to swap the values of `a` and `b` you need to do something like:
 
-```
+```pony
 var temp = a
 a = b
 b = temp
@@ -134,7 +134,7 @@ b = temp
 
 In Pony, you can just do:
 
-```
+```pony
 a = b = a
 ```
 

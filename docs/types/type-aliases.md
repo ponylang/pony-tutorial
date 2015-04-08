@@ -6,7 +6,7 @@ We'll give a couple examples of using type aliases, just to get the feel of them
 
 One way to use type aliases is to express an enumeration. For example, imagine we want to say something must either be Red, Blue or Green. We could write something like this:
 
-```
+```pony
 primitive Red
 primitive Blue
 primitive Green
@@ -24,7 +24,7 @@ A union type is a form of _closed world_ type. That is, it says every type that 
 
 If a type is complicated, it can be nice to give it a mnemonic name. For example, if we want to say that a type must implement more than one trait, we could say:
 
-```
+```pony
 interface HasName
   fun name(): String
  
@@ -43,7 +43,7 @@ But the use of `type` here is exactly the same as the enumeration example above,
 
 Another example, this time from the standard library, is `SetIs`. Here's the actual definition:
 
-```
+```pony
 type SetIs[A] is HashSet[A, HashIs[A!]]
 ```
 
@@ -51,7 +51,7 @@ Again there's something new here. After the name `SetIs` comes the name `A` in s
 
 And again the use of `type` just provides a more convenient way to refer to the type we're aliasing:
 
-```
+```pony
 HashSet[A, HashIs[A!]]
 ```
 
@@ -59,7 +59,7 @@ That's another __generic type__. It means a `SetIs` is really a kind of `HashSet
 
 One more example, again from the standard library, is the `Map` type that gets used a lot. It's actually a type alias. Here's the real definition of `Map`:
 
-```
+```pony
 type Map[K: (Hashable box & Comparable[K] box), V] is HashMap[K, V, HashEq[K]]
 ```
 

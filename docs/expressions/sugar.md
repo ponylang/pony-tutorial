@@ -4,28 +4,28 @@ Pony allows you to omit certain small details from your code and will put them b
 
 Many Pony classes have a function called `apply` which performs whatever action is most common for that type. Pony allows you to omit the word `apply` and just attempt to do a call directly on the object. So:
 
-```
+```pony
 var foo = Foo.create()
 foo()
 ```
 
 becomes:
 
-```
+```pony
 var foo = Foo.create()
 foo.apply()
 ```
 
 Any required arguments can be added just like normal method calls.
 
-```
+```pony
 var foo = Foo.create()
 foo(x, 37 where crash = false)
 ```
 
 becomes:
 
-```
+```pony
 var foo = Foo.create()
 foo.apply(x, 37 where crash = false)
 ```
@@ -38,13 +38,13 @@ __How do I call a function foo if apply is added?__ The `apply` sugar is only ad
 
 To create an object you need to specify the type and call a constructor. Pony allows you to miss out the constructor and will insert a call to `create()` for you. So:
 
-```
+```pony
 var foo = Foo
 ```
 
 becomes:
 
-```
+```pony
 var foo = Foo.create()
 ```
 
@@ -52,13 +52,13 @@ Normally types are not valid things to appear in expressions, so omitting the co
 
 If arguments are needed for create these can be provided as if calling the type. Default and named arguments can be used as normal.
 
-```
+```pony
 var foo = Foo(x, 37 where crash = false)
 ```
 
 becomes:
 
-```
+```pony
 var foo = Foo.create(x, 37 where crash = false)
 ```
 
@@ -70,14 +70,14 @@ __If the create I want to call takes no arguments can I still put in the parenth
 
 If a type has a create constructor that takes no arguments then the create and apply sugar can be used together. Just call on the type and calls to create and apply will be added. The call to create will take no arguments and the call to apply will take whatever arguments are supplied.
 
-```
+```pony
 var foo = Foo()
 var bar = Bar(x, 37 where crash = false)
 ```
 
 becomes:
 
-```
+```pony
 var foo = Foo.create().apply()
 var bar = Bar.create().apply(x, 37 where crash = false)
 ```
@@ -90,13 +90,13 @@ The `update` sugar allows any class to use an assignment to accept data. Many la
 
 In any assignment where the left hand side is a function call, Pony will translate this to a call to update, with the value from the right hand side as an extra argument. So:
 
-```
+```pony
 foo(37) = x
 ```
 
 becomes:
 
-```
+```pony
 foo.update(37 where value = x)
 ```
 
@@ -104,7 +104,7 @@ The value from the right hand side of the assignment is always passed to a param
 
 __Does my update function have to have a single parameter that takes an integer?__ No, you can define update to take whatever parameters you like, as long as there is one called `value`. The following are all fine:
 
-```
+```pony
 foo1(2, 3) = x
 foo2() = x
 foo3(37, "Hello", 3.5 where a = 2, b = 3) = x

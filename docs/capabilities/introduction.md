@@ -65,7 +65,7 @@ Note that if you have a variable referring to an actor then you can send message
 
 A capability comes at the end of a type. So, for example:
 
-```
+```pony
 String iso // An isolated string
 String trn // A transition string
 String ref // A string reference
@@ -76,7 +76,7 @@ String tag // A string tag
 
 __What does it mean when a type doesn't specify a capability?__ It means you are using the _default_ capability for that type, which is defined along with the type. Here's an example from the standard library:
 
-```
+```pony
 class String val
 ```
 

@@ -14,7 +14,7 @@ The core idea is that you have a type that declares it has a relationship to som
 
 Pony has nominal subtyping, using __traits__. A __trait__ looks a bit like a __class__, but it uses the keyword `trait` and it can't have any fields.
 
-```
+```pony
 trait Named
   fun name(): String => "Bob"
 
@@ -27,7 +27,7 @@ We also have a class `Bob` that says it `is Named`. This means `Bob` is in the `
 
 Since `Bob` doesn't have its own `name` function, it uses the one from the trait. If the trait's function didn't have a default implementation, the compiler would complain that `Bob` had no implementation of `name`.
 
-```
+```pony
 class Larry
   fun name(): String => "Larry"
 ```
@@ -48,7 +48,7 @@ If you've used Go, you'll recognise that Go interfaces are structural types.
 
 Pony has structural subtyping too, using __interfaces__. Interfaces look like traits, but they use the keyword `interface`.
 
-```
+```pony
 interface HasName
   fun name(): String
 ```

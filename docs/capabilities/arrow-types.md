@@ -6,7 +6,7 @@ When that happens, we can write a __viewpoint adapted type__, which we call an _
 
 A function with a `box` receiver can be called with a `ref` receiver or a `val` receiver as well, since those are both subtypes of `box`. Sometimes, we want to be able to talk about a type takes this into account. For example:
 
-```
+```pony
 class Wombat
   var _friend: Wombat
 
@@ -29,7 +29,7 @@ We haven't covered generics yet, so this may seem a little weird. We'll cover th
 
 Another time we don't know the precise capability of something is if we are using a type parameter. Here's an example from the standard library:
 
-```
+```pony
 class ListValues[A, N: ListNode[A] box] is Iterator[N->A]
 ```
 
@@ -43,7 +43,7 @@ There's one more way we use arrow types, and it's also related to generics. Some
 
 In other words, the unknown type will be a subtype of `box`, but that's all we know. Here's an example from the standard library:
 
-```
+```pony
 interface Comparable[A: Comparable[A] box]
   fun eq(that: box->A): Bool => this is that
   fun ne(that: box->A): Bool => not eq(that)

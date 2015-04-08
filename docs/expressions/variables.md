@@ -6,7 +6,7 @@ Local variables in Pony work very much as they do in other languages, allowing y
 
 To define a local variable the `var` keyword is used (`let` can also be used, but we'll get to that later). Right after the `var` comes the variable's name, and then you can (optionally) put a `:` followed by the variable's type. For example:
 
-```
+```pony
 var x: String = "Hello"
 ```
 
@@ -18,7 +18,7 @@ Every variable has a type, but you don't have to specify it in the declaration i
 
 The following definitions of `x`, `y` and `z` are all effectively identical.
 
-```
+```pony
 var x: String = "Hello"
 
 var y = "Hello"
@@ -33,7 +33,7 @@ All local variable names start with a lower case letter. If you want to you can 
 
 The chunk of code that a variable lives in is known as its __scope__. Exactly what its scope is depends on where it is defined. For example, the scope of a variable defined within the `then` expression of an `if` statement is that `then` expression. We haven't looked at `if` statements yet, but they're very similar to every other language.
 
-```
+```pony
 if a > b then
   var x = "a is bigger"
   env.out.print(x)  // OK
@@ -48,7 +48,7 @@ Variables only exists from when they are defined until the end of the current sc
 
 Local variables are declared with either a `var` or a `let`. Using `var` means the variable can be assigned and reassigned as many times as you like. Using `let` means the variable can only be assigned once.
 
-```
+```pony
 var x: U32 = 3
 let y: U32 = 4
 x = 5  // OK

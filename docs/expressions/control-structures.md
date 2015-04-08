@@ -4,7 +4,7 @@ To do real work in a program you have to be able to make decisions, iterate thro
 
 The simplest control-structure is the good old `if`. It allows you to perform some action only when a condition is true. In Pony it looks like this:
 
-```
+```pony
 if a > b then
   env.out.print("a is bigger")
 end
@@ -14,7 +14,7 @@ __Can I use integers and pointers for the condition like I can in C?__ No. In Po
 
 If you want some alternative code for when the condition fails just add an `else`:
 
-```
+```pony
 if a > b then
   env.out.print("a is bigger")
 else
@@ -24,7 +24,7 @@ end
 
 Often you want to test more than condition in one go, giving you more than two possible outcomes. You can nest `if` statements, but this quickly gets ugly:
 
-```
+```pony
 if a == b then
   env.out.print("they are the same")
 else
@@ -38,7 +38,7 @@ end
 
 As an alternative Pony provides the `elseif` keyword that combines an `else` and an `if`. This works the same as saying `else if` in other languages and you can have as many `elseif`s as you like for each `if`.
 
-```
+```pony
 if a == b then
   env.out.print("they are the same")
 elseif a > b then
@@ -50,7 +50,7 @@ end
 
 __Why can't I just say "else if" like I do in C? Why the extra keyword?__ The relationship between `if` and `else` in C, and other similar languages, is ambiguous. For example:
 
-```
+```C
 // C code
 if(a)
   if(b)
@@ -68,7 +68,7 @@ In Pony there are no statements there are only expressions, everything hands bac
 
 This means you can use `if` directly in a calculation:
 
-```
+```pony
 x = 1 + if lots then 100 else 2 end
 ```
 
@@ -76,7 +76,7 @@ This will give __x__ a value of either 3 or 101, depending on the variable __lot
 
 If the `then` and `else` branches of an `if` produce different types then the `if` produces a __union__ of the two.
 
-```
+```pony
 var x: (String | Bool) =
   if friendly then
     "Hello"
@@ -87,7 +87,7 @@ var x: (String | Bool) =
 
 __But what if my if doesn't have an else?__ Any `else` branch that doesn't exist gives an implicit `None`.
 
-```
+```pony
 var x: (String | None) =
   if friendly then
     "Hello"
@@ -106,7 +106,7 @@ Pony `while` loops are very similar to those in other languages. A condition exp
 
 Here's an example that prints out the numbers 1 to 10:
 
-```
+```pony
 var count: U32 = 1
 
 while count <= 10 do
@@ -129,7 +129,7 @@ Sometimes you want to stop part-way through a loop and give up altogether. Pony 
 
 Let's have an example. Suppose you want to go through a list of names you're getting from somewhere, looking for either "Jack" or "Jill". If neither of those appear you'll just take the last name you're given and if you're not given any names at all you'll use "Herbert".
 
-```
+```pony
 var name =
   while moreNames() do
     var name' = getName()
@@ -168,7 +168,7 @@ The Pony `for` loop iterates over a collection of items using an iterator. On ea
 
 For example to print out all the strings in an array:
 
-```
+```pony
 for name in ["Bob", "Fred", "Sarah"].values() do
   env.out.print(name)
 end
@@ -177,7 +177,7 @@ end
 Note the call to `values()` on the array, this is because the loop needs an iterator not an array.
 
 The iterator does not have to be of any particular type, but needs to provide the following methods:
-```
+```pony
   fun has_next(): Bool
   fun next(): T?
 ```
@@ -186,7 +186,7 @@ where T is the type of the objects in the collection. You don't need to worry ab
 
 You can think of the above example as being equivalent to:
 
-```
+```pony
 let iterator = ["Bob", "Fred", "Sarah"].values()
 while iterator.has_next() do
   let name = iterator.next()
@@ -211,7 +211,7 @@ The differences between `while` and `repeat` in Pony are:
 
 Suppose we're trying to create something and we want to keep trying until it's good enough:
 
-```
+```pony
 repeat
   var present = makePresent()
 until present.marksOutOfTen() > 7 end

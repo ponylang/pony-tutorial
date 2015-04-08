@@ -1,6 +1,6 @@
 Infix operators take two operands and are written between those operands. Arithmetic and comparison operators are the most common:
 
-```
+```pony
 1 + 2
 a < b
 ```
@@ -11,7 +11,7 @@ Pony has pretty much the same set of infix operators as other langauges.
 
 When using infix operators in complex expressions a key question is the __precedence__, i.e. which operator is evaluated first. Given this expression:
 
-```
+```pony
 1 + 2 * 3
 ```
 
@@ -23,13 +23,13 @@ Pony takes a different approach and outlaws infix precedence. Any expression whe
 
 This means that the example above is illegal in Pony and should be rewritten as:
 
-```
+```pony
 1 + (2 * 3)
 ```
 
 Repeated use of a single operator however is fine:
 
-```
+```pony
 1 + 2 + 3
 ```
 
@@ -37,7 +37,7 @@ Repeated use of a single operator however is fine:
 
 Most infix operators in Pony are actually aliases for functions. The left operand is the receiver the function is called on and the right operand is passed as an argument. For example the following expressions are equivalent:
 
-```
+```pony
 x + y
 x.add(y)
 ```
@@ -48,7 +48,7 @@ When defining your own `add` function there is no restriction on the types of th
 
 Here's a full example for defining a type which allows use of `+`. This is all you need:
 
-```
+```pony
 // Define a suitable type
 class Pair
   var _x: U32 = 0
@@ -76,7 +76,7 @@ You do not have to worry about any of this if you don't want to. You can simply 
 
 The full list of infix operators that are aliases for functions is:
 
-```
+<pre>
 +    add()      Addition
 -    sub()      Subtraction
 *    mul()      Multiplication
@@ -93,7 +93,7 @@ xor  op_xor()   Xor, both bitwise and logical
 <=   le()       Less than or equal
 >=   ge()       Greater than or equal
 >    gt()       Greater than
-```
+</pre>
 
 # Short circuiting
 
@@ -109,14 +109,14 @@ This is a special feature built into the compiler, it cannot be used with operat
 
 The unary operators are handled in the same manor, but with only one operand. For example the following expressions are equivalent:
 
-```
+```pony
 -x
 x.neg()
 ```
 
 The full list of unary operators that are aliases for functions is:
 
-```
+```pony
 -    neg()      Arithmetic negation
 !    op_not()   Not, both bitwise and logical
 ```

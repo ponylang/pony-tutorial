@@ -8,7 +8,7 @@ __Can I have some code outside of any methods, like I do in Python?__ No. All Po
 
 Pony functions are quite like functions (or methods) in other languages. They can have 0 or more parameters and 0 or 1 return values.
 
-```
+```pony
 class C
   fun add(x: U32, y: U32): U32 =>
     x + y
@@ -27,7 +27,7 @@ After the return value there's a `=>` and then finally the function body. The va
 
 If you want to exit a function early then use the `return` command. If the function has a return type then you need to provide a value to return. If the function does not have a return type then `return` should appear on its own, without a value.
 
-```
+```pony
 class C
   fun factorial(x: U32): U32 =>
     if x == 0 then
@@ -43,7 +43,7 @@ __Can I overload functions by argument type?__ No. There is no overloading of me
 
 Pony constructors are used to initialise newly created objects, as in many languages. However, unlike many languages, Pony constructors are named so you can have as many as you like, taking whatever parameters you like. By convention the main constructor of each type (if there is such a thing for any given type) is called `create`.
 
-```
+```pony
 class Foo
   var _x: U32
   
@@ -62,7 +62,7 @@ __Can I exit a constructor early?__ Yes. Just then use the `return` command with
 
 As in many other langauages methods in Pony are called by providing the arguments within parentheses after the method name. The parentheses are required even if there are no arguments being passed to the method.
 
-```
+```pony
 class Foo
   fun hello(name: string): String =>
     "hello " + name
@@ -73,7 +73,7 @@ class Foo
 
 Constructors are usually called "on" a type, by specifying the type that is to be created. To do this just specify the type, followed by a dot, followed by the name of the constructor you want to call.
 
-```
+```pony
 class Foo
   var _x: U32
   
@@ -91,7 +91,7 @@ class Bar
 
 Functions are always called on an object. Again just specify the object, followed by a dot followed, by the name of the function to call. If the object to call on is omitted then the current object used (i.e. `this`).
 
-```
+```pony
 class Foo
   var _x: U32
   
@@ -117,7 +117,7 @@ class Bar
 
 Constructors can also be called on an expression. Here an object is created of the same type as the specified expression, this is equivalent to directly specifying the type.
 
-```
+```pony
 class Foo
   var _x: U32
   
@@ -137,7 +137,7 @@ class Bar
 
 When defining a method you can provide default values for any of the arguments. The caller then has the choice to use the values you have provided or to provide their own. Default argument values are specified with a `=` after the parameter name.
 
-```
+```pony
 class Coord
   var _x: U32
   var _y: U32
@@ -161,7 +161,7 @@ So far, when calling methods we have always given all the arguments in order. Th
 
 To call a method using named arguments use the `where` keyword, followed by the named arguments and their values.
 
-```
+```pony
 class Coord
   var _x: U32
   var _y: U32
@@ -181,7 +181,7 @@ Named and positional arguments can be used together in a single call. Just start
 
 Default arguments can also be used in combination with positional and named arguments, just miss out any for which you want to use the default.
 
-```
+```pony
 class Foo
   fun f(a:U32 = 1, b: U32 = 2, c: U32 = 3, d: U32 = 4, e: U32 = 5) =>
     0

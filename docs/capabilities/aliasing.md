@@ -8,7 +8,7 @@ In Pony, that works for some capabilities, but not all.
 
 The reason for this is that `iso` capabilities deny other `iso` variables that point to the same object. That is, you can only have one `iso` variable pointing to any given object. The same goes for `trn`.
 
-```
+```pony
 fun test(a: Wombat iso) =>
   var b: Wombat iso = a // Not allowed!
 ```
@@ -17,14 +17,14 @@ Here we have some function that gets passed an isolated Wombat. If we try to ali
 
 __What can I alias an `iso` as?__ Since an `iso` says no other variable can be used by _any_ actor to read from or write to that object, we can only create aliases to an `iso` that can neither read nor write. Fortunately, we've got a capability that does exactly that: `tag`. So we can do this and the compiler will be happy:
 
-```
+```pony
 fun test(a: Wombat iso) =>
   var b: Wombat tag = a // Allowed!
 ```
 
 __What about aliasing `trn`?__ Since a `trn` says no other variable can be used by _any_ actor to write to that object, we need something that doesn't allow writing, but also doesn't prevent our `trn` variable from writing. Fortunately, weve got a capability that does that too: `box`. So we can do this and the compiler will be happy:
 
-```
+```pony
 fun test(a: Wombat trn) =>
   var b: Wombat box = a // Allowed!
 ```
@@ -46,14 +46,14 @@ Sometimes, you want to _move_ an object from one variable to another. In other w
 
 You can do this by using consume. When you consume a variable you take the value out of it, effectively leaving the variable empty. No code can read from that variable again until a new value is written to it. Consuming a local variable or a parameter allows you to make an alias with the same type, even if it's an `iso` or `trn`. For example:
 
-```
+```pony
 fun test(a: Wombat iso) =>
   var b: Wombat iso = consume a // Allowed!
 ```
 
 The compiler is happy with that, because by consuming `a`, you've said the value can't be used again and the compiler will complain if you try to.
 
-```
+```pony
 fun test(a: Wombat iso) =>
   var b: Wombat iso = consume a // Allowed!
   var c: Wombat tag = a // Not allowed!
@@ -67,7 +67,7 @@ __Can I `consume` a field?__ Definitely not! Consuming something means it is emp
 
 There's another way to _move_ a value from one name to another. Earlier, we talked about how assignment in Pony returns the _old_ value of the left-hand side, rather than the new value. This is called _destructive read_, and we can use it to do what we want to do, even with fields.
 
-```
+```pony
 class Aardvark
   var buddy: Wombat iso
 
@@ -85,7 +85,7 @@ In Pony, every expression has a type. So what's the type of `consume a`? It's no
 
 To show a type is ephemeral, we put a `^` at the end. For example:
 
-```
+```pony
 fun test(a: Wombat iso): Wombat iso^ =>
   consume a
 ```
@@ -100,7 +100,7 @@ For the same reason Pony has ephemeral types, it also has alias types. An alias 
 
 We indicate an alias type by putting a `!` at the end. Here's an example:
 
-```
+```pony
 fun test(a: A) =>
   var b: A! = a
 ```
