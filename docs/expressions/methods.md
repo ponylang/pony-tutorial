@@ -60,7 +60,7 @@ __Can I exit a constructor early?__ Yes. Just then use the `return` command with
 
 # Calling
 
-As in many other langauages methods in Pony are called by providing the arguments within parentheses after the method name. The parentheses are required even if there are no arguments being passed to the method.
+As in many other languages, methods in Pony are called by providing the arguments within parentheses after the method name. The parentheses are required even if there are no arguments being passed to the method.
 
 ```pony
 class Foo
