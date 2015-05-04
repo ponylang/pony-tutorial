@@ -5,8 +5,6 @@ First, install [homebrew](http://brew.sh/) if you haven't already.
 
 ```bash
 $ brew install http://www.ponylang.org/releases/ponyc.rb
-$ ponyc --version
-0.1.2
 ```
 
 A [pull request](https://github.com/Homebrew/homebrew/pull/39192) for the ponyc formula to be part of homebrew-core has been submitted and it should be merged soon.
@@ -57,18 +55,52 @@ Install ```ponyc```, ```ponyc-noavx``` or ```ponyc-numa```
 $ sudo apt-get install <package name>
 ```
 
+## Zypper
+
+First, add the ponylang.org repository:
+
+```bash
+$ sudo zypper ar -f http://www.ponylang.org/releases/yum ponyc
+```
+
+Install ```ponyc```, ```ponyc-noavx``` or ```ponyc-numa```:
+
+```bash
+$ sudo zypper install <package-name>
+```
+
+## YUM
+
+First, add the ponylang.org repository:
+
+```bash
+$ sudo yum-config-manager --add-repo=http://www.ponylang.org/releases/yum/ponyc.repo
+```
+
+**Alternatively**, if ```yum-config-manager``` is not available on your system, you can add the repository manually:
+
+```bash
+$  sudo wget -O /etc/yum.repos.d/ponyc.repo http://www.ponylang.org/releases/yum/ponyc.repo
+```
+
+Install ```ponyc```, ```ponyc-noavx``` or ```ponyc-numa```:
+
+```bash
+$ sudo yum install <package-name>
+```
+
+# Windows
+
+64-Bit installers for Windows 7, 8, 8.1 and 10 will be available soon.
+
+## Did it work?
+
 Running the following command should now display the installed version of ```ponyc```:
 
 ```bash
 $ ponyc --version
 0.1.2
 ```
-
-## YUM and Zypper
-
-# Windows
-
-64-Bit installers for Windows 7, 8, 8.1 and 10 will be available soon.
 
 # Downloads
 All installers can also be downloaded from ponylang.org's servers:
