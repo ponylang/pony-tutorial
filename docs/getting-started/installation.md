@@ -15,8 +15,8 @@ Installers for various distributions to supply precompiled binaries are availabl
 
 ## Available packages
 
-* ```ponyc```: This package is the recommended one and should work on most modern ```x86_64``` platforms.
-* ```ponyc-noavx```: Ponyc for platforms without AVX support (for example virtual machines) 
+* ```ponyc```: Recommended. Should work on most modern ```x86_64``` platforms.
+* ```ponyc-noavx```: Ponyc for platforms without AVX support (for example certain virtual machines) 
 * ```ponyc-numa```: A numa-aware version of ```ponyc```.
 
 ## Apt-get and Aptitude
