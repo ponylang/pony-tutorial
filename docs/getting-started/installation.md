@@ -16,7 +16,7 @@ Installers for various distributions to supply precompiled binaries are availabl
 ## Available packages
 
 * ```ponyc```: Recommended. Should work on most modern ```x86_64``` platforms.
-* ```ponyc-noavx```: Ponyc for platforms without AVX support (for example certain virtual machines) 
+* ```ponyc-avx2```: For platforms with AVX2 support.
 * ```ponyc-numa```: A numa-aware version of ```ponyc```.
 
 ## Apt-get and Aptitude
@@ -30,7 +30,9 @@ $ wget -O - http://www.ponylang.org/releases/buildbot@lists.ponylang.org.gpg.key
 **Option 1:** Install ```python-software-properties``` (Debian Wheezy and earlier, Ubuntu) or ```software-properties-common``` (Debian Jessy and later) for ```add-apt-repository```. Then, add the ponylang.org repository:
 
 ```bash
-$ sudo add-apt-repository http://www.ponylang.org/releases/apt
+$ sudo add-apt-repository "deb http://ponylang.org/releases/apt ponyc main"
+$ sudo add-apt-repository "deb http://ponylang.org/releases/apt ponyc-avx2 main"
+$ sudo add-apt-repository "deb http://ponylang.org/releases/apt ponyc-numa main"
 ```
 
 **Option 2**: Manually add the following three lines to your ```sources.list``` (```/etc/apt/sources.list``` on Ubuntu, and ```/etc/apt-get/sources.list``` on Debian):
@@ -38,10 +40,10 @@ $ sudo add-apt-repository http://www.ponylang.org/releases/apt
 ```bash
 deb http://ponylang.org/releases/apt ponyc main
 deb http://ponylang.org/releases/apt ponyc-numa main
-deb http://ponylang.org/releases/apt ponyc-noavx main
+deb http://ponylang.org/releases/apt ponyc-avx2 main
 ```
 
-If you know and won't be needing ```ponyc-numa``` or ```ponyc-noavx```, you can omit the respective repositories.
+If you know and won't be needing ```ponyc-numa``` or ```ponyc-avx2```, you can omit the respective repositories.
 
 Then, update your repository cache:
 
@@ -49,7 +51,7 @@ Then, update your repository cache:
 $ sudo apt-get update
 ```
 
-Install ```ponyc```, ```ponyc-noavx``` or ```ponyc-numa```
+Install ```ponyc```, ```ponyc-avx2``` or ```ponyc-numa```
 
 ```bash
 $ sudo apt-get install <package name>
@@ -63,7 +65,7 @@ First, add the ponylang.org repository:
 $ sudo zypper ar -f http://www.ponylang.org/releases/yum/ponyc.repo
 ```
 
-Install ```ponyc```, ```ponyc-noavx``` or ```ponyc-numa```:
+Install ```ponyc```, ```ponyc-avx2``` or ```ponyc-numa```:
 
 ```bash
 $ sudo zypper install <package-name>
@@ -83,7 +85,7 @@ $ sudo yum-config-manager --add-repo=http://www.ponylang.org/releases/yum/ponyc.
 $  sudo wget -O /etc/yum.repos.d/ponyc.repo http://www.ponylang.org/releases/yum/ponyc.repo
 ```
 
-Install ```ponyc```, ```ponyc-noavx``` or ```ponyc-numa```:
+Install ```ponyc```, ```ponyc-avx2``` or ```ponyc-numa```:
 
 ```bash
 $ sudo yum install <package-name>
