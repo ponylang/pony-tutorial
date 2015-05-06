@@ -1,6 +1,6 @@
 Pony allows you to write concurrent programs without worrying about locks or data-races and without having expensive runtime safety checks. How does it do this? By using something called capabilities. These allow you to specify which of your objects can be shared with other actors and allow the compiler to check that what you're doing is concurrency safe.
 
-__I think I've heard of capabilities, what other languages have them?__ Pony capabilities are completely new, no other language has them. Unfortunately in the programming world many words are used by different people to mean different things. You may have heard of capabilities somewhere else, but these are not the same thing.
+__I think I've heard of capabilities, what other languages have them?__ [Capabilities security](http://en.wikipedia.org/wiki/Capability-based_security) has been around for a long time, and there are several capabilities-secure languages. Our favourite is [E](http://en.wikipedia.org/wiki/E_%28programming_language%29). Pony is capabilities-secure, and it also introduces a new form of capability _type qualifier_ that gives programmers some interesting new... capabilities.
 
 # Basic concepts
 
