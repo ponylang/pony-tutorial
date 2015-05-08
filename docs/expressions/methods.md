@@ -68,7 +68,7 @@ class Foo
     "hello " + name
 
   fun f() =>
-    string a = hello("Fred")
+    let a = hello("Fred")
 ```
 
 Constructors are usually called "on" a type, by specifying the type that is to be created. To do this just specify the type, followed by a dot, followed by the name of the constructor you want to call.
