@@ -34,7 +34,7 @@ __Is there anything my error handler has to do?__ No. If you provide an error ha
 
 # Partial functions
 
-Pony does not require that all errors are caught immediately as in our previous examples. Instead functions can throw errors that are caught by whatever code calls them. These are called partial functions (this is a mathmetical term meaning a function that does not have a defined result for all possible inputs, i.e. arguments). Partial functions __must__ be marked as such in Pony with a `?`.
+Pony does not require that all errors are caught immediately as in our previous examples. Instead functions can throw errors that are caught by whatever code calls them. These are called partial functions (this is a mathematical term meaning a function that does not have a defined result for all possible inputs, i.e. arguments). Partial functions __must__ be marked as such in Pony with a `?`.
 
 ```pony
 fun factorial(x: I32): I32 ? =>
