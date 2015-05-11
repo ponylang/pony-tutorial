@@ -82,4 +82,4 @@ class String val
 
 When we use a `String` we usually mean a string value, so we make `val` the default capability for `String`.
 
-__So do I have to specify a capability when I define a type?__ Only if you want to. There are sensible default defaults that most types will use. These are `ref` for classes, `val` for primitives and `tag` for actors.
+__So do I have to specify a capability when I define a type?__ Only if you want to. There are sensible defaults that most types will use. These are `ref` for classes, `val` for primitives and `tag` for actors.
