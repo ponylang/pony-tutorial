@@ -1,14 +1,17 @@
 # Mac OSX
 First, install [homebrew](http://brew.sh/) if you haven't already.
 
-```ponyc``` can be installed with a published homebrew formula from [ponylang.org](http://www.ponylang.org/releases/ponyc.rb):
+Make sure to have the newest ```brew``` formulas from ```homebrew:master```:
 
 ```bash
-$ brew install http://www.ponylang.org/releases/ponyc.rb
+$ brew update
 ```
 
-A [pull request](https://github.com/Homebrew/homebrew/pull/39192) for the ponyc formula to be part of homebrew-core has been submitted and it should be merged soon.
+Then, install ponyc:
 
+```bash
+$ brew install ponyc
+```
 # Linux
 
 Installers for various distributions to supply precompiled binaries are available. All linux installers are signed with the public key published [here](http://ponylang.org/releases/buildbot@lists.ponylang.org.gpg.key).
