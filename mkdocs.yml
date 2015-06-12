@@ -34,8 +34,6 @@ pages:
 - ["actors/recover-and-consume.md", "Actors", "recover and consume"]
 - ["actors/arrow-types.md"]
 - ["packages/package-system.md"]
-- ["packages/builtin.md"]
-- ["packages/use-statement.md", "Packages", "Using a package"]
 - ["composition-inheritance/code-sharing.md", "Composition vs. inheritance"]
 - ["generics/polymorphic-types.md"]
 - ["generics/polymorphic-methods.md"]
