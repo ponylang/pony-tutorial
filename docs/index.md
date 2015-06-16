@@ -6,7 +6,7 @@ This tutorial is aimed at people who have some experience programming already. I
 
 ## More help
 
-If you need more help than this tutorial gives you, you can always write to the developer's mailing list, <ponydev@lists.ponylang.org>, or [open an issue](https://github.com/CausalityLtd/ponyc/issues). Whatever your question is, it isn't dumb, and we won't get annoyed.
+If you need more help than this tutorial gives you, you can always write to the developer's [mailing list](http://lists.ponylang.org/listinfo/ponydev), or [open an issue](https://github.com/CausalityLtd/ponyc/issues). Whatever your question is, it isn't dumb, and we won't get annoyed.
 
 ## What's Pony, anyway?
 
