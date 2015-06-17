@@ -6,7 +6,7 @@ In both kinds of language, your data has a type. So what's the difference?
 
 With a _dynamically typed_ language, a variable can point to objects of different types at different times. This is flexible, because if you have a variable `x`, you can assign an integer to it, then assign a string to it, and your compiler or interpreter doesn't complain.
 
-__But what if I try to do a string operation on `x` after assigning an integer to it?__ Generally speaking, your program will raise an error. You might be able to catch the error in some way, depending on the language, but if you don't, your program will crash.
+__But what if I try to do a string operation on `x` after assigning an integer to it?__ Generally speaking, your program will raise an error. You might be able to handle the error in some way, depending on the language, but if you don't, your program will crash.
 
 When you use a _statically typed_ language, a variable has a type. That is, it can only point to objects of a certain type (although in Pony, a type can actually be a collection of types, as we'll see later). If you have an `x` that expects to point to an integer, you can't assign a string to it. Your compiler complains, and it complains __before__ you ever try to run your program.
 
@@ -23,7 +23,7 @@ __Do dynamic types make guarantees too?__ Yes, but they do it at runtime. For ex
 The Pony type system offers a lot of guarantees, even more than other statically typed languages.
 
 * If your program compiles, it won't crash.
-* There will never be an uncaught exception.
+* There will never be an unhandled exception.
 * There's no such thing as `null`, so your program will never try to dereference `null`.
 * There will never be a data race.
 * Your program will never deadlock.

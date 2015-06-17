@@ -1,6 +1,6 @@
 Pony provides a simple exception mechanism to aid error handling. At any point the code may decide to declare an `error` has occured. Code execution halts at that point and the call chain is unwound until the nearest enclosing error handler is found. This is all checked at compile time so errors cannot cause the whole program to crash.
 
-# Throwing and catching
+# Raising and handling
 
 An error is raised with the command `error`. Error handlers are declared using the try-else syntax.
 
@@ -20,7 +20,7 @@ However, if callB() returns false, then an error will be raised. At this point e
 
 In either case execution will then carry on will whatever code comes after the try `end`.
 
-__Do I have to provide an error handler?__ No. The try block will catch any errors regardless. If you don't provide an error handler then no other action will be taken.
+__Do I have to provide an error handler?__ No. The try block will handle any errors regardless. If you don't provide an error handler then no error handling action will be taken - execution will simply continue after the try expression.
 
 If you want to do something that might raise an error, but you don't care if it does you can just put in it a try block without an else.
 
@@ -34,7 +34,7 @@ __Is there anything my error handler has to do?__ No. If you provide an error ha
 
 # Partial functions
 
-Pony does not require that all errors are caught immediately as in our previous examples. Instead functions can throw errors that are caught by whatever code calls them. These are called partial functions (this is a mathematical term meaning a function that does not have a defined result for all possible inputs, i.e. arguments). Partial functions __must__ be marked as such in Pony with a `?`.
+Pony does not require that all errors are handled immediately as in our previous examples. Instead functions can raise errors that are handled by whatever code calls them. These are called partial functions (this is a mathematical term meaning a function that does not have a defined result for all possible inputs, i.e. arguments). Partial functions __must__ be marked as such in Pony with a `?`.
 
 ```pony
 fun factorial(x: I32): I32 ? =>
@@ -58,7 +58,7 @@ Behaviours are also executed asynchronously and so cannot be partial for the sam
 
 # Try-then blocks
 
-In addition to an `else` error handler a try command can have a `then` block. This is executed after the rest of the try, whether or not an error is caught. Expanding our example from earlier:
+In addition to an `else` error handler a try command can have a `then` block. This is executed after the rest of the try, whether or not an error is raised or handled. Expanding our example from earlier:
 
 ```pony
 try
@@ -90,4 +90,4 @@ The `else` handler in a `try` expression is just like a `catch(...)` in C++, `ca
 
 The `then` block in a `try` expression is just like a `finally` in Java, C# or Python and `ensure` in Ruby.
 
-If required, error handlers can "rethrow" by using the `error` command within the handler.
+If required, error handlers can "reraise" by using the `error` command within the handler.

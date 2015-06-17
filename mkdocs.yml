@@ -1,51 +1,58 @@
 site_name: Pony Tutorial
-pages:
-- ["index.md", Home]
-- ["index.md", "Getting started", "Welcome!"]
-- ["getting-started/what-you-need-to-start.md"]
-- ["getting-started/installation.md"]
-- ["getting-started/helloworld.md"]
-- ["getting-started/how-it-works.md"]
-- ["getting-started/whitespace.md"]
-- ["types/static-vs-dynamic.md"]
-- ["types/classes.md"]
-- ["types/primitives.md"]
-- ["types/actors.md"]
-- ["types/traits-and-interfaces.md"]
-- ["types/type-aliases.md"]
-- ["types/type-expressions.md"]
-- ["capabilities/introduction.md"]
-- ["capabilities/guarantees.md"]
-- ["capabilities/aliasing.md"]
-- ["capabilities/combining-capabilities.md"]
-- ["capabilities/passing-and-sharing.md"]
-- ["capabilities/capability-subtyping.md"]
-- ["capabilities/arrow-types.md"]
-- ["expressions/variables.md"]
-- ["expressions/infix-ops.md"]
-- ["expressions/control-structures.md"]
-- ["expressions/methods.md"]
-- ["expressions/exceptions.md"]
-- ["expressions/sugar.md"]
-- ["expressions/object-literals.md"]
-- ["expressions/partial-application.md"]
-- ["actors/behaviours.md"]
-- ["actors/capabilities.md"]
-- ["actors/recover-and-consume.md", "Actors", "recover and consume"]
-- ["actors/arrow-types.md"]
-- ["packages/package-system.md"]
-- ["composition-inheritance/code-sharing.md", "Composition vs. inheritance"]
-- ["generics/polymorphic-types.md"]
-- ["generics/polymorphic-methods.md"]
-- ["pattern-matching/match.md", "Pattern matching", "match-expression"]
-- ["pattern-matching/as.md", "Pattern matching", "as-expression"]
-- ["platform/platform.md"]
-- ["editor-plugins/plugins.md", "Editor support", "Plugins"]
-- ["compiler-clargs/clargs.md", "Compiler options", "Overview"]
-- ["patterns/patterns.md"]
-- ["garbage-collection/garbage-collection.md"]
-- ["c-ffi/calling-c.md", "C-FFI", "Calling C programs"]
-- ["c-ffi/linking-c.md", "C-FFI", "Linking to C libraries"]
-- ["c-ffi/c-abi.md", "C-FFI", "Exposing a C-ABI"]
-- ["examples/examples.md"]
 theme: readthedocs
+pages:
+- Getting started:
+    - Welcome!: index.md
+    - getting-started/what-you-need-to-start.md
+    - getting-started/installation.md
+    - getting-started/helloworld.md
+    - getting-started/how-it-works.md
+    - getting-started/whitespace.md
+- Types:
+    - types/static-vs-dynamic.md
+    - types/classes.md
+    - types/primitives.md
+    - types/actors.md
+    - types/traits-and-interfaces.md
+    - types/type-aliases.md
+    - types/type-expressions.md
+- Capabilities:
+    - capabilities/introduction.md
+    - capabilities/guarantees.md
+    - capabilities/aliasing.md
+    - capabilities/combining-capabilities.md
+    - capabilities/passing-and-sharing.md
+    - capabilities/capability-subtyping.md
+    - capabilities/arrow-types.md
+- Expressions:
+    - expressions/variables.md
+    - expressions/infix-ops.md
+    - expressions/control-structures.md
+    - expressions/methods.md
+    - expressions/exceptions.md
+    - expressions/sugar.md
+    - expressions/object-literals.md
+    - expressions/partial-application.md
+- Actors:
+    - actors/behaviours.md
+    - actors/capabilities.md
+    - actors/recover-and-consume.md
+    - actors/arrow-types.md
+- packages/package-system.md
+- composition-inheritance/code-sharing.md
+- Generics:
+    - generics/polymorphic-types.md
+    - generics/polymorphic-methods.md
+- Pattern Matching:
+    - pattern-matching/match.md
+    - pattern-matching/as.md
+- platform/platform.md
+- Editor support: editor-plugins/plugins.md
+- Compiler args: compiler-clargs/clargs.md
+- patterns/patterns.md
+- garbage-collection/garbage-collection.md
+- C FFI:
+    - Calling C: c-ffi/calling-c.md
+    - Linking to C Libraries: c-ffi/linking-c.md
+    - c-ffi/c-abi.md
+- examples/examples.md
