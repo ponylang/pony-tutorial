@@ -50,11 +50,11 @@ pages:
 - Editor support: editor-plugins/plugins.md
 - Compiler args: compiler-clargs/clargs.md
 - patterns/patterns.md
-- Memory management:
-  - garbage-collection/memory-allocation.md
-  - garbage-collection/garbage-collection.md
 - C FFI:
   - Calling C: c-ffi/calling-c.md
   - Linking to C Libraries: c-ffi/linking-c.md
   - c-ffi/c-abi.md
+- The Runtime:
+  - runtime/memory-allocation.md
+  - runtime/garbage-collection.md
 - examples/examples.md

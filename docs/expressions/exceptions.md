@@ -1,6 +1,6 @@
 Pony provides a simple exception mechanism to aid error handling. At any point the code may decide to declare an `error` has occured. Code execution halts at that point and the call chain is unwound until the nearest enclosing error handler is found. This is all checked at compile time so errors cannot cause the whole program to crash.
 
-# Raising and handling
+# Raising and handling errors
 
 An error is raised with the command `error`. Error handlers are declared using the try-else syntax.
 

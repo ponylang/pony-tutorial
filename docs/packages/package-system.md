@@ -6,7 +6,7 @@ The package is the basic unit of code in Pony. It corresponds directly to a dire
 
 Every source file is within exactly one package. Hence all Pony code is in packages.
 
-A package is usally split into several source files, although it does not have to be. This is purely a convenience to allow better code organisation and the compiler treats all the code within a package as if it were from a single file.
+A package is usually split into several source files, although it does not have to be. This is purely a convenience to allow better code organisation and the compiler treats all the code within a package as if it were from a single file.
 
 The package is the privacy boundary for types and methods. That is:
 
@@ -21,7 +21,7 @@ There is no such concept as a sub-package in Pony. For example the packages "foo
 
 To use a package in your code you need to have a __use__ command. This tells the compiler to find the package you need and make the types defined in it available to you. Every Pony file that needs to know about a type from a package must have a use command for it.
 
-Use commands are a similar concept to Python "import", C "#include" and Java "using" commands, but not exactly the same. They come at the beginning of Pony files and look like this:
+Use commands are a similar concept to Python and Java "import", C/C++ "#include" and C# "using" commands, but not exactly the same. They come at the beginning of Pony files and look like this:
 
 ```pony
 use "collections"
@@ -122,7 +122,7 @@ Any use command whose condition evaluates to false is simply ignored.
 
 ## Scheme indicators
 
-Use commands can do a few other things as well as including packages, we'll get to those later. The whole string we give to a use command is known as the _specifier_. This consists of a _scheme_ indicator and a _locator_, separated by a colon. The scheme indicator tells the use command what we want it to do, for example the scheme indicator for including a package is "package". If no colon is found within the specifier string then the use command assumes you meant "package".
+The string we give to a use command is known as the _specifier_. This consists of a _scheme_ indicator and a _locator_, separated by a colon. The scheme indicator tells the use command what we want it to do, for example the scheme indicator for including a package is "package". If no colon is found within the specifier string then the use command assumes you meant "package".
 
 The following two use commands are exactly equivalent:
 
@@ -144,4 +144,4 @@ To allow use commands to be portable across operating systems, and to avoid conf
 
 The Pony standard library is a collection of packages that can each be used as needed to provide a variety of functionality. For example the __files__ package provides file access and the __collections__ package provides generic lists, maps, sets and so on.
 
-There is also a special package in the standard library called __builtin__. This contains various types that the compiler has to treat specially and are so common that all Pony code needs to know about them. All Pony source files have an implicit `use builtin` command. This means all the types defined in the package builtin are automatically available in the type namespace of all Pony source files.
+There is also a special package in the standard library called __builtin__. This contains various types that the compiler has to treat specially and are so common that all Pony code needs to know about them. All Pony source files have an implicit `use "builtin"` command. This means all the types defined in the package builtin are automatically available in the type namespace of all Pony source files.
