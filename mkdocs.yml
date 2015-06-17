@@ -16,14 +16,6 @@ pages:
   - types/traits-and-interfaces.md
   - types/type-aliases.md
   - types/type-expressions.md
-- Capabilities:
-  - capabilities/introduction.md
-  - capabilities/guarantees.md
-  - capabilities/aliasing.md
-  - capabilities/combining-capabilities.md
-  - capabilities/passing-and-sharing.md
-  - capabilities/capability-subtyping.md
-  - capabilities/arrow-types.md
 - Expressions:
   - expressions/variables.md
   - expressions/infix-ops.md
@@ -33,6 +25,15 @@ pages:
   - expressions/sugar.md
   - expressions/object-literals.md
   - expressions/partial-application.md
+- Capabilities:
+  - capabilities/object-capabilities.md
+  - capabilities/reference-capabilities.md
+  - capabilities/guarantees.md
+  - capabilities/aliasing.md
+  - capabilities/combining-capabilities.md
+  - capabilities/passing-and-sharing.md
+  - capabilities/capability-subtyping.md
+  - capabilities/arrow-types.md
 - Actors:
   - actors/behaviours.md
   - actors/capabilities.md

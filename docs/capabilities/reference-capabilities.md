@@ -1,10 +1,22 @@
-Pony allows you to write concurrent programs without worrying about locks or data-races and without having expensive runtime safety checks. How does it do this? By using something called capabilities. These allow you to specify which of your objects can be shared with other actors and allow the compiler to check that what you're doing is concurrency safe.
+So if the object _is_ the capability, what controls what we can do with the object? How do we express our _access rights_ on that object?
 
-__I think I've heard of capabilities, what other languages have them?__ [Capabilities security](http://en.wikipedia.org/wiki/Capability-based_security) has been around for a long time, and there are several capabilities-secure languages. Our favourite is [E](http://en.wikipedia.org/wiki/E_%28programming_language%29). Pony is capabilities-secure, and it also introduces a new form of capability _type qualifier_ that gives programmers some interesting new... capabilities.
+In Pony, we do it with _reference capabilities_.
+
+# Rights are part of a capability
+
+If you open a file in UNIX, and get a file descriptor back, that file descriptor is token that designates an object - but it isn't a capability. To be a capability, we need to open that file with some permission - some access right. For example:
+
+```C
+int fd = open("/etc/passwd", O_RDWR);
+```
+
+Now we have a token, and a set of rights.
+
+In Pony, every reference has both a type and a reference capability. In fact, the reference capability is _part_ of its type. These allow you to specify which of your objects can be shared with other actors and allow the compiler to check that what you're doing is concurrency safe.
 
 # Basic concepts
 
-There are a few simple concepts you need to understand before capabilities will make any sense. We've talked about some of these already, and some may already be obvious to you, but it's worth recapping here.
+There are a few simple concepts you need to understand before reference capabilities will make any sense. We've talked about some of these already, and some may already be obvious to you, but it's worth recapping here.
 
 __Shared mutable data is hard__
 
@@ -29,23 +41,23 @@ __Every actor is single threaded__
 
 The code within a single actor is never run concurrently. This means that, within a single actor, data updates cannot cause problems. It's only when we want to share data between actors that we have problems.
 
-__OK, safely sharing data concurrently is tricky. How do capabilities help?__
+__OK, safely sharing data concurrently is tricky. How do reference capabilities help?__
 
-By sharing only immutable data and exchanging only isolated data we can have safe concurrent programs without locks. The problem is that it's very difficult to do that correctly. If you accidentally hang on to a reference to some isolated data you've handed over or change something you've shared as immutable then everything goes wrong. What you need is for the compiler to force you to live up to your promises. Pony capabilities allow the compiler to do just that.
+By sharing only immutable data and exchanging only isolated data we can have safe concurrent programs without locks. The problem is that it's very difficult to do that correctly. If you accidentally hang on to a reference to some isolated data you've handed over or change something you've shared as immutable then everything goes wrong. What you need is for the compiler to force you to live up to your promises. Pony reference capabilities allow the compiler to do just that.
 
 # Type qualifiers
 
 If you've used C/C++, you may be familiar with `const`, which is a _type qualifier_ that tells the compiler not to allow the programmer to _mutate_ something.
 
-A capability is a form of _type qualifier_ and provides a lot more guarantees than `const` does!
+A reference capability is a form of _type qualifier_ and provides a lot more guarantees than `const` does!
 
-In Pony, every use of a type has a capability. These capabilities apply to variables, rather than to the type as a whole. In other words, when you define a `class Wombat`, you don't pick a capability for it. Instead, `Wombat` variables each have their own capability.
+In Pony, every use of a type has a reference capability. These capabilities apply to variables, rather than to the type as a whole. In other words, when you define a `class Wombat`, you don't pick a reference capability for it. Instead, `Wombat` variables each have their own reference capability.
 
 As an example, in some languages you have to define a type that represents a mutable `String` and another type that represents an immutable `String`. For example, in Java there is a `String` and a `StringBuilder`. In Pony, you can define a single `class String` and have some variables that are `String ref` (which are mutable) and other variables that are `String val` (which are immutable).
 
-# The list of capabilities
+# The list of reference capabilities
 
-There are six capabilities in Pony and they all have strict definitions and rules on how they can be used. We'll get to all of that later, but for now here are their names and what you use them for:
+There are six reference capabilities in Pony and they all have strict definitions and rules on how they can be used. We'll get to all of that later, but for now here are their names and what you use them for:
 
 __Isolated__, written `iso`. This is for references to isolated data structures. If you have an `iso` variable then you know that there are no other variables that can access that data. So you can change it however you like and give it to another actor.
 
@@ -59,11 +71,11 @@ __Transition__, written `trn`. This is used for data structures that you want to
 
 __Tag__. This is for references used only for identification. You cannot read or write data using a `tag` variable. But you can store and compare `tag`s to check object identity and share `tag` variables with other actors.
 
-Note that if you have a variable referring to an actor then you can send messages to that actor regardless of what capability that variable is.
+Note that if you have a variable referring to an actor then you can send messages to that actor regardless of what reference capability that variable has.
 
-# How to write a capability
+# How to write a reference capability
 
-A capability comes at the end of a type. So, for example:
+A reference capability comes at the end of a type. So, for example:
 
 ```pony
 String iso // An isolated string
@@ -74,12 +86,12 @@ String box // A string box
 String tag // A string tag
 ```
 
-__What does it mean when a type doesn't specify a capability?__ It means you are using the _default_ capability for that type, which is defined along with the type. Here's an example from the standard library:
+__What does it mean when a type doesn't specify a reference capability?__ It means you are using the _default_ reference capability for that type, which is defined along with the type. Here's an example from the standard library:
 
 ```pony
 class String val
 ```
 
-When we use a `String` we usually mean a string value, so we make `val` the default capability for `String`.
+When we use a `String` we usually mean a string value, so we make `val` the default reference capability for `String`.
 
-__So do I have to specify a capability when I define a type?__ Only if you want to. There are sensible defaults that most types will use. These are `ref` for classes, `val` for primitives and `tag` for actors.
+__So do I have to specify a reference capability when I define a type?__ Only if you want to. There are sensible defaults that most types will use. These are `ref` for classes, `val` for primitives and `tag` for actors.

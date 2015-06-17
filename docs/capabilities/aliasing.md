@@ -2,27 +2,27 @@ __Aliasing__ means having more than one variable that points to the same object.
 
 In most programming languages, aliasing is pretty simple. You just assign some variable to another variable, and there you go, you have an alias. The variable you assign to has the same type (or some supertype) as what's being assigned to it, and everything is fine.
 
-In Pony, that works for some capabilities, but not all.
+In Pony, that works for some reference capabilities, but not all.
 
 # Aliasing and deny guarantees
 
-The reason for this is that `iso` capabilities deny other `iso` variables that point to the same object. That is, you can only have one `iso` variable pointing to any given object. The same goes for `trn`.
+The reason for this is that the `iso` reference capability denies other `iso` variables that point to the same object. That is, you can only have one `iso` variable pointing to any given object. The same goes for `trn`.
 
 ```pony
 fun test(a: Wombat iso) =>
   var b: Wombat iso = a // Not allowed!
 ```
 
-Here we have some function that gets passed an isolated Wombat. If we try to alias `a` by assigning it to `b`, we'll be breaking capability guarantees so the compiler will stop us.
+Here we have some function that gets passed an isolated Wombat. If we try to alias `a` by assigning it to `b`, we'll be breaking reference capability guarantees so the compiler will stop us.
 
-__What can I alias an `iso` as?__ Since an `iso` says no other variable can be used by _any_ actor to read from or write to that object, we can only create aliases to an `iso` that can neither read nor write. Fortunately, we've got a capability that does exactly that: `tag`. So we can do this and the compiler will be happy:
+__What can I alias an `iso` as?__ Since an `iso` says no other variable can be used by _any_ actor to read from or write to that object, we can only create aliases to an `iso` that can neither read nor write. Fortunately, we've got a reference capability that does exactly that: `tag`. So we can do this and the compiler will be happy:
 
 ```pony
 fun test(a: Wombat iso) =>
   var b: Wombat tag = a // Allowed!
 ```
 
-__What about aliasing `trn`?__ Since a `trn` says no other variable can be used by _any_ actor to write to that object, we need something that doesn't allow writing, but also doesn't prevent our `trn` variable from writing. Fortunately, weve got a capability that does that too: `box`. So we can do this and the compiler will be happy:
+__What about aliasing `trn`?__ Since a `trn` says no other variable can be used by _any_ actor to write to that object, we need something that doesn't allow writing, but also doesn't prevent our `trn` variable from writing. Fortunately, weve got a reference capability that does that too: `box`. So we can do this and the compiler will be happy:
 
 ```pony
 fun test(a: Wombat trn) =>

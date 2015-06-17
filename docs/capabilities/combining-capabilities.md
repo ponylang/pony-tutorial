@@ -1,6 +1,6 @@
-When a field of an object is read, its capability depends both on the capability of the field and the capability of the __origin__, that is, the object the field is being read from.
+When a field of an object is read, its reference capability depends both on the reference capability of the field and the reference capability of the __origin__, that is, the object the field is being read from.
 
-This is because all the guarantees that the __origin__ capability makes have to be maintained for its fields as well.
+This is because all the guarantees that the __origin__ reference capability makes have to be maintained for its fields as well.
 
 # Viewpoint adaptation
 
@@ -39,11 +39,11 @@ That table will seem totally natural to you, eventually. But probably not yet. T
 
 ## Reading from an `iso` variable
 
-Anything read through an `iso` origin has to maintain the isolation guarantee that the origin has. The key thing to remember is that the `iso` can be sent to another actor and it can also become any other capability. So when we read a field, we need to get a result that won't ever break the isolation guarantees that the origin makes, that is, _read and write uniqueness_.
+Anything read through an `iso` origin has to maintain the isolation guarantee that the origin has. The key thing to remember is that the `iso` can be sent to another actor and it can also become any other reference capability. So when we read a field, we need to get a result that won't ever break the isolation guarantees that the origin makes, that is, _read and write uniqueness_.
 
 An `iso` field makes the same guarantees as an `iso` origin, so that's fine to read. A `val` field is _globally immutable_, which means it's always ok to read it, no matter what the origin is (well, other than `tag`).
 
-Everything else, though, can break our isolation guarantees. That's why other capabilities are seen as `tag`: it's the only type that is neither readable nor writeable.
+Everything else, though, can break our isolation guarantees. That's why other reference capabilities are seen as `tag`: it's the only type that is neither readable nor writeable.
 
 ## Reading from a `trn` variable
 
@@ -51,7 +51,7 @@ This is like `iso`, but with a weaker guarantee (_write uniqueness_ as opposed t
 
 An `iso` field makes stronger guarantees than a `trn` origin, and a `trn` field makes the same guarantees, so they're fine to read. A `val` field is _globally immutable_, so that's fine too. A `box` field is readable, and we only guarantee _write uniqueness_, so that's fine too.
 
-A `ref` field, though, would allow writing. So instead we return a `box` capability.
+A `ref` field, though, would allow writing. So instead we return a `box`.
 
 ## Reading from a `ref` variable
 
@@ -65,11 +65,11 @@ A `val` origin is deeply and globally immutable, so all of its fields are also `
 
 A `box` variable is locally immutable. This means it's possible that it may be mutated through some other variable (a `trn` or a `ref`), but it's also possible that our `box` variable is an alias of some `val` variable.
 
-When we read a field, we need to return a capability that is compatible with the field, but is also locally immutable.
+When we read a field, we need to return a reference capability that is compatible with the field, but is also locally immutable.
 
-An `iso` field is returned as a `tag` because no locally immutable capability can maintain its isolation guarantees. A `val` field is returned as a `val` because global immutability is a stronger guarantee than local immutability. A `box` field makes the same local immutability guarantee as its origin, so that's also fine.
+An `iso` field is returned as a `tag` because no locally immutable reference capability can maintain its isolation guarantees. A `val` field is returned as a `val` because global immutability is a stronger guarantee than local immutability. A `box` field makes the same local immutability guarantee as its origin, so that's also fine.
 
-For `trn` and `ref` we need to return a locally immutable capability that doesn't violate any guarantees the field makes. In both cases, we can return `box`.
+For `trn` and `ref` we need to return a locally immutable reference capability that doesn't violate any guarantees the field makes. In both cases, we can return `box`.
 
 ## Reading from a `tag` variable
 
