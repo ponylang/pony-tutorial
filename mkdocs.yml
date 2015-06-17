@@ -2,57 +2,59 @@ site_name: Pony Tutorial
 theme: readthedocs
 pages:
 - Getting started:
-    - Welcome!: index.md
-    - getting-started/what-you-need-to-start.md
-    - getting-started/installation.md
-    - getting-started/helloworld.md
-    - getting-started/how-it-works.md
-    - getting-started/whitespace.md
+  - Welcome!: index.md
+  - getting-started/what-you-need-to-start.md
+  - getting-started/installation.md
+  - getting-started/helloworld.md
+  - getting-started/how-it-works.md
+  - getting-started/whitespace.md
 - Types:
-    - types/static-vs-dynamic.md
-    - types/classes.md
-    - types/primitives.md
-    - types/actors.md
-    - types/traits-and-interfaces.md
-    - types/type-aliases.md
-    - types/type-expressions.md
+  - types/static-vs-dynamic.md
+  - types/classes.md
+  - types/primitives.md
+  - types/actors.md
+  - types/traits-and-interfaces.md
+  - types/type-aliases.md
+  - types/type-expressions.md
 - Capabilities:
-    - capabilities/introduction.md
-    - capabilities/guarantees.md
-    - capabilities/aliasing.md
-    - capabilities/combining-capabilities.md
-    - capabilities/passing-and-sharing.md
-    - capabilities/capability-subtyping.md
-    - capabilities/arrow-types.md
+  - capabilities/introduction.md
+  - capabilities/guarantees.md
+  - capabilities/aliasing.md
+  - capabilities/combining-capabilities.md
+  - capabilities/passing-and-sharing.md
+  - capabilities/capability-subtyping.md
+  - capabilities/arrow-types.md
 - Expressions:
-    - expressions/variables.md
-    - expressions/infix-ops.md
-    - expressions/control-structures.md
-    - expressions/methods.md
-    - expressions/exceptions.md
-    - expressions/sugar.md
-    - expressions/object-literals.md
-    - expressions/partial-application.md
+  - expressions/variables.md
+  - expressions/infix-ops.md
+  - expressions/control-structures.md
+  - expressions/methods.md
+  - expressions/exceptions.md
+  - expressions/sugar.md
+  - expressions/object-literals.md
+  - expressions/partial-application.md
 - Actors:
-    - actors/behaviours.md
-    - actors/capabilities.md
-    - actors/recover-and-consume.md
-    - actors/arrow-types.md
+  - actors/behaviours.md
+  - actors/capabilities.md
+  - actors/recover-and-consume.md
+  - actors/arrow-types.md
 - packages/package-system.md
 - composition-inheritance/code-sharing.md
 - Generics:
-    - generics/polymorphic-types.md
-    - generics/polymorphic-methods.md
+  - generics/polymorphic-types.md
+  - generics/polymorphic-methods.md
 - Pattern Matching:
-    - pattern-matching/match.md
-    - pattern-matching/as.md
+  - pattern-matching/match.md
+  - pattern-matching/as.md
 - platform/platform.md
 - Editor support: editor-plugins/plugins.md
 - Compiler args: compiler-clargs/clargs.md
 - patterns/patterns.md
-- garbage-collection/garbage-collection.md
+- Memory management:
+  - garbage-collection/memory-allocation.md
+  - garbage-collection/garbage-collection.md
 - C FFI:
-    - Calling C: c-ffi/calling-c.md
-    - Linking to C Libraries: c-ffi/linking-c.md
-    - c-ffi/c-abi.md
+  - Calling C: c-ffi/calling-c.md
+  - Linking to C Libraries: c-ffi/linking-c.md
+  - c-ffi/c-abi.md
 - examples/examples.md
