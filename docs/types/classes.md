@@ -108,9 +108,9 @@ The second function, `set_hunger`, introduces a _bunch_ of new concepts all at o
 
 ### The `ref` keyword right after `fun`
 
-This is a __capability__. In this case, it means the _receiver_, i.e. the object on which the `set_hunger` function is being called, has to be a `ref` type. A `ref` type is a __reference type__, meaning that the object is __mutable__. We need this because we are writing a new value to the `_hunger_level` field.
+This is a __reference capability__. In this case, it means the _receiver_, i.e. the object on which the `set_hunger` function is being called, has to be a `ref` type. A `ref` type is a __reference type__, meaning that the object is __mutable__. We need this because we are writing a new value to the `_hunger_level` field.
 
-__What's the receiver capability of the `hunger` method?__ The default receiver capability if none is specified is `box`, which means "I need to be able to read from this, but I won't write to it".
+__What's the receiver reference capability of the `hunger` method?__ The default receiver reference capability if none is specified is `box`, which means "I need to be able to read from this, but I won't write to it".
 
 __What would happen if we left the `ref` keyword off the `set_hunger` method?__ The compiler would give you an error. It would see you were trying to modify a field and complain about it.
 
@@ -124,7 +124,7 @@ It returns the _old_ value of `_hunger_level`.
 
 __Wait, seriously? The _old_ value?__ Yes. In Pony, assignment is an expression rather than a statement. That means it has a result. This is true of a lot of languages, but they tend to return the _new_ value. In other words, given `a = b`, in most languages, the value of that is the value of `b`. But in Pony, the value of that is the _old_ value of `a`.
 
-__...why?__ It's called a "destructive read", and it lets you do awesome things with a capabilities type system. We'll talk about that more later. For now, we'll just mention that you can also use it to implement a _swap_ operation. In most languages, to swap the values of `a` and `b` you need to do something like:
+__...why?__ It's called a "destructive read", and it lets you do awesome things with a capabilities-secure type system. We'll talk about that more later. For now, we'll just mention that you can also use it to implement a _swap_ operation. In most languages, to swap the values of `a` and `b` you need to do something like:
 
 ```pony
 var temp = a

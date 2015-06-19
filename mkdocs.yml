@@ -37,13 +37,11 @@ pages:
   - capabilities/capability-subtyping.md
   - capabilities/arrow-types.md
   - capabilities/trust-boundary.md
-- Actors:
-  - actors/behaviours.md
-- packages/package-system.md
-- composition-inheritance/code-sharing.md
 - Generics:
   - generics/polymorphic-types.md
   - generics/polymorphic-methods.md
+- packages/package-system.md
+- composition-inheritance/code-sharing.md
 - Pattern Matching:
   - pattern-matching/match.md
   - pattern-matching/as.md

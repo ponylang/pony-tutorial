@@ -65,7 +65,7 @@ type Map[K: (Hashable box & Comparable[K] box), V] is HashMap[K, V, HashEq[K]]
 
 Unlike our previous example the first type parameter, `K`, has a type associated with it. This is a __constraint__, which means when you parameterise a `Map`, the type you pass for `K` must be a subtype of the constraint.
 
-Also notice that `box` appears in the type. This is a __capability__. It means there is a certain class of operations we need to be able to do on a `K`. We'll cover this in more detail later.
+Also notice that `box` appears in the type. This is a __reference capability__. It means there is a certain class of operations we need to be able to do on a `K`. We'll cover this in more detail later.
 
 Just like our other examples all this really means is that `Map` is really a kind of `HashMap`.
 

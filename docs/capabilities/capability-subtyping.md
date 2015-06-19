@@ -1,4 +1,4 @@
-Subtyping is about _substitutability_. That is, if we need to supply a certain type, what other types can we substitute instead? Capabilities factor into this.
+Subtyping is about _substitutability_. That is, if we need to supply a certain type, what other types can we substitute instead? Reference capabilities factor into this.
 
 # Simple substitution
 
@@ -15,7 +15,7 @@ Subtyping is _transitive_. That means that since `iso <: trn` and `trn <: ref` a
 
 # Aliased substitution
 
-Now let's consider what happens when we have an alias of a capability. For example, if we have some `iso` and we alias it (without doing a `consume` or a destructive read), the type we get is `iso!`, not `iso`.
+Now let's consider what happens when we have an alias of a reference capability. For example, if we have some `iso` and we alias it (without doing a `consume` or a destructive read), the type we get is `iso!`, not `iso`.
 
 * `iso! <: tag`. This is a pretty big change. Instead of being a subtype of everything like `iso`, the only thing an `iso!` is a subtype of is `tag`. This is because the `iso` still exists, and is still _read and write unique_. Any alias can neither read from nor write to the object. That means an `iso!` can only be a subtype of `tag`.
 * `trn! <: box`. This is a change too, but not as big a change. Since `trn` is only _write unique_, it's ok for aliases to read from the object, but it's not ok for aliases to write to the object. That means we could have `box` or `val` aliases - except `val` guarantees that _no_ alias can write the the object! Since our `trn` still exists, and can write to the object, a `val` alias would break the guarantees that `val` makes. So a `trn!` can only be a subtype of `box` (and, transitively, `tag` as well.
@@ -26,11 +26,11 @@ Now let's consider what happens when we have an alias of a capability. For examp
 
 # Ephemeral substitution
 
-The last case to consider is when we have an ephemeral capability. For example, if we have some `iso` and we `consume` it or do a destructive read, the type we get is `iso^`, not `iso`.
+The last case to consider is when we have an ephemeral reference capability. For example, if we have some `iso` and we `consume` it or do a destructive read, the type we get is `iso^`, not `iso`.
 
 * `iso^ <: iso`. This is pretty simple. When we givean `iso^` a name, by assigning it to something or passing it as an argument to a method, it loses the `^` and becomes a plain old `iso`. We know we gave up our previous `iso`, so it's safe to have a new one.
 * `trn^ <: trn`. This works exactly like `iso^`. The guarantee is weaker (_write uniqueness_ instead of _read and write uniqueness_), but it works the same way.
-* `ref^ <: ref^` and `ref^ <: ref` and `ref <: ref^`. Here, we have another case. Not only is a `ref^` a subtype of a `ref`, it's also a subtype of a `ref^`. What's going on here? The reason is that an ephemeral capability is a way of saying "a capability that, when aliased, results in the base capability". Since a `ref` can be aliased as a `ref`, that means `ref` and `ref^` are completely interchangeable.
-* `val^`, `box^`, `tag^`. These all work the same way as `ref`, that is, they are interchangeable with the base capability. It's for the same reason: all of these capabilities can be aliased as themselves.
+* `ref^ <: ref^` and `ref^ <: ref` and `ref <: ref^`. Here, we have another case. Not only is a `ref^` a subtype of a `ref`, it's also a subtype of a `ref^`. What's going on here? The reason is that an ephemeral reference capability is a way of saying "a reference capability that, when aliased, results in the base reference capability". Since a `ref` can be aliased as a `ref`, that means `ref` and `ref^` are completely interchangeable.
+* `val^`, `box^`, `tag^`. These all work the same way as `ref`, that is, they are interchangeable with the base reference capability. It's for the same reason: all of these reference capabilities can be aliased as themselves.
 
-__Why do `ref^`, `val^`, `box^`, and `tag^` exist if they are interchangeable with their base capabilities?__ It's for two reasons: __capability recovery__ and __generics__. We'll cover both of those later.
+__Why do `ref^`, `val^`, `box^`, and `tag^` exist if they are interchangeable with their base reference capabilities?__ It's for two reasons: __reference capability recovery__ and __generics__. We'll cover both of those later.

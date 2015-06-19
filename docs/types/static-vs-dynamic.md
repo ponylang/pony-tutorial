@@ -30,6 +30,6 @@ The Pony type system offers a lot of guarantees, even more than other statically
 * Your code will always be capabilities-secure.
 * All message passing is causal.
 
-Some of those will make sense right now. Some of them may not mean much to you yet (like capabilities security and causal messaging), but we'll get to those concepts later on.
+Some of those will make sense right now. Some of them may not mean much to you yet (like capabilities-security and causal messaging), but we'll get to those concepts later on.
 
 __If I use Pony's FFI to call code written in another language, does Pony magically make the same guarantees for the code I call?__ Sadly, no. Pony's type system guarantees only apply to code written in Pony. Code written in other languages gets only the guarantees provided by that language.

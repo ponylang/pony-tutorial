@@ -38,9 +38,9 @@ When you're writing Pony code, it's nice to think of actors not as a unit of par
 
 # Why is this safe?
 
-Because of Pony's __capabilities secure type system__. We've mentioned capabilities briefly before, when talking about function receiver capabilities. The short version is that they are annotations on a type that make all this parallelism safe without any runtime overhead.
+Because of Pony's __capabilities secure type system__. We've mentioned reference capabilities briefly before, when talking about function receiver reference capabilities. The short version is that they are annotations on a type that make all this parallelism safe without any runtime overhead.
 
-We will cover capabilities in depth later.
+We will cover reference capabilities in depth later.
 
 # Actors are cheap
 

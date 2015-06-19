@@ -59,4 +59,4 @@ f2(3)
 
 Under the hood, we're assembling an object literal for partial application. It captures some of the lexical scope as fields, and has an `apply` method that takes some, possibly reduced, number of arguments. This is actually done as sugar, by rewriting the abstract syntax tree for partial application to be an object literal, before code generation.
 
-That means partial application results in an anonymous class, and returns a `ref`. If you need another capability, you can wrap partial application in a `recover` expression.
+That means partial application results in an anonymous class, and returns a `ref`. If you need another reference capability, you can wrap partial application in a `recover` expression.
