@@ -30,6 +30,8 @@ pages:
   - capabilities/reference-capabilities.md
   - capabilities/guarantees.md
   - capabilities/aliasing.md
+  - capabilities/consume-and-destructive-read.md
+  - capabilities/recovering-capabilities.md
   - capabilities/combining-capabilities.md
   - capabilities/passing-and-sharing.md
   - capabilities/capability-subtyping.md
@@ -37,9 +39,6 @@ pages:
   - capabilities/trust-boundary.md
 - Actors:
   - actors/behaviours.md
-  - actors/capabilities.md
-  - actors/recover-and-consume.md
-  - actors/arrow-types.md
 - packages/package-system.md
 - composition-inheritance/code-sharing.md
 - Generics:
