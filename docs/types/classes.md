@@ -43,7 +43,7 @@ class Wombat
     name = name'
     _hunger_level = 0
 
-  new hungry(name': String, hunger: U64) =>
+  new hungry(name': String, hunger': U64) =>
     name = name'
     _hunger_level = hunger
 ```
@@ -70,9 +70,9 @@ class Wombat
     name = name'
     _hunger_level = 0
 
-  new hungry(name': String, hunger: U64) =>
+  new hungry(name': String, hunger': U64) =>
     name = name'
-    _hunger_level = hunger
+    _hunger_level = hunger'
 ```
 
 Here, every `Wombat` begins a little bit thirsty, regardless of which constructor is called.
@@ -91,9 +91,9 @@ class Wombat
     name = name'
     _hunger_level = 0
 
-  new hungry(name': String, hunger: U64) =>
+  new hungry(name': String, hunger': U64) =>
     name = name'
-    _hunger_level = hunger
+    _hunger_level = hunger'
 
   fun hunger(): U64 => _hunger_level
 
