@@ -5,7 +5,7 @@ Infix operators take two operands and are written between those operands. Arithm
 a < b
 ```
 
-Pony has pretty much the same set of infix operators as other langauges.
+Pony has pretty much the same set of infix operators as other languages.
 
 # Precedence
 
