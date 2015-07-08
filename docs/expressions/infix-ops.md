@@ -19,7 +19,7 @@ We will get a value of 9 if we evaluate the addition first and 7 if we evaluate 
 
 The problem with this is that the programmer has to remember the order and people aren't very good at things like that. Most people will remember to do multiplication before addition, but what about left bit shifting versus bitwise and? Sometimes people misremember (or guess wrong) and that leads to bugs. Worse, those bugs are often very hard to spot.
 
-Pony takes a different approach and outlaws infix precedence. Any expression where more than one infix operator is used __must__ use parentheses to remove the ambiguity. If you failure to do this the compiler will complain.
+Pony takes a different approach and outlaws infix precedence. Any expression where more than one infix operator is used __must__ use parentheses to remove the ambiguity. If you fail to do this the compiler will complain.
 
 This means that the example above is illegal in Pony and should be rewritten as:
 
@@ -111,7 +111,7 @@ This is a special feature built into the compiler, it cannot be used with operat
 
 # Unary operators
 
-The unary operators are handled in the same manor, but with only one operand. For example the following expressions are equivalent:
+The unary operators are handled in the same manner, but with only one operand. For example the following expressions are equivalent:
 
 ```pony
 -x
