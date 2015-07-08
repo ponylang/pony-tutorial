@@ -76,7 +76,7 @@ The callE() will always be excuted. If callB() returns true then the sequence ex
 
 __Do I have to have an else error handler to have a then block?__ No. You can have a try-then block without an else if you like.
 
-__Will my then block really always be executed, even if I return inside the try?__ Yes, your `then` expression will __always__ be executed when the try block is complete. The only way it won't be is if the try never completes (due to an inifinite loop), the machine is powered off or the process is killed (and then, maybe).
+__Will my then block really always be executed, even if I return inside the try?__ Yes, your `then` expression will __always__ be executed when the try block is complete. The only way it won't be is if the try never completes (due to an infinite loop), the machine is powered off or the process is killed (and then, maybe).
 
 # Language constructs that can raise errors
 
