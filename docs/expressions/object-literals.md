@@ -35,7 +35,7 @@ class Foo
 
 When we assign to a field in the constructor, we are _capturing_ from the lexical scope the object literal is in. Pretty fun stuff! It lets us have arbitrarily complex __closures__ that can even have multiple entry points (i.e. functions you can call on a closure).
 
-An object literal is always returned as a `ref`, like a default construtor on a class. To get another refrence capability (`iso`, `val`, etc.), you can wrap the object literal in a `recover` expression.
+An object literal is always returned as a `ref`, like a default constructor on a class. To get another reference capability (`iso`, `val`, etc.), you can wrap the object literal in a `recover` expression.
 
 # Lambdas
 
