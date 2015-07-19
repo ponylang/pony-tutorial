@@ -32,6 +32,6 @@ There's a great paper on how the object-capability model works, and it's pretty 
 
 The object-capability model on its own does not address concurrency. It makes clear _what_ will happen if there is simultaneous access to an object, but it does not proscribe a single method of controlling this.
 
-Combining capabilities with the actor-model is a good start, and has been done before in languages such as [E](http://erights.org/) and Joulle.
+Combining capabilities with the actor-model is a good start, and has been done before in languages such as [E](http://erights.org/) and Joule.
 
 Pony does this and also uses a system of _reference capabilities_ in the type system.

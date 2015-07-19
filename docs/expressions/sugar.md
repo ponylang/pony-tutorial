@@ -82,7 +82,7 @@ var foo = Foo.create().apply()
 var bar = Bar.create().apply(x, 37 where crash = false)
 ```
 
-__What if the create has default arguments? Does I get the combined create-apply sugar if I want to use the defaults?__ The combined create-apply sugar can only be used when the create constructor has no arguments. If there are default arguments then this sugar cannot be used.
+__What if the create has default arguments? Do I get the combined create-apply sugar if I want to use the defaults?__ The combined create-apply sugar can only be used when the create constructor has no arguments. If there are default arguments then this sugar cannot be used.
 
 # Update
 

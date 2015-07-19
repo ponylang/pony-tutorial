@@ -4,7 +4,7 @@ There are two kinds of __subtyping__ in programming languages: __nominal__ and _
 
 # Nominal subtyping
 
-This kind of subytping is called __nominal__ because it is all about __names__.
+This kind of subtyping is called __nominal__ because it is all about __names__.
 
 If you've done object-oriented programming before, you may have seen a lot of discussion about _single inheritance_, _multiple inheritance_, _mixins_, _traits_, and similar concepts. These are all examples of __nominal subtyping__.
 
@@ -38,7 +38,7 @@ __Wait, why not?__ Because `Larry` doesn't say it `is Named`. Remember, traits a
 
 # Structural subtyping
 
-There's another kind of subtyping, where the name doesn't matter. It's called __strutural subtyping__, which means that it's all about how a type is built, and nothing to do with names.
+There's another kind of subtyping, where the name doesn't matter. It's called __structural subtyping__, which means that it's all about how a type is built, and nothing to do with names.
 
 A concrete type is a member of a structural category if it happens to have all the needed elements, no matter what it happens to be called.
 

@@ -1,4 +1,4 @@
-Like most other programming language Pony allows you to store data in variables. There are a few different kinds of variables which have different lifetimes and are used for slightly different purposes.
+Like most other programming languages Pony allows you to store data in variables. There are a few different kinds of variables which have different lifetimes and are used for slightly different purposes.
 
 # Local variables
 
@@ -59,7 +59,7 @@ You never have to declare variables as `let`, but if you know you're never going
 
 # Fields
 
-In Pony, fields are variables that live within objects. They work like fields in other object-oriented langauges.
+In Pony, fields are variables that live within objects. They work like fields in other object-oriented languages.
 
 Fields have the same lifetime as the object they're in, rather than being scoped. They are set up by the object constructor and disposed of along with the object.
 

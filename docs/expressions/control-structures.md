@@ -22,7 +22,7 @@ else
 end
 ```
 
-Often you want to test more than condition in one go, giving you more than two possible outcomes. You can nest `if` statements, but this quickly gets ugly:
+Often you want to test more than one condition in one go, giving you more than two possible outcomes. You can nest `if` statements, but this quickly gets ugly:
 
 ```pony
 if a == b then
@@ -123,7 +123,7 @@ __So is this like an else block on a while loop in Python?__ No, this is very di
 
 ## Break
 
-Sometimes you want to stop part-way through a loop and give up altogether. Pony has the `break` keyword for this and it is very similar to its counterpart in langauges like C++, C# and Python.
+Sometimes you want to stop part-way through a loop and give up altogether. Pony has the `break` keyword for this and it is very similar to its counterpart in languages like C++, C# and Python.
 
 `break` immediately exits from the innermost loop it's in. Since the loop has to return a value `break` can take an expression. This is optional and if it's missed out a value of `None` is returned.
 
@@ -152,7 +152,7 @@ __Can I break out of multiple, nested loops like the Java labelled break?__ No, 
 
 ## Continue
 
-Sometimes you want to stop part-way through one loop iteration and move onto the next. Like other languages Pony uses the `continue` keywords for this.
+Sometimes you want to stop part-way through one loop iteration and move onto the next. Like other languages Pony uses the `continue` keyword for this.
 
 `continue` stops executing the current iteration of the innermost loop it's in and evaluates the condition ready for the next iteration.
 
