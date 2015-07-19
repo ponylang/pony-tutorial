@@ -18,7 +18,7 @@ In the above code callA() will always be executed and so will callB(). If the re
 
 However, if callB() returns false, then an error will be raised. At this point execution will stop and the nearest enclosing error handler will be found and executed. In this example that is our else block and so callD() will be executed.
 
-In either case execution will then carry on will whatever code comes after the try `end`.
+In either case execution will then carry on with whatever code comes after the try `end`.
 
 __Do I have to provide an error handler?__ No. The try block will handle any errors regardless. If you don't provide an error handler then no error handling action will be taken - execution will simply continue after the try expression.
 

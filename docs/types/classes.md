@@ -45,7 +45,7 @@ class Wombat
 
   new hungry(name': String, hunger': U64) =>
     name = name'
-    _hunger_level = hunger
+    _hunger_level = hunger'
 ```
 
 Here, we have two constructors, one that creates a `Wombat` that isn't hungry, and another that creates a `Wombat` that might be hungry or might not.
@@ -140,7 +140,7 @@ a = b = a
 
 # What about inheritance?
 
-In some object-oriented languages, a type can _inherit_ from another type, like how in Java something can __extend__ something else. Pony doesn't do that. Instead, Pony prefers _composition_ to _inheritence_. In other words, instead of getting code reuse by saying something __is__ something else, you get it by saying something __has__ something else.
+In some object-oriented languages, a type can _inherit_ from another type, like how in Java something can __extend__ something else. Pony doesn't do that. Instead, Pony prefers _composition_ to _inheritance_. In other words, instead of getting code reuse by saying something __is__ something else, you get it by saying something __has__ something else.
 
 On the other hand, Pony has a powerful __trait__ system (similar to Java 8 interfaces that can have default implementations) and a powerful __interface__ system (similar to Go interfaces, i.e. structurally typed).
 

@@ -61,7 +61,7 @@ Pony classes corresponds directly to pointers to the class in C.
 
 For C pointers to simple types, such as U64, the Pony `Pointer[]` polymorphic type should be used, with a `tag` reference capability. `Pointer[U8] tag` should be used for void*. This can be seen in our SSL_CTX_ctrl example above.
 
-To pass pointers to values to C an ampersand (&) can be used, just like taking an address in C. This is done in the standard library to pass the address of a U64 to an FFI functions that takes a uint64_t* as an out parameter:
+To pass pointers to values to C an ampersand (&) can be used, just like taking an address in C. This is done in the standard library to pass the address of a U64 to an FFI function that takes a uint64_t* as an out parameter:
 
 ```pony
 var len = U64(0)

@@ -64,7 +64,7 @@ As in many other languages, methods in Pony are called by providing the argument
 
 ```pony
 class Foo
-  fun hello(name: string): String =>
+  fun hello(name: String): String =>
     "hello " + name
 
   fun f() =>
@@ -148,9 +148,9 @@ class Coord
 
 class Bar
   fun f() =>
-    var a: Foo = Coord.create()     // Contains (0, 0)
-	var b: Foo = Coord.create(3)    // Contains (3, 0)
-	var b: Foo = Coord.create(3, 4) // Contains (3, 4)
+    var a: Coord = Coord.create()     // Contains (0, 0)
+	var b: Coord = Coord.create(3)    // Contains (3, 0)
+	var b: Coord = Coord.create(3, 4) // Contains (3, 4)
 ```
 
 __Do I have to provide default values for all of my arguments?__ No, you can provide defaults for as many, or as few, as you like.
@@ -172,7 +172,7 @@ class Coord
 
 class Bar
   fun f() =>
-    var a: Foo = Coord.create(where y = 4, x = 3)
+    var a: Coord = Coord.create(where y = 4, x = 3)
 ```
 
 __Should I specify `where` for each named argument?__ No. There must only be one `where` in each method call.

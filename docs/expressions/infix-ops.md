@@ -101,7 +101,7 @@ xor      | op_xor() | Xor, both bitwise and logical
 
 # Short circuiting
 
-The `and` and `or` operators use __short circuiting__ when used with Bool operators. This means that the first operand is always evaluated, but the second is only evaluated if it can affect the result.
+The `and` and `or` operators use __short circuiting__ when used with Bool variables. This means that the first operand is always evaluated, but the second is only evaluated if it can affect the result.
 
 For `and`, if the first operand is __false__ then the second operand is not evaluated, since it cannot affect the result.
 
