@@ -125,6 +125,6 @@ The full list of unary operators that are aliases for functions is:
 Operator | Method   | Description
 ---------|----------|------------
 -        | neg()    | Arithmetic negation
-!        | op_not() | Not, both bitwise and logical
+not      | op_not() | Not, both bitwise and logical
 
 ---
