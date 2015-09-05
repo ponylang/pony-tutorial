@@ -104,6 +104,6 @@ $ ponyc --version
 # Downloads
 All installers can also be downloaded from ponylang.org's servers:
 
-* [Ubuntu/Debian](http://ponylang.org/releases/debian)
-* [RPM](http://ponylang.org/releases/yum)
-* [Windows](http://ponylang.org/releases/windows)
+* [Ubuntu/Debian](http://releases.ponylang.org/debian/)
+* [RPM](http://releases.ponylang.org/yum/)
+* [Windows](http://releases.ponylang.org/windows/)
