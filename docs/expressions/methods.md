@@ -31,7 +31,7 @@ If you want to exit a function early then use the `return` command. If the funct
 class C
   fun factorial(x: U32): U32 =>
     if x == 0 then
-	  return 0
+	  return 1
 	end
 	
 	x * factorial(x - 1)
