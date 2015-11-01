@@ -24,7 +24,7 @@ The problem with concurrency is shared mutable data. If two different threads ha
 
 __Immutable data can be safely shared__
 
-Any data that is immutable (i.e. it cannot can changed) is safe to use concurrently. Since it is immutable it is never updated and it's the updates that cause concurrency problems.
+Any data that is immutable (i.e. it cannot be changed) is safe to use concurrently. Since it is immutable it is never updated and it's the updates that cause concurrency problems.
 
 __Isolated data is safe__
 
