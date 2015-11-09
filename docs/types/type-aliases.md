@@ -20,6 +20,32 @@ The second new concept is the type that comes after `is`. It's not a single type
 
 A union type is a form of _closed world_ type. That is, it says every type that can possibly be a member of it. In contrast, object-oriented subtyping is usually _open world_, e.g. in Java, an interface can be implemented by any number of classes.
 
+You can also declare constants like in C or Go like this,
+```pony
+primitive Red    fun apply(): U32 => 0xFF0000FF
+primitive Green  fun apply(): U32 => 0x00FF00FF
+primitive Blue   fun apply(): U32 => 0x0000FFFF
+
+type Colour is (Red | Blue | Green)
+```
+
+or namespace them like this
+```pony
+primitive Colors
+  fun red(): U32 => 0xFF0000FF
+  fun green(): U32 => 0x00FF00FF
+```
+
+you might also want to iterate over the the enum like this to print its name for debugging purposes
+```pony
+primitive ColourList
+  fun tag apply(): Array[Colour] =>
+    [Red, Green, Blue]
+
+for colour in ColourList().values() do
+end
+```
+
 # Complex types
 
 If a type is complicated, it can be nice to give it a mnemonic name. For example, if we want to say that a type must implement more than one trait, we could say:

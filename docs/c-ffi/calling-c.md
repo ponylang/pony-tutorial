@@ -68,6 +68,63 @@ var len = U64(0)
 @pcre2_substring_length_bynumber_8[I32](_match, i.u32(), &len)
 ```
 
+## To read c structs from FFI
+If you have a c struct like this
+```c
+typedef struct {
+  uint8_t code;
+  float x;
+  float y;
+} EGLEvent;
+
+EGLEvent getEvent() {
+    EGLEvent e = {1, ev.xconfigure.width, ev.xconfigure.height};
+    return e;
+}
+```
+the you can destructure it and get the values using a tuple
+```pony
+type EGLEvent is (U8, F32, F32)
+(var code, var x, var y) = @getEvent[EGLEvent]()
+```
+
+## To pass c structs to FFI
+If you have a c struct like this
+```c
+typedef struct {
+  uint8_t code;
+  float x;
+  float y;
+} EGLEvent;
+
+void setEvent(EGLEvent e) {
+    printf("%d", e.code);
+}
+```
+then you call it like this
+```pony
+let e: EGLEvent = (4, 0, 0)
+@setEvent[None](e)
+```
+
+
+## Get and Pass Pointers to FFI
+To pass and receive pointers to c structs you need to declare pointer to primitives
+```pony
+primitive _XDisplayHandle
+primitive _EGLDisplayHandle
+
+let x_dpy = @XOpenDisplay[Pointer[_XDisplayHandle]](U32(0))
+if x_dpy.is_null() then
+  env.out.print("XOpenDisplay failed")
+end
+
+let e_dpy = @eglGetDisplay[Pointer[_EGLDisplayHandle]](x_dpy)
+if e_dpy.is_null() then
+  env.out.print("eglGetDisplay failed")
+end
+```
+
 # FFI functions raising errors
 
 FFI functions can raise Pony errors. Functions in existing C libraries are very unlikely to do this, but support libraries specifically written for use with Pony may well do.
