@@ -16,6 +16,7 @@ pages:
   - types/traits-and-interfaces.md
   - types/type-aliases.md
   - types/type-expressions.md
+  - types/delegates.md
 - Expressions:
   - expressions/variables.md
   - expressions/infix-ops.md
