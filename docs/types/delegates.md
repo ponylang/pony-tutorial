@@ -41,7 +41,7 @@ And adapting our delegate to use this alternative type of Wombat:
 
 ```pony
 actor Main is Wombat
-  let w : SimpleWombat delegate Wombat = KungFuWombat
+  let w : Wombat delegate Wombat = KungFuWombat
 
   new create(env : Env) =>
     env.out.print("Battle cry: " + battle_call())
