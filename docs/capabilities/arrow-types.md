@@ -35,7 +35,7 @@ class ListValues[A, N: ListNode[A] box] is Iterator[N->A]
 
 Here, we have a `ListValues` type that has two type parameters, `A` and `N`. In addition, `N` has a constraint: it has to be a subtype of `ListNode[A] box`. That's all fine and well, but we also say the `ListValues[A, N]` provides `Iterator[N->A]`. That's the interesting bit: we provide an interface that let's us iterate over values of the type `N->A`.
 
-That means we'll be returning objects of the type `A`, but the reference capability will be the however an object of type `N` would see an object of type `A`.
+That means we'll be returning objects of the type `A`, but the reference capability will be the same as an object of type `N` would see an object of type `A`.
 
 # Using `box->` as a viewpoint
 
