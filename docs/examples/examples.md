@@ -6,7 +6,7 @@ primitive Red   fun apply(): U32 => 0xFFFF0000
 
 ### Enum with values with namespace
 ```pony
-primitive Colors
+primitive Colours
   fun black(): U32 => 0xFF000000
   fun red(): U32 => 0xFFFF0000
 ```
