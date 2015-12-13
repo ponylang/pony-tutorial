@@ -16,7 +16,7 @@ recover Array[String] end
 
 That's a simple one: it returns an `Array[String] iso`, instead of the usual `Array[String] ref` you would get.
 
-Here's a more complicate example from the standard library:
+Here's a more complicated example from the standard library:
 
 ```pony
 recover
