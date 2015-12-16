@@ -29,7 +29,7 @@ recover
     else
       while value != 0 do
         let index = (value = value / base) - (value * base)
-        s.push(table(index))
+        s.push(table(index.usize()))
       end
     end
   end
@@ -47,7 +47,7 @@ That's from `ToString`. It creates a `String ref`, does a bunch of stuff with it
 Both of those examples use the default reference capability for a `recover` expression, since they don't specify one. The default for any mutable reference capability is `iso` and the default for any immutable reference capability is `val`. You can also give an explicit one:
 
 ```pony
-let key = recover val line.substring(0, i - 1).trim() end
+let key = recover val line.substring(0, i).strip() end
 ```
 
 That's from `net/http/_PayloadBuilder`. We get a substring of `line`, which is a `String iso^`, then we call trim on it, which returns itself. But since trim is a `ref` function, it returns itself as a `String ref^` - so we use a `recover val` to end up with a `String val`.
