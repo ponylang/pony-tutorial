@@ -34,5 +34,9 @@ of scope.
 A blocked actor will keep it's memory allocated, only a dead actor
 will release it eventually.
 
-...
+# And, long-running actors
 
+might cause unexpected out of memory errors, since the GC is not yet triggered on an
+out-of-memory segfault or stack exhaustion.
+
+...
