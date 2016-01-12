@@ -56,6 +56,7 @@ pages:
   - Linking to C Libraries: c-ffi/linking-c.md
   - c-ffi/c-abi.md
 - The Runtime:
+  - runtime/otp.md
   - runtime/memory-allocation.md
   - runtime/garbage-collection.md
 - examples/examples.md
