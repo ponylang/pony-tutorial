@@ -48,9 +48,11 @@ free concurrency by adhering to the following principles:
    based on its own local state, without consultation with, or
    inspecting the state of any other actor.
 
-3. No synchronization between actors is required during garbage collection, other than potential message sends.
+3. No synchronization between actors is required during garbage
+   collection, other than potential message sends.
 
-4. An actor may garbage collect between its normal behaviours, i.e. it need not wait untils its message queue is empty.
+4. An actor may garbage collect between its normal behaviours, i.e. it
+   need not wait untils its message queue is empty.
 
 5. Pony-ORCA can be applied to several other programming languages,
    provided that the satisfy the following two requirements:
