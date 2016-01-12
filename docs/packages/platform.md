@@ -1,4 +1,4 @@
-# Platform dependant code
+# Platform dependent code
 
 The Pony libraries of course want to abstract platform differences.
 Sometimes you may want a use command that only works under certain
