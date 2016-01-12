@@ -55,17 +55,17 @@ Many C functions require types that don't have an exact equivalent in Pony. A va
 
 For FFI functions that have no return value (ie they return `void` in C) the return value specified should be `[None]`.
 
-In Pony String is an object with a header and fields, but in C a char* is simply a pointer to character data. The .cstring() function on String provides us with a valid pointer to hand to C. Our fwrite example above makes use of this for the first argument.
+In Pony String is an object with a header and fields, but in C a `char*` is simply a pointer to character data. The `.cstring()` function on String provides us with a valid pointer to hand to C. Our fwrite example above makes use of this for the first argument.
 
 Pony classes corresponds directly to pointers to the class in C.
 
-For C pointers to simple types, such as U64, the Pony `Pointer[]` polymorphic type should be used, with a `tag` reference capability. `Pointer[U8] tag` should be used for void*. This can be seen in our SSL_CTX_ctrl example above.
+For C pointers to simple types, such as U64, the Pony `Pointer[]` polymorphic type should be used, with a `tag` reference capability. `Pointer[U8] tag` should be used for void*. This can be seen in our `SSL_CTX_ctrl` example above.
 
-To pass pointers to values to C an ampersand (&) can be used, just like taking an address in C. This is done in the standard library to pass the address of a U64 to an FFI function that takes a uint64_t* as an out parameter:
+To pass pointers to values to C the `addressof` operator can be used (previously `&`), just like taking an address in C. This is done in the standard library to pass the address of a `U64` to an FFI function that takes a `uint64_t*` as an out parameter:
 
 ```pony
 var len = U64(0)
-@pcre2_substring_length_bynumber_8[I32](_match, i.u32(), &len)
+@pcre2_substring_length_bynumber_8[I32](_match, i.u32(), addressof len)
 ```
 
 ## To read c structs from FFI
@@ -103,6 +103,7 @@ void setEvent(EGLEvent e) {
 ```
 then you call it like this
 ```pony
+type EGLEvent is (U8, F32, F32)
 let e: EGLEvent = (4, 0, 0)
 @setEvent[None](e)
 ```
