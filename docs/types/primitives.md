@@ -20,6 +20,6 @@ Primitives are quite powerful, particularly as enumerations. Unlike enumerations
 The __primitive__ keyword is also used to introduce certain built-in "machine word" types. Other than having a value associated with them, these work like user-defined primitives. These are:
 
 * __Bool__. This is a 1-bit value that is either `true` or `false`.
-* __ISize, I8, I16, I32, I64, I128__. Signed integers of various widths.
-* __USize, U8, U16, U32, U64, U128__. Unsigned integers of various widths.
+* __ISize, ILong, I8, I16, I32, I64, I128__. Signed integers of various widths.
+* __USize, ULong, U8, U16, U32, U64, U128__. Unsigned integers of various widths.
 * __F32, F64__. Floating point numbers of various widths.
