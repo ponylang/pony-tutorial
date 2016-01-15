@@ -15,6 +15,7 @@
   1. params
   1. fields
   1. literals
+  1. object literals and partial application
 1. basic control structures
   1. everything is an expression
   1. operator precedence
@@ -42,7 +43,6 @@
   1. polymorphic methods
 1. pattern matching
   1. as expressions
-1. object literals and partial application
 1. platform dependent code
 1. editor plugins
 1. compiler command line arguments
