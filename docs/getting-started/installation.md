@@ -88,6 +88,13 @@ Install ```ponyc``` or ```ponyc-avx2```:
 $ sudo yum install <package-name>
 ```
 
+## Gentoo
+
+```bash
+layman -a stefantalpalaru
+emerge dev-lang/pony
+```
+
 # Windows
 
 64-Bit installers for Windows 7, 8, 8.1 and 10 will be available soon.
