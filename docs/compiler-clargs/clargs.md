@@ -33,9 +33,8 @@ code by yourself. See the `options` package for this.
 `--output` or `-o` takes a directory name where the final binary is
 created.
 
-`--docs` or -`g` dumps the list of classes, actors and types with some
-warnings to stdout. This can be used to created documentation, but also
-TAGS, or help the [editor](../getting-started/what-you-need-to-start).
+`--docs` or -`g` creates a directory of the package with documentation
+in markdown format.
 
 Note that there is _no builtin debugger_ to interactively step through
 your program and interpret the results. But ponyc creates proper DWARF
