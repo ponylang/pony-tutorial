@@ -13,7 +13,7 @@ use "bar" if (windows and debug)
 Use conditions can use any of the methods defined in `builtin/Platform` as conditions.
 There are currently the following booleans defined:
 `freebsd`, `linux`, `osx`, `posix` => `(freebsd or linux or osx)`,
-`windows`, `x86`, `arm`, `lp64`, `llp64`, `ilp32`, `has_i128`, `debug`
+`windows`, `x86`, `arm`, `lp64`, `llp64`, `ilp32`, `native128`, `debug`
 
 They can also use the operators `and`, `or`, `xor` and `not`. As with other expressions in Pony, parentheses __must__ be used to indicate precedence if more than one of `and`, `or` and `xor` is used.
 
