@@ -34,7 +34,18 @@ code by yourself. See the `options` package for this.
 created.
 
 `--docs` or -`g` creates a directory of the package with documentation
-in markdown format.
+in [readthedocs.org](http://readthedocs.org) format, i.e. markdown
+with nice navigation.
+
+Let's study the documentation of the builtin stdlib:
+
+```bash
+  pip install mkdocs
+  ponyc packages/stdlib --docs && cd stdlib-docs && mkdocs serve
+```
+
+And point your web browser to [http://127.0.0.1:8000](http://127.0.0.1:8000)
+serving a live-reloading local version of the docs.
 
 Note that there is _no builtin debugger_ to interactively step through
 your program and interpret the results. But ponyc creates proper DWARF
