@@ -151,7 +151,7 @@ fun f(x: (String | None), y: U32): String =>
 
 In addition to matching on types and values each case in a match can also have a guard condition. This is simply an expression, evaluated __after__ type and value matching has occurred, that must give the value true for the case to match. If the guard is false then the case doesn't match and we move onto the next in the usual way.
 
-Guards are introduced with the `where` keyword.
+Guards are introduced with the `if` keyword (_was `where` until 0.2.1_).
 
 A guard expression may use any captured variables from that case, which allows for handling ranges and complex functions.
 
@@ -161,7 +161,7 @@ fun f(x: (String | None), y: U32): String =>
   | (None, _) => "none"
   | (let s: String, 2) => s + " two"
   | (let s: String, 3) => s + " three"
-  | (let s: String, let u: U32) where u > 14 => s + " other big integer"
+  | (let s: String, let u: U32) if u > 14 => s + " other big integer"
   | (let s: String, _) => s + " other small integer"
   else
 	"something else"
