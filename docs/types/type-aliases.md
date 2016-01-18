@@ -48,17 +48,32 @@ end
 
 # Complex types
 
-If a type is complicated, it can be nice to give it a mnemonic name. For example, if we want to say that a type must implement more than one trait, we could say:
+If a type is complicated, it can be nice to give it a mnemonic name. For example, if we want to say that a type must implement more than one interface, we could say:
 
 ```pony
 interface HasName
   fun name(): String
- 
+
 interface HasAge
   fun age(): U32
 
 interface HasAddress
   fun address(): String
+
+type Person is (HasName & HasAge & HasAddress)
+```
+
+This use of complex types applies to traits, not just interfaces:
+
+```pony
+trait HasName
+  fun name(): String => "Bob"
+
+trait HasAge
+  fun age(): U32 => "42"
+
+trait HasAddress
+  fun address(): String => "3 Abbey Road"
 
 type Person is (HasName & HasAge & HasAddress)
 ```
