@@ -33,7 +33,7 @@ class C
     if x == 0 then
 	  return 1
 	end
-	
+
 	x * factorial(x - 1)
 ```
 
@@ -46,14 +46,14 @@ Pony constructors are used to initialise newly created objects, as in many langu
 ```pony
 class Foo
   var _x: U32
-  
+
   new create() =>
 	_x = 0
 
   new from_int(x: U32) =>
     _x = x
 ```
-    
+
 The purpose of a constructor is to set up the internal state of the object being created. To ensure this is done constructors must initialise all the fields in the object being constructed.
 
 __Can I exit a constructor early?__ Yes. Just then use the `return` command without a value. The object must already be in a legal state to do this.
@@ -76,7 +76,7 @@ Constructors are usually called "on" a type, by specifying the type that is to b
 ```pony
 class Foo
   var _x: U32
-  
+
   new create() =>
 	_x = 0
 
@@ -89,12 +89,12 @@ class Bar
 	var b: Foo = Foo.from_int(3)
 ```
 
-Functions are always called on an object. Again just specify the object, followed by a dot followed, by the name of the function to call. If the object to call on is omitted then the current object used (i.e. `this`).
+Functions are always called on an object. Again just specify the object, followed by a dot, followed by the name of the function to call. If the object to call on is omitted then the current object is used (i.e. `this`).
 
 ```pony
 class Foo
   var _x: U32
-  
+
   new create() =>
 	_x = 0
 
@@ -112,7 +112,7 @@ class Bar
 
   fun g(x: U32): U32 =>
     x + 1
-	
+
 ```
 
 Constructors can also be called on an expression. Here an object is created of the same type as the specified expression, this is equivalent to directly specifying the type.
@@ -120,7 +120,7 @@ Constructors can also be called on an expression. Here an object is created of t
 ```pony
 class Foo
   var _x: U32
-  
+
   new create() =>
 	_x = 0
 
