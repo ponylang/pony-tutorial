@@ -6,7 +6,7 @@ Any __trait__ or __interface__ can be used as a _mixin_ by exploiting delegate t
 
 ```pony
 trait Wombat
-  fun box battle_call() : String val => 
+  fun box battle_call() : String val =>
     "Huzzah!"
 
 class SimpleWombat is Wombat
@@ -62,7 +62,7 @@ actor Main is Wombat
     w = match (Time.nanos() and 1) == 1
     | true => KungFuWombat
     else SimpleWombat
-    end 
+    end
     env.out.print("Battle cry: " + battle_call())
 ```
 
@@ -74,7 +74,7 @@ complicated in real code:
 
 ```pony
 trait Drone
-  fun box battle_call() : String val => 
+  fun box battle_call() : String val =>
     "Beep Boop!"
 
 class DroneWombat is ( Drone & Wombat)
@@ -148,10 +148,9 @@ actor Main is Wombat
 ```
 
 Delegates are a convenient and flexible way to reuse, mixin, and/or adapt
-code to different strategies or polices allowing for a very high degree of
+code to different strategies or policies allowing for a very high degree of
 flexibility in composing reasonably complex software components from relatively simple
 parts.
 
 In pony, delegates can benefit from _nominal_ ( via __traits__ ) or implicit or explicit _structural_ ( via __interfaces__ ) subtyping and local disambiguation where necessary, whilst sensible default
 implementations allow for maximizing code reuse.
-
