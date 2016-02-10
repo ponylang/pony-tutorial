@@ -59,9 +59,9 @@ free concurrency by adhering to the following principles:
 
     * **Actor behaviours are atomic**.
 
-    * **Message delivery is casual** - i.e. messages arrive before any
+    * **Message delivery is causal**. [Causal](https://www.google.com/search?q=causal+definition): messages arrive before any
   messages they may have caused, if they have the same destination. So
-  there needs to be some kind of casual ordering guarantee, but less
+  there needs to be some kind of causal ordering guarantee, but less
   requirements than with comparable concurrent, fast garbage
   collectors.
 

@@ -28,7 +28,7 @@ The Pony type system offers a lot of guarantees, even more than other statically
 * There will never be a data race.
 * Your program will never deadlock.
 * Your code will always be capabilities-secure.
-* All message passing is causal.
+* All message passing is [causal](https://www.google.com/search?q=causal+definition). (Not ca**su**al!)
 
 Some of those will make sense right now. Some of them may not mean much to you yet (like capabilities-security and causal messaging), but we'll get to those concepts later on.
 
