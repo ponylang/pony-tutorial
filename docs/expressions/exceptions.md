@@ -78,6 +78,46 @@ __Do I have to have an else error handler to have a then block?__ No. You can ha
 
 __Will my then block really always be executed, even if I return inside the try?__ Yes, your `then` expression will __always__ be executed when the try block is complete. The only way it won't be is if the try never completes (due to an infinite loop), the machine is powered off or the process is killed (and then, maybe).
 
+# With blocks
+
+A `with` expression can be used to ensure disposal of an object when it is no longer needed. A common case is a database connection which needs to be closed after use to avoid resource leaks on the server. For example:
+
+```pony
+with obj = SomeObjectThatNeedsDisposing() do
+  // use obj
+end
+```
+
+`obj.dispose()` will be called whether the code inside the `with` block completes successfully or raises an error. To take part in a `with` expression, the object that needs resource clean-up must therefore provide a `dispose()` method:
+
+```pony
+class SomeObjectThatNeedsDisposing
+  // constructor, other functions
+
+  fun dispose() =>
+    // release resources
+```
+
+It is possible to provide an `else` clause, which is called only in error cases:
+
+```pony
+with obj = SomeObjectThatNeedsDisposing() do
+  // use obj
+else
+  // only run if an error has occurred
+end
+```
+
+Multiple objects can be set up for disposal:
+
+```pony
+with obj = SomeObjectThatNeedsDisposing(), other = SomeOtherDisposableObject() do
+  // use obj
+end
+```
+
+The value of a `with` expression is the value of the last expression in the block, or of the last expression in the `else` block, if there is one and an error occurred.
+
 # Language constructs that can raise errors
 
 The only language construct that can raise an error, other than the error command or calling a partial method, is the `as` command. This converts the given value to the specified type, if it can be. If it can't then an error is raised. This means that the `as` command can only be used inside a try block or a partial method.
