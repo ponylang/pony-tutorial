@@ -108,6 +108,14 @@ else
 end
 ```
 
+Multiple objects can be set up for disposal:
+
+```pony
+with obj = SomeObjectThatNeedsDisposing(), other = SomeOtherDisposableObject() do
+  // use obj
+end
+```
+
 The value of a `with` expression is the value of the last expression in the block, or of the last expression in the `else` block, if there is one and an error occurred.
 
 # Language constructs that can raise errors
