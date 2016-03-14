@@ -1,0 +1,10 @@
+language:
+  - python
+install:
+  - sudo -H pip install mkdocs;
+script:
+  - if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' ]]; then
+      git remote add gh-token "https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}";
+      git fetch gh-token && git fetch gh-token gh-pages:gh-pages;
+      mkdocs gh-deploy -v --clean --remote-name gh-token;
+    fi;
