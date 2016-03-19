@@ -2,6 +2,7 @@ language:
   - python
 install:
   - sudo -H pip install mkdocs;
+  - sudo -H pip install mkdocs-material
 script:
   - if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' ]]; then
       git remote add gh-token "https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}";
