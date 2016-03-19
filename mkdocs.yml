@@ -1,5 +1,5 @@
 site_name: Pony Tutorial
-theme: readthedocs
+theme: material
 pages:
 - Getting started:
   - Welcome!: index.md
