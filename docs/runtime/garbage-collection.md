@@ -27,8 +27,9 @@ with the mutation of the actor graph).
    introspection, shared memory, read/write barriers or cache
    coherency.
 
-The type system ensures at compile time that your program can **never have data races**.
-It's **deadlock free**... Because Pony has **no locks**!
+The type system ensures at compile time that your program can 
+**never have data races**. It's **deadlock free**... Because Pony has **no
+locks**!
 
 When an actor has completed local execution and has no pending
 messages on its queue, it is _blocked_. An actor is _dead_, if it is
@@ -59,10 +60,11 @@ free concurrency by adhering to the following principles:
 
     * **Actor behaviours are atomic**.
 
-    * **Message delivery is causal**. [Causal](https://www.google.com/search?q=causal+definition): messages arrive before any
-  messages they may have caused, if they have the same destination. So
-  there needs to be some kind of causal ordering guarantee, but less
-  requirements than with comparable concurrent, fast garbage
-  collectors.
+    * **Message delivery is causal**. 
+    [Causal](https://www.google.com/search?q=causal+definition): messages 
+    arrive before any messages they may have caused, if they have the same
+    destination. So there needs to be some kind of causal ordering guarantee,
+    but less requirements than with comparable concurrent, fast garbage
+    collectors.
 
 

@@ -7,8 +7,10 @@ OTP in a nutshell:
 * `gen_server` & `gen_nb_server` ~ A pony actor
 * `gen_event` - Easy to implement
 * `gen_fsm` - In progress
-* `gen_supervisor` - Harder to implement ( needs monitors, links - feature planned )
-* distributed multinode erlang - Already being actively researched ( A String of Ponies )
+* `gen_supervisor` - Harder to implement ( needs monitors, links - 
+feature planned )
+* distributed multinode erlang - Already being actively researched 
+( A String of Ponies )
 * applications ~ a binary
 * libraries ~ a pony package or shared library
 

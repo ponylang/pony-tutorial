@@ -89,11 +89,13 @@ end
 actor Main
 
   new create(env: Env) =>
-    env.out.print(env.args.size().string()) // The no of arguments
+    // The no of arguments
+    env.out.print(env.args.size().string()) 
     for value in env.args.values() do
       env.out.print(value)
     end
-    try env.out.print(env.args(0)) end // Access the arguments the first one will always be the the appication name
+    // Access the arguments the first one will always be the the appication name
+    try env.out.print(env.args(0)) end 
 ```
 
 ### How to use options
@@ -159,8 +161,10 @@ fun tag assert_error(test: ITest, msg: String = "") ?
 fun tag expect_error(test: ITest box, msg: String = ""): Bool
 fun tag assert_is (expect: Any, actual: Any, msg: String = "") ?
 fun tag expect_is (expect: Any, actual: Any, msg: String = ""): Bool
-fun tag assert_eq[A: (Equatable[A] #read & Stringable)] (expect: A, actual: A, msg: String = "") ?
-fun tag expect_eq[A: (Equatable[A] #read & Stringable)] (expect: A, actual: A, msg: String = ""): Bool
+fun tag assert_eq[A: (Equatable[A] #read & Stringable)]
+  (expect: A, actual: A, msg: String = "") ?
+fun tag expect_eq[A: (Equatable[A] #read & Stringable)]
+  (expect: A, actual: A, msg: String = ""): Bool
 ```
 
 ### Operator Overloading (easy for copy and paste)

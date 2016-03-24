@@ -4,9 +4,11 @@ that allow objects from different programming languages to be used together.
 
 # Writing a C library for Pony
 
-Writing your own C library for use by Pony is almost as easy as using existing libraries.
+Writing your own C library for use by Pony is almost as easy as using existing 
+libraries.
 
-Let's look at a complete example of a C function we may wish to provide to Pony. A Jump Consistent Hash, for example, could be provided in pure Pony as follows:
+Let's look at a complete example of a C function we may wish to provide to Pony.
+A Jump Consistent Hash, for example, could be provided in pure Pony as follows:
 
 ```pony
 // Jump consistent hashing in pony, with an inline pseudo random generator
@@ -25,7 +27,8 @@ fun jch(key: U64, buckets: I64): I32 =>
   b.i32()
 ```
 
-Let's say we wish to compare the pure Pony performance to an existing C function with the following header:
+Let's say we wish to compare the pure Pony performance to an existing C 
+function with the following header:
 
 ```C
 #ifndef __JCH_H_
@@ -39,7 +42,9 @@ extern "C"
 #endif
 ```
 
-Note the use of `extern "C"`. If the library is built as C++ then we need to tell the compiler not to mangle the function name, otherwise Pony won't be able to find it. For libraries built as C this is not needed, of course.
+Note the use of `extern "C"`. If the library is built as C++ then we need to 
+tell the compiler not to mangle the function name, otherwise Pony won't be able 
+to find it. For libraries built as C this is not needed, of course.
 
 The implemented would be something like:
 
@@ -74,7 +79,8 @@ int32_t jch_chash(uint64_t key, uint32_t num_buckets)
 }
 ```
 
-We need to compile the native code to a shared library. This example is for OSX. The exact details may vary on other platforms.
+We need to compile the native code to a shared library. This example is for OSX. 
+The exact details may vary on other platforms.
 
 ```
 clang++ -fPIC -Wall -Wextra -O3 -g -MM jch.c >jch.d
@@ -82,10 +88,13 @@ clang++ -fPIC -Wall -Wextra -O3 -g   -c -o jch.o jch.c
 clang++ -shared -lm -o libjch.dylib jch.o
 ```
 
-The Pony code to use this new C library is just like the code we've already seen for using C libraries.
+The Pony code to use this new C library is just like the code we've already seen 
+for using C libraries.
 
 ```pony
-""" This is an example of pony integrating with native code via the builtin FFI support """
+""" This is an example of pony integrating with native code via the builtin FFI 
+support 
+"""
 
 use "lib:jch"
 use "collections"
@@ -108,4 +117,5 @@ actor Main
     end
 ```
 
-We can now use ponyc to compile a native executable integrating pony and our C library. And that's all we need to do.
+We can now use ponyc to compile a native executable integrating pony and our C 
+library. And that's all we need to do.
