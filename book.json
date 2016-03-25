@@ -1,0 +1,13 @@
+{
+    "plugins": [
+        "addcssjs",
+        "footnote-string-to-number",
+        "highlight"
+    ],
+    "pluginsConfig": {
+      "addcssjs": {
+        "js": [],
+        "css": [""]
+      }
+    }
+}
