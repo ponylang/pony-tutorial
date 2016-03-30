@@ -6,3 +6,4 @@ generated at
 be accessed via [tutorial.ponylang.org](http://tutorial.ponylang.org).
 
 PDF, ePub and Mobi versions are available in addition to the website.
+
