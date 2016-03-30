@@ -18,3 +18,4 @@ $ mkdocs serve
 This will give you a live-reloading local version of the docs. When you are
 ready to publish your changes, commit everything and push to GitHub. TravisCI
 rebuilds the tutorial any time you push to `master`.
+
