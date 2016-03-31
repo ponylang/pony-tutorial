@@ -65,6 +65,24 @@ docstring after the method declaration, even though there is no `=>`.
 By convention, a docstring should be a triple-quoted string, and it should use 
 Markdown for any formatting.
 
+```pony
+actor Main
+"""
+This is documentation for my actor
+"""
+  new create(env: Env) =>
+  """
+  This is documentation for my create method
+  """
+  None
+
+trait Readable
+  fun val read()
+  """
+  This is documentation on my unimplemented trait method
+  """
+```
+
 # Comments
 
 Use __docstrings__ first! But if you need to put some comments in the 
