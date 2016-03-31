@@ -52,7 +52,6 @@
   * [Linking to C Libraries](docs/c-ffi/linking-c.md)
   * [C abi](docs/c-ffi/c-abi.md)
 * [The Runtime](docs/runtime/index.md)
-  * [OTP](docs/runtime/otp.md)
   * [Memory allocation](docs/runtime/memory-allocation.md)
   * [Garbage collection](docs/runtime/garbage-collection.md)
 * [Examples](docs/examples/examples.md)
