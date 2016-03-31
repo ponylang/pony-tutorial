@@ -162,7 +162,7 @@ means you are using the _default_ reference capability for that type, which is
 defined along with the type. Here's an example from the standard library:
 
 ```pony
-class String val
+class val String
 ```
 
 When we use a `String` we usually mean a string value, so we make `val` the 
