@@ -1,3 +1,5 @@
+# Hello World: How it works
+
 Let's look at our `helloworld` code again:
 
 ```pony
@@ -8,7 +10,7 @@ actor Main
 
 Let's go through that line by line.
 
-# Line 1
+## Line 1
 
 ```pony
 actor Main
@@ -26,7 +28,7 @@ A Pony program has to have a `Main` actor. It's kind of like the `main`
 function in C or C++, or the `main` method in Java, or the `Main` method in C#. 
 It's where the action starts.
 
-# Line 2
+## Line 2
 
 ```pony
   new create(env: Env) =>
@@ -52,7 +54,7 @@ the beginning of your program is essentially the body of that constructor.
 
 __Wait, what's the body?__ It's the code that comes after the `=>`.
 
-# Line 3
+## Line 3
 
 ```pony
     env.out.print("Hello, world!")
@@ -81,7 +83,8 @@ with. That means it has command line arguments, environment variables,
 __stdin__, __stdout__, and __stderr__. Pony has no global variables, so these 
 things are explicitly passed to your program.
 
-# That's it!
+## That's it!
 
 Really, that's it. The program begins by creating a `Main` actor, and in the 
-constructor, we print "Hello, world!" to __stdout__.
+constructor, we print "Hello, world!" to __stdout__. Next, we'll start diving
+into the Pony type system. 
