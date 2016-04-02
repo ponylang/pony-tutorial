@@ -53,4 +53,6 @@
   * [Memory allocation](docs/runtime/memory-allocation.md)
   * [Garbage collection](docs/runtime/garbage-collection.md)
 * [Examples](docs/examples/examples.md)
+* [Appendices](appendices/index.md)
+  * [Lexicon](appendices/lexicon.md)
 
