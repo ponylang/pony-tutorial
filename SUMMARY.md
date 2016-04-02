@@ -44,7 +44,6 @@
   * [Use statement](docs/packages/use-statement.md)
   * [Builtin](docs/packages/builtin.md)
   * [Platform dependent code](docs/packages/platform.md)
-* [Compiler Args](docs/compiler-clargs/clargs.md)
 * [C FFI](docs/c-ffi/index.md)
   * [Calling C](docs/c-ffi/calling-c.md)
   * [Linking to C Libraries](docs/c-ffi/linking-c.md)
@@ -55,4 +54,4 @@
 * [Appendices](appendices/index.md)
   * [Lexicon](appendices/lexicon.md)
   * [Examples](appendices/examples.md)
-
+  * [Compiler Arguments](appendices/compiler-args.md)
