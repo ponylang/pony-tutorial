@@ -84,7 +84,7 @@ if @eglChooseConfig[U32](e_dpy, a, config, U32(1), Pointer[U32]) == 0 then
 end
 ```
 
-### How to use enviroment variables
+### How to access command line arguments
 ```pony
 actor Main
 
