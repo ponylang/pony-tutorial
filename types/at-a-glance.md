@@ -1,9 +1,11 @@
+# The Pony Type System at a Glance
+
 Pony is a _statically typed_ language, like Java, C#, C++, and many others. 
 This means the compiler knows the type of everything in your program. This is 
 different from _dynamically typed_ languages, such as Python, Lua, JavaScript, 
 and Ruby.
 
-# What's the difference?
+## Static vs Dynamic: What's the difference?
 
 In both kinds of language, your data has a type. So what's the difference?
 
@@ -24,7 +26,7 @@ that expects to point to an integer, you can't assign a string to it. Your
 compiler complains, and it complains __before__ you ever try to run your 
 program.
 
-# Types are guarantees
+## Types are guarantees
 
 When the compiler knows what types things are, it can make sure some things in 
 your program work without you having to run it or test it. These things are 
@@ -37,7 +39,7 @@ __Do dynamic types make guarantees too?__ Yes, but they do it at runtime. For
 example, if you call a method that doesn't exist, you will usually get some 
 kind of exception. But you'll only find out when you try to run your program.
 
-# What guarantees does Pony's type system give me?
+## What guarantees does Pony's type system give me?
 
 The Pony type system offers a lot of guarantees, even more than other 
 statically typed languages.

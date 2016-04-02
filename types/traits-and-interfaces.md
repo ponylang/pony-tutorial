@@ -1,3 +1,5 @@
+# Traits and Interfaces
+
 Like other object-oriented languages, Pony has __subtyping__. That is, some 
 types serve as _categories_ that other types can be members of.
 
@@ -5,7 +7,7 @@ There are two kinds of __subtyping__ in programming languages: __nominal__ and
 __structural__. They're subtly different, and most programming languages only 
 have one or the other. Pony has both!
 
-# Nominal subtyping
+## Nominal subtyping
 
 This kind of subtyping is called __nominal__ because it is all about __names__.
 
@@ -19,7 +21,7 @@ __implement__ an __interface__ (a category type). In Java, this means the class
 is now in the category that the interface represents. The compiler will check 
 that the class actually provides everything it needs to.
 
-# Traits
+## Traits: nominal subtyping
 
 Pony has nominal subtyping, using __traits__. A __trait__ looks a bit like a 
 __class__, but it uses the keyword `trait` and it can't have any fields.
@@ -55,7 +57,7 @@ __Wait, why not?__ Because `Larry` doesn't say it `is Named`. Remember, traits
 are __nominal__: a type that wants to provide a trait has to explicitly declare 
 that it does. And `Larry` doesn't.
 
-# Structural subtyping
+## Structural subtyping
 
 There's another kind of subtyping, where the name doesn't matter. It's called 
 __structural subtyping__, which means that it's all about how a type is built, 
@@ -66,7 +68,7 @@ the needed elements, no matter what it happens to be called.
 
 If you've used Go, you'll recognise that Go interfaces are structural types.
 
-# Interfaces
+## Interfaces: stuctural subtyping
 
 Pony has structural subtyping too, using __interfaces__. Interfaces look like 
 traits, but they use the keyword `interface`.

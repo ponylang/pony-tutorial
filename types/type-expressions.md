@@ -1,3 +1,5 @@
+# Type Expressions
+
 The types we've talked about so far can also be combined in 
 __type expressions__. If you're used to object-oriented programming, you may 
 not have seen these before, but they are common in functional programming. A 
@@ -6,7 +8,7 @@ __type expression__ is also called an __algebraic data type__.
 There are three kinds of type expression: __tuples__, __unions__, and 
 __intersections__.
 
-# Tuples
+## Tuples
 
 A __tuple__ is a sequence of types. For example, if we wanted something that 
 was a `String` followed by a `U64`, we would write this:
@@ -43,7 +45,7 @@ collection of values that doesn't have any associated code or expected
 behaviour. Basically, if you just need a quick collection of things, maybe to 
 return more than one value from a function for example, you can use a tuple.
 
-# Unions
+## Unions
 
 A __union__ type is written like a __tuple__, but it uses a `|` (pronounced 
 "or" when reading the type) instead of a `,` between its elements. Where a 
@@ -60,7 +62,7 @@ var x: (String | None)
 Here we have an example of using a union to express an optional type, where `x` 
 might be a `String`, but it also might be `None`.
 
-# Intersections
+## Intersections
 
 An __intersection__ uses a `&` (pronounced "and" when reading the type) between 
 its elements. It represents the exact opposite of a union: it is a _single_ 
@@ -77,7 +79,7 @@ That's a fairly complex type alias, but let's look at the constraint of `K`.
 It's `(Hashable box & Comparable[K] box)`, which means `K` is `Hashable` _and_ 
 it is `Comparable[K]`, at the same time.
 
-# Combining type expressions
+## Combining type expressions
 
 Type expressions can be combined into more complex types. Here's another 
 example from the standard library:

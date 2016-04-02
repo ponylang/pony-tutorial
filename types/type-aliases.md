@@ -1,3 +1,5 @@
+# Type Aliases
+
 A __type alias__ is just a way to give a different name to a type. This may 
 sound a bit silly: after all, types already have names! However, Pony can 
 express some complicated types, and it can be convenient to have a short way to 
@@ -6,7 +8,7 @@ talk about them.
 We'll give a couple examples of using type aliases, just to get the feel of 
 them.
 
-# Enumerations
+## Enumerations
 
 One way to use type aliases is to express an enumeration. For example, imagine 
 we want to say something must either be Red, Blue or Green. We could write 
@@ -60,7 +62,7 @@ for colour in ColourList().values() do
 end
 ```
 
-# Complex types
+## Complex types
 
 If a type is complicated, it can be nice to give it a mnemonic name. For 
 example, if we want to say that a type must implement more than one interface, 
@@ -145,7 +147,7 @@ It means there is a certain class of operations we need to be able to do on a
 Just like our other examples, all this really means is that `Map` is really a 
 kind of `HashMap`.
 
-# Other stuff
+## Other stuff
 
 Type aliases get used for a lot of things, but this gives you the general idea. 
 Just remember that a type alias is always a convenience: you could replace 

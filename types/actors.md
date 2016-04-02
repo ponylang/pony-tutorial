@@ -1,7 +1,9 @@
+# Actors
+
 An __actor__ is similar to a __class__, but with one critical difference: an 
 actor can have __behaviours__.
 
-# Behaviours
+## Behaviours
 
 A __behaviour__ is like a __function__, except that functions are _synchronous_ 
 and behaviours are _asynchronous_. In other words, when you call a function, 
@@ -38,7 +40,7 @@ actor Aardvark
 
 Here we have an `Aardvark` that can eat asynchronously. Clever Aardvark.
 
-# Concurrent
+## Concurrent
 
 Since behaviours are asynchronous, it's ok to run the body of a bunch of 
 behaviours at the same time. This is exactly what Pony does. The Pony runtime 
@@ -46,7 +48,7 @@ has its own scheduler, which by default has a number of threads equal to the
 number of CPU cores on your machine. Each scheduler thread can be executing an 
 actor behaviour at any given time, so Pony programs are naturally concurrent.
 
-# Sequential
+## Sequential
 
 Actors themselves, however, are sequential. That is, each actor will only 
 execute one behaviour at a time. This means all the code in an actor can be 
@@ -58,7 +60,7 @@ parallelism, but as a unit of sequentiality. That is, an actor should do only
 what _has_ to be done sequentially. Anything else can be broken out into 
 another actor, making it automatically parallel.
 
-# Why is this safe?
+## Why is this safe?
 
 Because of Pony's __capabilities secure type system__. We've mentioned 
 reference capabilities briefly before, when talking about function receiver 
@@ -67,7 +69,7 @@ type that make all this parallelism safe without any runtime overhead.
 
 We will cover reference capabilities in depth later.
 
-# Actors are cheap
+## Actors are cheap
 
 If you've done concurrent programming before, you'll know that threads can be 
 expensive. Context switches can cause problems, each thread needs a stack 

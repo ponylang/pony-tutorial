@@ -1,3 +1,5 @@
+# Classes
+
 Just like other object-oriented languages, Pony has __classes__. A class is 
 declared with the keyword `class`, and it has to have a name that starts with a 
 capital letter, like this:
@@ -10,7 +12,7 @@ __Do all types start with a capital letter?__ Yes! And nothing else starts with
 a capital letter. So when you see a name in Pony code, you will instantly know 
 whether it's a type or not.
 
-# What goes in a class?
+## What goes in a class?
 
 A class is composed of:
 
@@ -18,7 +20,7 @@ A class is composed of:
 2. Constructors.
 3. Functions.
 
-## Fields
+### Fields
 
 These are just like fields in C structs or fields in classes in C++, C#, Java, 
 Python, Ruby, or basically any language, really. There are two kinds of fields: 
@@ -39,7 +41,7 @@ A __private__ field can only be accessed by code in the same type. A
 __private__ constructor, function, or behaviour can only be accessed by code in 
 the same package. We'll talk more about packages later.
 
-## Constructors
+### Constructors
 
 Pony constructors have names. Other than that, they are just like constructors 
 in other languages. They can have parameters, and they always return a new 
@@ -70,15 +72,11 @@ in parameter and local variable names. In mathematics, it's called a _prime_,
 and it's used to say "another one of these, but not the same one". Basically, 
 it's just convenient.
 
-### Everything has to get set in a constructor
-
 Every constructor has to set every field in an object. If it doesn't, the 
 compiler will give you an error. Since there is no `null` in Pony, we can't do 
 what Java, C# and many other languages do and just assign either `null` or zero 
 to every field before the constructor runs, and since we don't want random 
 crashes, we don't leave fields undefined (unlike C or C++).
-
-### Field initialisers
 
 Sometimes it's convenient to set a field the same way for all constructors.
 
@@ -100,7 +98,7 @@ class Wombat
 Here, every `Wombat` begins a little bit thirsty, regardless of which 
 constructor is called.
 
-## Functions
+### Functions
 
 Functions in Pony are like methods in Java, C#, C++, Ruby, Python, or pretty 
 much any other object oriented language. They are introduced with the keyword 
@@ -139,7 +137,7 @@ last expression.
 The second function, `set_hunger`, introduces a _bunch_ of new concepts all at 
 once. Let's go through them one by one.
 
-### The `ref` keyword right after `fun`
+* The `ref` keyword right after `fun`
 
 This is a __reference capability__. In this case, it means the _receiver_, i.e. 
 the object on which the `set_hunger` function is being called, has to be a 
@@ -155,13 +153,13 @@ __What would happen if we left the `ref` keyword off the `set_hunger` method?__
 The compiler would give you an error. It would see you were trying to modify a 
 field and complain about it.
 
-### The `= 0` after the parameter `to`
+* The `= 0` after the parameter `to`
 
 This is a __default argument__. It means that if you don't include that 
 argument at the call site, you will get the default argument. In this case, 
 `to` will be zero if you don't specify it.
 
-### What does the function return?
+* What does the function return?
 
 It returns the _old_ value of `_hunger_level`.
 
@@ -189,7 +187,7 @@ In Pony, you can just do:
 a = b = a
 ```
 
-# What about inheritance?
+## What about inheritance?
 
 In some object-oriented languages, a type can _inherit_ from another type, like 
 how in Java something can __extend__ something else. Pony doesn't do that. 
