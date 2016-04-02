@@ -8,13 +8,6 @@ It doesn't really matter if you know a little Python, or a bit of Ruby, or you
 are a JavaScript hacker, or Java, or Scala, or C/C++, or Haskell, or OCaml: as 
 long as you've written some code before, you should be fine.
 
-## More help
-
-If you need more help than this tutorial gives you, you can always write to the 
-Pony users' [mailing list](https://groups.io/g/pony+user), or 
-[open an issue](https://github.com/ponylang/ponyc/issues). Whatever your 
-question is, it isn't dumb, and we won't get annoyed.
-
 ## What's Pony, anyway?
 
 Pony is an object-oriented, actor-model, capabilities-secure programming 
@@ -140,3 +133,28 @@ require a shim layer if non primitive types are used.
 * Avoid library pain. Use of 3rd party Pony libraries should be as easy as 
 possible, with no surprises. This includes writing and distributing libraries 
 and using multiple versions of a library in a single program.
+
+## More help
+
+Working your away through the tutorial but in need of more help? Not to worry,
+we have you covered.
+
+If you are looking for an answer "right now", we suggest you give our IRC
+channel a try. It's #ponylang on Freenode. If you ask a question, be sure to
+hang around until you get an answer. If you don't get one, or IRC isn't your
+thing, we have a friendly [mailing list](https://groups.io/g/pony+user) you can
+try. Whatever your question is, it isn't dumb, and we won't get annoyed.
+
+Think you've found a bug? Check your understanding first by writing the mailing
+list. Once you know it's a bug, 
+[open an issue](https://github.com/ponylang/ponyc/issues).
+
+# Help us
+
+Found a typo in this tutorial? Perhaps something isn't clear? We welcome pull
+requests against the tutorial: 
+[https://github.com/ponylang/pony-tutorial](https://github.com/ponylang/pony-tutorial).
+Be sure to check out the 
+[contribution guidelines](https://github.com/ponylang/pony-tutorial/blob/master/CONTRIBUTING.md)
+before opening your PR. 
+
