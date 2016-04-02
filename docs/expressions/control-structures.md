@@ -136,7 +136,7 @@ When we're done we evaluate the condition again and keep going until it's false.
 
 Here's an example that prints out the numbers 1 to 10:
 
-```pony
+```
 var count: U32 = 1
 
 while count <= 10 do
