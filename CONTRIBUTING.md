@@ -13,13 +13,15 @@ being the authorized copyright holder.
 
 ## How the tutorial is organized
 
-All content for the tutorial is stored in the `docs` directory. Within that,
-there are folders for each section of the book. The sections act as logical
-groupings for chapters they contain. If you are creating a new section, be
-sure to add an `index.md` file that has the name of section as a level one
-entry: `#` as well as an introductory paragraph or two for the section. After
-reading the introduction, a reader should have a good idea of the type of
-content covered by the chapters that make up the section.
+The tutorial layout is in the process of being reogranized. Previously, all
+content for the tutorial was stored in the `docs` directory. Within that,
+there were folders for each section of the book. The sections act as logical
+groupings for chapters they contain. For new sections, they should be added to
+the top level of the repo. When creating a new section, be sure to add an
+`index.md` file that has the name of section as a level one entry: `#` as well
+as an introductory paragraph or two for the section. After reading the
+introduction, a reader should have a good idea of the type of content covered by
+the chapters that make up the section.
 
 ## How to format chapters
 
