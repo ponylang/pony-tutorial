@@ -1,3 +1,5 @@
+# Methods
+
 All Pony code that actually does something, rather than defining types etc, 
 appears in named blocks which are referred to as methods. There are three kinds 
 of methods; functions, constructors and behaviours. All methods are attached to 
@@ -9,7 +11,7 @@ look at those later.
 __Can I have some code outside of any methods, like I do in Python?__ No. All 
 Pony code must be within a method.
 
-# Functions
+## Functions
 
 Pony functions are quite like functions (or methods) in other languages. They 
 can have 0 or more parameters and 0 or 1 return values.
@@ -59,7 +61,7 @@ class C
 __Can I overload functions by argument type?__ No. There is no overloading of 
 methods in Pony, each type may only have a single method of any given name.
 
-# Constructors
+## Constructors
 
 Pony constructors are used to initialise newly created objects, as in many 
 languages. However, unlike many languages, Pony constructors are named so you 
@@ -85,7 +87,7 @@ fields in the object being constructed.
 __Can I exit a constructor early?__ Yes. Just then use the `return` command 
 without a value. The object must already be in a legal state to do this.
 
-# Calling
+## Calling
 
 As in many other languages, methods in Pony are called by providing the 
 arguments within parentheses after the method name. The parentheses are 
@@ -168,7 +170,7 @@ class Bar
 	var b: Foo = a.from_int(3)
 ```
 
-# Default arguments
+## Default arguments
 
 When defining a method you can provide default values for any of the arguments. 
 The caller then has the choice to use the values you have provided or to 
@@ -194,7 +196,7 @@ class Bar
 __Do I have to provide default values for all of my arguments?__ No, you can 
 provide defaults for as many, or as few, as you like.
 
-# Named arguments
+## Named arguments
 
 So far, when calling methods we have always given all the arguments in order. 
 This is known as using __positional__ arguments. However, you can also specify 
@@ -243,7 +245,7 @@ class Foo
 __Can I call using positional arguments but miss out the first one?__ No. If 
 you use positional arguments they must be the first ones in the call.
 
-# Privacy
+## Privacy
 
 In Pony method names start either with a lower case letter or with an 
 underscore followed by a lower case letter. Methods with a leading underscore 

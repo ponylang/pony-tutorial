@@ -1,10 +1,12 @@
+# Exceptions
+
 Pony provides a simple exception mechanism to aid error handling. At any point 
 the code may decide to declare an `error` has occured. Code execution halts at 
 that point and the call chain is unwound until the nearest enclosing error 
 handler is found. This is all checked at compile time so errors cannot cause 
 the whole program to crash.
 
-# Raising and handling errors
+## Raising and handling errors
 
 An error is raised with the command `error`. Error handlers are declared using 
 the try-else syntax.
@@ -48,7 +50,7 @@ __Is there anything my error handler has to do?__ No. If you provide an error
 handler then it must contain some code, but it is entirely up to you what it 
 does.
 
-# Partial functions
+## Partial functions
 
 Pony does not require that all errors are handled immediately as in our 
 previous examples. Instead functions can raise errors that are handled by 
@@ -72,7 +74,7 @@ a partial function or certain built-in language constructs) must appear within
 a try block or a function that is marked as partial. This is checked at compile 
 time, ensuring that an error cannot escape handling and crash the program.
 
-# Partial constructors and behaviours
+## Partial constructors and behaviours
 
 Constructors may also be marked as partial. If a constructor raises an error 
 then the construction is considered to have failed and the object under 
@@ -87,7 +89,7 @@ reason constructors for actors may not be partial.
 Behaviours are also executed asynchronously and so cannot be partial for the 
 same reason.
 
-# Try-then blocks
+## Try-then blocks
 
 In addition to an `else` error handler a try command can have a `then` block. 
 This is executed after the rest of the try, whether or not an error is raised 
@@ -118,7 +120,7 @@ block is complete. The only way it won't be is if the try never completes (due
 to an infinite loop), the machine is powered off or the process is killed (and 
 then, maybe).
 
-# With blocks
+## With blocks
 
 A `with` expression can be used to ensure disposal of an object when it is no 
 longer needed. A common case is a database connection which needs to be closed 
@@ -165,7 +167,7 @@ The value of a `with` expression is the value of the last expression in the
 block, or of the last expression in the `else` block, if there is one and an 
 error occurred.
 
-# Language constructs that can raise errors
+## Language constructs that can raise errors
 
 The only language construct that can raise an error, other than the error 
 command or calling a partial method, is the `as` command. This converts the 
@@ -173,7 +175,7 @@ given value to the specified type, if it can be. If it can't then an error is
 raised. This means that the `as` command can only be used inside a try block or 
 a partial method.
 
-# Comparison to exceptions in other languages
+## Comparison to exceptions in other languages
 
 Pony exceptions behave very much the same as those in C++, Java, C#, Python and 
 Ruby. The key difference is that Pony exceptions do not have a type or instance 

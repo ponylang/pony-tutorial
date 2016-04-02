@@ -1,3 +1,5 @@
+# Infix Operators
+
 Infix operators take two operands and are written between those operands. 
 Arithmetic and comparison operators are the most common:
 
@@ -8,7 +10,7 @@ a < b
 
 Pony has pretty much the same set of infix operators as other languages.
 
-# Precedence
+## Precedence
 
 When using infix operators in complex expressions a key question is the 
 __precedence__, i.e. which operator is evaluated first. Given this expression:
@@ -43,7 +45,7 @@ Repeated use of a single operator however is fine:
 1 + 2 + 3
 ```
 
-# Operator aliasing
+## Operator aliasing
 
 Most infix operators in Pony are actually aliases for functions. The left 
 operand is the receiver the function is called on and the right operand is 
@@ -123,7 +125,7 @@ xor      | op_xor() | Xor, both bitwise and logical
 
 ---
 
-# Short circuiting
+## Short circuiting
 
 The `and` and `or` operators use __short circuiting__ when used with Bool 
 variables. This means that the first operand is always evaluated, but the 
@@ -138,7 +140,7 @@ evaluated, since it cannot affect the result.
 This is a special feature built into the compiler, it cannot be used with 
 operator aliasing for any other type.
 
-# Unary operators
+## Unary operators
 
 The unary operators are handled in the same manner, but with only one operand. 
 For example the following expressions are equivalent:

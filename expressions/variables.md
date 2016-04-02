@@ -1,8 +1,10 @@
+# Variables
+
 Like most other programming languages Pony allows you to store data in 
 variables. There are a few different kinds of variables which have different 
 lifetimes and are used for slightly different purposes.
 
-# Local variables
+## Local variables
 
 Local variables in Pony work very much as they do in other languages, allowing 
 you to store temporary values while you perform calculations. Local variables 
@@ -67,7 +69,7 @@ Variables only exists from when they are defined until the end of the current
 scope. For our variable `x` this is the `end` at the end of the then 
 expression: after that it cannot be used.
 
-# Var vs. let
+## Var vs. let
 
 Local variables are declared with either a `var` or a `let`. Using `var` means 
 the variable can be assigned and reassigned as many times as you like. Using 
@@ -85,7 +87,7 @@ going to change a variable then using `let` is a good way to catch errors. It
 can also serve as a useful comment, indicating the value is not meant to be 
 changed.
 
-# Fields
+## Fields
 
 In Pony, fields are variables that live within objects. They work like fields 
 in other object-oriented languages.
@@ -102,13 +104,13 @@ Just like local variables, fields can be `var` or `let`. They can also have
 initial value assigned in their definition, just like local variables, or they 
 can be given their initial value in a constructor.
 
-# Globals
+## Globals
 
 Some programming languages have __global variables__ that can be accessed from 
 anywhere in the code. What a bad idea! Pony doesn't have global variables at 
 all.
 
-# Shadowing
+## Shadowing
 
 Some programming languages let you declare a variable with the same name as an 
 existing variable, and then there are rules about which one you get. This is 

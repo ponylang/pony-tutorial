@@ -1,8 +1,10 @@
+# Partial Application
+
 Partial application lets us supply _some_ of the arguments to a constructor, 
 function, or behaviour, and get back something that lets us supply the rest of 
 the arguments later.
 
-# A simple case
+## A simple case
 
 A simple case is to create a "callback" function. For example:
 
@@ -40,7 +42,7 @@ let f = foo~addmul()
 f(3, 4)
 ```
 
-# Out of order arguments
+## Out of order arguments
 
 Partial application with named arguments allows binding arguments in any order, 
 not just left to right. For example:
@@ -52,7 +54,7 @@ f(3)
 
 Here, we bound the `mul` argument, but left `add` unbound.
 
-# Partially applying a partial application
+## Partially applying a partial application
 
 Since partial application results in an object with an apply method, we can 
 partially apply the result!
@@ -63,7 +65,7 @@ let f2 = f~apply(where mul = 4)
 f2(3)
 ```
 
-# Partial application is an object literal
+## Partial application is an object literal
 
 Under the hood, we're assembling an object literal for partial application. It 
 captures some of the lexical scope as fields, and has an `apply` method that 

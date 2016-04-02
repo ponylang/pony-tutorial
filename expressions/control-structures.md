@@ -1,10 +1,12 @@
+# Control Structures
+
 To do real work in a program you have to be able to make decisions, iterate 
 through collections of items and perform actions repeatedly. For this you need 
 control structures. Pony has control structures that will be familiar to 
 programmers who have used most languages, such as `if`, `while` and `for`, but 
 in Pony they work slightly differently.
 
-# Conditionals
+## Conditionals
 
 The simplest control-structure is the good old `if`. It allows you to perform 
 some action only when a condition is true. In Pony it looks like this:
@@ -78,7 +80,7 @@ second `if`. In fact here the `else` relates to the `if(b)` so our example
 contains a bug. Pony avoids this type of bug by handling `if` and `else` 
 differently and the need for `elseif` comes out of that.
 
-# Everything is an expression
+## Everything is an expression
 
 The big difference for control structures between Pony and other languages is 
 that in Pony everything is an expression. In languages like C++ and Java `if` 
@@ -123,12 +125,12 @@ var x: (String | None) =
 __Does Pony still have the conditional operator "?"?__ No, it's not needed. 
 Just use `if`.
 
-# Loops
+## Loops
 
 `if` allows you to choose what to do, but to do something more than once you 
 want a loop.
 
-## While
+### While
 
 Pony `while` loops are very similar to those in other languages. A condition 
 expression is evaluated and if it's true we execute the code inside the loop. 
@@ -162,7 +164,7 @@ __So is this like an else block on a while loop in Python?__ No, this is very
 different. In Python the `else` is run when the `while` completes. In Pony the 
 `else` is only run when the expression in the `while` isn't.
 
-## Break
+### Break
 
 Sometimes you want to stop part-way through a loop and give up altogether. Pony 
 has the `break` keyword for this and it is very similar to its counterpart in 
@@ -204,7 +206,7 @@ __Can I break out of multiple, nested loops like the Java labelled break?__ No,
 Pony does not support that. If you need to break out of multiple loops you 
 should probably refactor your code or use a worker function.
 
-## Continue
+### Continue
 
 Sometimes you want to stop part-way through one loop iteration and move onto 
 the next. Like other languages Pony uses the `continue` keyword for this.
@@ -221,7 +223,7 @@ __Can I continue an outer, nested loop like the Java labelled continue?__ No,
 Pony does not support that. If you need to continue an outer loop you should 
 probably refactor your code.
 
-## For
+### For
 
 For iterating over a collection of items Pony uses the `for` keyword. This is 
 very similar to `foreach` in C#, `for`..`in` in Python and `for` in Java when 
@@ -273,7 +275,7 @@ __Can I use break and continue with for loops?__ Yes, `for` loops can have
 `else` expressions attached and can use `break` and `continue` just as for 
 `while`.
 
-## Repeat
+### Repeat
 
 The final loop construct that Pony provides is `repeat` `until`. Here we 
 evaluate the expression in the loop and then evaluate a condition expression 

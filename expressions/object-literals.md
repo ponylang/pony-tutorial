@@ -1,3 +1,5 @@
+# Object Literals
+
 Sometimes it's really convenient to be able to write a whole object inline. In 
 Pony, this is called an object literal, and it does pretty much exactly what an 
 object literal in JavaScript does: it creates an object that you can use 
@@ -8,7 +10,7 @@ type that the object literal fulfills. This is similar to anonymous classes in
 Java and C#. In Pony, an anonymous type can provide any number of traits and 
 interfaces.
 
-# What's this look like, then?
+## What's this look like, then?
 
 It basically looks like any other type definition, but with some small 
 differences. Here's a simple one:
@@ -53,7 +55,7 @@ An object literal is always returned as a `ref`, like a default constructor on
 a class. To get another reference capability (`iso`, `val`, etc.), you can wrap 
 the object literal in a `recover` expression.
 
-# Lambdas
+## Lambdas
 
 Arbitrarily complex closures are nice, but sometimes we just want a simple 
 closure. In Pony, you can use the `lambda` keyword for that.
@@ -159,7 +161,7 @@ method also declares it as `ref`. The lambda function captures some variables
 so the object that is generated is `ref` and the default for the type 
 declaration is `ref` so everything type checks.
 
-# Actor literals
+## Actor literals
 
 Normally, an object literal is an instance of an anonymous class. To make it an 
 instance of an anonymous actor, just include one or more behaviours in the 
@@ -174,7 +176,7 @@ end
 
 An actor literal is always returned as a `tag`.
 
-# Primitive literals
+## Primitive literals
 
 When an anonymous type has no fields and no behaviours (like, for example, an 
 object literal declared with the `lambda` keyword), the compiler generates it 
