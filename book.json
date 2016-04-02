@@ -2,7 +2,8 @@
     "plugins": [
         "addcssjs",
         "footnote-string-to-number",
-        "highlight"
+        "-highlight",
+        "ponylang-highlight"
     ],
     "pluginsConfig": {
       "addcssjs": {
