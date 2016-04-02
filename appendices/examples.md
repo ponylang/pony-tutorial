@@ -1,17 +1,22 @@
-### Enum with values
+# Examples
+
+Small how do I examples for Pony. These will eventually find another home.
+Until then, they live here.
+
+## Enum with values
 ```pony
 primitive Black fun apply(): U32 => 0xFF000000
 primitive Red   fun apply(): U32 => 0xFFFF0000
 ```
 
-### Enum with values with namespace
+## Enum with values with namespace
 ```pony
 primitive Colours
   fun black(): U32 => 0xFF000000
   fun red(): U32 => 0xFFFF0000
 ```
 
-### Enum which can be iterated
+## Enum which can be iterated
 ```pony
 primitive Black
 primitive Blue
@@ -28,7 +33,7 @@ for colour in ColourList().values() do
 end
 ```
 
-### Read Struct values from FFI
+## Read Struct values from FFI
 If you have a C struct which returns a struct with data like this
 ```c
 typedef struct {
@@ -49,7 +54,7 @@ type EGLEvent is (U8, F32, F32)
 (var code, var x, var y) = @getEvent[EGLEvent]()
 ```
 
-### Get and Pass Pointers to FFI
+## Get and Pass Pointers to FFI
 ```pony
 primitive _XDisplayHandle
 primitive _EGLDisplayHandle
@@ -65,7 +70,7 @@ if e_dpy.is_null() then
 end
 ```
 
-### Pass an Array of values to FFI (TODO)
+## Pass an Array of values to FFI (TODO)
 ```pony
 primitive _EGLConfigHandle
 let a = Array[U16](8)
@@ -84,7 +89,7 @@ if @eglChooseConfig[U32](e_dpy, a, config, U32(1), Pointer[U32]) == 0 then
 end
 ```
 
-### How to access command line arguments
+## How to access command line arguments
 ```pony
 actor Main
 
@@ -98,7 +103,7 @@ actor Main
     try env.out.print(env.args(0)) end 
 ```
 
-### How to use options
+## How to use options
 ```pony
 actor Main
 
@@ -126,7 +131,7 @@ actor Main
 
 ```
 
-### How to write tests
+## How to write tests
 Just create a test.pony file
 ```pony
 use "ponytest"
@@ -167,7 +172,7 @@ fun tag expect_eq[A: (Equatable[A] #read & Stringable)]
   (expect: A, actual: A, msg: String = ""): Bool
 ```
 
-### Operator Overloading (easy for copy and paste)
+## Operator Overloading (easy for copy and paste)
 ```pony
 fun add(other: A): A
 fun sub(other: A): A
@@ -187,7 +192,7 @@ fun op_or(other: A): A
 fun op_xor(othr: A): A
 ```
 
-### Create empty functions in a class
+## Create empty functions in a class
 ```pony
 class Test
   fun alpha() =>
@@ -198,7 +203,7 @@ class Test
       """
 ```
 
-### How to Delegate objects
+## How to Delegate objects
 
 ```pony
 trait TAnimal
@@ -220,12 +225,12 @@ for animal in animals.values() do
 end
 ```
 
-### How to create Arrays with values
+## How to create Arrays with values
 ```pony
 let dice: Array[U32] = [1, 2, 3, 4, 5, 6]
 ```
 
-### How to modify a lexically captured variable in a closure
+## How to modify a lexically captured variable in a closure
 
 ```pony
 actor Main
