@@ -1,4 +1,4 @@
-# Hello World: Your first Pony program
+# Hello World: Your First Pony Program
 
 Now that you've successfully installed the Pony compiler, let's start
 programming! Our first program will be a very traditional one. We're going to

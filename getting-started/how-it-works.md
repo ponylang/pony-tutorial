@@ -1,4 +1,4 @@
-# Hello World: How it works
+# Hello World: How It Works
 
 Let's look at our `helloworld` code again:
 

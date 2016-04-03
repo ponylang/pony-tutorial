@@ -1,4 +1,4 @@
-# Garbage collection with Pony-ORCA
+# Garbage Collection with Pony-ORCA
 
 Pony-ORCA is a fully concurrent protocol for garbage collection in the
 actor paradigm. It allows cheap and small actors to perform garbage

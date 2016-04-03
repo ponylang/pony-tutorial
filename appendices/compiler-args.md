@@ -1,4 +1,4 @@
-# Compiler arguments
+# Compiler Arguments
 
 `ponyc`, the compiler, is usually called in the project directory,
 where it finds the `.pony` files and its dependencies

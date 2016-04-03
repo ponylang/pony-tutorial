@@ -1,4 +1,4 @@
-# Memory allocation at runtime
+# Memory Allocation at Runtime
 
 Pony is NULL-free, type-safe language, with no dangling pointers, no
 buffer overruns, but with a **very fast garbage collector**, so you
