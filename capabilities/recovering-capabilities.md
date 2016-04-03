@@ -1,9 +1,11 @@
+# Recovering Capabilities
+
 A `recover` expression let's you "lift" the reference capability of the result. 
 A mutable reference capability (`iso`, `trn`, or `ref`) can become _any_ 
 reference capability, and an immutable reference capability (`val` or `box`) 
 can become any immutable or opaque reference capability.
 
-# Why is this useful?
+## Why is this useful?
 
 This most straightforward use of `recover` is to get an `iso` that you can pass 
 to another actor. But it can be used for many other things as well, such as:
@@ -15,7 +17,7 @@ mutable data structure inside a `recover` expression, "lift" the resulting
 it, and return it as an `iso` again.
 * "Extract" a mutable field from an `iso` and return it as an `iso`.
 
-# What does this look like?
+## What does this look like?
 
 ```pony
 recover Array[String] end
@@ -67,7 +69,7 @@ a `String iso^`, then we call trim on it, which returns itself. But since trim
 is a `ref` function, it returns itself as a `String ref^` - so we use a 
 `recover val` to end up with a `String val`.
 
-# How does this work?
+## How does this work?
 
 Inside the `recover` expression, your code only has access to __sendable__ 
 values from the enclosing lexical scope. In other words, you can only use 
@@ -83,7 +85,7 @@ enclosing lexical scope, "lifting" the reference capability of the result
 wouldn't be safe. Some of those values could "leak" into an `iso` or `val` 
 result, and result in data-races.
 
-# Automatic receiver recovery
+## Automatic receiver recovery
 
 When you have an `iso` or `trn` receiver, you normally can't call `ref` methods 
 on it. That's because the receiver is also an argument to a method, which means 

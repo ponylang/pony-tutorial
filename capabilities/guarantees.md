@@ -1,7 +1,9 @@
+# Reference Capability Guarantees
+
 Since types are guarantees, it's useful to talk about what guarantees a 
 reference capability makes.
 
-# What is denied
+## What is denied
 
 We're going to talk about reference capability guarantees in terms of what's 
 _denied_. By this, we mean: what can other variables _not_ do when you have a 
@@ -20,7 +22,7 @@ All code within any one actor always executes sequentially. This means that
 data accesses from multiple variables within a single actor do not suffer from 
 data-races.
 
-# Mutable reference capabilities
+## Mutable reference capabilities
 
 The __mutable__ reference capabilities are `iso`, `trn` and `ref`. These 
 reference capabilities are __mutable__ because they can be used to both read 
@@ -47,7 +49,7 @@ reading, it's safe for us to write to the object, without having to worry about
 data-races. And since we know no other actor will be writing, it's safe for us 
 to read from the object, too.
 
-# Immutable reference capabilities
+## Immutable reference capabilities
 
 The __immutable__ reference capabilities are `val` and `box`. These reference 
 capabilities are __immutable__ because they can be used to read from an object, 
@@ -69,7 +71,7 @@ which means it's not safe for us to write to it. It's safe for more than one
 actor to read from an object at the same time though, so we're allowed to do 
 that.
 
-# Opaque reference capabilities
+## Opaque reference capabilities
 
 There's only one __opaque__ reference capability, which is `tag`. A `tag` 
 variable makes no guarantees about other variables at all. As a result, it 

@@ -1,9 +1,11 @@
+# Reference Capabilities
+
 So if the object _is_ the capability, what controls what we can do with the 
 object? How do we express our _access rights_ on that object?
 
 In Pony, we do it with _reference capabilities_.
 
-# Rights are part of a capability
+## Rights are part of a capability
 
 If you open a file in UNIX, and get a file descriptor back, that file 
 descriptor is token that designates an object - but it isn't a capability. To 
@@ -21,7 +23,7 @@ the reference capability is _part_ of its type. These allow you to specify
 which of your objects can be shared with other actors and allow the compiler to 
 check that what you're doing is concurrency safe.
 
-# Basic concepts
+## Basic concepts
 
 There are a few simple concepts you need to understand before reference 
 capabilities will make any sense. We've talked about some of these already, and 
@@ -82,7 +84,7 @@ then everything goes wrong. What you need is for the compiler to force you to
 live up to your promises. Pony reference capabilities allow the compiler to do 
 just that.
 
-# Type qualifiers
+## Type qualifiers
 
 If you've used C/C++, you may be familiar with `const`, which is a _type 
 qualifier_ that tells the compiler not to allow the programmer to _mutate_ 
@@ -103,7 +105,7 @@ define a single `class String` and have some variables that are `String ref`
 (which are mutable) and other variables that are `String val` (which are 
 immutable).
 
-# The list of reference capabilities
+## The list of reference capabilities
 
 There are six reference capabilities in Pony and they all have strict 
 definitions and rules on how they can be used. We'll get to all of that later, 
@@ -144,7 +146,7 @@ Note that if you have a variable referring to an actor then you can send
 messages to that actor regardless of what reference capability that variable 
 has.
 
-# How to write a reference capability
+## How to write a reference capability
 
 A reference capability comes at the end of a type. So, for example:
 
@@ -171,6 +173,5 @@ default reference capability for `String`.
 __So do I have to specify a reference capability when I define a type?__ Only 
 if you want to. There are sensible defaults that most types will use. These are 
 `ref` for classes, `val` for primitives (i.e. immutable references) and `tag` 
-for actors.
-So the default for any mutable reference capability is `iso` and the default 
-for any immutable reference capability is `val`.
+for actors. So the default for any mutable reference capability is `iso` and the
+default for any immutable reference capability is `val`.

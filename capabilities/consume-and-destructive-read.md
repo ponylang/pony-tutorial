@@ -1,4 +1,10 @@
-# Consuming a variable
+# Consume and Destructive Read
+
+And important part of Pony's capabilities are being able to say "I'm done with
+this thing". In this section, we're going to cover two means of doing that:
+consuming a variable and destructive reads.
+
+## Consuming a variable
 
 Sometimes, you want to _move_ an object from one variable to another. In other 
 words, you don't want to make a _new_ name for the object, exactly, you want to 
@@ -33,7 +39,7 @@ the object will access that field. If we tried to access a field that was
 empty, we would crash. But there's a way to do what you want to do: 
 _destructive read_.
 
-# Destructive read
+## Destructive read
 
 There's another way to _move_ a value from one name to another. Earlier, we 
 talked about how assignment in Pony returns the _old_ value of the left-hand 

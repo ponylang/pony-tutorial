@@ -1,3 +1,5 @@
+# Combining Capabilities
+
 When a field of an object is read, its reference capability depends both on the 
 reference capability of the field and the reference capability of the 
 __origin__, that is, the object the field is being read from.
@@ -40,13 +42,13 @@ class Bar
     var z: String box = y.x
 ```
 
-# Explaining why
+## Explaining why
 
 That table will seem totally natural to you, eventually. But probably not yet. 
 To help it seem natural, let's walk through each cell in the table and explain 
 why it is the way it is.
 
-## Reading from an `iso` variable
+### Reading from an `iso` variable
 
 Anything read through an `iso` origin has to maintain the isolation guarantee 
 that the origin has. The key thing to remember is that the `iso` can be sent to 
@@ -62,7 +64,7 @@ Everything else, though, can break our isolation guarantees. That's why other
 reference capabilities are seen as `tag`: it's the only type that is neither 
 readable nor writeable.
 
-## Reading from a `trn` variable
+### Reading from a `trn` variable
 
 This is like `iso`, but with a weaker guarantee (_write uniqueness_ as opposed 
 to _read and write uniqueness_). That makes a big difference, since now we can 
@@ -75,18 +77,18 @@ guarantee _write uniqueness_, so that's fine too.
 
 A `ref` field, though, would allow writing. So instead we return a `box`.
 
-## Reading from a `ref` variable
+### Reading from a `ref` variable
 
 A `ref` origin doesn't modify its fields at all. This is because a `ref` origin 
 doesn't make any guarantees that are incompatible with its fields.
 
-## Reading from a `val` variable
+### Reading from a `val` variable
 
 A `val` origin is deeply and globally immutable, so all of its fields are also 
 `val`. The only exception is a `tag` field. Since we can't read from it, we 
 also can't guarantee that nobody can write to it, so it stays `tag`.
 
-## Reading from a `box` variable
+### Reading from a `box` variable
 
 A `box` variable is locally immutable. This means it's possible that it may be 
 mutated through some other variable (a `trn` or a `ref`), but it's also 
@@ -105,6 +107,6 @@ For `trn` and `ref` we need to return a locally immutable reference capability
 that doesn't violate any guarantees the field makes. In both cases, we can 
 return `box`.
 
-## Reading from a `tag` variable
+### Reading from a `tag` variable
 
 This one is easy: `tag` variables are opaque! They can't be read from.

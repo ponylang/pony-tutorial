@@ -1,3 +1,5 @@
+# Arrow Types aka Viewpoints
+
 When we talked about __reference capability composition__ and 
 __viewpoint adaptation__, we dealt with cases where we know the reference 
 capability of the origin. However, sometimes we don't know the precise 
@@ -6,7 +8,7 @@ reference capability of the origin.
 When that happens, we can write a __viewpoint adapted type__, which we call an 
 __arrow type__ because we write it with an `->`.
 
-# Using `this->` as a viewpoint
+## Using `this->` as a viewpoint
 
 A function with a `box` receiver can be called with a `ref` receiver or a `val` 
 receiver as well, since those are both subtypes of `box`. Sometimes, we want to 
@@ -42,7 +44,7 @@ We know at the _call site_ what the real reference capability of the receiver
 is. So when the function is called, the compiler knows everything it needs to 
 know to get this right.
 
-# Using a type parameter as a viewpoint
+## Using a type parameter as a viewpoint
 
 We haven't covered generics yet, so this may seem a little weird. We'll cover 
 this again when we talk about generics (i.e. parameterised types), but we're 
@@ -65,7 +67,7 @@ That means we'll be returning objects of the type `A`, but the reference
 capability will be the same as an object of type `N` would see an object of 
 type `A`.
 
-# Using `box->` as a viewpoint
+## Using `box->` as a viewpoint
 
 There's one more way we use arrow types, and it's also related to generics. 
 Sometimes we want to talk about a type parameter as it is seen by some unknown 

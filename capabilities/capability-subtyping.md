@@ -1,8 +1,10 @@
+# Capability Subtyping
+
 Subtyping is about _substitutability_. That is, if we need to supply a certain 
 type, what other types can we substitute instead? Reference capabilities factor 
 into this.
 
-# Simple substitution
+## Simple substitution
 
 First, let's cover substitution without worrying about ephemeral types (`^`) or 
 alias types (`!`). The `<:` symbol means "is a subtype of" or alternatively 
@@ -31,7 +33,7 @@ a `tag` makes no guarantees at all, so it's safe to substitute a `box` for a
 Subtyping is _transitive_. That means that since `iso <: trn` and `trn <: ref` 
 and `ref <: box`, we also get `iso <: box`.
 
-# Aliased substitution
+## Aliased substitution
 
 Now let's consider what happens when we have an alias of a reference 
 capability. For example, if we have some `iso` and we alias it (without doing 
@@ -63,7 +65,7 @@ something. That means `box` can only alias as `box`.
 `box`, we can't make more guarantees when we make a new alias, so a `tag` can 
 only alias as a `tag`.
 
-# Ephemeral substitution
+## Ephemeral substitution
 
 The last case to consider is when we have an ephemeral reference capability. 
 For example, if we have some `iso` and we `consume` it or do a destructive 

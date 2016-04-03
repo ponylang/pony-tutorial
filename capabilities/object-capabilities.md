@@ -1,3 +1,5 @@
+# Object Capabilities
+
 Pony's capabilities-secure type system is based on the object-capability model. 
 That sounds complicated, but really it's elegant and simple. The core idea is 
 this:
@@ -9,7 +11,7 @@ object.
 So what's that token? It's an address. A pointer. A reference. It's just... an 
 object.
 
-# How is that unforgeable?
+## How is that unforgeable?
 
 Since Pony has no pointer arithmetic, and is both type-safe and memory-safe, 
 object references can't be "invented" (i.e. forged) by the program. You can 
@@ -18,7 +20,7 @@ only get one by constructing an object, or being passed an object.
 __What about the C FFI?__ Using the C FFI can break this guarantee. We'll talk 
 about the __C FFI trust boundary__ later, and how to control it.
 
-# What about global variables?
+## What about global variables?
 
 They're bad! Because you can get them without either constructing them or being 
 passed them.
@@ -34,7 +36,7 @@ to eliminate ambient authority.
 __Is this like referential transparency?__ Yes! It's similar. As long as you 
 think of the receiver as being passed to a method as well (which it is).
 
-# How does this help?
+## How does this help?
 
 Instead of having permissions lists, access control lists, or other forms of 
 security, the object-capabilities model means that if you have a reference to 
@@ -45,7 +47,7 @@ easy reading:
 
 [Capability Myths Demolished](http://srl.cs.jhu.edu/pubs/SRL2003-02.pdf)
 
-# Capabilities and concurrency
+## Capabilities and concurrency
 
 The object-capability model on its own does not address concurrency. It makes 
 clear _what_ will happen if there is simultaneous access to an object, but it 

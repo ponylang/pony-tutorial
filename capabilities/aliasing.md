@@ -1,3 +1,5 @@
+# Aliasing
+
 __Aliasing__ means having more than one variable that points to the same object.
 
 In most programming languages, aliasing is pretty simple. You just assign some 
@@ -7,7 +9,7 @@ it, and everything is fine.
 
 In Pony, that works for some reference capabilities, but not all.
 
-# Aliasing and deny guarantees
+## Aliasing and deny guarantees
 
 The reason for this is that the `iso` reference capability denies other `iso` 
 variables that point to the same object. That is, you can only have one `iso` 
@@ -48,7 +50,7 @@ __What about aliasing other stuff?__ Everything else can be aliased as itself.
 So `ref` can be aliased as `ref`, `val` can be aliased as `val`, `box` can be 
 aliased as `box` and `tag` can be aliased as `tag`.
 
-# What counts as making an alias?
+## What counts as making an alias?
 
 There are two things that count as making an alias:
 
@@ -60,7 +62,7 @@ In both cases, you are making a new _name_ for the object. This might be the
 name of a local variable, the name of a field, or the name of a parameter to a 
 method.
 
-# Ephemeral types
+## Ephemeral types
 
 In Pony, every expression has a type. So what's the type of `consume a`? It's 
 not the same type as `a`, because it might not be possible to alias `a`. 
@@ -82,7 +84,7 @@ This is useful for dealing with `iso` and `trn` types, and for generic types,
 but it's also important for constructors. A constructor always returns an 
 ephemeral type, because it's a new object.
 
-# Alias types
+## Alias types
 
 For the same reason Pony has ephemeral types, it also has alias types. An alias 
 type is a way of saying "whatever we can safely alias this thing as". It's only 

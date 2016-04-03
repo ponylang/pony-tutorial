@@ -1,8 +1,10 @@
+# Passing and Sharing References
+
 Reference capabilities make it safe to both __pass__ mutable data between 
 actors and to __share__ immutable data amongst actors. Not only that, they make 
 it safe to do it with no copying, no locks, in fact no runtime overhead at all.
 
-# Passing
+## Passing
 
 For an object to be mutable, we need to be sure that no _other_ actor can read 
 from or write to that object. The three mutable reference capabilities (`iso`, 
@@ -20,7 +22,7 @@ from or write to that object.
 __So I should use `iso` when I want to pass a mutable object between actors?__ 
 Yes! If you don't need to pass it, you can just use `ref` instead.
 
-# Sharing
+## Sharing
 
 If you want to __share__ an object amongst actors, then we have to make one of 
 the following guarantees:
@@ -54,7 +56,7 @@ __So I should use `tag` when I want to share the identity of a mutable object
 amongst actors?__ Yes! Or, really, the identity of anything, whether it's 
 mutable, immutable, or even an actor.
 
-# Reference capabilities that can't be sent
+## Reference capabilities that can't be sent
 
 You may have noticed we didn't mention `trn`, `ref`, or `box` as things you can 
 send to other actors. That's because you can't do it. They don't make the 

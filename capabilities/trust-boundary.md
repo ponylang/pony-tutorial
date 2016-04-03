@@ -1,9 +1,11 @@
+# Trust Boundary
+
 We mentioned previously that the C FFI can be used to break pretty much every 
 guarantee that Pony makes. This is because, once you've called into C, you are 
 executing arbitrary machine code that can stomp memory addresses, write to 
 anything, and generally be pretty badly behaved.
 
-# Trust boundaries
+## Trust boundaries
 
 When we talk about trust, we don't mean things you trust because you think they 
 are perfect. Instead, we mean things you _have_ to trust in order to get things 
@@ -14,7 +16,7 @@ C code that's being executed. That's fine, because you may need it to get work
 done. But what about trusting someone else's code to use the C FFI? You may 
 need to, but you definitely want to know that it's happening.
 
-# Safe packages
+## Safe packages
 
 The normal way to handle that is to be sure you're using just the code you need 
 to use in your program. Pretty simple! Don't use some random package off the 
@@ -34,7 +36,7 @@ Here, we are declaring that only the `files`, `net` and `net/ssl` packages are
 allowed to use C FFI calls. We've established our trust boundary: any other 
 packages that try to use C FFI calls will result in a compile-time error.
 
-# Example of use
+## Example of use
 
 On the [Pony sandbox](http://sandbox.ponylang.org), we are compiling and 
 executing arbitrary code that users input. That could be dangerous. So we limit 
