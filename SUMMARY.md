@@ -32,13 +32,11 @@
   * [Capability subtyping](capabilities/capability-subtyping.md)  
   * [Arrow types](capabilities/arrow-types.md)  
   * [Trust boundary](capabilities/trust-boundary.md)
-* [Generics](docs/generics/index.md)
-  * [Polymorphic types](docs/generics/polymorphic-types.md)
-  * [Polymorphic methods](docs/generics/polymorphic-methods.md)
-* Code Sharing
+* Chapter 5: Generics
 * [Pattern Matching](docs/pattern-matching/index.md)
   * [Match](docs/pattern-matching/match.md)
   * [As](docs/pattern-matching/as.md)
+* Chapter 7: Code Sharing  
 * [Packages](docs/packages/index.md)
   * [Package system](docs/packages/package-system.md)
   * [Use statement](docs/packages/use-statement.md)
