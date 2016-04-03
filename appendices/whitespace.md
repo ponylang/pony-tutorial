@@ -1,8 +1,10 @@
+# Pony and Whitespace
+
 Whitespace (e.g. spaces, tabs, newlines, etc.) in Pony isn't significant.
 
 Well, it mostly isn't significant.
 
-# Mostly insignificant whitespace
+## Mostly insignificant whitespace
 
 Pony reads a bit like Python, which is a _whitespace significant_ language. 
 That is, the amount of indentation on a line means something in Python. In 
@@ -35,7 +37,7 @@ a
 
 That means "first do a, then, in a new expression, do a unary negation of b".
 
-# Semicolons
+## Semicolons
 
 In Pony, you don't end an expression with a `;`, unlike C, C++, Java, C#, etc. 
 In fact, you don't need to end it at all! The compiler knows when an expression 
@@ -49,7 +51,7 @@ compiler doesn't really need the `;`. However, it turns out the programmer
 does! By requiring a `;` between expressions on the same line, the compiler can 
 catch some pretty common syntax errors for you.
 
-# Docstrings
+## Docstrings
 
 Including documentation in your code makes you awesome. If you do it, everyone 
 will love you.
@@ -83,7 +85,7 @@ trait Readable
   """
 ```
 
-# Comments
+## Comments
 
 Use __docstrings__ first! But if you need to put some comments in the 
 implementation of your methods, perhaps to explain what's happening on various 

@@ -53,4 +53,5 @@
   * [Lexicon](appendices/lexicon.md)
   * [Symbol Lookup Cheatsheet](appendices/symbol-lookup-cheatsheet.md)
   * [Examples](appendices/examples.md)
+  * [Pony & Whitespace](appendices/whitespace.md)
   * [Compiler Arguments](appendices/compiler-args.md)
