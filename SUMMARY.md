@@ -53,5 +53,6 @@
   * [Garbage collection](docs/runtime/garbage-collection.md)
 * [Appendices](appendices/index.md)
   * [Lexicon](appendices/lexicon.md)
+  * [Symbol Lookup Cheatsheet](appendices/symbol-lookup-cheatsheet.md)
   * [Examples](appendices/examples.md)
   * [Compiler Arguments](appendices/compiler-args.md)
