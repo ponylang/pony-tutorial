@@ -5,14 +5,14 @@ buffer overruns, but with a **very fast garbage collector**, so you
 don't have to worry about explicit memory allocation, if on the heap
 or stack, if in a threaded actor, or not.
 
-# Fast, Safe and Cheap
+## Fast, Safe and Cheap
 
 * An actor has ~240 bytes of memory overhead.
 * No locks. No context switches. All mutation is local
 * An idle actor consumes no resources ( other than memory )
 * You can have millions of actors at the same time
 
-# But Caveat Emptor
+## But Caveat Emptor
 
 But pony can be used to create **C libraries** and pony can use
 external C libraries via the **FFI** which does not have this luxury,
@@ -34,7 +34,7 @@ of scope.
 A blocked actor will keep it's memory allocated, only a dead actor
 will release it eventually.
 
-# And, long-running actors
+## And, long-running actors
 
 might cause unexpected out of memory errors, since the GC is not yet triggered 
 on anout-of-memory segfault or stack exhaustion.
