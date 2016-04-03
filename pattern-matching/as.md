@@ -1,4 +1,4 @@
-# As
+# As Operator
 
 The `as` operator in Pony has two related uses. First, it provides a
 safe way to use increase the specificity of an object's type

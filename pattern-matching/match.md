@@ -1,9 +1,11 @@
+# Match Expressions
+
 If we want to compare an expression to a value then we use an `if`. But if we 
 want to compare an expression to a lot of values this gets very tedious. Pony 
 provides a powerful pattern matching facility, combining matching on values and 
 types, without any special code required.
 
-# Match expressions
+## Matching: the basics
 
 Here's a simple example of a match expression that produces a string.
 
@@ -46,7 +48,7 @@ If the value produced by the match expression isn't used then the cases can
 omit the arrow and expression to evaluate. This can be useful for excluding 
 specific cases before a more general case.
 
-## Else cases
+### Else cases
 
 As with all Pony control structures the else case for a match expression is 
 used if we have no other value, i.e. if none of our cases match. The else case, 
@@ -59,7 +61,7 @@ will be added which evaluates to `None`. The compiler currently isn't clever
 enough to spot when the other cases are exhaustive and so the else is not 
 needed. This will be changed later.
 
-# Matching on values
+## Matching on values
 
 The simplest match expression just matches on value.
 
@@ -105,7 +107,7 @@ actor Main
     end
 ```
 
-# Matching on type and value
+## Matching on type and value
 
 Matching on value is fine if the match operand and case patterns have all the 
 same type. However match can cope with multiple different types. Each case 
@@ -161,7 +163,7 @@ __Can I omit the type from a capture, like I can from a local variable?__
 Unfortunately no. Since we match on type and value the compiler has to know 
 what type the pattern is, so it can't be inferred.
 
-# Matching tuples
+## Matching tuples
 
 If you want to match on more than one operand at once then you can simply use a 
 tuple. Cases will only match if __all__ the tuple elements match.
@@ -195,7 +197,7 @@ fun f(x: (String | None), y: U32): String =>
   end
 ```
 
-# Guards
+## Guards
 
 In addition to matching on types and values each case in a match can also have 
 a guard condition. This is simply an expression, evaluated __after__ type and 

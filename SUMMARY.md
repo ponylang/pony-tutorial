@@ -33,9 +33,9 @@
   * [Arrow types](capabilities/arrow-types.md)  
   * [Trust boundary](capabilities/trust-boundary.md)
 * Chapter 5: Generics
-* [Pattern Matching](docs/pattern-matching/index.md)
-  * [Match](docs/pattern-matching/match.md)
-  * [As](docs/pattern-matching/as.md)
+* [Chapter 6: Pattern Matching](pattern-matching/index.md)
+  * [Match Expressions](pattern-matching/match.md)
+  * [As Operator](pattern-matching/as.md)
 * Chapter 7: Code Sharing  
 * [Packages](docs/packages/index.md)
   * [Package system](docs/packages/package-system.md)
