@@ -1,4 +1,4 @@
-# Capabilities
+# Chapter 4: Capabilities
 
 We've covered the basics of Pony's type system and then expressions, this
 chapter about capabilities will cover another feature of Pony's type system. 
