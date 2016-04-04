@@ -136,7 +136,7 @@ and using multiple versions of a library in a single program.
 
 ## More help
 
-Working your away through the tutorial but in need of more help? Not to worry,
+Working your way through the tutorial but in need of more help? Not to worry,
 we have you covered.
 
 If you are looking for an answer "right now", we suggest you give our IRC
