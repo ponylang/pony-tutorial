@@ -5,7 +5,6 @@ are currently out of date. Therefore we recommend installing the compiler from
 source.
 
 ## Linux 
-[![Linux and OS X](https://travis-ci.org/ponylang/ponyc.svg?branch=master)](https://travis-ci.org/ponylang/ponyc)
 
 First, install LLVM 3.6.2, 3.7.1 or 3.8 using your package manager. You may 
 need to install zlib, ncurses, pcre2, and ssl as well. Instructions for some
@@ -105,7 +104,6 @@ produces executables that don't run. Please use LLVM 3.6. 64-bit X86 does not
 have this problem, and works fine with LLVM 3.7 and 3.8.
 
 ## Mac OS X 
-[![Linux and OS X](https://travis-ci.org/ponylang/ponyc.svg?branch=master)](https://travis-ci.org/ponylang/ponyc)
 
 You'll need llvm 3.6.2, 3.7.1, or 3.8 and the pcre2 library to build Pony.
 
@@ -131,7 +129,6 @@ $ ./build/release/ponyc examples/helloworld
 ```
 
 ## Windows 
-[![Windows](https://ci.appveyor.com/api/projects/status/kckam0f1a1o0ly2j?svg=true)](https://ci.appveyor.com/project/sylvanc/ponyc)
 
 The LLVM prebuilt binaries for Windows do NOT include the LLVM development 
 tools and libraries. Instead, you will have to build and install LLVM 3.7 or 
