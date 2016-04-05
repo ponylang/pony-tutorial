@@ -41,7 +41,6 @@
   * [Package system](docs/packages/package-system.md)
   * [Use statement](docs/packages/use-statement.md)
   * [Builtin](docs/packages/builtin.md)
-  * [Platform dependent code](docs/packages/platform.md)
 * [C FFI](docs/c-ffi/index.md)
   * [Calling C](docs/c-ffi/calling-c.md)
   * [Linking to C Libraries](docs/c-ffi/linking-c.md)
@@ -54,3 +53,5 @@
   * [Compiler Arguments](appendices/compiler-args.md)
   * [Memory Allocation at Runtime](appendices/memory-allocation.md)
   * [Garbage Collection with Pony-ORCA](appendices/garbage-collection.md)
+  * [Platform dependent code](appendices/platform-dependent-code.md)
+
