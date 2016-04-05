@@ -11,3 +11,6 @@ common that all Pony code needs to know about them. All Pony source files have
 an implicit `use "builtin"` command. This means all the types defined in the 
 package builtin are automatically available in the type namespace of all Pony 
 source files.
+
+Documentation for the standard library is 
+[available online](https://www.ponylang.org/ponyc/)

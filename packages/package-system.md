@@ -1,7 +1,9 @@
+# Package System
+
 Pony code is organised into __packages__. Each program and library is a single 
 package, possibly using other packages.
 
-# The package structure
+## The package structure
 
 The package is the basic unit of code in Pony. It corresponds directly to a 
 directory in the file system, all Pony source files within that directory are 
