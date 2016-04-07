@@ -1,4 +1,4 @@
-# Chapter 9: C FFI
+# Chapter 10: C FFI
 
 Pony supports integration with other native languages through the Foreign
 Function Interface (FFI). The FFI library provides a stable and portable API and
