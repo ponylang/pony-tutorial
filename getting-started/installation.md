@@ -2,7 +2,10 @@
 
 While there are versions of the Pony compiler already packaged up for use, they
 are currently out of date. Therefore we recommend installing the compiler from
-source.
+source. You can get the Pony source from 
+[GitHub](https://github.com/ponylang/ponyc). 
+
+`git clone git@github.com:ponylang/ponyc.git`
 
 ## Linux 
 
