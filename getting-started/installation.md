@@ -7,6 +7,15 @@ source. You can get the Pony source from
 
 `git clone git@github.com:ponylang/ponyc.git`
 
+All the directions below, only build Pony in the directory you have cloned. If
+you want to install it, you should replace
+
+`make config=release` with `make config=release install`
+
+and to build the debug version of the compiler
+
+`make config=debug` instead of `make config=release`
+
 ## Linux 
 
 First, install LLVM 3.6.2, 3.7.1 or 3.8 using your package manager. You may 
