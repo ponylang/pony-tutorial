@@ -36,7 +36,7 @@
 * [Chapter 6: Pattern Matching](pattern-matching/index.md)
   * [Match Expressions](pattern-matching/match.md)
   * [As Operator](pattern-matching/as.md)
-  * [Case Functions](docs/pattern-matching/case-functions.md)
+  * [Case Functions](pattern-matching/case-functions.md)
 * Chapter 7: Code Sharing  
 * [Chapter 8: Packages](packages/index.md)
   * [Package System](packages/package-system.md)
