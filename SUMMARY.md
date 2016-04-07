@@ -47,7 +47,7 @@
   * [Calling C from Pony](c-ffi/calling-c.md)
   * [Linking to C Libraries](c-ffi/linking-c.md)
   * [C ABI](c-ffi/c-abi.md)
-  * [Callbacks](docs/c-ffi/callbacks.md)
+  * [Callbacks](c-ffi/callbacks.md)
 * [Appendices](appendices/index.md)
   * [Lexicon](appendices/lexicon.md)
   * [Symbol Lookup Cheatsheet](appendices/symbol-lookup-cheatsheet.md)
