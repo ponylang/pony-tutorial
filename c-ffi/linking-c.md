@@ -1,7 +1,9 @@
+# Linking to C Libraries
+
 If Pony code calls FFI functions, then those functions, or rather the libraries 
 containing them, must be linked into the Pony program.
 
-# Linking to C libraries
+## Use for external libraries
 
 To link an external library to Pony code another variant of the use command is 
 used. The "lib" specifier is used to tell the compiler you want to link to a 

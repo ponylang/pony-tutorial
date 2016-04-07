@@ -1,3 +1,4 @@
+# Calling C from Pony
 Pony supports integration with other native languages through the
 Foreign Function Interface (FFI). The FFI library provides a stable
 and portable API and high level programming interface allowing Pony
@@ -13,7 +14,7 @@ wrong, including corrupting data and crashing. Consequently all of Pony
 guarantees regarding not crashing, memory safety and concurrent correctness can 
 be voided by calling FFI functions.
 
-# Calling FFI functions
+## Calling FFI functions
 
 FFI is built into Pony and native libraries may be directly referenced
 in Pony code. There is no need to code or configure bindings, wrappers or 
@@ -39,7 +40,7 @@ well. For the second argument, for which we're passing the value 1, we've had to
 specify that this is a U64. Again this is because the compiler needs to know 
 what size argument to use, but has no way to determine this.
 
-# Safely does it
+## Safely does it
 
 __It is VERY important that when calling FFI functions you MUST get the 
 parameter and return types right__. The compiler has no way to know what the 
@@ -83,7 +84,7 @@ The use @ command can take a condition just like other use commands. This is
 useful in this case, where the Windows version of SSL_CTX_ctrl has a slightly 
 different signature to other platforms.
 
-# C types
+## C types
 
 Many C functions require types that don't have an exact equivalent in Pony. A 
 variety of features are provided for these.
@@ -112,7 +113,7 @@ var len = U64(0)
 @pcre2_substring_length_bynumber_8[I32](_match, i.u32(), addressof len)
 ```
 
-## To read c structs from FFI
+### To read c structs from FFI
 If you have a c struct like this
 ```c
 typedef struct {
@@ -132,7 +133,7 @@ type EGLEvent is (U8, F32, F32)
 (var code, var x, var y) = @getEvent[EGLEvent]()
 ```
 
-## To pass c structs to FFI
+### To pass c structs to FFI
 If you have a c struct like this
 ```c
 typedef struct {
@@ -152,8 +153,7 @@ let e: EGLEvent = (4, 0, 0)
 @setEvent[None](e)
 ```
 
-
-## Get and Pass Pointers to FFI
+### Get and Pass Pointers to FFI
 To pass and receive pointers to c structs you need to declare pointer to 
 primitives
 ```pony
@@ -171,7 +171,7 @@ if e_dpy.is_null() then
 end
 ```
 
-# FFI functions raising errors
+## FFI functions raising errors
 
 FFI functions can raise Pony errors. Functions in existing C libraries are very 
 unlikely to do this, but support libraries specifically written for use with 

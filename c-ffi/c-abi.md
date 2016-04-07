@@ -1,8 +1,10 @@
+# C ABI
+
 The FFI support in pony uses the C application binary interface (ABI) to
 interface with native code. The C ABI is a calling convention, one of many,
 that allow objects from different programming languages to be used together.
 
-# Writing a C library for Pony
+## Writing a C library for Pony
 
 Writing your own C library for use by Pony is almost as easy as using existing 
 libraries.
