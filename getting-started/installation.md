@@ -190,3 +190,8 @@ Now you can run the pony compiler and tests:
 > build\release\ponyc.exe -d -s packages\stdlib
 > .\stdlib
 ```
+
+## VirtualBox Warning
+
+Pony binaries can cause illegal instruction errors under Virtualbox 4.x. Use
+Virtualbox 5.x if you're going to be using Pony inside a VM.
