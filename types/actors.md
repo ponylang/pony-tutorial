@@ -83,3 +83,10 @@ resources other than the few extra bytes of memory.
 
 It's pretty normal to write a Pony program that uses hundreds of thousands of 
 actors.
+
+## Actor finalisers
+
+Like classes, actors can have finalisers. The finaliser definition is the same
+(`fun _final()`). All guarantees and restrictions for a class finaliser are
+also valid for an actor finaliser. In addition, an actor will not receive any
+further message after its finaliser is called.

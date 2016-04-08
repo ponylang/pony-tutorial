@@ -42,3 +42,15 @@ work like user-defined primitives. These are:
 * __USize, ULong, U8, U16, U32, U64, U128__. Unsigned integers of various 
 widths.
 * __F32, F64__. Floating point numbers of various widths.
+
+## Primitive initialisation and finalisation
+
+Primitives can have two special functions, `_init` and `_final`. `_init` is
+called before any actor starts. The function takes a parameter of type `Env`,
+like the `Main` actor. This allows access to command line arguments and
+standard output. `_final` is called after all actors have terminated. The
+function takes no parameter. The `_init` and `_final` functions for different
+primitives always run sequentially.
+
+A common use case for this is initialising and cleaning up C libraries without
+risking untimely use by an actor.
