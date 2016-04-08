@@ -187,6 +187,19 @@ In Pony, you can just do:
 a = b = a
 ```
 
+### Finalisers
+
+Finalisers are special functions. They are named `_final`, take no parameters
+and have a receiver reference capability of `box`. In other words, the
+definition of a finaliser must be `fun _final()`.
+
+The finaliser of an object is called before the object is collected by the GC.
+Functions may still be called on an object after its finalisation, but only
+from within another finaliser. Messages cannot be sent from within a finaliser.
+
+Finalisers are usually used to clean up resources allocated in C code, like
+file handles, network sockets, etc.
+
 ## What about inheritance?
 
 In some object-oriented languages, a type can _inherit_ from another type, like 
