@@ -56,7 +56,7 @@ Here is a more elaborate explanation of Pony's use of special characters:
      | (2) to ignore a tuple item in a pattern match
 | ~  | partial application
 | ^  | an ephemeral type
-| |  | (1) separates the types in an enumeration (the value can be any of these types)
+| \|  | (1) separates the types in an enumeration (the value can be any of these types)
      | (2) starts a branch in a match
 | &  | (1) separates the types in a complex type (the value is of all of these types)
      | (2) intersection
