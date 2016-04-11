@@ -20,6 +20,7 @@ what you should search the tutorial for in order to learn more about the symbol.
 
 
 Here is a more elaborate explanation of Pony's use of special characters:
+(a line with (2) or (3) means an alternate usage of the symbol of the previous line)
 
 |Symbol | Usage|
 | --- | --- |
@@ -41,7 +42,7 @@ Here is a more elaborate explanation of Pony's use of special characters:
 | { }  | a function type
 | :  | (1) after a variable: is followed by the type name 
      | (2) to indicate a function return type
-|    | (3) a type constraint
+     | (3) a type constraint
 | ;  | only used to separate expressions on the same line
 | =  | (1) (destructive) assignment
      | (2) in: use alias = packname
