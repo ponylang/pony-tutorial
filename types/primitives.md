@@ -43,6 +43,12 @@ work like user-defined primitives. These are:
 widths.
 * __F32, F64__. Floating point numbers of various widths.
 
+__ISize/USize__ correspond to the bitwidth of the native type `size_t`, which 
+varies by platform. __ILong/ULong__ similarly correspond to the bitwidth of the 
+native type `long`, which also varies by platform. The bitwidth of a native `int` 
+is the same across all the platforms that Pony supports, and you can use 
+__I32/U32__ for this.
+
 ## Primitive initialisation and finalisation
 
 Primitives can have two special functions, `_init` and `_final`. `_init` is
