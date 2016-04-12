@@ -49,6 +49,7 @@ or namespace them like this
 primitive Colours
   fun red(): U32 => 0xFF0000FF
   fun green(): U32 => 0x00FF00FF
+  fun blue(): U32 => 0x0000FFFF
 ```
 
 You might also want to iterate over the enum like this to print its name for 
