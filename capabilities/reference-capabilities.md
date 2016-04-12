@@ -173,5 +173,4 @@ default reference capability for `String`.
 __So do I have to specify a reference capability when I define a type?__ Only 
 if you want to. There are sensible defaults that most types will use. These are 
 `ref` for classes, `val` for primitives (i.e. immutable references) and `tag` 
-for actors. So the default for any mutable reference capability is `iso` and the
-default for any immutable reference capability is `val`.
+for actors.
