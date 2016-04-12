@@ -47,7 +47,7 @@ topic in turn appears as sub item beneath that. If you added a new section,
 don't forget to link to both the section `index.md` as well as the content for
 your topic.
 
-## How to submit a pattern
+## How to submit a pull request
 
 Once your content is done, please open a pull request against this repo with
 your changes. Based on the state of your particular PR, a number of requests for
