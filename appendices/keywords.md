@@ -17,7 +17,7 @@ This listing explains the usage of every Pony keyword.
 |    | after a with statement
 | else | conditional statement in if, for, while, repeat, try (as a catch block), match 
 | elseif | conditional statement, also used with ifdef
-| end | ending of: if then, ifdef, while do, for in, repeat until, try, object, lambda,      |     | recover, match
+| end | ending of: if then, ifdef, while do, for in, repeat until, try, object, lambda, |     | recover, match
 | error | raises an error
 | for | loop statement
 | fun | define a function, executed synchronously
