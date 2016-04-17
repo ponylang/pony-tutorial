@@ -20,7 +20,8 @@ what you should search the tutorial for in order to learn more about the symbol.
 
 
 Here is a more elaborate explanation of Pony's use of special characters:
-(a line with (2) or (3) means an alternate usage of the symbol of the previous line)
+(a line with (2) or (3) means an alternate usage of the symbol of the previous 
+line)
 
 |Symbol | Usage|
 | --- | --- |
