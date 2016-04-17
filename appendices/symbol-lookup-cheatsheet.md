@@ -35,7 +35,7 @@ line)
 |    | (2) middle of line: method call
 | () | (1) parentheses, for function or behavior parameters 
 |    | (2) making a tuple (values separated by ,)
-|    | (3) making an enumeration (values separated by |)
+|    | (3) making an enumeration (values separated by &#124;)
 | [  | (1) start of line: start of an array literal
 |    | (2) middle of line: generic formal parameters
 | [ ]  | (1) to indicate a generic type, for example Range[U64]
@@ -58,7 +58,7 @@ line)
 |    | (2) to ignore a tuple item in a pattern match
 | ~  | partial application
 | ^  | an ephemeral type
-| \| | (1) separates the types in an enumeration (the value can be any of these types)
+| &#124; | (1) separates the types in an enumeration (the value can be any of these types)
 |    | (2) starts a branch in a match
 | &  | (1) separates the types in a complex type (the value is of all of these types)
 |    | (2) intersection
