@@ -37,6 +37,6 @@ will release it eventually.
 ## And, long-running actors
 
 might cause unexpected out of memory errors, since the GC is not yet triggered 
-on anout-of-memory segfault or stack exhaustion.
+on an out-of-memory segfault or stack exhaustion.
 
 ...
