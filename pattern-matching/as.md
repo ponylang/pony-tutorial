@@ -1,7 +1,7 @@
 # As Operator
 
 The `as` operator in Pony has two related uses. First, it provides a
-safe way to use increase the specificity of an object's type
+safe way to increase the specificity of an object's type
 (casting). Second, it gives the programmer a way to specify the type
 of the items in an array literal.
 
