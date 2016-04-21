@@ -216,13 +216,17 @@ We'll talk about all that stuff in detail later.
 
 ## Naming rules
 
-By now it shouldn't be very surprising to learn that Pony is written in ASCII. 
-ASCII is a standard text encoding that uses English characters and symbols, and 
-almost every programming language in existence defines source code as a subset 
-of it. A Pony type, whether it's a class, actor, trait, interface, primitive, 
+By now it shouldn't be very surprising to learn that Pony is written in 
+__ASCII__. [ASCII](https://en.wikipedia.org/wiki/ASCII) is a standard text 
+encoding that uses English characters and symbols, and almost every programming 
+language in existence defines source code as a subset of it.
+
+A Pony type, whether it's a class, actor, trait, interface, primitive, 
 or type alias, must start with an uppercase letter. After an underscore for 
-private or special methods, any variable (including parameters and fields) or 
-method must start with a lowercase letter. In all cases underscores in a row or 
-at the end of a name are not allowed, but otherwise any combination of letters 
-and numbers is legal. In fact, numbers may use single underscores inside as a 
-separator too! But only valid variable names can end in primes.
+private or special _methods_ (behaviors, constructors, and functions), any 
+method or variable, including parameters and fields, must start with a 
+lowercase letter. In all cases underscores in a row or at the end of a name are 
+not allowed, but otherwise any combination of letters and numbers is legal.
+
+In fact, numbers may use single underscores inside as a separator too! But only 
+valid variable names can end in primes.
