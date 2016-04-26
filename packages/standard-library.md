@@ -13,4 +13,4 @@ package builtin are automatically available in the type namespace of all Pony
 source files.
 
 Documentation for the standard library is 
-[available online](https://www.ponylang.org/ponyc/)
+[available online](http://www.ponylang.org/ponyc/)
