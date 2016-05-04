@@ -8,7 +8,7 @@ welcome external contributors. In fact, we encourage them.
 Please note, that by submitting any content to the Pony Tutorial book you are
 agreeing that it can be licensed under our [license](LICENSE.md). Furthermore,
 you are testifying that you own the copyright to the submitted content and
-indemnify Pony Patterns from any copyright claim that might result from your not
+indemnify Pony Tutorial from any copyright claim that might result from your not
 being the authorized copyright holder.
 
 ## How the tutorial is organized
@@ -55,7 +55,7 @@ change might be requested:
 
 * Changes to the content
 * Change to where the content appears in the Table of Contents
-* Change to where the markdown file for the pattern is stored in the repo
+* Change to where the markdown file for the content is stored in the repo
 
 Be sure to keep your PR to a single topic or logical change. If you are working
 on multiple changes, make sure they are each on their own branch and that
