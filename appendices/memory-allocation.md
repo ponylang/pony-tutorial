@@ -1,9 +1,6 @@
 # Memory Allocation at Runtime
 
-Pony is NULL-free, type-safe language, with no dangling pointers, no
-buffer overruns, but with a **very fast garbage collector**, so you
-don't have to worry about explicit memory allocation, if on the heap
-or stack, if in a threaded actor, or not.
+Pony is NULL-free, type-safe language, with no dangling pointers, no buffer overruns, but with a **very fast garbage collector**, so you don't have to worry about explicit memory allocation, if on the heap or stack, if in a threaded actor, or not.
 
 ## Fast, Safe and Cheap
 
@@ -14,29 +11,18 @@ or stack, if in a threaded actor, or not.
 
 ## But Caveat Emptor
 
-But pony can be used to create **C libraries** and pony can use
-external C libraries via the **FFI** which does not have this luxury,
+But pony can be used to create **C libraries** and pony can use external C libraries via the **FFI** which does not have this luxury,
 
-So you **can** use any external C library out there, but the question is if
-you **need to** and if you **should**.
+So you **can** use any external C library out there, but the question is if you **need to** and if you **should**.
 
-The biggest problem is external heap memory, created by an external
-FFI call, or created to support an external call. But external stack
-space might also need some thoughts, esp. when being created from
-actors.
+The biggest problem is external heap memory, created by an external FFI call, or created to support an external call. But external stack space might also need some thoughts, esp. when being created from actors.
 
-Pony has no **finalizers**, callbacks which are called by the garbage
-collector to free external memory, which was allocated by a FFI call.
-The garbage collector is _not timely_ (as with pure reference
-counting), it is not triggered immediately when some object goes out
-of scope.
+Pony has no **finalizers**, callbacks which are called by the garbage collector to free external memory, which was allocated by a FFI call. The garbage collector is _not timely_ (as with pure reference counting), it is not triggered immediately when some object goes out of scope.
 
-A blocked actor will keep it's memory allocated, only a dead actor
-will release it eventually.
+A blocked actor will keep it's memory allocated, only a dead actor will release it eventually.
 
 ## And, long-running actors
 
-might cause unexpected out of memory errors, since the GC is not yet triggered 
-on an out-of-memory segfault or stack exhaustion.
+might cause unexpected out of memory errors, since the GC is not yet triggered on an out-of-memory segfault or stack exhaustion.
 
 ...

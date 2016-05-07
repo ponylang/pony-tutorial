@@ -1,9 +1,6 @@
 # Pony Symbols
 
-Pony, like just about any other programming language, has plenty of odd symbols
-that make up its syntax. If you don't remember what one means, it can be hard
-to search for them. Below you'll find a table with various Pony symbols and
-what you should search the tutorial for in order to learn more about the symbol.
+Pony, like just about any other programming language, has plenty of odd symbols that make up its syntax. If you don't remember what one means, it can be hard to search for them. Below you'll find a table with various Pony symbols and what you should search the tutorial for in order to learn more about the symbol.
 
 |Symbol | Search Keywords|
 | --- | --- |
@@ -19,9 +16,7 @@ what you should search the tutorial for in order to learn more about the symbol.
 | `<:` | Subtype |
 
 
-Here is a more elaborate explanation of Pony's use of special characters:
-(a line with (2) or (3) means an alternate usage of the symbol of the previous 
-line)
+Here is a more elaborate explanation of Pony's use of special characters: (a line with (2) or (3) means an alternate usage of the symbol of the previous  line)
 
 |Symbol | Usage|
 | --- | --- |

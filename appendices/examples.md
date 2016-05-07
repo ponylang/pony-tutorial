@@ -1,7 +1,6 @@
 # Examples
 
-Small how do I examples for Pony. These will eventually find another home.
-Until then, they live here.
+Small how do I examples for Pony. These will eventually find another home. Until then, they live here.
 
 ## Enum with values
 ```pony
@@ -95,12 +94,12 @@ actor Main
 
   new create(env: Env) =>
     // The no of arguments
-    env.out.print(env.args.size().string()) 
+    env.out.print(env.args.size().string())
     for value in env.args.values() do
       env.out.print(value)
     end
     // Access the arguments the first one will always be the the appication name
-    try env.out.print(env.args(0)) end 
+    try env.out.print(env.args(0)) end
 ```
 
 ## How to use options
@@ -160,7 +159,7 @@ be fail() =>
 be assert_failed(msg: String) =>
 fun tag assert_true(actual: Bool, msg: String = "") ?
 fun tag expect_true(actual: Bool, msg: String = ""): Bool
-fun tag assert_false(actual: Bool, msg: String = "") ? 
+fun tag assert_false(actual: Bool, msg: String = "") ?
 fun tag expect_false(actual: Bool, msg: String = ""): Bool
 fun tag assert_error(test: ITest, msg: String = "") ?
 fun tag expect_error(test: ITest box, msg: String = ""): Bool
