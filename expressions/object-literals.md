@@ -23,7 +23,7 @@ object is Hashable
 end
 ```
 
-What we can't do is specify constructors in an object literal, because literal _is_ the constructor. So how do we assign to fields? Well, we just assign to them. For example:
+What we can't do is specify constructors in an object literal, because the literal _is_ the constructor. So how do we assign to fields? Well, we just assign to them. For example:
 
 ```pony
 class Foo
@@ -55,7 +55,7 @@ object
 end
 ```
 
-The `lambda` keyword can be used to capture from lexical scope in the same way as object literals can assign from the lexical scope to a field. This is done by adding a second parameter list after the arguments:
+The `lambda` keyword can be used to capture from lexical scope in the same way that object literals can assign from the lexical scope to a field. This is done by adding a second parameter list after the arguments:
 
 ```pony
 class Foo
