@@ -48,7 +48,7 @@ fun factorial(x: I32): I32 ? =>
   end
 ```
 
-Everywhere that an error can be generated in Pony (an error command, a call to a partial function or certain built-in language constructs) must appear within a try block or a function that is marked as partial. This is checked at compile time, ensuring that an error cannot escape handling and crash the program.
+Everywhere that an error can be generated in Pony (an error command, a call to a partial function, or certain built-in language constructs) must appear within a try block or a function that is marked as partial. This is checked at compile time, ensuring that an error cannot escape handling and crash the program.
 
 ## Partial constructors and behaviours
 
@@ -78,7 +78,7 @@ The callE() will always be excuted. If callB() returns true then the sequence ex
 
 __Do I have to have an else error handler to have a then block?__ No. You can have a try-then block without an else if you like.
 
-__Will my then block really always be executed, even if I return inside the try?__ Yes, your `then` expression will __always__ be executed when the try block is complete. The only way it won't be is if the try never completes (due to an infinite loop), the machine is powered off or the process is killed (and then, maybe).
+__Will my then block really always be executed, even if I return inside the try?__ Yes, your `then` expression will __always__ be executed when the try block is complete. The only way it won't be is if the try never completes (due to an infinite loop), the machine is powered off, or the process is killed (and then, maybe).
 
 ## With blocks
 
@@ -126,10 +126,10 @@ The only language construct that can raise an error, other than the error comman
 
 ## Comparison to exceptions in other languages
 
-Pony exceptions behave very much the same as those in C++, Java, C#, Python and Ruby. The key difference is that Pony exceptions do not have a type or instance associated with them. This makes them the same as C++ exceptions would be if a fixed literal was always thrown, eg `throw 3;`. This difference simplifies exception handling for the programmer and allows for much better runtime error handling performance.
+Pony exceptions behave very much the same as those in C++, Java, C#, Python, and Ruby. The key difference is that Pony exceptions do not have a type or instance associated with them. This makes them the same as C++ exceptions would be if a fixed literal was always thrown, eg `throw 3;`. This difference simplifies exception handling for the programmer and allows for much better runtime error handling performance.
 
-The `else` handler in a `try` expression is just like a `catch(...)` in C++, `catch(Exception e)` in Java or C#, `except:` in Python or `rescue` in Ruby. Since exceptions do not have types there is no need for handlers to specify types or to have multiple handlers in a single try block.
+The `else` handler in a `try` expression is just like a `catch(...)` in C++, `catch(Exception e)` in Java or C#, `except:` in Python, or `rescue` in Ruby. Since exceptions do not have types there is no need for handlers to specify types or to have multiple handlers in a single try block.
 
-The `then` block in a `try` expression is just like a `finally` in Java, C# or Python and `ensure` in Ruby.
+The `then` block in a `try` expression is just like a `finally` in Java, C#, or Python and `ensure` in Ruby.
 
 If required, error handlers can "reraise" by using the `error` command within the handler.
