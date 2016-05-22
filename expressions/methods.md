@@ -1,6 +1,6 @@
 # Methods
 
-All Pony code that actually does something, rather than defining types etc, appears in named blocks which are referred to as methods. There are three kinds of methods; functions, constructors and behaviours. All methods are attached to type definitions (e.g. classes), there are no global functions.
+All Pony code that actually does something, rather than defining types etc, appears in named blocks which are referred to as methods. There are three kinds of methods: functions, constructors and behaviours. All methods are attached to type definitions (e.g. classes) - there are no global functions.
 
 Behaviours are used for handling asynchronous messages sent to actors. We'll look at those later.
 
@@ -21,7 +21,7 @@ class C
 
 The function parameters (if any) are specified in parentheses after the function name. Functions that don't take any parameters still need to have the parentheses.
 
-Each parameter is given a name and a type. In our example function `add` has 2 parameters, `x` and `y`, both of which are type `U32`. The values passed to a function call (the `1` and `2` in our example) are called arguments and when the call is made they are evaluated and assigned to the parameters. Parameters may not be assigned to within the function, they are effectively declared `let`.
+Each parameter is given a name and a type. In our example function `add` has 2 parameters, `x` and `y`, both of which are type `U32`. The values passed to a function call (the `1` and `2` in our example) are called arguments and when the call is made they are evaluated and assigned to the parameters. Parameters may not be assigned to within the function - they are effectively declared `let`.
 
 After the parameters comes the return type. If nothing will be returned this is simply omitted.
 
@@ -39,7 +39,7 @@ class C
 	x * factorial(x - 1)
 ```
 
-__Can I overload functions by argument type?__ No. There is no overloading of methods in Pony, each type may only have a single method of any given name.
+__Can I overload functions by argument type?__ No. There is no overloading of methods in Pony - each type may only have a single method of any given name.
 
 ## Constructors
 
@@ -117,7 +117,7 @@ class Bar
 
 ```
 
-Constructors can also be called on an expression. Here an object is created of the same type as the specified expression, this is equivalent to directly specifying the type.
+Constructors can also be called on an expression. Here an object is created of the same type as the specified expression - this is equivalent to directly specifying the type.
 
 ```pony
 class Foo
@@ -181,7 +181,7 @@ __Should I specify `where` for each named argument?__ No. There must only be one
 
 Named and positional arguments can be used together in a single call. Just start with the positional arguments you want to specify, then a `where` and finally the named arguments. But be careful, each argument must be specified only once.
 
-Default arguments can also be used in combination with positional and named arguments, just miss out any for which you want to use the default.
+Default arguments can also be used in combination with positional and named arguments - just miss out any for which you want to use the default.
 
 ```pony
 class Foo
