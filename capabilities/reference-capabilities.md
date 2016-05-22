@@ -6,7 +6,7 @@ In Pony, we do it with _reference capabilities_.
 
 ## Rights are part of a capability
 
-If you open a file in UNIX, and get a file descriptor back, that file descriptor is token that designates an object - but it isn't a capability. To be a capability, we need to open that file with some permission - some access right. For example:
+If you open a file in UNIX, and get a file descriptor back, that file descriptor is a token that designates an object - but it isn't a capability. To be a capability, we need to open that file with some permission - some access right. For example:
 
 ```C
 int fd = open("/etc/passwd", O_RDWR);
