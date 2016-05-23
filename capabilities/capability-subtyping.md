@@ -30,7 +30,7 @@ Now let's consider what happens when we have an alias of a reference capability.
 
 The last case to consider is when we have an ephemeral reference capability. For example, if we have some `iso` and we `consume` it or do a destructive read, the type we get is `iso^`, not `iso`.
 
-* `iso^ <: iso`. This is pretty simple. When we givean `iso^` a name, by assigning it to something or passing it as an argument to a method, it loses the `^` and becomes a plain old `iso`. We know we gave up our previous `iso`, so it's safe to have a new one.
+* `iso^ <: iso`. This is pretty simple. When we give an `iso^` a name, by assigning it to something or passing it as an argument to a method, it loses the `^` and becomes a plain old `iso`. We know we gave up our previous `iso`, so it's safe to have a new one.
 * `trn^ <: trn`. This works exactly like `iso^`. The guarantee is weaker (_write uniqueness_ instead of _read and write uniqueness_), but it works the same way.
 * `ref^ <: ref^` and `ref^ <: ref` and `ref <: ref^`. Here, we have another case. Not only is a `ref^` a subtype of a `ref`, it's also a subtype of a `ref^`. What's going on here? The reason is that an ephemeral reference capability is a way of saying "a reference capability that, when aliased, results in the base reference capability". Since a `ref` can be aliased as a `ref`, that means `ref` and `ref^` are completely interchangeable.
 * `val^`, `box^`, `tag^`. These all work the same way as `ref`, that is, they are interchangeable with the base reference capability. It's for the same reason: all of these reference capabilities can be aliased as themselves.
