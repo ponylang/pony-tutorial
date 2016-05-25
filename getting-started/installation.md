@@ -6,17 +6,7 @@ While there are versions of the Pony compiler already packaged up for use, they 
 git clone git@github.com:ponylang/ponyc.git
 ```
 
-All the directions below, only build Pony in the directory you have cloned. If you want to install it, you should replace
-
-```bash
-make config=release` with `make config=release install
-```
-
-and to build the debug version of the compiler
-
-```bash
-make config=debug` instead of `make config=release
-```
+Follow the [directions below](#building-ponyc-from-source), only build Pony in the directory you have cloned. If you want to install it, you should replace `make config=release` with `make config=release install`. To build the debug version of the compiler `make config=debug` instead of `make config=release`.
 
 ## Using Docker
 
