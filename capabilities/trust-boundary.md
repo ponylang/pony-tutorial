@@ -21,7 +21,3 @@ ponyc --safe=files:net:net/ssl my_project
 ```
 
 Here, we are declaring that only the `files`, `net` and `net/ssl` packages are allowed to use C FFI calls. We've established our trust boundary: any other packages that try to use C FFI calls will result in a compile-time error.
-
-## Example of use
-
-On the [Pony sandbox](http://sandbox.ponylang.org), we are compiling and executing arbitrary code that users input. That could be dangerous. So we limit the use of the C FFI to the `time` package. We don't allow access to the file system, or to the network, or anything else dangerous.
