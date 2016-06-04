@@ -18,7 +18,7 @@ The Pony type system guarantees soundness and race and dead-lock free concurrenc
 
 ## Pony-ORCA characteristics
 
-1. An actor may perform garbage collection concurrently other actors while they are executing and kind of behaviour.
+1. An actor may perform garbage collection concurrently with other actors while they are executing any kind of behaviour.
 
 2. An actor may decide whether to garbage collect an object solely based on its own local state, without consultation with, or inspecting the state of any other actor.
 
