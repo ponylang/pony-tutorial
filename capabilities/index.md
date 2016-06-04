@@ -2,7 +2,7 @@
 
 We've covered the basics of Pony's type system and then expressions, this chapter about capabilities will cover another feature of Pony's type system. There aren't currently any mainstream programming languages that feature capabilities. What is a capability?
 
-A capability is the the ability to do "something". Usually that "something" involves an external resource that you might want access to; like the filesystem or the network. This is called an object capability. Object capabilities have appeared in a number of programming lanuages including [E](https://en.wikipedia.org/wiki/E_(programming_language)).
+A capability is the the ability to do "something". Usually that "something" involves an external resource that you might want access to; like the filesystem or the network. This is called an object capability. Object capabilities have appeared in a number of programming lanuages including [E](https://en.wikipedia.org/wiki/E_(programming_language) ).
 
 In addition to object capabilities, Pony also features another kind of capability, called a "reference capability". Where object capabilities are about being granted the ability to do things with objects, reference capabilities are about denying you the ability to do things with memory references. For example, "you can have access to this memory BUT ONLY for reading it. You can not write to it". That's a reference capability and it's denying you access to do things.
 
