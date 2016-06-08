@@ -6,7 +6,7 @@ There are three kinds of type expression: __tuples__, __unions__, and __intersec
 
 ## Tuples
 
-A __tuple__ is a sequence of types. For example, if we wanted something that was a `String` followed by a `U64`, we would write this:
+A __tuple__ type is a sequence of types. For example, if we wanted something that was a `String` followed by a `U64`, we would write this:
 
 ```pony
 var x: (String, U64)
