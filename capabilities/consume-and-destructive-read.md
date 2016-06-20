@@ -1,6 +1,6 @@
 # Consume and Destructive Read
 
-And important part of Pony's capabilities are being able to say "I'm done with this thing". In this section, we're going to cover two means of doing that: consuming a variable and destructive reads.
+An important part of Pony's capabilities are being able to say "I'm done with this thing". We'll cover two means of handling this situation: consuming a variable and destructive reads.
 
 ## Consuming a variable
 
