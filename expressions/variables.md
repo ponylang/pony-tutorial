@@ -65,14 +65,15 @@ In Pony, fields are variables that live within objects. They work like fields in
 
 Fields have the same lifetime as the object they're in, rather than being scoped. They are set up by the object constructor and disposed of along with the object.
 
-If the name of a field starts with `_`, it's __private__. That means only the type the field is in can have code that reads or writes that field. Otherwise, the field is __public__, and can be read or written anywhere.
+If the name of a field starts with `_`, it's __private__. That means only the type the field is in can have code that reads or writes that field. Otherwise, the field is __public__, and can be read or written from anywhere.
 
-Just like local variables, fields can be `var` or `let`. They can also have initial value assigned in their definition, just like local variables, or they can be given their initial value in a constructor.
+Just like local variables, fields can be `var` or `let`. They can also have an initial value assigned in their definition, just like local variables, or they can be given their initial value in a constructor.
 
-Unlike local variables, some types of field can be declared using `embed`. Specifically, only classes or structs can be embedded; interfaces, traits, primitives and numeric types cannot. A field declared using `embed` is similar to one declared using `let`, but at an implementation level the memory for the embedded class is laid out directly within the outer class. Contrast this with `let` or `var`, where the implementation uses pointers to reference the field class. Embedded fields can be passed to other functions in exactly the same way as let or var fields.
+__Can fields come after the constructor?__ No. To keep Pony's grammar unambiguous, only type aliases are allowed between an `actor Name`, `object is Trait`, etc. and a field definition. In any case, it's good style to make such variables easily visible to the programmer because fields are accessible from _any_ method of the type they're in.
+
+Unlike local variables, some types of fields can be declared using `embed`. Specifically, only classes or structs can be embedded - interfaces, traits, primitives and numeric types cannot. A field declared using `embed` is similar to one declared using `let`, but at the implementation level the memory for the embedded class is laid out directly within the outer class. Contrast this with `let` or `var`, where the implementation uses pointers to reference the field class. Embedded fields can be passed to other functions in exactly the same way as let or var fields.
 
 __Why would I use `embed`?__ The only reason to use `embed` is for the slight additional performance of avoiding a pointer dereference. Good Pony style is to use `let` unless performance testing shows that `embed` would really help.
-
 
 ## Globals
 
