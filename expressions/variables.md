@@ -71,9 +71,9 @@ Just like local variables, fields can be `var` or `let`. They can also have an i
 
 __Can fields come after the constructor?__ No. To keep Pony's grammar unambiguous, only type aliases are allowed between an `actor Name`, `object is Trait`, etc. and a field definition. In any case, it's good style to make such variables easily visible to the programmer because fields are accessible from _any_ method of the type they're in.
 
-Unlike local variables, some types of fields can be declared using `embed`. Specifically, only classes or structs can be embedded - interfaces, traits, primitives and numeric types cannot. A field declared using `embed` is similar to one declared using `let`, but at the implementation level the memory for the embedded class is laid out directly within the outer class. Contrast this with `let` or `var`, where the implementation uses pointers to reference the field class. Embedded fields can be passed to other functions in exactly the same way as let or var fields.
+Unlike local variables, some types of fields can be declared using `embed`. Specifically, only classes or structs can be embedded - interfaces, traits, primitives and numeric types cannot. A field declared using `embed` is similar to one declared using `let`, but at the implementation level the memory for the embedded class is laid out directly within the outer class. Contrast this with `let` or `var`, where the implementation uses pointers to reference the field class. Embedded fields can be passed to other functions in exactly the same way as let or var fields. Embedded fields must be initialised from a constructor expression.
 
-__Why would I use `embed`?__ The only reason to use `embed` is for the slight additional performance of avoiding a pointer dereference. Good Pony style is to use `let` unless performance testing shows that `embed` would really help.
+__Why would I use `embed`?__ `embed` avoids a pointer indirection when accessing a field and a separate memory allocation when creating that field. By default, it is advised to use `embed` if possible. However, since an embedded field is allocated alongside its parent object, exterior references to the field forbids garbage collection of the parent, which can result in higher memory usage if a field outlives its parent. Use `let` if this is a concern for you.
 
 ## Globals
 
