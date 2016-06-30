@@ -28,30 +28,30 @@ actor Main
 
 When run with the arguments `2 and 4 et 7 y 15`, the program's output is `28`.
 
-The same thing can be done with interfaces, using `as` to create a reference to a more specific interface or class. Let's say, for example, that you have a library for doing things with rodents. It provides a `Rodent` interface which programmers can then use to create specific types of rodents.
+The same thing can be done with interfaces, using `as` to create a reference to a more specific interface or class. Let's say, for example, that you have a library for doing things with furry, rodent-like creatures. It provides a `Critter` interface which programmers can then use to create specific types of critters.
 
 ```pony
-interface Rodent
+interface Critter
   fun wash(): String
 ```
 
-The programmer uses this library to create a `Wombat` and a `Capybara` class. But the `Capybara` class provides a new method, `swim()`, that is not part of the `Rodent` class. The programmer wants to store all of the rodents in an array, in order to carry out actions on groups of rodents. Now assume that when capybaras finish washing they want to go for a swim. The programmer can accomplish that by using `as` to attempt to use each `Rodent` object in the `Array[Rodent` as a `Capybara`. If this fails because the `Rodent` is not a `Capybara`, then an error is raised; the program can swallow this error and go on to the next item.
+The programmer uses this library to create a `Wombat` and a `Capybara` class. But the `Capybara` class provides a new method, `swim()`, that is not part of the `Critter` class. The programmer wants to store all of the critters in an array, in order to carry out actions on groups of critters. Now assume that when capybaras finish washing they want to go for a swim. The programmer can accomplish that by using `as` to attempt to use each `Critter` object in the `Array[Critter]` as a `Capybara`. If this fails because the `Critter` is not a `Capybara`, then an error is raised; the program can swallow this error and go on to the next item.
 
 ```pony
-class Wombat is Rodent
+class Wombat is Critter
   fun wash(): String => "I'm a clean wombat!"
 
-class Capybara is Rodent
+class Capybara is Critter
   fun wash(): String => "I feel squeaky clean!"
   fun swim(): String => "I'm swimming like a fish!"
 
 actor Main
   new create(env: Env) =>
-    let rodents = Array[Rodent].push(Wombat).push(Capybara)
-    for rodent in rodents.values() do
-      env.out.print(rodent.wash())
+    let critters = Array[Critter].push(Wombat).push(Capybara)
+    for critter in critters.values() do
+      env.out.print(critter.wash())
       try
-        env.out.print((rodent as Capybara).swim())
+        env.out.print((critter as Capybara).swim())
       end
     end
 ```
