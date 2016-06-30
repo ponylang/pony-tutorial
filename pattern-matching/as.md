@@ -35,11 +35,11 @@ interface Rodent
   fun wash(): String
 ```
 
-The programmer uses this library to create a `Wombat` and a `Capybara` class. But the `Capybara` class provides a new method, `swim()`, that is not part of the `Rodent` class. The programmer wants to store all of the rodents in an array, in order to carry out actions on groups of rodents. Now assume that when capybaras finish washing they want to go for a swim. The programmer can accomplish that by using `as` to attempt to use each `Rodent` object in the `Array[Rodent` as a `Capybara`. If this fails because the `Rodent` is not a `Capybara`, then an error is raised; the program can swallow this error and go on to the next item.
+The programmer uses this library to create a `Porcupine` and a `Capybara` class. But the `Capybara` class provides a new method, `swim()`, that is not part of the `Rodent` class. The programmer wants to store all of the rodents in an array, in order to carry out actions on groups of rodents. Now assume that when capybaras finish washing they want to go for a swim. The programmer can accomplish that by using `as` to attempt to use each `Rodent` object in the `Array[Rodent]` as a `Capybara`. If this fails because the `Rodent` is not a `Capybara`, then an error is raised; the program can swallow this error and go on to the next item.
 
 ```pony
-class Wombat is Rodent
-  fun wash(): String => "I'm a clean wombat!"
+class Porcupine is Rodent
+  fun wash(): String => "I'm a clean porcupine!"
 
 class Capybara is Rodent
   fun wash(): String => "I feel squeaky clean!"
@@ -47,7 +47,7 @@ class Capybara is Rodent
 
 actor Main
   new create(env: Env) =>
-    let rodents = Array[Rodent].push(Wombat).push(Capybara)
+    let rodents = Array[Rodent].push(Porcupine).push(Capybara)
     for rodent in rodents.values() do
       env.out.print(rodent.wash())
       try
