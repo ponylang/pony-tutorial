@@ -24,6 +24,8 @@ Then you'll be able to run `ponyc` to compile a Pony program in a given director
 docker run -v /path/to/my-code:/src/main ponylang/ponyc
 ```
 
+If you're unfamiliar with Docker, remember to ensure that whatever path you provide for `/path/to/my-code` is a full path name and not a relative path, and also note the lack of a closing slash, `/`, at the *end* of the path name.
+
 Note that if your host doesn't match the docker container, you'll probably have to run the resulting program inside the docker container as well, using a command like this:
 
 ```bash
@@ -113,10 +115,10 @@ You should install LLVM as supplied by the LLVM build server. If you visit [thei
 Precise (12.04) - Last update : Sun, 22 May 2016 19:26:23 UTC / Revision: 270357
 deb http://llvm.org/apt/precise/ llvm-toolchain-precise main
 deb-src http://llvm.org/apt/precise/ llvm-toolchain-precise main
-# 3.7 
+# 3.7
 deb http://llvm.org/apt/precise/ llvm-toolchain-precise-3.7 main
 deb-src http://llvm.org/apt/precise/ llvm-toolchain-precise-3.7 main
-# 3.8 
+# 3.8
 deb http://llvm.org/apt/precise/ llvm-toolchain-precise-3.8 main
 deb-src http://llvm.org/apt/precise/ llvm-toolchain-precise-3.8 main
 ```
