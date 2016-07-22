@@ -53,6 +53,7 @@
   * [Divide by Zero](gotchas/divide-by-zero.md)
   * [Garbage Collection](gotchas/garbage-collection.md)
   * [Scheduling](gotchas/scheduling.md)
+* [Chapter 12: Where Next?](where-next/index.md)
 * [Appendices](appendices/index.md)
   * [Lexicon](appendices/lexicon.md)
   * [Symbol Lookup Cheatsheet](appendices/symbol-lookup-cheatsheet.md)
