@@ -8,7 +8,7 @@ Garbage collection, in most languages, can run at any time. Your program can be 
 
 ## Garbage Collection in Pony
 
-Garbage collection never attempted on any actor while it is executing a behavior. This gives you very predictable performance when executing behaviors but also makes it easy to grab way more memory than you intend to. Let's take a look at how that can happen via the "long running behavior problem".
+Garbage collection is never attempted on any actor while it is executing a behavior. This gives you very predictable performance when executing behaviors but also makes it easy to grab way more memory than you intend to. Let's take a look at how that can happen via the "long running behavior problem".
 
 ## Long running behaviors and memory
 
