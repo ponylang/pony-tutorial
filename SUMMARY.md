@@ -17,6 +17,7 @@
   * [Control Structures](expressions/control-structures.md)
   * [Methods](expressions/methods.md)
   * [Exceptions](expressions/exceptions.md)
+  * [Equality](expressions/equality.md)
   * [Sugar](expressions/sugar.md)
   * [Object Literals](expressions/object-literals.md)
   * [Partial Application](expressions/partial-application.md)
