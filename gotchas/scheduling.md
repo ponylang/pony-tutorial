@@ -1,6 +1,6 @@
 # Scheduling
 
-The Pony scheduler is preemptive. This means that your actor has to yield control of the scheduler thread in order for another actor to execute. The normal way to do this is for your behavior to end. If your behavior doesn't end, you will continue to monopolize a scheduler thread and bad things will happen.
+The Pony scheduler is not preemptive. This means that your actor has to yield control of the scheduler thread in order for another actor to execute. The normal way to do this is for your behavior to end. If your behavior doesn't end, you will continue to monopolize a scheduler thread and bad things will happen.
 
 ## FFI and scheduler monopoly
 
