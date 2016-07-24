@@ -1,10 +1,10 @@
 # Equality in Pony
 
-Pony features two forms of equality: by value and by identity. 
+Pony features two forms of equality: by structure and by identity.  
 
-## Identiy equality
+## Identity equality
 
-Identity equality checks in Pony are done via the `is` keyword. `is` verifies that the two items are the same. Primitives are always equal to 
+Identity equality checks in Pony are done via the `is` keyword. `is` verifies that the two items are the same.
 
 ```pony
 if None is None then
@@ -13,7 +13,7 @@ if None is None then
 end
 
 let a = Foo("hi")
-let b = Foo("bye")
+let b = Foo("hi")
 
 if a is b then
   // NOPE. THIS IS FALSE
@@ -25,9 +25,9 @@ if a is c then
 end
 ```
 
-## Value equality
+## Structural equality
 
-Equality by value check in Pony are done via `==`. They verify that two items have the same value. If the identity of the items being compared is the same then, by definition they have the same value. You can define how equality is defined on your object by implementing `fun eq(that: box->A): Bool`
+Equality by structure check in Pony are done via `==`. They verify that two items have the same value. If the identity of the items being compared is the same then, by definition they have the same value. You can define how equality is defined on your object by implementing `fun eq(that: box->A): Bool`
 
 ```pony
 class Foo
@@ -67,4 +67,23 @@ If you don't define your own `eq`, you will inherit the default implementation t
 interface Equatable[A: Equatable[A] #read]
   fun eq(that: box->A): Bool => this is that
   fun ne(that: box->A): Bool => not eq(that)
+```
+
+## Primitives and equality
+
+As you might remember from [Chapter 2](http://tutorial.ponylang.org/types/primitives.html), primitives are the same as classes except for two important differences:
+
+* A primitive has no fields.
+* There is only one instance of a user-defined primitive.
+
+This means, that every primitive of a given type, is always structurally equal and equal based on identity. So, for example, None is always None.
+
+```pony
+if None is None then
+  // this is always true
+end
+
+if None == None then
+  // this is also always true
+end
 ```
