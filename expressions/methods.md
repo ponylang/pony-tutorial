@@ -39,7 +39,7 @@ class C
 	x * factorial(x - 1)
 ```
 
-__Can I overload functions by argument type?__ No. There is no overloading of methods in Pony - each type may only have a single method of any given name.
+__Can I overload functions by argument type?__ (Case functions)[http://tutorial.ponylang.org/pattern-matching/case-functions.html] provide a mechanism for providing several functions with the same name with different implementations that are selected by argument type.
 
 ## Constructors
 
