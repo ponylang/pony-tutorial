@@ -83,4 +83,33 @@ actor Main
     end
 ```
 
+It is important to note that case functions resolve overlapping cases by using the first function that matches. For example, the prints `foo bar` because the case of `foo` matching the type `Foo` is declared before the one that matches `Bar`, and the case of `bar` matching the type `Bar` is declared before the one that matches `Foo`:
+
+```
+interface Foo
+
+class Bar is Foo
+  new ref create() =>
+    None
+
+actor Main
+  fun foo(x: Foo): String => "foo"
+  fun foo(x: Bar): String => "bar"
+
+  fun bar(x: Bar): String => "bar"
+  fun bar(x: Foo): String => "foo"
+
+  new create(env: Env) =>
+    let x = Bar
+    try
+      env.out.print((foo(x) as String) + " " + (bar(x) as String))
+    end
+```
+
 Case functions can improve readability by making it clear that certain argument will cause certain code paths to execute. They are currently implemented as sugar that translates to a `match` statement, so there is no more overhead than if the programmer had written the `match` themselves.
+
+__Does Pony support overloaded functions?__ There is no strict definition of "overloaded function" so it is difficult to give a definitive answer to this question. Case functions provide a way to supply several functions of the same name with behavior that varies based on the types and values of their arguments; for some people these look like overloaded functions. However, it is important to understand the differences between case functions and some of the traditional expectations of overloaded functions.
+* The current implementation of case functions does not do an exhaustive match to determine the return type of the synthesized function, so the return type is always a union that includes `None` as one of the types.
+* Case functions do not provide a way to specify functions with the same name but different argument counts.
+* Overlapping matches are handled in the order in which the functions were declared.
+Depending on your needs, case functions may or may not offer an acceptable alternative to overloaded functions.
