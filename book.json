@@ -1,13 +1,9 @@
 {
     "plugins": [
-        "addcssjs",
         "footnote-string-to-number",
         "highlight",
+        "lunr@1.2.0"
     ],
     "pluginsConfig": {
-      "addcssjs": {
-        "js": [],
-        "css": [""]
-      }
     }
 }
