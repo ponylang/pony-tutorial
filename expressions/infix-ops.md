@@ -94,7 +94,7 @@ or       | op_or()  | Or, both bitwise and logical
 xor      | op_xor() | Xor, both bitwise and logical
 ==       | eq()     | Equality
 !=       | ne()     | Non-equality
-<        | lt()     | Less then
+<        | lt()     | Less than
 <=       | le()     | Less than or equal
 >=       | ge()     | Greater than or equal
 >        | gt()     | Greater than
