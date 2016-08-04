@@ -30,6 +30,10 @@ We have an active mailing list where you can ask questions and get help. We're a
 
 If IRC is your thing, we maintain a channel on Freenode at #ponylang.
 
+## Pony Virtual Users' Group
+
+The Pony Virtual Users' Group has fairly regularly monthly presentations that you can attend "in person" or catch later via the recorded video. Sign up to the [Pony VUG mailing list](https://pony.groups.io/g/vug) to be kept informed about upcoming meetings. All the previous videos are available via [Sean T Allen's Vimeo account](https://vimeo.com/user6269014).
+
 ## A final word 
 
 We're immensely happy that you have taken the time to start learning Pony. It's still a new and immature language with plenty of sharp pointy edges. You are going to get frustrated at times. Don't worry, it has happened to all of us. Drop by one of our support channel and someone will try to lend a hand. We want you to succeed. The more people who succeed with Pony, the more the community grows and the better it is for all of us.
