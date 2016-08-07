@@ -22,4 +22,4 @@ actor Main
     end
 ```
 
-This program will never garbage collect before existing. `create` is run as a behavior on actors which means that no garbage collection will occur while it's running. Long loops in behaviors are a good way to exhaust memory. Don't do it. If you want to execute something in such a fashion, use a [Timer](http://www.ponylang.org/ponyc/time-Timer/).
+This program will never garbage collect before exiting. `create` is run as a behavior on actors which means that no garbage collection will occur while it's running. Long loops in behaviors are a good way to exhaust memory. Don't do it. If you want to execute something in such a fashion, use a [Timer](http://www.ponylang.org/ponyc/time-Timer/).
