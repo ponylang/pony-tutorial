@@ -33,7 +33,9 @@
   * [Capability Subtyping](capabilities/capability-subtyping.md)  
   * [Arrow Types](capabilities/arrow-types.md)  
   * [Trust Boundary](capabilities/trust-boundary.md)
-* Chapter 5: Generics
+* [Chapter 5: Generics](generics/index.md)
+  * [Reference Capabilities](generics/generics-and-reference-capabilities.md)
+  * [Constraints](generics/generic-constraints.md)
 * [Chapter 6: Pattern Matching](pattern-matching/index.md)
   * [Match Expressions](pattern-matching/match.md)
   * [As Operator](pattern-matching/as.md)
