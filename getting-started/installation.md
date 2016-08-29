@@ -62,7 +62,8 @@ We're transitioning to a new binary release system. For now, please build from s
 
 ## Windows
 
-You will need to build from source.
+There is a link to bintray on the main ponyc github repository page which contains Windows prebuilt binaries.
+Note: Windows 10 users will need to install Windows 10 SDK.
 
 # Building ponyc from source
 
