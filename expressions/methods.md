@@ -29,14 +29,16 @@ After the return value there's a `=>` and then finally the function body. The va
 
 If you want to exit a function early then use the `return` command. If the function has a return type then you need to provide a value to return. If the function does not have a return type then `return` should appear on its own, without a value.
 
-```pony
-class C
-  fun factorial(x: U32): U32 =>
-    if x == 0 then
-	  return 1
-	end
+Pony applies tail call optimization to allow a recursive implementation such as the following factorial function:
 
-	x * factorial(x - 1)
+```pony
+fun factorial(x: I32): I32 ? =>
+  if x < 0 then error end
+  if x == 0 then
+    1
+  else
+    x * factorial(x - 1)
+  end
 ```
 
 __Can I overload functions by argument type?__ [Case functions](http://tutorial.ponylang.org/pattern-matching/case-functions.html) provide a mechanism for providing several functions with the same name with different implementations that are selected by argument type.
