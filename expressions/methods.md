@@ -8,7 +8,7 @@ __Can I have some code outside of any methods, like I do in Python?__ No. All Po
 
 ## Functions
 
-Pony functions are quite like functions (or methods) in other languages. They can have 0 or more parameters and 0 or 1 return values.
+Pony functions are quite like functions (or methods) in other languages. They can have 0 or more parameters and 0 or 1 return values. A function only returns a value if it declares a return type.
 
 ```pony
 class C
