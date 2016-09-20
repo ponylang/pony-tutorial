@@ -97,7 +97,17 @@ emerge dev-lang/pony
 
 # Windows
 
-64-Bit installers for Windows 7, 8, 8.1 and 10 will be available soon.
+For 64-Bit Windows, the `master` and `release` branches are packaged and availabe Windows only on Bintray ([pony-language/ponyc-win](https://bintray.com/pony-language/ponyc-win)):
+
+```powershell
+Invoke-WebRequest -Uri https://dl.bintray.com/pony-language/ponyc-win/ponyc-VERSION.zip -UseBasicParsing -OutFile ponyc-VERSION.zip
+7z x .\ponyc-VERSION.zip
+.\ponyc-VERSION\ponyc\bin\ponyc.exe --version
+```
+
+You will also need [LLVM for Windows](http://releases.ponylang.org/llvm/).
+
+Windows 10 users will need to install the Windows 10 SDK in order to build programs with ponyc. It can be downloaded [from Microsoft](https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk).
 
 ## Did it work?
 
@@ -111,6 +121,6 @@ $ ponyc --version
 # Downloads
 All installers can also be downloaded from ponylang.org's servers:
 
-* [Ubuntu/Debian](http://releases.ponylang.org/debian/)
+* [Ubuntu/Debian](http://releases.ponylang.org/apt/)
 * [RPM](http://releases.ponylang.org/yum/)
-* [Windows](http://releases.ponylang.org/windows/)
+* [LLVM for Windows](http://releases.ponylang.org/llvm/)
