@@ -74,10 +74,17 @@ EGLEvent getEvent() {
     return e;
 }
 ```
-the you can destructure it and get the values using a tuple
+the you can get the value as a struct defined in Pony
 ```pony
-type EGLEvent is (U8, F32, F32)
-(var code, var x, var y) = @getEvent[EGLEvent]()
+struct EGLEvent
+  let code: U8
+  let x: F32
+  let y: F32
+
+  new create(code': U8, x': F32, y': F32) =>
+    (code, x, y) = (code', x', y')
+
+let e = @getEvent[EGLEvent]()
 ```
 
 ### To pass c structs to FFI
@@ -89,14 +96,21 @@ typedef struct {
   float y;
 } EGLEvent;
 
-void setEvent(EGLEvent e) {
-    printf("%d", e.code);
+void setEvent(EGLEvent* e) {
+    printf("%d", e->code);
 }
 ```
 then you call it like this
 ```pony
-type EGLEvent is (U8, F32, F32)
-let e: EGLEvent = (4, 0, 0)
+struct EGLEvent
+  let code: U8
+  let x: F32
+  let y: F32
+
+  new create(code': U8, x': F32, y': F32) =>
+    (code, x, y) = (code', x', y')
+
+let e = EGLEvent(4, 0, 0)
 @setEvent[None](e)
 ```
 
