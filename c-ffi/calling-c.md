@@ -60,7 +60,7 @@ var len = U64(0)
 @pcre2_substring_length_bynumber_8[I32](_match, i.u32(), addressof len)
 ```
 
-### To read c structs from FFI
+### To pass c structs by value to FFI
 If you have a c struct like this
 ```c
 typedef struct {
@@ -69,50 +69,18 @@ typedef struct {
   float y;
 } EGLEvent;
 
-EGLEvent getEvent() {
-    EGLEvent e = {1, ev.xconfigure.width, ev.xconfigure.height};
-    return e;
-}
-```
-the you can get the value as a struct defined in Pony
-```pony
-struct EGLEvent
-  let code: U8
-  let x: F32
-  let y: F32
-
-  new create(code': U8, x': F32, y': F32) =>
-    (code, x, y) = (code', x', y')
-
-let e = @getEvent[EGLEvent]()
-```
-
-### To pass c structs to FFI
-If you have a c struct like this
-```c
-typedef struct {
-  uint8_t code;
-  float x;
-  float y;
-} EGLEvent;
-
-void setEvent(EGLEvent* e) {
-    printf("%d", e->code);
+void setEvent(EGLEvent e) {
+    printf("%d", e.code);
 }
 ```
 then you call it like this
 ```pony
-struct EGLEvent
-  let code: U8
-  let x: F32
-  let y: F32
-
-  new create(code': U8, x': F32, y': F32) =>
-    (code, x, y) = (code', x', y')
-
-let e = EGLEvent(4, 0, 0)
+type EGLEvent is (U8, F32, F32)
+let e: EGLEvent = (4, 0, 0)
 @setEvent[None](e)
 ```
+
+Note that FFI calls which return structs by value are not consistent enough across compilers to be supported.
 
 ### Get and Pass Pointers to FFI
 To pass and receive pointers to c structs you need to declare pointer to primitives
