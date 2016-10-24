@@ -60,27 +60,7 @@ var len = U64(0)
 @pcre2_substring_length_bynumber_8[I32](_match, i.u32(), addressof len)
 ```
 
-### To read c structs from FFI
-If you have a c struct like this
-```c
-typedef struct {
-  uint8_t code;
-  float x;
-  float y;
-} EGLEvent;
-
-EGLEvent getEvent() {
-    EGLEvent e = {1, ev.xconfigure.width, ev.xconfigure.height};
-    return e;
-}
-```
-the you can destructure it and get the values using a tuple
-```pony
-type EGLEvent is (U8, F32, F32)
-(var code, var x, var y) = @getEvent[EGLEvent]()
-```
-
-### To pass c structs to FFI
+### To pass c structs by value to FFI
 If you have a c struct like this
 ```c
 typedef struct {
@@ -99,6 +79,8 @@ type EGLEvent is (U8, F32, F32)
 let e: EGLEvent = (4, 0, 0)
 @setEvent[None](e)
 ```
+
+Note that FFI calls which return structs by value are not consistent enough across compilers to be supported.
 
 ### Get and Pass Pointers to FFI
 To pass and receive pointers to c structs you need to declare pointer to primitives
