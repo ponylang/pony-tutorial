@@ -37,14 +37,24 @@ class Foo
 
 When we assign to a field in the constructor, we are _capturing_ from the lexical scope the object literal is in. Pretty fun stuff! It lets us have arbitrarily complex __closures__ that can even have multiple entry points (i.e. functions you can call on a closure).
 
-An object literal is always returned as a `ref`, like a default constructor on a class. To get another reference capability (`iso`, `val`, etc.), you can wrap the object literal in a `recover` expression.
+An object literal with fields is returned as a `ref` by default, unless an explicit reference capability is declared by specifying the capability after the `object` keyword. For example, an object with sendable captured references can be declared as `iso` if needed:
+
+```pony
+class Foo
+  fun foo(str: String): Hashable iso^ =>
+    object iso is Hashable
+      let s: String = str
+      fun apply(): String => s
+      fun hash(): U64 => s.hash()
+    end
+```
 
 ## Lambdas
 
-Arbitrarily complex closures are nice, but sometimes we just want a simple closure. In Pony, you can use the `lambda` keyword for that.
+Arbitrarily complex closures are nice, but sometimes we just want a simple closure. In Pony, you can use the lambdas for that. A lambda is written as a function (implicitly named `apply`) enclosed in curly brackets:
 
 ```pony
-lambda(s: String): String => "lambda: " + s end
+{(s: String): String => "lambda: " + s }
 ```
 
 This produces the same code as:
@@ -55,34 +65,48 @@ object
 end
 ```
 
-The `lambda` keyword can be used to capture from lexical scope in the same way that object literals can assign from the lexical scope to a field. This is done by adding a second parameter list after the arguments:
+The reference capability of the lambda object can be declared by appending it after the closing curly bracket:
+
+```pony
+{(s: String): String => "lambda: " + s } iso
+```
+
+This produces the same code as:
+
+```pony
+object iso
+  fun apply(s: String): String => "lambda: " + s
+end
+```
+
+Lambdas can be used to capture from lexical scope in the same way as object literals can assign from the lexical scope to a field. This is done by adding a second argument list after the parameters:
 
 ```pony
 class Foo
   new create(env:Env) =>
-    foo(lambda(s: String)(env) => env.out.print(s) end)
+    foo({(s: String)(env) => env.out.print(s) })
 
   fun foo(f: {(String)}) =>
     f("Hello World")
 ```
 
-The captured variables can be renamed if desired by assigning a new name in the capture parameter list:
+The captured variables can be renamed if desired by assigning a new name in the capture list:
 
 ```pony
   new create(env:Env) =>
-    foo(lambda(s: String)(myenv=env) => myenv.out.print(s) end)
+    foo({(s: String)(myenv=env) => myenv.out.print(s) })
 ```
 
-The type of a lambda is declared using curly brackets. Within the brackets the function parameter types are specified within parentheses followed by an optional colon and return type. The example above uses `{(String)}` to be the type of a lambda function that takes a `String` as an argument and returns nothing.
+The type of a lambda is also declared using curly brackets. Within the brackets the function parameter types are specified within parentheses followed by an optional colon and return type. The example above uses `{(String)}` to be the type of a lambda function that takes a `String` as an argument and returns nothing.
 
-A lambda object is always returned as `val` if it does not close over any other variables. If it does capture values from the lexical scope then it is returned as a `ref`. The reference capability in the type declaration can be supplied by adding it before the closing curly bracket. If it is not provided it defaults to `ref`. The following is an example of a `val` lambda object:
+If the lambda object is not declared with a specific reference capability, the reference capability is inferred from the structure of the lambda. If the lambda does not have any captured references, it will be `val` by default; if it does have captured references, it will be `ref` by default. The following is an example of a `val` lambda object:
 
 ```pony
 actor Main
   new create(env:Env) =>
     let l = List[U32]
     l.push(10).push(20).push(30).push(40)
-    let r = reduce(l, 0, lambda(a:U32,b:U32): U32 => a + b end)
+    let r = reduce(l, 0, {(a:U32,b:U32): U32 => a + b })
     env.out.print("Result: " + r.string())
 
   fun reduce(l: List[U32], acc: U32, f: {(U32, U32): U32} val): U32 =>
@@ -94,7 +118,7 @@ actor Main
     end
 ```
 
-`reduce` in this example declares the lambda type to have reference capability `val`. It is required here as the default for the type declaration is `ref` and that would not match with the lambda object being used in the `reduce` call - that defaults to `val` as it isn't capturing anything from the lexical scope.
+The `reduce` method in this example requires the lambda type for the `f` parameter to require a reference capability of `val`. The lambda object passed in as an argument does not need to declare an explicit reference capability because `val` is the default for a lambda that does not capture anything.
 
 As mentioned previously the lambda desugars to an object literal with an `apply` method. The reference capability for the `apply` method defaults to `box` like any other method. In a lambda that captures this needs to be `ref` if the function needs to modify any of the captured variables or call `ref` methods on them. The reference capabiltity for the method (versus the reference capability for the object which was described above) is defined by putting the capability before the parenthesized argument list.
 
@@ -104,21 +128,22 @@ actor Main
     let l = List[String]
     l.push("hello").push("world")
     var count = U32(0)
-    for_each(l, lambda ref(s:String)(env,count) =>
-                    env.out.print(s)
-                    count = count + 1
-                end)
+    for_each(l, {ref(s:String)(env,count) =>
+      env.out.print(s)
+      count = count + 1
+    })
     // Displays '0' as the count
     env.out.print("Count: " + count.string())
 
-  fun for_each(l: List[String], f: {ref(String)}) =>
+  fun for_each(l: List[String], f: {ref(String)} ref) =>
     try
       f(l.shift())
       for_each(l, f)
     end
 ```
 
-This example declares the type of the apply function that is generated by the lambda expression as being `ref`. The type declaration for it in the `for_each` method also declares it as `ref`. The lambda function captures some variables so the object that is generated is `ref` and the default for the type declaration is `ref` so everything type checks.
+This example declares the type of the apply function that is generated by the 
+lambda expression as being `ref`. The lambda type declaration for the `f` parameter in the `for_each` method also declares it as `ref`. The reference capability of the lambda type must also be `ref` so that the method can be called. The lambda object does not need to declare an explicit reference capability because `val` is the default for a lambda that has captures.
 
 ## Actor literals
 
@@ -135,7 +160,7 @@ An actor literal is always returned as a `tag`.
 
 ## Primitive literals
 
-When an anonymous type has no fields and no behaviours (like, for example, an object literal declared with the `lambda` keyword), the compiler generates it as an anonymous primitive. This means no memory allocation is needed to generate an instance of that type.
+When an anonymous type has no fields and no behaviours (like, for example, an object literal declared as a lambda literal), the compiler generates it as an anonymous primitive, unless an non-`val` reference capability is explicitly given. This means no memory allocation is needed to generate an instance of that type.
 
 In other words, a lambda in Pony has no memory allocation overhead. Nice.
 
