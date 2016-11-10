@@ -198,7 +198,7 @@ __Can I call using positional arguments but miss out the first one?__ No. If you
 
 ## Chaining
 
-Method chaining allows you to chain calls on an object without requiring the method to return its receiver. The syntax to call a method and chain the receiver is `object.>method()`, which is roughly equivalent to `(object.method() ; object)`. Chaining a method discards its original return value.
+Method chaining allows you to chain calls on an object without requiring the method to return its receiver. The syntax to call a method and chain the receiver is `object.>method()`, which is roughly equivalent to `(object.method() ; object)`. Chaining a method discards its normal return value.
 
 ```pony
 primitive Printer
@@ -210,6 +210,19 @@ primitive Printer
 ```
 
 Note that the last `.>` in a chain can be a `.` if the return value of the last call matters.
+
+```pony
+interface Factory
+  fun add_option(o: Option)
+  fun make_object(): Object
+
+primitive Foo
+  fun object_wrong(f: Factory, o1: Option, o2: Option): Object =>
+    f.>add_option(o1).>add_option(o2).>make_object() // Error! The expression returns a Factory
+
+  fun object_right(f: Factory, o1: Option, o2: Option): Object =>
+    f.>add_option(o1).>add_option(o2).make_object() // Works. The expression returns an Object
+```
 
 ## Privacy
 
