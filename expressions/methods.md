@@ -196,6 +196,19 @@ class Foo
 
 __Can I call using positional arguments but miss out the first one?__ No. If you use positional arguments they must be the first ones in the call.
 
+## Chaining
+
+Method chaining allows you to chain calls on an object without requiring the method to return its receiver. The syntax to call a method and chain the receiver is `object.>method()`.
+
+```pony
+primitive Printer
+  fun print_two_strings(out: StdStream, s1: String, s2: String) =>
+    out.>print(s1).print(s2)
+    // Equivalent to:
+    out.print(s1)
+    out.print(s2)
+```
+
 ## Privacy
 
 In Pony method names start either with a lower case letter or with an underscore followed by a lower case letter. Methods with a leading underscore are private. This means they can only be called by code within the same package. Methods without a leading underscore are public and can be called by anyone.
