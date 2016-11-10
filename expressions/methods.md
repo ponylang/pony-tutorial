@@ -207,6 +207,7 @@ primitive Printer
     // Equivalent to:
     out.print(s1)
     out.print(s2)
+    out
 ```
 
 Note that the last `.>` in a chain can be a `.` if the return value of the last call matters.
