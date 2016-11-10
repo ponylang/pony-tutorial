@@ -198,7 +198,7 @@ __Can I call using positional arguments but miss out the first one?__ No. If you
 
 ## Chaining
 
-Method chaining allows you to chain calls on an object without requiring the method to return its receiver. The syntax to call a method and chain the receiver is `object.>method()`.
+Method chaining allows you to chain calls on an object without requiring the method to return its receiver. The syntax to call a method and chain the receiver is `object.>method()`, which is roughly equivalent to `(object.method() ; object)`.
 
 ```pony
 primitive Printer
