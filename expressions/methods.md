@@ -198,16 +198,18 @@ __Can I call using positional arguments but miss out the first one?__ No. If you
 
 ## Chaining
 
-Method chaining allows you to chain calls on an object without requiring the method to return its receiver. The syntax to call a method and chain the receiver is `object.>method()`, which is roughly equivalent to `(object.method() ; object)`.
+Method chaining allows you to chain calls on an object without requiring the method to return its receiver. The syntax to call a method and chain the receiver is `object.>method()`, which is roughly equivalent to `(object.method() ; object)`. Chaining a method discards its original return value.
 
 ```pony
 primitive Printer
   fun print_two_strings(out: StdStream, s1: String, s2: String) =>
-    out.>print(s1).print(s2)
+    out.>print(s1).>print(s2)
     // Equivalent to:
     out.print(s1)
     out.print(s2)
 ```
+
+Note that the last `.>` in a chain can be a `.` if the return value of the last call matters.
 
 ## Privacy
 
