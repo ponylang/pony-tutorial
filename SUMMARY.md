@@ -67,3 +67,4 @@
   * [Garbage Collection with Pony-ORCA](appendices/garbage-collection.md)
   * [Platform dependent code](appendices/platform-dependent-code.md)
   * [A short guide to Pony error messages](appendices/error-messages.md)
+  * [Program Annotations](appendices/annotations.md)
