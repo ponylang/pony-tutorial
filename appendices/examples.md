@@ -202,28 +202,6 @@ class Test
       """
 ```
 
-## How to Delegate objects
-
-```pony
-trait TAnimal
-  fun talk(): String
-
-class Cat is TAnimal
-  fun talk(): String =>
-    "Meow"
-
-class CatToy is TAnimal
-  let _cat: Cat delegate TAnimal = Cat
-
-let animals: Array[TAnimal] = Array[TAnimal]
-animals.push(Cat.create())
-animals.push(CatToy.create())
-
-for animal in animals.values() do
-  env.out.print(animal.talk())
-end
-```
-
 ## How to create Arrays with values
 ```pony
 let dice: Array[U32] = [1, 2, 3, 4, 5, 6]
