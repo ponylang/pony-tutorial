@@ -38,6 +38,8 @@ __Is there anything my error handler has to do?__ No. If you provide an error ha
 
 Pony does not require that all errors are handled immediately as in our previous examples. Instead functions can raise errors that are handled by whatever code calls them. These are called partial functions (this is a mathematical term meaning a function that does not have a defined result for all possible inputs, i.e. arguments). Partial functions __must__ be marked as such in Pony with a `?`.
 
+For example, a somewhat contrived version of the factorial function that accepts a signed integer will error if given a negative input. It's only partially defined over its valid input type.
+
 ```pony
 fun factorial(x: I32): I32 ? =>
   if x < 0 then error end
