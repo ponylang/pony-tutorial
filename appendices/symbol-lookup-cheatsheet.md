@@ -23,6 +23,7 @@ Here is a more elaborate explanation of Pony's use of special characters: (a lin
 | `,`  | to separate parameters in a function signature, or the items of a tuple |
 | `.`  | (1) to call a field or a function on a variable (field access or method call) |
 |    | (2) to qualify a type/method with its package name |
+| `.>` | to call a method on an object and return the receiver (chaining) |
 | `'`  | used as alternative name in parameters (prime) |
 | `"`  | to delineate a literal string |
 | `"""`  | to delineate a documentation string |
