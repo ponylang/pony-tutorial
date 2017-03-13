@@ -99,6 +99,25 @@ if e_dpy.is_null() then
 end
 ```
 
+### Read Struct Values from FFI
+
+A common pattern in C is to pass a struct pointer to a function, and that function will fill in various values in the struct. To do this in Pony, you make a `struct` and then use a `MaybePointer`:
+
+```pony
+struct Winsize
+  var height: U16 = 0
+  var width: U16 = 0
+
+  new create() => None
+
+let size = Winsize
+
+@ioctl(0, 21523, MaybePointer[Winsize](size))
+
+env.out.print(size.height.string())
+```
+
+
 ## FFI functions raising errors
 
 FFI functions can raise Pony errors. Functions in existing C libraries are very unlikely to do this, but support libraries specifically written for use with Pony may well do.
