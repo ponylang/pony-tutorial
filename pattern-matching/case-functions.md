@@ -53,7 +53,7 @@ The parameter types for different cases do not have to match, but each case of t
 
 In the following implementation of [FizzBuzz](http://c2.com/cgi/wiki?FizzBuzzTest) `fizz_buzz` is a case function that takes either a `U64` or a `Range[U64]`, and consequently returns either a `String` or an `Array[String]`, while the helper function `_fizz_buzz` is a case function that determines what to return by matching the arguments that are passed to it:
 
-```
+```pony
 use "collections"
 
 class FizzBuzz
@@ -85,7 +85,7 @@ actor Main
 
 It is important to note that case functions resolve overlapping cases by using the first function that matches. For example, the prints `foo bar` because the case of `foo` matching the type `Foo` is declared before the one that matches `Bar`, and the case of `bar` matching the type `Bar` is declared before the one that matches `Foo`:
 
-```
+```pony
 interface Foo
 
 class Bar is Foo

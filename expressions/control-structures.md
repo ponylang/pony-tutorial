@@ -108,7 +108,7 @@ Pony `while` loops are very similar to those in other languages. A condition exp
 
 Here's an example that prints out the numbers 1 to 10:
 
-```
+```pony
 var count: U32 = 1
 
 while count <= 10 do
