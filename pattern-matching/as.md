@@ -10,7 +10,7 @@ Let's look at an example. The `json` package provides a type called `JsonDoc` th
 
 In the following program, the commandline arguments are parsed as Json. A running sum is kept of all of the arguments that can be parsed as `I64` numbers, and all other arguments are ignored.
 
-```
+```pony
 use "json"
 
 actor Main
@@ -62,7 +62,7 @@ The `as` operator can be used to tell the compiler what type to use for the item
 
 For example, in the case of the following program, the method `foo` can take either an `Array[U32] ref` or an `Array[U64] ref` as an argument. If a literal array is passed as an argument to the method and no type is specified then the compiler cannot deduce the correct one because there are two equally valid ones.
 
-```
+```pony
 actor Main
   actor Main
   fun foo(xs: (Array[U32] ref | Array[U64] ref)): Bool =>
