@@ -48,7 +48,7 @@ __Wait, what's the body?__ It's the code that comes after the `=>`.
 
 This is your program! What the heck is it doing?
 
-In Pony a dot is a either a field access or a method call, much like other languages. If the name after the dot has parentheses after it, it's a method call. Otherwise, it's a field access.
+In Pony a dot is either a field access or a method call, much like other languages. If the name after the dot has parentheses after it, it's a method call. Otherwise, it's a field access.
 
 So here, we start with a reference to `env`. We then lookup the field `out` on our object `env`. As it happens, that field represents __stdout__, i.e. usually it means printing to your console. Then, we call the `print` method on `env.out`. The stuff inside the parentheses are the arguments to the function. In this case, we are passing a __string literal__, i.e. the stuff in double quotes.
 
