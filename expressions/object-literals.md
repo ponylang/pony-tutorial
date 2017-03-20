@@ -180,7 +180,7 @@ An actor literal is always returned as a `tag`.
 
 ## Primitive literals
 
-When an anonymous type has no fields and no behaviours (like, for example, an object literal declared as a lambda literal), the compiler generates it as an anonymous primitive, unless an non-`val` reference capability is explicitly given. This means no memory allocation is needed to generate an instance of that type.
+When an anonymous type has no fields and no behaviours (like, for example, an object literal declared as a lambda literal), the compiler generates it as an anonymous primitive, unless a non-`val` reference capability is explicitly given. This means no memory allocation is needed to generate an instance of that type.
 
 In other words, in Pony, a lambda that doesn't close over anything has no memory allocation overhead. Nice.
 

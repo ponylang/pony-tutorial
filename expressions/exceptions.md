@@ -128,7 +128,7 @@ The only language construct that can raise an error, other than the error comman
 
 ## Comparison to exceptions in other languages
 
-Pony exceptions behave very much the same as those in C++, Java, C#, Python, and Ruby. The key difference is that Pony exceptions do not have a type or instance associated with them. This makes them the same as C++ exceptions would be if a fixed literal was always thrown, eg `throw 3;`. This difference simplifies exception handling for the programmer and allows for much better runtime error handling performance.
+Pony exceptions behave very much the same as those in C++, Java, C#, Python, and Ruby. The key difference is that Pony exceptions do not have a type or instance associated with them. This makes them the same as C++ exceptions would be if a fixed literal was always thrown, e.g. `throw 3;`. This difference simplifies exception handling for the programmer and allows for much better runtime error handling performance.
 
 The `else` handler in a `try` expression is just like a `catch(...)` in C++, `catch(Exception e)` in Java or C#, `except:` in Python, or `rescue` in Ruby. Since exceptions do not have types there is no need for handlers to specify types or to have multiple handlers in a single try block.
 
