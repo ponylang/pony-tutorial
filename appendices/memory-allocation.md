@@ -1,6 +1,6 @@
 # Memory Allocation at Runtime
 
-Pony is NULL-free, type-safe language, with no dangling pointers, no buffer overruns, but with a **very fast garbage collector**, so you don't have to worry about explicit memory allocation, if on the heap or stack, if in a threaded actor, or not.
+Pony is a NULL-free, type-safe language, with no dangling pointers, no buffer overruns, but with a **very fast garbage collector**, so you don't have to worry about explicit memory allocation, if on the heap or stack, if in a threaded actor, or not.
 
 ## Fast, Safe and Cheap
 

@@ -26,7 +26,7 @@ The Pony type system guarantees soundness and race and dead-lock free concurrenc
 
 4. An actor may garbage collect between its normal behaviours, i.e. it need not wait untils its message queue is empty.
 
-5. Pony-ORCA can be applied to several other programming languages, provided that the satisfy the following two requirements:
+5. Pony-ORCA can be applied to several other programming languages, provided that they satisfy the following two requirements:
 
     * **Actor behaviours are atomic**.
 
