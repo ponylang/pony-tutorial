@@ -44,7 +44,7 @@ end
 env.out.print(x)  // Illegal
 ```
 
-Variables only exists from when they are defined until the end of the current scope. For our variable `x` this is the `end` at the end of the then expression: after that it cannot be used.
+Variables only exist from when they are defined until the end of the current scope. For our variable `x` this is the `end` at the end of the then expression: after that it cannot be used.
 
 ## Var vs. let
 
