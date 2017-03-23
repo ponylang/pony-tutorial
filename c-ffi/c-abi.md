@@ -77,9 +77,9 @@ int32_t jch_chash(uint64_t key, uint32_t num_buckets)
 We need to compile the native code to a shared library. This example is for OSX. The exact details may vary on other platforms.
 
 ```
-clang++ -fPIC -Wall -Wextra -O3 -g -MM jch.c >jch.d
-clang++ -fPIC -Wall -Wextra -O3 -g   -c -o jch.o jch.c
-clang++ -shared -lm -o libjch.dylib jch.o
+clang -fPIC -Wall -Wextra -O3 -g -MM jch.c >jch.d
+clang -fPIC -Wall -Wextra -O3 -g   -c -o jch.o jch.c
+clang -shared -lm -o libjch.dylib jch.o
 ```
 
 The Pony code to use this new C library is just like the code we've already seen for using C libraries.
