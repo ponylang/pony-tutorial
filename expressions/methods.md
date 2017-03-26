@@ -53,7 +53,7 @@ class Foo
   var _x: U32
 
   new create() =>
-	_x = 0
+    _x = 0
 
   new from_int(x: U32) =>
     _x = x
@@ -83,7 +83,7 @@ class Foo
   var _x: U32
 
   new create() =>
-	_x = 0
+    _x = 0
 
   new from_int(x: U32) =>
     _x = x
@@ -91,7 +91,7 @@ class Foo
 class Bar
   fun f() =>
     var a: Foo = Foo.create()
-	var b: Foo = Foo.from_int(3)
+    var b: Foo = Foo.from_int(3)
 ```
 
 Functions are always called on an object. Again just specify the object, followed by a dot, followed by the name of the function to call. If the object to call on is omitted then the current object is used (i.e. `this`).
@@ -101,7 +101,7 @@ class Foo
   var _x: U32
 
   new create() =>
-	_x = 0
+    _x = 0
 
   new from_int(x: U32) =>
     _x = x
@@ -112,8 +112,8 @@ class Foo
 class Bar
   fun f() =>
     var a: Foo = Foo.from_int(3)
-	var b: U32 = a.get()
-	var c: U32 = g(b)
+    var b: U32 = a.get()
+    var c: U32 = g(b)
 
   fun g(x: U32): U32 =>
     x + 1
@@ -127,7 +127,7 @@ class Foo
   var _x: U32
 
   new create() =>
-	_x = 0
+    _x = 0
 
   new from_int(x: U32) =>
     _x = x
@@ -135,7 +135,7 @@ class Foo
 class Bar
   fun f() =>
     var a: Foo = Foo.create()
-	var b: Foo = a.from_int(3)
+    var b: Foo = a.from_int(3)
 ```
 
 ## Default arguments
@@ -149,13 +149,13 @@ class Coord
 
   new create(x: U32 = 0, y: U32 = 0) =>
     _x = x
-	_y = y
+    _y = y
 
 class Bar
   fun f() =>
     var a: Coord = Coord.create()     // Contains (0, 0)
-	var b: Coord = Coord.create(3)    // Contains (3, 0)
-	var b: Coord = Coord.create(3, 4) // Contains (3, 4)
+    var b: Coord = Coord.create(3)    // Contains (3, 0)
+    var b: Coord = Coord.create(3, 4) // Contains (3, 4)
 ```
 
 __Do I have to provide default values for all of my arguments?__ No, you can provide defaults for as many, or as few, as you like.
@@ -173,7 +173,7 @@ class Coord
 
   new create(x: U32 = 0, y: U32 = 0) =>
     _x = x
-	_y = y
+    _y = y
 
 class Bar
   fun f() =>
@@ -193,8 +193,8 @@ class Foo
 
   fun g() =>
     f(6, 7 where d = 8)
-	// Equivalent to:
-	f(6, 7, 3, 8, 5)
+    // Equivalent to:
+    f(6, 7, 3, 8, 5)
 ```
 
 __Can I call using positional arguments but miss out the first one?__ No. If you use positional arguments they must be the first ones in the call.

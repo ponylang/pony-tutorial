@@ -48,7 +48,7 @@ fun f(x: U32): String =>
   | 3 => "three"
   | 5 => "not four"
   else
-	"something else"
+    "something else"
   end
 ```
 
@@ -74,7 +74,7 @@ actor Main
     | Foo(3) => "three"
     | Foo(5) => "not four"
     else
-	  "something else"
+      "something else"
     end
 ```
 
@@ -90,7 +90,7 @@ fun f(x: (U32 | String | None)): String =>
   | 3 => "three"
   | "5" => "not four"
   else
-	"something else"
+    "something else"
   end
 ```
 
@@ -113,7 +113,7 @@ fun f(x: (U32 | String | None)): String =>
   | let u: U32 => "other integer"
   | let s: String => s
   else
-	"something else"
+    "something else"
   end
 ```
 
@@ -131,7 +131,7 @@ fun f(x: (String | None), y: U32): String =>
   | (let s: String, 3) => s + " three"
   | (let s: String, let u: U32) => s + " other integer"
   else
-	"something else"
+    "something else"
   end
 ```
 
@@ -145,7 +145,7 @@ fun f(x: (String | None), y: U32): String =>
   | (let s: String, 3) => s + " three"
   | (let s: String, _) => s + " other integer"
   else
-	"something else"
+    "something else"
   end
 ```
 
@@ -166,6 +166,6 @@ fun f(x: (String | None), y: U32): String =>
   | (let s: String, let u: U32) if u > 14 => s + " other big integer"
   | (let s: String, _) => s + " other small integer"
   else
-	"something else"
+    "something else"
   end
 ```

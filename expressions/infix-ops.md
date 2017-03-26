@@ -58,18 +58,18 @@ class Pair
 
   new create(x: U32, y: U32) =>
     _x = x
-	_y = y
+    _y = y
 
   // Define a + function
   fun add(other: Pair): Pair =>
-	Pair(_x + other._x, _y + other._y)
+    Pair(_x + other._x, _y + other._y)
 
 // Now let's use it
 class Foo
   fun foo() =>
     var x = Pair(1, 2)
-	var y = Pair(3, 4)
-	var z = x + y
+    var y = Pair(3, 4)
+    var z = x + y
 ```
 
 [Case functions](http://tutorial.ponylang.org/pattern-matching/case-functions.html) can be used to provide more than one `add` function. It is also possible to overload infix operators to some degree using union types or f-bounded polymorphism, but this is beyond the scope of this tutorial. See the Pony standard library for further information.
