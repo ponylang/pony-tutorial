@@ -6,7 +6,7 @@ Hey, congratulations! You've made it to the end of the Pony tutorial. So, what d
 
 We don't have an automatic blog aggregator, but wish we did. In the meantime, we have a hand curated list of videos, blog posts etc that would be of interest to members of the Pony community. Just beware when you are checking out older posts, its quite possible that their examples no longer compile as Pony development is currently moving very quickly.
 
-[Planet Pony](https://pony.groups.io/g/user/wiki/Planet-Pony)
+[Planet Pony](http://www.ponylang.org/community/planet-pony/)
 
 ## Pony Patterns
 
