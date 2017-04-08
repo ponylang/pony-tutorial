@@ -113,4 +113,4 @@ The test's TestHelper is handed to tear_down() and it is permitted to log messag
 
 ## Additional resources
 
-You can learn more about PonyTest specifics by checking out the [API documentation](http://www.ponylang.org/ponyc/ponytest--index/). There's also a [testing section](http://patterns.ponylang.org/testing/index.html) in the [Pony Patterns](http://patterns.ponylang.org/) book.
+You can learn more about PonyTest specifics by checking out the [API documentation](http://stdlib.ponylang.org/ponytest--index/). There's also a [testing section](http://patterns.ponylang.org/testing/index.html) in the [Pony Patterns](http://patterns.ponylang.org/) book.
