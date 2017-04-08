@@ -171,7 +171,7 @@ The Pony `for` loop iterates over a collection of items using an iterator. On ea
 For example to print out all the strings in an array:
 
 ```pony
-for name in ["Bob", "Fred", "Sarah"].values() do
+for name in ["Bob"; "Fred"' "Sarah"].values() do
   env.out.print(name)
 end
 ```
@@ -189,7 +189,7 @@ where T is the type of the objects in the collection. You don't need to worry ab
 You can think of the above example as being equivalent to:
 
 ```pony
-let iterator = ["Bob", "Fred", "Sarah"].values()
+let iterator = ["Bob"; "Fred"; "Sarah"].values()
 while iterator.has_next() do
   let name = iterator.next()
   env.out.print(name)

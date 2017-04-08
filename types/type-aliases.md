@@ -42,7 +42,7 @@ You might also want to iterate over the enum like this to print its name for deb
 ```pony
 primitive ColourList
   fun tag apply(): Array[Colour] =>
-    [Red, Green, Blue]
+    [Red; Green; Blue]
 
 for colour in ColourList().values() do
 end

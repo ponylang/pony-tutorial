@@ -26,7 +26,7 @@ type Colour is (Black | Blue | Red | Yellow)
 
 primitive ColourList
   fun tag apply(): Array[Colour] =>
-    [Black, Blue, Red, Yellow]
+    [Black; Blue; Red; Yellow]
 
 for colour in ColourList().values() do
 end
@@ -203,8 +203,15 @@ class Test
 ```
 
 ## How to create Arrays with values
+
+Single values can be separated by semicolon or newline.
+
 ```pony
-let dice: Array[U32] = [1, 2, 3, 4, 5, 6]
+let dice: Array[U32] = [1; 2; 3 
+  4 
+  5
+  6
+]
 ```
 
 ## How to modify a lexically captured variable in a closure

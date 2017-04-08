@@ -69,9 +69,9 @@ actor Main
     // do something boring here
 
   new create(env: Env) =>
-    foo([as U32: 1, 2, 3])
+    foo([as U32: 1; 2; 3])
     // the compiler would complain about this:
-    //   foo([1, 2, 3])
+    //   foo([1; 2; 3])
 ```
 
 The requested type must be a valid type for the items in the array. Since these types are checked at compile time they are guaranteed to work, so there is no need for the programmer to handle an error condition.
