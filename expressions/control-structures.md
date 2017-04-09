@@ -171,7 +171,7 @@ The Pony `for` loop iterates over a collection of items using an iterator. On ea
 For example to print out all the strings in an array:
 
 ```pony
-for name in ["Bob"; "Fred"' "Sarah"].values() do
+for name in ["Bob"; "Fred"; "Sarah"].values() do
   env.out.print(name)
 end
 ```
