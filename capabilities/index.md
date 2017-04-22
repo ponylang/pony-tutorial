@@ -16,6 +16,6 @@ Capabilities are core to what makes Pony special. You might remember in the intr
 
 Object and reference capabilities are what make all that awesome possible.
 
-By the time you finish this chapter, you should start to have a handle on what capabilities are and how you can use them. Don't worry if you struggle with them at first. For most people, its a new way of thinking about your code and takes a while to grasp. If you get stuck trying to get your capabilities right, definiitely reach out for help. Once you've used them for a couple weeks, problems with capabilities start to melt away, but before that can be a real struggle. Don't worry, we all go through that struggle and the Pony community is waiting to help. Find us on IRC at #ponylang on Freenode or on the [mailing list](https://groups.io/g/pony+user).
+By the time you finish this chapter, you should start to have a handle on what capabilities are and how you can use them. Don't worry if you struggle with them at first. For most people, its a new way of thinking about your code and takes a while to grasp. If you get stuck trying to get your capabilities right, definitely reach out for help. Once you've used them for a couple weeks, problems with capabilities start to melt away, but before that can be a real struggle. Don't worry, we all go through that struggle and the Pony community is waiting to help. Find us on IRC at #ponylang on Freenode or on the [mailing list](https://groups.io/g/pony+user).
 
 Scared? Don't be. Ready? Good. Let's get started with object capabilities.
