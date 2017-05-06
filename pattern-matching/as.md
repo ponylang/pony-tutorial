@@ -6,9 +6,9 @@ The `as` operator in Pony has two related uses. First, it provides a safe way to
 
 The `as` operator can be used to create a reference to an object with a more specific type than the given reference, if possible. This can be applied to types that are related through inheritance, as well as unions and intersections. This is done at runtime, and if it fails then an error is raised.
 
-Let's look at an example. The `json` package provides a type called `JsonDoc` that can attempt to parse strings as fragments of JSON. The parsed value is stored in the `data` field of the object, and that field's type is the union `(F64 | I64 | Bool | None | String | JsonArray | JsonObject)`. So if there is a `JsonDoc` object referenced by `jsonDoc` then `jsonDoc.parse("42")` will store an `I64` equal to `42` in `jsonDoc.data`. If the programmer want to treat `jsonDoc.data` as an `I64` then they can get an `I64` reference to the data by using `jsonDoc.data as I64`.
+Let's look at an example. The `json` package provides a type called `JsonDoc` that can attempt to parse strings as fragments of JSON. The parsed value is stored in the `data` field of the object, and that field's type is the union `(F64 | I64 | Bool | None | String | JsonArray | JsonObject)`. So if there is a `JsonDoc` object referenced by `jsonDoc` then `jsonDoc.parse("42")` will store an `I64` equal to `42` in `jsonDoc.data`. If the programmer wants to treat `jsonDoc.data` as an `I64` then they can get an `I64` reference to the data by using `jsonDoc.data as I64`.
 
-In the following program, the commandline arguments are parsed as Json. A running sum is kept of all of the arguments that can be parsed as `I64` numbers, and all other arguments are ignored.
+In the following program, the command line arguments are parsed as Json. A running sum is kept of all of the arguments that can be parsed as `I64` numbers, and all other arguments are ignored.
 
 ```pony
 use "json"
@@ -58,7 +58,7 @@ actor Main
 
 ## Specify the type of items in an array literal
 
-The `as` operator can be used to tell the compiler what type to use for the items in an array literal. In many cases the compiler can infer the type, but sometimes it is ambiguous.
+The `as` operator can be used to tell the compiler what type to use for the items in an array literal. In many cases, the compiler can infer the type, but sometimes it is ambiguous.
 
 For example, in the case of the following program, the method `foo` can take either an `Array[U32] ref` or an `Array[U64] ref` as an argument. If a literal array is passed as an argument to the method and no type is specified then the compiler cannot deduce the correct one because there are two equally valid ones.
 

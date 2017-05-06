@@ -1,6 +1,6 @@
 # Garbage Collection
 
-There's a common GC anti-pattern that many new Pony programmers accidentally stumble across. Usually this results in a skyrocketing memory usage in their test program and questions on the mailing list and IRC as to why Pony isn't working correctly. It is, in fact, working correctly, albeit not obviously.
+There's a common GC anti-pattern that many new Pony programmers accidentally stumble across. Usually, this results in a skyrocketing memory usage in their test program and questions on the mailing list and IRC as to why Pony isn't working correctly. It is, in fact, working correctly, albeit not obviously.
 
 ## Garbage Collection in the world at large
 
@@ -8,7 +8,7 @@ Garbage collection, in most languages, can run at any time. Your program can be 
 
 ## Garbage Collection in Pony
 
-Garbage collection is never attempted on any actor while it is executing a behavior. This gives you very predictable performance when executing behaviors but also makes it easy to grab way more memory than you intend to. Let's take a look at how that can happen via the "long running behavior problem".
+Garbage collection is never attempted on any actor while it is executing a behavior. This gives you very predictable performance when executing behaviors but also makes it easy to grab way more memory than you intend to. Let's take a look at how that can happen via the "long-running behavior problem".
 
 ## Long running behaviors and memory
 

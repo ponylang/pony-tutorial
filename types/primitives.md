@@ -26,7 +26,7 @@ The __primitive__ keyword is also used to introduce certain built-in "machine wo
 * __USize, ULong, U8, U16, U32, U64, U128__. Unsigned integers of various widths.
 * __F32, F64__. Floating point numbers of various widths.
 
-__ISize/USize__ correspond to the bitwidth of the native type `size_t`, which varies by platform. __ILong/ULong__ similarly correspond to the bitwidth of the native type `long`, which also varies by platform. The bitwidth of a native `int` is the same across all the platforms that Pony supports, and you can use __I32/U32__ for this.
+__ISize/USize__ correspond to the bit width of the native type `size_t`, which varies by platform. __ILong/ULong__ similarly correspond to the bit width of the native type `long`, which also varies by platform. The bit width of a native `int` is the same across all the platforms that Pony supports, and you can use __I32/U32__ for this.
 
 ## Primitive initialisation and finalisation
 

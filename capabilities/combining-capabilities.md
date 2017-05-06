@@ -6,7 +6,7 @@ This is because all the guarantees that the __origin__ reference capability make
 
 # Viewpoint adaptation
 
-The process of combining origin and field capabilties is called __viewpoint adaptation__. That is, the __origin__ has a __viewpoint__, and can "see" its fields only from that __viewpoint__.
+The process of combining origin and field capabilities is called __viewpoint adaptation__. That is, the __origin__ has a __viewpoint__, and can "see" its fields only from that __viewpoint__.
 
 Let's start with a table. This shows how __fields__ of each capability "look" to __origins__ of each capability.
 
@@ -45,11 +45,11 @@ Anything read through an `iso` origin has to maintain the isolation guarantee th
 
 An `iso` field makes the same guarantees as an `iso` origin, so that's fine to read. A `val` field is _globally immutable_, which means it's always ok to read it, no matter what the origin is (well, other than `tag`).
 
-Everything else, though, can break our isolation guarantees. That's why other reference capabilities are seen as `tag`: it's the only type that is neither readable nor writeable.
+Everything else, though, can break our isolation guarantees. That's why other reference capabilities are seen as `tag`: it's the only type that is neither readable nor writable.
 
 ### Reading from a `trn` variable
 
-This is like `iso`, but with a weaker guarantee (_write uniqueness_ as opposed to _read and write uniqueness_). That makes a big difference, since now we can return something readable when we enforce our guarantees.
+This is like `iso`, but with a weaker guarantee (_write uniqueness_ as opposed to _read and write uniqueness_). That makes a big difference since now we can return something readable when we enforce our guarantees.
 
 An `iso` field makes stronger guarantees than a `trn` origin, and a `trn` field makes the same guarantees, so they're fine to read. A `val` field is _globally immutable_, so that's fine too. A `box` field is readable, and we only guarantee _write uniqueness_, so that's fine too.
 
@@ -67,7 +67,7 @@ A `val` origin is deeply and globally immutable, so all of its fields are also `
 
 A `box` variable is locally immutable. This means it's possible that it may be mutated through some other variable (a `trn` or a `ref`), but it's also possible that our `box` variable is an alias of some `val` variable.
 
-When we read a field, we need to return a reference capability that is compatible with the field, but is also locally immutable.
+When we read a field, we need to return a reference capability that is compatible with the field but is also locally immutable.
 
 An `iso` field is returned as a `tag` because no locally immutable reference capability can maintain its isolation guarantees. A `val` field is returned as a `val` because global immutability is a stronger guarantee than local immutability. A `box` field makes the same local immutability guarantee as its origin, so that's also fine.
 

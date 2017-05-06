@@ -1,6 +1,6 @@
-# Platform dependent code
+# Platform-dependent code
 
-The Pony libraries of course want to abstract platform differences. Sometimes you may want a use command that only works under certain circumstances, most commonly only on a particular OS or only for debug builds. You can do this by specifying a condition for a use command:
+The Pony libraries, of course, want to abstract platform differences. Sometimes you may want to a `use` command that only works under certain circumstances, most commonly only on a particular OS or only for debug builds. You can do this by specifying a condition for a `use` command:
 
 ```pony
 use "foo" if linux

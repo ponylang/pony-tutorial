@@ -24,7 +24,7 @@ fun test(a: Wombat iso) =>
   var b: Wombat tag = a // Allowed!
 ```
 
-__What about aliasing `trn`?__ Since a `trn` says no other variable can be used by _any_ actor to write to that object, we need something that doesn't allow writing, but also doesn't prevent our `trn` variable from writing. Fortunately, we've got a reference capability that does that too: `box`. So we can do this and the compiler will be happy:
+__What about aliasing `trn`?__ Since a `trn` says no other variable can be used by _any_ actor to write to that object, we need something that doesn't allow writing but also doesn't prevent our `trn` variable from writing. Fortunately, we've got a reference capability that does that too: `box`. So we can do this and the compiler will be happy:
 
 ```pony
 fun test(a: Wombat trn) =>
@@ -53,7 +53,7 @@ fun test(a: Wombat iso): Wombat iso^ =>
   consume a
 ```
 
-Here, our function takes an isolated Wombat as a parameter, and returns an ephemeral isolated Wombat.
+Here, our function takes an isolated Wombat as a parameter and returns an ephemeral isolated Wombat.
 
 This is useful for dealing with `iso` and `trn` types, and for generic types, but it's also important for constructors. A constructor always returns an ephemeral type, because it's a new object.
 

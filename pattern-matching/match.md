@@ -18,9 +18,9 @@ end
 
 If you're used to functional languages this should be very familiar.
 
-For those readers more familiar with the C and Java family of languages, think of this like a switch statement. But you can switch on values other than just integers, like Strings. In fact you can switch on any type that provides a comparison function, including your own classes. And you can also switch on the runtime type of an expression.
+For those readers more familiar with the C and Java family of languages, think of this like a switch statement. But you can switch on values other than just integers, like Strings. In fact, you can switch on any type that provides a comparison function, including your own classes. And you can also switch on the runtime type of an expression.
 
-A match starts with the keyword `match`, followed by the expression to match, which is known as the match __operand__. In this example the operand is just the variable `x`, but it can be any expression.
+A match starts with the keyword `match`, followed by the expression to match, which is known as the match __operand__. In this example, the operand is just the variable `x`, but it can be any expression.
 
 Most of the match expression consists of a series of __cases__ that we match against. Each case consists of a pipe symbol ('|'), the __pattern__ to match against, an arrow ('=>') and the expression to evaluate if the case matches.
 
@@ -32,7 +32,7 @@ If the value produced by the match expression isn't used then the cases can omit
 
 ### Else cases
 
-As with all Pony control structures the else case for a match expression is used if we have no other value, i.e. if none of our cases match. The else case, if there is one, __must__ come at the end of the match, after all of the specific cases.
+As with all Pony control structures, the else case for a match expression is used if we have no other value, i.e. if none of our cases match. The else case, if there is one, __must__ come at the end of the match, after all of the specific cases.
 
 If the value the match expression results in is used then you need to have an else case, even if it can never actually be reached. If you omit it a default will be added which evaluates to `None`. The compiler currently isn't clever enough to spot when the other cases are exhaustive and so the else is not needed. This will be changed later.
 
@@ -80,7 +80,7 @@ actor Main
 
 ## Matching on type and value
 
-Matching on value is fine if the match operand and case patterns have all the same type. However match can cope with multiple different types. Each case pattern is first checked to see if it is the same type as the runtime type of the operand. Only then will the values be compared.
+Matching on value is fine if the match operand and case patterns have all the same type. However, match can cope with multiple different types. Each case pattern is first checked to see if it is the same type as the runtime type of the operand. Only then will the values be compared.
 
 ```pony
 fun f(x: (U32 | String | None)): String =>
@@ -96,13 +96,13 @@ fun f(x: (U32 | String | None)): String =>
 
 In many languages using runtime type information is very expensive and so it is generally avoided whenever possible.
 
-In Pony it's cheap. Really cheap. Pony's "whole program" approach to compilation means the compiler can work out as much as possible at compile time. The runtime cost of each type check is generally a single pointer comparison. Plus of course, any checks which can be fully determined at compile time are. So for up casts there's no runtime cost at all.
+In Pony it's cheap. Really cheap. Pony's "whole program" approach to compilation means the compiler can work out as much as possible at compile time. The runtime cost of each type check is generally a single pointer comparison. Plus of course, any checks which can be fully determined at compile time are. So for upcasts there's no runtime cost at all.
 
 ## Captures
 
-Sometimes you want to be able to match on type, for any value of that type. For this you use a __capture__. This defines a local variable, valid only within the case, containing the value of the operand. If the operand is not of the specified type then the case doesn't match.
+Sometimes you want to be able to match the type, for any value of that type. For this, you use a __capture__. This defines a local variable, valid only within the case, containing the value of the operand. If the operand is not of the specified type then the case doesn't match.
 
-Captures look just like variable declarations within the pattern. Like normal variables they can be declared as var or let. If you're not going to reassign them within the case expression it is good practice to use let.
+Captures look just like variable declarations within the pattern. Like normal variables, they can be declared as var or let. If you're not going to reassign them within the case expression it is good practice to use let.
 
 ```pony
 fun f(x: (U32 | String | None)): String =>
@@ -135,7 +135,7 @@ fun f(x: (String | None), y: U32): String =>
   end
 ```
 
-__Do I have to specify all the elements in a tuple?__ No you don't. Any tuple elements in a pattern can be marked as "don't care" by using an underscore ('_'). The first and fourth cases in our example don't actually care about the U32 element, so we can ignore it.
+__Do I have to specify all the elements in a tuple?__ No, you don't. Any tuple elements in a pattern can be marked as "don't care" by using an underscore ('_'). The first and fourth cases in our example don't actually care about the U32 element, so we can ignore it.
 
 ```pony
 fun f(x: (String | None), y: U32): String =>
@@ -151,7 +151,7 @@ fun f(x: (String | None), y: U32): String =>
 
 ## Guards
 
-In addition to matching on types and values each case in a match can also have a guard condition. This is simply an expression, evaluated __after__ type and value matching has occurred, that must give the value true for the case to match. If the guard is false then the case doesn't match and we move onto the next in the usual way.
+In addition to matching on types and values, each case in a match can also have a guard condition. This is simply an expression, evaluated __after__ type and value matching has occurred, that must give the value true for the case to match. If the guard is false then the case doesn't match and we move onto the next in the usual way.
 
 Guards are introduced with the `if` keyword (_was `where` until 0.2.1_).
 

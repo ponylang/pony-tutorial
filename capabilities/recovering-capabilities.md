@@ -58,9 +58,9 @@ That's from `net/http/_PayloadBuilder`. We get a substring of `line`, which is a
 
 Inside the `recover` expression, your code only has access to __sendable__ values from the enclosing lexical scope. In other words, you can only use `iso`, `val` and `tag` things from outside the `recover` expression.
 
-This means that when the `recover` expression finishes, any aliases to the result of the expression other than `iso`, `val` and `tag` ones won't exist any more. That makes it safe to "lift" the reference capability of the result of the expression.
+This means that when the `recover` expression finishes, any aliases to the result of the expression other than `iso`, `val` and `tag` ones won't exist anymore. That makes it safe to "lift" the reference capability of the result of the expression.
 
-If the `recover` expression could access __non-sendable__ values from the enclosing lexical scope, "lifting" the reference capability of the result wouldn't be safe. Some of those values could "leak" into an `iso` or `val` result, and result in data-races.
+If the `recover` expression could access __non-sendable__ values from the enclosing lexical scope, "lifting" the reference capability of the result wouldn't be safe. Some of those values could "leak" into an `iso` or `val` result, and result in data races.
 
 ## Automatic receiver recovery
 
@@ -70,11 +70,11 @@ But we can get around this! If all the arguments to the method _at the call-site
 
 Notice that this technique looks mostly at the call-site, rather than at the definition of the method being called. That makes it more flexible. For example, if the method being called wants a `ref` argument, and we pass it an `iso` argument, that's __sendable__ at the call-site, so we can still do automatic receiver recovery.
 
-This may sound a little complicated, but in practice it means you can write code that treats an `iso` mostly like a `ref`, and the compiler will complain when it's wrong. For example:
+This may sound a little complicated, but in practice, it means you can write code that treats an `iso` mostly like a `ref`, and the compiler will complain when it's wrong. For example:
 
 ```pony
 let s = recover String end
 s.append("hi")
 ```
 
-Here, we create a `String iso` and then append some text to it. The append method takes a `ref` receiver and a `box` parameter. We can automatically recover the `iso` receiver, since we pass a `val` parameter, so everything is fine.
+Here, we create a `String iso` and then append some text to it. The append method takes a `ref` receiver and a `box` parameter. We can automatically recover the `iso` receiver since we pass a `val` parameter, so everything is fine.

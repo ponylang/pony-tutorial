@@ -8,7 +8,7 @@ So what's that token? It's an address. A pointer. A reference. It's just... an o
 
 ## How is that unforgeable?
 
-Since Pony has no pointer arithmetic, and is both type-safe and memory-safe, object references can't be "invented" (i.e. forged) by the program. You can only get one by constructing an object, or being passed an object.
+Since Pony has no pointer arithmetic and is both type-safe and memory-safe, object references can't be "invented" (i.e. forged) by the program. You can only get one by constructing an object or being passed an object.
 
 __What about the C FFI?__ Using the C FFI can break this guarantee. We'll talk about the __C FFI trust boundary__ later, and how to control it.
 
@@ -32,7 +32,7 @@ There's a great paper on how the object-capability model works, and it's pretty 
 
 ## Capabilities and concurrency
 
-The object-capability model on its own does not address concurrency. It makes clear _what_ will happen if there is simultaneous access to an object, but it does not proscribe a single method of controlling this.
+The object-capability model on its own does not address concurrency. It makes clear _what_ will happen if there is simultaneous access to an object, but it does not prescribe a single method of controlling this.
 
 Combining capabilities with the actor-model is a good start, and has been done before in languages such as [E](http://erights.org/) and Joule.
 

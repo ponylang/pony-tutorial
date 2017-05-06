@@ -33,7 +33,7 @@ Note that there's no way to assign to an element of a tuple. Instead, you can ju
 x = ("wombat", x._2)
 ```
 
-__Why use a tuple instead of a class?__ Tuples are a way to express a collection of values that doesn't have any associated code or expected behaviour. Basically, if you just need a quick collection of things, maybe to return more than one value from a function for example, you can use a tuple.
+__Why use a tuple instead of a class?__ Tuples are a way to express a collection of values that doesn't have any associated code or expected behaviour. Basically, if you just need a quick collection of things, maybe to return more than one value from a function, for example, you can use a tuple.
 
 ## Unions
 

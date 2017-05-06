@@ -17,7 +17,7 @@ When using infix operators in complex expressions a key question is the __preced
 1 + 2 * 3
 ```
 
-We will get a value of 9 if we evaluate the addition first and 7 if we evaluate the multiplication first. In mathematics there are rules about the order in which to evaluate operators and most programming languages follow this approach.
+We will get a value of 9 if we evaluate the addition first and 7 if we evaluate the multiplication first. In mathematics, there are rules about the order in which to evaluate operators and most programming languages follow this approach.
 
 The problem with this is that the programmer has to remember the order and people aren't very good at things like that. Most people will remember to do multiplication before addition, but what about left bit shifting versus bitwise and? Sometimes people misremember (or guess wrong) and that leads to bugs. Worse, those bugs are often very hard to spot.
 
@@ -29,7 +29,7 @@ This means that the example above is illegal in Pony and should be rewritten as:
 1 + (2 * 3)
 ```
 
-Repeated use of a single operator however is fine:
+Repeated use of a single operator, however, is fine:
 
 ```pony
 1 + 2 + 3
@@ -37,18 +37,18 @@ Repeated use of a single operator however is fine:
 
 ## Operator aliasing
 
-Most infix operators in Pony are actually aliases for functions. The left operand is the receiver the function is called on and the right operand is passed as an argument. For example the following expressions are equivalent:
+Most infix operators in Pony are actually aliases for functions. The left operand is the receiver the function is called on and the right operand is passed as an argument. For example, the following expressions are equivalent:
 
 ```pony
 x + y
 x.add(y)
 ```
 
-This means that `+` is not a special symbol that can only be applied to magic types. Any type can provide its own `add` function and the programmer can then use `+` with that type, if they want to.
+This means that `+` is not a special symbol that can only be applied to magic types. Any type can provide its own `add` function and the programmer can then use `+` with that type if they want to.
 
 When defining your own `add` function there is no restriction on the types of the parameter or the return type. The right side of the `+` will have to match the parameter type and the whole `+` expression will have the type that `add` returns.
 
-Here's a full example for defining a type which allows use of `+`. This is all you need:
+Here's a full example for defining a type which allows the use of `+`. This is all you need:
 
 ```pony
 // Define a suitable type
@@ -105,15 +105,15 @@ xor      | op_xor() | Xor, both bitwise and logical
 
 The `and` and `or` operators use __short circuiting__ when used with Bool variables. This means that the first operand is always evaluated, but the second is only evaluated if it can affect the result.
 
-For `and`, if the first operand is __false__ then the second operand is not evaluated, since it cannot affect the result.
+For `and`, if the first operand is __false__ then the second operand is not evaluated since it cannot affect the result.
 
-For `or`, if the first operand is __true__ then the second operand is not evaluated, since it cannot affect the result.
+For `or`, if the first operand is __true__ then the second operand is not evaluated since it cannot affect the result.
 
 This is a special feature built into the compiler, it cannot be used with operator aliasing for any other type.
 
 ## Unary operators
 
-The unary operators are handled in the same manner, but with only one operand. For example the following expressions are equivalent:
+The unary operators are handled in the same manner, but with only one operand. For example, the following expressions are equivalent:
 
 ```pony
 -x

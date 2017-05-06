@@ -39,17 +39,17 @@ The @ symbol tells us that the use command is an FFI signature declaration. The 
 
 Note that we no longer need to specify the return type at the call site, since the signature declaration has already told us what it is. However, it is perfectly acceptable to specify it again if you want to.
 
-The use @ command can take a condition just like other use commands. This is useful in this case, where the Windows version of SSL_CTX_ctrl has a slightly different signature to other platforms.
+The use @ command can take a condition just like other `use` commands. This is useful in this case, where the Windows version of SSL_CTX_ctrl has a slightly different signature to other platforms.
 
 ## C types
 
-Many C functions require types that don't have an exact equivalent in Pony. A variety of features are provided for these.
+Many C functions require types that don't have an exact equivalent in Pony. A variety of features is provided for these.
 
 For FFI functions that have no return value (ie they return `void` in C) the return value specified should be `[None]`.
 
-In Pony String is an object with a header and fields, but in C a `char*` is simply a pointer to character data. The `.cstring()` function on String provides us with a valid pointer to hand to C. Our fwrite example above makes use of this for the first argument.
+In Pony String is an object with a header and fields, but in C a `char*` is simply a pointer to character data. The `.cstring()` function on String provides us with a valid pointer to hand to C. Our `fwrite` example above makes use of this for the first argument.
 
-Pony classes corresponds directly to pointers to the class in C.
+Pony classes correspond directly to pointers to the class in C.
 
 For C pointers to simple types, such as U64, the Pony `Pointer[]` polymorphic type should be used, with a `tag` reference capability. `Pointer[U8] tag` should be used for void*. This can be seen in our `SSL_CTX_ctrl` example above.
 

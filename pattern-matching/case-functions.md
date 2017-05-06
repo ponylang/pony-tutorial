@@ -10,7 +10,7 @@ f(n) = |
        \ f(n) => n * f(n - 1)
 ```
 
-This could be implemented in Pony with an `if` statement to check whether to return 1 or make the recursive call, but it can also be implemented with a set of case functions. The `fac_case` function uses parameter matching to dispatch based on whether or not the argument is `0`, while the `fac_guard` function uses a guard statement to test the incoming argument. In both functions there is a default case in which there are no match parameters nor guard statements.
+This could be implemented in Pony with an `if` statement to check whether to return 1 or make the recursive call, but it can also be implemented with a set of case functions. The `fac_case` function uses parameter matching to dispatch based on whether or not the argument is `0`, while the `fac_guard` function uses a guard statement to test the incoming argument. In both functions, there is a default case in which there are no match parameters nor guard statements.
 
 ```pony
 primitive Factorial
@@ -49,7 +49,7 @@ actor Main
 
 Note that in the example above the return values of `fac_case(n)` and `fac_guard(n)` must explicitly be cast as `U64`. This is because the compiler does not check to make sure that all cases can be matched and instead creates an implicit base case that returns None if no match occurs. Therefore, if `T` is the union of all of the explicit return types for a case function, then the implied type of the function is actually `(T | None)`.
 
-The parameter types for different cases do not have to match, but each case of the same function must have the same number of parameters, and the parameters must have the same names in each case of the function. Also, different cases of the same function can have different return types; as mentioned above, the return types are combined as a union (along with None) to create the final type for the function. The type and name for each parameter must be specified somewhere in the combination of case functions, though not necessarily all in the same case (see the `x`, `f`, and `b` paramters in the `_fizz_buzz` method below).
+The parameter types for different cases do not have to match, but each case of the same function must have the same number of parameters, and the parameters must have the same names in each case of the function. Also, different cases of the same function can have different return types; as mentioned above, the return types are combined as a union (along with None) to create the final type for the function. The type and name of each parameter must be specified somewhere in the combination of case functions, though not necessarily all in the same case (see the `x`, `f`, and `b` parameters in the `_fizz_buzz` method below).
 
 In the following implementation of [FizzBuzz](http://c2.com/cgi/wiki?FizzBuzzTest) `fizz_buzz` is a case function that takes either a `U64` or a `Range[U64]`, and consequently returns either a `String` or an `Array[String]`, while the helper function `_fizz_buzz` is a case function that determines what to return by matching the arguments that are passed to it:
 
@@ -108,7 +108,7 @@ actor Main
 
 Case functions can improve readability by making it clear that certain argument will cause certain code paths to execute. They are currently implemented as sugar that translates to a `match` statement, so there is no more overhead than if the programmer had written the `match` themselves.
 
-__Does Pony support overloaded functions?__ There is no strict definition of "overloaded function" so it is difficult to give a definitive answer to this question. Case functions provide a way to supply several functions of the same name with behavior that varies based on the types and values of their arguments; for some people these look like overloaded functions. However, it is important to understand the differences between case functions and some of the traditional expectations of overloaded functions.
+__Does Pony support overloaded functions?__ There is no strict definition of "overloaded function" so it is difficult to give a definitive answer to this question. Case functions provide a way to supply several functions of the same name with behavior that varies based on the types and values of their arguments; for some people, these look like overloaded functions. However, it is important to understand the differences between case functions and some of the traditional expectations of overloaded functions.
 * The current implementation of case functions does not do an exhaustive match to determine the return type of the synthesized function, so the return type is always a union that includes `None` as one of the types.
 * Case functions do not provide a way to specify functions with the same name but different argument counts.
 * Overlapping matches are handled in the order in which the functions were declared.
