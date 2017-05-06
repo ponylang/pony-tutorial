@@ -1,6 +1,6 @@
 # Exceptions
 
-Pony provides a simple exception mechanism to aid error handling. At any point the code may decide to declare an `error` has occured. Code execution halts at that point and the call chain is unwound until the nearest enclosing error handler is found. This is all checked at compile time so errors cannot cause the whole program to crash.
+Pony provides a simple exception mechanism to aid in error handling. At any point, the code may decide to declare an `error` has occurred. Code execution halts at that point and the call chain is unwound until the nearest enclosing error handler is found. This is all checked at compile time so errors cannot cause the whole program to crash.
 
 ## Raising and handling errors
 
@@ -18,9 +18,9 @@ end
 
 In the above code callA() will always be executed and so will callB(). If the result of callB() is true then we will proceed to callC() in the normal fashion and callD() will not then be executed.
 
-However, if callB() returns false, then an error will be raised. At this point execution will stop and the nearest enclosing error handler will be found and executed. In this example that is our else block and so callD() will be executed.
+However, if callB() returns false, then an error will be raised. At this point, execution will stop and the nearest enclosing error handler will be found and executed. In this example that is, our else block and so callD() will be executed.
 
-In either case execution will then carry on with whatever code comes after the try `end`.
+In either case, execution will then carry on with whatever code comes after the try `end`.
 
 __Do I have to provide an error handler?__ No. The try block will handle any errors regardless. If you don't provide an error handler then no error handling action will be taken - execution will simply continue after the try expression.
 
@@ -36,7 +36,7 @@ __Is there anything my error handler has to do?__ No. If you provide an error ha
 
 ## Partial functions
 
-Pony does not require that all errors are handled immediately as in our previous examples. Instead functions can raise errors that are handled by whatever code calls them. These are called partial functions (this is a mathematical term meaning a function that does not have a defined result for all possible inputs, i.e. arguments). Partial functions __must__ be marked as such in Pony with a `?`.
+Pony does not require that all errors are handled immediately as in our previous examples. Instead, functions can raise errors that are handled by whatever code calls them. These are called partial functions (this is a mathematical term meaning a function that does not have a defined result for all possible inputs, i.e. arguments). Partial functions __must__ be marked as such in Pony with a `?`.
 
 For example, a somewhat contrived version of the factorial function that accepts a signed integer will error if given a negative input. It's only partially defined over its valid input type.
 
@@ -56,13 +56,13 @@ Everywhere that an error can be generated in Pony (an error command, a call to a
 
 Constructors may also be marked as partial. If a constructor raises an error then the construction is considered to have failed and the object under construction is discarded without ever being returned to the caller.
 
-When an actor constructor is called the actor is created and a reference to it is returned immediately. However the constructor code is executed asynchronously at some later time. If an actor constructor were to raise an error it would already be too late to report this to the caller. For this reason constructors for actors may not be partial.
+When an actor constructor is called the actor is created and a reference to it is returned immediately. However, the constructor code is executed asynchronously at some later time. If an actor constructor were to raise an error it would already be too late to report this to the caller. For this reason, constructors for actors may not be partial.
 
 Behaviours are also executed asynchronously and so cannot be partial for the same reason.
 
 ## Try-then blocks
 
-In addition to an `else` error handler a try command can have a `then` block. This is executed after the rest of the try, whether or not an error is raised or handled. Expanding our example from earlier:
+In addition to an `else` error handler, a try command can have a `then` block. This is executed after the rest of the try, whether or not an error is raised or handled. Expanding our example from earlier:
 
 ```pony
 try
@@ -92,7 +92,7 @@ with obj = SomeObjectThatNeedsDisposing() do
 end
 ```
 
-`obj.dispose()` will be called whether the code inside the `with` block completes successfully or raises an error. To take part in a `with` expression, the object that needs resource clean-up must therefore provide a `dispose()` method:
+`obj.dispose()` will be called whether the code inside the `with` block completes successfully or raises an error. To take part in a `with` expression, the object that needs resource clean-up must, therefore, provide a `dispose()` method:
 
 ```pony
 class SomeObjectThatNeedsDisposing
@@ -120,11 +120,11 @@ with obj = SomeObjectThatNeedsDisposing(), other = SomeOtherDisposableObject() d
 end
 ```
 
-The value of a `with` expression is the value of the last expression in the block, or of the last expression in the `else` block, if there is one and an error occurred.
+The value of a `with` expression is the value of the last expression in the block, or of the last expression in the `else` block if there is one and an error occurred.
 
 ## Language constructs that can raise errors
 
-The only language construct that can raise an error, other than the error command or calling a partial method, is the `as` command. This converts the given value to the specified type, if it can be. If it can't then an error is raised. This means that the `as` command can only be used inside a try block or a partial method.
+The only language construct that can raise an error, other than the error command or calling a partial method, is the `as` command. This converts the given value to the specified type if it can be. If it can't then an error is raised. This means that the `as` command can only be used inside a try block or a partial method.
 
 ## Comparison to exceptions in other languages
 

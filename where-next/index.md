@@ -4,13 +4,13 @@ Hey, congratulations! You've made it to the end of the Pony tutorial. So, what d
 
 ## Planet Pony
 
-We don't have an automatic blog aggregator, but wish we did. In the meantime, we have a hand curated list of videos, blog posts etc that would be of interest to members of the Pony community. Just beware when you are checking out older posts, its quite possible that their examples no longer compile as Pony development is currently moving very quickly.
+We don't have an automatic blog aggregator but wish we did. In the meantime, we have a hand-curated list of videos, blog posts etc that would be of interest to members of the Pony community. Just beware when you are checking out older posts, it's quite possible that their examples no longer compile as Pony development is currently moving very quickly.
 
 [Planet Pony](http://www.ponylang.org/community/planet-pony/)
 
 ## Pony Patterns
 
-On of the hardest parts of learning a new language is figuring out how to do various different "every day" tasks. We have a cookbook style book called "Pony Patterns" that enumerates a variety of problems you might encounter and idiomatic ways to solve those problems. The amount of content is still somewhat small but growing all the time. 
+On of the hardest parts of learning a new language is figuring out how to do various different "everyday" tasks. We have a cookbook style book called "Pony Patterns" that enumerates a variety of problems you might encounter and idiomatic ways to solve those problems. The amount of content is still somewhat small but growing all the time. 
 
 [Pony Patterns](http://patterns.ponylang.org)
 
@@ -36,7 +36,6 @@ The Pony Virtual Users' Group has fairly regularly monthly presentations that yo
 
 ## A final word 
 
-We're immensely happy that you have taken the time to start learning Pony. It's still a new and immature language with plenty of sharp pointy edges. You are going to get frustrated at times. Don't worry, it has happened to all of us. Drop by one of our support channel and someone will try to lend a hand. We want you to succeed. The more people who succeed with Pony, the more the community grows and the better it is for all of us.
+We're immensely happy that you have taken the time to start learning Pony. It's still a new and immature language with plenty of sharp pointy edges. You are going to get frustrated at times. Don't worry, it has happened to all of us. Drop by one of our support channels and someone will try to lend a hand. We want you to succeed. The more people who succeed with Pony, the more the community grows and the better it is for all of us.
 
 Welcome to the community! Have fun!
-

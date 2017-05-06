@@ -17,7 +17,7 @@ All code within any one actor always executes sequentially. This means that data
 The __mutable__ reference capabilities are `iso`, `trn` and `ref`. These reference capabilities are __mutable__ because they can be used to both read from and write to an object.
 
 * If an actor has an `iso` variable, no other variable can be used by _any_ actor to read from or write to that object. This means an `iso` variable is the only variable anywhere in the program that can read from or write to that object. It is _read and write unique_.
-* If an actor has a `trn` variable, no other variable can be used by _any_ actor to write to that object, and no other variable can be used by _other_ actors to read from or write to that object. This means a `trn` variable is the only variable anywhere in the program that can write to that object, but other variables held by the the same actor may be able to read from it. It is _write unique_.
+* If an actor has a `trn` variable, no other variable can be used by _any_ actor to write to that object, and no other variable can be used by _other_ actors to read from or write to that object. This means a `trn` variable is the only variable anywhere in the program that can write to that object, but other variables held by the same actor may be able to read from it. It is _write unique_.
 * If an actor has a `ref` variable, no other variable can be used by _other_ actors to read from or write to that object. This means that other variables can be used to read from and write to the object, but only from within the same actor.
 
 __Why can they be used to write?__ Because they all stop _other_ actors from reading from or writing to the object. Since we know no other actor will be reading, it's safe for us to write to the object, without having to worry about data-races. And since we know no other actor will be writing, it's safe for us to read from the object, too.
@@ -27,7 +27,7 @@ __Why can they be used to write?__ Because they all stop _other_ actors from rea
 The __immutable__ reference capabilities are `val` and `box`. These reference capabilities are __immutable__ because they can be used to read from an object, but not to write to it.
 
 * If an actor has a `val` variable, no other variable can be used by _any_ actor to write to that object. This means that the object can't _ever_ change. It is _globally immutable_.
-* If an actor has a `box` variable, no other variable can be used by _other_ actors to write to that object. This means that other actors may be able to read the object and other variables in the same actor may be able to write to it (although not both). In either case it is safe for us to read. The object is _locally immutable_.
+* If an actor has a `box` variable, no other variable can be used by _other_ actors to write to that object. This means that other actors may be able to read the object and other variables in the same actor may be able to write to it (although not both). In either case, it is safe for us to read. The object is _locally immutable_.
 
 __Why can they be used to read but not write?__ Because these reference capabilities only stop _other_ actors from writing to the object. That means there is no guarantee that _other_ actors aren't reading from the object, which means it's not safe for us to write to it. It's safe for more than one actor to read from an object at the same time though, so we're allowed to do that.
 

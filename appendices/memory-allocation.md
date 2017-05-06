@@ -1,6 +1,6 @@
 # Memory Allocation at Runtime
 
-Pony is a NULL-free, type-safe language, with no dangling pointers, no buffer overruns, but with a **very fast garbage collector**, so you don't have to worry about explicit memory allocation, if on the heap or stack, if in a threaded actor, or not.
+Pony is a null-free, type-safe language, with no dangling pointers, no buffer overruns, but with a **very fast garbage collector**, so you don't have to worry about explicit memory allocation, if on the heap or stack, if in a threaded actor, or not.
 
 ## Fast, Safe and Cheap
 
@@ -17,9 +17,9 @@ So you **can** use any external C library out there, but the question is if you 
 
 The biggest problem is external heap memory, created by an external FFI call, or created to support an external call. But external stack space might also need some thoughts, esp. when being created from actors.
 
-Pony has no **finalizers**, callbacks which are called by the garbage collector to free external memory, which was allocated by a FFI call. The garbage collector is _not timely_ (as with pure reference counting), it is not triggered immediately when some object goes out of scope.
+Pony has no **finalizers**, callbacks which are called by the garbage collector to free external memory, which was allocated by an FFI call. The garbage collector is _not timely_ (as with pure reference counting), it is not triggered immediately when some object goes out of scope.
 
-A blocked actor will keep it's memory allocated, only a dead actor will release it eventually.
+A blocked actor will keep its memory allocated, only a dead actor will release it eventually.
 
 ## And, long-running actors
 

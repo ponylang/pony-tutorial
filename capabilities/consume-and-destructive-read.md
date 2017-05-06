@@ -13,7 +13,7 @@ fun test(a: Wombat iso) =>
   var b: Wombat iso = consume a // Allowed!
 ```
 
-The compiler is happy with that, because by consuming `a`, you've said the value can't be used again and the compiler will complain if you try to.
+The compiler is happy with that because by consuming `a`, you've said the value can't be used again and the compiler will complain if you try to.
 
 ```pony
 fun test(a: Wombat iso) =>

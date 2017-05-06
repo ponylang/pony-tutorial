@@ -6,7 +6,7 @@ When that happens, we can write a __viewpoint adapted type__, which we call an _
 
 ## Using `this->` as a viewpoint
 
-A function with a `box` receiver can be called with a `ref` receiver or a `val` receiver as well, since those are both subtypes of `box`. Sometimes, we want to be able to talk about a type to take this into account. For example:
+A function with a `box` receiver can be called with a `ref` receiver or a `val` receiver as well since those are both subtypes of `box`. Sometimes, we want to be able to talk about a type to take this into account. For example:
 
 ```pony
 class Wombat

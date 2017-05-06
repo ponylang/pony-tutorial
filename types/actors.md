@@ -40,7 +40,7 @@ When you're writing Pony code, it's nice to think of actors not as a unit of par
 
 ## Why is this safe?
 
-Because of Pony's __capabilities secure type system__. We've mentioned reference capabilities briefly before, when talking about function receiver reference capabilities. The short version is that they are annotations on a type that make all this parallelism safe without any runtime overhead.
+Because of Pony's __capabilities secure type system__. We've mentioned reference capabilities briefly before when talking about function receiver reference capabilities. The short version is that they are annotations on a type that make all this parallelism safe without any runtime overhead.
 
 We will cover reference capabilities in depth later.
 
@@ -48,7 +48,7 @@ We will cover reference capabilities in depth later.
 
 If you've done concurrent programming before, you'll know that threads can be expensive. Context switches can cause problems, each thread needs a stack (which can be a lot of memory), and you need lots of locks and other mechanisms to write thread-safe code.
 
-But actors are cheap. Really cheap. The extra cost of an actor as opposed to an object is about 256 bytes of memory. Bytes, not kilobytes! And there are no locks and no context switches. An actor that isn't executing consumes no resources other than the few extra bytes of memory.
+But actors are cheap. Really cheap. The extra cost of an actor, as opposed to an object, is about 256 bytes of memory. Bytes, not kilobytes! And there are no locks and no context switches. An actor that isn't executing consumes no resources other than the few extra bytes of memory.
 
 It's pretty normal to write a Pony program that uses hundreds of thousands of actors.
 

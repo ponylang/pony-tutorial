@@ -12,7 +12,7 @@ In Pony, *divide by zero results in zero*. That's right,
 let x = 1 / 0
 ```
 
-results in `0` being assigned to `x`. Insane right? Well, yes and no. From a mathematical standpoint it is very much insane. From a practical standpoint, it is very much not. 
+results in `0` being assigned to `x`. Insane right? Well, yes and no. From a mathematical standpoint, it is very much insane. From a practical standpoint, it is very much not. 
 
 ## Partial functions and math in Pony
 

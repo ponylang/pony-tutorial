@@ -46,7 +46,7 @@ A concrete type is a member of a structural category if it happens to have all t
 
 If you've used Go, you'll recognise that Go interfaces are structural types.
 
-## Interfaces: stuctural subtyping
+## Interfaces: structural subtyping
 
 Pony has structural subtyping too, using __interfaces__. Interfaces look like traits, but they use the keyword `interface`.
 

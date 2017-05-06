@@ -2,7 +2,7 @@
 
 You've been through the tutorial, you've watched some videos, and now you're ready to write some Pony code. You fire up your editor, shovel coal into the compiler, and...you find yourself looking at a string of gibberish.
 
-Don't panic! Pony's error messages try to be as helpful as possible and the ultimate goal is to improve them further. But, in the mean time, they can be a little intimidating.
+Don't panic! Pony's error messages try to be as helpful as possible and the ultimate goal is to improve them further. But, in the meantime, they can be a little intimidating.
 
 This section tries to provide a short bestiary of Pony's error messages, along with a guide to understanding them.
 
@@ -34,11 +34,11 @@ Error:
 
 What happened is that you declared `x` as a constant, by writing `let x`, and then tried to assign a new value to it, 12. To fix the error, replace `let` with `val` or reconsider what value you want `x` to have.
 
-That one error resulted in two error messages. The first, pointing to the `x`, describes the specific problem, that `x` was defined with `let`. The second, pointing to the `=`, describes a more general error, that whatever is on the left side of the assignment is not something that can be assigned to. You would get that same error message if you attempted to assign a value to a literal, like `3`.
+That one error resulted in two error messages. The first, pointing to the `x`, describes the specific problem, that `x` was defined with `let`. The second, pointing to the `=` describes a more general error, that whatever is on the left side of the assignment is not something that can be assigned to. You would get that same error message if you attempted to assign a value to a literal, like `3`.
 
 ## cannot write to a field in a box function
 
-Suppose you create a class with a mutable field, and added a method to change the field:
+Suppose you create a class with a mutable field and added a method to change the field:
 
 ```pony
 class Wombat
@@ -56,7 +56,7 @@ Error:
           ^
 ```
 
-To understand this error message, you have to have some background. The field `color` is mutable, since it is declared with `var`, but the method `dye` does not have an explicit receiver reference capability. The default receiver reference capability is `box`, which allows `dye` to be called on any mutable or immutable `Wombat`; the `box` reference capability says that the method may read from but not write to the receiver. As a result, it is illegal to attempt to modify the receiver in the method.
+To understand this error message, you have to have some background. The field `color` is mutable since it is declared with `var`, but the method `dye` does not have an explicit receiver reference capability. The default receiver reference capability is `box`, which allows `dye` to be called on any mutable or immutable `Wombat`; the `box` reference capability says that the method may read from but not write to the receiver. As a result, it is illegal to attempt to modify the receiver in the method.
 
 To fix the error, you would need to give the `dye` method a mutable reference capability, such as `ref`: `fun ref dye(new_color: String) => ...`.
 

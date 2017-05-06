@@ -1,10 +1,10 @@
 # Control Structures
 
-To do real work in a program you have to be able to make decisions, iterate through collections of items and perform actions repeatedly. For this you need control structures. Pony has control structures that will be familiar to programmers who have used most languages, such as `if`, `while` and `for`, but in Pony they work slightly differently.
+To do real work in a program you have to be able to make decisions, iterate through collections of items and perform actions repeatedly. For this, you need control structures. Pony has control structures that will be familiar to programmers who have used most languages, such as `if`, `while` and `for`, but in Pony, they work slightly differently.
 
 ## Conditionals
 
-The simplest control-structure is the good old `if`. It allows you to perform some action only when a condition is true. In Pony it looks like this:
+The simplest control structure is the good old `if`. It allows you to perform some action only when a condition is true. In Pony it looks like this:
 
 ```pony
 if a > b then
@@ -121,11 +121,11 @@ Just like `if` expressions `while` is also an expression. The value returned is 
 
 __But what if the condition evaluates to false the first time we try, then we don't go round the loop at all?__ In Pony `while` expressions can also have an `else` block. In general, Pony `else` blocks provide a value when the expression they are attached to doesn't. A `while` doesn't have a value to give if the condition evaluates to false the first time, so the `else` provides it instead.
 
-__So is this like an else block on a while loop in Python?__ No, this is very different. In Python the `else` is run when the `while` completes. In Pony the `else` is only run when the expression in the `while` isn't.
+__So is this like an else block on a while loop in Python?__ No, this is very different. In Python, the `else` is run when the `while` completes. In Pony the `else` is only run when the expression in the `while` isn't.
 
 ### Break
 
-Sometimes you want to stop part-way through a loop and give up altogether. Pony has the `break` keyword for this and it is very similar to its counterpart in languages like C++, C# and Python.
+Sometimes you want to stop part-way through a loop and give up altogether. Pony has the `break` keyword for this and it is very similar to its counterpart in languages like C++, C#, and Python.
 
 `break` immediately exits from the innermost loop it's in. Since the loop has to return a value `break` can take an expression. This is optional and if it's missed out the value from the `else` block is returned.
 
@@ -146,27 +146,27 @@ var name =
 
 So first we ask if there are any more names to get. If there are then we get a name and see if it's "Jack" or "Jill". If it is we're done and we break out of the loop, handing back the name we've found. If not we try again.
 
-The line `name'` appears at the end of the loop so that will be our value returned from the last iteration, if neither "Jack" nor "Jill" is found.
+The line `name'` appears at the end of the loop so that will be our value returned from the last iteration if neither "Jack" nor "Jill" is found.
 
 The `else` block provides our value of "Herbert" if there are no names available at all.
 
-__Can I break out of multiple, nested loops like the Java labelled break?__ No, Pony does not support that. If you need to break out of multiple loops you should probably refactor your code or use a worker function.
+__Can I break out of multiple, nested loops like the Java labeled break?__ No, Pony does not support that. If you need to break out of multiple loops you should probably refactor your code or use a worker function.
 
 ### Continue
 
-Sometimes you want to stop part-way through one loop iteration and move onto the next. Like other languages Pony uses the `continue` keyword for this.
+Sometimes you want to stop part-way through one loop iteration and move onto the next. Like other languages, Pony uses the `continue` keyword for this.
 
 `continue` stops executing the current iteration of the innermost loop it's in and evaluates the condition ready for the next iteration.
 
-If `continue` is executed during the last iteration of the loop then we have no value to return from the loop. In this case we use the loop's `else` expression to get a value. As with the `if` expression if no `else` expression is provided `None` is returned.
+If `continue` is executed during the last iteration of the loop then we have no value to return from the loop. In this case, we use the loop's `else` expression to get a value. As with the `if` expression if no `else` expression is provided `None` is returned.
 
-__Can I continue an outer, nested loop like the Java labelled continue?__ No, Pony does not support that. If you need to continue an outer loop you should probably refactor your code.
+__Can I continue an outer, nested loop like the Java labeled continue?__ No, Pony does not support that. If you need to continue an outer loop you should probably refactor your code.
 
 ### For
 
 For iterating over a collection of items Pony uses the `for` keyword. This is very similar to `foreach` in C#, `for`..`in` in Python and `for` in Java when used with a collection. It is very different to `for` in C and C++.
 
-The Pony `for` loop iterates over a collection of items using an iterator. On each iteration round the loop we ask the iterator if there are any more elements to process and if there are we ask it for the next one.
+The Pony `for` loop iterates over a collection of items using an iterator. On each iteration, round the loop, we ask the iterator if there are any more elements to process and if there are we ask it for the next one.
 
 For example to print out all the strings in an array:
 
@@ -176,7 +176,7 @@ for name in ["Bob"; "Fred"; "Sarah"].values() do
 end
 ```
 
-Note the call to `values()` on the array, this is because the loop needs an iterator not an array.
+Note the call to `values()` on the array, this is because the loop needs an iterator, not an array.
 
 The iterator does not have to be of any particular type, but needs to provide the following methods:
 ```pony
@@ -208,7 +208,7 @@ This is similar to `do` `while` in C++, C# and Java except that the termination 
 
 The differences between `while` and `repeat` in Pony are:
 
-1. We always go round the loop at least once with `repeat`, whereas with `while` we may not go round at all.
+1. We always go around the loop at least once with `repeat`, whereas with `while` we may not go round at all.
 1. The termination condition is reversed.
 
 Suppose we're trying to create something and we want to keep trying until it's good enough:
@@ -221,4 +221,4 @@ until present.marksOutOfTen() > 7 end
 
 Just like `while` loops the value given by a `repeat` loop is the value of the expression within the loop on the last iteration and `break` and `continue` can be used.
 
-__Since you always go round a repeat loop at least once do you ever need to give it an else expression?__ Yes you may need to. A `continue` in the last iteration of a `repeat` loop needs to get a value from somewhere and an `else` expression is used for that.
+__Since you always go round a repeat loop at least once do you ever need to give it an else expression?__ Yes, you may need to. A `continue` in the last iteration of a `repeat` loop needs to get a value from somewhere and an `else` expression is used for that.

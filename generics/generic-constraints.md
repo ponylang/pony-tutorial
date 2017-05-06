@@ -8,7 +8,7 @@ The type parameter constraint for a generic class or method can constrain to a p
 class Foo[A: Any val]
 ```
 
-Without the constraint the generic must work for all possible capabilities. Sometimes you don't want to be limited to a specific capability and you can't support all capabilities. The solution for this is generic constraint qualifiers. These represent classes of capabilities that are accepted in the generic. The valid qualifiers are:
+Without the constraint, the generic must work for all possible capabilities. Sometimes you don't want to be limited to a specific capability and you can't support all capabilities. The solution for this is generic constraint qualifiers. These represent classes of capabilities that are accepted in the generic. The valid qualifiers are:
 
 | &#x25B7;        | Capabilities allowed         | Description 
 |-----------------|------------------------------|-------------
@@ -18,7 +18,7 @@ Without the constraint the generic must work for all possible capabilities. Some
 | #any            | iso, trn, ref, val, box, tag | Default of a constraint
 | #alias          | ref, val, box, tag           | Set of capabilities that alias as themselves (used by compiler)
 
-In the previous section we went through extra work to support `iso`. If there's no requirement for `iso` support we can use `#read` and support `ref`, `val`, and `box`:
+In the previous section, we went through extra work to support `iso`. If there's no requirement for `iso` support we can use `#read` and support `ref`, `val`, and `box`:
 
 ```pony
 class Foo[A: Any #read]

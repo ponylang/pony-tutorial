@@ -1,10 +1,10 @@
 # Methods
 
-All Pony code that actually does something, rather than defining types etc, appears in named blocks which are referred to as methods. There are three kinds of methods: functions, constructors and behaviours. All methods are attached to type definitions (e.g. classes) - there are no global functions.
+All Pony code that actually does something, rather than defining types etc, appears in named blocks which are referred to as methods. There are three kinds of methods: functions, constructors, and behaviours. All methods are attached to type definitions (e.g. classes) - there are no global functions.
 
 Behaviours are used for handling asynchronous messages sent to actors. We'll look at those later.
 
-__Can I have some code outside of any methods, like I do in Python?__ No. All Pony code must be within a method.
+__Can I have some code outside of any methods like I do in Python?__ No. All Pony code must be within a method.
 
 ## Functions
 
@@ -23,9 +23,9 @@ The function parameters (if any) are specified in parentheses after the function
 
 Each parameter is given a name and a type. In our example function `add` has 2 parameters, `x` and `y`, both of which are type `U32`. The values passed to a function call (the `1` and `2` in our example) are called arguments and when the call is made they are evaluated and assigned to the parameters. Parameters may not be assigned to within the function - they are effectively declared `let`.
 
-After the parameters comes the return type. If nothing will be returned this is simply omitted.
+After the parameters come the return type. If nothing will be returned this is simply omitted.
 
-After the return value there's a `=>` and then finally the function body. The value returned is simply the value of the function body (remember that everything is an expression), which is simply the value of the last command in the function.
+After the return value, there's a `=>` and then finally the function body. The value returned is simply the value of the function body (remember that everything is an expression), which is simply the value of the last command in the function.
 
 If you want to exit a function early then use the `return` command. If the function has a return type then you need to provide a value to return. If the function does not have a return type then `return` should appear on its own, without a value.
 
@@ -46,7 +46,7 @@ __Can I overload functions by argument type?__ [Case functions](http://tutorial.
 
 ## Constructors
 
-Pony constructors are used to initialise newly created objects, as in many languages. However, unlike many languages, Pony constructors are named so you can have as many as you like, taking whatever parameters you like. By convention the main constructor of each type (if there is such a thing for any given type) is called `create`.
+Pony constructors are used to initialise newly created objects, as in many languages. However, unlike many languages, Pony constructors are named so you can have as many as you like, taking whatever parameters you like. By convention, the main constructor of each type (if there is such a thing for any given type) is called `create`.
 
 ```pony
 class Foo
@@ -230,6 +230,6 @@ primitive Foo
 
 ## Privacy
 
-In Pony method names start either with a lower case letter or with an underscore followed by a lower case letter. Methods with a leading underscore are private. This means they can only be called by code within the same package. Methods without a leading underscore are public and can be called by anyone.
+In Pony method names start either with a lower case letter or with an underscore followed by a lowercase letter. Methods with a leading underscore are private. This means they can only be called by code within the same package. Methods without a leading underscore are public and can be called by anyone.
 
 __Can I start my method name with 2 (or more) underscores?__ No. If the first character is an underscore then the second one MUST be a lower case letter.

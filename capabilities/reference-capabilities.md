@@ -6,13 +6,13 @@ In Pony, we do it with _reference capabilities_.
 
 ## Rights are part of a capability
 
-If you open a file in UNIX, and get a file descriptor back, that file descriptor is a token that designates an object - but it isn't a capability. To be a capability, we need to open that file with some permission - some access right. For example:
+If you open a file in UNIX and get a file descriptor back, that file descriptor is a token that designates an object - but it isn't a capability. To be a capability, we need to open that file with some permission - some access right. For example:
 
 ```C
 int fd = open("/etc/passwd", O_RDWR);
 ```
 
-Now we have a token, and a set of rights.
+Now we have a token and a set of rights.
 
 In Pony, every reference has both a type and a reference capability. In fact, the reference capability is _part_ of its type. These allow you to specify which of your objects can be shared with other actors and allow the compiler to check that what you're doing is concurrency safe.
 
@@ -55,7 +55,7 @@ A reference capability is a form of _type qualifier_ and provides a lot more gua
 
 In Pony, every use of a type has a reference capability. These capabilities apply to variables, rather than to the type as a whole. In other words, when you define a `class Wombat`, you don't pick a reference capability for it. Instead, `Wombat` variables each have their own reference capability.
 
-As an example, in some languages you have to define a type that represents a mutable `String` and another type that represents an immutable `String`. For example, in Java there is a `String` and a `StringBuilder`. In Pony, you can define a single `class String` and have some variables that are `String ref` (which are mutable) and other variables that are `String val` (which are immutable).
+As an example, in some languages, you have to define a type that represents a mutable `String` and another type that represents an immutable `String`. For example, in Java, there is a `String` and a `StringBuilder`. In Pony, you can define a single `class String` and have some variables that are `String ref` (which are mutable) and other variables that are `String val` (which are immutable).
 
 ## The list of reference capabilities
 
@@ -65,9 +65,9 @@ __Isolated__, written `iso`. This is for references to isolated data structures.
 
 __Value__, written `val`. This is for references to immutable data structures. If you have a `val` variable then you know that no-one can change the data. So you can read it and share it with other actors.
 
-__Reference__, written `ref`. This is for references to mutable data structures that are not isolated, in other words "normal" data. If you have a `ref` variable then you can read and write the data however you like and you can have multiple variables that can access the same data. But you can't share it with other actors.
+__Reference__, written `ref`. This is for references to mutable data structures that are not isolated, in other words, "normal" data. If you have a `ref` variable then you can read and write the data however you like and you can have multiple variables that can access the same data. But you can't share it with other actors.
 
-__Box__. This is for references to data that is read-only to you. That data might be immutable and shared with other actors or there may be other variables using it in your actor that can change the data. Either way the `box` variable can be used to safely read the data. This may sound a little pointless, but it allows you to write code that can work for both `val` and `ref` variables, as long as it doesn't write to the object.
+__Box__. This is for references to data that is read-only to you. That data might be immutable and shared with other actors or there may be other variables using it in your actor that can change the data. Either way, the `box` variable can be used to safely read the data. This may sound a little pointless, but it allows you to write code that can work for both `val` and `ref` variables, as long as it doesn't write to the object.
 
 __Transition__, written `trn`. This is used for data structures that you want to write to and give out read-only (`box`) variables to. You can also convert the `trn` variable to a `val` variable later if you wish, which stops anyone from changing the data and allows it be shared with other actors.
 

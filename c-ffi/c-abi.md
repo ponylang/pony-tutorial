@@ -39,7 +39,7 @@ extern "C"
 #endif
 ```
 
-Note the use of `extern "C"`. If the library is built as C++ then we need to tell the compiler not to mangle the function name, otherwise Pony won't be able to find it. For libraries built as C this is not needed, of course.
+Note the use of `extern "C"`. If the library is built as C++ then we need to tell the compiler not to mangle the function name, otherwise, Pony won't be able to find it. For libraries built as C, this is not needed, of course.
 
 The implemented would be something like:
 
@@ -85,7 +85,8 @@ clang -shared -lm -o libjch.dylib jch.o
 The Pony code to use this new C library is just like the code we've already seen for using C libraries.
 
 ```pony
-""" This is an example of pony integrating with native code via the builtin FFI
+""" 
+This is an example of pony integrating with native code via the built-in FFI
 support
 """
 

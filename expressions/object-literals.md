@@ -14,7 +14,7 @@ object
 end
 ```
 
-Ok, that's pretty trivial. Let's extend it so that it explicitly provides an interface, so that the compiler will make sure the anonymous type fulfills that interface. You can use the same notation to provide traits as well.
+Ok, that's pretty trivial. Let's extend it so that it explicitly provides an interface so that the compiler will make sure the anonymous type fulfills that interface. You can use the same notation to provide traits as well.
 
 ```pony
 object is Hashable
@@ -37,7 +37,7 @@ class Foo
 
 When we assign to a field in the constructor, we are _capturing_ from the lexical scope the object literal is in. Pretty fun stuff! It lets us have arbitrarily complex __closures__ that can even have multiple entry points (i.e. functions you can call on a closure).
 
-An object literal with fields is returned as a `ref` by default, unless an explicit reference capability is declared by specifying the capability after the `object` keyword. For example, an object with sendable captured references can be declared as `iso` if needed:
+An object literal with fields is returned as a `ref` by default unless an explicit reference capability is declared by specifying the capability after the `object` keyword. For example, an object with sendable captured references can be declared as `iso` if needed:
 
 ```pony
 class Foo
@@ -90,7 +90,7 @@ object iso
 end
 ```
 
-Lambdas can be used to capture from lexical scope in the same way as object literals can:
+Lambdas can be used to capture from the lexical scope in the same way as object literals can:
 
 ```pony
 class Foo
@@ -119,7 +119,7 @@ It's also possible to use a _capture list_ to create new names for things. A cap
     foo({(s: String)(myenv = env) => myenv.out.print(s) })
 ```
 
-The type of a lambda is also declared using curly brackets. Within the brackets the function parameter types are specified within parentheses followed by an optional colon and return type. The example above uses `{(String)}` to be the type of a lambda function that takes a `String` as an argument and returns nothing.
+The type of a lambda is also declared using curly brackets. Within the brackets, the function parameter types are specified within parentheses followed by an optional colon and return type. The example above uses `{(String)}` to be the type of a lambda function that takes a `String` as an argument and returns nothing.
 
 If the lambda object is not declared with a specific reference capability, the reference capability is inferred from the structure of the lambda. If the lambda does not have any captured references, it will be `val` by default; if it does have captured references, it will be `ref` by default. The following is an example of a `val` lambda object:
 
@@ -142,7 +142,7 @@ actor Main
 
 The `reduce` method in this example requires the lambda type for the `f` parameter to require a reference capability of `val`. The lambda object passed in as an argument does not need to declare an explicit reference capability because `val` is the default for a lambda that does not capture anything.
 
-As mentioned previously the lambda desugars to an object literal with an `apply` method. The reference capability for the `apply` method defaults to `box` like any other method. In a lambda that captures this needs to be `ref` if the function needs to modify any of the captured variables or call `ref` methods on them. The reference capabiltity for the method (versus the reference capability for the object which was described above) is defined by putting the capability before the parenthesized argument list.
+As mentioned previously the lambda desugars to an object literal with an `apply` method. The reference capability for the `apply` method defaults to `box` like any other method. In a lambda that captures this needs to be `ref` if the function needs to modify any of the captured variables or call `ref` methods on them. The reference capability for the method (versus the reference capability for the object which was described above) is defined by putting the capability before the parenthesized argument list.
 
 ```pony
 actor Main

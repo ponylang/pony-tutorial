@@ -40,7 +40,7 @@ actor Main
     env.out.print(c.get().string())
 ```
 
-Unfortunately this doesn't compile. For a generic class to compile it must be compilable for all possible types and reference capabilities that satisfy the contraints in the type parameter. In this case that's any type with any reference capability. The class works for the specific reference capability of `val` as we saw earlier, but how well does it work for `ref`? Let's expand it and see:
+Unfortunately, this doesn't compile. For a generic class to compile it must be compilable for all possible types and reference capabilities that satisfy the constraints in the type parameter. In this case, that's any type with any reference capability. The class works for the specific reference capability of `val` as we saw earlier, but how well does it work for `ref`? Let's expand it and see:
 
 ```pony
 class Foo
@@ -117,7 +117,7 @@ A similar issue exists with the `get` method.
 fun get(): String iso => _c
 ```
 
-We can't return an `iso` alias to our internal `_c` field as we'd then have two aliases to an `iso` again. One in the class and one returned to the caller. We can't `consume` here because then our `_c` field has no value. Instead we can make the return reference capability be something that is a valid alias of `iso`. Looking at the [capability subtyping aliased substitution rules](../capabilities/capability-subtyping.html) the capability we need is a `tag`. Here is a corrected class definition:
+We can't return an `iso` alias to our internal `_c` field as we'd then have two aliases to an `iso` again. One in the class and one returned to the caller. We can't `consume` here because then our `_c` field has no value. Instead, we can make the return reference capability be something that is a valid alias of `iso`. Looking at the [capability subtyping aliased substitution rules](../capabilities/capability-subtyping.html) the capability we need is a `tag`. Here is a corrected class definition:
 
 ```pony
 class Foo

@@ -1,16 +1,16 @@
 # Pony Lexicon
 
-Words are hard. We can all be saying the same thing but do we _mean_ the same thing? It's tough to know. Hopefully this lexicon helps a little.
+Words are hard. We can all be saying the same thing but do we _mean_ the same thing? It's tough to know. Hopefully, this lexicon helps a little.
 
 ## Terminology
 
 **Braces**: { }. Synonymous with curly brackets.
 
-**Brackets**: This term is ambiguous. In the UK it usually means ( ) in the US is usually means [ ]. It should therefore be avoided for use for either of these. Can be used as a general term for any unspecified grouping punctuation, including { }.
+**Brackets**: This term is ambiguous. In the UK it usually means ( ) in the US is usually means [ ]. It should, therefore, be avoided for use for either of these. Can be used as a general term for any unspecified grouping punctuation, including { }.
 
 **Compatible type**: Two types are compatible if there can be any single object which is an instance of both types. Note that a suitable type for the single object does not have to have been defined, as long as it could be. For example, any two traits are compatible because a class could be defined that provides both of them, even if such a class has not been defined. Conversely, no two classes can ever be compatible because no object can be an instance of both.
 
-**Compound type**: A type combining multiple other types, ie union, intersection and tuple. Opposite of a single type.
+**Compound type**: A type combining multiple other types, ie union, intersection, and tuple. Opposite of a single type.
 
 **Concrete type**: An actor, class or primitive.
 
@@ -26,7 +26,7 @@ Words are hard. We can all be saying the same thing but do we _mean_ the same th
 
 **Member**: Method or field.
 
-**Method**: Something callable on a concrete type / object. Function, behaviour or constructor.
+**Method**: Something callable on a concrete type/object. Function, behaviour or constructor.
 
 **Override**: When a concrete type has its own body for a method with a default body provided by a trait.
 

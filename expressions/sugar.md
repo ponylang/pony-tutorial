@@ -52,7 +52,7 @@ var foo = Foo.create()
 
 Normally types are not valid things to appear in expressions, so omitting the constructor call is not ambiguous. Remember that you can easily spot that a name is a type because it will start with a capital letter.
 
-If arguments are needed for create these can be provided as if calling the type. Default and named arguments can be used as normal.
+If arguments are needed for `create` these can be provided as if calling the type. Default and named arguments can be used as normal.
 
 ```pony
 var foo = Foo(x, 37 where crash = false)
@@ -84,13 +84,13 @@ var foo = Foo.create().apply()
 var bar = Bar.create().apply(x, 37 where crash = false)
 ```
 
-__What if the create has default arguments? Do I get the combined create-apply sugar if I want to use the defaults?__ The combined create-apply sugar can only be used when the create constructor has no arguments. If there are default arguments then this sugar cannot be used.
+__What if the create has default arguments? Do I get the combined create-apply sugar if I want to use the defaults?__ The combined create-apply sugar can only be used when the `create` constructor has no arguments. If there are default arguments then this sugar cannot be used.
 
 ## Update
 
-The `update` sugar allows any class to use an assignment to accept data. Many languages allow this for assigning into collections, for example a simple C array, `a[3] = x;`.
+The `update` sugar allows any class to use an assignment to accept data. Many languages allow this for assigning into collections, for example, a simple C array, `a[3] = x;`.
 
-In any assignment where the left hand side is a function call, Pony will translate this to a call to update, with the value from the right hand side as an extra argument. So:
+In any assignment where the left-hand side is a function call, Pony will translate this to a call to update, with the value from the right-hand side as an extra argument. So:
 
 ```pony
 foo(37) = x
@@ -102,7 +102,7 @@ becomes:
 foo.update(37 where value = x)
 ```
 
-The value from the right hand side of the assignment is always passed to a parameter named `value`. Any object can allow this syntax simply by providing an appropriate function `update` with an argument `value`.
+The value from the right-hand side of the assignment is always passed to a parameter named `value`. Any object can allow this syntax simply by providing an appropriate function `update` with an argument `value`.
 
 __Does my update function have to have a single parameter that takes an integer?__ No, you can define update to take whatever parameters you like, as long as there is one called `value`. The following are all fine:
 
