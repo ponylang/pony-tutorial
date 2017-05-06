@@ -34,7 +34,9 @@ If the value produced by the match expression isn't used then the cases can omit
 
 As with all Pony control structures the else case for a match expression is used if we have no other value, i.e. if none of our cases match. The else case, if there is one, __must__ come at the end of the match, after all of the specific cases.
 
-If the value the match expression results in is used then you need to have an else case, even if it can never actually be reached. If you omit it a default will be added which evaluates to `None`. The compiler currently isn't clever enough to spot when the other cases are exhaustive and so the else is not needed. This will be changed later.
+If the value the match expression results in is used then you need to have an else case, except in cases where the compiler recognizes that the match is exhaustive and that the else case can never actually be reached. If you omit it a default will be added which evaluates to `None`.
+
+The compiler recognizes a match as exhaustive when the union of the types for all patterns that match on type alone is a supertype of the matched expression type. In other words, when your cases cover all possible types for the matched expression, the compiler will not add an implicit `else None` to your match statement.
 
 ## Matching on values
 
