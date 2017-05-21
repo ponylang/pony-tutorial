@@ -31,7 +31,7 @@ Here is a more elaborate explanation of Pony's use of special characters: (a lin
 |    | (2) middle of line: method call |
 | `()` | (1) parentheses, for function or behavior parameters |
 |    | (2) making a tuple (values separated by `,`) |
-|    | (3) making an enumeration (values separated by `|`) |
+|    | (3) making an enumeration (values separated by <code>&#124;</code>) |
 | `[`  | (1) start of line: start of an array literal |
 |    | (2) middle of line: generic formal parameters |
 | `[]`  | (1) to indicate a generic type, for example `Range[U64]` |
