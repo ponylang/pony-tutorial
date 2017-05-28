@@ -12,7 +12,7 @@ Take the following example of a non-generic class:
 class Foo
   var _c: U32
 
-new create(c: U32) =>
+  new create(c: U32) =>
     _c = c
 
   fun get(): U32 => _c
