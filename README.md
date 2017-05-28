@@ -6,7 +6,7 @@ This tutorial is aimed at people who have some experience programming already. I
 
 ## What's Pony, anyway?
 
-Pony is an object-oriented, actor-model, capabilities-secure programming language. It's __object-oriented__ because it has classes and objects, like Python, Java, C++, and many other languages. It's __actor-model__ because it has _actors_ (similar to Erlang or Akka). These behave like objects, but they can also execute code _asynchronously_. Actors make Pony awesome.
+Pony is an object-oriented, actor-model, capabilities-secure programming language. It's __object-oriented__ because it has classes and objects, like Python, Java, C++, and many other languages. It's __actor-model__ because it has _actors_ (similar to Erlang or Akka). These behave like objects, but they can also execute code _asynchronously_. Actors make Pony great again.
 
 When we say Pony is __capabilities-secure__, we mean a few things:
 
