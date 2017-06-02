@@ -1,6 +1,6 @@
 # Examples
 
-Small how do I examples for Pony. These will eventually find another home. Until then, they live here.
+Small _how do I_ examples for Pony. These will eventually find another home. Until then, they live here.
 
 ## Enum with values
 ```pony
@@ -32,7 +32,7 @@ for colour in ColourList().values() do
 end
 ```
 
-## Read Struct values from FFI
+## Read struct values from FFI
 If you have a C struct which returns a struct with data like this
 ```c
 typedef struct {
@@ -53,7 +53,7 @@ type EGLEvent is (U8, F32, F32)
 (var code, var x, var y) = @getEvent[EGLEvent]()
 ```
 
-## Get and Pass Pointers to FFI
+## Get and pass pointers to FFI
 ```pony
 primitive _XDisplayHandle
 primitive _EGLDisplayHandle
@@ -171,7 +171,7 @@ fun tag expect_eq[A: (Equatable[A] #read & Stringable)]
   (expect: A, actual: A, msg: String = ""): Bool
 ```
 
-## Operator Overloading (easy for copy and paste)
+## Operator overloading (easy for copy and paste)
 ```pony
 fun add(other: A): A
 fun sub(other: A): A

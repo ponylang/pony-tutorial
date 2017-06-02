@@ -23,7 +23,7 @@ The function parameters (if any) are specified in parentheses after the function
 
 Each parameter is given a name and a type. In our example function `add` has 2 parameters, `x` and `y`, both of which are type `U32`. The values passed to a function call (the `1` and `2` in our example) are called arguments and when the call is made they are evaluated and assigned to the parameters. Parameters may not be assigned to within the function - they are effectively declared `let`.
 
-After the parameters come the return type. If nothing will be returned this is simply omitted.
+After the parameters comes the return type. If nothing will be returned this is simply omitted.
 
 After the return value, there's a `=>` and then finally the function body. The value returned is simply the value of the function body (remember that everything is an expression), which is simply the value of the last command in the function.
 

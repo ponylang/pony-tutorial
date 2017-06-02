@@ -5,13 +5,13 @@ Pony is a null-free, type-safe language, with no dangling pointers, no buffer ov
 ## Fast, Safe and Cheap
 
 * An actor has ~240 bytes of memory overhead.
-* No locks. No context switches. All mutation is local
-* An idle actor consumes no resources ( other than memory )
-* You can have millions of actors at the same time
+* No locks. No context switches. All mutation is local.
+* An idle actor consumes no resources (other than memory).
+* You can have millions of actors at the same time.
 
 ## But Caveat Emptor
 
-But pony can be used to create **C libraries** and pony can use external C libraries via the **FFI** which does not have this luxury,
+But pony can be used to create **C libraries** and pony can use external C libraries via the **FFI** which does not have this luxury.
 
 So you **can** use any external C library out there, but the question is if you **need to** and if you **should**.
 
@@ -23,6 +23,6 @@ A blocked actor will keep its memory allocated, only a dead actor will release i
 
 ## And, long-running actors
 
-might cause unexpected out of memory errors, since the GC is not yet triggered on an out-of-memory segfault or stack exhaustion.
+Might cause unexpected out of memory errors, since the GC is not yet triggered on an out-of-memory segfault or stack exhaustion.
 
 ...
