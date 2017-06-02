@@ -1,6 +1,6 @@
 # A short guide to Pony error messages
 
-You've been through the tutorial, you've watched some videos, and now you're ready to write some Pony code. You fire up your editor, shovel coal into the compiler, and...you find yourself looking at a string of gibberish.
+You've been through the tutorial, you've watched some videos, and now you're ready to write some Pony code. You fire up your editor, shovel coal into the compiler, and... you find yourself looking at a string of gibberish.
 
 Don't panic! Pony's error messages try to be as helpful as possible and the ultimate goal is to improve them further. But, in the meantime, they can be a little intimidating.
 
@@ -32,7 +32,7 @@ Error:
       ^
 ```
 
-What happened is that you declared `x` as a constant, by writing `let x`, and then tried to assign a new value to it, 12. To fix the error, replace `let` with `val` or reconsider what value you want `x` to have.
+What happened is that you declared `x` as a constant, by writing `let x`, and then tried to assign a new value to it, 12. To fix the error, replace `let` with `var` or reconsider what value you want `x` to have.
 
 That one error resulted in two error messages. The first, pointing to the `x`, describes the specific problem, that `x` was defined with `let`. The second, pointing to the `=` describes a more general error, that whatever is on the left side of the assignment is not something that can be assigned to. You would get that same error message if you attempted to assign a value to a literal, like `3`.
 
@@ -66,7 +66,7 @@ Suppose you made a related, but slightly different error:
 
 ```pony
 class Rainbow
-  let colors: Array[String] = Array[String]()
+  let colors: Array[String] = Array[String]
   fun add_stripe(color: String) =>
     colors.push(color)
 ```
