@@ -14,7 +14,7 @@ The type system ensures at compile time that your program can **never have data 
 
 When an actor has completed local execution and has no pending messages on its queue, it is _blocked_. An actor is _dead_, if it is blocked and all actors that have a reference to it are blocked, transitively. A collection of dead actors depends on being able to collect closed cycles of blocked actors.
 
-The Pony type system guarantees race and deadlock free concurrency and soundness by adhering to the following principles::
+The Pony type system guarantees race and deadlock free concurrency and soundness by adhering to the following principles:
 
 ## Pony-ORCA characteristics
 
