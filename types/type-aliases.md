@@ -72,7 +72,7 @@ trait HasName
   fun name(): String => "Bob"
 
 trait HasAge
-  fun age(): U32 => "42"
+  fun age(): U32 => 42
 
 trait HasAddress
   fun address(): String => "3 Abbey Road"
