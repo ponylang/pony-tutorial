@@ -7,7 +7,7 @@ Pony uses an intermediate object type called `Serialised` to represent a seriali
 * calling the `input(...)` constructor with the `DeserialiseAuth` authority and an `Array[U8]` that represents the object to deserialise
 This intermediate object can then be used to either:
 * generate an `Array[U8]` that represents the object by calling the `output(...)` method with the `OutputSerialisedAuth` authority
-* generate a deserialised object by calling the `apply(...)` mehtod with the `InputSerialisedAuth` authority
+* generate a deserialised object by calling the `apply(...)` method with the `InputSerialisedAuth` authority
 
 This program serialises and deserialise an object, and checks that the fields of the original object are the same as the fields of the deserialised object.
 
