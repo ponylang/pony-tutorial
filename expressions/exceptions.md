@@ -76,7 +76,7 @@ then
 end
 ```
 
-The callE() will always be excuted. If callB() returns true then the sequence executed is callA(), callB(), callC(), callE(). If callB() returns false then the sequence executed is callA(), callB(), callD(), callE().
+The callE() will always be executed. If callB() returns true then the sequence executed is callA(), callB(), callC(), callE(). If callB() returns false then the sequence executed is callA(), callB(), callD(), callE().
 
 __Do I have to have an else error handler to have a then block?__ No. You can have a try-then block without an else if you like.
 
