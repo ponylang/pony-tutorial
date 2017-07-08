@@ -50,7 +50,12 @@ class Wombat
     _hunger_level = hunger'
 ```
 
-Here, we have two constructors, one that creates a `Wombat` that isn't hungry, and another that creates a `Wombat` that might be hungry or might not.
+Here, we have two constructors, one that creates a `Wombat` that isn't hungry, and another that creates a `Wombat` that might be hungry or might not. Unlike some other languages that differentiate between constructors with method overloading, Pony won't presume to know which alternate constructor to invoke based on the arity and type of your arguments. To choose a constructor, invoke it like a method with the `.` syntax:
+
+```pony
+let defaultWombat = Wombat("Fantastibat") // Invokes the create method by default
+let hungryWombat = Wombat.hungry("Nomsbat", 12) // Invokes the hungry method
+```
 
 __What's with the single quote thing, i.e. name'?__ You can use single quotes in parameter and local variable names. In mathematics, it's called a _prime_, and it's used to say "another one of these, but not the same one". Basically, it's just convenient.
 
