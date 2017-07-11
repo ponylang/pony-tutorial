@@ -12,7 +12,7 @@ A behaviour looks like a function, but instead of being introduced with the keyw
 
 Like a function, a behaviour can have parameters. Unlike a function, it doesn't have a receiver capability (a behaviour can be called on a receiver of any capability) and you can't specify a return type.
 
-__So what does a behaviour return?__ Behaviours always return `None`, like a function without explicit result type, because they can't return something they calculate (since they haven't run yet). In early Pony (before v0.10.0), behaviours used to return the receiver as a convenience to allow chaining calls on it but this has been rendered obsolete by method chaining, which we'll talk more about later.
+__So what does a behaviour return?__ Behaviours always return `None`, like a function without explicit result type, because they can't return something they calculate (since they haven't run yet).
 
 ```pony
 actor Aardvark
