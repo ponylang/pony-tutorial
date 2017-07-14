@@ -91,7 +91,6 @@ end
 ## How to access command line arguments
 ```pony
 actor Main
-
   new create(env: Env) =>
     // The no of arguments
     env.out.print(env.args.size().string())
@@ -99,13 +98,12 @@ actor Main
       env.out.print(value)
     end
     // Access the arguments the first one will always be the the appication name
-    try env.out.print(env.args(0)) end
+    try env.out.print(env.args(0)?) end
 ```
 
 ## How to use options
 ```pony
 actor Main
-
   new create(env: Env) =>
     var options = Options(env)
 
@@ -195,11 +193,11 @@ fun op_xor(othr: A): A
 ```pony
 class Test
   fun alpha() =>
-      """
-      """
+    """
+    """
   fun beta() =>
-      """
-      """
+    """
+    """
 ```
 
 ## How to create Arrays with values
@@ -207,8 +205,8 @@ class Test
 Single values can be separated by semicolon or newline.
 
 ```pony
-let dice: Array[U32] = [1; 2; 3 
-  4 
+let dice: Array[U32] = [1; 2; 3
+  4
   5
   6
 ]

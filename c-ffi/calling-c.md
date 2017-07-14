@@ -128,10 +128,10 @@ FFI calls to functions that __might__ raise an error __must__ mark it as such by
 @os_send[U64](_event, data.cstring(), data.size()) ? // May raise an error
 ```
 
-If a signature declaration is used then that must be marked as possibly raising an error in the same way. The FFI call site then does not have to mark it as well, although doing so is allowed.
+If a signature declaration is used then that must be marked as possibly raising an error in the same way. The FFI call site must mark it as well.
 
 ```pony
 use @os_send[U64](ev: Event, buf: Pointer[U8] tag, len: U64) ?
 
-@os_send(_event, data.cstring(), data.size()) // May raise an error
+@os_send(_event, data.cstring(), data.size())? // May raise an error
 ```

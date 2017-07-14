@@ -29,13 +29,13 @@ actor Main is TestList
     test(_TestSub)
 
 class iso _TestAdd is UnitTest
-  fun name():String => "addition"
+  fun name(): String => "addition"
 
   fun apply(h: TestHelper) =>
     h.assert_eq[U32](4, 2 + 2)
 
 class iso _TestSub is UnitTest
-  fun name():String => "subtraction"
+  fun name(): String => "subtraction"
 
   fun apply(h: TestHelper) =>
     h.assert_eq[U32](2, 4 - 2)

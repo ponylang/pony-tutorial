@@ -37,7 +37,7 @@ fun factorial(x: I32): I32 ? =>
   if x == 0 then
     1
   else
-    x * factorial(x - 1)
+    x * factorial(x - 1)?
   end
 ```
 The exact requirements to qualify for this optimization depends on the version of the LLVM compiler.

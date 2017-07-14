@@ -12,7 +12,7 @@ Another way to monopolize a scheduler thread is to write a behavior that never e
 
 ```pony
 be bad_citizen() =>
-  while (true) do
+  while true do
     _env.out.print("Never gonna give you up. Really gonna make you cry")
   end
 ```
