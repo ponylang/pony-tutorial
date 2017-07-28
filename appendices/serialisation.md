@@ -39,7 +39,7 @@ actor Main
       let foo1 = Foo("abc", 123)
 
       // serialisation
-      let sfoo = Serialised(serialise, foo1)
+      let sfoo = Serialised(serialise, foo1)?
       let bytes_foo: Array[U8] val = sfoo.output(output)
 
       env.out.print("serialised representation is " +
@@ -48,7 +48,7 @@ actor Main
 
       // deserialisation
       let dfoo = Serialised.input(input, bytes_foo)
-      let foo2 = dfoo(deserialise) as Foo
+      let foo2 = dfoo(deserialise)? as Foo
 
       env.out.print("(foo1 == foo2) is " + (foo1 == foo2).string())
     else
@@ -128,8 +128,8 @@ actor Main
       let serialise = SerialiseAuth(ambient)
       let deserialise = DeserialiseAuth(ambient)
 
-      let sx = Serialised(serialise, csw)
-      let y = sx(deserialise) as CStringWrapper
+      let sx = Serialised(serialise, csw)?
+      let y = sx(deserialise)? as CStringWrapper
       y.print()
     else
       env.err.print("there was an error")

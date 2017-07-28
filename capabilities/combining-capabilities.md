@@ -31,7 +31,7 @@ class Foo
 
 class Bar
   fun f() =>
-    var y: Foo trn = getTrnFoo()
+    var y: Foo trn = get_foo_trn()
     var z: String box = y.x
 ```
 

@@ -133,7 +133,7 @@ actor Main
 
   fun reduce(l: List[U32], acc: U32, f: {(U32, U32): U32} val): U32 =>
     try
-      let acc' = f(acc, l.shift())
+      let acc' = f(acc, l.shift()?)
       reduce(l, acc', f)
     else
       acc
@@ -159,7 +159,7 @@ actor Main
 
   fun for_each(l: List[String], f: {ref(String)} ref) =>
     try
-      f(l.shift())
+      f(l.shift()?)
       for_each(l, f)
     end
 ```

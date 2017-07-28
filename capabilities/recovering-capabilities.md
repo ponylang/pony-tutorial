@@ -22,29 +22,29 @@ Here's a more complicated example from the standard library:
 
 ```pony
 recover
-  var s = String((prec' + 1).max(width.max(31)))
+  var s = String((prec + 1).max(width.max(31)))
   var value = x
 
   try
     if value == 0 then
-      s.push(table(0))
+      s.push(table(0)?)
     else
       while value != 0 do
-        let index = (value = value / base) - (value * base)
-        s.push(table(index.usize()))
+        let index = ((value = value / base) - (value * base))
+        s.push(table(index.usize())?)
       end
     end
   end
 
-  s.append(typestring)
   _extend_digits(s, prec')
+  s.append(typestring)
   s.append(prestring)
   _pad(s, width, align, fill)
   s
 end
 ```
 
-That's from `ToString`. It creates a `String ref`, does a bunch of stuff with it, and finally returns it as a `String iso`.
+That's from `format/_FormatInt`. It creates a `String ref`, does a bunch of stuff with it, and finally returns it as a `String iso`.
 
 Both of those examples use the default reference capability for a `recover` expression, since they don't specify one. The default for any mutable reference capability is `iso` and the default for any immutable reference capability is `val`. You can also give an explicit one:
 

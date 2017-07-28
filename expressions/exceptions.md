@@ -16,9 +16,9 @@ else
 end
 ```
 
-In the above code callA() will always be executed and so will callB(). If the result of callB() is true then we will proceed to callC() in the normal fashion and callD() will not then be executed.
+In the above code `callA()` will always be executed and so will `callB()`. If the result of `callB()` is true then we will proceed to `callC()` in the normal fashion and `callD()` will not then be executed.
 
-However, if callB() returns false, then an error will be raised. At this point, execution will stop and the nearest enclosing error handler will be found and executed. In this example that is, our else block and so callD() will be executed.
+However, if `callB()` returns false, then an error will be raised. At this point, execution will stop and the nearest enclosing error handler will be found and executed. In this example that is, our else block and so `callD()` will be executed.
 
 In either case, execution will then carry on with whatever code comes after the try `end`.
 
@@ -28,15 +28,18 @@ If you want to do something that might raise an error, but you don't care if it 
 
 ```pony
 try
-  call() // May raise an error
+  // Do something that may raise an error
 end
 ```
 
 __Is there anything my error handler has to do?__ No. If you provide an error handler then it must contain some code, but it is entirely up to you what it does.
 
+__What's the resulting value of a try block?__ The result of a try block is the value of the last statement in the `try` block, or the the value of the last statement in the `else` clause if an error was raised. If an error was raised and there was no `else` clause provided, the result value will be `None`.
+
+
 ## Partial functions
 
-Pony does not require that all errors are handled immediately as in our previous examples. Instead, functions can raise errors that are handled by whatever code calls them. These are called partial functions (this is a mathematical term meaning a function that does not have a defined result for all possible inputs, i.e. arguments). Partial functions __must__ be marked as such in Pony with a `?`.
+Pony does not require that all errors are handled immediately as in our previous examples. Instead, functions can raise errors that are handled by whatever code calls them. These are called partial functions (this is a mathematical term meaning a function that does not have a defined result for all possible inputs, i.e. arguments). Partial functions __must__ be marked as such in Pony with a `?`, both in the function signature (after the return type) and at the call site (after the closing parentheses).
 
 For example, a somewhat contrived version of the factorial function that accepts a signed integer will error if given a negative input. It's only partially defined over its valid input type.
 
@@ -46,11 +49,13 @@ fun factorial(x: I32): I32 ? =>
   if x == 0 then
     1
   else
-    x * factorial(x - 1)
+    x * factorial(x - 1)?
   end
 ```
 
 Everywhere that an error can be generated in Pony (an error command, a call to a partial function, or certain built-in language constructs) must appear within a try block or a function that is marked as partial. This is checked at compile time, ensuring that an error cannot escape handling and crash the program.
+
+Prior to Pony 0.16.0, call sites of partial functions were not required to be marked with a '?'. This often led to confusion about the possibilities for control flow when reading code. Having every partial function call site clearly marked makes it very easy for the reader to immediately understand everywhere that a block of code may jump away to the nearest error handler, making the possible control flow paths more obvious and explicit.
 
 ## Partial constructors and behaviours
 
@@ -124,7 +129,7 @@ The value of a `with` expression is the value of the last expression in the bloc
 
 ## Language constructs that can raise errors
 
-The only language construct that can raise an error, other than the error command or calling a partial method, is the `as` command. This converts the given value to the specified type if it can be. If it can't then an error is raised. This means that the `as` command can only be used inside a try block or a partial method.
+The only language construct that can raise an error, other than the `error` command or calling a partial method, is the `as` command. This converts the given value to the specified type if it can be. If it can't then an error is raised. This means that the `as` command can only be used inside a try block or a partial method.
 
 ## Comparison to exceptions in other languages
 

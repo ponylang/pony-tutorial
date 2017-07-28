@@ -105,9 +105,9 @@ actor Main
     var random = MT
 
     for i in Range[U64](1, 20) do
-        let r: U64 = random.next()
-        let hash = @jch_chash(i, bucket_size)
-        _env.out.print(i.string() + ": " + hash.string())
+      let r: U64 = random.next()
+      let hash = @jch_chash(i, bucket_size)
+      _env.out.print(i.string() + ": " + hash.string())
     end
 ```
 
