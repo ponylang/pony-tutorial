@@ -27,7 +27,9 @@ end
 
 ## Structural equality
 
-Equality by structure check in Pony is done via `==`. It verifies that two items have the same value. If the identity of the items being compared is the same then, by definition they have the same value. You can define how equality is defined on your object by implementing `fun eq(that: box->A): Bool`
+Structural equality checking in Pony is done via the infix operator `==`. It verifies that two items have the same value. If the identity of the items being compared is the same, then--by definition--they have the same value.
+
+You can define how structural equality is checked on your object by implementing `fun eq(foo: Bar): Bool`. Remember, since `==` is an infix operator, `eq` must be defined on the left operand, and the right operand must be of type `Bar`.
 
 ```pony
 class Foo
