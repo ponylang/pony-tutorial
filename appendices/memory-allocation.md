@@ -17,7 +17,7 @@ So you **can** use any external C library out there, but the question is if you 
 
 The biggest problem is external heap memory, created by an external FFI call, or created to support an external call. But external stack space might also need some thoughts, esp. when being created from actors.
 
-Pony has no **finalizers**, callbacks which are called by the garbage collector to free external memory, which was allocated by an FFI call. The garbage collector is _not timely_ (as with pure reference counting), it is not triggered immediately when some object goes out of scope.
+Pony does have **finalisers** (callbacks which are called by the garbage collector which may be used to free resources allocated by an FFI call); However, the garbage collector is _not timely_ (as with pure reference counting), it is not triggered immediately when some object goes out of scope.
 
 A blocked actor will keep its memory allocated, only a dead actor will release it eventually.
 
