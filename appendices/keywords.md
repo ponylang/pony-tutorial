@@ -29,7 +29,6 @@ This listing explains the usage of every Pony keyword.
 | is | (1) used in nominal subtyping
 |    | (2) in type aliasing
 | iso | reference capability – read and write uniqueness
-| lambda | to make a closure
 | let | declaration of immutable variable: you can't rebind this name to a new value
 | match | pattern matching
 | new | constructor
