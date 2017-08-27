@@ -11,6 +11,7 @@
   * [Type Aliases](types/type-aliases.md)
   * [Type Expressions](types/type-expressions.md)
 * [Chapter 3: Expressions](expressions/index.md)
+  * [Literals](expressions/literals.md)
   * [Variables](expressions/variables.md)
   * [Infix Operators](expressions/infix-ops.md)
   * [Control Structures](expressions/control-structures.md)
