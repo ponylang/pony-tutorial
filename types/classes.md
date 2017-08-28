@@ -159,9 +159,12 @@ We'll talk about all that stuff in detail later.
 
 ## Naming rules
 
-By now it shouldn't be very surprising to learn that in Pony identifiers such as class-, method- and variable-names and other source code elements may only contain [__ASCII__](https://en.wikipedia.org/wiki/ASCII).
+All names in Pony, such as class-, primitive- and actor-names, method- and field-names are required to only contain [__ASCII__](https://en.wikipedia.org/wiki/ASCII) characters.
+Thus emoji-methods are unfortunately not allowed.
 
-String literals are the exception to the rule. They can contain any byte sequence preferred, although Pony ``String``s cooperate best with UTF-8 (e.g. ``String.codepoints()`` for counting the number of [Unicode](https://en.wikipedia.org/wiki/Unicode) codepoints requires UTF-8 to work correctly).
+In fact all elements of Pony code are ASCII, except String literals.
+String literals happily accept any kind of characters, be it UTF-8 encoded or ISO-8859-2 
+and represent them in their encoded form determined by the file encoding.
 
 A Pony type, whether it's a class, actor, trait, interface, primitive, or type alias, must start with an uppercase letter. After an underscore for private or special _methods_ (behaviors, constructors, and functions), any method or variable, including parameters and fields, must start with a lowercase letter. In all cases underscores in a row or at the end of a name are not allowed, but otherwise, any combination of letters and numbers is legal.
 
