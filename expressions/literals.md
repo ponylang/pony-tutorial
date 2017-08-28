@@ -83,7 +83,7 @@ The empty character literal ``''`` is treated as ``0``.
 ## String Literals
 
 String literals are enclosed by single quotes ``"`` or triple quotes ``"""``.
-They can contain any unicode characters and various escape sequences:
+They can contain any kind characters and various escape sequences:
 
 * ``\u00FE`` unicode escape sequence with 4 hex digits encoding one code point
 * ``\u10FFFE`` unicode escape sequence with 6 hex digits encoding one code point
@@ -115,6 +115,26 @@ let stacked_ponies = "
 🐎
 "
 ```
+
+### String Literals and Encodings
+
+String Literals contain the bytes that were read from their source code file.
+Their actual value thus depends on the encoding of the source code file:
+
+Consider the following example:
+
+```pony
+let u_umlaut = "ü"
+```
+
+If the file containing this code is encoded as *UTF-8* 
+the byte-value of ``u_umlaut`` will be: ``\xc3\xbc``.
+If the file is encoded with *ISO-8559-1* (Latin-1) its value is ``\xfc``.
+
+``String`` works best with *UTF-8* as it has methods to deal with unicode
+codepoints which expects *UTF-8*.
+
+So it is advised to encode you pony source code in *UTF-8*.
 
 ### Triple quoted Strings
 
