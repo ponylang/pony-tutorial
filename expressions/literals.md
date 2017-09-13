@@ -55,18 +55,27 @@ let my_scientific_float: F32 = 42.12e-4
 
 Character literals are enclosed with single quotes (`'`).
 
-They are used to encode single byte characters but can be coerced to any numeric type:
+Character literals, unlike String literals, encode to a single numeric value. Usually this is a single byte, a `U8`. But they can be coerced to any integer type:
 
 ```pony
-let big_a: U8 = 'A'
-let hex_escaped_big_a: U8 = '\x41'
-let newline: U32 = '\n'
+let big_a: U8 = 'A'                 // 65
+let hex_escaped_big_a: U8 = '\x41'  // 65
+let newline: U32 = '\n'             // 10
 ```
 
 The following escape sequences are supported:
 
-* `\x4F` hex escape sequence for unicode letters with 2 hex digits (up to 0xFF)
+* `\x4F` hex escape sequence with 2 hex digits (up to 0xFF)
 * `\a`, `\b`, `\e`, `\f`, `\n`, `\r`, `\t`, `\v`, `\\`, `\0`, `\"`
+
+### Multibyte Character literals
+
+It is possible to have character literals that contain multiple characters. The resulting integer value is constructed byte by byte with each character representing a single byte in the resulting integer, the last character being the least significant byte:
+
+```pony
+let multiByte: U64 = 'ABCD' // 0x41424344
+```
+
 
 ## String Literals
 
