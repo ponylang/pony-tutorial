@@ -185,7 +185,7 @@ let my_stringable_array: Array[Stringable] ref =
 
 Here `my_stringable_array` is coerced to `Array[Stringable] ref`. This works because `Stringable` is a trait that both `String` and `U64` implement.
 
-It is also possible to return an Array with a different [Reference Capability](../capabilities/index.md) than `ref` just by specifying it on the type:
+It is also possible to return an array with a different [Reference Capability](../capabilities/index.md) than `ref` just by specifying it on the type:
 
 ```pony
 let my_immutable_array: Array[Stringable] val =
@@ -195,14 +195,14 @@ let my_immutable_array: Array[Stringable] val =
   ]
 ```
 
-This way array literals can be used for creating Arrays of any [Reference Capability](../capabilities/index.md).
+This way array literals can be used for creating arrays of any [Reference Capability](../capabilities/index.md).
 
 ### `As` Expression
 
-It is also possible to give the literal a hint on what kind of type it should coerce the array elements to using an `as` Expression. The expression with the desired Array element type needs to be added right after the opening square bracket, delimited by a colon:
+It is also possible to give the literal a hint on what kind of type it should coerce the array elements to using an `as` Expression. The expression with the desired array element type needs to be added right after the opening square bracket, delimited by a colon:
 
 ```pony
-let my_as_array =
+let my_as_array: Array[Stringable] ref =
   [ as Stringable:
     U64(0xFFEF)
     "0xFFEF"
@@ -210,10 +210,12 @@ let my_as_array =
   ]
 ```
 
-This Array literal is coerced to be an `Array[Stringable] ref` according to the `as` expression.
+This array literal is coerced to be an `Array[Stringable] ref` according to the `as` expression.
+
+If a type is specified on the left-hand side, it needs to exactly match the type in the `as` expression.
 
 ### Arrays and References
 
-Constructing an Array with a literal creates new references to its elements. Thus, to be 100% technically correct, array literal elements are inferred to be the alias of the actual element type. If all elements are of type `T` the array literal will be inferred as `Array[T!] ref` that is as an array of aliases of the type `T`. 
+Constructing an array with a literal creates new references to its elements. Thus, to be 100% technically correct, array literal elements are inferred to be the alias of the actual element type. If all elements are of type `T` the array literal will be inferred as `Array[T!] ref` that is as an array of aliases of the type `T`. 
 
 It is thus necessary to use elements that can have more than one reference of the same type (e.g. types with `val` or `ref` capability) or use ephemeral types for other capabilities (as returned from [constructors](../types/classes.md#constructors) or the [consume expression](../capabilities/consume-and-destructive-read.md)).
