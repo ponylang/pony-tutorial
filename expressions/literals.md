@@ -151,7 +151,7 @@ let triple_quoted_string_docs =
 Array literals are enclosed by square brackets. Array literal elements can be any kind of expressions. They are separated by semicolon or newline:
 
 ```pony
-let myLiteralArray =
+let my_literal_array =
   [
     "first"; "second"
     "third one on a new line"
@@ -163,7 +163,7 @@ let myLiteralArray =
 If the type of the array is not specified, the resulting type of the literal array expression is `Array[T] ref` where `T` (the type of the elements) is inferred as the union of all the element types:
 
 ```pony
-let myHeterogenousArray = 
+let my_heterogenous_array = 
   [
     U64(42)
     "42"
@@ -176,19 +176,19 @@ In the above example the resulting array type will be `Array[(U64|String)] ref` 
 If the variable or call argument the array literal is assigned to has a type, the literal is coerced to that type:
 
 ```pony
-let myStringableArray: Array[Stringable] ref =
+let my_stringable_array: Array[Stringable] ref =
   [
     U64(0xA)
     "0xA"
   ]
 ```
 
-Here `myStringableArray` is coerced to `Array[Stringable] ref`. This works because `Stringable` is a trait that both `String` and `U64` implement.
+Here `my_stringable_array` is coerced to `Array[Stringable] ref`. This works because `Stringable` is a trait that both `String` and `U64` implement.
 
 It is also possible to return an Array with a different [Reference Capability](../capabilities/index.md) than `ref` just by specifying it on the type:
 
 ```pony
-let myImmutableArray: Array[Stringable] val =
+let my_immutable_array: Array[Stringable] val =
   [
     U64(0xBEEF)
     "0xBEEF"
@@ -202,7 +202,7 @@ This way array literals can be used for creating Arrays of any [Reference Capabi
 It is also possible to give the literal a hint on what kind of type it should coerce the array elements to using an `as` Expression. The expression with the desired Array element type needs to be added right after the opening square bracket, delimited by a colon:
 
 ```pony
-let myStringableArray =
+let my_as_array =
   [ as Stringable:
     U64(0xFFEF)
     "0xFFEF"
