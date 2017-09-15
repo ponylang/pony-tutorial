@@ -151,21 +151,19 @@ let triple_quoted_string_docs =
 Array literals are enclosed by square brackets. Array literal elements can be any kind of expressions. They are separated by semicolon or newline:
 
 ```pony
-let my_literal_array =
+let myLiteralArray =
   [
     "first"; "second"
     "third one on a new line"
   ]
 ```
 
-Empty array literals are not supported. Use `recover val Array(0) end` instead.
-
 ### Type inference
 
-The type of the literal array expression is Always `Array[T] ref` where `T` (the type of the elements) is inferred as the union of all the element types:
+If the type of the array is not specified, the resulting type of the literal array expression is `Array[T] ref` where `T` (the type of the elements) is inferred as the union of all the element types:
 
 ```pony
-let my_heterogenous_array: Array[(U64|String)] ref = 
+let myHeterogenousArray = 
   [
     U64(42)
     "42"
@@ -175,12 +173,36 @@ let my_heterogenous_array: Array[(U64|String)] ref =
 
 In the above example the resulting array type will be `Array[(U64|String)] ref` because the array contains `String` and `U64` elements.
 
-It is possible to give the literal a hint on what kind of type it should coerce the array literal to. In the above example we might only want an `Array[Stringable] ref`. `Stringable` is a trait that both `String` and `U64` implement.
-
-In order to do so an `as` Expression defining the desired Array element type needs to be added right after the opening square bracket, delimited by a colon:
+If the variable or call argument the array literal is assigned to has a type, the literal is coerced to that type:
 
 ```pony
-let my_stringable_array: Array[Stringable] ref =
+let myStringableArray: Array[Stringable] ref =
+  [
+    U64(0xA)
+    "0xA"
+  ]
+```
+
+Here `myStringableArray` is coerced to `Array[Stringable] ref`. This works because `Stringable` is a trait that both `String` and `U64` implement.
+
+It is also possible to return an Array with a different [Reference Capability](../capabilities/index.md) than `ref` just by specifying it on the type:
+
+```pony
+let myImmutableArray: Array[Stringable] val =
+  [
+    U64(0xBEEF)
+    "0xBEEF"
+  ]
+```
+
+This way array literals can be used for creating Arrays of any [Reference Capability](../capabilities/index.md).
+
+### `As` Expression
+
+It is also possible to give the literal a hint on what kind of type it should coerce the array elements to using an `as` Expression. The expression with the desired Array element type needs to be added right after the opening square bracket, delimited by a colon:
+
+```pony
+let myStringableArray =
   [ as Stringable:
     U64(0xFFEF)
     "0xFFEF"
@@ -189,17 +211,6 @@ let my_stringable_array: Array[Stringable] ref =
 ```
 
 This Array literal is coerced to be an `Array[Stringable] ref` according to the `as` expression.
-
-Inferring the element type from the type of the local variable or field it is assigned to is not yet possible:
-
-```pony
-// does not compile
-let my_stringable_array: Array[Stringable] =
-  [
-    U64(0xA)
-    "0xA"
-  ]
-```
 
 ### Arrays and References
 
