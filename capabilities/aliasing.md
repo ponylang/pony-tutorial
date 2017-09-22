@@ -35,12 +35,13 @@ __What about aliasing other stuff?__ Everything else can be aliased as itself. S
 
 ## What counts as making an alias?
 
-There are two things that count as making an alias:
+There are three things that count as making an alias:
 
 1. When you __assign__ a value to a variable. This could be a local variable or a field.
 2. When you __pass__ a value as an argument to a method.
+3. When you __call a method__ an alias the the receiver of the call is created and accessible as `this` within the method body.
 
-In both cases, you are making a new _name_ for the object. This might be the name of a local variable, the name of a field, or the name of a parameter to a method.
+In all three cases, you are making a new _name_ for the object. This might be the name of a local variable, the name of a field, or the name of a parameter to a method.
 
 ## Ephemeral types
 
