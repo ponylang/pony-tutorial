@@ -5,5 +5,8 @@
         "lunr@1.2.0"
     ],
     "pluginsConfig": {
+        "lunr": {
+            "ignoreSpecialCharacters": true
+        }
     }
 }
