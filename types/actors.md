@@ -30,13 +30,59 @@ Here we have an `Aardvark` that can eat asynchronously. Clever Aardvark.
 
 ## Concurrent
 
-Since behaviours are asynchronous, it's ok to run the body of a bunch of behaviours at the same time. This is exactly what Pony does. The Pony runtime has its own scheduler, which by default has a number of threads equal to the number of CPU cores on your machine. Each scheduler thread can be executing an actor behaviour at any given time, so Pony programs are naturally concurrent.
+Since behaviours are asynchronous, The runtime might execute a bunch of behaviours at the same time. This is exactly what Pony does. The Pony runtime has its own scheduler, which by default has a number of threads equal to the number of CPU cores on your machine. Each scheduler thread can be executing an actor behaviour at any given time, so Pony programs are naturally concurrent.
+
+for example, the following code:
+
+```
+actor A
+  var name:String
+  var env:Env
+  new create(env':Env,name':String) =>
+    name = name'
+    env = env'
+
+  be first() =>
+    env.out.print(name+" first")
+  be second() =>
+    env.out.print(name+" second")
+ 
+actor Main
+
+  new create(env:Env) =>
+     let a = A.create(env,"a")
+     let b = A.create(env,"b")
+     a.first()
+     a.second()
+     b.first()
+     b.second()
+
+```
+might have the following resul:
+
+```
+b first
+a first
+b second
+a second
+```
 
 ## Sequential
 
 Actors themselves, however, are sequential. That is, each actor will only execute one behaviour at a time. This means all the code in an actor can be written without caring about concurrency: no need for locks or semaphores or anything like that.
 
-When you're writing Pony code, it's nice to think of actors not as a unit of parallelism, but as a unit of sequentiality. That is, an actor should do only what _has_ to be done sequentially. Anything else can be broken out into another actor, making it automatically parallel.
+When you're writing Pony code, it's nice to think of actors not as a unit of parallelism, but as a unit of sequentiality. That is, the behavior are exectuted in the order they are called. Anything else can be broken out into another actor, making it automatically parallel.
+
+taking the same example than before, the following result is garantee not to happen
+
+```
+b second // IMPOSSIBLE: b.first() is called before b.second()
+a first
+b first
+a second
+```
+
+
 
 ## Why is this safe?
 
