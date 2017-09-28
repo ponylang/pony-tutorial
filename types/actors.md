@@ -73,7 +73,7 @@ Actors themselves, however, are sequential. That is, each actor will only execut
 
 When you're writing Pony code, it's nice to think of actors not as a unit of parallelism, but as a unit of sequentiality. That is, the behavior are exectuted in the order they are called. Anything else can be broken out into another actor, making it automatically parallel.
 
-taking the same example than before, the following result is garantee not to happen
+Taking the same example than before, the following result is garantee not to happen
 
 ```
 b second // IMPOSSIBLE: b.first() is called before b.second()
@@ -82,7 +82,7 @@ b first
 a second
 ```
 
-
+From an implentation point of view, the pony runtime has a queue which keep the calls already done and still not executed by an actor.
 
 ## Why is this safe?
 
