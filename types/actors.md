@@ -71,7 +71,7 @@ a second
 
 Actors themselves, however, are sequential. That is, each actor will only execute one behaviour at a time. This means all the code in an actor can be written without caring about concurrency: no need for locks or semaphores or anything like that.
 
-When you're writing Pony code, it's nice to think of actors not as a unit of parallelism, but as a unit of sequentiality. That is, the behavior are exectuted in the order they are called. Anything else can be broken out into another actor, making it automatically parallel.
+When you're writing Pony code, it's nice to think of actors not as a unit of parallelism, but as a unit of sequentiality. That is, the methods (function, behavior, constructor and finaliser) are exectuted in the order they are called. Anything else can be broken out into another actor, making it automatically parallel.
 
 Taking the same example than before, the following result is garantee not to happen
 
