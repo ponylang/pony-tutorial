@@ -34,7 +34,7 @@ end
 
 __Is there anything my error handler has to do?__ No. If you provide an error handler then it must contain some code, but it is entirely up to you what it does.
 
-__What's the resulting value of a try block?__ The result of a `try` block is the value of the last statement in the `try` block, or the the value of the last statement in the `else` clause if an error was raised. If an error was raised and there was no `else` clause provided, the result value will be `None`.
+__What's the resulting value of a try block?__ The result of a `try` block is the value of the last statement in the `try` block, or the value of the last statement in the `else` clause if an error was raised. If an error was raised and there was no `else` clause provided, the result value will be `None`.
 
 
 ## Partial functions
