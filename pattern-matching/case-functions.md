@@ -79,7 +79,7 @@ actor Main
         env.out.print(FizzBuzz.fizz_buzz(x)? as String)
       end
       let lines = FizzBuzz.fizz_buzz(Range[U64](1, 101))? as Array[String]
-      env.out.print("\n".join(lines))
+      env.out.print("\n".join(lines.values()))
     end
 ```
 
