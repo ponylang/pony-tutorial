@@ -228,6 +228,32 @@ primitive Foo
     f.>add_option(o1).>add_option(o2).make_object() // Works. The expression returns an Object
 ```
 
+## Anonymous methods
+
+Pony has Anonymous methods (or Lambdas). They look like this :
+
+```pony
+/* Print
+1
+3
+*/
+
+use "collections"
+
+actor Main
+  new create(env:Env) =>
+    let listOfNumbers = List[U32].from([1; 2; 3; 4])
+    let filteringLambda = {(n: U32): Bool => n % 2 == 1}
+    let onlyOdd = listOfNumbers.filter(filteringLambda).values()
+    while onlyOdd.has_next() do
+      try
+        env.out.print(onlyOdd.next()?.string())
+      end
+    end
+```
+
+They are presented more in-depth in the Object Literals section.
+
 ## Privacy
 
 In Pony method names start either with a lower case letter or with an underscore followed by a lowercase letter. Methods with a leading underscore are private. This means they can only be called by code within the same package. Methods without a leading underscore are public and can be called by anyone.
