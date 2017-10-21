@@ -15,6 +15,8 @@ There is some package in the standard library that are so useful that deserve to
 The debug package is useful when you want to do print something without having to pass the ```Env``` around. To use the debug package just import and use it this way:
 
 ```pony
+use "debug"
+
 actor Main
   new create(env: Env) =>
     Debug.out("This will only bee seen when configured for debug info")
@@ -26,7 +28,7 @@ Note that for the debug statement to show up you will need to compile your progr
 ### The itertools package
 
 The itertools package is a really useful package when dealing with collections. If the words filter, map, fold and zip speak to you then take a look at this package. 
-Here is a quick example that from start with an array of numbers, add one to each, then only keep the even ones and finally print each value.
+Here is a quick example that starts with an array of numbers, add one to each, then only keep the even ones and finally print each value.
 
 ```pony
 use "itertools"
@@ -42,7 +44,7 @@ actor Main
 
 ### The collections package
 
-Speaking about collections it is worth taking a look at the package of the same name. The collections package contains the generic common containers such as List, HasMap, HashSet.
+Speaking about collections it is worth taking a look at the package of the same name. The collections package contains the generic common containers such as List, HashMap, HashSet.
 
 ```pony
 use "collections"
@@ -105,9 +107,9 @@ use "regex"
 actor Main
   new create(env: Env) =>
     try
-      let r = Regex("pony is .*")?
-      let result = r.replace("pony is a kind of horse", "awesome")?
-      env.out.print("pony is" + result.clone())
+      let r = Regex("(pony is) .*")?
+      let result = r.replace("pony is a kind of horse", "$1 awesome")?
+      env.out.print(result.clone())
     end
 ```
 
@@ -168,10 +170,10 @@ class Notify is TimerNotify
     end
 ```
 
-### Others packages
+### Other packages
 
 This is enough for an introduction but as you will explore Pony you may find other packages really helpful.
-The different net packages are used for anything that is network related.
-The promise package will help you collect result of work done by others actor. The options one will help you parse and manage arguments from the command line.
-The random package allow you to play Russian roulette. The crypto package contains the common hashing function.
+The different net packages - [net](https://stdlib.ponylang.org/net--index) [net/http](https://stdlib.ponylang.org/net-http--index) and [net/ssl](https://stdlib.ponylang.org/net-ssl--index) -  are used for anything that is network related.
+The [promise](https://stdlib.ponylang.org/promises--index) package will help you collect result of work done by others actor. The [options](https://stdlib.ponylang.org/options--index) one will help you parse and manage arguments from the command line.
+The [random](https://stdlib.ponylang.org/random--index) package allows you to play Russian roulette. The [crypto](https://stdlib.ponylang.org/crypto--index) package contains the common hashing functions.
 There is much more. Don't forget to check them out.
