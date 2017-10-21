@@ -230,14 +230,9 @@ primitive Foo
 
 ## Anonymous methods
 
-Pony has Anonymous methods (or Lambdas). They look like this :
+Pony has anonymous methods (or Lambdas). They look like this:
 
 ```pony
-/* Print
-1
-3
-*/
-
 use "collections"
 
 actor Main
@@ -252,7 +247,7 @@ actor Main
     end
 ```
 
-They are presented more in-depth in the Object Literals section.
+They are presented more in-depth in the [Object Literals section](../expressions/object-literals.md).
 
 ## Privacy
 
