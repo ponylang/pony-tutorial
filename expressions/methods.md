@@ -229,11 +229,11 @@ primitive Foo
 ```
 
 ## Behaviours
-Behaviours are asynchronous method calls. As such, they cannot return anything, and the caller will not wait for the call to finish. Here is a quick example to illustrate this certainly :
+Behaviours are methods that are asynchronously evaluated in the context of their containing actor. As such, they cannot return anything, cannot error, and the caller will not wait for the call to finish. Here is a quick example to illustrate this:
 
 ```pony
 /** 
-This program will certainly print the following :
+This program will probably print the following :
 
 [Main] ping behaviour called.
 [OtherActor] In ping behaviour.
