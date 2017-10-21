@@ -2,6 +2,7 @@
     "plugins": [
         "footnote-string-to-number",
         "highlight",
+        "lunr@1.2.0",
         "run-code-button-pony"
     ],
     "pluginsConfig": {
