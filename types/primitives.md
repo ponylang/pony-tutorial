@@ -17,11 +17,11 @@ There are three main uses of primitives (four, if you count built-in "machine wo
 
 ```pony
 // 2 "marker values"
-primitive OpenDoor 
+primitive OpenedDoor 
 primitive ClosedDoor
 
 // An "enumeration" type
-type DoorState is (OpenDoor | ClosedDoor)
+type DoorState is (OpenedDoor | ClosedDoor)
 
 // A collection of functions
 primitive BasicMath
@@ -35,8 +35,8 @@ actor Main
   new create(env: Env) =>
     let doorState : DoorState = ClosedDoor
     let isDoorOpen : Bool = match doorState
-      | OpenDoor => false
-      | ClosedDoor => true
+      | OpenedDoor => true 
+      | ClosedDoor => false
     end
     env.out.print("Is door open? " + isDoorOpen.string())
     env.out.print("2 + 3 = " + BasicMath.add(2,3).string())
