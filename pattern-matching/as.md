@@ -64,9 +64,9 @@ For example, in the case of the following program, the method `foo` can take eit
 
 ```pony
 actor Main
-  actor Main
   fun foo(xs: (Array[U32] ref | Array[U64] ref)): Bool =>
     // do something boring here
+    true
 
   new create(env: Env) =>
     foo([as U32: 1; 2; 3])
