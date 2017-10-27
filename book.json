@@ -3,7 +3,7 @@
         "footnote-string-to-number",
         "highlight",
         "lunr@1.2.0",
-        "run-code-button-pony"
+        "run-code-button-ponylang"
     ],
     "pluginsConfig": {
         "lunr": {
