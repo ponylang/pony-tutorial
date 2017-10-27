@@ -38,6 +38,9 @@ interface Critter
 The programmer uses this library to create a `Wombat` and a `Capybara` class. But the `Capybara` class provides a new method, `swim()`, that is not part of the `Critter` class. The programmer wants to store all of the critters in an array, in order to carry out actions on groups of critters. Now assume that when capybaras finish washing they want to go for a swim. The programmer can accomplish that by using `as` to attempt to use each `Critter` object in the `Array[Critter]` as a `Capybara`. If this fails because the `Critter` is not a `Capybara`, then an error is raised; the program can swallow this error and go on to the next item.
 
 ```pony
+interface Critter
+  fun wash(): String
+
 class Wombat is Critter
   fun wash(): String => "I'm a clean wombat!"
 
@@ -47,7 +50,9 @@ class Capybara is Critter
 
 actor Main
   new create(env: Env) =>
-    let critters = Array[Critter].push(Wombat).push(Capybara)
+    var critters = Array[Critter]
+    critters.push(Wombat)
+    critters.push(Capybara)
     for critter in critters.values() do
       env.out.print(critter.wash())
       try
