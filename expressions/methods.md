@@ -228,6 +228,47 @@ primitive Foo
     f.>add_option(o1).>add_option(o2).make_object() // Works. The expression returns an Object
 ```
 
+## Behaviours
+Behaviours are methods that are asynchronously evaluated in the context of their containing actor. As such, they cannot return anything, cannot error, and the caller will not wait for the call to finish. Here is a quick example to illustrate this:
+
+```pony
+/** 
+This program will probably print the following :
+
+[Main] ping behaviour called.
+[OtherActor] In ping behaviour.
+[OtherActor] pong behaviour called.
+[Main] In pong behaviour.
+
+**/
+
+actor Main
+  let _env : Env
+  
+  new create(env: Env) =>
+    _env = env
+    let otherActor : OtherActor = OtherActor(env, this)
+    otherActor.ping()
+    _env.out.print("[Main] ping behaviour called.")
+    
+  be pong() =>
+    _env.out.print("[Main] In pong behaviour.")
+  
+
+actor OtherActor
+  let _env : Env
+  let _main : Main
+  
+  new create(env: Env, main: Main tag) =>
+    _env = env
+    _main = main
+  
+  be ping() =>
+    _env.out.print("[OtherActor] In ping behaviour.")
+    _main.pong()
+    _env.out.print("[OtherActor] pong behaviour called.")
+```
+
 ## Privacy
 
 In Pony method names start either with a lower case letter or with an underscore followed by a lowercase letter. Methods with a leading underscore are private. This means they can only be called by code within the same package. Methods without a leading underscore are public and can be called by anyone.
