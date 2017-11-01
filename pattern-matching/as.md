@@ -50,9 +50,7 @@ class Capybara is Critter
 
 actor Main
   new create(env: Env) =>
-    var critters = Array[Critter]
-    critters.push(Wombat)
-    critters.push(Capybara)
+    var critters = Array[Critter].>push(Wombat).>push(Capybara)
     for critter in critters.values() do
       env.out.print(critter.wash())
       try
