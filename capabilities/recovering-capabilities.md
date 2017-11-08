@@ -16,7 +16,7 @@ This most straightforward use of `recover` is to get an `iso` that you can pass 
 recover Array[String] end
 ```
 
-That's a simple one: it returns an `Array[String] iso`, instead of the usual `Array[String] ref` you would get.
+That's a simple one: it returns an `Array[String] iso`, instead of the usual `Array[String] ref` you would get. The reason it is `iso` and not any of the other mutable reference capabilities is because there is a default reference capability when you don't specify one. The default for any mutable reference capability is `iso` and the default for any immutable reference capability is `val`.
 
 Here's a more complicated example from the standard library:
 
@@ -46,7 +46,7 @@ end
 
 That's from `format/_FormatInt`. It creates a `String ref`, does a bunch of stuff with it, and finally returns it as a `String iso`.
 
-Both of those examples use the default reference capability for a `recover` expression, since they don't specify one. The default for any mutable reference capability is `iso` and the default for any immutable reference capability is `val`. You can also give an explicit one:
+You can also give an explicit reference capability:
 
 ```pony
 let key = recover val line.substring(0, i).strip() end
