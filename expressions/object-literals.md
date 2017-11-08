@@ -90,18 +90,7 @@ object iso
 end
 ```
 
-Lambdas can be used to capture from the lexical scope in the same way as object literals can:
-
-```pony
-class Foo
-  new create(env:Env) =>
-    foo({(s: String) => env.out.print(s) })
-
-  fun foo(f: {(String)}) =>
-    f("Hello World")
-```
-
-assign from the lexical scope to a field. This is done by adding a second argument list after the parameters:
+Lambdas can be used to capture from the lexical scope in the same way as object literals can assign from the lexical scope to a field. This is done by adding a second argument list after the parameters:
 
 ```pony
 class Foo
