@@ -28,7 +28,7 @@ primitive BasicMath
   fun add(a: U64, b: U64) : U64 =>
     a + b
   
-  fun multiply(a : U64, b: U64) : U64 =>
+  fun multiply(a: U64, b: U64) : U64 =>
     a * b
 
 actor Main
