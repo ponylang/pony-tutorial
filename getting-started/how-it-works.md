@@ -52,7 +52,7 @@ In Pony, a dot is either a field access or a method call, much like other langua
 
 So here, we start with a reference to `env`. We then look up the field `out` on our object `env`. As it happens, that field represents __stdout__, i.e. usually it means printing to your console. Then, we call the `print` method on `env.out`. The stuff inside the parentheses are the arguments to the function. In this case, we are passing a __string literal__, i.e. the stuff in double quotes.
 
-In Pony, string literals can be in double quotes, in which case they follow C/C++ style escaping (using stuff like \n), or they can be in "triple double" quotes, like a Python triple-quoted string, in which case they are considered raw data.
+In Pony, string literals can be in double quotes, `"`, in which case they follow C/C++ style escaping (using stuff like \n), or they can be triple-quoted, `"""` like in Python, in which case they are considered raw data.
 
 __What's an Env, anyway?__ It's the "environment" your program was invoked with. That means it has command line arguments, environment variables, __stdin__, __stdout__, and __stderr__. Pony has no global variables, so these things are explicitly passed to your program.
 
