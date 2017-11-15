@@ -1,10 +1,12 @@
 # Exceptions
 
-Pony provides a simple exception mechanism to aid in error handling. At any point, the code may decide to declare an `error` has occurred. Code execution halts at that point and the call chain is unwound until the nearest enclosing error handler is found. This is all checked at compile time so errors cannot cause the whole program to crash.
+Pony doesn't feature exceptions as you might be familiar with them from languages like Python, Java, C++ et al. It does, however, provide a simple partial function mechanism to aid in error handling. Partial functions and the `error` keyword used to raise them look similar to exceptions in other languages but have some important semantic differences. Let's take a look at how you work with Pony's error and then how it differs from the exceptions you might be used to.
 
 ## Raising and handling errors
 
-An error is raised with the command `error`. Error handlers are declared using the `try`-`else` syntax.
+An error is raised with the command `error`. At any point, the code may decide to declare an `error` has occurred. Code execution halts at that point, and the call chain is unwound until the nearest enclosing error handler is found. This is all checked at compile time so errors cannot cause the whole program to crash.
+
+Error handlers are declared using the `try`-`else` syntax.
 
 ```pony
 try
@@ -59,7 +61,7 @@ Prior to Pony 0.16.0, call sites of partial functions were not required to be ma
 
 ## Partial constructors and behaviours
 
-Constructors may also be marked as partial. If a constructor raises an error then the construction is considered to have failed and the object under construction is discarded without ever being returned to the caller.
+Class constructors may also be marked as partial. If a class constructor raises an error then the construction is considered to have failed and the object under construction is discarded without ever being returned to the caller.
 
 When an actor constructor is called the actor is created and a reference to it is returned immediately. However, the constructor code is executed asynchronously at some later time. If an actor constructor were to raise an error it would already be too late to report this to the caller. For this reason, constructors for actors may not be partial.
 
@@ -133,7 +135,7 @@ The only language construct that can raise an error, other than the `error` comm
 
 ## Comparison to exceptions in other languages
 
-Pony exceptions behave very much the same as those in C++, Java, C#, Python, and Ruby. The key difference is that Pony exceptions do not have a type or instance associated with them. This makes them the same as C++ exceptions would be if a fixed literal was always thrown, e.g. `throw 3;`. This difference simplifies exception handling for the programmer and allows for much better runtime error handling performance.
+Pony errors behave very much the same as those in C++, Java, C#, Python, and Ruby. The key difference is that Pony errors do not have a type or instance associated with them. This makes them the same as C++ exceptions would be if a fixed literal was always thrown, e.g. `throw 3;`. This difference simplifies error handling for the programmer and allows for much better runtime error handling performance.
 
 The `else` handler in a `try` expression is just like a `catch(...)` in C++, `catch(Exception e)` in Java or C#, `except:` in Python, or `rescue` in Ruby. Since exceptions do not have types there is no need for handlers to specify types or to have multiple handlers in a single try block.
 
