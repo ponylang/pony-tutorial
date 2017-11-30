@@ -6,6 +6,7 @@ Pony, like just about any other programming language, has plenty of odd symbols 
 | --- | --- |
 | `!`  | Alias |
 | `->` | Arrow type, viewpoint |
+| `.>` | Chaining |
 | `^`  | Ephemeral |
 | `@`  | FFI |
 | `&`  | Intersection |
