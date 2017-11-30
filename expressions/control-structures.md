@@ -96,7 +96,54 @@ var x: (String | None) =
   end
 ```
 
-__Does Pony still have the conditional operator "?"?__ No, it's not needed. Just use `if`.
+The same rules that apply to the value of an `if` expression applies to loops as well. Let's take a look at what a loop value would look like:
+
+```pony
+actor Main
+  new create(env: Env) =>
+    var x: (String | None) = 
+      for name in ["Bob"; "Fred"; "Sarah"].values() do
+        name
+      end
+    match x
+    | let s: String => env.out.print("x is " + s)
+    | None => env.out.print("x is None")
+    end
+```
+
+This will give __x__ the value "Sarah" as it is the last name in our list. If our loop has 0 iterations, then the value of it's `else` block will be the value of __x__. Or if there is no `else` block, the value will be `None`.
+
+```pony
+actor Main
+  new create(env: Env) =>
+    var x: (String | None) = 
+      for name in Array[String].values() do
+        name
+      else
+        "no names!"
+      end
+    match x
+    | let s: String => env.out.print("x is " + s)
+    | None => env.out.print("x is None")
+    end
+```
+
+Here the value of __x__ is "no names!"
+
+```pony
+actor Main
+  new create(env: Env) =>
+    var x: (String | None) = 
+      for name in Array[String].values() do
+        name
+      end
+    match x
+    | let s: String => env.out.print("x is " + s)
+    | None => env.out.print("x is None")
+    end
+```
+
+And lastly, here __x__ would be `None`.
 
 ## Loops
 
