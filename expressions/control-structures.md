@@ -214,9 +214,13 @@ The differences between `while` and `repeat` in Pony are:
 Suppose we're trying to create something and we want to keep trying until it's good enough:
 
 ```pony
-repeat
-  var present = makePresent()
-until present.marksOutOfTen() > 7 end
+actor Main
+  new create(env: Env) =>
+    var counter = U64(1)
+    repeat
+      env.out.print("hello!")
+      counter = counter + 1
+    until counter > 7 end
 ```
 
 Just like `while` loops the value given by a `repeat` loop is the value of the expression within the loop on the last iteration and `break` and `continue` can be used.
