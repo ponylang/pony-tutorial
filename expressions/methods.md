@@ -33,10 +33,8 @@ Pony applies tail call optimization when applicable to allow a recursive impleme
 
 ```pony
 primitive Factorial
-  fun factorial(x: I32): I32 =>
-    if x < 0 then 
-      0
-    elseif x == 0 then
+  fun factorial(x: U32): U32 =>
+    if x == 0 then
       1
     else
       x * factorial(x - 1)
