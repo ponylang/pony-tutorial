@@ -66,7 +66,7 @@ let newline: U32 = '\n'             // 10
 The following escape sequences are supported:
 
 * `\x4F` hex escape sequence with 2 hex digits (up to 0xFF)
-* `\a`, `\b`, `\e`, `\f`, `\n`, `\r`, `\t`, `\v`, `\\`, `\0`, `\"`
+* `\a`, `\b`, `\e`, `\f`, `\n`, `\r`, `\t`, `\v`, `\\`, `\0`, `\'`
 
 ### Multibyte Character literals
 
