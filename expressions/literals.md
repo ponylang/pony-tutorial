@@ -79,7 +79,7 @@ let multiByte: U64 = 'ABCD' // 0x41424344
 
 ## String Literals
 
-String literals are enclosed with single quotes `"` or triple quotes `"""`. They can contain any kind of bytes and various escape sequences:
+String literals are enclosed with double quotes `"` or triple-quoted `"""`. They can contain any kind of bytes and various escape sequences:
 
 * `\u00FE` unicode escape sequence with 4 hex digits encoding one code point
 * `\u10FFFE` unicode escape sequence with 6 hex digits encoding one code point
