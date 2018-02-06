@@ -114,8 +114,6 @@ fun f(x: (U32 | String | None)): String =>
   | 3 => "three"
   | let u: U32 => "other integer"
   | let s: String => s
-  else
-    "something else"
   end
 ```
 
@@ -128,7 +126,7 @@ If you want to match on more than one operand at once then you can simply use a 
 ```pony
 fun f(x: (String | None), y: U32): String =>
   match (x, y)
-  | (None, let y: U32) => "none"
+  | (None, let u: U32) => "none"
   | (let s: String, 2) => s + " two"
   | (let s: String, 3) => s + " three"
   | (let s: String, let u: U32) => s + " other integer"
