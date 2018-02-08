@@ -72,7 +72,7 @@ class Foo
     var z = x + y
 ```
 
-[Case functions](http://tutorial.ponylang.org/pattern-matching/case-functions.html) can be used to provide more than one `add` function. It is also possible to overload infix operators to some degree using union types or f-bounded polymorphism, but this is beyond the scope of this tutorial. See the Pony standard library for further information.
+It is possible to overload infix operators to some degree using union types or f-bounded polymorphism, but this is beyond the scope of this tutorial. See the Pony standard library for further information.
 
 You do not have to worry about any of this if you don't want to. You can simply use the existing infix operators for numbers just like any other language and not provide them for your own types.
 
