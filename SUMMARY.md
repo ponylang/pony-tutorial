@@ -52,7 +52,6 @@
   * [C ABI](c-ffi/c-abi.md)
   * [Callbacks](c-ffi/callbacks.md)
 * [Chapter 11: Gotchas!](gotchas/index.md)
-  * [Divide by Zero](gotchas/divide-by-zero.md)
   * [Garbage Collection](gotchas/garbage-collection.md)
   * [Scheduling](gotchas/scheduling.md)
   * [Side-effect ordering in function call expressions](gotchas/side-effect-ordering-in-function-call-expressions.md)
