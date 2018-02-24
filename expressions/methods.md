@@ -29,7 +29,7 @@ After the return value, there's a `=>` and then finally the function body. The v
 
 If you want to exit a function early then use the `return` command. If the function has a return type then you need to provide a value to return. If the function does not have a return type then `return` should appear on its own, without a value.
 
-__Can I overload functions by argument type?__ [Case functions](http://tutorial.ponylang.org/pattern-matching/case-functions.html) provide a mechanism for providing several functions with the same name with different implementations that are selected by argument type.
+__Can I overload functions by argument type?__ No, you cannot have multiple methods with the same name in the same type.
 
 ## Constructors
 
@@ -238,6 +238,6 @@ They are presented more in-depth in the [Object Literals section](../expressions
 
 ## Privacy
 
-In Pony method names start either with a lower case letter or with an underscore followed by a lowercase letter. Methods with a leading underscore are private. This means they can only be called by code within the same package. Methods without a leading underscore are public and can be called by anyone.
+In Pony, method names start either with a lower case letter or with an underscore followed by a lowercase letter. Methods with a leading underscore are private. This means they can only be called by code within the same package. Methods without a leading underscore are public and can be called by anyone.
 
 __Can I start my method name with 2 (or more) underscores?__ No. If the first character is an underscore then the second one MUST be a lower case letter.
