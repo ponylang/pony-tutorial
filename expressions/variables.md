@@ -57,6 +57,14 @@ x = 5  // OK
 y = 6  // Error, y is let
 ```
 
+Using `let`instead of `var` also means the variable has to be assigned immediatly. 
+
+```pony
+let x: U32 = 3 // Ok 
+let y: U32 // Error, can't declare a let local without assigning to it
+y = 6 // Error, can't reassign to a let local
+```
+
 You never have to declare variables as `let`, but if you know you're never going to change a variable then using `let` is a good way to catch errors. It can also serve as a useful comment, indicating the value is not meant to be changed.
 
 ## Fields
