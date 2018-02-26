@@ -75,7 +75,7 @@ Fields have the same lifetime as the object they're in, rather than being scoped
 
 If the name of a field starts with `_`, it's __private__. That means only the type the field is in can have code that reads or writes that field. Otherwise, the field is __public__ and can be read or written from anywhere.
 
-Just like local variables, fields can be `var` or `let`. Nevertheless, rules for field assignation differ a bit from variable assignation. No matter the type of the field (either `var` or `let`), either:
+Just like local variables, fields can be `var` or `let`. Nevertheless, rules for field assignment differ a bit from variable assignment. No matter the type of the field (either `var` or `let`), either:
 1. an initial value has to be assigned in their definition or 
 2. an initial value has to be assigned in the constructor method.
 
@@ -96,9 +96,9 @@ class Wombat
     name = "Fantastibat"
     _hunger_level = hunger
 ```
-If the assignation is not done at the definition level or in the constructor, an error is raised by the compiler. This is true for both `var` and `let` fields. 
+If the assignment is not done at the definition level or in the constructor, an error is raised by the compiler. This is true for both `var` and `let` fields. 
 
-Please note that the assignation of a value to a field has to be explicit. The below example raises an error when compiled, even when the field is of `var` type:
+Please note that the assgnment of a value to a field has to be explicit. The below example raises an error when compiled, even when the field is of `var` type:
 ```pony
 class Wombat
   let name: String
@@ -112,7 +112,7 @@ class Wombat
   fun set_hunger_level(hunger_level: U64) =>
     _hunger_level = hunger_level
 ```
-We will see later in the Methods section that a class can have several constructor. For now, just remember that if the assignation of a field is not done at the definition level, it has to be done in each constructor of the class the field belongs to.
+We will see later in the Methods section that a class can have several constructor. For now, just remember that if the assignment of a field is not done at the definition level, it has to be done in each constructor of the class the field belongs to.
 
 As for variables, using `var` means a field can be assigned and reassigned as many times as you like in the class. Using `let` means the field can only be assigned once.
 
