@@ -57,7 +57,7 @@ x = 5  // OK
 y = 6  // Error, y is let
 ```
 
-Using `let`instead of `var` also means the variable has to be assigned immediatly. 
+Using `let` instead of `var` also means the variable has to be assigned immediately. 
 
 ```pony
 let x: U32 = 3 // Ok 
@@ -109,7 +109,7 @@ class Wombat
     set_hunger_level(level)
     // Error: field _hunger_level left undefined in constructor
   
-  fun set_hunger_level(hunger_level: U64) =>
+  fun ref set_hunger_level(hunger_level: U64) =>
     _hunger_level = hunger_level
 ```
 We will see later in the Methods section that a class can have several constructor. For now, just remember that if the assignment of a field is not done at the definition level, it has to be done in each constructor of the class the field belongs to.
@@ -125,10 +125,10 @@ class Wombat
     name = name'
     _hunger_level = level
 
-  fun set_hunger_level(hunger_level: U64) =>
+  fun ref set_hunger_level(hunger_level: U64) =>
     _hunger_level = hunger_level // Ok, _hunger_level is of var type
 
-  fun set_name(name' : String) =>
+  fun ref set_name(name' : String) =>
     name = name' // Error, can't assign to a let definition more than once
 ```
 
