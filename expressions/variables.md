@@ -57,6 +57,14 @@ x = 5  // OK
 y = 6  // Error, y is let
 ```
 
+Using `let` instead of `var` also means the variable has to be assigned immediately. 
+
+```pony
+let x: U32 = 3 // Ok 
+let y: U32 // Error, can't declare a let local without assigning to it
+y = 6 // Error, can't reassign to a let local
+```
+
 You never have to declare variables as `let`, but if you know you're never going to change a variable then using `let` is a good way to catch errors. It can also serve as a useful comment, indicating the value is not meant to be changed.
 
 ## Fields
@@ -67,9 +75,64 @@ Fields have the same lifetime as the object they're in, rather than being scoped
 
 If the name of a field starts with `_`, it's __private__. That means only the type the field is in can have code that reads or writes that field. Otherwise, the field is __public__ and can be read or written from anywhere.
 
-Just like local variables, fields can be `var` or `let`. They can also have an initial value assigned in their definition, just like local variables, or they can be given their initial value in a constructor.
+Just like local variables, fields can be `var` or `let`. Nevertheless, rules for field assignment differ a bit from variable assignment. No matter the type of the field (either `var` or `let`), either:
+1. an initial value has to be assigned in their definition or 
+2. an initial value has to be assigned in the constructor method.
 
-__Can fields come after the constructor?__ No. To keep Pony's grammar unambiguous, only type aliases are allowed between an `actor Name`, `object is Trait`, etc. and a field definition. In any case, it's good style to make such variables easily visible to the programmer because fields are accessible from _any_ method of the type they're in.
+In the example below, the initial value of the two fields of the class `Wombat` is assigned at the definition level:
+```pony
+class Wombat
+  let name: String = "Fantastibat"
+  var _hunger_level: U32 = 0
+```
+Alternatively, these fields could be assigned in the constructor method:
+
+```pony
+class Wombat
+  let name: String
+  var _hunger_level: U32
+  
+  new create(hunger: U32) =>
+    name = "Fantastibat"
+    _hunger_level = hunger
+```
+If the assignment is not done at the definition level or in the constructor, an error is raised by the compiler. This is true for both `var` and `let` fields. 
+
+Please note that the assgnment of a value to a field has to be explicit. The below example raises an error when compiled, even when the field is of `var` type:
+```pony
+class Wombat
+  let name: String
+  var _hunger_level: U64
+
+  new ref create(name': String, level: U64) =>
+    name = name'
+    set_hunger_level(level)
+    // Error: field _hunger_level left undefined in constructor
+  
+  fun ref set_hunger_level(hunger_level: U64) =>
+    _hunger_level = hunger_level
+```
+We will see later in the Methods section that a class can have several constructor. For now, just remember that if the assignment of a field is not done at the definition level, it has to be done in each constructor of the class the field belongs to.
+
+As for variables, using `var` means a field can be assigned and reassigned as many times as you like in the class. Using `let` means the field can only be assigned once.
+
+```pony
+class Wombat
+  let name: String
+  var _hunger_level: U64
+
+  new ref create(name': String, level: U64) =>
+    name = name'
+    _hunger_level = level
+
+  fun ref set_hunger_level(hunger_level: U64) =>
+    _hunger_level = hunger_level // Ok, _hunger_level is of var type
+
+  fun ref set_name(name' : String) =>
+    name = name' // Error, can't assign to a let definition more than once
+```
+
+__Can field declaration come after the constructor?__ No. To keep Pony's grammar unambiguous, only type aliases are allowed between an `actor Name`, `object is Trait`, etc. and a field definition. In any case, it's good style to make such variables easily visible to the programmer because fields are accessible from _any_ method of the type they're in.
 
 Unlike local variables, some types of fields can be declared using `embed`. Specifically, only classes or structs can be embedded - interfaces, traits, primitives and numeric types cannot. A field declared using `embed` is similar to one declared using `let`, but at the implementation level, the memory for the embedded class is laid out directly within the outer class. Contrast this with `let` or `var`, where the implementation uses pointers to reference the field class. Embedded fields can be passed to other functions in exactly the same way as `let` or `var` fields. Embedded fields must be initialised from a constructor expression.
 
