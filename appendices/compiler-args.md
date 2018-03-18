@@ -30,4 +30,4 @@ Note that there is _no built-in debugger_ to interactively step through your pro
 
 # Runtime options for Pony programs
 
-Besides using the `options` package, there are also several built-in options for the generated binary (_not for use with ponyc_) starting with `--pony*`, see `ponyc --help`, to tweak runtime performance. You can override the number of initial threads, tune cycle detection (_CD_), the garbage collector and even turn off yield, which is not really recommended.
+Besides using the `cli` package, there are also several built-in options for the generated binary (_not for use with ponyc_) starting with `--pony*`, see `ponyc --help`, to tweak runtime performance. You can override the number of initial threads, tune cycle detection (_CD_), the garbage collector and even turn off yield, which is not really recommended.
