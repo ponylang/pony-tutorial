@@ -89,6 +89,10 @@ String literals are enclosed with double quotes `"` or triple-quoted `"""`. They
 Each escape sequence encodes a full character, not byte.
 
 ```pony
+use "format"
+
+actor Main
+  new create(env: Env) =>
 
     let pony = "🐎"
     let pony_hex_escaped = "p\xF6n\xFF"
