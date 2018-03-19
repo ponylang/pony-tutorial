@@ -100,6 +100,31 @@ In many languages using runtime type information is very expensive and so it is 
 
 In Pony it's cheap. Really cheap. Pony's "whole program" approach to compilation means the compiler can work out as much as possible at compile time. The runtime cost of each type check is generally a single pointer comparison. Plus of course, any checks which can be fully determined at compile time are. So for upcasts there's no runtime cost at all.
 
+__When are case patterns for value matching evaluated?__ Each case pattern expression that matches the type of the match operand, needs to be evaluated __each time__ the `match` expression is evaluated until one case matches (further case patterns are ignored). This can lead to creating lots of objects unintentionally for the sole purpose of checking for equality. If case patterns actually only need to differentiate by type, [Captures](#captures) should be used instead, these boil down to simple type checks at runtime.
+
+At first sight it is easy to confuse a value matching pattern for a type check. Consider the following example:
+
+```pony
+class Foo is Equatable[Foo]
+
+actor Main
+  
+  fun f(x: (Foo | None)): String =>
+    match x
+    | Foo => "foo"
+    | None => "bar"
+    else
+      ""
+    end
+
+  new create(env: Env) =>
+    f(Foo)
+```
+
+Both case patterns actually __do not__ check for the match operand `x` being an instance of `Foo` or `None`, but check for equality with the instance created by evaluateing the case pattern (each time). `None` is a primitive and thus there is only one instance at all, in which case this value pattern kind of does the expected thing, but not quite. If `None` had a custom `eq` function that would not use [identity equality](../expressions/equality.md#identity-equality), this could lead to surprising results. 
+
+Remember to always use [Captures](#captures) if all you need is to differentiate by type. Only use value matching if you need a full blown equality check, be it for [structural equality](../expressions/equality.md#structural-equality) or [identity equality](../expressions/equality.md#identity-equality).
+
 ## Captures
 
 Sometimes you want to be able to match the type, for any value of that type. For this, you use a __capture__. This defines a local variable, valid only within the case, containing the value of the operand. If the operand is not of the specified type then the case doesn't match.
