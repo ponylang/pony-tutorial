@@ -1,96 +1,95 @@
-# Pony Tutorial
+# Pony 指南
 
-Welcome to the Pony tutorial! If you're reading this, chances are you want to learn Pony. That's great, we're going to make that happen.
+欢迎来到 Pony 指南！如果你正在阅读本指南，那意味着你想要学习 Pony ，那就让我们开始吧
 
-This tutorial is aimed at people who have some experience programming already. It doesn't really matter if you know a little Python, or a bit of Ruby, or you are a JavaScript hacker, or Java, or Scala, or C/C++, or Haskell, or OCaml: as long as you've written some code before, you should be fine.
+本指南面向的是具有一定编程经验的开发者。不管你是了解一些 Python 或者 Ruby，还是你是一个 JavaScrip\Java\Scala\C\C++\Haskell\OCaml 黑客，只要是曾经写过一些代码就都可以。
 
-## What's Pony, anyway?
+## Pony 是什么？
 
-Pony is an object-oriented, actor-model, capabilities-secure programming language. It's __object-oriented__ because it has classes and objects, like Python, Java, C++, and many other languages. It's __actor-model__ because it has _actors_ (similar to Erlang or Akka). These behave like objects, but they can also execute code _asynchronously_. Actors make Pony awesome.
+Pony 是一门面向对象的，基于 Actor 模型，能力安全（capabilities-secure）的编程语言。Pony 是一门**面向对象的**的语言，像 Python、Java、c++和许多其他语言一样，支持类和对象。同时，Pony 采用了 Actor 模型，内置了对于 Actor 的支持（类似于 Erlang 或 Akka ）。Actor 类似于对象，但它们可以执行异步代码。
 
-When we say Pony is __capabilities-secure__, we mean a few things:
+当我们说 Pony 是**能力安全（capabilities-secure）**，指的是一下几点:
 
-* It's type safe. Really type safe. There's a mathematical [proof](http://www.ponylang.org/media/papers/opsla237-clebsch.pdf) and everything.
-* It's memory safe. Ok, this comes with type safe, but it's still interesting. There are no dangling pointers, no buffer overruns, heck, the language doesn't even have the concept of _null_!
-* It's exception safe. There are no runtime exceptions. All exceptions have defined semantics, and they are _always_ handled.
-* It's data-race free. Pony doesn't have locks or atomic operations or anything like that. Instead, the type system ensures _at compile time_ that your concurrent program can never have data races. So you can write highly concurrent code and never get it wrong.
-* It's deadlock free. This one is easy, because Pony has no locks at all! So they definitely don't deadlock, because they don't exist.
+* 类型安全。真正的类型安全，参见相关的数学证明 [proof](http://www.ponylang.org/media/papers/opsla237-clebsch.pdf)。
+* 内存安全。虽然这点是由类型安全保证的，但是这个特性依然很有趣。没有悬空指针，没有缓冲区溢出，而且，Pony 甚至没有空指针（null）的概念！
+* 异常安全。没有运行时异常。所有的异常都有确定的语义，而且异常总是会被显示处理的。
+* 没有数据竞争。Pony 没有锁或原子操作之类的东西。取而代之的是，Pony 的类型系统在编译时就确保你的并发程序永远不会有数据竞争。因此，您可以编写高并发的代码，并且永远不会出错。
+* 没有死锁。很简单，因为 Pony 根本没有锁！所以也就绝对不会死锁，因为锁根本不存在。
 
-We'll talk more about capabilities-security, including both __object capabilities__ and __reference capabilities__ later.
+后边还会讲解能力安全（capabilities-security），包括**对象能力（object capabilities）**和**引用能力（reference capabilities）**。
 
-## The Pony Philosophy: Get Stuff Done
+## Pony 的哲学： 把事情完成
 
-In the spirit of [Richard Gabriel](http://www.jwz.org/doc/worse-is-better.html), the Pony philosophy is neither "the-right-thing" nor "worse-is-better". It is "get-stuff-done".
+按照[Richard Gabriel](http://www.jwz.org/doc/worse-is-better.html)的看法, Pony 的哲学既不是"the-right-thing"，也不是"worse-is-better"，而是“把事情完成（get-stuff-done）”。
 
-* Correctness. Incorrectness is simply not allowed. _It's pointless to try to get stuff done if you can't guarantee the result is correct._
+* 正确。不正确是不允许的，_如果不能保证正确性，把事情完成是毫无疑义的。_
 
-* Performance. Runtime speed is more important than everything except correctness. If performance must be sacrificed for correctness, try to come up with a new way to do things. _The faster the program can get stuff done, the better. This is more important than anything except a correct result._
+* 性能。运行时性能是除正确性之外最重要的要求。如果为了正确性需要牺牲性能，那就试着换个实现方式。_程序越快越好。这是除了能得到正确结果之外最重要的事情。_
 
-* Simplicity. Simplicity can be sacrificed for performance. It is more important for the interface to be simple than the implementation. _The faster the programmer can get stuff done, the better. It's ok to make things a bit harder on the programmer to improve performance, but it's more important to make things easier on the programmer than it is to make things easier on the language/runtime._
+* 简单。为了性能，可惜牺牲掉对简单的要求。接口的简单要比实现的简单更重要。_程序员把事情完成的速度越快越好。有时候为了性能可以把程序员的工作弄的复杂一些，但是减轻程序员的负担比保持语言/运行时的简洁要重要的多。_
 
-* Consistency. Consistency can be sacrificed for simplicity or performance.
-_Don't let excessive consistency get in the way of getting stuff done._
+* 一致性。为了简单或者性能，可以牺牲掉一致性。_不要让一致性阻碍了“把事情完成”这一步目标。_
 
-* Completeness. It's nice to cover as many things as possible, but completeness can be sacrificed for anything else. _It's better to get some stuff done now than wait until everything can get done later._
+* 完整性。包含的范围越大越好，但是可以为了目标牺牲掉完整性。_It's better to get some stuff done now than wait until everything can get done later._
 
-The "get-stuff-done" approach has the same attitude towards correctness and simplicity as "the-right-thing", but the same attitude towards consistency and completeness as "worse-is-better". It also adds performance as a new principle, treating it as the second most important thing (after correctness).
+“get-stuff-done”方法对正确性和简单性的态度与“正确的东西”相同，但对一致性和完整性的态度与“worse-is-better”相同。它还将性能作为一个新原则，将其视为第二重要的东西(在正确性之后)。
 
-## Guiding Principles
+## 指导原则
 
-Throughout the design and development of the language the following principles should be adhered to.
+在语言的设计和发展过程中，应遵循以下原则。
 
-* Use the get-stuff-done approach.
+* 使用 get-stuff-done 方法。
 
-* Simple grammar. Language must be trivial to parse for both humans and computers.
+* 语法简单。语言的解析不管是对人类还是对计算机来说都应该是轻而易举的。
 
-* No loadable code. Everything is known to the compiler.
+* 没有动态加载的代码。编译器知道一切。
 
-* Fully type safe. There is no "trust me, I know what I'm doing" coercion.
+* 完全类型安全。没有“相信我，我知道我在做什么”的强行转换。
 
-* Fully memory safe. There is no "this random number is really a pointer, honest."
+* 完全内存安全。没有“这个随机数真的是一个指针，真的。”这种事儿
 
-* No crashes. A program that compiles should never crash (although it may hang or do something unintended).
+* 没有崩溃。编译通过的程序不应该崩溃(尽管它可能会挂起或做一些意想不到的事情)。
 
-* Sensible error messages. Where possible use simple error messages for specific error cases. It is fine to assume the programmer knows the definitions of words in our lexicon, but avoid compiler or other computer science jargon.
+* 合理的错误消息。尽可能使用简单的错误消息来处理特定的错误。可以假设程序员知道我们词典中单词的定义，但要避免使用编译器或其他计算机科学术语。
 
-* Inherent build system. No separate applications required to configure or build.
+* 内置的构建系统。不需要配置或构建单独的应用程序。
 
-* Aim to reduce common programming bugs through the use of restrictive syntax.
+* 通过使用限制性语法减少常见的编程 bug。
 
-* Provide a single, clean and clear way to do things rather than catering to every programmer's preferred prejudices.
+* 提供一种简单、干净、清晰的解决方法，而不是迎合每个程序员的偏好。
 
-* Make upgrades clean. Do not try to merge new features with the ones they are replacing, if something is broken remove it and replace it in one go. Where possible provide rewrite utilities to upgrade source between language versions.
+* 保证升级干净。不要试图将新特性与它们正在替换的特性合并在一起，如果有什么东西被破坏掉了，就要一次性替换掉。在可能的情况下，为在语言版本之间升级源代码提供重写工具。
 
-* Reasonable build time. Keeping down build time is important, but less important than runtime performance and correctness.
+* 合理的构建时间。减少构建时间很重要，但是比运行时性能和正确性要稍逊一些。
 
-* Allowing the programmer to omit some things from the code (default arguments, type inference, etc) is fine, but fully specifying should always be allowed.
+* 允许程序员从代码中省略一些东西(默认参数、类型推断等等)是可以的，但是应该总是允许用户做完全指定。
 
-* No ambiguity. The programmer should never have to guess what the compiler will do, or vice-versa.
+* 没有歧义。程序员不应该猜测编译器会做什么，反之亦然。
 
-* Document required complexity. Not all language features have to be trivial to understand, but complex features must have full explanations in the docs to be allowed in the language.
+* 对所必须的复杂性提供文档说明。并不是所有的语言特性都应该轻易就能理解，但是复杂的特性必须在文档中有完整的解释之后才能在语言中使用。
 
-* Language features should be minimally intrusive when not used.
+* 语言特性在不使用时应具有最小的干扰性。
 
-* Fully defined semantics. The semantics of all language features must be available in the standard language docs. It is not acceptable to leave behaviour undefined or "implementation dependent".
+* 完全定义的语义。所有语言特性的语义必须在标准语言文档中可用。不接受未定义或“依赖于实现”的行为。
 
-* Efficient hardware access must be available, but this does not have to pervade the whole language.
+* 有效的硬件访问必须是可用的，但这并不需要遍及整个语言。
 
-* The standard library should be implemented in Pony.
+* 标准库应该要用 Pony 来实现。
 
-* Interoperability. Must be interoperable with other languages, but this may require a shim layer if non primitive types are used.
+* 互操作性。必须能与其他语言互操作，但如果使用非元类型，这可能需要一个 shim 层。
 
-* Avoid library pain. Use of 3rd party Pony libraries should be as easy as possible, with no surprises. This includes writing and distributing libraries and using multiple versions of a library in a single program.
+* 避免库使用上的痛苦。使用第三方 Pony 库应该尽可能的简单。这包括编写和分发库，以及在单个程序中使用多个版本的库。
 
-## More help
+## 更多帮助
 
-Working your way through the tutorial but in need of more help? Not to worry, we have you covered.
+学习教程的过程中需要更多的帮助？不用担心，我们已经帮你解决了。
 
-If you are looking for an answer "right now", we suggest you give our IRC channel a try. It's #ponylang on Freenode. If you ask a question, be sure to hang around until you get an answer. If you don't get one, or IRC isn't your thing, we have a friendly [mailing list](https://groups.io/g/pony+user) you can try. Whatever your question is, it isn't dumb, and we won't get annoyed.
+如果你正在寻找答案，我们建议你试试我们的 IRC 频道，在 Freenode 上的 #ponylang 频道。如果你问了一个问题，一定要一直待到你得到答案。如果你没有得到答案，或者 IRC 不是你的菜，我们有一个友好的[邮件列表](https://groups.io/g/pony+user)，你可以试试。无论你问的问题是什么，它都不愚蠢，我们也不会生气。
 
-Think you've found a bug? Check your understanding first by writing the mailing list. Once you know it's a bug, [open an issue](https://github.com/ponylang/ponyc/issues).
+你发现了一个错误？先通过写邮件来确认你的理解。一旦你确定这是一个错误，开一个(issue)(https://github.com/ponylang/ponyc/issues)。
 
-# Help us
+# 帮助我们
 
-Found a typo in this tutorial? Perhaps something isn't clear? We welcome pull requests against the tutorial: [https://github.com/ponylang/pony-tutorial](https://github.com/ponylang/pony-tutorial).
+在本教程中发现了一个输入错误？或者有些东西讲解的不清楚？我们欢迎对教程提 PR:[https://github.com/ponylang/pony-tutorial](https://github.com/ponylang/pony-tutorial)。
 
-Be sure to check out the [contribution guidelines](https://github.com/ponylang/pony-tutorial/blob/master/CONTRIBUTING.md) before opening your PR.
+请在提 PR 之前先查看[贡献指南](https://github.com/ponylang/pony-tutorial/blob/master/CONTRIBUTING.md)。
