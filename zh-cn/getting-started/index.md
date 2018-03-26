@@ -1,3 +1,3 @@
-# Chapter 1: Getting Started with Pony
+# 第一章：Pony 上手
 
-This chapter will get you up and running with Pony from installing the compiler to running your first program. 
+本章会指导你如何上手 Pony ，包括安装编译器以及运行第一个程序。 
