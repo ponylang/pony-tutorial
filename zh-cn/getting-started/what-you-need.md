@@ -10,11 +10,11 @@
 
 虽然你可以使用任意的编辑器，但是如果编辑器对于语言有支持，但肯定会更好一些。下面的编辑器都提供了对语言的支持：
 
-* [Sublime Text](http://www.sublimetext.com/)。 There's a [Pony Language](https://packagecontrol.io/packages/Pony%20Language) package.
-* [Atom](https://atom.io/). There's a [language-pony](https://atom.io/packages/language-pony) package.
-* [Emacs](https://www.gnu.org/software/emacs/emacs.html). There's a [ponylang-mode](https://github.com/seantallen/ponylang-mode).
-* [Vim](http://www.vim.org). There's a [ pony-vim-syntax](https://github.com/dleonard0/pony-vim-syntax) plugin. Install `pony` with `vim-plug` or `pathogen`.
-* [Microsoft Visual Studio](http://www.visualstudio.com/). There's a [VS-pony](https://github.com/CausalityLtd/VS-pony) plugin.
+* [Sublime Text](http://www.sublimetext.com/)。 [Pony 语言](https://packagecontrol.io/packages/Pony%20Language)的扩展 。
+* [Atom](https://atom.io/)。语言支持包 [language-pony](https://atom.io/packages/language-pony) 。
+* [Emacs](https://www.gnu.org/software/emacs/emacs.html)。 语言支持包 [ponylang-mode](https://github.com/seantallen/ponylang-mode).
+* [Vim](http://www.vim.org)。语言支持插件 [ pony-vim-syntax](https://github.com/dleonard0/pony-vim-syntax) 。使用 `vim-plug` 或者 `pathogen` 安装 `pony` 。
+* [Microsoft Visual Studio](http://www.visualstudio.com/)。语言支持扩展 [VS-pony](https://github.com/CausalityLtd/VS-pony) 。
 * [BBEdit](http://www.barebones.com/products/bbedit/)。语言支持包 [bbedit-pony](https://github.com/TheMue/bbedit-pony) 。
 
 如果你喜欢的编辑器没有提供对Pony的支持，我们很乐意为你编写一个。

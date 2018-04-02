@@ -1,6 +1,6 @@
-# Hello World: How It Works
+# Hello World：它是怎么工作的
 
-Let's look at our `helloworld` code again:
+再来看一下 `helloworld` 的代码
 
 ```pony
 actor Main
@@ -8,54 +8,54 @@ actor Main
     env.out.print("Hello, world!")
 ```
 
-Let's go through that line by line.
+我们来一行一行的进行。
 
-## Line 1
+## 第一行
 
 ```pony
 actor Main
 ```
 
-This is a __type declaration__. The keyword `actor` means we are going to define an actor, which is a bit like a class in Python, Java, C#, C++, etc. Pony has classes too, which we'll see later.
+这是一行 **类型声明**。 关键字 `actor` 指明了此处是定义了一种 actor， 有点像是 Python, Java, C#, C++ 等语言中的类。 Pony 也有类，后边会有讲解。
 
-The difference between an actor and a class is that an actor can have __asynchronous__ methods, called __behaviours__. We'll talk more about that later.
+Actor 和类之间的区别是 Actor 可以有**异步**方法，称为**行为**。稍后我们会详细讨论。
 
-A Pony program has to have a `Main` actor. It's kind of like the `main` function in C or C++, or the `main` method in Java, or the `Main` method in C#. It's where the action starts.
+Pony 程序必须要有一个 `Main` actor，类似 C/C++ 中的 `main` 函数，Java 中的 `main` 方法以及 C# 中的 `Main` 方法也是类似的，都是程序开始执行的位置。
 
-## Line 2
+## 第2行
 
 ```pony
   new create(env: Env) =>
 ```
 
-This is a __constructor__. The keyword `new` means it's a function that creates a new instance of the type. In this case, it creates a new __Main__.
+这是一个**构造函数**。关键字 `new` 用来表明这个函数用于生成一个此类型的实例。在这里，它创建了一个新的 **Main**。
 
-Unlike other languages, constructors in Pony have names. That means there can be more than one way to construct an instance of a type. In this case, the name of the constructor is `create`.
+不像其他语言，Pony 中的构造者是有名字的。这意味着有多种方法来构造某个类型的实例。在本例中，构造函数的名称是 `create`。
 
-The parameters of a function come next. In this case, our constructor has a single parameter called `env` that is of the type `Env`.
+接下来是函数的参数。在本例中，我们的构造函数有一个名为 `env` 的参数，其类型是 `Env`。
 
-In Pony, the type of something always comes after its name and is separated by a colon. In C, C++, Java or C#, you might say `Env env`, but we do it the other way around (like Go, Pascal, and a bunch of other languages).
+在 Pony 代码里，类型总是在变量的名字后面，中间使用冒号隔开。在 C、C++、Java 或 C# 中，都会写做 `Env env`，但是 Pony 采用了另一种相反的方式（其他诸如 Go、Pascal 和一堆其他语言也是这样)。
 
-It turns out, our `Main` actor __has__ to have a constructor called `create` that takes a single parameter of type `Env`. That's how all programs start! So the beginning of your program is essentially the body of that constructor.
+也就是说，我们的 `Main` actor **必须** 有一个名为 `create` 的构造函数，该构造函数接受一个类型 `Env` 的参数。这就是程序如何启动的！程序执行的起始位置就是构造函数的函数体。
 
-__Wait, what's the body?__ It's the code that comes after the `=>`.
+**等等，什么是函数体？** 函数体就是 `=>` 之后的内容。
 
-## Line 3
+## 第三行
 
 ```pony
     env.out.print("Hello, world!")
 ```
 
-This is your program! What the heck is it doing?
+这是你的程序！它到底在做什么？
 
-In Pony, a dot is either a field access or a method call, much like other languages. If the name after the dot has parentheses after it, it's a method call. Otherwise, it's a field access.
+在 Pony 中，点号 `.` 代表着属性访问或方法调用，这点和其他语言一样。如果名称后面有括号，它就是方法调用。否则，就是属性访问。
 
-So here, we start with a reference to `env`. We then look up the field `out` on our object `env`. As it happens, that field represents __stdout__, i.e. usually it means printing to your console. Then, we call the `print` method on `env.out`. The stuff inside the parentheses are the arguments to the function. In this case, we are passing a __string literal__, i.e. the stuff in double quotes.
+在这里，我们以 `env` 的引用开始。然后在对象 `env` 上查找字段 `out`。`out` 字段表示**标准输出**，这通常意味着打印到控制台。然后，我们调用 `env.out` 的 `print` 方法。后面括号内的内容是函数的参数。在本例中，我们传递了一个**字符串字面量**，也就是双引号中的内容。
 
-In Pony, string literals can be in double quotes, `"`, in which case they follow C/C++ style escaping (using stuff like \n), or they can be triple-quoted, `"""` like in Python, in which case they are considered raw data.
+在 Pony 中，字符串文本可以使用双引号 `"` ，此时遵循 C/C++ 风格的转义规则（使用诸如\n），此外还可以使用三引号 `"""`表示字符串，像在Python中一样，此时，三引号中的内容被视为原始数据。
 
-__What's an Env, anyway?__ It's the "environment" your program was invoked with. That means it has command line arguments, environment variables, __stdin__, __stdout__, and __stderr__. Pony has no global variables, so these things are explicitly passed to your program.
+**什么是Env呢？** 它是程序被调用的“环境”。它包含有命令行参数、环境变量、**标准输入**、**标准输出**和**标准错误输出**。Pony 中没有全局变量，所以这些东西会被显式传递给程序。
 
-## That's it!
+##就是这样!
 
-Really, that's it. The program begins by creating a `Main` actor, and in the constructor, we print "Hello, world!" to __stdout__. Next, we'll start diving into the Pony type system.
+真的，就是这样。程序首先创建一个 `Main` actor，在构造函数中，我们在标准输出中打印“Hello, world!”接下来，我们将开始了解 Pony 的类型系统。
