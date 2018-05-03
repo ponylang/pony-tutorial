@@ -144,6 +144,53 @@ fun f(x: (U32 | String | None)): String =>
 
 __Can I omit the type from a capture, like I can from a local variable?__ Unfortunately no. Since we match on type and value the compiler has to know what type the pattern is, so it can't be inferred.
 
+## Implicit matching on capabilities in the context of union types
+In union types, when we pattern match on individual classes or traits, we also implicitly pattern match on the corresponding capabilities. In the example provided below, if `_x` has static type `(A iso | B ref | None)` and dynamically matches `A`, then we also know that it must be an `A iso`.
+
+```pony
+class A
+  fun ref sendable() => 
+    None
+  
+class B
+  fun ref update() => 
+    None
+
+actor Main
+  var _x: (A iso | B ref | None)
+
+  new create(env: Env) =>
+    _x = None
+
+  be f(a': A iso) =>
+    match (_x = None) // type of this expression: (A iso^ | B ref | None)
+    | let a: A iso => f(consume a)
+    | let b: B ref => b.update()
+    end
+```
+
+Note that using a match expression to differentiate solely based on capabilities at runtime is not possible, that is:
+
+```pony
+class A
+  fun ref sendable() => 
+    None
+  
+actor Main
+  var _x: (A iso | A ref | None)
+
+  new create(env: Env) =>
+    _x = None
+
+  be f() =>
+    match (_x = None)
+    | let a1: A iso => None
+    | let a2: A ref => None
+    end
+```
+
+does not typecheck.
+
 ## Matching tuples
 
 If you want to match on more than one operand at once then you can simply use a tuple. Cases will only match if __all__ the tuple elements match.
