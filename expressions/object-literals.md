@@ -116,7 +116,7 @@ If the lambda object is not declared with a specific reference capability, the r
 actor Main
   new create(env:Env) =>
     let l = List[U32]
-    l.push(10).push(20).push(30).push(40)
+    l.>push(10).>push(20).>push(30).push(40)
     let r = reduce(l, 0, {(a:U32, b:U32): U32 => a + b })
     env.out.print("Result: " + r.string())
 
@@ -137,7 +137,7 @@ As mentioned previously the lambda desugars to an object literal with an `apply`
 actor Main
   new create(env:Env) =>
     let l = List[String]
-    l.push("hello").push("world")
+    l.>push("hello").push("world")
     var count = U32(0)
     for_each(l, {ref(s:String) =>
       env.out.print(s)
