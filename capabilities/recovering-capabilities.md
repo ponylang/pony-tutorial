@@ -49,7 +49,7 @@ That's from `format/_FormatInt`. It creates a `String ref`, does a bunch of stuf
 You can also give an explicit reference capability:
 
 ```pony
-let key = recover val line.substring(0, i).strip() end
+let key = recover val line.substring(0, i).>strip() end
 ```
 
 That's from `net/http/_PayloadBuilder`. We get a substring of `line`, which is a `String iso^`, then we call strip on it, which returns itself. But since strip is a `ref` function, it returns itself as a `String ref^` - so we use a `recover val` to end up with a `String val`.
