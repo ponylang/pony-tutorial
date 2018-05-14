@@ -112,7 +112,7 @@ class Wombat
   fun ref set_hunger_level(hunger_level: U64) =>
     _hunger_level = hunger_level
 ```
-We will see later in the Methods section that a class can have several constructor. For now, just remember that if the assignment of a field is not done at the definition level, it has to be done in each constructor of the class the field belongs to.
+We will see later in the Methods section that a class can have several constructors. For now, just remember that if the assignment of a field is not done at the definition level, it has to be done in each constructor of the class the field belongs to.
 
 As for variables, using `var` means a field can be assigned and reassigned as many times as you like in the class. Using `let` means the field can only be assigned once.
 
