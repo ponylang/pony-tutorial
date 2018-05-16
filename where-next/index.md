@@ -10,7 +10,7 @@ We don't have an automatic blog aggregator but wish we did. In the meantime, we 
 
 ## Pony Patterns
 
-On of the hardest parts of learning a new language is figuring out how to do various different "everyday" tasks. We have a cookbook style book called "Pony Patterns" that enumerates a variety of problems you might encounter and idiomatic ways to solve those problems. The amount of content is still somewhat small but growing all the time. 
+One of the hardest parts of learning a new language is figuring out how to do various different "everyday" tasks. We have a cookbook style book called "Pony Patterns" that enumerates a variety of problems you might encounter and idiomatic ways to solve those problems. The amount of content is still somewhat small but growing all the time. 
 
 [Pony Patterns](http://patterns.ponylang.org)
 
