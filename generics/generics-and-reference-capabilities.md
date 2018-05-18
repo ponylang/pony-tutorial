@@ -37,7 +37,7 @@ actor Main
     let a = Foo[U32](42)
     env.out.print(a.get().string())
     a.set(21)
-    env.out.print(c.get().string())
+    env.out.print(a.get().string())
 ```
 
 Unfortunately, this doesn't compile. For a generic class to compile it must be compilable for all possible types and reference capabilities that satisfy the constraints in the type parameter. In this case, that's any type with any reference capability. The class works for the specific reference capability of `val` as we saw earlier, but how well does it work for `ref`? Let's expand it and see:
@@ -61,7 +61,28 @@ actor Main
     env.out.print(a.get().string())
 ```
 
-That compiles and runs, so `ref` is valid. The real test though is `iso`. Let's convert the class to `iso` and walk through what is needed to get it to compile. We'll then revisit our generic class to get it working:
+Compiling this will not work, there is a problem with the get method. As no capability is specified the method uses the default of `box`, so this is how it sees the \_c field as well. But it's supposed to return a String `ref`. A possible solution is to change the capability of the method to `ref` but as a getter it does not need to change the state of the class nor should it be allowed to do so. To avoid this, changing the return type to String `box` will solve the problem as well:
+
+```pony
+class Foo
+  var _c: String ref
+
+  new create(c: String ref) =>
+    _c = c
+
+  fun get(): String box => _c
+
+  fun ref set(c: String ref) => _c = c
+
+actor Main
+  new create(env:Env) =>
+    let a = Foo(recover ref String end)
+    env.out.print(a.get().string())
+    a.set(recover ref String end)
+    env.out.print(a.get().string())
+```
+
+Now that compiles and runs, so with that slight change `ref` is valid. We'll see another way to handle the problem in a bit but first the real test is `iso`. Let's convert the class to `iso` and walk through what is needed to get it to compile. We'll then revisit our generic class to get it working:
 
 ## An `iso` specific class
 
