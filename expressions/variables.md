@@ -98,7 +98,7 @@ class Wombat
 ```
 If the assignment is not done at the definition level or in the constructor, an error is raised by the compiler. This is true for both `var` and `let` fields. 
 
-Please note that the assgnment of a value to a field has to be explicit. The below example raises an error when compiled, even when the field is of `var` type:
+Please note that the assignment of a value to a field has to be explicit. The below example raises an error when compiled, even when the field is of `var` type:
 ```pony
 class Wombat
   let name: String
