@@ -4,7 +4,7 @@
 
 Values!
 
-**Where do we want them?***
+***Where do we want them?***
 
 In our Pony programs!
 
@@ -148,6 +148,18 @@ let triple_quoted_string_docs =
     removed as well. The first line will be completely removed if it only 
     contains whitespace. e.g. this strings first character is `T` not `\n`.
   """
+```
+
+### String Literal Instances
+
+When a single string literal is used several times in your Pony program, all of them will be converted to a single common instance. This means they will always be equal based on identity.
+
+```pony
+let pony = "🐎"
+let another_pony = "🐎"
+if pony is another_pony then
+  // True, therefore this line will run.
+end
 ```
 
 ## Array Literals
