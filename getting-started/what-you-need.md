@@ -16,6 +16,7 @@ While you can write code using any editor, it's nice to use one with some suppor
 * [Vim](http://www.vim.org). There's a [ pony-vim-syntax](https://github.com/dleonard0/pony-vim-syntax) plugin. Install `pony` with `vim-plug` or `pathogen`.
 * [Microsoft Visual Studio](http://www.visualstudio.com/). There's a [VS-pony](https://github.com/CausalityLtd/VS-pony) plugin.
 * [BBEdit](http://www.barebones.com/products/bbedit/). There's a [bbedit-pony](https://github.com/TheMue/bbedit-pony) module.
+* [Microsoft Visual Studio Code](https://code.visualstudio.com/). There's a [Pony Language Colorizer](https://marketplace.visualstudio.com/items?itemName=npruehs.pony)  
 
 If you have a favourite editor that isn't supported, we'd love to help you build a Pony package for it.
 
