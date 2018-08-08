@@ -9,7 +9,7 @@ In math, divide by zero is undefined. There is no answer to that question as the
 In Pony, *integer division by zero results in zero*. That's right,
 
 ```pony
-let x = 1 / 0
+let x = I64(1) / I64(0)
 ```
 
 results in `0` being assigned to `x`. Baffling right? Well, yes and no. From a mathematical standpoint, it is very much baffling. From a practical standpoint, it is very much not.
@@ -21,7 +21,7 @@ Similarly, *floating point division by zero results in `inf` or `-inf`*, dependi
 As you might remember from the [exceptions portion of this tutorial](/expressions/exceptions.html), Pony handles extraordinary circumstances via the `error` keyword and partial functions. In an ideal world, you might imagine that a Pony divide method for `U64` might look like:
 
 ```pony
-fun divide(n: U64, d: 64) ? =>
+fun divide(n: U64, d: U64) ? =>
   if d == 0 then error end
 
   n / d
