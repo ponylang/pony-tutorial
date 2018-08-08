@@ -12,7 +12,7 @@ In Pony, *integer division by zero results in zero*. That's right,
 let x = 1 / 0
 ```
 
-results in `0` being assigned to `x`. Insane right? Well, yes and no. From a mathematical standpoint, it is very much insane. From a practical standpoint, it is very much not.
+results in `0` being assigned to `x`. Baffling right? Well, yes and no. From a mathematical standpoint, it is very much baffling. From a practical standpoint, it is very much not.
 
 Similarly, *floating point division by zero results in `inf` or `-inf`*, depending on the sign of the numerator.
 
