@@ -1,1 +1,1 @@
-# Chapter 8: Packages
+# Chapter 7: Packages
