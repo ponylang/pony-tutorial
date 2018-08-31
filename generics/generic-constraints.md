@@ -27,7 +27,7 @@ class Foo[A: Any #read]
   new create(c: A) =>
     _c = c
 
-  fun ref get(): A => _c
+  fun ref get(): this->A => _c
 
   fun ref set(c: A) => _c = c
 
