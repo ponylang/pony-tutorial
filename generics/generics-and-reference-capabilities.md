@@ -37,7 +37,7 @@ actor Main
     let a = Foo[U32](42)
     env.out.print(a.get().string())
     a.set(21)
-    env.out.print(c.get().string())
+    env.out.print(a.get().string())
 ```
 
 Unfortunately, this doesn't compile. For a generic class to compile it must be compilable for all possible types and reference capabilities that satisfy the constraints in the type parameter. In this case, that's any type with any reference capability. The class works for the specific reference capability of `val` as we saw earlier, but how well does it work for `ref`? Let's expand it and see:
