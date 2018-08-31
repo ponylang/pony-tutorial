@@ -113,6 +113,8 @@ The type of a lambda is also declared using curly brackets. Within the brackets,
 If the lambda object is not declared with a specific reference capability, the reference capability is inferred from the structure of the lambda. If the lambda does not have any captured references, it will be `val` by default; if it does have captured references, it will be `ref` by default. The following is an example of a `val` lambda object:
 
 ```pony
+use "collections"
+
 actor Main
   new create(env:Env) =>
     let l = List[U32]
@@ -134,6 +136,8 @@ The `reduce` method in this example requires the lambda type for the `f` paramet
 As mentioned previously the lambda desugars to an object literal with an `apply` method. The reference capability for the `apply` method defaults to `box` like any other method. In a lambda that captures this needs to be `ref` if the function needs to modify any of the captured variables or call `ref` methods on them. The reference capability for the method (versus the reference capability for the object which was described above) is defined by putting the capability before the parenthesized argument list.
 
 ```pony
+use "collections"
+
 actor Main
   new create(env:Env) =>
     let l = List[String]
