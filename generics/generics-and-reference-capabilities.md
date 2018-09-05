@@ -43,6 +43,7 @@ actor Main
 Unfortunately, this doesn't compile. For a generic class to compile it must be compilable for all possible types and reference capabilities that satisfy the constraints in the type parameter. In this case, that's any type with any reference capability. The class works for the specific reference capability of `val` as we saw earlier, but how well does it work for `ref`? Let's expand it and see:
 
 ```pony
+// Note - this also won't compile
 class Foo
   var _c: String ref
 
@@ -61,7 +62,31 @@ actor Main
     env.out.print(a.get().string())
 ```
 
-That compiles and runs, so `ref` is valid. The real test though is `iso`. Let's convert the class to `iso` and walk through what is needed to get it to compile. We'll then revisit our generic class to get it working:
+This does not compile. The compiler complains that `get()` doesn't actually return a `String ref`, but `this->String ref`. We obviously need to simply change the type signature to fix this, but what is going on here?
+`this->String ref` is [an arrow type](../capabilities/arrow-types.html). An arrow type with "this->" states to use the capability of the actual receiver (`ref` in our case), not the capability of the method (which defaults to `box` here). According to [viewpoint adaption](../capabilities/combining-capabilities.html) this will be `ref->ref` which is `ref`. Without this [arrow type](../capabilities/arrow-types.html) we would only see the field `_c` as `box` because we are in a `box` method.
+
+So let's apply what we just learned:
+
+```pony
+class Foo
+  var _c: String ref
+
+  new create(c: String ref) =>
+    _c = c
+
+  fun get(): this->String ref => _c
+
+  fun ref set(c: String ref) => _c = c
+
+actor Main
+  new create(env:Env) =>
+    let a = Foo(recover ref String end)
+    env.out.print(a.get().string())
+    a.set(recover ref String end)
+    env.out.print(a.get().string())
+```
+
+That compiles and runs, so `ref` is valid now. The real test though is `iso`. Let's convert the class to `iso` and walk through what is needed to get it to compile. We'll then revisit our generic class to get it working:
 
 ## An `iso` specific class
 
@@ -73,7 +98,7 @@ class Foo
   new create(c: String iso) =>
     _c = c
 
-  fun get(): String iso => _c
+  fun get(): this->String iso => _c
 
   fun ref set(c: String iso) => _c = c
 
@@ -111,42 +136,13 @@ new create(c: String iso) =>
   _c = consume c
 ```
 
-A similar issue exists with the `get` method.
+A similar issue exists with the `set` method. Here we also need to consume the variable `c` that is passed in:
 
 ```pony
-fun get(): String iso => _c
+fun set(c: String iso) => _c = consume c
 ```
 
-We can't return an `iso` alias to our internal `_c` field as we'd then have two aliases to an `iso` again. One in the class and one returned to the caller. We can't `consume` here because then our `_c` field has no value. Instead, we can make the return reference capability be something that is a valid alias of `iso`. Looking at the [capability subtyping aliased substitution rules](../capabilities/capability-subtyping.html) the capability we need is a `tag`. Here is a corrected class definition:
-
-```pony
-class Foo
-  var _c: String iso
-
-  new create(c: String iso) =>
-    _c = consume c
-
-  fun get(): String tag => _c
-
-  fun ref set(c: String iso) => _c = consume c
-
-actor Main
-  new create(env:Env) =>
-    let a = Foo(recover iso String end)
-//    env.out.print(a.get().string())
-    a.set(recover iso String end)
-//    env.out.print(a.get().string())
-```
-
-This compiles but we have a problem. We can't print the result of `get` because it's a `tag`. A `tag` doesn't allow read or write access. It can only be used for calling behaviours (ie. on an `actor`) or for object identity purposes. 
-
-We can fix this by using [an arrow type](../capabilities/arrow-types.html). Defining `get' as:
-
-```pony
-fun get(): this->String iso => _c
-```
-
-An arrow type with "this->" states to use the capability of the actual receiver (`ref` in our case), not the capability of the method (which defaults to `box` here). According to [viewpoint adaption](../capabilities/combining-capabilities.html) this will be `ref->iso` which is `iso`. Through the magic of [automatic receiver recovery](../capabilities/recovering-capabilities.html) we can call the `string` method on it. The following class definition works:
+Now we have a version of `Foo` that is working correctly for `iso`. Note how applying the arraow type to the `get` method also works for `iso`. But here the result is a different one, by applying [viewpoint adaptation](../capabilities/combining-capabilities.html) we get from `ref->iso` (with `ref` being the capability of the receiver, the `Foo` object referenced by `a`) to `iso`. Through the magic of [automatic receiver recovery](../capabilities/recovering-capabilities.html) we can call the `string` method on it:
 
 ```pony
 class Foo
