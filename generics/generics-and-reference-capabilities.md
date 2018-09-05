@@ -37,7 +37,7 @@ actor Main
     let a = Foo[U32](42)
     env.out.print(a.get().string())
     a.set(21)
-    env.out.print(c.get().string())
+    env.out.print(a.get().string())
 ```
 
 Unfortunately, this doesn't compile. For a generic class to compile it must be compilable for all possible types and reference capabilities that satisfy the constraints in the type parameter. In this case, that's any type with any reference capability. The class works for the specific reference capability of `val` as we saw earlier, but how well does it work for `ref`? Let's expand it and see:
@@ -142,7 +142,7 @@ A similar issue exists with the `set` method. Here we also need to consume the v
 fun set(c: String iso) => _c = consume c
 ```
 
-Now we have a version of `Foo` that is working correctly for `iso`. Note how applying the arraow type to the `get` method also works for `iso`. But here the result is a different one, by applying [viewpoint adaptation](../capabilities/combining-capabilities.html) we get from `ref->iso` (with `ref` being the capability of the receiver, the `Foo` object referenced by `a`) to `iso`. Through the magic of [automatic receiver recovery](../capabilities/recovering-capabilities.html) we can call the `string` method on it:
+Now we have a version of `Foo` that is working correctly for `iso`. Note how applying the arrow type to the `get` method also works for `iso`. But here the result is a different one, by applying [viewpoint adaptation](../capabilities/combining-capabilities.html) we get from `ref->iso` (with `ref` being the capability of the receiver, the `Foo` object referenced by `a`) to `iso`. Through the magic of [automatic receiver recovery](../capabilities/recovering-capabilities.html) we can call the `string` method on it:
 
 ```pony
 class Foo
