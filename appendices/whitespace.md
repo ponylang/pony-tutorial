@@ -51,26 +51,26 @@ By convention, a docstring should be a triple-quoted string, and it should use M
 
 ```pony
 actor Main
-"""
-This is documentation for my Main actor
-"""
+  """
+  This is documentation for my Main actor
+  """
 
   var count: USize = 0
-  """
-  This is documentation for my count field
-  """
+    """
+    This is documentation for my count field
+    """
 
   new create(env: Env) =>
-  """
-  This is documentation for my create method
-  """
-  None
+    """
+    This is documentation for my create method
+    """
+    None
 
 trait Readable
   fun val read()
-  """
-  This is documentation on my unimplemented read method
-  """
+    """
+    This is documentation for my unimplemented read method
+    """
 ```
 
 ## Comments
