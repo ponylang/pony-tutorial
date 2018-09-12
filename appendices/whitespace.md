@@ -43,7 +43,7 @@ __Why? Can't the compiler tell an expression has finished?__ Yes, it can. The co
 
 Including documentation in your code makes you awesome. If you do it, everyone will love you.
 
-Pony makes it easy by allowing you to put a __docstring__ on every type and on every method. Just put a string literal right after declaring the type, or right after the `=>` of a method, before writing the body. The compiler will know what to do with them.
+Pony makes it easy by allowing you to put a __docstring__ on every type, field, or method. Just put a string literal right after declaring the type or field, or right after the `=>` of a method, before writing the body. The compiler will know what to do with them.
 
 For traits and interfaces that have methods without bodies, you can put the docstring after the method declaration, even though there is no `=>`.
 
@@ -51,20 +51,26 @@ By convention, a docstring should be a triple-quoted string, and it should use M
 
 ```pony
 actor Main
-"""
-This is documentation for my actor
-"""
+  """
+  This is documentation for my Main actor
+  """
+
+  var count: USize = 0
+    """
+    This is documentation for my count field
+    """
+
   new create(env: Env) =>
-  """
-  This is documentation for my create method
-  """
-  None
+    """
+    This is documentation for my create method
+    """
+    None
 
 trait Readable
   fun val read()
-  """
-  This is documentation on my unimplemented trait method
-  """
+    """
+    This is documentation for my unimplemented read method
+    """
 ```
 
 ## Comments
