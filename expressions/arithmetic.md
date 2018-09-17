@@ -1,5 +1,10 @@
 # Arithmetic
 
+Arithmetic is about the stuff you learn to do with numbers in primary school: Addition, Subtraction, Multiplication, Division and so on. Piece of cake. We all know that stuff.
+We nonetheless want to spend a whole section on this topic, because when it comes to computers the devil is in the details.
+
+As introduced in [Primitives](../primitives.md#built-in-primitive-types) numeric types in Pony are represented as a special kind of primitive that maps to machine words. Both integer types and floating point types support a rich set of arithmetic and bit-level operations. These are expressed as [Infix Operators](../infix-ops.md) that are implemented as plain functions on the numeric primitive types.
+
 Pony focusses on two goals, performance and safety. From time to time, these two goals collide. This is true especially for arithmetic on integers and floating point numbers. Safe code should check for overflow, division by zero and other error conditions on each operation where it can happen. Pony tries to enforce as much safety invariants at compile time as it possibly can, but checks on arithmetic operations can only happen at runtime. Performant code should execute integer arithmetic as fast and with as few CPU cycles as possible. Checking for overflow is expensive, doing plain dangerous arithmetic that is possibly subject to overflow is cheap.
 
 Pony provides different ways of doing arithmetic to give the programmer the freedom to chose which operation suits best for him, the safe but slower operation or the fast one, because performance is crucial for the use case.
@@ -7,6 +12,39 @@ Pony provides different ways of doing arithmetic to give the programmer the free
 ## Integers
 
 ### Ponys default Arithmetic
+
+The default arithmetic in Pony, that is using the well known operators with further ado on Pony integer types, is defined on all input values, in that regard it is total.
+That means it handles both the cases for overflow/underflow and division by zero. 
+Overflow/Underflow are handled with proper wrap around semantics, using one's completement on signed integers. In that respect we get behaviour like:
+
+```pony
+// unsigned wrap-around on overflow
+U32.max_value() + 1 == 0
+
+// signed wrap-around on overflow/underflow
+I32.min_value() - 1 == I32.max_value()
+```
+
+Division by zero is a special case, which affects the division `/` and modulo `%` operators. In Mathematics, division by zero is undefined.
+In order to avoid either defining division as partial, throwing an error on division by zero or introducing undefined behaviour for that case, 
+the _normal_ division is defined to be `0` when the divisor is `0`. This might lead to silent errors, when used without care. Reside to [Partial and checked Arithmetic](#partial-and-checked-arithmetic) to detect division by zero.
+
+In comparison to [Unsafe Arithmetic](#unsafe-arithmetic) default arithmetic comes with a small runtime overhead, detecting and handling overflow and division by zero.
+
+---
+
+Operator | Method | Description
+---------|--------|------------
+`+`      | add()  | wrap around on over-/underflow
+`-`      | sub()  | wrap around on over-/underflow
+`*`      | mul()  | wrap around on over-/underflow
+`/`      | div()  | `x/0 = 0`
+`%`      | mod()  | `x%0 = 0`
+`-`      | neg()  | wrap around on over-/underflow
+`>>`     | shr()  | filled with zeros, so `x >> 1 == x/2` is true
+`<<`     | shl()  | filled with zeros, so `x << 1 == x*2` is true
+
+---
 
 ### Unsafe Arithmetic
 
@@ -54,19 +92,63 @@ I64.max_value().f32_unsafe()
 I64(1).u8_unsafe()
 ```
 
+Here is a full list of all available conversions for numeric types:
+
+---
+
 Safe conversion | Unsafe conversion
 ----------------|------------------
-u8
-u16
+u8()            |  u8_unsafe()
+u16             |  u16_unsafe()
+u32()           |  u32_unsafe()
+u64()           |  u64_unsafe()
+u128()          |  u128_unsafe()
+ulong()         |  ulong_unsafe()
+usize()         |  usize_unsafe()
+i8()            |  i8_unsafe()
+i16()           |  i16_unsafe()
+i32()           |  i32_unsafe()
+i64()           |  i64_unsafe()
+i128()          |  i128_unsafe()
+ilong()         |  ilong_unsafe()
+isize()         |  isize_unsafe()
+f32()           |  f32_unsafe()
+f64()           |  f64_unsafe()
 
+---
 
 ### Partial and Checked Arithmetic
+
+If overflow or division by zero are cases that need to be avoided and performance is no critical priority, partial or checked arithmetic offer great safety during runtime.
+Partial arithmetic operators error on overflow/underflow and division by zero. Checked arithmetic methods return a tuple of a `Boolean` indicating overflow and the result of the operation.
+
+Partial arithmetic comes with the burden of handling exceptions on every case and incurs some performance overhead.
+
+---
+
+Partial Operator | Method        | Description
+-----------------|---------------|------------
+`+?`             | add_partial() | errors on overflow/underflow
+`-?`             | sub_partial() | errors on overflow/underflow
+`*?`             | mul_partial() | errors on overflow/underflow
+`/?`             | div_partial() | errors on overflow/underflow and division by zero
+`%?`             | mod_partial() | errors on overflow/underflow and division by zero
+
+---
+
+Checked Method | Description
+---------------|------------
+addc()         |
+subc()         |
+mulc()         |
+
+---
 
 ## Floating Point
 
 Additionally for Floating Point numbers, the following unsafe methods are defined
 
-Operator | Methid        | Undefined in case of
+Operator | Method        | Undefined in case of
 ---------|---------------|---------------------
 `<~`     | lt_unsafe()   |
 `>~`     | gt_unsafe()   |
@@ -75,10 +157,7 @@ Operator | Methid        | Undefined in case of
 `=~`     | eq_unsafe()   |
 `!=~`    | ne_unsafe()   |
 
-## Numeric Primitives
 
-As introduced in [Primitives](../primitives.md#built-in-primitive-types) numeric types in Pony are represented as a special kind of primitive that maps to machine words. Both integer types and floating point types support a rich set of arithmetic and bit-level operations.
-These are expressed as infix operators that are implemented as plain functions on the numeric primitive types.
 
 
 
