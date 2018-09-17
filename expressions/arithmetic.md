@@ -119,10 +119,29 @@ f64()           |  f64_unsafe()
 
 ### Partial and Checked Arithmetic
 
-If overflow or division by zero are cases that need to be avoided and performance is no critical priority, partial or checked arithmetic offer great safety during runtime.
-Partial arithmetic operators error on overflow/underflow and division by zero. Checked arithmetic methods return a tuple of a `Boolean` indicating overflow and the result of the operation.
+If overflow or division by zero are cases that need to be avoided and performance is no critical priority, partial or checked arithmetic offer great safety during runtime. Partial arithmetic operators error on overflow/underflow and division by zero. Checked arithmetic methods return a tuple of a `Boolean` indicating overflow and the result of the operation.
 
-Partial arithmetic comes with the burden of handling exceptions on every case and incurs some performance overhead.
+```pony
+// partial arithmetic
+let result =
+  try
+    I32.max_value() +? env.args.size()
+  else
+    env.out.print("overflow detected")
+  end
+
+// checked arithmetic
+let result =
+  match U64.max_value().addc(env.args.size())
+  | (true, let result: U64) => 
+    // use result
+    ...
+  | (false, _) =>
+    env.out.print("overflow detected")
+  end
+```
+
+Partial as well as checked arithmetic comes with the burden of handling exceptions on every case and incurs some performance overhead, be warned.
 
 ---
 
@@ -138,24 +157,39 @@ Partial Operator | Method        | Description
 
 Checked Method | Description
 ---------------|------------
-addc()         |
-subc()         |
-mulc()         |
+addc()         | returns a `Boolean` flag indicating overflow/underflow and the result in a tuple.
+subc()         | returns a `Boolean` flag indicating overflow/underflow and the result in a tuple.
+mulc()         | returns a `Boolean` flag indicating overflow/underflow and the result in a tuple.
 
 ---
 
 ## Floating Point
 
+Pony default arithmetic on floating point numbers (`F32`, `F64`) behave as defined in the floating point standard `IEEE 854`.
+
+TODO
+
+
+### Unsafe Arithmetic
+
 Additionally for Floating Point numbers, the following unsafe methods are defined
 
+TODO 
 Operator | Method        | Undefined in case of
 ---------|---------------|---------------------
+`+~`     | add_unsafe()  |
+`-~`     | sub_unsafe()  |
+`*~`     | mul_unsafe()  |
+`/~`     | div_unsafe()  |
+`%~`     | mod_unsafe()  |
+`-~`     | neg_unsafe()  |
 `<~`     | lt_unsafe()   |
 `>~`     | gt_unsafe()   |
 `<=~`    | le_unsafe()   |
 `>=~`    | ge_unsafe()   |
 `=~`     | eq_unsafe()   |
 `!=~`    | ne_unsafe()   |
+         | sqrt_unsafe() | 
 
 
 
