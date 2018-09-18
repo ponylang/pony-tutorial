@@ -1,7 +1,6 @@
 # Arithmetic
 
-Arithmetic is about the stuff you learn to do with numbers in primary school: Addition, Subtraction, Multiplication, Division and so on. Piece of cake. We all know that stuff.
-We nonetheless want to spend a whole section on this topic, because when it comes to computers the devil is in the details.
+Arithmetic is about the stuff you learn to do with numbers in primary school: Addition, Subtraction, Multiplication, Division and so on. Piece of cake. We all know that stuff. We nonetheless want to spend a whole section on this topic, because when it comes to computers the devil is in the details.
 
 As introduced in [Primitives](../primitives.md#built-in-primitive-types) numeric types in Pony are represented as a special kind of primitive that maps to machine words. Both integer types and floating point types support a rich set of arithmetic and bit-level operations. These are expressed as [Infix Operators](../infix-ops.md) that are implemented as plain functions on the numeric primitive types.
 
@@ -13,9 +12,7 @@ Pony provides different ways of doing arithmetic to give the programmer the free
 
 ### Ponys default Arithmetic
 
-The default arithmetic in Pony, that is using the well known operators with further ado on Pony integer types, is defined on all input values, in that regard it is total.
-That means it handles both the cases for overflow/underflow and division by zero. 
-Overflow/Underflow are handled with proper wrap around semantics, using one's completement on signed integers. In that respect we get behaviour like:
+The default arithmetic in Pony, that is using the well known operators with further ado on Pony integer types, is defined on all input values, in that regard it is total. That means it handles both the cases for overflow/underflow and division by zero. Overflow/Underflow are handled with proper wrap around semantics, using one's completement on signed integers. In that respect we get behaviour like:
 
 ```pony
 // unsigned wrap-around on overflow
@@ -25,9 +22,7 @@ U32.max_value() + 1 == 0
 I32.min_value() - 1 == I32.max_value()
 ```
 
-Division by zero is a special case, which affects the division `/` and modulo `%` operators. In Mathematics, division by zero is undefined.
-In order to avoid either defining division as partial, throwing an error on division by zero or introducing undefined behaviour for that case, 
-the _normal_ division is defined to be `0` when the divisor is `0`. This might lead to silent errors, when used without care. Reside to [Partial and checked Arithmetic](#partial-and-checked-arithmetic) to detect division by zero.
+Division by zero is a special case, which affects the division `/` and modulo `%` operators. In Mathematics, division by zero is undefined. In order to avoid either defining division as partial, throwing an error on division by zero or introducing undefined behaviour for that case, the _normal_ division is defined to be `0` when the divisor is `0`. This might lead to silent errors, when used without care. Reside to [Partial and checked Arithmetic](#partial-and-checked-arithmetic) to detect division by zero.
 
 In comparison to [Unsafe Arithmetic](#unsafe-arithmetic) default arithmetic comes with a small runtime overhead, detecting and handling overflow and division by zero.
 
@@ -48,9 +43,7 @@ Operator | Method | Description
 
 ### Unsafe Arithmetic
 
-Unsafe integer arithmetic comes close to what you can expect from integer arithmetic in C. No checks, raw speed, possibilities of overflow, underflow or division by zero.
-Like in C, overflow, underflow and division by zero scenarios are undefined. Don't rely on the results in these cases. It could be anything and is highly platform specific.
-Our suggestion is to use these operators only if you can make sure you can exclude these cases.
+Unsafe integer arithmetic comes close to what you can expect from integer arithmetic in C. No checks, _raw speed_, possibilities of overflow, underflow or division by zero. Like in C, overflow, underflow and division by zero scenarios are undefined. Don't rely on the results in these cases. It could be anything and is highly platform specific. Our suggestion is to use these operators only if you can make sure you can exclude these cases.
 
 Here is a list with all unsafe operations defined on Integers:
 
@@ -78,8 +71,7 @@ Converting between integer types in Pony needs to happen explicitly. Each numeri
 I32(12).f32()
 ```
 
-For each conversion operation there exists an unsafe counterpart, that is much faster when converting from and to floating point numbers.
-All these unsafe conversion between numeric types are undefined if the target type is smaller than the source type, e.g. if we convert from `I64` to `F32`.
+For each conversion operation there exists an unsafe counterpart, that is much faster when converting from and to floating point numbers. All these unsafe conversion between numeric types are undefined if the target type is smaller than the source type, e.g. if we convert from `I64` to `F32`.
 
 ```pont
 // converting an I32 to a 32 bit floating point, the unsafe way
@@ -165,33 +157,37 @@ mulc()         | returns a `Boolean` flag indicating overflow/underflow and the 
 
 ## Floating Point
 
-Pony default arithmetic on floating point numbers (`F32`, `F64`) behave as defined in the floating point standard `IEEE 854`.
+Pony default arithmetic on floating point numbers (`F32`, `F64`) behave as defined in the floating point standard `IEEE 754`.
 
-TODO
+That means e.g. that division by `+0` returns `Inf` and by `-0` returns `-Inf`.
 
 
 ### Unsafe Arithmetic
 
-Additionally for Floating Point numbers, the following unsafe methods are defined
+Unsafe Floating Point operations do not necessarily comply with `IEEE 754` for every input or every result. If any argument to an unsafe operation is or its result would expected to be `+/-Inf` or `NaN`, the result is actually undefined.
 
-TODO 
-Operator | Method        | Undefined in case of
----------|---------------|---------------------
-`+~`     | add_unsafe()  |
-`-~`     | sub_unsafe()  |
-`*~`     | mul_unsafe()  |
-`/~`     | div_unsafe()  |
-`%~`     | mod_unsafe()  |
-`-~`     | neg_unsafe()  |
-`<~`     | lt_unsafe()   |
-`>~`     | gt_unsafe()   |
-`<=~`    | le_unsafe()   |
-`>=~`    | ge_unsafe()   |
-`=~`     | eq_unsafe()   |
-`!=~`    | ne_unsafe()   |
-         | sqrt_unsafe() | 
+This allows more aggressive optimizations and for faster execution, but only yields valid results for values differend that the exceptional values `+/-Inf` and `NaN`. We suggest to only use these if you can exclude those cases.
 
+---
 
+Operator | Method        
+---------|---------------
+`+~`     | add_unsafe()  
+`-~`     | sub_unsafe()  
+`*~`     | mul_unsafe()  
+`/~`     | div_unsafe()  
+`%~`     | mod_unsafe()  
+`-~`     | neg_unsafe()  
+`<~`     | lt_unsafe()   
+`>~`     | gt_unsafe()  
+`<=~`    | le_unsafe()   
+`>=~`    | ge_unsafe()   
+`=~`     | eq_unsafe()   
+`!=~`    | ne_unsafe()   
+
+---
+
+Additionally `sqrt_unsafe()` is undefined for negative values.
 
 
 
