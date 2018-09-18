@@ -111,7 +111,7 @@ f64()           |  f64_unsafe()
 
 ### Partial and Checked Arithmetic
 
-If overflow or division by zero are cases that need to be avoided and performance is no critical priority, partial or checked arithmetic offer great safety during runtime. Partial arithmetic operators error on overflow/underflow and division by zero. Checked arithmetic methods return a tuple of a `Boolean` indicating overflow and the result of the operation.
+If overflow or division by zero are cases that need to be avoided and performance is no critical priority, partial or checked arithmetic offer great safety during runtime. Partial arithmetic operators error on overflow/underflow and division by zero. Checked arithmetic methods return a tuple of the result of the operation and a `Boolean` indicating overflow or other exceptional behaviour.
 
 ```pony
 // partial arithmetic
@@ -125,10 +125,10 @@ let result =
 // checked arithmetic
 let result =
   match U64.max_value().addc(env.args.size())
-  | (true, let result: U64) => 
+  | (let result: U64, false) => 
     // use result
     ...
-  | (false, _) =>
+  | (_, true) =>
     env.out.print("overflow detected")
   end
 ```
