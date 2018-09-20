@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ponylang/pony-tutorial#readme",
   "dependencies": {
+    "gitbook-cli": "^2.3.2",
     "npm": "^6.4.1"
   }
 }
