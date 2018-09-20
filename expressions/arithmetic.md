@@ -4,15 +4,15 @@ Arithmetic is about the stuff you learn to do with numbers in primary school: Ad
 
 As introduced in [Primitives](../primitives.md#built-in-primitive-types) numeric types in Pony are represented as a special kind of primitive that maps to machine words. Both integer types and floating point types support a rich set of arithmetic and bit-level operations. These are expressed as [Infix Operators](../infix-ops.md) that are implemented as plain functions on the numeric primitive types.
 
-Pony focusses on two goals, performance and safety. From time to time, these two goals collide. This is true especially for arithmetic on integers and floating point numbers. Safe code should check for overflow, division by zero and other error conditions on each operation where it can happen. Pony tries to enforce as much safety invariants at compile time as it possibly can, but checks on arithmetic operations can only happen at runtime. Performant code should execute integer arithmetic as fast and with as few CPU cycles as possible. Checking for overflow is expensive, doing plain dangerous arithmetic that is possibly subject to overflow is cheap.
+Pony focuses on two goals, performance and safety. From time to time, these two goals collide. This is true especially for arithmetic on integers and floating point numbers. Safe code should check for overflow, division by zero and other error conditions on each operation where it can happen. Pony tries to enforce as many safety invariants at compile time as it possibly can, but checks on arithmetic operations can only happen at runtime. Performant code should execute integer arithmetic as fast and with as few CPU cycles as possible. Checking for overflow is expensive, doing plain dangerous arithmetic that is possibly subject to overflow is cheap.
 
-Pony provides different ways of doing arithmetic to give the programmer the freedom to chose which operation suits best for him, the safe but slower operation or the fast one, because performance is crucial for the use case.
+Pony provides different ways of doing arithmetic to give programmers the freedom to chose which operation suits best for them, the safe but slower operation or the fast one, because performance is crucial for the use case.
 
 ## Integers
 
 ### Ponys default Arithmetic
 
-The default arithmetic in Pony, that is using the well known operators with further ado on Pony integer types, is defined on all input values, in that regard it is total. That means it handles both the cases for overflow/underflow and division by zero. Overflow/Underflow are handled with proper wrap around semantics, using one's completement on signed integers. In that respect we get behaviour like:
+Doing arithmetic on integer types in Pony with the well known operators like `+`, `-`, `*`, `/` etc. tries to balance the needs for performance and correctness. All default arithmetic operations do not expose any undefined behaviour or error conditions. That means it handles both the cases for overflow/underflow and division by zero. Overflow/Underflow are handled with proper wrap around semantics, using one's completement on signed integers. In that respect we get behaviour like:
 
 ```pony
 // unsigned wrap-around on overflow
@@ -22,9 +22,9 @@ U32.max_value() + 1 == 0
 I32.min_value() - 1 == I32.max_value()
 ```
 
-Division by zero is a special case, which affects the division `/` and modulo `%` operators. In Mathematics, division by zero is undefined. In order to avoid either defining division as partial, throwing an error on division by zero or introducing undefined behaviour for that case, the _normal_ division is defined to be `0` when the divisor is `0`. This might lead to silent errors, when used without care. Reside to [Partial and checked Arithmetic](#partial-and-checked-arithmetic) to detect division by zero.
+Division by zero is a special case, which affects the division `/` and modulo `%` operators. In Mathematics, division by zero is undefined. In order to avoid either defining division as partial, throwing an error on division by zero or introducing undefined behaviour for that case, the _normal_ division is defined to be `0` when the divisor is `0`. This might lead to silent errors, when used without care. Choose [Partial and checked Arithmetic](#partial-and-checked-arithmetic) to detect division by zero.
 
-In comparison to [Unsafe Arithmetic](#unsafe-arithmetic) default arithmetic comes with a small runtime overhead, detecting and handling overflow and division by zero.
+In contrast to [Unsafe Arithmetic](#unsafe-arithmetic) default arithmetic comes with a small runtime overhead because unlike the unsafe variants, it does detect and handle overflow and division by zero.
 
 ---
 
