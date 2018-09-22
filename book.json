@@ -3,11 +3,16 @@
         "footnote-string-to-number",
         "highlight",
         "lunr@1.2.0",
-        "run-code-button-ponylang"
+        "run-code-button-ponylang",
+        "gitbook-plugin-domain-redirect"
     ],
     "pluginsConfig": {
         "lunr": {
             "ignoreSpecialCharacters": true
+        },
+        "domain-redirect": {
+            "from": "tutorial.ponylang.org"
+            "to": "tutorial.ponylang.io"
         }
     }
 }
