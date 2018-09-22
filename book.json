@@ -4,7 +4,7 @@
         "highlight",
         "lunr@1.2.0",
         "run-code-button-ponylang",
-        "gitbook-plugin-domain-redirect"
+        "domain-redirect"
     ],
     "pluginsConfig": {
         "lunr": {
