@@ -11,8 +11,8 @@
             "ignoreSpecialCharacters": true
         },
         "domain-redirect": {
-            "from": "tutorial.ponylang.org",
-            "to": "tutorial.ponylang.io"
+            "from": "https://tutorial.ponylang.org",
+            "to": "https://tutorial.ponylang.io"
         }
     }
 }
