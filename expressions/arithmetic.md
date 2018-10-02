@@ -22,7 +22,7 @@ U32.max_value() + 1 == 0
 I32.min_value() - 1 == I32.max_value()
 ```
 
-Division by zero is a special case, which affects the division `/` and modulo `%` operators. In Mathematics, division by zero is undefined. In order to avoid either defining division as partial, throwing an error on division by zero or introducing undefined behaviour for that case, the _normal_ division is defined to be `0` when the divisor is `0`. This might lead to silent errors, when used without care. Choose [Partial and checked Arithmetic](#partial-and-checked-arithmetic) to detect division by zero.
+Division by zero is a special case, which affects the division `/` and remainder `%` operators. In Mathematics, division by zero is undefined. In order to avoid either defining division as partial, throwing an error on division by zero or introducing undefined behaviour for that case, the _normal_ division is defined to be `0` when the divisor is `0`. This might lead to silent errors, when used without care. Choose [Partial and checked Arithmetic](#partial-and-checked-arithmetic) to detect division by zero.
 
 In contrast to [Unsafe Arithmetic](#unsafe-arithmetic) default arithmetic comes with a small runtime overhead because unlike the unsafe variants, it does detect and handle overflow and division by zero.
 
@@ -33,8 +33,8 @@ Operator | Method | Description
 `+`      | add()  | wrap around on over-/underflow
 `-`      | sub()  | wrap around on over-/underflow
 `*`      | mul()  | wrap around on over-/underflow
-`/`      | div()  | `x/0 = 0`
-`%`      | mod()  | `x%0 = 0`
+`/`      | div()  | `x / 0 = 0`
+`%`      | rem()  | `x % 0 = 0`
 `-`      | neg()  | wrap around on over-/underflow
 `>>`     | shr()  | filled with zeros, so `x >> 1 == x/2` is true
 `<<`     | shl()  | filled with zeros, so `x << 1 == x*2` is true
@@ -43,7 +43,7 @@ Operator | Method | Description
 
 ### Unsafe Arithmetic
 
-Unsafe integer arithmetic comes close to what you can expect from integer arithmetic in C. No checks, _raw speed_, possibilities of overflow, underflow or division by zero. Like in C, overflow, underflow and division by zero scenarios are undefined. Don't rely on the results in these cases. It could be anything and is highly platform specific. Our suggestion is to use these operators only if you can make sure you can exclude these cases.
+Unsafe integer arithmetic comes close to what you can expect from integer arithmetic in C. No checks, _raw speed_, possibilities of overflow, underflow or division by zero. Like in C, overflow, underflow and division by zero scenarios are undefined. Don't rely on the results in these cases. It could be anything and is highly platform specific. Division by zero might even crash your program with a `SIGFPE`. Our suggestion is to use these operators only if you can make sure you can exclude these cases.
 
 Here is a list with all unsafe operations defined on Integers:
 
@@ -55,7 +55,7 @@ Operator | Method        | Undefined in case of
 `-~`     | sub_unsafe()  | Overflow
 `*~`     | mul_unsafe()  | Overflow.
 `/~`     | div_unsafe()  | Division by zero and Overflow. E.g. I32.min_value() / I32(-1)
-`%~`     | mod_unsafe()  | Division by zero and OverFlow.
+`%~`     | rem_unsafe()  | Division by zero and OverFlow.
 `-~`     | neg_unsafe()  | Overflow. E.g. `-~I32.max_value()`
 `>>~`    | shr_unsafe()  | If non-zero bits are shifted out. E.g. `I32(1) >>~ U32(2)`
 `<<~`    | shl_unsafe()  | If bits differing from the final sign bit are shifted out.
@@ -143,15 +143,21 @@ Partial Operator | Method        | Description
 `-?`             | sub_partial() | errors on overflow/underflow
 `*?`             | mul_partial() | errors on overflow/underflow
 `/?`             | div_partial() | errors on overflow/underflow and division by zero
-`%?`             | mod_partial() | errors on overflow/underflow and division by zero
+`%?`             | rem_partial() | errors on overflow/underflow and division by zero
+
+---
+
+Checked arithmetic functions all return the result of the operation and a `Boolean` flag indicating overflow/underflow or division by zero in a tuple.
 
 ---
 
 Checked Method | Description
 ---------------|------------
-addc()         | returns a `Boolean` flag indicating overflow/underflow and the result in a tuple.
-subc()         | returns a `Boolean` flag indicating overflow/underflow and the result in a tuple.
-mulc()         | returns a `Boolean` flag indicating overflow/underflow and the result in a tuple.
+addc()         | Checked addition, second tuple element is `true` on overflow/underflow.
+subc()         | Checked subtraction, second tuple element is `true` on overflow/underflow.
+mulc()         | Checked multiplication, second tuple element is `true` on overflow.
+divc()         | Checked division, second tuple element is `true` on overflow or division by zero.
+remc()         | Checked remainder, second tuple element is `true` on overflow or division by zero.
 
 ---
 
@@ -176,7 +182,7 @@ Operator | Method
 `-~`     | sub_unsafe()  
 `*~`     | mul_unsafe()  
 `/~`     | div_unsafe()  
-`%~`     | mod_unsafe()  
+`%~`     | rem_unsafe()  
 `-~`     | neg_unsafe()  
 `<~`     | lt_unsafe()   
 `>~`     | gt_unsafe()  

@@ -86,7 +86,7 @@ Operator   | Method         | Description
 `-`        | sub()          | Subtraction
 `*`        | mul()          | Multiplication
 `/`        | div()          | Division
-`%`        | mod()          | Modulus
+`%`        | rem()          | Remainder
 `<<`       | shl()          | Left bit shift
 `>>`       | shr()          | Right bit shift
 `and`      | op_and()       | And, both bitwise and logical
@@ -103,7 +103,7 @@ Operator   | Method         | Description
 `-~`       | sub_unsafe()   | Unsafe Subtraction
 `*~`       | mul_unsafe()   | Unsafe Multiplication
 `/~`       | div_unsafe()   | Unsafe Division
-`%~`       | mod_unsafe()   | Unsafe Modulus
+`%~`       | rem_unsafe()   | Unsafe Remainder
 `<<~`      | shl_unsafe()   | Unsafe left bit shift
 `>>~`      | shr_unsafe()   | Unsafe right bit shift
 `==~`      | eq_unsafe()    | Unsafe equality
@@ -115,7 +115,7 @@ Operator   | Method         | Description
 `-?`       | sub_partial()? | Partial Subtraction
 `*?`       | mul_partial()? | Partial Multiplication
 `/?`       | div_partial()? | Partial Division
-`%?`       | mod_partial()? | Partial Modulus
+`%?`       | rem_partial()? | Partial Remainder
 
 
 ---
