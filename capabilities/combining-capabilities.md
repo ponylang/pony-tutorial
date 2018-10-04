@@ -76,3 +76,24 @@ For `trn` and `ref` we need to return a locally immutable reference capability t
 ### Reading from a `tag` variable
 
 This one is easy: `tag` variables are opaque! They can't be read from.
+
+## Writing to the field of an object
+
+Like reading the field of an object, writing to a field depends on the reference capability of the object reference being stored and the reference capability of the origin object containing the field. The reference capability of the object being stored must not violate the guarantees made by the origin object's reference capability. For example, a val object reference can be stored in an iso origin. This is because the tag reference capability guarantees that no alias to that object exists which could violate the guarantees that the iso capability makes.
+
+Here's a simplified version of the table above that shows which reference capabilities can be stored the field of an origin object.
+
+---
+
+| &#x25C1;       | iso object | trn object | ref object | val object | box object | tag object |
+|----------------|------------|------------|------------|------------|------------|------------|
+| __iso origin__ | &#x2714;   |            |            | &#x2714;   |            | &#x2714;   |
+| __trn origin__ | &#x2714;   | &#x2714;   |            | &#x2714;   |            | &#x2714;   |
+| __ref origin__ | &#x2714;   | &#x2714;   | &#x2714;   | &#x2714;   | &#x2714;   | &#x2714;   |
+| __val origin__ |            |            |            |            |            |            |
+| __box origin__ |            |            |            |            |            |            |
+| __tag origin__ |            |            |            |            |            |            |
+
+---
+
+The bottom half of this chart is empty, since only origins with a mutable capability can have their fields modified.
