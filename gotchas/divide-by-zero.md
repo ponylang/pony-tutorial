@@ -25,7 +25,7 @@ let x =
   end
 ```
 
-define division as partial leads to code littered with `try`s attempting to deal with the possibility of division by zero. Even if you had asserted that your denominator was not zero, you'd still need to protect against divide by zero because, at this time, the compiler can't detect that value dependend typing.
+Defining division as partial leads to code littered with `try`s attempting to deal with the possibility of division by zero. Even if you had asserted that your denominator was not zero, you'd still need to protect against divide by zero because, at this time, the compiler can't detect that value dependend typing.
 
 Pony also offers [Unsafe Division](/expressions/arithmetic.md#unsafe-arithmetic), which declares division by zero as undefined, as in C:
 
@@ -34,7 +34,7 @@ Pony also offers [Unsafe Division](/expressions/arithmetic.md#unsafe-arithmetic)
 let x = I64(1) /~ I64(0)
 ```
 
-But declaring this case as undefined does not help us out here. As a programmer you'd still need to guard that case in order to not poison your program with undefined values. So, in order to maintain a practical API and avoid undefined behaviour, _normal_ division on integers in Pony is defined to be `0`. To avoid `0`s silently creeping through your divisions, use [Partial or Checked Division](/expressions/arithmetic.md#partial-and-checked-arithmetic).
+But declaring this case as undefined does not help us out here. As a programmer you'd still need to guard that case in order to not poison your program with undefined values or risking terminating your program with a `SIGFPE`. So, in order to maintain a practical API and avoid undefined behaviour, _normal_ division on integers in Pony is defined to be `0`. To avoid `0`s silently creeping through your divisions, use [Partial or Checked Division](/expressions/arithmetic.md#partial-and-checked-arithmetic).
 
 ### Divide by zero on floating points
 

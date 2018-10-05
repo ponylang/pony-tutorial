@@ -73,7 +73,7 @@ I32(12).f32()
 
 For each conversion operation there exists an unsafe counterpart, that is much faster when converting from and to floating point numbers. All these unsafe conversion between numeric types are undefined if the target type is smaller than the source type, e.g. if we convert from `I64` to `F32`.
 
-```pont
+```pony
 // converting an I32 to a 32 bit floating point, the unsafe way
 I32(12).f32_unsafe()
 
@@ -91,7 +91,7 @@ Here is a full list of all available conversions for numeric types:
 Safe conversion | Unsafe conversion
 ----------------|------------------
 u8()            |  u8_unsafe()
-u16             |  u16_unsafe()
+u16()           |  u16_unsafe()
 u32()           |  u32_unsafe()
 u64()           |  u64_unsafe()
 u128()          |  u128_unsafe()
