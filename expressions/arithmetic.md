@@ -135,8 +135,6 @@ let result =
 
 Partial as well as checked arithmetic comes with the burden of handling exceptions on every case and incurs some performance overhead, be warned.
 
----
-
 Partial Operator | Method        | Description
 -----------------|---------------|------------
 `+?`             | add_partial() | errors on overflow/underflow
@@ -148,8 +146,6 @@ Partial Operator | Method        | Description
 ---
 
 Checked arithmetic functions all return the result of the operation and a `Boolean` flag indicating overflow/underflow or division by zero in a tuple.
-
----
 
 Checked Method | Description
 ---------------|------------
@@ -163,33 +159,33 @@ remc()         | Checked remainder, second tuple element is `true` on overflow o
 
 ## Floating Point
 
-Pony default arithmetic on floating point numbers (`F32`, `F64`) behave as defined in the floating point standard `IEEE 754`.
+Pony default arithmetic on floating point numbers (`F32`, `F64`) behave as defined in the floating point standard IEEE 754.
 
 That means e.g. that division by `+0` returns `Inf` and by `-0` returns `-Inf`.
 
 
 ### Unsafe Arithmetic
 
-Unsafe Floating Point operations do not necessarily comply with `IEEE 754` for every input or every result. If any argument to an unsafe operation is or its result would expected to be `+/-Inf` or `NaN`, the result is actually undefined.
+Unsafe Floating Point operations do not necessarily comply with IEEE 754 for every input or every result. If any argument to an unsafe operation or its result are `+/-Inf` or `NaN`, the result is actually undefined.
 
-This allows more aggressive optimizations and for faster execution, but only yields valid results for values differend that the exceptional values `+/-Inf` and `NaN`. We suggest to only use these if you can exclude those cases.
+This allows more aggressive optimizations and for faster execution, but only yields valid results for values different that the exceptional values `+/-Inf` and `NaN`. We suggest to only use unsafe arithmetic on floats if you can exclude those cases.
 
 ---
 
-Operator | Method        
+Operator | Method
 ---------|---------------
-`+~`     | add_unsafe()  
-`-~`     | sub_unsafe()  
-`*~`     | mul_unsafe()  
-`/~`     | div_unsafe()  
-`%~`     | rem_unsafe()  
-`-~`     | neg_unsafe()  
-`<~`     | lt_unsafe()   
-`>~`     | gt_unsafe()  
-`<=~`    | le_unsafe()   
-`>=~`    | ge_unsafe()   
-`=~`     | eq_unsafe()   
-`!=~`    | ne_unsafe()   
+`+~`     | add_unsafe()
+`-~`     | sub_unsafe()
+`*~`     | mul_unsafe()
+`/~`     | div_unsafe()
+`%~`     | rem_unsafe()
+`-~`     | neg_unsafe()
+`<~`     | lt_unsafe()
+`>~`     | gt_unsafe()
+`<=~`    | le_unsafe()
+`>=~`    | ge_unsafe()
+`=~`     | eq_unsafe()
+`!=~`    | ne_unsafe()
 
 ---
 
