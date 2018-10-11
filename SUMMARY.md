@@ -14,6 +14,7 @@
   * [Literals](expressions/literals.md)
   * [Variables](expressions/variables.md)
   * [Infix Operators](expressions/infix-ops.md)
+  * [Arithmetic](expressions/arithmetic.md)
   * [Control Structures](expressions/control-structures.md)
   * [Methods](expressions/methods.md)
   * [Exceptions](expressions/exceptions.md)

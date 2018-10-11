@@ -14,21 +14,34 @@ let x = I64(1) / I64(0)
 
 results in `0` being assigned to `x`. Baffling right? Well, yes and no. From a mathematical standpoint, it is very much baffling. From a practical standpoint, it is very much not.
 
-Similarly, *floating point division by zero results in `inf` or `-inf`*, depending on the sign of the numerator.
-
-## Partial functions and math in Pony
-
-As you might remember from the [exceptions portion of this tutorial](/expressions/exceptions.html), Pony handles extraordinary circumstances via the `error` keyword and partial functions. In an ideal world, you might imagine that a Pony divide method for `U64` might look like:
+While Pony has [Partial division](/expressions/arithmetic.md#partial-and-checked-arithmetic):
 
 ```pony
-fun divide(n: U64, d: U64) ? =>
-  if d == 0 then error end
-
-  n / d
+let x =
+  try
+    I64(1) /? I64(0)
+  else
+    // handle division by zero
+  end
 ```
 
-We indicate that our function is partial via the `?` because we can't compute a result for all inputs. In this case, having 0 as a denominator. In fact, originally, this is how division worked in Pony. And then practicality intervened.
+Defining division as partial leads to code littered with `try`s attempting to deal with the possibility of division by zero. Even if you had asserted that your denominator was not zero, you'd still need to protect against divide by zero because, at this time, the compiler can't detect that value dependend typing.
 
-## Death by a thousand `try`s
+Pony also offers [Unsafe Division](/expressions/arithmetic.md#unsafe-arithmetic), which declares division by zero as undefined, as in C:
 
-From a practical perspective, having division as a partial function is awful. You end up with code littered with `try`s attempting to deal with the possibility of division by zero. Even if you had asserted that your denominator was not zero, you'd still need to protect against divide by zero because, at this time, the compiler can't detect that value dependent typing. So, as of right now (ponyc v0.2), divide by zero in Pony does not result in `error` but rather `0`.
+```pony
+// the value of x is undefined
+let x = I64(1) /~ I64(0)
+```
+
+But declaring this case as undefined does not help us out here. As a programmer you'd still need to guard that case in order to not poison your program with undefined values or risking terminating your program with a `SIGFPE`. So, in order to maintain a practical API and avoid undefined behaviour, _normal_ division on integers in Pony is defined to be `0`. To avoid `0`s silently creeping through your divisions, use [Partial or Checked Division](/expressions/arithmetic.md#partial-and-checked-arithmetic).
+
+### Divide by zero on floating points
+
+In conformance with IEEE 754, *floating point division by zero results in `inf` or `-inf`*, depending on the sign of the numerator. 
+
+If you can assert that your denominator cannot be `0`, it is possible to use [Unsafe Division](/expressions/arithmetic.md#floating-point) to gain some performance:
+
+```pony
+let x = F64(1.5) /~ F64(0.5)
+```
