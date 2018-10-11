@@ -12,11 +12,13 @@ This most straightforward use of `recover` is to get an `iso` that you can pass 
 
 ## What does this look like?
 
+The `recover` expression wraps a list of expressions and is terminated by an `end`, like this:
+
 ```pony
-recover Array[String] end
+recover Array[String].create() end
 ```
 
-That's a simple one: it returns an `Array[String] iso`, instead of the usual `Array[String] ref` you would get. The reason it is `iso` and not any of the other mutable reference capabilities is because there is a default reference capability when you don't specify one. The default for any mutable reference capability is `iso` and the default for any immutable reference capability is `val`.
+This expression returns an `Array[String] iso`, instead of the usual `Array[String] ref` you would get. The reason it is `iso` and not any of the other mutable reference capabilities is because there is a default reference capability when you don't specify one. The default for any mutable reference capability is `iso` and the default for any immutable reference capability is `val`.
 
 Here's a more complicated example from the standard library:
 
