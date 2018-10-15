@@ -33,7 +33,7 @@ There's another way to _move_ a value from one name to another. Earlier, we talk
 class Aardvark
   var buddy: Wombat iso
 
-  fun test(a: Wombat iso) =>
+  fun ref test(a: Wombat iso) =>
     var b: Wombat iso = buddy = consume a // Allowed!
 ```
 
