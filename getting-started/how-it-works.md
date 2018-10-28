@@ -34,7 +34,7 @@ Unlike other languages, constructors in Pony have names. That means there can be
 
 The parameters of a function come next. In this case, our constructor has a single parameter called `env` that is of the type `Env`.
 
-In Pony, the type of something always comes after its name and is separated by a colon. In C, C++, Java or C#, you might say `Env env`, but we do it the other way around (like Go, Pascal, and a bunch of other languages).
+In Pony, the type of something always comes after its name and is separated by a colon. In C, C++, Java or C#, you might say `Env env`, but we do it the other way around (like Go, Pascal, Rust, TypeScript, and a bunch of other languages).
 
 It turns out, our `Main` actor __has__ to have a constructor called `create` that takes a single parameter of type `Env`. That's how all programs start! So the beginning of your program is essentially the body of that constructor.
 
