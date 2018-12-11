@@ -68,7 +68,7 @@ If the `recover` expression could access __non-sendable__ values from the enclos
 
 When you have an `iso` or `trn` receiver, you normally can't call `ref` methods on it. That's because the receiver is also an argument to a method, which means both the method body and the caller have access to the receiver at the same time. And _that_ means we have to alias the receiver when we call a method on it. The alias of an `iso` is a `tag` (which isn't a subtype of `ref`) and the alias of a `trn` is a `box` (also not a subtype of `ref`).
 
-But we can get around this! If all the arguments to the method _at the call-site_ are __sendable__, and the return type of the method is either __sendable__ or isn't used _at the call-site_, then we can "automatically recover" the receiver. That just means we don't have to alias the receiver - and _that_ means we can call `ref` methods on an `iso` or `trn`, since `iso` and `trn` are both subtypes of `ref`.
+But we can get around this! If all the arguments to the method (other than the receiver, which is the implicit argument being recovered) _at the call-site_ are __sendable__, and the return type of the method is either __sendable__ or isn't used _at the call-site_, then we can "automatically recover" the receiver. That just means we don't have to alias the receiver - and _that_ means we can call `ref` methods on an `iso` or `trn`, since `iso` and `trn` are both subtypes of `ref`.
 
 Notice that this technique looks mostly at the call-site, rather than at the definition of the method being called. That makes it more flexible. For example, if the method being called wants a `ref` argument, and we pass it an `iso` argument, that's __sendable__ at the call-site, so we can still do automatic receiver recovery.
 
