@@ -1,11 +1,12 @@
 ---
-title: "Expressions"
+title: "Overview"
 section: "Expressions"
+layout: overview
 menu:
   toc:
+    identifier: "expressions-overview"
     parent: "expressions"
     weight: 1
-layout: single
 ---
 
 This chapter covers the various expressions that make up Pony. From variables to control structures and more.

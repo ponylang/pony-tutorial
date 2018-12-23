@@ -1,11 +1,12 @@
 ---
-title: "Where Next?"
+title: "Overview"
 section: "Where Next?"
+layout: overview
 menu:
   toc:
+    identifier: "where-next-overview"
     parent: "where-next"
     weight: 1
-layout: single
 ---
 
 Hey, congratulations! You've made it to the end of the Pony tutorial. So, what do you do next? Well, there's actually a bit more here. Check out the [appendices](http://tutorial.ponylang.org/appendices/) as they have some useful information that doesn't fit else. After that, here are a few resources that you can look into.

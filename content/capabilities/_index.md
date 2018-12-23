@@ -1,11 +1,12 @@
 ---
-title: "Capabilities"
+title: "Overview"
 section: "Capabilities"
+layout: overview
 menu:
   toc:
+    identifier: "capabilities-overview"
     parent: "capabilities"
     weight: 1
-layout: single
 ---
 
 We've covered the basics of Pony's type system and then expressions, this chapter about capabilities will cover another feature of Pony's type system. There aren't currently any mainstream programming languages that feature capabilities. What is a capability?
