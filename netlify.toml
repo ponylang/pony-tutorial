@@ -18,4 +18,4 @@ ID = "Your_Site_ID"
   publish = "public/"
 
   # Default build command.
-  command = "bash build.bash"
+  command = "pwd && ls -al && bash build.bash"
