@@ -6,16 +6,22 @@ ID = "Your_Site_ID"
 # Settings in the [build] context are global and are applied to all contexts
 # unless otherwise overridden by more specific contexts.
 [build]
-base = ""
-publish = "public/"
-command = "bash build.bash"
+  base = ""
+  publish = "public/"
+  command = "bash build.bash"
 
 # Have to set HUGO_VERSION for each environment otherwise we get the 0.17 default
 [context.production.environment]
-HUGO_VERSION = "0.52"
+  HUGO_VERSION = "0.52"
 
 [context.deploy-preview.environment]
-HUGO_VERSION = "0.52"
+  HUGO_VERSION = "0.52"
 
 [context.branch-deploy.environment]
-HUGO_VERSION = "0.52"
+  HUGO_VERSION = "0.52"
+
+[[redirects]]
+  from = "/expressions/exceptions.html"
+  to = "/expressions/errors.html"
+  status = 301
+  force = true
