@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Appendix on Pony Tutorial</title>
+    <link>https://tutorial.ponylang.io/appendices.html</link>
+    <description>Recent content in Appendix on Pony Tutorial</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://tutorial.ponylang.io/appendices/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>https://tutorial.ponylang.io/appendices/examples.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/appendices/examples.html</guid>
+      <description>Examples Small how do I examples for Pony. These will eventually find another home. Until then, they live here.
+Enum with values primitive Black fun apply(): U32 =&amp;gt; 0xFF000000 primitive Red fun apply(): U32 =&amp;gt; 0xFFFF0000  Enum with values with namespace primitive Colours fun black(): U32 =&amp;gt; 0xFF000000 fun red(): U32 =&amp;gt; 0xFFFF0000  Enum which can be iterated primitive Black primitive Blue primitive Red primitive Yellow type Colour is (Black | Blue | Red | Yellow) primitive ColourList fun tag apply(): Array[Colour] =&amp;gt; [Black; Blue; Red; Yellow] for colour in ColourList().</description>
+    </item>
+    
+    <item>
+      <title>A short guide to Pony error messages</title>
+      <link>https://tutorial.ponylang.io/appendices/error-messages.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/appendices/error-messages.html</guid>
+      <description>You&amp;rsquo;ve been through the tutorial, you&amp;rsquo;ve watched some videos, and now you&amp;rsquo;re ready to write some Pony code. You fire up your editor, shovel coal into the compiler, and&amp;hellip; you find yourself looking at a string of gibberish.
+Don&amp;rsquo;t panic! Pony&amp;rsquo;s error messages try to be as helpful as possible and the ultimate goal is to improve them further. But, in the meantime, they can be a little intimidating.</description>
+    </item>
+    
+    <item>
+      <title>Compiler Arguments</title>
+      <link>https://tutorial.ponylang.io/appendices/compiler-args.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/appendices/compiler-args.html</guid>
+      <description>ponyc, the compiler, is usually called in the project directory, where it finds the .pony files and its dependencies automatically. There it will create the binary based on the directory name. You can override this and tune the compilation with several options as described via ponyc --help and you can pass a separate source directory as an argument.
+ponyc [OPTIONS] &amp;lt;package directory&amp;gt;  The most useful options are --debug, --path or just -p, --output or just -o and --docs or -g.</description>
+    </item>
+    
+    <item>
+      <title>Garbage Collection with Pony-ORCA</title>
+      <link>https://tutorial.ponylang.io/appendices/garbage-collection.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/appendices/garbage-collection.html</guid>
+      <description>Pony-ORCA is a fully concurrent protocol for garbage collection in the actor paradigm. It allows cheap and small actors to perform garbage collection concurrently with any number of other actors, and this number can go into the millions since one actor needs only 256 bytes on 64bit systems. It does not require any form of synchronization across actors except those introduced through the actor paradigm, i.e. message send and message receive.</description>
+    </item>
+    
+    <item>
+      <title>Keywords</title>
+      <link>https://tutorial.ponylang.io/appendices/keywords.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/appendices/keywords.html</guid>
+      <description>This listing explains the usage of every Pony keyword.
+   Keyword Usage     actor defines an actor   as conversion of a value to another Type (can raise an error)   be behavior, executed asynchronously   box default reference capability – object is readable, but not writable   break to step out of a loop statement   class defines a class   compile_error will provoke a compile error   continue continues a loop with the next iteration   consume move a value to a new variable, leaving the original variable empty   do loop statement, or after a with statement   else conditional statement in if, for, while, repeat, try (as a catch block), match   elseif conditional statement, also used with ifdef   embed embed a class as a field of another class   end ending of: if then, ifdef, while do, for in, repeat until, try, object, lambda, recover, match   error raises an error   for loop statement   fun define a function, executed synchronously   if (1) conditional statement    (2) to define a guard in a pattern match   ifdef when defining a build flag at compile time: ponyc –D &amp;ldquo;foo&amp;rdquo;   in used in a for in - loop statement   interface used in structural subtyping   is (1) used in nominal subtyping    (2) in type aliasing   iso reference capability – read and write uniqueness   lambda to make a closure   let declaration of immutable variable: you can&amp;rsquo;t rebind this name to a new value   match pattern matching   new constructor   object to make an object literal   primitive declares a primitive type   recover removes the reference capability of a variable   ref reference capability – object (on which function is called) is mutable   repeat loop statement   return to return early from a function   tag reference capability – neither readable nor writeable, only object identity   then (1) in if conditional statement    (2) as a (finally) block in try   this the current object   trait used in nominal subtyping: class Foo is TraitName   trn reference capability – write uniqueness, no other actor can write to the object   try error handling   type to declare a type alias   until loop statement   use (1) using a package    (2) using an external library foo: use &amp;ldquo;lib:foo&amp;rdquo;    (3) declaration of an FFI signature    (4) add a search path for external libraries: use &amp;ldquo;path:/usr/local/lib&amp;rdquo;   var declaration of mutable variable: you can rebind this name to a new value   val reference capability – globally immutable object   where when specifying named arguments   while loop statement   with ensure disposal of an object    </description>
+    </item>
+    
+    <item>
+      <title>Lexicon</title>
+      <link>https://tutorial.ponylang.io/appendices/lexicon.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/appendices/lexicon.html</guid>
+      <description>Words are hard. We can all be saying the same thing but do we mean the same thing? It&amp;rsquo;s tough to know. Hopefully, this lexicon helps a little.
+Terminology Braces: { }. Synonymous with curly brackets.
+Brackets: This term is ambiguous. In the UK it usually means ( ) in the US is usually means [ ]. It should, therefore, be avoided for use for either of these. Can be used as a general term for any unspecified grouping punctuation, including { }.</description>
+    </item>
+    
+    <item>
+      <title>Memory Allocation at Runtime</title>
+      <link>https://tutorial.ponylang.io/appendices/memory-allocation.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/appendices/memory-allocation.html</guid>
+      <description>Pony is a null-free, type-safe language, with no dangling pointers, no buffer overruns, but with a very fast garbage collector, so you don&amp;rsquo;t have to worry about explicit memory allocation, if on the heap or stack, if in a threaded actor, or not.
+Fast, Safe and Cheap  An actor has ~240 bytes of memory overhead. No locks. No context switches. All mutation is local. An idle actor consumes no resources (other than memory).</description>
+    </item>
+    
+    <item>
+      <title>Platform-dependent code</title>
+      <link>https://tutorial.ponylang.io/appendices/platform-dependent-code.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/appendices/platform-dependent-code.html</guid>
+      <description>The Pony libraries, of course, want to abstract platform differences. Sometimes you may want a use command that only works under certain circumstances, most commonly only on a particular OS or only for debug builds. You can do this by specifying a condition for a use command:
+use &amp;quot;foo&amp;quot; if linux use &amp;quot;bar&amp;quot; if (windows and debug)  Use conditions can use any of the methods defined in builtin/Platform as conditions.</description>
+    </item>
+    
+    <item>
+      <title>Program Annotations</title>
+      <link>https://tutorial.ponylang.io/appendices/annotations.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/appendices/annotations.html</guid>
+      <description>In Pony, we provide a special syntax for implementation-specific annotations to various elements of a program. The basic syntax is a comma-separated list of identifiers surrounded by backslashes:
+\annotation1, annotation2\  Here, annotation1 and annotation2 can be any valid Pony identifier, i.e. a sequence of alphanumeric characters starting with a letter or an underscore.
+What can be annotated Annotations are allowed after any scoping keyword or symbol. The full list is:</description>
+    </item>
+    
+    <item>
+      <title>Serialisation</title>
+      <link>https://tutorial.ponylang.io/appendices/serialisation.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/appendices/serialisation.html</guid>
+      <description>Pony provides a built-in mechanism for serialising and deserialising objects so that they can be passed between Pony processes. Serialisation takes an object and turns it into an array of bytes that can be used to send the object to another process by, for example, writing it to a TCP stream. Deserialisation takes an array of bytes and turns them into a Pony object.
+Pony uses an intermediate object type called Serialised to represent a serialised object.</description>
+    </item>
+    
+    <item>
+      <title>Symbol Lookup Cheatsheet</title>
+      <link>https://tutorial.ponylang.io/appendices/symbol-lookup-cheatsheet.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/appendices/symbol-lookup-cheatsheet.html</guid>
+      <description>Pony, like just about any other programming language, has plenty of odd symbols that make up its syntax. If you don&amp;rsquo;t remember what one means, it can be hard to search for them. Below you&amp;rsquo;ll find a table with various Pony symbols and what you should search the tutorial for in order to learn more about the symbol.
+   Symbol Search Keywords     ! Alias   -&amp;gt; Arrow type, viewpoint   .</description>
+    </item>
+    
+    <item>
+      <title>Whitespace</title>
+      <link>https://tutorial.ponylang.io/appendices/whitespace.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/appendices/whitespace.html</guid>
+      <description>Whitespace (e.g. spaces, tabs, newlines, etc.) in Pony isn&amp;rsquo;t significant.
+Well, it mostly isn&amp;rsquo;t significant.
+Mostly insignificant whitespace Pony reads a bit like Python, which is a whitespace significant language. That is, the amount of indentation on a line means something in Python. In Pony, the amount of indentation is meaningless.
+That means Pony programmers can format their code in whatever way suits them.
+There are three exceptions:
+ A - at the beginning of a line starts a new expression (unary negation), whereas a - in the middle of an expression is a binary operator (subtraction).</description>
+    </item>
+    
+  </channel>
+</rss>

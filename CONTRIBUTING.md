@@ -1,6 +1,6 @@
 # Contributing to the Pony tutorial
 
-Hi there! Thanks for your interest in contributing to the Pony Tutorial. The book is being developed in Markdown and hosted at [Gitbook](https://www.gitbook.com/book/ponylang/pony-tutorial/details). We welcome external contributors. In fact, we encourage them.
+Hi there! Thanks for your interest in contributing to the Pony Tutorial. The book is being developed in Markdown and built using [Hugo](https://gohugo.io/) and [Netlify](https://www.netlify.com/). We welcome external contributors. In fact, we encourage them.
 
 Please note, that by submitting any content to the Pony Tutorial book you are agreeing that it can be licensed under our [license](LICENSE.md). Furthermore, you are testifying that you own the copyright to the submitted content and indemnify Pony Tutorial from any copyright claim that might result from your not being the authorized copyright holder.
 

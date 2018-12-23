@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Pony Tutorial  | Control Structures</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.52" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.955516233bcafa4d2a1c13cea63c7b50.css" rel="stylesheet">
+    
+
+    
+      <link rel="stylesheet" href="/css/highlight.css">
+    
+      <link rel="stylesheet" href="/css/my.css">
+    
+
+    
+      
+    
+
+    
+
+    <meta property="og:title" content="Control Structures" />
+<meta property="og:description" content="To do real work in a program you have to be able to make decisions, iterate through collections of items and perform actions repeatedly. For this, you need control structures. Pony has control structures that will be familiar to programmers who have used most languages, such as if, while and for, but in Pony, they work slightly differently.
+Conditionals The simplest control structure is the good old if. It allows you to perform some action only when a condition is true." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tutorial.ponylang.io/expressions/control-structures.html" />
+
+<meta itemprop="name" content="Control Structures">
+<meta itemprop="description" content="To do real work in a program you have to be able to make decisions, iterate through collections of items and perform actions repeatedly. For this, you need control structures. Pony has control structures that will be familiar to programmers who have used most languages, such as if, while and for, but in Pony, they work slightly differently.
+Conditionals The simplest control structure is the good old if. It allows you to perform some action only when a condition is true.">
+
+
+
+<meta itemprop="wordCount" content="2000">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Control Structures"/>
+<meta name="twitter:description" content="To do real work in a program you have to be able to make decisions, iterate through collections of items and perform actions repeatedly. For this, you need control structures. Pony has control structures that will be familiar to programmers who have used most languages, such as if, while and for, but in Pony, they work slightly differently.
+Conditionals The simplest control structure is the good old if. It allows you to perform some action only when a condition is true."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="bg-pony-brown">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://tutorial.ponylang.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      Pony Tutorial
+    </a>
+    <div class="flex-l items-center">
+      
+      
+<div hidden>
+  <span id="new-window-0">Opens in a new window</span>
+  <span id="new-window-1">Opens an external site</span>
+  <span id="new-window-2">Opens an external site in a new window</span>
+</div>
+
+
+
+<a href="https://www.twitter.com/ponylang" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-describedby="new-window-0">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+<a href="https://www.github.com/ponylang/ponyc" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-describedby="new-window-0">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+    <main role="main">
+      
+  <article class="w-100 ph4 pb5 pb6-ns pt1 pt5-ns">
+    <div class="flex-l">
+
+      <div class="order-1 w-60-l mw8 ph0 ph5-ns mid-gray nested-copy-line-height no-underline nested-links nested-img nested-copy-seperator nested-blockquote mt0-ns" style="flex-grow:1;">
+        <div class="documentation-copy center mw7">
+          <header class="mt4 w-100">
+            <p class="f6 b helvetica tracked">
+                
+              EXPRESSIONS
+            </p>
+            <h1 class="f1 athelas mb1">Control Structures</h1>
+          </header>
+
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l">
+
+<p>To do real work in a program you have to be able to make decisions, iterate through collections of items and perform actions repeatedly. For this, you need control structures. Pony has control structures that will be familiar to programmers who have used most languages, such as <code>if</code>, <code>while</code> and <code>for</code>, but in Pony, they work slightly differently.</p>
+
+<h2 id="conditionals">Conditionals</h2>
+
+<p>The simplest control structure is the good old <code>if</code>. It allows you to perform some action only when a condition is true. In Pony it looks like this:</p>
+
+<pre><code class="language-pony">if a &gt; b then
+  env.out.print(&quot;a is bigger&quot;)
+end
+</code></pre>
+
+<p><strong>Can I use integers and pointers for the condition like I can in C?</strong> No. In Pony <code>if</code> conditions must have type Bool, i.e. they are always true or false. If you want to test whether a number <code>a</code> is not 0, then you need to explicitly say <code>a != 0</code>. This restriction removes a whole category of potential bugs from Pony programs.</p>
+
+<p>If you want some alternative code for when the condition fails just add an <code>else</code>:</p>
+
+<pre><code class="language-pony">if a &gt; b then
+  env.out.print(&quot;a is bigger&quot;)
+else
+  env.out.print(&quot;a is not bigger&quot;)
+end
+</code></pre>
+
+<p>Often you want to test more than one condition in one go, giving you more than two possible outcomes. You can nest <code>if</code> statements, but this quickly gets ugly:</p>
+
+<pre><code class="language-pony">if a == b then
+  env.out.print(&quot;they are the same&quot;)
+else
+  if a &gt; b then
+    env.out.print(&quot;a is bigger&quot;)
+  else
+    env.out.print(&quot;b bigger&quot;)
+  end
+end
+</code></pre>
+
+<p>As an alternative Pony provides the <code>elseif</code> keyword that combines an <code>else</code> and an <code>if</code>. This works the same as saying <code>else if</code> in other languages and you can have as many <code>elseif</code>s as you like for each <code>if</code>.</p>
+
+<pre><code class="language-pony">if a == b then
+  env.out.print(&quot;they are the same&quot;)
+elseif a &gt; b then
+  env.out.print(&quot;a is bigger&quot;)
+else
+  env.out.print(&quot;b bigger&quot;)
+end
+</code></pre>
+
+<p><strong>Why can&rsquo;t I just say &ldquo;else if&rdquo; like I do in C? Why the extra keyword?</strong> The relationship between <code>if</code> and <code>else</code> in C, and other similar languages, is ambiguous. For example:</p>
+
+<pre><code class="language-C">// C code
+if(a)
+  if(b)
+    printf(&quot;a and b\n&quot;);
+else
+  printf(&quot;not a\n&quot;);
+</code></pre>
+
+<p>Here it is not obvious whether the <code>else</code> is an alternative to the first or the second <code>if</code>. In fact here the <code>else</code> relates to the <code>if(b)</code> so our example contains a bug. Pony avoids this type of bug by handling <code>if</code> and <code>else</code> differently and the need for <code>elseif</code> comes out of that.</p>
+
+<h2 id="everything-is-an-expression">Everything is an expression</h2>
+
+<p>The big difference for control structures between Pony and other languages is that in Pony everything is an expression. In languages like C++ and Java <code>if</code> is a statement, not an expression. This means that you can&rsquo;t have an <code>if</code> inside an expression, there has to be a separate conditional operator &lsquo;?&rsquo;.</p>
+
+<p>In Pony there are no statements there are only expressions, everything hands back a value. Your <code>if</code> statement hands you back a value. Your <code>for</code> loop (which we&rsquo;ll get to a bit later) hands you back a value.</p>
+
+<p>This means you can use <code>if</code> directly in a calculation:</p>
+
+<pre><code class="language-pony">x = 1 + if lots then 100 else 2 end
+</code></pre>
+
+<p>This will give <strong>x</strong> a value of either 3 or 101, depending on the variable <strong>lots</strong>.</p>
+
+<p>If the <code>then</code> and <code>else</code> branches of an <code>if</code> produce different types then the <code>if</code> produces a <strong>union</strong> of the two.</p>
+
+<pre><code class="language-pony">var x: (String | Bool) =
+  if friendly then
+    &quot;Hello&quot;
+  else
+    false
+  end
+</code></pre>
+
+<p><strong>But what if my if doesn&rsquo;t have an else?</strong> Any <code>else</code> branch that doesn&rsquo;t exist gives an implicit <code>None</code>.</p>
+
+<pre><code class="language-pony">var x: (String | None) =
+  if friendly then
+    &quot;Hello&quot;
+  end
+</code></pre>
+
+<p>The same rules that apply to the value of an <code>if</code> expression applies to loops as well. Let&rsquo;s take a look at what a loop value would look like:</p>
+
+<pre><code class="language-pony">actor Main
+  new create(env: Env) =&gt;
+    var x: (String | None) = 
+      for name in [&quot;Bob&quot;; &quot;Fred&quot;; &quot;Sarah&quot;].values() do
+        name
+      end
+    match x
+    | let s: String =&gt; env.out.print(&quot;x is &quot; + s)
+    | None =&gt; env.out.print(&quot;x is None&quot;)
+    end
+</code></pre>
+
+<p>This will give <strong>x</strong> the value &ldquo;Sarah&rdquo; as it is the last name in our list. If our loop has 0 iterations, then the value of it&rsquo;s <code>else</code> block will be the value of <strong>x</strong>. Or if there is no <code>else</code> block, the value will be <code>None</code>.</p>
+
+<pre><code class="language-pony">actor Main
+  new create(env: Env) =&gt;
+    var x: (String | None) = 
+      for name in Array[String].values() do
+        name
+      else
+        &quot;no names!&quot;
+      end
+    match x
+    | let s: String =&gt; env.out.print(&quot;x is &quot; + s)
+    | None =&gt; env.out.print(&quot;x is None&quot;)
+    end
+</code></pre>
+
+<p>Here the value of <strong>x</strong> is &ldquo;no names!&rdquo;</p>
+
+<pre><code class="language-pony">actor Main
+  new create(env: Env) =&gt;
+    var x: (String | None) = 
+      for name in Array[String].values() do
+        name
+      end
+    match x
+    | let s: String =&gt; env.out.print(&quot;x is &quot; + s)
+    | None =&gt; env.out.print(&quot;x is None&quot;)
+    end
+</code></pre>
+
+<p>And lastly, here <strong>x</strong> would be <code>None</code>.</p>
+
+<h2 id="loops">Loops</h2>
+
+<p><code>if</code> allows you to choose what to do, but to do something more than once you want a loop.</p>
+
+<h3 id="while">While</h3>
+
+<p>Pony <code>while</code> loops are very similar to those in other languages. A condition expression is evaluated and if it&rsquo;s true we execute the code inside the loop. When we&rsquo;re done we evaluate the condition again and keep going until it&rsquo;s false.</p>
+
+<p>Here&rsquo;s an example that prints out the numbers 1 to 10:</p>
+
+<pre><code class="language-pony">var count: U32 = 1
+
+while count &lt;= 10 do
+  env.out.print(count.string())
+  count = count + 1
+end
+</code></pre>
+
+<p>Just like <code>if</code> expressions <code>while</code> is also an expression. The value returned is just the value of the expression inside the loop the last time we go round it. For this example that will be the value given by <code>count = count + 1</code> when count is incremented to 11. Since Pony assignments hand back the <em>old</em> value our <code>while</code> loop will return 10.</p>
+
+<p><strong>But what if the condition evaluates to false the first time we try, then we don&rsquo;t go round the loop at all?</strong> In Pony <code>while</code> expressions can also have an <code>else</code> block. In general, Pony <code>else</code> blocks provide a value when the expression they are attached to doesn&rsquo;t. A <code>while</code> doesn&rsquo;t have a value to give if the condition evaluates to false the first time, so the <code>else</code> provides it instead.</p>
+
+<p><strong>So is this like an else block on a while loop in Python?</strong> No, this is very different. In Python, the <code>else</code> is run when the <code>while</code> completes. In Pony the <code>else</code> is only run when the expression in the <code>while</code> isn&rsquo;t.</p>
+
+<h3 id="break">Break</h3>
+
+<p>Sometimes you want to stop part-way through a loop and give up altogether. Pony has the <code>break</code> keyword for this and it is very similar to its counterpart in languages like C++, C#, and Python.</p>
+
+<p><code>break</code> immediately exits from the innermost loop it&rsquo;s in. Since the loop has to return a value <code>break</code> can take an expression. This is optional and if it&rsquo;s missed out the value from the <code>else</code> block is returned.</p>
+
+<p>Let&rsquo;s have an example. Suppose you want to go through a list of names you&rsquo;re getting from somewhere, looking for either &ldquo;Jack&rdquo; or &ldquo;Jill&rdquo;. If neither of those appear you&rsquo;ll just take the last name you&rsquo;re given and if you&rsquo;re not given any names at all you&rsquo;ll use &ldquo;Herbert&rdquo;.</p>
+
+<pre><code class="language-pony">var name =
+  while moreNames() do
+    var name' = getName()
+    if name' == &quot;Jack&quot; or name' == &quot;Jill&quot; then
+      break name'
+    end
+    name'
+  else
+    &quot;Herbert&quot;
+  end
+</code></pre>
+
+<p>So first we ask if there are any more names to get. If there are then we get a name and see if it&rsquo;s &ldquo;Jack&rdquo; or &ldquo;Jill&rdquo;. If it is we&rsquo;re done and we break out of the loop, handing back the name we&rsquo;ve found. If not we try again.</p>
+
+<p>The line <code>name'</code> appears at the end of the loop so that will be our value returned from the last iteration if neither &ldquo;Jack&rdquo; nor &ldquo;Jill&rdquo; is found.</p>
+
+<p>The <code>else</code> block provides our value of &ldquo;Herbert&rdquo; if there are no names available at all.</p>
+
+<p><strong>Can I break out of multiple, nested loops like the Java labeled break?</strong> No, Pony does not support that. If you need to break out of multiple loops you should probably refactor your code or use a worker function.</p>
+
+<h3 id="continue">Continue</h3>
+
+<p>Sometimes you want to stop part-way through one loop iteration and move onto the next. Like other languages, Pony uses the <code>continue</code> keyword for this.</p>
+
+<p><code>continue</code> stops executing the current iteration of the innermost loop it&rsquo;s in and evaluates the condition ready for the next iteration.</p>
+
+<p>If <code>continue</code> is executed during the last iteration of the loop then we have no value to return from the loop. In this case, we use the loop&rsquo;s <code>else</code> expression to get a value. As with the <code>if</code> expression if no <code>else</code> expression is provided <code>None</code> is returned.</p>
+
+<p><strong>Can I continue an outer, nested loop like the Java labeled continue?</strong> No, Pony does not support that. If you need to continue an outer loop you should probably refactor your code.</p>
+
+<h3 id="for">For</h3>
+
+<p>For iterating over a collection of items Pony uses the <code>for</code> keyword. This is very similar to <code>foreach</code> in C#, <code>for</code>..<code>in</code> in Python and <code>for</code> in Java when used with a collection. It is very different to <code>for</code> in C and C++.</p>
+
+<p>The Pony <code>for</code> loop iterates over a collection of items using an iterator. On each iteration, round the loop, we ask the iterator if there are any more elements to process and if there are we ask it for the next one.</p>
+
+<p>For example to print out all the strings in an array:</p>
+
+<pre><code class="language-pony">for name in [&quot;Bob&quot;; &quot;Fred&quot;; &quot;Sarah&quot;].values() do
+  env.out.print(name)
+end
+</code></pre>
+
+<p>Note the call to <code>values()</code> on the array, this is because the loop needs an iterator, not an array.</p>
+
+<p>The iterator does not have to be of any particular type, but needs to provide the following methods:</p>
+
+<pre><code class="language-pony">  fun has_next(): Bool
+  fun next(): T?
+</code></pre>
+
+<p>where T is the type of the objects in the collection. You don&rsquo;t need to worry about this unless you&rsquo;re writing your own iterators. To use existing collections, such as those provided in the standard library, you can just use <code>for</code> and it will all work. If you do write your own iterators note that we use structural typing, so your iterator doesn&rsquo;t need to declare that it provides any particular type.</p>
+
+<p>You can think of the above example as being equivalent to:</p>
+
+<pre><code class="language-pony">let iterator = [&quot;Bob&quot;; &quot;Fred&quot;; &quot;Sarah&quot;].values()
+while iterator.has_next() do
+  let name = iterator.next()?
+  env.out.print(name)
+end
+</code></pre>
+
+<p>Note that the variable <strong>name</strong> is declared <em>let</em>, you cannot assign to the control variable within the loop.</p>
+
+<p><strong>Can I use break and continue with for loops?</strong> Yes, <code>for</code> loops can have <code>else</code> expressions attached and can use <code>break</code> and <code>continue</code> just as for <code>while</code>.</p>
+
+<h3 id="repeat">Repeat</h3>
+
+<p>The final loop construct that Pony provides is <code>repeat</code> <code>until</code>. Here we evaluate the expression in the loop and then evaluate a condition expression to see if we&rsquo;re done or we should go round again.</p>
+
+<p>This is similar to <code>do</code> <code>while</code> in C++, C# and Java except that the termination condition is reversed, i.e. those languages terminate the loop when the condition expression is false, Pony terminates the loop when the condition expression is true.</p>
+
+<p>The differences between <code>while</code> and <code>repeat</code> in Pony are:</p>
+
+<ol>
+<li>We always go around the loop at least once with <code>repeat</code>, whereas with <code>while</code> we may not go round at all.</li>
+<li>The termination condition is reversed.</li>
+</ol>
+
+<p>Suppose we&rsquo;re trying to create something and we want to keep trying until it&rsquo;s good enough:</p>
+
+<pre><code class="language-pony">actor Main
+  new create(env: Env) =&gt;
+    var counter = U64(1)
+    repeat
+      env.out.print(&quot;hello!&quot;)
+      counter = counter + 1
+    until counter &gt; 7 end
+</code></pre>
+
+<p>Just like <code>while</code> loops the value given by a <code>repeat</code> loop is the value of the expression within the loop on the last iteration and <code>break</code> and <code>continue</code> can be used.</p>
+
+<p><strong>Since you always go round a repeat loop at least once do you ever need to give it an else expression?</strong> Yes, you may need to. A <code>continue</code> in the last iteration of a <code>repeat</code> loop needs to get a value from somewhere and an <code>else</code> expression is used for that.</p>
+
+
+
+
+
+          </main>
+        </div>
+      </div>
+      <div class="order-0 w-20 dn db-l doc-menu">
+        
+<nav role="navigation">
+  <ul class="list pa0 nl2">
+    
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".getting-started">Getting Started</a>
+        <ul class="getting-started desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/getting-started.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Getting Started with Pony
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/getting-started/what-you-need.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              What You Need
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/getting-started/hello-world.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Hello World: Your First Pony Program
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/getting-started/how-it-works.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Hello World: How It Works
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".types">Types</a>
+        <ul class="types desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Types
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/at-a-glance.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              The Pony Type System at a Glance
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/classes.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Classes
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/primitives.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Primitives
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/actors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Actors
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/traits-and-interfaces.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Traits and Interfaces
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/type-aliases.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Type Aliases
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/type-expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Type Expressions
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2  primary-color" data-target=".expressions">Expressions</a>
+        <ul class="expressions desktopmenu animated fadeIn list pl0 bg-light-gray db">
+          <li class="f6 fw4">
+            <a href="/expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Expressions
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Literals
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/variables.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Variables
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/infix-ops.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Infix Operators
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/arithmetic.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Arithmetic
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/control-structures.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 primary-color ">
+              Control Structures
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/methods.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Methods
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/errors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Errors
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/equality.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Equality in Pony
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/sugar.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Sugar
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/object-literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Object Literals
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/partial-application.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Partial Application
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".capabilities">Capabilities</a>
+        <ul class="capabilities desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Capabilities
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/object-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Object Capabilities
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Reference Capabilities
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/guarantees.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Reference Capability Guarantees
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Consume and Destructive Read
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/recovering-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Recovering Capabilities
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/aliasing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Aliasing
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/combining-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Combining Capabilities
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/passing-and-sharing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Passing and Sharing References
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/capability-subtyping.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Capability Subtyping
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Arrow Types aka Viewpoints
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Trust Boundary
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".generics">Generics</a>
+        <ul class="generics desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/generics.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Generics
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/generics/generics-and-reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Generics and Reference Capabilities
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/generics/generic-constraints.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Constraints
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".pattern-matching">Pattern Matching</a>
+        <ul class="pattern-matching desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/pattern-matching.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Pattern Matching
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/pattern-matching/match.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Match Expressions
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/pattern-matching/as.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              As Operator
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".packages">Packages</a>
+        <ul class="packages desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/packages.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Packages
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/packages/package-system.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Package System
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/packages/use-statement.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Use Statement
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/packages/standard-library.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Standard Library
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".testing">Testing</a>
+        <ul class="testing desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/testing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Testing
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/testing/ponytest.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Testing with Ponytest
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".c-ffi">C FFI</a>
+        <ul class="c-ffi desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/c-ffi.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              C FFI
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/c-ffi/calling-c.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Calling C from Pony
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/c-ffi/linking-c.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Linking to C Libraries
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/c-ffi/c-abi.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              C ABI
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/c-ffi/callbacks.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Callbacks
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".gotchas">Gotchas</a>
+        <ul class="gotchas desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/gotchas.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Gotchas
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/gotchas/divide-by-zero.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Divide by Zero
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/gotchas/garbage-collection.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Garbage Collection
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/gotchas/scheduling.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Scheduling
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/gotchas/side-effect-ordering-in-function-call-expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Function call side effects
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/gotchas/recursion.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Recursion
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".where-next">Where Next?</a>
+        <ul class="where-next desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/where-next.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Where Next?
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".appendices">Appendices</a>
+        <ul class="appendices desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/appendices.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Appendix
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/lexicon.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Lexicon
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/symbol-lookup-cheatsheet.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Symbol Lookup Cheatsheet
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/keywords.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Keywords
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/whitespace.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Whitespace
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/compiler-args.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Compiler Arguments
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/memory-allocation.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Memory Allocation at Runtime
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/garbage-collection.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Garbage Collection with Pony-ORCA
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/platform-dependent-code.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Platform-dependent code
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/error-messages.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              A short guide to Pony error messages
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/annotations.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Program Annotations
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/serialisation.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Serialisation
+            </a>
+          </li>
+        </ul>
+      </li>
+  </ul>
+</nav>
+
+      </div>
+    </div>
+  </article>
+
+    </main>
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/languages/pony.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<script>
+  var toggleBtns = document.getElementsByClassName('js-toggle')
+  for (var i = 0; i < toggleBtns.length; i++) {
+    toggleBtns[i].addEventListener('click', toggleClass, false)
+  }
+
+function toggleClass() {
+  
+  var content = this.dataset.target.split(' ')
+  
+  var mobileCurrentlyOpen = document.querySelector('.mobilemenu:not(.dn)')
+  var desktopCurrentlyOpen = document.querySelector('.desktopmenu:not(.dn)')
+  var desktopActive = document.querySelector('.desktopmenu:not(.dn)')
+
+  
+  for (var i = 0; i < content.length; i++) {
+    var matches = document.querySelectorAll(content[i]);
+    
+    [].forEach.call(matches, function(dom) {
+        dom.classList.contains('dn') ?
+        dom.classList.remove('dn') :
+        dom.classList.add('dn');
+         return false;
+       });
+        
+      if (mobileCurrentlyOpen) mobileCurrentlyOpen.classList.add('dn')
+      if (desktopCurrentlyOpen) desktopCurrentlyOpen.classList.add('dn')
+      if (desktopActive) desktopActive.classList.remove('db')
+
+    }
+  }
+</script>
+
+  </body>
+</html>

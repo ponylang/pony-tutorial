@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Getting Started with Pony on Pony Tutorial</title>
+    <link>https://tutorial.ponylang.io/getting-started.html</link>
+    <description>Recent content in Getting Started with Pony on Pony Tutorial</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://tutorial.ponylang.io/getting-started/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hello World: How It Works</title>
+      <link>https://tutorial.ponylang.io/getting-started/how-it-works.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/getting-started/how-it-works.html</guid>
+      <description>Let&amp;rsquo;s look at our helloworld code again:
+actor Main new create(env: Env) =&amp;gt; env.out.print(&amp;quot;Hello, world!&amp;quot;)  Let&amp;rsquo;s go through that line by line.
+Line 1 actor Main  This is a type declaration. The keyword actor means we are going to define an actor, which is a bit like a class in Python, Java, C#, C++, etc. Pony has classes too, which we&amp;rsquo;ll see later.
+The difference between an actor and a class is that an actor can have asynchronous methods, called behaviours.</description>
+    </item>
+    
+    <item>
+      <title>Hello World: Your First Pony Program</title>
+      <link>https://tutorial.ponylang.io/getting-started/hello-world.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/getting-started/hello-world.html</guid>
+      <description>Now that you&amp;rsquo;ve successfully installed the Pony compiler, let&amp;rsquo;s start programming! Our first program will be a very traditional one. We&amp;rsquo;re going to print &amp;ldquo;Hello, world!&amp;rdquo;. First, create a directory called helloworld:
+$ mkdir helloworld $ cd helloworld  Does the name of the directory matter? Yes, it does. It&amp;rsquo;s the name of your program! By default when your program is compiled, the resulting executable binary will have the same name as the directory your program lives in.</description>
+    </item>
+    
+    <item>
+      <title>What You Need</title>
+      <link>https://tutorial.ponylang.io/getting-started/what-you-need.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/getting-started/what-you-need.html</guid>
+      <description>To get started, you&amp;rsquo;ll need a text editor and the ponyc compiler. Or if you are on a not supported platform or don&amp;rsquo;t want to install the compiler you can use the Pony&amp;rsquo;s Playground.
+The Pony compiler Before you get started, please check out the installation instructions for the Pony compiler.
+A text editor While you can write code using any editor, it&amp;rsquo;s nice to use one with some support for the language.</description>
+    </item>
+    
+  </channel>
+</rss>

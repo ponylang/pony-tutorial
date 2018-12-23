@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Pony Tutorial  | Reference Capabilities</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.52" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.955516233bcafa4d2a1c13cea63c7b50.css" rel="stylesheet">
+    
+
+    
+      <link rel="stylesheet" href="/css/highlight.css">
+    
+      <link rel="stylesheet" href="/css/my.css">
+    
+
+    
+      
+    
+
+    
+
+    <meta property="og:title" content="Reference Capabilities" />
+<meta property="og:description" content="So if the object is the capability, what controls what we can do with the object? How do we express our access rights on that object?
+In Pony, we do it with reference capabilities.
+Rights are part of a capability If you open a file in UNIX and get a file descriptor back, that file descriptor is a token that designates an object - but it isn&rsquo;t a capability. To be a capability, we need to open that file with some permission - some access right." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tutorial.ponylang.io/capabilities/reference-capabilities.html" />
+
+<meta itemprop="name" content="Reference Capabilities">
+<meta itemprop="description" content="So if the object is the capability, what controls what we can do with the object? How do we express our access rights on that object?
+In Pony, we do it with reference capabilities.
+Rights are part of a capability If you open a file in UNIX and get a file descriptor back, that file descriptor is a token that designates an object - but it isn&rsquo;t a capability. To be a capability, we need to open that file with some permission - some access right.">
+
+
+
+<meta itemprop="wordCount" content="1356">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Reference Capabilities"/>
+<meta name="twitter:description" content="So if the object is the capability, what controls what we can do with the object? How do we express our access rights on that object?
+In Pony, we do it with reference capabilities.
+Rights are part of a capability If you open a file in UNIX and get a file descriptor back, that file descriptor is a token that designates an object - but it isn&rsquo;t a capability. To be a capability, we need to open that file with some permission - some access right."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="bg-pony-brown">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://tutorial.ponylang.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      Pony Tutorial
+    </a>
+    <div class="flex-l items-center">
+      
+      
+<div hidden>
+  <span id="new-window-0">Opens in a new window</span>
+  <span id="new-window-1">Opens an external site</span>
+  <span id="new-window-2">Opens an external site in a new window</span>
+</div>
+
+
+
+<a href="https://www.twitter.com/ponylang" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-describedby="new-window-0">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+<a href="https://www.github.com/ponylang/ponyc" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-describedby="new-window-0">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+    <main role="main">
+      
+  <article class="w-100 ph4 pb5 pb6-ns pt1 pt5-ns">
+    <div class="flex-l">
+
+      <div class="order-1 w-60-l mw8 ph0 ph5-ns mid-gray nested-copy-line-height no-underline nested-links nested-img nested-copy-seperator nested-blockquote mt0-ns" style="flex-grow:1;">
+        <div class="documentation-copy center mw7">
+          <header class="mt4 w-100">
+            <p class="f6 b helvetica tracked">
+                
+              CAPABILITIES
+            </p>
+            <h1 class="f1 athelas mb1">Reference Capabilities</h1>
+          </header>
+
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l">
+
+<p>So if the object <em>is</em> the capability, what controls what we can do with the object? How do we express our <em>access rights</em> on that object?</p>
+
+<p>In Pony, we do it with <em>reference capabilities</em>.</p>
+
+<h2 id="rights-are-part-of-a-capability">Rights are part of a capability</h2>
+
+<p>If you open a file in UNIX and get a file descriptor back, that file descriptor is a token that designates an object - but it isn&rsquo;t a capability. To be a capability, we need to open that file with some permission - some access right. For example:</p>
+
+<pre><code class="language-C">int fd = open(&quot;/etc/passwd&quot;, O_RDWR);
+</code></pre>
+
+<p>Now we have a token and a set of rights.</p>
+
+<p>In Pony, every reference has both a type and a reference capability. In fact, the reference capability is <em>part</em> of its type. These allow you to specify which of your objects can be shared with other actors and allow the compiler to check that what you&rsquo;re doing is concurrency safe.</p>
+
+<h2 id="basic-concepts">Basic concepts</h2>
+
+<p>There are a few simple concepts you need to understand before reference capabilities will make any sense. We&rsquo;ve talked about some of these already, and some may already be obvious to you, but it&rsquo;s worth recapping here.</p>
+
+<p><strong>Shared mutable data is hard</strong></p>
+
+<p>The problem with concurrency is shared mutable data. If two different threads have access to the same piece of data then they might try to update it at the same time. At best this can lead to the two threads having different versions of the data. At worst the updates can interact badly resulting in the data being overwritten with garbage. The standard way to avoid these problems is to use locks to prevent data updates from happening at the same time. This causes big performance hits and is very difficult to get right, so it causes lots of bugs.</p>
+
+<p><strong>Immutable data can be safely shared</strong></p>
+
+<p>Any data that is immutable (i.e. it cannot be changed) is safe to use concurrently. Since it is immutable it is never updated and it&rsquo;s the updates that cause concurrency problems.</p>
+
+<p><strong>Isolated data is safe</strong></p>
+
+<p>If a block of data has only one reference to it then we call it <strong>isolated</strong>. Since there is only one reference to it, isolated data cannot be <strong>shared</strong> by multiple threads, so there are no concurrency problems. Isolated data can be passed between multiple threads. As long as only one of them has a reference to it at a time then the data is still safe from concurrency problems.</p>
+
+<p><strong>Isolated data may be complex</strong></p>
+
+<p>An isolated piece of data may be a single byte. But it can also be a large data structure with multiple references between the various objects in that structure. What matters for the data to be isolated is that there is only a single reference to that structure as a whole. We talk about the <strong>isolation boundary</strong> of a data structure. For the structure to be isolated:</p>
+
+<ol>
+<li>There must only be a single reference outside the boundary that points to an object inside.</li>
+<li>There can be any number of references inside the boundary, but none of them must point to an object outside.</li>
+</ol>
+
+<p><strong>Every actor is single threaded</strong></p>
+
+<p>The code within a single actor is never run concurrently. This means that, within a single actor, data updates cannot cause problems. It&rsquo;s only when we want to share data between actors that we have problems.</p>
+
+<p><strong>OK, safely sharing data concurrently is tricky. How do reference capabilities help?</strong></p>
+
+<p>By sharing only immutable data and exchanging only isolated data we can have safe concurrent programs without locks. The problem is that it&rsquo;s very difficult to do that correctly. If you accidentally hang on to a reference to some isolated data you&rsquo;ve handed over or change something you&rsquo;ve shared as immutable then everything goes wrong. What you need is for the compiler to force you to live up to your promises. Pony reference capabilities allow the compiler to do just that.</p>
+
+<h2 id="type-qualifiers">Type qualifiers</h2>
+
+<p>If you&rsquo;ve used C/C++, you may be familiar with <code>const</code>, which is a <em>type qualifier</em> that tells the compiler not to allow the programmer to <em>mutate</em> something.</p>
+
+<p>A reference capability is a form of <em>type qualifier</em> and provides a lot more guarantees than <code>const</code> does!</p>
+
+<p>In Pony, every use of a type has a reference capability. These capabilities apply to variables, rather than to the type as a whole. In other words, when you define a <code>class Wombat</code>, you don&rsquo;t pick a reference capability for it. Instead, <code>Wombat</code> variables each have their own reference capability.</p>
+
+<p>As an example, in some languages, you have to define a type that represents a mutable <code>String</code> and another type that represents an immutable <code>String</code>. For example, in Java, there is a <code>String</code> and a <code>StringBuilder</code>. In Pony, you can define a single <code>class String</code> and have some variables that are <code>String ref</code> (which are mutable) and other variables that are <code>String val</code> (which are immutable).</p>
+
+<h2 id="the-list-of-reference-capabilities">The list of reference capabilities</h2>
+
+<p>There are six reference capabilities in Pony and they all have strict definitions and rules on how they can be used. We&rsquo;ll get to all of that later, but for now here are their names and what you use them for:</p>
+
+<p><strong>Isolated</strong>, written <code>iso</code>. This is for references to isolated data structures. If you have an <code>iso</code> variable then you know that there are no other variables that can access that data. So you can change it however you like and give it to another actor.</p>
+
+<p><strong>Value</strong>, written <code>val</code>. This is for references to immutable data structures. If you have a <code>val</code> variable then you know that no-one can change the data. So you can read it and share it with other actors.</p>
+
+<p><strong>Reference</strong>, written <code>ref</code>. This is for references to mutable data structures that are not isolated, in other words, &ldquo;normal&rdquo; data. If you have a <code>ref</code> variable then you can read and write the data however you like and you can have multiple variables that can access the same data. But you can&rsquo;t share it with other actors.</p>
+
+<p><strong>Box</strong>. This is for references to data that is read-only to you. That data might be immutable and shared with other actors or there may be other variables using it in your actor that can change the data. Either way, the <code>box</code> variable can be used to safely read the data. This may sound a little pointless, but it allows you to write code that can work for both <code>val</code> and <code>ref</code> variables, as long as it doesn&rsquo;t write to the object.</p>
+
+<p><strong>Transition</strong>, written <code>trn</code>. This is used for data structures that you want to write to and give out read-only (<code>box</code>) variables to. You can also convert the <code>trn</code> variable to a <code>val</code> variable later if you wish, which stops anyone from changing the data and allows it be shared with other actors.</p>
+
+<p><strong>Tag</strong>. This is for references used only for identification. You cannot read or write data using a <code>tag</code> variable. But you can store and compare <code>tag</code>s to check object identity and share <code>tag</code> variables with other actors.</p>
+
+<p>Note that if you have a variable referring to an actor then you can send messages to that actor regardless of what reference capability that variable has.</p>
+
+<h2 id="how-to-write-a-reference-capability">How to write a reference capability</h2>
+
+<p>A reference capability comes at the end of a type. So, for example:</p>
+
+<pre><code class="language-pony">String iso // An isolated string
+String trn // A transition string
+String ref // A string reference
+String val // A string value
+String box // A string box
+String tag // A string tag
+</code></pre>
+
+<p><strong>What does it mean when a type doesn&rsquo;t specify a reference capability?</strong> It means you are using the <em>default</em> reference capability for that type, which is defined along with the type. Here&rsquo;s an example from the standard library:</p>
+
+<pre><code class="language-pony">class val String
+</code></pre>
+
+<p>When we use a <code>String</code> we usually mean a string value, so we make <code>val</code> the default reference capability for <code>String</code>.</p>
+
+<p><strong>So do I have to specify a reference capability when I define a type?</strong> Only if you want to. There are sensible defaults that most types will use. These are <code>ref</code> for classes, <code>val</code> for primitives (i.e. immutable references) and <code>tag</code> for actors.</p>
+
+
+
+
+
+          </main>
+        </div>
+      </div>
+      <div class="order-0 w-20 dn db-l doc-menu">
+        
+<nav role="navigation">
+  <ul class="list pa0 nl2">
+    
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".getting-started">Getting Started</a>
+        <ul class="getting-started desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/getting-started.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Getting Started with Pony
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/getting-started/what-you-need.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              What You Need
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/getting-started/hello-world.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Hello World: Your First Pony Program
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/getting-started/how-it-works.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Hello World: How It Works
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".types">Types</a>
+        <ul class="types desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Types
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/at-a-glance.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              The Pony Type System at a Glance
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/classes.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Classes
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/primitives.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Primitives
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/actors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Actors
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/traits-and-interfaces.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Traits and Interfaces
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/type-aliases.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Type Aliases
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/type-expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Type Expressions
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".expressions">Expressions</a>
+        <ul class="expressions desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Expressions
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Literals
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/variables.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Variables
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/infix-ops.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Infix Operators
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/arithmetic.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Arithmetic
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/control-structures.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Control Structures
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/methods.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Methods
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/errors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Errors
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/equality.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Equality in Pony
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/sugar.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Sugar
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/object-literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Object Literals
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/partial-application.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Partial Application
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2  primary-color" data-target=".capabilities">Capabilities</a>
+        <ul class="capabilities desktopmenu animated fadeIn list pl0 bg-light-gray db">
+          <li class="f6 fw4">
+            <a href="/capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Capabilities
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/object-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Object Capabilities
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 primary-color ">
+              Reference Capabilities
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/guarantees.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Reference Capability Guarantees
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Consume and Destructive Read
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/recovering-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Recovering Capabilities
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/aliasing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Aliasing
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/combining-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Combining Capabilities
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/passing-and-sharing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Passing and Sharing References
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/capability-subtyping.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Capability Subtyping
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Arrow Types aka Viewpoints
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Trust Boundary
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".generics">Generics</a>
+        <ul class="generics desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/generics.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Generics
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/generics/generics-and-reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Generics and Reference Capabilities
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/generics/generic-constraints.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Constraints
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".pattern-matching">Pattern Matching</a>
+        <ul class="pattern-matching desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/pattern-matching.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Pattern Matching
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/pattern-matching/match.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Match Expressions
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/pattern-matching/as.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              As Operator
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".packages">Packages</a>
+        <ul class="packages desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/packages.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Packages
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/packages/package-system.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Package System
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/packages/use-statement.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Use Statement
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/packages/standard-library.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Standard Library
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".testing">Testing</a>
+        <ul class="testing desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/testing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Testing
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/testing/ponytest.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Testing with Ponytest
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".c-ffi">C FFI</a>
+        <ul class="c-ffi desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/c-ffi.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              C FFI
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/c-ffi/calling-c.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Calling C from Pony
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/c-ffi/linking-c.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Linking to C Libraries
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/c-ffi/c-abi.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              C ABI
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/c-ffi/callbacks.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Callbacks
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".gotchas">Gotchas</a>
+        <ul class="gotchas desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/gotchas.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Gotchas
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/gotchas/divide-by-zero.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Divide by Zero
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/gotchas/garbage-collection.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Garbage Collection
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/gotchas/scheduling.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Scheduling
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/gotchas/side-effect-ordering-in-function-call-expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Function call side effects
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/gotchas/recursion.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Recursion
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".where-next">Where Next?</a>
+        <ul class="where-next desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/where-next.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Where Next?
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".appendices">Appendices</a>
+        <ul class="appendices desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/appendices.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Appendix
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/lexicon.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Lexicon
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/symbol-lookup-cheatsheet.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Symbol Lookup Cheatsheet
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/keywords.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Keywords
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/whitespace.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Whitespace
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/compiler-args.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Compiler Arguments
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/memory-allocation.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Memory Allocation at Runtime
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/garbage-collection.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Garbage Collection with Pony-ORCA
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/platform-dependent-code.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Platform-dependent code
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/error-messages.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              A short guide to Pony error messages
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/annotations.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Program Annotations
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/serialisation.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Serialisation
+            </a>
+          </li>
+        </ul>
+      </li>
+  </ul>
+</nav>
+
+      </div>
+    </div>
+  </article>
+
+    </main>
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/languages/pony.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<script>
+  var toggleBtns = document.getElementsByClassName('js-toggle')
+  for (var i = 0; i < toggleBtns.length; i++) {
+    toggleBtns[i].addEventListener('click', toggleClass, false)
+  }
+
+function toggleClass() {
+  
+  var content = this.dataset.target.split(' ')
+  
+  var mobileCurrentlyOpen = document.querySelector('.mobilemenu:not(.dn)')
+  var desktopCurrentlyOpen = document.querySelector('.desktopmenu:not(.dn)')
+  var desktopActive = document.querySelector('.desktopmenu:not(.dn)')
+
+  
+  for (var i = 0; i < content.length; i++) {
+    var matches = document.querySelectorAll(content[i]);
+    
+    [].forEach.call(matches, function(dom) {
+        dom.classList.contains('dn') ?
+        dom.classList.remove('dn') :
+        dom.classList.add('dn');
+         return false;
+       });
+        
+      if (mobileCurrentlyOpen) mobileCurrentlyOpen.classList.add('dn')
+      if (desktopCurrentlyOpen) desktopCurrentlyOpen.classList.add('dn')
+      if (desktopActive) desktopActive.classList.remove('db')
+
+    }
+  }
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pony Tutorial</title>
+    <link>https://tutorial.ponylang.io/</link>
+    <description>Recent content on Pony Tutorial</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://tutorial.ponylang.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>https://tutorial.ponylang.io/appendices/examples.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/appendices/examples.html</guid>
+      <description>Examples Small how do I examples for Pony. These will eventually find another home. Until then, they live here.
+Enum with values primitive Black fun apply(): U32 =&amp;gt; 0xFF000000 primitive Red fun apply(): U32 =&amp;gt; 0xFFFF0000  Enum with values with namespace primitive Colours fun black(): U32 =&amp;gt; 0xFF000000 fun red(): U32 =&amp;gt; 0xFFFF0000  Enum which can be iterated primitive Black primitive Blue primitive Red primitive Yellow type Colour is (Black | Blue | Red | Yellow) primitive ColourList fun tag apply(): Array[Colour] =&amp;gt; [Black; Blue; Red; Yellow] for colour in ColourList().</description>
+    </item>
+    
+    <item>
+      <title>A short guide to Pony error messages</title>
+      <link>https://tutorial.ponylang.io/appendices/error-messages.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/appendices/error-messages.html</guid>
+      <description>You&amp;rsquo;ve been through the tutorial, you&amp;rsquo;ve watched some videos, and now you&amp;rsquo;re ready to write some Pony code. You fire up your editor, shovel coal into the compiler, and&amp;hellip; you find yourself looking at a string of gibberish.
+Don&amp;rsquo;t panic! Pony&amp;rsquo;s error messages try to be as helpful as possible and the ultimate goal is to improve them further. But, in the meantime, they can be a little intimidating.</description>
+    </item>
+    
+    <item>
+      <title>Actors</title>
+      <link>https://tutorial.ponylang.io/types/actors.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/types/actors.html</guid>
+      <description>An actor is similar to a class, but with one critical difference: an actor can have behaviours.
+Behaviours A behaviour is like a function, except that functions are synchronous and behaviours are asynchronous. In other words, when you call a function, the body of the function is executed immediately, and the result of the call is the result of the body of the function. This is just like method invocation in any other object-oriented language.</description>
+    </item>
+    
+    <item>
+      <title>Aliasing</title>
+      <link>https://tutorial.ponylang.io/capabilities/aliasing.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/capabilities/aliasing.html</guid>
+      <description>Aliasing means having more than one variable that points to the same object.
+In most programming languages, aliasing is pretty simple. You just assign some variable to another variable, and there you go, you have an alias. The variable you assign to has the same type (or some supertype) as what&amp;rsquo;s being assigned to it, and everything is fine.
+In Pony, that works for some reference capabilities, but not all.</description>
+    </item>
+    
+    <item>
+      <title>Arithmetic</title>
+      <link>https://tutorial.ponylang.io/expressions/arithmetic.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/expressions/arithmetic.html</guid>
+      <description>Arithmetic is about the stuff you learn to do with numbers in primary school: Addition, Subtraction, Multiplication, Division and so on. Piece of cake. We all know that stuff. We nonetheless want to spend a whole section on this topic, because when it comes to computers the devil is in the details.
+As introduced in Primitives numeric types in Pony are represented as a special kind of primitive that maps to machine words.</description>
+    </item>
+    
+    <item>
+      <title>Arrow Types aka Viewpoints</title>
+      <link>https://tutorial.ponylang.io/capabilities/arrow-types.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/capabilities/arrow-types.html</guid>
+      <description>When we talked about reference capability composition and viewpoint adaptation, we dealt with cases where we know the reference capability of the origin. However, sometimes we don&amp;rsquo;t know the precise reference capability of the origin.
+When that happens, we can write a viewpoint adapted type, which we call an arrow type because we write it with an -&amp;gt;.
+Using this-&amp;gt; as a viewpoint A function with a box receiver can be called with a ref receiver or a val receiver as well since those are both subtypes of box.</description>
+    </item>
+    
+    <item>
+      <title>As Operator</title>
+      <link>https://tutorial.ponylang.io/pattern-matching/as.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/pattern-matching/as.html</guid>
+      <description>The as operator in Pony has two related uses. First, it provides a safe way to increase the specificity of an object&amp;rsquo;s type (casting). Second, it gives the programmer a way to specify the type of the items in an array literal.
+Safely converting to a more specific type (casting) The as operator can be used to create a reference to an object with a more specific type than the given reference, if possible.</description>
+    </item>
+    
+    <item>
+      <title>C ABI</title>
+      <link>https://tutorial.ponylang.io/c-ffi/c-abi.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/c-ffi/c-abi.html</guid>
+      <description>The FFI support in pony uses the C application binary interface (ABI) to interface with native code. The C ABI is a calling convention, one of many, that allow objects from different programming languages to be used together.
+Writing a C library for Pony Writing your own C library for use by Pony is almost as easy as using existing libraries.
+Let&amp;rsquo;s look at a complete example of a C function we may wish to provide to Pony.</description>
+    </item>
+    
+    <item>
+      <title>Callbacks</title>
+      <link>https://tutorial.ponylang.io/c-ffi/callbacks.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/c-ffi/callbacks.html</guid>
+      <description>Some C APIs let the programmer specify functions that should be called to do pieces of work. For example, the SQLite API has a function called sqlite3_exec that executes an SQL statement and calls a function given by the programmer on each row returned by that statement. The functions that are supplied by the programmer are known as &amp;ldquo;callback functions&amp;rdquo;. Some specific Pony functions can be passed as callback functions.</description>
+    </item>
+    
+    <item>
+      <title>Calling C from Pony</title>
+      <link>https://tutorial.ponylang.io/c-ffi/calling-c.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/c-ffi/calling-c.html</guid>
+      <description>FFI is built into Pony and native libraries may be directly referenced in Pony code. There is no need to code or configure bindings, wrappers or interfaces.
+Here&amp;rsquo;s an example of an FFI call in Pony from the standard library. It looks like a normal method call, with just a few differences:
+@fwrite[U64](data.cstring(), U64(1), data.size(), _handle)  The main difference is the @ symbol before the function name. This is what tells us it&amp;rsquo;s an FFI call.</description>
+    </item>
+    
+    <item>
+      <title>Capability Subtyping</title>
+      <link>https://tutorial.ponylang.io/capabilities/capability-subtyping.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/capabilities/capability-subtyping.html</guid>
+      <description>Subtyping is about substitutability. That is, if we need to supply a certain type, what other types can we substitute instead? Reference capabilities factor into this.
+Simple substitution First, let&amp;rsquo;s cover substitution without worrying about ephemeral types (^) or alias types (!). The &amp;lt;: symbol means &amp;ldquo;is a subtype of&amp;rdquo; or alternatively &amp;ldquo;can be substituted for&amp;rdquo;.
+ iso &amp;lt;: trn. An iso is read and write unique, and a trn is just write unique, so it&amp;rsquo;s safe to substitute an iso for a trn.</description>
+    </item>
+    
+    <item>
+      <title>Classes</title>
+      <link>https://tutorial.ponylang.io/types/classes.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/types/classes.html</guid>
+      <description>Just like other object-oriented languages, Pony has classes. A class is declared with the keyword class, and it has to have a name that starts with a capital letter, like this:
+class Wombat  Do all types start with a capital letter? Yes! And nothing else starts with a capital letter. So when you see a name in Pony code, you will instantly know whether it&amp;rsquo;s a type or not.</description>
+    </item>
+    
+    <item>
+      <title>Combining Capabilities</title>
+      <link>https://tutorial.ponylang.io/capabilities/combining-capabilities.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/capabilities/combining-capabilities.html</guid>
+      <description>When a field of an object is read, its reference capability depends both on the reference capability of the field and the reference capability of the origin, that is, the object the field is being read from.
+This is because all the guarantees that the origin reference capability makes have to be maintained for its fields as well.
+Viewpoint adaptation The process of combining origin and field capabilities is called viewpoint adaptation.</description>
+    </item>
+    
+    <item>
+      <title>Compiler Arguments</title>
+      <link>https://tutorial.ponylang.io/appendices/compiler-args.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/appendices/compiler-args.html</guid>
+      <description>ponyc, the compiler, is usually called in the project directory, where it finds the .pony files and its dependencies automatically. There it will create the binary based on the directory name. You can override this and tune the compilation with several options as described via ponyc --help and you can pass a separate source directory as an argument.
+ponyc [OPTIONS] &amp;lt;package directory&amp;gt;  The most useful options are --debug, --path or just -p, --output or just -o and --docs or -g.</description>
+    </item>
+    
+    <item>
+      <title>Constraints</title>
+      <link>https://tutorial.ponylang.io/generics/generic-constraints.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/generics/generic-constraints.html</guid>
+      <description>Capability Constraints The type parameter constraint for a generic class or method can constrain to a particular capability as seen previously:
+class Foo[A: Any val]  Without the constraint, the generic must work for all possible capabilities. Sometimes you don&amp;rsquo;t want to be limited to a specific capability and you can&amp;rsquo;t support all capabilities. The solution for this is generic constraint qualifiers. These represent classes of capabilities that are accepted in the generic.</description>
+    </item>
+    
+    <item>
+      <title>Consume and Destructive Read</title>
+      <link>https://tutorial.ponylang.io/capabilities/consume-and-destructive-read.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/capabilities/consume-and-destructive-read.html</guid>
+      <description>An important part of Pony&amp;rsquo;s capabilities is being able to say &amp;ldquo;I&amp;rsquo;m done with this thing.&amp;rdquo; We&amp;rsquo;ll cover two means of handling this situation: consuming a variable and destructive reads.
+Consuming a variable Sometimes, you want to move an object from one variable to another. In other words, you don&amp;rsquo;t want to make a new name for the object, exactly, you want to move the object from some existing name to a different one.</description>
+    </item>
+    
+    <item>
+      <title>Control Structures</title>
+      <link>https://tutorial.ponylang.io/expressions/control-structures.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/expressions/control-structures.html</guid>
+      <description>To do real work in a program you have to be able to make decisions, iterate through collections of items and perform actions repeatedly. For this, you need control structures. Pony has control structures that will be familiar to programmers who have used most languages, such as if, while and for, but in Pony, they work slightly differently.
+Conditionals The simplest control structure is the good old if. It allows you to perform some action only when a condition is true.</description>
+    </item>
+    
+    <item>
+      <title>Divide by Zero</title>
+      <link>https://tutorial.ponylang.io/gotchas/divide-by-zero.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/gotchas/divide-by-zero.html</guid>
+      <description>What&amp;rsquo;s 1 divided by 0? How about 10 divided by 0? What is the result you get in your favorite programming language?
+In math, divide by zero is undefined. There is no answer to that question as the expression 1&amp;frasl;0 has no meaning. In many programming languages, the answer is a runtime exception that the user has to handle. In Pony, things are a bit different.
+Divide by zero in Pony In Pony, integer division by zero results in zero.</description>
+    </item>
+    
+    <item>
+      <title>Equality in Pony</title>
+      <link>https://tutorial.ponylang.io/expressions/equality.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/expressions/equality.html</guid>
+      <description>Pony features two forms of equality: by structure and by identity.
+Identity equality Identity equality checks in Pony are done via the is keyword. is verifies that the two items are the same.
+if None is None then // TRUE! // There is only 1 None so the identity is the same end let a = Foo(&amp;quot;hi&amp;quot;) let b = Foo(&amp;quot;hi&amp;quot;) if a is b then // NOPE. THIS IS FALSE end let c = a if a is c then // YUP!</description>
+    </item>
+    
+    <item>
+      <title>Errors</title>
+      <link>https://tutorial.ponylang.io/expressions/errors.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/expressions/errors.html</guid>
+      <description>Pony doesn&amp;rsquo;t feature exceptions as you might be familiar with them from languages like Python, Java, C++ et al. It does, however, provide a simple partial function mechanism to aid in error handling. Partial functions and the error keyword used to raise them look similar to exceptions in other languages but have some important semantic differences. Let&amp;rsquo;s take a look at how you work with Pony&amp;rsquo;s error and then how it differs from the exceptions you might be used to.</description>
+    </item>
+    
+    <item>
+      <title>Function call side effects</title>
+      <link>https://tutorial.ponylang.io/gotchas/side-effect-ordering-in-function-call-expressions.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/gotchas/side-effect-ordering-in-function-call-expressions.html</guid>
+      <description>Consider the following code:
+class Foo fun fn(x: U64) =&amp;gt; None actor Main new create(env: Env) =&amp;gt; var x: U64 = 0 try foo()?.fn(x = 42) end env.out.print(x.string()) fun foo(): Foo ? =&amp;gt; error  What do you think it will print? Probably 0 right? Or maybe you realized this code is in the gotchas section so it must be 42. If you went with 42, you&amp;rsquo;d be right. Why?</description>
+    </item>
+    
+    <item>
+      <title>Garbage Collection</title>
+      <link>https://tutorial.ponylang.io/gotchas/garbage-collection.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/gotchas/garbage-collection.html</guid>
+      <description>There&amp;rsquo;s a common GC anti-pattern that many new Pony programmers accidentally stumble across. Usually, this results in a skyrocketing memory usage in their test program and questions on the mailing list and IRC as to why Pony isn&amp;rsquo;t working correctly. It is, in fact, working correctly, albeit not obviously.
+Garbage Collection in the world at large Garbage collection, in most languages, can run at any time. Your program can be paused so that memory can be freed up.</description>
+    </item>
+    
+    <item>
+      <title>Garbage Collection with Pony-ORCA</title>
+      <link>https://tutorial.ponylang.io/appendices/garbage-collection.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/appendices/garbage-collection.html</guid>
+      <description>Pony-ORCA is a fully concurrent protocol for garbage collection in the actor paradigm. It allows cheap and small actors to perform garbage collection concurrently with any number of other actors, and this number can go into the millions since one actor needs only 256 bytes on 64bit systems. It does not require any form of synchronization across actors except those introduced through the actor paradigm, i.e. message send and message receive.</description>
+    </item>
+    
+    <item>
+      <title>Generics and Reference Capabilities</title>
+      <link>https://tutorial.ponylang.io/generics/generics-and-reference-capabilities.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/generics/generics-and-reference-capabilities.html</guid>
+      <description>In the examples presented previously we&amp;rsquo;ve explicitly set the reference capability to val:
+class Foo[A: Any val]  If the capability is left out of the type parameter then the generic class or function can accept any reference capability. This would look like:
+class Foo[A: Any]  It can be made shorter because Any is the default constraint, leaving us with:
+class Foo[A]  This is what the example shown before looks like but with any reference capability accepted:</description>
+    </item>
+    
+    <item>
+      <title>Hello World: How It Works</title>
+      <link>https://tutorial.ponylang.io/getting-started/how-it-works.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/getting-started/how-it-works.html</guid>
+      <description>Let&amp;rsquo;s look at our helloworld code again:
+actor Main new create(env: Env) =&amp;gt; env.out.print(&amp;quot;Hello, world!&amp;quot;)  Let&amp;rsquo;s go through that line by line.
+Line 1 actor Main  This is a type declaration. The keyword actor means we are going to define an actor, which is a bit like a class in Python, Java, C#, C++, etc. Pony has classes too, which we&amp;rsquo;ll see later.
+The difference between an actor and a class is that an actor can have asynchronous methods, called behaviours.</description>
+    </item>
+    
+    <item>
+      <title>Hello World: Your First Pony Program</title>
+      <link>https://tutorial.ponylang.io/getting-started/hello-world.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/getting-started/hello-world.html</guid>
+      <description>Now that you&amp;rsquo;ve successfully installed the Pony compiler, let&amp;rsquo;s start programming! Our first program will be a very traditional one. We&amp;rsquo;re going to print &amp;ldquo;Hello, world!&amp;rdquo;. First, create a directory called helloworld:
+$ mkdir helloworld $ cd helloworld  Does the name of the directory matter? Yes, it does. It&amp;rsquo;s the name of your program! By default when your program is compiled, the resulting executable binary will have the same name as the directory your program lives in.</description>
+    </item>
+    
+    <item>
+      <title>Infix Operators</title>
+      <link>https://tutorial.ponylang.io/expressions/infix-ops.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/expressions/infix-ops.html</guid>
+      <description>Infix operators take two operands and are written between those operands. Arithmetic and comparison operators are the most common:
+1 + 2 a &amp;lt; b  Pony has pretty much the same set of infix operators as other languages.
+Precedence When using infix operators in complex expressions a key question is the precedence, i.e. which operator is evaluated first. Given this expression:
+1 + 2 * 3  We will get a value of 9 if we evaluate the addition first and 7 if we evaluate the multiplication first.</description>
+    </item>
+    
+    <item>
+      <title>Keywords</title>
+      <link>https://tutorial.ponylang.io/appendices/keywords.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/appendices/keywords.html</guid>
+      <description>This listing explains the usage of every Pony keyword.
+   Keyword Usage     actor defines an actor   as conversion of a value to another Type (can raise an error)   be behavior, executed asynchronously   box default reference capability – object is readable, but not writable   break to step out of a loop statement   class defines a class   compile_error will provoke a compile error   continue continues a loop with the next iteration   consume move a value to a new variable, leaving the original variable empty   do loop statement, or after a with statement   else conditional statement in if, for, while, repeat, try (as a catch block), match   elseif conditional statement, also used with ifdef   embed embed a class as a field of another class   end ending of: if then, ifdef, while do, for in, repeat until, try, object, lambda, recover, match   error raises an error   for loop statement   fun define a function, executed synchronously   if (1) conditional statement    (2) to define a guard in a pattern match   ifdef when defining a build flag at compile time: ponyc –D &amp;ldquo;foo&amp;rdquo;   in used in a for in - loop statement   interface used in structural subtyping   is (1) used in nominal subtyping    (2) in type aliasing   iso reference capability – read and write uniqueness   lambda to make a closure   let declaration of immutable variable: you can&amp;rsquo;t rebind this name to a new value   match pattern matching   new constructor   object to make an object literal   primitive declares a primitive type   recover removes the reference capability of a variable   ref reference capability – object (on which function is called) is mutable   repeat loop statement   return to return early from a function   tag reference capability – neither readable nor writeable, only object identity   then (1) in if conditional statement    (2) as a (finally) block in try   this the current object   trait used in nominal subtyping: class Foo is TraitName   trn reference capability – write uniqueness, no other actor can write to the object   try error handling   type to declare a type alias   until loop statement   use (1) using a package    (2) using an external library foo: use &amp;ldquo;lib:foo&amp;rdquo;    (3) declaration of an FFI signature    (4) add a search path for external libraries: use &amp;ldquo;path:/usr/local/lib&amp;rdquo;   var declaration of mutable variable: you can rebind this name to a new value   val reference capability – globally immutable object   where when specifying named arguments   while loop statement   with ensure disposal of an object    </description>
+    </item>
+    
+    <item>
+      <title>Lexicon</title>
+      <link>https://tutorial.ponylang.io/appendices/lexicon.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/appendices/lexicon.html</guid>
+      <description>Words are hard. We can all be saying the same thing but do we mean the same thing? It&amp;rsquo;s tough to know. Hopefully, this lexicon helps a little.
+Terminology Braces: { }. Synonymous with curly brackets.
+Brackets: This term is ambiguous. In the UK it usually means ( ) in the US is usually means [ ]. It should, therefore, be avoided for use for either of these. Can be used as a general term for any unspecified grouping punctuation, including { }.</description>
+    </item>
+    
+    <item>
+      <title>Linking to C Libraries</title>
+      <link>https://tutorial.ponylang.io/c-ffi/linking-c.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/c-ffi/linking-c.html</guid>
+      <description>If Pony code calls FFI functions, then those functions, or rather the libraries containing them, must be linked into the Pony program.
+Use for external libraries To link an external library to Pony code another variant of the use command is used. The &amp;ldquo;lib&amp;rdquo; specifier is used to tell the compiler you want to link to a library. For example:
+use &amp;quot;lib:foo&amp;quot;  As with other use commands a condition may be specified.</description>
+    </item>
+    
+    <item>
+      <title>Literals</title>
+      <link>https://tutorial.ponylang.io/expressions/literals.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/expressions/literals.html</guid>
+      <description>What do we want?
+Values!
+Where do we want them?
+In our Pony programs!
+Say no more
+Every programming language has literals to encode values of certain types, and so does Pony.
+In Pony you can express booleans, numeric types, characters, strings and arrays as literals.
+Bool Literals There is true, there is false. That&amp;rsquo;s it.
+Numeric Literals Numeric literals can be used to encode any signed or unsigned integer or floating point number.</description>
+    </item>
+    
+    <item>
+      <title>Match Expressions</title>
+      <link>https://tutorial.ponylang.io/pattern-matching/match.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/pattern-matching/match.html</guid>
+      <description>If we want to compare an expression to a value then we use an if. But if we want to compare an expression to a lot of values this gets very tedious. Pony provides a powerful pattern matching facility, combining matching on values and types, without any special code required.
+Matching: the basics Here&amp;rsquo;s a simple example of a match expression that produces a string.
+match x | 2 =&amp;gt; &amp;quot;int&amp;quot; | 2.</description>
+    </item>
+    
+    <item>
+      <title>Memory Allocation at Runtime</title>
+      <link>https://tutorial.ponylang.io/appendices/memory-allocation.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/appendices/memory-allocation.html</guid>
+      <description>Pony is a null-free, type-safe language, with no dangling pointers, no buffer overruns, but with a very fast garbage collector, so you don&amp;rsquo;t have to worry about explicit memory allocation, if on the heap or stack, if in a threaded actor, or not.
+Fast, Safe and Cheap  An actor has ~240 bytes of memory overhead. No locks. No context switches. All mutation is local. An idle actor consumes no resources (other than memory).</description>
+    </item>
+    
+    <item>
+      <title>Methods</title>
+      <link>https://tutorial.ponylang.io/expressions/methods.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/expressions/methods.html</guid>
+      <description>All Pony code that actually does something, rather than defining types etc, appears in named blocks which are referred to as methods. There are three kinds of methods: functions, constructors, and behaviours. All methods are attached to type definitions (e.g. classes) - there are no global functions.
+Behaviours are used for handling asynchronous messages sent to actors. We&amp;rsquo;ll look at those later.
+Can I have some code outside of any methods like I do in Python?</description>
+    </item>
+    
+    <item>
+      <title>Object Capabilities</title>
+      <link>https://tutorial.ponylang.io/capabilities/object-capabilities.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/capabilities/object-capabilities.html</guid>
+      <description>Pony&amp;rsquo;s capabilities-secure type system is based on the object-capability model. That sounds complicated, but really it&amp;rsquo;s elegant and simple. The core idea is this:
+ A capability is an unforgeable token that (a) designates an object and (b) gives the program the authority to perform a specific set of actions on that object.
+ So what&amp;rsquo;s that token? It&amp;rsquo;s an address. A pointer. A reference. It&amp;rsquo;s just&amp;hellip; an object.</description>
+    </item>
+    
+    <item>
+      <title>Object Literals</title>
+      <link>https://tutorial.ponylang.io/expressions/object-literals.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/expressions/object-literals.html</guid>
+      <description>Sometimes it&amp;rsquo;s really convenient to be able to write a whole object inline. In Pony, this is called an object literal, and it does pretty much exactly what an object literal in JavaScript does: it creates an object that you can use immediately.
+But Pony is statically typed, so an object literal also creates an anonymous type that the object literal fulfills. This is similar to anonymous classes in Java and C#.</description>
+    </item>
+    
+    <item>
+      <title>Package System</title>
+      <link>https://tutorial.ponylang.io/packages/package-system.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/packages/package-system.html</guid>
+      <description>Pony code is organised into packages. Each program and library is a single package, possibly using other packages.
+The package structure The package is the basic unit of code in Pony. It corresponds directly to a directory in the file system, all Pony source files within that directory are within that package. Note that this does not include files in any sub-directories.
+Every source file is within exactly one package.</description>
+    </item>
+    
+    <item>
+      <title>Partial Application</title>
+      <link>https://tutorial.ponylang.io/expressions/partial-application.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/expressions/partial-application.html</guid>
+      <description>Partial application lets us supply some of the arguments to a constructor, function, or behaviour, and get back something that lets us supply the rest of the arguments later.
+A simple case A simple case is to create a &amp;ldquo;callback&amp;rdquo; function. For example:
+class Foo var _f: F64 = 0 fun ref addmul(add: F64, mul: F64): F64 =&amp;gt; _f = (_f + add) * mul class Bar fun apply() =&amp;gt; let foo: Foo = Foo let f = foo~addmul(3) f(4)  This is a bit of a silly example, but hopefully, the idea is clear.</description>
+    </item>
+    
+    <item>
+      <title>Passing and Sharing References</title>
+      <link>https://tutorial.ponylang.io/capabilities/passing-and-sharing.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/capabilities/passing-and-sharing.html</guid>
+      <description>Reference capabilities make it safe to both pass mutable data between actors and to share immutable data amongst actors. Not only that, they make it safe to do it with no copying, no locks, in fact, no runtime overhead at all.
+Passing For an object to be mutable, we need to be sure that no other actor can read from or write to that object. The three mutable reference capabilities (iso, trn, and ref) all make that guarantee.</description>
+    </item>
+    
+    <item>
+      <title>Platform-dependent code</title>
+      <link>https://tutorial.ponylang.io/appendices/platform-dependent-code.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/appendices/platform-dependent-code.html</guid>
+      <description>The Pony libraries, of course, want to abstract platform differences. Sometimes you may want a use command that only works under certain circumstances, most commonly only on a particular OS or only for debug builds. You can do this by specifying a condition for a use command:
+use &amp;quot;foo&amp;quot; if linux use &amp;quot;bar&amp;quot; if (windows and debug)  Use conditions can use any of the methods defined in builtin/Platform as conditions.</description>
+    </item>
+    
+    <item>
+      <title>Primitives</title>
+      <link>https://tutorial.ponylang.io/types/primitives.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/types/primitives.html</guid>
+      <description>A primitive is similar to a class, but there are two critical differences:
+ A primitive has no fields. There is only one instance of a user-defined primitive.  Having no fields means primitives are never mutable. Having a single instance means that if your code calls a constructor on a primitive type, it always gets the same result back (except for built-in &amp;ldquo;machine word&amp;rdquo; primitives, covered below).
+What can you use a primitive for?</description>
+    </item>
+    
+    <item>
+      <title>Program Annotations</title>
+      <link>https://tutorial.ponylang.io/appendices/annotations.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/appendices/annotations.html</guid>
+      <description>In Pony, we provide a special syntax for implementation-specific annotations to various elements of a program. The basic syntax is a comma-separated list of identifiers surrounded by backslashes:
+\annotation1, annotation2\  Here, annotation1 and annotation2 can be any valid Pony identifier, i.e. a sequence of alphanumeric characters starting with a letter or an underscore.
+What can be annotated Annotations are allowed after any scoping keyword or symbol. The full list is:</description>
+    </item>
+    
+    <item>
+      <title>Recovering Capabilities</title>
+      <link>https://tutorial.ponylang.io/capabilities/recovering-capabilities.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/capabilities/recovering-capabilities.html</guid>
+      <description>A recover expression let&amp;rsquo;s you &amp;ldquo;lift&amp;rdquo; the reference capability of the result. A mutable reference capability (iso, trn, or ref) can become any reference capability, and an immutable reference capability (val or box) can become any immutable or opaque reference capability.
+Why is this useful? This most straightforward use of recover is to get an iso that you can pass to another actor. But it can be used for many other things as well, such as:</description>
+    </item>
+    
+    <item>
+      <title>Recursion</title>
+      <link>https://tutorial.ponylang.io/gotchas/recursion.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/gotchas/recursion.html</guid>
+      <description>Recursive functions in Pony can cause many problems. Every function call in a program adds a frame on the system call stack, which is bounded. If the stack grows too big it will overflow, usually crashing the program. This is an out-of-memory type of error and it cannot be prevented by the guarantees offered by Pony.
+If you have a heavy recursive algorithm, you must take some precautions in your code to avoid stack overflows.</description>
+    </item>
+    
+    <item>
+      <title>Reference Capabilities</title>
+      <link>https://tutorial.ponylang.io/capabilities/reference-capabilities.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/capabilities/reference-capabilities.html</guid>
+      <description>So if the object is the capability, what controls what we can do with the object? How do we express our access rights on that object?
+In Pony, we do it with reference capabilities.
+Rights are part of a capability If you open a file in UNIX and get a file descriptor back, that file descriptor is a token that designates an object - but it isn&amp;rsquo;t a capability. To be a capability, we need to open that file with some permission - some access right.</description>
+    </item>
+    
+    <item>
+      <title>Reference Capability Guarantees</title>
+      <link>https://tutorial.ponylang.io/capabilities/guarantees.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/capabilities/guarantees.html</guid>
+      <description>Since types are guarantees, it&amp;rsquo;s useful to talk about what guarantees a reference capability makes.
+What is denied We&amp;rsquo;re going to talk about reference capability guarantees in terms of what&amp;rsquo;s denied. By this, we mean: what can other variables not do when you have a variable with a certain reference capability?
+We need to distinguish between the actor that contains the variable in question and other actors.
+This is important because data reads and writes from other actors may occur concurrently.</description>
+    </item>
+    
+    <item>
+      <title>Scheduling</title>
+      <link>https://tutorial.ponylang.io/gotchas/scheduling.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/gotchas/scheduling.html</guid>
+      <description>The Pony scheduler is not preemptive. This means that your actor has to yield control of the scheduler thread in order for another actor to execute. The normal way to do this is for your behavior to end. If your behavior doesn&amp;rsquo;t end, you will continue to monopolize a scheduler thread and bad things will happen.
+FFI and monopolizing the scheduler An easy way to monopolize a scheduler thread is to use the FFI facilities of Pony to kick off code that doesn&amp;rsquo;t return for an extended period of time.</description>
+    </item>
+    
+    <item>
+      <title>Serialisation</title>
+      <link>https://tutorial.ponylang.io/appendices/serialisation.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/appendices/serialisation.html</guid>
+      <description>Pony provides a built-in mechanism for serialising and deserialising objects so that they can be passed between Pony processes. Serialisation takes an object and turns it into an array of bytes that can be used to send the object to another process by, for example, writing it to a TCP stream. Deserialisation takes an array of bytes and turns them into a Pony object.
+Pony uses an intermediate object type called Serialised to represent a serialised object.</description>
+    </item>
+    
+    <item>
+      <title>Standard Library</title>
+      <link>https://tutorial.ponylang.io/packages/standard-library.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/packages/standard-library.html</guid>
+      <description>The Pony standard library is a collection of packages that can each be used as needed to provide a variety of functionality. For example, the files package provides file access and the collections package provides generic lists, maps, sets and so on.
+There is also a special package in the standard library called builtin. This contains various types that the compiler has to treat specially and are so common that all Pony code needs to know about them.</description>
+    </item>
+    
+    <item>
+      <title>Sugar</title>
+      <link>https://tutorial.ponylang.io/expressions/sugar.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/expressions/sugar.html</guid>
+      <description>Pony allows you to omit certain small details from your code and will put them back in for you. This is done to help make your code less cluttered and more readable. Using sugar is entirely optional, you can always write out the full version if you prefer.
+Apply Many Pony classes have a function called apply which performs whatever action is most common for that type. Pony allows you to omit the word apply and just attempt to do a call directly on the object.</description>
+    </item>
+    
+    <item>
+      <title>Symbol Lookup Cheatsheet</title>
+      <link>https://tutorial.ponylang.io/appendices/symbol-lookup-cheatsheet.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/appendices/symbol-lookup-cheatsheet.html</guid>
+      <description>Pony, like just about any other programming language, has plenty of odd symbols that make up its syntax. If you don&amp;rsquo;t remember what one means, it can be hard to search for them. Below you&amp;rsquo;ll find a table with various Pony symbols and what you should search the tutorial for in order to learn more about the symbol.
+   Symbol Search Keywords     ! Alias   -&amp;gt; Arrow type, viewpoint   .</description>
+    </item>
+    
+    <item>
+      <title>Testing with Ponytest</title>
+      <link>https://tutorial.ponylang.io/testing/ponytest.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/testing/ponytest.html</guid>
+      <description>PonyTest is Pony&amp;rsquo;s unit testing framework. It is designed to be as simple as possible to use, both for the unit test writer and the user running the tests.
+Each unit test is a class, with a single test function. By default, all tests run concurrently.
+Each test run is provided with a helper object. This provides logging and assertion functions. By default log messages are only shown for tests that fail.</description>
+    </item>
+    
+    <item>
+      <title>The Pony Type System at a Glance</title>
+      <link>https://tutorial.ponylang.io/types/at-a-glance.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/types/at-a-glance.html</guid>
+      <description>Pony is a statically typed language, like Java, C#, C++, and many others. This means the compiler knows the type of everything in your program. This is different from dynamically typed languages, such as Python, Lua, JavaScript, and Ruby.
+Static vs Dynamic: What&amp;rsquo;s the difference? In both kinds of language, your data has a type. So what&amp;rsquo;s the difference?
+With a dynamically typed language, a variable can point to objects of different types at different times.</description>
+    </item>
+    
+    <item>
+      <title>Traits and Interfaces</title>
+      <link>https://tutorial.ponylang.io/types/traits-and-interfaces.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/types/traits-and-interfaces.html</guid>
+      <description>Like other object-oriented languages, Pony has subtyping. That is, some types serve as categories that other types can be members of.
+There are two kinds of subtyping in programming languages: nominal and structural. They&amp;rsquo;re subtly different, and most programming languages only have one or the other. Pony has both!
+Nominal subtyping This kind of subtyping is called nominal because it is all about names.
+If you&amp;rsquo;ve done object-oriented programming before, you may have seen a lot of discussion about single inheritance, multiple inheritance, mixins, traits, and similar concepts.</description>
+    </item>
+    
+    <item>
+      <title>Trust Boundary</title>
+      <link>https://tutorial.ponylang.io/capabilities/trust-boundary.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/capabilities/trust-boundary.html</guid>
+      <description>We mentioned previously that the C FFI can be used to break pretty much every guarantee that Pony makes. This is because, once you&amp;rsquo;ve called into C, you are executing arbitrary machine code that can stomp memory addresses, write to anything, and generally be pretty badly behaved.
+Trust boundaries When we talk about trust, we don&amp;rsquo;t mean things you trust because you think they are perfect. Instead, we mean things you have to trust in order to get things done, even though you know they are imperfect.</description>
+    </item>
+    
+    <item>
+      <title>Type Aliases</title>
+      <link>https://tutorial.ponylang.io/types/type-aliases.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/types/type-aliases.html</guid>
+      <description>A type alias is just a way to give a different name to a type. This may sound a bit silly: after all, types already have names! However, Pony can express some complicated types, and it can be convenient to have a short way to talk about them.
+We&amp;rsquo;ll give a couple examples of using type aliases, just to get the feel of them.
+Enumerations One way to use type aliases is to express an enumeration.</description>
+    </item>
+    
+    <item>
+      <title>Type Expressions</title>
+      <link>https://tutorial.ponylang.io/types/type-expressions.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/types/type-expressions.html</guid>
+      <description>The types we&amp;rsquo;ve talked about so far can also be combined in type expressions. If you&amp;rsquo;re used to object-oriented programming, you may not have seen these before, but they are common in functional programming. A type expression is also called an algebraic data type.
+There are three kinds of type expression: tuples, unions, and intersections.
+Tuples A tuple type is a sequence of types. For example, if we wanted something that was a String followed by a U64, we would write this:</description>
+    </item>
+    
+    <item>
+      <title>Use Statement</title>
+      <link>https://tutorial.ponylang.io/packages/use-statement.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/packages/use-statement.html</guid>
+      <description>To use a package in your code you need to have a use command. This tells the compiler to find the package you need and make the types defined in it available to you. Every Pony file that needs to know about a type from a package must have a use command for it.
+Use commands are a similar concept to Python and Java &amp;ldquo;import&amp;rdquo;, C/C++ &amp;ldquo;#include&amp;rdquo; and C# &amp;ldquo;using&amp;rdquo; commands, but not exactly the same.</description>
+    </item>
+    
+    <item>
+      <title>Variables</title>
+      <link>https://tutorial.ponylang.io/expressions/variables.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/expressions/variables.html</guid>
+      <description>Like most other programming languages Pony allows you to store data in variables. There are a few different kinds of variables which have different lifetimes and are used for slightly different purposes.
+Local variables Local variables in Pony work very much as they do in other languages, allowing you to store temporary values while you perform calculations. Local variables live within a chunk of code (they are local to that chunk) and are created every time that code chunk executes and disposed of when it completes.</description>
+    </item>
+    
+    <item>
+      <title>What You Need</title>
+      <link>https://tutorial.ponylang.io/getting-started/what-you-need.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/getting-started/what-you-need.html</guid>
+      <description>To get started, you&amp;rsquo;ll need a text editor and the ponyc compiler. Or if you are on a not supported platform or don&amp;rsquo;t want to install the compiler you can use the Pony&amp;rsquo;s Playground.
+The Pony compiler Before you get started, please check out the installation instructions for the Pony compiler.
+A text editor While you can write code using any editor, it&amp;rsquo;s nice to use one with some support for the language.</description>
+    </item>
+    
+    <item>
+      <title>Whitespace</title>
+      <link>https://tutorial.ponylang.io/appendices/whitespace.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/appendices/whitespace.html</guid>
+      <description>Whitespace (e.g. spaces, tabs, newlines, etc.) in Pony isn&amp;rsquo;t significant.
+Well, it mostly isn&amp;rsquo;t significant.
+Mostly insignificant whitespace Pony reads a bit like Python, which is a whitespace significant language. That is, the amount of indentation on a line means something in Python. In Pony, the amount of indentation is meaningless.
+That means Pony programmers can format their code in whatever way suits them.
+There are three exceptions:
+ A - at the beginning of a line starts a new expression (unary negation), whereas a - in the middle of an expression is a binary operator (subtraction).</description>
+    </item>
+    
+  </channel>
+</rss>

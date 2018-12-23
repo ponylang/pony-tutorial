@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Pony Tutorial  | Errors</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.52" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.955516233bcafa4d2a1c13cea63c7b50.css" rel="stylesheet">
+    
+
+    
+      <link rel="stylesheet" href="/css/highlight.css">
+    
+      <link rel="stylesheet" href="/css/my.css">
+    
+
+    
+      
+    
+
+    
+
+    <meta property="og:title" content="Errors" />
+<meta property="og:description" content="Pony doesn&rsquo;t feature exceptions as you might be familiar with them from languages like Python, Java, C&#43;&#43; et al. It does, however, provide a simple partial function mechanism to aid in error handling. Partial functions and the error keyword used to raise them look similar to exceptions in other languages but have some important semantic differences. Let&rsquo;s take a look at how you work with Pony&rsquo;s error and then how it differs from the exceptions you might be used to." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tutorial.ponylang.io/expressions/errors.html" />
+
+<meta itemprop="name" content="Errors">
+<meta itemprop="description" content="Pony doesn&rsquo;t feature exceptions as you might be familiar with them from languages like Python, Java, C&#43;&#43; et al. It does, however, provide a simple partial function mechanism to aid in error handling. Partial functions and the error keyword used to raise them look similar to exceptions in other languages but have some important semantic differences. Let&rsquo;s take a look at how you work with Pony&rsquo;s error and then how it differs from the exceptions you might be used to.">
+
+
+
+<meta itemprop="wordCount" content="1403">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Errors"/>
+<meta name="twitter:description" content="Pony doesn&rsquo;t feature exceptions as you might be familiar with them from languages like Python, Java, C&#43;&#43; et al. It does, however, provide a simple partial function mechanism to aid in error handling. Partial functions and the error keyword used to raise them look similar to exceptions in other languages but have some important semantic differences. Let&rsquo;s take a look at how you work with Pony&rsquo;s error and then how it differs from the exceptions you might be used to."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="bg-pony-brown">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://tutorial.ponylang.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      Pony Tutorial
+    </a>
+    <div class="flex-l items-center">
+      
+      
+<div hidden>
+  <span id="new-window-0">Opens in a new window</span>
+  <span id="new-window-1">Opens an external site</span>
+  <span id="new-window-2">Opens an external site in a new window</span>
+</div>
+
+
+
+<a href="https://www.twitter.com/ponylang" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-describedby="new-window-0">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+<a href="https://www.github.com/ponylang/ponyc" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-describedby="new-window-0">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+    <main role="main">
+      
+  <article class="w-100 ph4 pb5 pb6-ns pt1 pt5-ns">
+    <div class="flex-l">
+
+      <div class="order-1 w-60-l mw8 ph0 ph5-ns mid-gray nested-copy-line-height no-underline nested-links nested-img nested-copy-seperator nested-blockquote mt0-ns" style="flex-grow:1;">
+        <div class="documentation-copy center mw7">
+          <header class="mt4 w-100">
+            <p class="f6 b helvetica tracked">
+                
+              EXPRESSIONS
+            </p>
+            <h1 class="f1 athelas mb1">Errors</h1>
+          </header>
+
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l">
+
+<p>Pony doesn&rsquo;t feature exceptions as you might be familiar with them from languages like Python, Java, C++ et al. It does, however, provide a simple partial function mechanism to aid in error handling. Partial functions and the <code>error</code> keyword used to raise them look similar to exceptions in other languages but have some important semantic differences. Let&rsquo;s take a look at how you work with Pony&rsquo;s error and then how it differs from the exceptions you might be used to.</p>
+
+<h2 id="raising-and-handling-errors">Raising and handling errors</h2>
+
+<p>An error is raised with the command <code>error</code>. At any point, the code may decide to declare an <code>error</code> has occurred. Code execution halts at that point, and the call chain is unwound until the nearest enclosing error handler is found. This is all checked at compile time so errors cannot cause the whole program to crash.</p>
+
+<p>Error handlers are declared using the <code>try</code>-<code>else</code> syntax.</p>
+
+<pre><code class="language-pony">try
+  callA()
+  if not callB() then error end
+  callC()
+else
+  callD()
+end
+</code></pre>
+
+<p>In the above code <code>callA()</code> will always be executed and so will <code>callB()</code>. If the result of <code>callB()</code> is true then we will proceed to <code>callC()</code> in the normal fashion and <code>callD()</code> will not then be executed.</p>
+
+<p>However, if <code>callB()</code> returns false, then an error will be raised. At this point, execution will stop and the nearest enclosing error handler will be found and executed. In this example that is, our else block and so <code>callD()</code> will be executed.</p>
+
+<p>In either case, execution will then carry on with whatever code comes after the <code>try end</code>.</p>
+
+<p><strong>Do I have to provide an error handler?</strong> No. The <code>try</code> block will handle any errors regardless. If you don&rsquo;t provide an error handler then no error handling action will be taken - execution will simply continue after the <code>try</code> expression.</p>
+
+<p>If you want to do something that might raise an error, but you don&rsquo;t care if it does you can just put in it a <code>try</code> block without an <code>else</code>.</p>
+
+<pre><code class="language-pony">try
+  // Do something that may raise an error
+end
+</code></pre>
+
+<p><strong>Is there anything my error handler has to do?</strong> No. If you provide an error handler then it must contain some code, but it is entirely up to you what it does.</p>
+
+<p><strong>What&rsquo;s the resulting value of a try block?</strong> The result of a <code>try</code> block is the value of the last statement in the <code>try</code> block, or the value of the last statement in the <code>else</code> clause if an error was raised. If an error was raised and there was no <code>else</code> clause provided, the result value will be <code>None</code>.</p>
+
+<h2 id="partial-functions">Partial functions</h2>
+
+<p>Pony does not require that all errors are handled immediately as in our previous examples. Instead, functions can raise errors that are handled by whatever code calls them. These are called partial functions (this is a mathematical term meaning a function that does not have a defined result for all possible inputs, i.e. arguments). Partial functions <strong>must</strong> be marked as such in Pony with a <code>?</code>, both in the function signature (after the return type) and at the call site (after the closing parentheses).</p>
+
+<p>For example, a somewhat contrived version of the factorial function that accepts a signed integer will error if given a negative input. It&rsquo;s only partially defined over its valid input type.</p>
+
+<pre><code class="language-pony">fun factorial(x: I32): I32 ? =&gt;
+  if x &lt; 0 then error end
+  if x == 0 then
+    1
+  else
+    x * factorial(x - 1)?
+  end
+</code></pre>
+
+<p>Everywhere that an error can be generated in Pony (an error command, a call to a partial function, or certain built-in language constructs) must appear within a <code>try</code> block or a function that is marked as partial. This is checked at compile time, ensuring that an error cannot escape handling and crash the program.</p>
+
+<p>Prior to Pony 0.16.0, call sites of partial functions were not required to be marked with a <code>?</code>. This often led to confusion about the possibilities for control flow when reading code. Having every partial function call site clearly marked makes it very easy for the reader to immediately understand everywhere that a block of code may jump away to the nearest error handler, making the possible control flow paths more obvious and explicit.</p>
+
+<h2 id="partial-constructors-and-behaviours">Partial constructors and behaviours</h2>
+
+<p>Class constructors may also be marked as partial. If a class constructor raises an error then the construction is considered to have failed and the object under construction is discarded without ever being returned to the caller.</p>
+
+<p>When an actor constructor is called the actor is created and a reference to it is returned immediately. However, the constructor code is executed asynchronously at some later time. If an actor constructor were to raise an error it would already be too late to report this to the caller. For this reason, constructors for actors may not be partial.</p>
+
+<p>Behaviours are also executed asynchronously and so cannot be partial for the same reason.</p>
+
+<h2 id="try-then-blocks">Try-then blocks</h2>
+
+<p>In addition to an <code>else</code> error handler, a <code>try</code> command can have a <code>then</code> block. This is executed after the rest of the <code>try</code>, whether or not an error is raised or handled. Expanding our example from earlier:</p>
+
+<pre><code class="language-pony">try
+  callA()
+  if not callB() then error end
+  callC()
+else
+  callD()
+then
+  callE()
+end
+</code></pre>
+
+<p>The <code>callE()</code> will always be executed. If <code>callB()</code> returns true then the sequence executed is <code>callA()</code>, <code>callB()</code>, <code>callC()</code>, <code>callE()</code>. If <code>callB()</code> returns false then the sequence executed is <code>callA()</code>, <code>callB()</code>, <code>callD()</code>, <code>callE()</code>.</p>
+
+<p><strong>Do I have to have an else error handler to have a then block?</strong> No. You can have a <code>try</code>-<code>then</code> block without an <code>else</code> if you like.</p>
+
+<p><strong>Will my then block really always be executed, even if I return inside the try?</strong> Yes, your <code>then</code> expression will <strong>always</strong> be executed when the <code>try</code> block is complete. The only way it won&rsquo;t be is if the <code>try</code> never completes (due to an infinite loop), the machine is powered off, or the process is killed (and then, maybe).</p>
+
+<h2 id="with-blocks">With blocks</h2>
+
+<p>A <code>with</code> expression can be used to ensure disposal of an object when it is no longer needed. A common case is a database connection which needs to be closed after use to avoid resource leaks on the server. For example:</p>
+
+<pre><code class="language-pony">with obj = SomeObjectThatNeedsDisposing() do
+  // use obj
+end
+</code></pre>
+
+<p><code>obj.dispose()</code> will be called whether the code inside the <code>with</code> block completes successfully or raises an error. To take part in a <code>with</code> expression, the object that needs resource clean-up must, therefore, provide a <code>dispose()</code> method:</p>
+
+<pre><code class="language-pony">class SomeObjectThatNeedsDisposing
+  // constructor, other functions
+
+  fun dispose() =&gt;
+    // release resources
+</code></pre>
+
+<p>It is possible to provide an <code>else</code> clause, which is called only in error cases:</p>
+
+<pre><code class="language-pony">with obj = SomeObjectThatNeedsDisposing() do
+  // use obj
+else
+  // only run if an error has occurred
+end
+</code></pre>
+
+<p>Multiple objects can be set up for disposal:</p>
+
+<pre><code class="language-pony">with obj = SomeObjectThatNeedsDisposing(), other = SomeOtherDisposableObject() do
+  // use obj
+end
+</code></pre>
+
+<p>The value of a <code>with</code> expression is the value of the last expression in the block, or of the last expression in the <code>else</code> block if there is one and an error occurred.</p>
+
+<h2 id="language-constructs-that-can-raise-errors">Language constructs that can raise errors</h2>
+
+<p>The only language construct that can raise an error, other than the <code>error</code> command or calling a partial method, is the <code>as</code> command. This converts the given value to the specified type if it can be. If it can&rsquo;t then an error is raised. This means that the <code>as</code> command can only be used inside a try block or a partial method.</p>
+
+<h2 id="comparison-to-exceptions-in-other-languages">Comparison to exceptions in other languages</h2>
+
+<p>Pony errors behave very much the same as those in C++, Java, C#, Python, and Ruby. The key difference is that Pony errors do not have a type or instance associated with them. This makes them the same as C++ exceptions would be if a fixed literal was always thrown, e.g. <code>throw 3;</code>. This difference simplifies error handling for the programmer and allows for much better runtime error handling performance.</p>
+
+<p>The <code>else</code> handler in a <code>try</code> expression is just like a <code>catch(...)</code> in C++, <code>catch(Exception e)</code> in Java or C#, <code>except:</code> in Python, or <code>rescue</code> in Ruby. Since exceptions do not have types there is no need for handlers to specify types or to have multiple handlers in a single try block.</p>
+
+<p>The <code>then</code> block in a <code>try</code> expression is just like a <code>finally</code> in Java, C#, or Python and <code>ensure</code> in Ruby.</p>
+
+<p>If required, error handlers can &ldquo;reraise&rdquo; by using the <code>error</code> command within the handler.</p>
+
+
+
+
+
+          </main>
+        </div>
+      </div>
+      <div class="order-0 w-20 dn db-l doc-menu">
+        
+<nav role="navigation">
+  <ul class="list pa0 nl2">
+    
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".getting-started">Getting Started</a>
+        <ul class="getting-started desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/getting-started.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Getting Started with Pony
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/getting-started/what-you-need.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              What You Need
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/getting-started/hello-world.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Hello World: Your First Pony Program
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/getting-started/how-it-works.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Hello World: How It Works
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".types">Types</a>
+        <ul class="types desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Types
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/at-a-glance.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              The Pony Type System at a Glance
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/classes.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Classes
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/primitives.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Primitives
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/actors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Actors
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/traits-and-interfaces.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Traits and Interfaces
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/type-aliases.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Type Aliases
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/type-expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Type Expressions
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2  primary-color" data-target=".expressions">Expressions</a>
+        <ul class="expressions desktopmenu animated fadeIn list pl0 bg-light-gray db">
+          <li class="f6 fw4">
+            <a href="/expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Expressions
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Literals
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/variables.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Variables
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/infix-ops.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Infix Operators
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/arithmetic.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Arithmetic
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/control-structures.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Control Structures
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/methods.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Methods
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/errors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 primary-color ">
+              Errors
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/equality.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Equality in Pony
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/sugar.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Sugar
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/object-literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Object Literals
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/partial-application.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Partial Application
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".capabilities">Capabilities</a>
+        <ul class="capabilities desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Capabilities
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/object-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Object Capabilities
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Reference Capabilities
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/guarantees.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Reference Capability Guarantees
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Consume and Destructive Read
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/recovering-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Recovering Capabilities
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/aliasing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Aliasing
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/combining-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Combining Capabilities
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/passing-and-sharing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Passing and Sharing References
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/capability-subtyping.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Capability Subtyping
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Arrow Types aka Viewpoints
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Trust Boundary
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".generics">Generics</a>
+        <ul class="generics desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/generics.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Generics
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/generics/generics-and-reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Generics and Reference Capabilities
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/generics/generic-constraints.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Constraints
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".pattern-matching">Pattern Matching</a>
+        <ul class="pattern-matching desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/pattern-matching.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Pattern Matching
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/pattern-matching/match.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Match Expressions
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/pattern-matching/as.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              As Operator
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".packages">Packages</a>
+        <ul class="packages desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/packages.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Packages
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/packages/package-system.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Package System
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/packages/use-statement.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Use Statement
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/packages/standard-library.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Standard Library
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".testing">Testing</a>
+        <ul class="testing desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/testing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Testing
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/testing/ponytest.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Testing with Ponytest
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".c-ffi">C FFI</a>
+        <ul class="c-ffi desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/c-ffi.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              C FFI
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/c-ffi/calling-c.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Calling C from Pony
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/c-ffi/linking-c.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Linking to C Libraries
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/c-ffi/c-abi.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              C ABI
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/c-ffi/callbacks.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Callbacks
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".gotchas">Gotchas</a>
+        <ul class="gotchas desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/gotchas.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Gotchas
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/gotchas/divide-by-zero.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Divide by Zero
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/gotchas/garbage-collection.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Garbage Collection
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/gotchas/scheduling.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Scheduling
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/gotchas/side-effect-ordering-in-function-call-expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Function call side effects
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/gotchas/recursion.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Recursion
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".where-next">Where Next?</a>
+        <ul class="where-next desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/where-next.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Where Next?
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".appendices">Appendices</a>
+        <ul class="appendices desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/appendices.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Appendix
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/lexicon.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Lexicon
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/symbol-lookup-cheatsheet.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Symbol Lookup Cheatsheet
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/keywords.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Keywords
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/whitespace.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Whitespace
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/compiler-args.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Compiler Arguments
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/memory-allocation.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Memory Allocation at Runtime
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/garbage-collection.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Garbage Collection with Pony-ORCA
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/platform-dependent-code.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Platform-dependent code
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/error-messages.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              A short guide to Pony error messages
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/annotations.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Program Annotations
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/serialisation.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Serialisation
+            </a>
+          </li>
+        </ul>
+      </li>
+  </ul>
+</nav>
+
+      </div>
+    </div>
+  </article>
+
+    </main>
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/languages/pony.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<script>
+  var toggleBtns = document.getElementsByClassName('js-toggle')
+  for (var i = 0; i < toggleBtns.length; i++) {
+    toggleBtns[i].addEventListener('click', toggleClass, false)
+  }
+
+function toggleClass() {
+  
+  var content = this.dataset.target.split(' ')
+  
+  var mobileCurrentlyOpen = document.querySelector('.mobilemenu:not(.dn)')
+  var desktopCurrentlyOpen = document.querySelector('.desktopmenu:not(.dn)')
+  var desktopActive = document.querySelector('.desktopmenu:not(.dn)')
+
+  
+  for (var i = 0; i < content.length; i++) {
+    var matches = document.querySelectorAll(content[i]);
+    
+    [].forEach.call(matches, function(dom) {
+        dom.classList.contains('dn') ?
+        dom.classList.remove('dn') :
+        dom.classList.add('dn');
+         return false;
+       });
+        
+      if (mobileCurrentlyOpen) mobileCurrentlyOpen.classList.add('dn')
+      if (desktopCurrentlyOpen) desktopCurrentlyOpen.classList.add('dn')
+      if (desktopActive) desktopActive.classList.remove('db')
+
+    }
+  }
+</script>
+
+  </body>
+</html>
