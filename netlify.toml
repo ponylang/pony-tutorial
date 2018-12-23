@@ -2,11 +2,11 @@
 # Added automatically by the Netlify CLI. It has no effect during normal
 # Git-backed deploys.
 ID = "Your_Site_ID"
-HUGO_VERSION = "0.52"
 
 # Settings in the [build] context are global and are applied to all contexts
 # unless otherwise overridden by more specific contexts.
 [build]
+HUGO_VERSION = "0.52"
 
   # Directory to change to before starting a build.
   # This is where we will look for package.json/.nvmrc/etc.
