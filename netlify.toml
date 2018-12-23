@@ -19,3 +19,12 @@ ID = "Your_Site_ID"
 
   # Default build command.
   command = "pwd && ls -al && hugo version && bash build.bash"
+
+[context.production.environment]
+HUGO_VERSION = "0.52"
+
+[context.deploy-preview.environment]
+HUGO_VERSION = "0.52"
+
+[context.branch-deploy.environment]
+HUGO_VERSION = "0.52"
