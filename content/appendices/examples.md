@@ -116,11 +116,11 @@ use "cli"
 
 actor Main
   new create(env: Env) =>
-    let command_spec = 
+    let command_spec =
       try
         CommandSpec.leaf(
           "pony-embed",
-          "sample program", 
+          "sample program",
           [ OptionSpec.string("output", "output filename", 'o') ],
           [ ArgSpec.string("input", "source of input" where default' = "-") ]
         )? .> add_help()?
@@ -128,8 +128,8 @@ actor Main
         env.exitcode(1)
         return
       end
-    let command = 
-      match CommandParser(command_spec).parse(env.args, env.vars())
+    let command =
+      match CommandParser(command_spec).parse(env.args, env.vars)
       | let c: Command => c
       | let ch: CommandHelp =>
         ch.print_help(env.out)
@@ -144,7 +144,6 @@ actor Main
     let output_filename = command.option("output").string()
     env.out.print("Loading data from " + input_source + ". Writing output to " + output_filename)
     // ...
-
 ```
 
 ## How to write tests
