@@ -17,6 +17,23 @@
       <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     {{ end }}
 
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('{{ "fonts/icon.eot?52m981" | relURL }}');
+        src: url('{{ "fonts/icon.eot?#iefix52m981" | relURL }}')
+               format('embedded-opentype'),
+             url('{{ "fonts/icon.woff?52m981" | relURL }}')
+               format('woff'),
+             url('{{ "fonts/icon.ttf?52m981" | relURL }}')
+               format('truetype'),
+             url('{{ "fonts/icon.svg?52m981#icon" | relURL }}')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
     {{ $stylesheet := .Site.Data.webpack_assets.app }}
     {{ with $stylesheet.css }}
       <link href="{{ relURL (printf "%s%s" "dist/" .) }}" rel="stylesheet">

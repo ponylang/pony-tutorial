@@ -17,6 +17,9 @@
             </h1>
           </header>
 
+          <a href="javascript:void(0)" onClick="hideShowDM()">LEFT TOGGLE</a>
+          <br>
+          <a href="javascript:void(0)" onClick="hideShowCM()">RIGHT TOGGLE</a>
           <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l">
             {{- .Content -}}
             {{ partial "related.html" . }}
@@ -31,7 +34,7 @@
     </section>
         </div>
       </div>
-      <div class="order-0 w-20 dn db-l doc-menu">
+      <div class="order-0 w-20 dn db-l doc-menu" id="doc-menu">
         {{ partial "toc.html" . }}
       </div>
     </div>

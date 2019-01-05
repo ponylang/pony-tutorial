@@ -8,7 +8,7 @@ enableGitInfo = true
 uglyURLs = true
 
 [params]
-  custom_css = ["css/highlight.css", "css/my.css"]
+  custom_css = ["css/highlight.css", "css/my.css", "css/icon.css"]
   background_color_class = "bg-pony-brown"
   github = "https://www.github.com/ponylang/ponyc"
   twitter = "https://www.twitter.com/ponylang"
