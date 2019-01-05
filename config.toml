@@ -1,0 +1,84 @@
+baseURL = "https://tutorial.ponylang.io/"
+languageCode = "en-us"
+title = "Pony Tutorial"
+theme = "ananke"
+canonifyurls = false
+preserveTaxonomyNames = true
+enableGitInfo = true
+uglyURLs = true
+
+[params]
+  custom_css = ["css/highlight.css", "css/my.css", "css/icon.css"]
+  background_color_class = "bg-pony-brown"
+  github = "https://www.github.com/ponylang/ponyc"
+  twitter = "https://www.twitter.com/ponylang"
+
+[related]
+  threshold = 80
+  includeNewer = true
+  toLower = false
+
+[[related.indices]]
+  name = "tags"
+  weight = 100
+
+[[menu.toc]]
+  name = "Getting Started"
+  weight = 10
+  identifier = "getting-started"
+
+[[menu.toc]]
+  name = "Types"
+  weight = 20
+  identifier = "types"
+
+[[menu.toc]]
+  name = "Expressions"
+  weight = 30
+  identifier = "expressions"
+
+[[menu.toc]]
+  name = "Capabilities"
+  weight = 40
+  identifier = "capabilities"
+
+[[menu.toc]]
+  name = "Generics"
+  weight = 50
+  identifier = "generics"
+
+[[menu.toc]]
+  name = "Pattern Matching"
+  weight = 50
+  identifier = "pattern-matching"
+
+[[menu.toc]]
+  name = "Packages"
+  weight = 60
+  identifier = "packages"
+
+[[menu.toc]]
+  name = "Testing"
+  weight = 70
+  identifier = "testing"
+
+[[menu.toc]]
+  name = "C FFI"
+  weight = 80
+  identifier = "c-ffi"
+
+[[menu.toc]]
+  name = "Gotchas"
+  weight = 90
+  identifier = "gotchas"
+
+[[menu.toc]]
+  name = "Where Next?"
+  weight = 100
+  identifier = "where-next"
+
+[[menu.toc]]
+  name = "Appendices"
+  weight = 110
+  identifier = "appendices"
+

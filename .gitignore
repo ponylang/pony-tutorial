@@ -1,6 +1,4 @@
-site/
 .DS_Store
 *.sublime-project
 *.sublime-workspace
-_book/
-node_modules/
+public
