@@ -22,7 +22,6 @@
 @media screen and (max-width: 59em) {
   #doc-menu {
     display: none;
-    width: 0px;
   }
 
   #the-body {
