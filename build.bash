@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # setup theme submodule
-pushd themes/ananke
+pushd themes/pony-doc-site
 git submodule init
 git submodule update
 popd
