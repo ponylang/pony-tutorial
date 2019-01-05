@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "c-ffi"
     weight: 30
+toc: true
 ---
 
 The FFI support in pony uses the C application binary interface (ABI) to interface with native code. The C ABI is a calling convention, one of many, that allow objects from different programming languages to be used together.

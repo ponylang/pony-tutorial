@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "gotchas"
     weight: 40
+toc: true
 ---
 
 Consider the following code:

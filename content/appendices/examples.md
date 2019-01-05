@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "appendices"
     weight: 40
+toc: true
 ---
 
 Small _how do I_ examples for Pony. These will eventually find another home. Until then, they live here.

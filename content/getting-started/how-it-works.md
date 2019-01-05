@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "getting-started"
     weight: 15
+toc: true
 ---
 Let's look at our `helloworld` code again:
 

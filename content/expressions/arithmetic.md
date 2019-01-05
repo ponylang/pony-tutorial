@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "expressions"
     weight: 40
+toc: true
 ---
 
 Arithmetic is about the stuff you learn to do with numbers in primary school: Addition, Subtraction, Multiplication, Division and so on. Piece of cake. We all know that stuff. We nonetheless want to spend a whole section on this topic, because when it comes to computers the devil is in the details.

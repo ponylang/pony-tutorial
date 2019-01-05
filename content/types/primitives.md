@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "types"
     weight: 30
+toc: true
 ---
 
 A __primitive__ is similar to a __class__, but there are two critical differences:

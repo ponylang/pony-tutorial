@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "appendices"
     weight: 20
+toc: true
 ---
 
 Pony, like just about any other programming language, has plenty of odd symbols that make up its syntax. If you don't remember what one means, it can be hard to search for them. Below you'll find a table with various Pony symbols and what you should search the tutorial for in order to learn more about the symbol.

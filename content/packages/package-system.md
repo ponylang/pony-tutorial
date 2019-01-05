@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "packages"
     weight: 10
+toc: true
 ---
 
 Pony code is organised into __packages__. Each program and library is a single package, possibly using other packages.

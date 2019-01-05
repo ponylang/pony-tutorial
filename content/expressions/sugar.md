@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "expressions"
     weight: 90
+toc: true
 ---
 
 Pony allows you to omit certain small details from your code and will put them back in for you. This is done to help make your code less cluttered and more readable. Using sugar is entirely optional, you can always write out the full version if you prefer.

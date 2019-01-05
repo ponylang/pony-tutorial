@@ -1,3 +1,36 @@
 .bg-pony-brown {
   background: rgb(121, 85, 72);
 }
+
+#doc-menu {
+  position: absolute;
+  top: 100px;
+  width: 250px;
+  box-sizing: border-box;
+  z-index: 1;
+  clear: both;
+}
+
+#the-body {
+  left: 300px;
+  position: absolute;
+  top: 100px;
+  right: 0;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 59em) {
+  #doc-menu {
+    display: none;
+    width: 0px;
+  }
+
+  #the-body {
+    left: 0px;
+  }
+}
+
+/* Don't show ### level items in Table of Contents */
+#TableOfContents > ul > li > ul > li > ul > li {
+  display: none;
+}

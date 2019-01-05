@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "expressions"
     weight: 80
+toc: true
 ---
 
 Pony features two forms of equality: by structure and by identity.  

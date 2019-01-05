@@ -1,6 +1,7 @@
 ---
 title: "Pony Tutorial"
 layout: _default/single
+toc: true
 ---
 
 Welcome to the Pony tutorial! If you're reading this, chances are you want to learn Pony. That's great, we're going to make that happen.

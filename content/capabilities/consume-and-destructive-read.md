@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "capabilities"
     weight: 40
+toc: true
 ---
 
 An important part of Pony's capabilities is being able to say "I'm done with this thing." We'll cover two means of handling this situation: consuming a variable and destructive reads.

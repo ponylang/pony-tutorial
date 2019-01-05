@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "capabilities"
     weight: 20
+toc: true
 ---
 
 So if the object _is_ the capability, what controls what we can do with the object? How do we express our _access rights_ on that object?

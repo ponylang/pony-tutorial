@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "types"
     weight: 40
+toc: true
 ---
 
 An __actor__ is similar to a __class__, but with one critical difference: an actor can have __behaviours__.

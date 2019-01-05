@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "capabilities"
     weight: 80
+toc: true
 ---
 
 Reference capabilities make it safe to both __pass__ mutable data between actors and to __share__ immutable data amongst actors. Not only that, they make it safe to do it with no copying, no locks, in fact, no runtime overhead at all.

@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "capabilities"
     weight: 70
+toc: true
 ---
 
 When a field of an object is read, its reference capability depends both on the reference capability of the field and the reference capability of the __origin__, that is, the object the field is being read from.

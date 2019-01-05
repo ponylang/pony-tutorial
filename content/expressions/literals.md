@@ -1,10 +1,12 @@
 ---
 title: "Literals"
 section: "Expressions"
+toc: true
 menu:
   toc:
     parent: "expressions"
     weight: 10
+toc: true
 ---
 
 ***What do we want?***

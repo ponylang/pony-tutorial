@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "capabilities"
     weight: 30
+toc: true
 ---
 
 Since types are guarantees, it's useful to talk about what guarantees a reference capability makes.

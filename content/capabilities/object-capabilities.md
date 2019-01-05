@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "capabilities"
     weight: 10
+toc: true
 ---
 
 Pony's capabilities-secure type system is based on the object-capability model. That sounds complicated, but really it's elegant and simple. The core idea is this:

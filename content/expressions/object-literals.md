@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "expressions"
     weight: 100
+toc: true
 ---
 
 Sometimes it's really convenient to be able to write a whole object inline. In Pony, this is called an object literal, and it does pretty much exactly what an object literal in JavaScript does: it creates an object that you can use immediately.

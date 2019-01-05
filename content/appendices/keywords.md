@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "appendices"
     weight: 30
+toc: true
 ---
 
 This listing explains the usage of every Pony keyword.

@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "expressions"
     weight: 30
+toc: true
 ---
 
 Infix operators take two operands and are written between those operands. Arithmetic and comparison operators are the most common:

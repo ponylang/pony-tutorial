@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "capabilities"
     weight: 90
+toc: true
 ---
 
 Subtyping is about _substitutability_. That is, if we need to supply a certain type, what other types can we substitute instead? Reference capabilities factor into this.

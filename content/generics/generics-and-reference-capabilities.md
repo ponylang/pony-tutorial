@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "generics"
     weight: 10
+toc: true
 ---
 
 In the examples presented previously we've explicitly set the reference capability to `val`:

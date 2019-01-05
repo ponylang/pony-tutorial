@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "expressions"
     weight: 50
+toc: true
 ---
 
 To do real work in a program you have to be able to make decisions, iterate through collections of items and perform actions repeatedly. For this, you need control structures. Pony has control structures that will be familiar to programmers who have used most languages, such as `if`, `while` and `for`, but in Pony, they work slightly differently.

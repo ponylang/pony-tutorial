@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "appendices"
     weight: 100
+toc: true
 ---
 
 In Pony, we provide a special syntax for implementation-specific annotations to various elements of a program. The basic syntax is a comma-separated list of identifiers surrounded by backslashes:

@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "types"
     weight: 60
+toc: true
 ---
 
 A __type alias__ is just a way to give a different name to a type. This may sound a bit silly: after all, types already have names! However, Pony can express some complicated types, and it can be convenient to have a short way to talk about them.

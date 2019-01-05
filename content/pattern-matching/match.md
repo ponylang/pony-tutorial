@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "pattern-matching"
     weight: 10
+toc: true
 ---
 
 If we want to compare an expression to a value then we use an `if`. But if we want to compare an expression to a lot of values this gets very tedious. Pony provides a powerful pattern matching facility, combining matching on values and types, without any special code required.

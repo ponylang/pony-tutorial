@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "expressions"
     weight: 110
+toc: true
 ---
 
 Partial application lets us supply _some_ of the arguments to a constructor, function, or behaviour, and get back something that lets us supply the rest of the arguments later.

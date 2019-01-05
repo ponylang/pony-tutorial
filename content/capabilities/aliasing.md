@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "capabilities"
     weight: 60
+toc: true
 ---
 
 __Aliasing__ means having more than one variable that points to the same object.

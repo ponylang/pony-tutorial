@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "getting-started"
     weight: 10
+toc: true
 ---
 Now that you've successfully installed the Pony compiler, let's start programming! Our first program will be a very traditional one. We're going to print "Hello, world!". First, create a directory called `helloworld`:
 

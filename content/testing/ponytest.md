@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "testing"
     weight: 10
+toc: true
 ---
 
 PonyTest is Pony's unit testing framework. It is designed to be as simple as possible to use, both for the unit test writer and the user running the tests.

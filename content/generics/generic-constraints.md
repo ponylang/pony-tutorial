@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "generics"
     weight: 20
+toc: true
 ---
 
 ## Capability Constraints

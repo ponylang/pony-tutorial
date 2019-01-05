@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "types"
     weight: 70
+toc: true
 ---
 
 The types we've talked about so far can also be combined in __type expressions__. If you're used to object-oriented programming, you may not have seen these before, but they are common in functional programming. A __type expression__ is also called an __algebraic data type__.

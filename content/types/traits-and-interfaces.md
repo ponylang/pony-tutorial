@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "types"
     weight: 50
+toc: true
 ---
 
 Like other object-oriented languages, Pony has __subtyping__. That is, some types serve as _categories_ that other types can be members of.

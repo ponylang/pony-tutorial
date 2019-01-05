@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "expressions"
     weight: 20
+toc: true
 ---
 
 Like most other programming languages Pony allows you to store data in variables. There are a few different kinds of variables which have different lifetimes and are used for slightly different purposes.

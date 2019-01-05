@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "capabilities"
     weight: 110
+toc: true
 ---
 
 We mentioned previously that the C FFI can be used to break pretty much every guarantee that Pony makes. This is because, once you've called into C, you are executing arbitrary machine code that can stomp memory addresses, write to anything, and generally be pretty badly behaved.

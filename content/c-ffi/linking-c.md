@@ -5,6 +5,7 @@ menu:
   toc:
     parent: "c-ffi"
     weight: 20
+toc: true
 ---
 
 If Pony code calls FFI functions, then those functions, or rather the libraries containing them, must be linked into the Pony program.
