@@ -46,6 +46,12 @@ We have an active mailing list where you can ask questions and get help. We're a
 
 If IRC is your thing, we maintain a channel on Freenode at #ponylang.
 
+## Ponylang Slack
+
+If Slack is your thing, we have a group for that as well.
+
+[Pony Slack](https://www.ponylang.io/get-slack-invite)
+
 ## Pony Virtual Users' Group
 
 The Pony Virtual Users' Group has fairly regularly monthly presentations that you can attend "in person" or catch later via the recorded video. Sign up to the [Pony VUG mailing list](https://pony.groups.io/g/vug) to be kept informed about upcoming meetings. All the previous videos are available via [Sean T Allen's Vimeo account](https://vimeo.com/user6269014).
