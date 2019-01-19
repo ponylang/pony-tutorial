@@ -239,7 +239,7 @@ actor Main
     end
 ```
 
-They are presented more in-depth in the [Object Literals section](../expressions/object-literals.md).
+They are presented more in-depth in the [Object Literals section](../expressions/object-literals.html).
 
 ## Privacy
 
