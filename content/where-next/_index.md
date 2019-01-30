@@ -10,7 +10,7 @@ menu:
 toc: true
 ---
 
-Hey, congratulations! You've made it to the end of the Pony tutorial. So, what do you do next? Well, there's actually a bit more here. Check out the [appendices](http://tutorial.ponylang.org/appendices/) as they have some useful information that doesn't fit else. After that, here are a few resources that you can look into.
+Hey, congratulations! You've made it to the end of the Pony tutorial. So, what do you do next? Well, there's actually a bit more here. Check out the [appendices](https://tutorial.ponylang.io/appendices/) as they have some useful information that doesn't fit else. After that, here are a few resources that you can look into.
 
 ## "Learn" section of Ponylang.io
 
@@ -26,7 +26,7 @@ We don't have an automatic blog aggregator but wish we did. In the meantime, we 
 
 ## Pony Patterns
 
-One of the hardest parts of learning a new language is figuring out how to do various different "everyday" tasks. We have a cookbook style book called "Pony Patterns" that enumerates a variety of problems you might encounter and idiomatic ways to solve those problems. The amount of content is still somewhat small but growing all the time. 
+One of the hardest parts of learning a new language is figuring out how to do various different "everyday" tasks. We have a cookbook style book called "Pony Patterns" that enumerates a variety of problems you might encounter and idiomatic ways to solve those problems. The amount of content is still somewhat small but growing all the time.
 
 [Pony Patterns](http://patterns.ponylang.io)
 
@@ -56,7 +56,7 @@ If Slack is your thing, we have a group for that as well.
 
 The Pony Virtual Users' Group has fairly regularly monthly presentations that you can attend "in person" or catch later via the recorded video. Sign up to the [Pony VUG mailing list](https://pony.groups.io/g/vug) to be kept informed about upcoming meetings. All the previous videos are available via [Sean T Allen's Vimeo account](https://vimeo.com/user6269014).
 
-## A final word 
+## A final word
 
 We're immensely happy that you have taken the time to start learning Pony. It's still a new and immature language with plenty of sharp pointy edges. You are going to get frustrated at times. Don't worry, it has happened to all of us. Drop by one of our support channels and someone will try to lend a hand. We want you to succeed. The more people who succeed with Pony, the more the community grows and the better it is for all of us.
 

@@ -8,7 +8,7 @@ menu:
 toc: true
 ---
 
-Pony features two forms of equality: by structure and by identity.  
+Pony features two forms of equality: by structure and by identity.
 
 ## Identity equality
 
@@ -81,7 +81,7 @@ interface Equatable[A: Equatable[A] #read]
 
 ## Primitives and equality
 
-As you might remember from [Chapter 2](http://tutorial.ponylang.org/types/primitives.html), primitives are the same as classes except for two important differences:
+As you might remember from [Chapter 2](https://tutorial.ponylang.io/types/primitives.html), primitives are the same as classes except for two important differences:
 
 * A primitive has no fields.
 * There is only one instance of a user-defined primitive.
