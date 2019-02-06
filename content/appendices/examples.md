@@ -194,6 +194,7 @@ fun sub(other: A): A
 fun mul(other: A): A
 fun div(other: A): A
 fun rem(other: A): A
+fun mod(other: A): A
 fun eq(other: A): Bool
 fun ne(other: A): Bool
 fun lt(other: A): Bool
