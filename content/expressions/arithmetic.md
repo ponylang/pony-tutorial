@@ -43,6 +43,7 @@ Operator | Method | Description
 `*`      | mul()  | wrap around on over-/underflow
 `/`      | div()  | `x / 0 = 0`
 `%`      | rem()  | `x % 0 = 0`
+`%%`     | mod()  | `x %% 0 = 0`
 `-`      | neg()  | wrap around on over-/underflow
 `>>`     | shr()  | filled with zeros, so `x >> 1 == x/2` is true
 `<<`     | shl()  | filled with zeros, so `x << 1 == x*2` is true
@@ -62,8 +63,9 @@ Operator | Method        | Undefined in case of
 `+~`     | add_unsafe()  | Overflow  E.g. `I32.max_value() +~ I32(1)`
 `-~`     | sub_unsafe()  | Overflow
 `*~`     | mul_unsafe()  | Overflow.
-`/~`     | div_unsafe()  | Division by zero and Overflow. E.g. I32.min_value() / I32(-1)
-`%~`     | rem_unsafe()  | Division by zero and OverFlow.
+`/~`     | div_unsafe()  | Division by zero and overflow. E.g. I32.min_value() / I32(-1)
+`%~`     | rem_unsafe()  | Division by zero and overflow.
+`%%~`    | mod_unsafe()  | Division by zero and overflow.
 `-~`     | neg_unsafe()  | Overflow. E.g. `-~I32.max_value()`
 `>>~`    | shr_unsafe()  | If non-zero bits are shifted out. E.g. `I32(1) >>~ U32(2)`
 `<<~`    | shl_unsafe()  | If bits differing from the final sign bit are shifted out.
@@ -150,6 +152,7 @@ Partial Operator | Method        | Description
 `*?`             | mul_partial() | errors on overflow/underflow
 `/?`             | div_partial() | errors on overflow/underflow and division by zero
 `%?`             | rem_partial() | errors on overflow/underflow and division by zero
+`%%?`            | mod_partial() | errors on overflow/underflow and division by zero
 
 ---
 
@@ -162,6 +165,8 @@ subc()         | Checked subtraction, second tuple element is `true` on overflow
 mulc()         | Checked multiplication, second tuple element is `true` on overflow.
 divc()         | Checked division, second tuple element is `true` on overflow or division by zero.
 remc()         | Checked remainder, second tuple element is `true` on overflow or division by zero.
+modc()         | Checked modulo, second tuple element is `true` on overflow or division by zero.
+fldc()         | Checked floored division, second typle element is `true` on overflow or division by zero.
 
 ---
 
@@ -187,6 +192,7 @@ Operator | Method
 `*~`     | mul_unsafe()
 `/~`     | div_unsafe()
 `%~`     | rem_unsafe()
+`%%~`    | mod_unsafe()
 `-~`     | neg_unsafe()
 `<~`     | lt_unsafe()
 `>~`     | gt_unsafe()
