@@ -95,7 +95,7 @@ Operator   | Method         | Description                     | Note
 `*`        | mul()          | Multiplication                  |
 `/`        | div()          | Division                        |
 `%`        | rem()          | Remainder                       |
-`%%`       | mod()          | Modulo                          | Since version `0.27.0`
+`%%`       | mod()          | Modulo                          | Starting with version `0.26.1`
 `<<`       | shl()          | Left bit shift                  |
 `>>`       | shr()          | Right bit shift                 |
 `and`      | op_and()       | And, both bitwise and logical   |
@@ -113,7 +113,7 @@ Operator   | Method         | Description                     | Note
 `*~`       | mul_unsafe()   | Unsafe Multiplication           |
 `/~`       | div_unsafe()   | Unsafe Division                 |
 `%~`       | rem_unsafe()   | Unsafe Remainder                |
-`%%~`      | mod_unsafe()   | Unsafe Modulo                   | Since version `0.27.0`
+`%%~`      | mod_unsafe()   | Unsafe Modulo                   | Starting with version `0.26.1`
 `<<~`      | shl_unsafe()   | Unsafe left bit shift           |
 `>>~`      | shr_unsafe()   | Unsafe right bit shift          |
 `==~`      | eq_unsafe()    | Unsafe equality                 |
@@ -126,7 +126,7 @@ Operator   | Method         | Description                     | Note
 `*?`       | mul_partial()? | Partial Multiplication          |
 `/?`       | div_partial()? | Partial Division                |
 `%?`       | rem_partial()? | Partial Remainder               |
-`%%?`      | mod_partial()? | Partial Modulo                  | Since version `0.27.0`
+`%%?`      | mod_partial()? | Partial Modulo                  | Starting with version `0.26.1`
 
 
 ---
