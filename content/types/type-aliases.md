@@ -49,7 +49,7 @@ primitive Colours
 You might also want to iterate over the enum like this to print its name for debugging purposes
 ```pony
 primitive ColourList
-  fun tag apply(): Array[Colour] =>
+  fun apply(): Array[Colour] =>
     [Red; Green; Blue]
 
 for colour in ColourList().values() do
