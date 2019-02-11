@@ -46,6 +46,20 @@ Actors themselves, however, are sequential. That is, each actor will only execut
 
 When you're writing Pony code, it's nice to think of actors not as a unit of parallelism, but as a unit of sequentiality. That is, an actor should do only what _has_ to be done sequentially. Anything else can be broken out into another actor, making it automatically parallel.
 
+In the example below, the `Main` actor calls a behaviour `this.call_this_later` which, as we know, is _asynchronous_, so we won't wait for it to run before continuing. Then, we run the method `env.out.print`, which is _synchronous_, and will print text immediately. Now that we've finished executing code inside the actor, the behaviour we've called earlier will eventually run, and it will print the last text.
+
+```pony
+actor Main
+  new create(env: Env) =>
+    this.call_this_later(env)
+    env.out.print("This is printed first")
+
+  be call_this_later(env: Env) =>
+    env.out.print("This is printed last")
+```
+
+Since all this code runs inside the same actor, we are guaranteed that `"This is printed first"` is always printed __before__ `"This is printed last"`.
+
 ## Why is this safe?
 
 Because of Pony's __capabilities secure type system__. We've mentioned reference capabilities briefly before when talking about function receiver reference capabilities. The short version is that they are annotations on a type that make all this parallelism safe without any runtime overhead.
