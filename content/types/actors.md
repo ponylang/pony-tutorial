@@ -36,6 +36,12 @@ actor Aardvark
 
 Here we have an `Aardvark` that can eat asynchronously. Clever Aardvark.
 
+## Message Passing
+
+If you are familiar with actor-based languages like Erlang, you are familiar with the concept of "message passing". It's how actors communicate with one another. Behaviours are the Pony equivalent. When you call a behavior on an actor, you are sending it a message. 
+
+If you aren't familiar with message passing, don't worry about it. We've got you covered. Keep reading and all will be explained.
+
 ## Concurrent
 
 Since behaviours are asynchronous, it's ok to run the body of a bunch of behaviours at the same time. This is exactly what Pony does. The Pony runtime has its own cooperative scheduler, which by default has a number of threads equal to the number of CPU cores on your machine. Each scheduler thread can be executing an actor behaviour at any given time, so Pony programs are naturally concurrent.
