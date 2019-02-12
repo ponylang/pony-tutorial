@@ -46,15 +46,15 @@ Actors themselves, however, are sequential. That is, each actor will only execut
 
 When you're writing Pony code, it's nice to think of actors not as a unit of parallelism, but as a unit of sequentiality. That is, an actor should do only what _has_ to be done sequentially. Anything else can be broken out into another actor, making it automatically parallel.
 
-In the example below, the `Main` actor calls a behaviour `this.call_this_later` which, as we know, is _asynchronous_, so we won't wait for it to run before continuing. Then, we run the method `env.out.print`, which is _also asynchronous_, and will print the provided text to the terminal. Now that we've finished executing code inside the `Main` actor, the behaviour we've called earlier will eventually run, and it will print the last text.
+In the example below, the `Main` actor calls a behaviour `call_me_later` which, as we know, is _asynchronous_, so we won't wait for it to run before continuing. Then, we run the method `env.out.print`, which is _also asynchronous_, and will print the provided text to the terminal. Now that we've finished executing code inside the `Main` actor, the behaviour we've called earlier will eventually run, and it will print the last text.
 
 ```pony
 actor Main
   new create(env: Env) =>
-    this.call_this_later(env)
+    call_me_later(env)
     env.out.print("This is printed first")
 
-  be call_this_later(env: Env) =>
+  be call_me_later(env: Env) =>
     env.out.print("This is printed last")
 ```
 
