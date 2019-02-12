@@ -96,12 +96,40 @@ String box // A string box
 String tag // A string tag
 ```
 
-__What does it mean when a type doesn't specify a reference capability?__ It means you are using the _default_ reference capability for that type, which is defined along with the type. Here's an example from the standard library:
+__What does it mean when a type doesn't specify a reference capability?__ It means you are using the _default_ reference capability for that type, which is defined along with the type. Here’s an example from the standard library:
 
 ```pony
 class val String
 ```
 
-When we use a `String` we usually mean a string value, so we make `val` the default reference capability for `String`.
+When we use a String we usually mean a string value, so we make val the default reference capability for String (but not necessarily for String constructors, see below).
 
 __So do I have to specify a reference capability when I define a type?__ Only if you want to. There are sensible defaults that most types will use. These are `ref` for classes, `val` for primitives (i.e. immutable references) and `tag` for actors.
+
+## How to create objects with different capabilities
+
+When you write a constructor, by default, that constructor will either create a new object with `ref` or `tag` as the capability. In the case of actors, the constructor will always create a `tag`. For classes, if defaults to `ref` but you can create with other capabilities. Let's take a look at an example:
+
+```pony
+class Foo
+  let x: U32
+
+  new val create(x': U32) =>
+    x = x'
+```
+
+Now when you call `Foo.create(1)`, you'll get a `Foo val` instead of `Foo ref`.
+But what if you want to create both `val` and `ref` `Foo`s? You could do something like this:
+
+```pony
+class Foo
+  let x: U32
+
+  new val create_val(x': U32) =>
+    x = x'
+
+  new ref create_ref(x': U32) =>
+    x = x'
+```
+
+But, that's probably not what you'd really want to do. Better to use the capabilities recovery facilities of Pony that we'll cover that later in the [Recovering Capabilities](recovering-capabilities.html) section.
