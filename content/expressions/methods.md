@@ -12,7 +12,7 @@ All Pony code that actually does something, rather than defining types etc, appe
 
 Behaviours are used for handling asynchronous messages sent to actors. We'll look at those later.
 
-__Can I have some code outside of any methods like I do in Python?__ No. All Pony code must be within a method.
+**Can I have some code outside of any methods like I do in Python?** No. All Pony code must be within a method.
 
 ## Functions
 
@@ -37,7 +37,7 @@ After the return value, there's a `=>` and then finally the function body. The v
 
 If you want to exit a function early then use the `return` command. If the function has a return type then you need to provide a value to return. If the function does not have a return type then `return` should appear on its own, without a value.
 
-__Can I overload functions by argument type?__ No, you cannot have multiple methods with the same name in the same type.
+**Can I overload functions by argument type?** No, you cannot have multiple methods with the same name in the same type.
 
 ## Constructors
 
@@ -56,7 +56,7 @@ class Foo
 
 The purpose of a constructor is to set up the internal state of the object being created. To ensure this is done constructors must initialise all the fields in the object being constructed.
 
-__Can I exit a constructor early?__ Yes. Just then use the `return` command without a value. The object must already be in a legal state to do this.
+**Can I exit a constructor early?** Yes. Just then use the `return` command without a value. The object must already be in a legal state to do this.
 
 ## Calling
 
@@ -153,11 +153,11 @@ class Bar
     var b: Coord = Coord.create(3, 4) // Contains (3, 4)
 ```
 
-__Do I have to provide default values for all of my arguments?__ No, you can provide defaults for as many, or as few, as you like.
+**Do I have to provide default values for all of my arguments?** No, you can provide defaults for as many, or as few, as you like.
 
 ## Named arguments
 
-So far, when calling methods we have always given all the arguments in order. This is known as using __positional__ arguments. However, you can also specify the arguments in any order you like by specifying their names. This is known as using __named__ arguments.
+So far, when calling methods we have always given all the arguments in order. This is known as using **positional** arguments. However, you can also specify the arguments in any order you like by specifying their names. This is known as using **named** arguments.
 
 To call a method using named arguments use the `where` keyword, followed by the named arguments and their values.
 
@@ -175,7 +175,7 @@ class Bar
     var a: Coord = Coord.create(where y = 4, x = 3)
 ```
 
-__Should I specify `where` for each named argument?__ No. There must only be one `where` in each method call.
+**Should I specify `where` for each named argument?** No. There must only be one `where` in each method call.
 
 Named and positional arguments can be used together in a single call. Just start with the positional arguments you want to specify, then a `where` and finally the named arguments. But be careful, each argument must be specified only once.
 
@@ -192,7 +192,7 @@ class Foo
     f(6, 7, 3, 8, 5)
 ```
 
-__Can I call using positional arguments but miss out the first one?__ No. If you use positional arguments they must be the first ones in the call.
+**Can I call using positional arguments but miss out the first one?** No. If you use positional arguments they must be the first ones in the call.
 
 ## Chaining
 
@@ -245,4 +245,14 @@ They are presented more in-depth in the [Object Literals section](../expressions
 
 In Pony, method names start either with a lower case letter or with an underscore followed by a lowercase letter. Methods with a leading underscore are private. This means they can only be called by code within the same package. Methods without a leading underscore are public and can be called by anyone.
 
-__Can I start my method name with 2 (or more) underscores?__ No. If the first character is an underscore then the second one MUST be a lower case letter.
+**Can I start my method name with 2 (or more) underscores?** No. If the first character is an underscore then the second one MUST be a lower case letter.
+
+## Precedence
+
+We have talked about [precedence of operators](../expressions/ops.html#precedence) before, and in Pony, methods have higher precedence than any operators.
+
+To sum up, in complex expressions,
+
+1. Methods have higher precedence than any operators.
+2. Unary operator have higher precedence than infix operators.
+3. When mixing infix operators in complex expressions, we must use parentheses to specify precedences explicitly.
