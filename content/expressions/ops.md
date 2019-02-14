@@ -64,55 +64,55 @@ The full list of infix operators that are aliases for functions is:
 
 ---
 
-| Operator | Method         | Description                   | Note                           |
-| -------- | -------------- | ----------------------------- | ------------------------------ |
-| `+`      | add()          | Addition                      |
-| `-`      | sub()          | Subtraction                   |
-| `*`      | mul()          | Multiplication                |
-| `/`      | div()          | Division                      |
-| `%`      | rem()          | Remainder                     |
-| `%%`     | mod()          | Modulo                        | Starting with version `0.26.1` |
-| `<<`     | shl()          | Left bit shift                |
-| `>>`     | shr()          | Right bit shift               |
-| `and`    | op_and()       | And, both bitwise and logical |
-| `or`     | op_or()        | Or, both bitwise and logical  |
-| `xor`    | op_xor()       | Xor, both bitwise and logical |
-| `==`     | eq()           | Equality                      |
-| `!=`     | ne()           | Non-equality                  |
-| `<`      | lt()           | Less than                     |
-| `<=`     | le()           | Less than or equal            |
-| `>=`     | ge()           | Greater than or equal         |
-| `>`      | gt()           | Greater than                  |
-| `>~`     | gt_unsafe()    | Unsafe greater than           |
-| `+~`     | add_unsafe()   | Unsafe Addition               |
-| `-~`     | sub_unsafe()   | Unsafe Subtraction            |
-| `*~`     | mul_unsafe()   | Unsafe Multiplication         |
-| `/~`     | div_unsafe()   | Unsafe Division               |
-| `%~`     | rem_unsafe()   | Unsafe Remainder              |
-| `%%~`    | mod_unsafe()   | Unsafe Modulo                 | Starting with version `0.26.1` |
-| `<<~`    | shl_unsafe()   | Unsafe left bit shift         |
-| `>>~`    | shr_unsafe()   | Unsafe right bit shift        |
-| `==~`    | eq_unsafe()    | Unsafe equality               |
-| `!=~`    | ne_unsafe()    | Unsafe non-equality           |
-| `<~`     | lt_unsafe()    | Unsafe less than              |
-| `<=~`    | le_unsafe()    | Unsafe less than or equal     |
-| `>=~`    | ge_unsafe()    | Unsafe greater than or equal  |
-| `+?`     | add_partial()? | Partial Addition              |
-| `-?`     | sub_partial()? | Partial Subtraction           |
-| `*?`     | mul_partial()? | Partial Multiplication        |
-| `/?`     | div_partial()? | Partial Division              |
-| `%?`     | rem_partial()? | Partial Remainder             |
-| `%%?`    | mod_partial()? | Partial Modulo                | Starting with version `0.26.1` |
+Operator   | Method         | Description                     | Note
+-----------|----------------|---------------------------------|---------------
+`+`        | add()          | Addition                        |
+`-`        | sub()          | Subtraction                     |
+`*`        | mul()          | Multiplication                  |
+`/`        | div()          | Division                        |
+`%`        | rem()          | Remainder                       |
+`%%`       | mod()          | Modulo                          | Starting with version `0.26.1`
+`<<`       | shl()          | Left bit shift                  |
+`>>`       | shr()          | Right bit shift                 |
+`and`      | op_and()       | And, both bitwise and logical   |
+`or`       | op_or()        | Or, both bitwise and logical    |
+`xor`      | op_xor()       | Xor, both bitwise and logical   |
+`==`       | eq()           | Equality                        |
+`!=`       | ne()           | Non-equality                    |
+`<`        | lt()           | Less than                       |
+`<=`       | le()           | Less than or equal              |
+`>=`       | ge()           | Greater than or equal           |
+`>`        | gt()           | Greater than                    |
+`>~`       | gt_unsafe()    | Unsafe greater than             |
+`+~`       | add_unsafe()   | Unsafe Addition                 |
+`-~`       | sub_unsafe()   | Unsafe Subtraction              |
+`*~`       | mul_unsafe()   | Unsafe Multiplication           |
+`/~`       | div_unsafe()   | Unsafe Division                 |
+`%~`       | rem_unsafe()   | Unsafe Remainder                |
+`%%~`      | mod_unsafe()   | Unsafe Modulo                   | Starting with version `0.26.1`
+`<<~`      | shl_unsafe()   | Unsafe left bit shift           |
+`>>~`      | shr_unsafe()   | Unsafe right bit shift          |
+`==~`      | eq_unsafe()    | Unsafe equality                 |
+`!=~`      | ne_unsafe()    | Unsafe non-equality             |
+`<~`       | lt_unsafe()    | Unsafe less than                |
+`<=~`      | le_unsafe()    | Unsafe less than or equal       |
+`>=~`      | ge_unsafe()    | Unsafe greater than or equal    |
+`+?`       | add_partial()? | Partial Addition                |
+`-?`       | sub_partial()? | Partial Subtraction             |
+`*?`       | mul_partial()? | Partial Multiplication          |
+`/?`       | div_partial()? | Partial Division                |
+`%?`       | rem_partial()? | Partial Remainder               |
+`%%?`      | mod_partial()? | Partial Modulo                  | Starting with version `0.26.1`
 
 ---
 
 ## Short circuiting
 
-The `and` and `or` operators use **short circuiting** when used with Bool variables. This means that the first operand is always evaluated, but the second is only evaluated if it can affect the result.
+The `and` and `or` operators use __short circuiting__ when used with Bool variables. This means that the first operand is always evaluated, but the second is only evaluated if it can affect the result.
 
-For `and`, if the first operand is **false** then the second operand is not evaluated since it cannot affect the result.
+For `and`, if the first operand is __false__ then the second operand is not evaluated since it cannot affect the result.
 
-For `or`, if the first operand is **true** then the second operand is not evaluated since it cannot affect the result.
+For `or`, if the first operand is __true__ then the second operand is not evaluated since it cannot affect the result.
 
 This is a special feature built into the compiler, it cannot be used with operator aliasing for any other type.
 
@@ -129,11 +129,11 @@ The full list of unary operators that are aliases for functions is:
 
 ---
 
-| Operator | Method       | Description                   |
-| -------- | ------------ | ----------------------------- |
-| -        | neg()        | Arithmetic negation           |
-| not      | op_not()     | Not, both bitwise and logical |
-| -~       | neg_unsafe() | Unsafe arithmetic negation    |
+Operator | Method       | Description
+---------|--------------|------------
+-        | neg()        | Arithmetic negation
+not      | op_not()     | Not, both bitwise and logical
+-~       | neg_unsafe() | Unsafe arithmetic negation
 
 ---
 
@@ -141,7 +141,7 @@ The full list of unary operators that are aliases for functions is:
 
 In Pony, unary operators always bind stronger than any infix operators: `not a == b` will be interpreted as `(not a) == b` instead of `not (a == b)`.
 
-When using infix operators in complex expressions a key question is the **precedence**, i.e. which operator is evaluated first. Given this expression:
+When using infix operators in complex expressions a key question is the __precedence__, i.e. which operator is evaluated first. Given this expression:
 
 ```pony
 1 + 2 * 3
@@ -151,7 +151,7 @@ We will get a value of 9 if we evaluate the addition first and 7 if we evaluate 
 
 The problem with this is that the programmer has to remember the order and people aren't very good at things like that. Most people will remember to do multiplication before addition, but what about left bit shifting versus bitwise and? Sometimes people misremember (or guess wrong) and that leads to bugs. Worse, those bugs are often very hard to spot.
 
-Pony takes a different approach and outlaws infix precedence. Any expression where more than one infix operator is used **must** use parentheses to remove the ambiguity. If you fail to do this the compiler will complain.
+Pony takes a different approach and outlaws infix precedence. Any expression where more than one infix operator is used __must__ use parentheses to remove the ambiguity. If you fail to do this the compiler will complain.
 
 This means that the example above is illegal in Pony and should be rewritten as:
 
