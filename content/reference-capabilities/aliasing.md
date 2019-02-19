@@ -1,9 +1,9 @@
 ---
 title: "Aliasing"
-section: "Capabilities"
+section: "Reference Capabilities"
 menu:
   toc:
-    parent: "capabilities"
+    parent: "reference-capabilities"
     weight: 60
 toc: true
 ---

@@ -36,9 +36,14 @@ uglyURLs = true
   identifier = "expressions"
 
 [[menu.toc]]
-  name = "Capabilities"
+  name = "Reference Capabilities"
   weight = 40
-  identifier = "capabilities"
+  identifier = "reference-capabilities"
+
+[[menu.toc]]
+  name = "Object Capabilities"
+  weight = 45
+  identifier = "object-capabilities"
 
 [[menu.toc]]
   name = "Generics"

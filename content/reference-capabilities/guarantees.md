@@ -1,9 +1,9 @@
 ---
 title: "Reference Capability Guarantees"
-section: "Capabilities"
+section: "Reference Capabilities"
 menu:
   toc:
-    parent: "capabilities"
+    parent: "reference-capabilities"
     weight: 30
 toc: true
 ---

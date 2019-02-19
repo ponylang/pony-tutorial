@@ -1,9 +1,9 @@
 ---
 title: "Consume and Destructive Read"
-section: "Capabilities"
+section: "Reference Capabilities"
 menu:
   toc:
-    parent: "capabilities"
+    parent: "reference-capabilities"
     weight: 40
 toc: true
 ---

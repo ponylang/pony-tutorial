@@ -1,9 +1,9 @@
 ---
 title: "Object Capabilities"
-section: "Capabilities"
+section: "Object Capabilities"
 menu:
   toc:
-    parent: "capabilities"
+    parent: "object-capabilities"
     weight: 10
 toc: true
 ---

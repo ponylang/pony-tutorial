@@ -1,9 +1,9 @@
 ---
 title: "Combining Capabilities"
-section: "Capabilities"
+section: "Reference Capabilities"
 menu:
   toc:
-    parent: "capabilities"
+    parent: "reference-capabilities"
     weight: 70
 toc: true
 ---
