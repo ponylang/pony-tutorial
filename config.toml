@@ -20,6 +20,10 @@ uglyURLs = true
   name = "tags"
   weight = 100
 
+[outputs]
+  home = ["HTML", "JSON"]
+  page = ["HTML"]
+
 [[menu.toc]]
   name = "Getting Started"
   weight = 10
