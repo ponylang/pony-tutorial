@@ -1,9 +1,9 @@
 ---
 title: "Reference Capabilities"
-section: "Capabilities"
+section: "Reference Capabilities"
 menu:
   toc:
-    parent: "capabilities"
+    parent: "reference-capabilities"
     weight: 20
 toc: true
 ---

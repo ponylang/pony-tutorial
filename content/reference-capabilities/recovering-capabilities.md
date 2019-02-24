@@ -1,9 +1,9 @@
 ---
 title: "Recovering Capabilities"
-section: "Capabilities"
+section: "Reference Capabilities"
 menu:
   toc:
-    parent: "capabilities"
+    parent: "reference-capabilities"
     weight: 50
 toc: true
 ---

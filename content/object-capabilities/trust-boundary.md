@@ -1,10 +1,10 @@
 ---
 title: "Trust Boundary"
-section: "Capabilities"
+section: "Object Capabilities"
 menu:
   toc:
-    parent: "capabilities"
-    weight: 110
+    parent: "object-capabilities"
+    weight: 20
 toc: true
 ---
 

@@ -1,9 +1,9 @@
 ---
 title: "Arrow Types aka Viewpoints"
-section: "Capabilities"
+section: "Reference Capabilities"
 menu:
   toc:
-    parent: "capabilities"
+    parent: "reference-capabilities"
     weight: 100
 toc: true
 ---

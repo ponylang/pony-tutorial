@@ -1,9 +1,9 @@
 ---
 title: "Capability Subtyping"
-section: "Capabilities"
+section: "Reference Capabilities"
 menu:
   toc:
-    parent: "capabilities"
+    parent: "reference-capabilities"
     weight: 90
 toc: true
 ---

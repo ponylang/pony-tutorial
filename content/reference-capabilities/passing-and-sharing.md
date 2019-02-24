@@ -1,9 +1,9 @@
 ---
 title: "Passing and Sharing References"
-section: "Capabilities"
+section: "Reference Capabilities"
 menu:
   toc:
-    parent: "capabilities"
+    parent: "reference-capabilities"
     weight: 80
 toc: true
 ---
