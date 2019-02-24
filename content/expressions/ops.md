@@ -1,5 +1,5 @@
 ---
-title: "Infix Operators"
+title: "Operators"
 section: "Expressions"
 menu:
   toc:
@@ -7,6 +7,8 @@ menu:
     weight: 30
 toc: true
 ---
+
+## Infix Operators
 
 Infix operators take two operands and are written between those operands. Arithmetic and comparison operators are the most common:
 
@@ -16,32 +18,6 @@ a < b
 ```
 
 Pony has pretty much the same set of infix operators as other languages.
-
-## Precedence
-
-When using infix operators in complex expressions a key question is the __precedence__, i.e. which operator is evaluated first. Given this expression:
-
-```pony
-1 + 2 * 3
-```
-
-We will get a value of 9 if we evaluate the addition first and 7 if we evaluate the multiplication first. In mathematics, there are rules about the order in which to evaluate operators and most programming languages follow this approach.
-
-The problem with this is that the programmer has to remember the order and people aren't very good at things like that. Most people will remember to do multiplication before addition, but what about left bit shifting versus bitwise and? Sometimes people misremember (or guess wrong) and that leads to bugs. Worse, those bugs are often very hard to spot.
-
-Pony takes a different approach and outlaws infix precedence. Any expression where more than one infix operator is used __must__ use parentheses to remove the ambiguity. If you fail to do this the compiler will complain.
-
-This means that the example above is illegal in Pony and should be rewritten as:
-
-```pony
-1 + (2 * 3)
-```
-
-Repeated use of a single operator, however, is fine:
-
-```pony
-1 + 2 + 3
-```
 
 ## Operator aliasing
 
@@ -128,7 +104,6 @@ Operator   | Method         | Description                     | Note
 `%?`       | rem_partial()? | Partial Remainder               |
 `%%?`      | mod_partial()? | Partial Modulo                  | Starting with version `0.26.1`
 
-
 ---
 
 ## Short circuiting
@@ -161,3 +136,31 @@ not      | op_not()     | Not, both bitwise and logical
 -~       | neg_unsafe() | Unsafe arithmetic negation
 
 ---
+
+## Precedence
+
+In Pony, unary operators always bind stronger than any infix operators: `not a == b` will be interpreted as `(not a) == b` instead of `not (a == b)`.
+
+When using infix operators in complex expressions a key question is the __precedence__, i.e. which operator is evaluated first. Given this expression:
+
+```pony
+1 + 2 * 3
+```
+
+We will get a value of 9 if we evaluate the addition first and 7 if we evaluate the multiplication first. In mathematics, there are rules about the order in which to evaluate operators and most programming languages follow this approach.
+
+The problem with this is that the programmer has to remember the order and people aren't very good at things like that. Most people will remember to do multiplication before addition, but what about left bit shifting versus bitwise and? Sometimes people misremember (or guess wrong) and that leads to bugs. Worse, those bugs are often very hard to spot.
+
+Pony takes a different approach and outlaws infix precedence. Any expression where more than one infix operator is used __must__ use parentheses to remove the ambiguity. If you fail to do this the compiler will complain.
+
+This means that the example above is illegal in Pony and should be rewritten as:
+
+```pony
+1 + (2 * 3)
+```
+
+Repeated use of a single operator, however, is fine:
+
+```pony
+1 + 2 + 3
+```

@@ -246,3 +246,13 @@ They are presented more in-depth in the [Object Literals section](../expressions
 In Pony, method names start either with a lower case letter or with an underscore followed by a lowercase letter. Methods with a leading underscore are private. This means they can only be called by code within the same package. Methods without a leading underscore are public and can be called by anyone.
 
 __Can I start my method name with 2 (or more) underscores?__ No. If the first character is an underscore then the second one MUST be a lower case letter.
+
+## Precedence
+
+We have talked about [precedence of operators](../expressions/ops.html#precedence) before, and in Pony, method calls and field accesses have higher precedence than any operators.
+
+To sum up, in complex expressions,
+
+1. Method calls and field accesses have higher precedence than any operators.
+2. Unary operator have higher precedence than infix operators.
+3. When mixing infix operators in complex expressions, we must use parentheses to specify precedences explicitly.
