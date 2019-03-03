@@ -42,13 +42,7 @@ We have an active mailing list where you can ask questions and get help. We're a
 
 [Pony Users' List](https://pony.groups.io/g/user)
 
-## Ponylang Freenode Channel
-
-If IRC is your thing, we maintain a channel on Freenode at #ponylang.
-
 ## Ponylang Slack
-
-If Slack is your thing, we have a group for that as well.
 
 [Pony Slack](https://www.ponylang.io/get-slack-invite)
 
