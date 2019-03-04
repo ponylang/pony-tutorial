@@ -16,7 +16,7 @@ A capability is the ability to do "something". Usually that "something" involves
 
 Pony also features a different kind of capability, called a "reference capability". Where object capabilities are about being granted the ability to do things with objects, reference capabilities are about denying you the ability to do things with memory references. For example, "you can have access to this memory BUT ONLY for reading it. You can not write to it". That's a reference capability and it's denying you access to do things.
 
-Reference capabilities are core to what makes Pony special. You might remember in the introduction to this tutorial we said that Pony is:
+Reference capabilities are core to what makes Pony special. You might remember in the introduction to this tutorial what we said about Pony:
 
 * It's type safe. Really type safe. There's a mathematical [proof](http://www.ponylang.org/media/papers/opsla237-clebsch.pdf) and everything.
 * It's memory safe. Ok, this comes with type safe, but it's still interesting. There are no dangling pointers, no buffer overruns, heck, the language doesn't even have the concept of _null_!

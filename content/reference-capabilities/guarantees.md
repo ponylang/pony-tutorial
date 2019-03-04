@@ -16,7 +16,7 @@ We're going to talk about reference capability guarantees in terms of what's _de
 
 We need to distinguish between the actor that contains the variable in question and _other_ actors.
 
-This is important because data reads and writes from other actors may occur concurrently. If two actors can both read the same data and one of them changes it then it will change under the feet of the other actor. This leads to data-races and the need for locks. By ensuring this situation can never occur Pony eliminates the need for locks.
+This is important because data reads and writes from other actors may occur concurrently. If two actors can both read the same data and one of them changes it then it will change under the feet of the other actor. This leads to data-races and the need for locks. By ensuring this situation can never occur, Pony eliminates the need for locks.
 
 All code within any one actor always executes sequentially. This means that data accesses from multiple variables within a single actor do not suffer from data-races.
 
@@ -41,7 +41,7 @@ __Why can they be used to read but not write?__ Because these reference capabili
 
 ## Opaque reference capabilities
 
-There's only one __opaque__ reference capability, which is `tag`. A `tag` variable makes no guarantees about other variables at all. As a result, it can't be used to either read from or write to the object.
+There's only one __opaque__ reference capability, which is `tag`. A `tag` variable makes no guarantees about other variables at all. As a result, it can't be used to either read from or write to the object; hence the name __opaque__.
 
 It's still useful though: you can do identity comparison with it, you can call behaviours on it, and you can call functions on it that only need a `tag` receiver.
 
