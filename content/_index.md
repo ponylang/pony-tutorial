@@ -14,7 +14,7 @@ Pony is an object-oriented, actor-model, capabilities-secure programming languag
 
 When we say Pony is __capabilities-secure__, we mean a few things:
 
-* It's type safe. Really type safe. There's a mathematical [proof](http://www.ponylang.org/media/papers/opsla237-clebsch.pdf) and everything.
+* It's type safe. Really type safe. There's a mathematical [proof](https://www.ponylang.io/media/papers/opsla237-clebsch.pdf) and everything.
 * It's memory safe. Ok, this comes with type safe, but it's still interesting. There are no dangling pointers, no buffer overruns, heck, the language doesn't even have the concept of _null_!
 * It's exception safe. There are no runtime exceptions. All exceptions have defined semantics, and they are _always_ handled.
 * It's data-race free. Pony doesn't have locks or atomic operations or anything like that. Instead, the type system ensures _at compile time_ that your concurrent program can never have data races. So you can write highly concurrent code and never get it wrong.

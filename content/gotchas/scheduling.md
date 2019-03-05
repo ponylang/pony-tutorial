@@ -25,4 +25,4 @@ be bad_citizen() =>
   end
 ```
 
-That is some seriously bad citizen code that will hog a scheduler thread forever. Call that behavior a few times and your program will grind to a halt. If you find yourself writing code with loops that will run for a long time, stop and rethink your design. Take a look at the [Timer](http://stdlib.ponylang.org/time-Timer/) class from the standard library. Combine that together with a counter in your class and you can execute the same behavior repeatedly while yielding your scheduler thread to other actors.
+That is some seriously bad citizen code that will hog a scheduler thread forever. Call that behavior a few times and your program will grind to a halt. If you find yourself writing code with loops that will run for a long time, stop and rethink your design. Take a look at the [Timer](https://stdlib.ponylang.io/time-Timer/) class from the standard library. Combine that together with a counter in your class and you can execute the same behavior repeatedly while yielding your scheduler thread to other actors.
