@@ -239,7 +239,7 @@ actor Main
     end
 ```
 
-They are presented more in-depth in the [Object Literals section](../expressions/object-literals.html).
+They are presented more in-depth in the [Object Literals section](/expressions/object-literals.html).
 
 ## Privacy
 
@@ -249,7 +249,7 @@ __Can I start my method name with 2 (or more) underscores?__ No. If the first ch
 
 ## Precedence
 
-We have talked about [precedence of operators](../expressions/ops.html#precedence) before, and in Pony, method calls and field accesses have higher precedence than any operators.
+We have talked about [precedence of operators](/expressions/ops.html#precedence) before, and in Pony, method calls and field accesses have higher precedence than any operators.
 
 To sum up, in complex expressions,
 
