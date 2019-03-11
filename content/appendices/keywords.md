@@ -21,6 +21,7 @@ This listing explains the usage of every Pony keyword.
 | compile_error | will provoke a compile error 
 | continue | continues a loop with the next iteration
 | consume | move a value to a new variable, leaving the original variable empty
+| digestof | create a `USize` value that summarizes the Pony object, similar to a Java object's `hashCode()` value.
 | do | loop statement, or after a with statement
 | else | conditional statement in if, for, while, repeat, try (as a catch block), match 
 | elseif | conditional statement, also used with ifdef
