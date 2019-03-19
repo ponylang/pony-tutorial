@@ -42,9 +42,9 @@ We have an active mailing list where you can ask questions and get help. We're a
 
 [Pony Users' List](https://pony.groups.io/g/user)
 
-## Ponylang Slack
+## Ponylang Zulip
 
-[Pony Slack](https://www.ponylang.io/get-slack-invite)
+[Pony Zulip](https://ponylang.zulipchat.com)
 
 ## Pony Virtual Users' Group
 
