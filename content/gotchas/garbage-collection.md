@@ -8,7 +8,7 @@ menu:
 toc: true
 ---
 
-There's a common GC anti-pattern that many new Pony programmers accidentally stumble across. Usually, this results in a skyrocketing memory usage in their test program and questions on the mailing list and Slack as to why Pony isn't working correctly. It is, in fact, working correctly, albeit not obviously.
+There's a common GC anti-pattern that many new Pony programmers accidentally stumble across. Usually, this results in a skyrocketing memory usage in their test program and questions on the mailing list and Zulip as to why Pony isn't working correctly. It is, in fact, working correctly, albeit not obviously.
 
 ## Garbage Collection in the world at large
 
