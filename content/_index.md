@@ -89,7 +89,7 @@ Throughout the design and development of the language the following principles s
 
 Working your way through the tutorial but in need of more help? Not to worry, we have you covered.
 
-If you are looking for an answer "right now", we suggest you give our [Zulip community](https://ponylang.zulipchat.com) a try. If you ask a question, be sure to hang around until you get an answer. If you don't get one, or chat isn't your thing, we have a friendly [mailing list](https://groups.io/g/pony+user) you can try. Whatever your question is, it isn't dumb, and we won't get annoyed.
+If you are looking for an answer "right now", we suggest you give our [Zulip community](https://ponylang.zulipchat.com/#narrow/stream/189985-beginner-help) a try. Whatever your question is, it isn't dumb, and we won't get annoyed.
 
 Think you've found a bug? Check your understanding first by writing the mailing list. Once you know it's a bug, [open an issue](https://github.com/ponylang/ponyc/issues).
 

@@ -36,19 +36,13 @@ You are going to need to learn the standard library. Some of us prefer to open t
 
 [Standard Library Documentation](https://stdlib.ponylang.io/)
 
-## Pony Users' Mailing List
-
-We have an active mailing list where you can ask questions and get help. We're a small community so it might take a bit to get an answer. Be sure to check the archives as well.
-
-[Pony Users' List](https://pony.groups.io/g/user)
-
 ## Ponylang Zulip
 
 [Pony Zulip](https://ponylang.zulipchat.com)
 
 ## Pony Virtual Users' Group
 
-The Pony Virtual Users' Group has fairly regularly monthly presentations that you can attend "in person" or catch later via the recorded video. Sign up to the [Pony VUG mailing list](https://pony.groups.io/g/vug) to be kept informed about upcoming meetings. All the previous videos are available via [Sean T Allen's Vimeo account](https://vimeo.com/user6269014).
+The Pony Virtual Users' Group has occassional presentations that you can attend "in person" or catch later via the recorded video. Join our [Zulip community](https://ponylang.zulipchat.com/#narrow/stream/189932-announce/topic/VUG) to stay up to date on upcoming meetings. All the previous videos are available via [Sean T Allen's Vimeo account](https://vimeo.com/user6269014).
 
 ## A final word
 
