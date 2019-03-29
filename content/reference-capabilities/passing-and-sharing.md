@@ -4,7 +4,7 @@ section: "Reference Capabilities"
 menu:
   toc:
     parent: "reference-capabilities"
-    weight: 80
+    weight: 70
 toc: true
 ---
 
