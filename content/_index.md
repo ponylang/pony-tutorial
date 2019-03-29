@@ -91,7 +91,7 @@ Working your way through the tutorial but in need of more help? Not to worry, we
 
 If you are looking for an answer "right now", we suggest you give our [Zulip community](https://ponylang.zulipchat.com/#narrow/stream/189985-beginner-help) a try. Whatever your question is, it isn't dumb, and we won't get annoyed.
 
-Think you've found a bug? Check your understanding first by writing the mailing list. Once you know it's a bug, [open an issue](https://github.com/ponylang/ponyc/issues).
+Think you've found a bug? Check your understanding first by writing to the ["beginner help" stream in Zulip](https://ponylang.zulipchat.com/#narrow/stream/189985-beginner-help). Once you know it's a bug, [open an issue](https://github.com/ponylang/ponyc/issues).
 
 # Help us
 
