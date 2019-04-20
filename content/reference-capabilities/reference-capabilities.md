@@ -77,7 +77,7 @@ __Reference__, written `ref`. This is for references to mutable data structures 
 
 __Box__. This is for references to data that is read-only to you. That data might be immutable and shared with other actors or there may be other variables using it in your actor that can change the data. Either way, the `box` variable can be used to safely read the data. This may sound a little pointless, but it allows you to write code that can work for both `val` and `ref` variables, as long as it doesn't write to the object.
 
-__Transition__, written `trn`. This is used for data structures that you want to write to and give out read-only (`box`) variables to. You can also convert the `trn` variable to a `val` variable later if you wish, which stops anyone from changing the data and allows it be shared with other actors.
+__Transition__, written `trn`. This is used for data structures that you want to write to, while also holding read-only (`box`) variables for them. You can also convert the `trn` variable to a `val` variable later if you wish, which stops anyone from changing the data and allows it be shared with other actors.
 
 __Tag__. This is for references used only for identification. You cannot read or write data using a `tag` variable. But you can store and compare `tag`s to check object identity and share `tag` variables with other actors.
 
