@@ -8,7 +8,7 @@ menu:
 toc: true
 ---
 
-__Aliasing__ means having more than one variable that points to the same object.
+__Aliasing__ means having more than one reference to the same object, within the same actor. This can be the case for a variable or a field.
 
 In most programming languages, aliasing is pretty simple. You just assign some variable to another variable, and there you go, you have an alias. The variable you assign to has the same type (or some supertype) as what's being assigned to it, and everything is fine.
 
