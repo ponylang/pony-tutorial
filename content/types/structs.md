@@ -8,7 +8,7 @@ menu:
 toc: true
 ---
 
-A `struct` is similiar to a `class`. There's a couple very important differences. You'll use classes throughtout your Pony code. You'll rarely use structs. We'll discuss structs in more depth in the [C-FFI chapter](/c-ffi.html) of the tutorial. In the meantime, here's a short introduction to the basics of structs.
+A `struct` is similiar to a `class`. There's a couple very important differences. You'll use classes throughout your Pony code. You'll rarely use structs. We'll discuss structs in more depth in the [C-FFI chapter](/c-ffi.html) of the tutorial. In the meantime, here's a short introduction to the basics of structs.
 
 ## Structs are "classes for FFI"
 
