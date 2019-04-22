@@ -39,7 +39,7 @@ fun test(a: Wombat trn) =>
   var b: Wombat box = a // Allowed!
 ```
 
-__What about aliasing other stuff?__ Everything else can be aliased as itself. So `ref` can be aliased as `ref`, `val` can be aliased as `val`, `box` can be aliased as `box` and `tag` can be aliased as `tag`.
+__What about aliasing other stuff?__ For both `iso` and `trn`, the guarantees require that aliases must give up on some ability (reading and writing for `iso`, writing for `trn`). For the other capabilities (`ref`, `val`, `box` and `tag`), aliases allow for the same operations, so such a reference can just be aliased as itself.
 
 ## What counts as making an alias?
 
