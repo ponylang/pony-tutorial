@@ -127,15 +127,15 @@ If overflow or division by zero are cases that need to be avoided and performanc
 // partial arithmetic
 let result =
   try
-    I32.max_value() +? env.args.size()
+    USize.max_value() +? env.args.size()
   else
     env.out.print("overflow detected")
   end
 
 // checked arithmetic
 let result =
-  match U64.max_value().addc(env.args.size())
-  | (let result: U64, false) =>
+  match USize.max_value().addc(env.args.size())
+  | (let result: USize, false) =>
     // use result
     ...
   | (_, true) =>
