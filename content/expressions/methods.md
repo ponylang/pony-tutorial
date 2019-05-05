@@ -150,7 +150,7 @@ class Bar
   fun f() =>
     var a: Coord = Coord.create()     // Contains (0, 0)
     var b: Coord = Coord.create(3)    // Contains (3, 0)
-    var b: Coord = Coord.create(3, 4) // Contains (3, 4)
+    var c: Coord = Coord.create(3, 4) // Contains (3, 4)
 ```
 
 __Do I have to provide default values for all of my arguments?__ No, you can provide defaults for as many, or as few, as you like.
