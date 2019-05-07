@@ -183,7 +183,7 @@ Default arguments can also be used in combination with positional and named argu
 
 ```pony
 class Foo
-  fun f(a:U32 = 1, b: U32 = 2, c: U32 = 3, d: U32 = 4, e: U32 = 5): U32  =>
+  fun f(a: U32 = 1, b: U32 = 2, c: U32 = 3, d: U32 = 4, e: U32 = 5): U32  =>
     0
 
   fun g() =>
