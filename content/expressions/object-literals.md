@@ -53,7 +53,7 @@ class Foo
     object iso is Hashable
       let s: String = str
       fun apply(): String => s
-      fun hash(): U64 => s.hash()
+      fun hash(): U64 => s.hash64()
     end
 ```
 
@@ -64,7 +64,7 @@ class Foo
   fun foo(str: String): Hashable iso^ =>
     object iso is Hashable
       fun apply(): String => str
-      fun hash(): U64 => str.hash()
+      fun hash(): U64 => str.hash64()
     end
 ```
 
