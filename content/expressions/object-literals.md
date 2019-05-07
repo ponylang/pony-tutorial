@@ -39,7 +39,7 @@ class Foo
     object is Hashable
       let s: String = str
       fun apply(): String => s
-      fun hash(): U64 => s.hash()
+      fun hash(): U64 => s.hash64()
     end
 ```
 
