@@ -27,19 +27,21 @@ Ok, that's pretty trivial. Let's extend it so that it explicitly provides an int
 ```pony
 object is Hashable
   fun apply(): String => "hi"
-  fun hash(): U64 => this().hash()
+  fun hash(): USize => this().hash()
 end
 ```
 
 What we can't do is specify constructors in an object literal, because the literal _is_ the constructor. So how do we assign to fields? Well, we just assign to them. For example:
 
 ```pony
+use "collections"
+
 class Foo
   fun foo(str: String): Hashable =>
     object is Hashable
       let s: String = str
       fun apply(): String => s
-      fun hash(): U64 => s.hash64()
+      fun hash(): USize => s.hash()
     end
 ```
 
@@ -48,23 +50,27 @@ When we assign to a field in the constructor, we are _capturing_ from the lexica
 An object literal with fields is returned as a `ref` by default unless an explicit reference capability is declared by specifying the capability after the `object` keyword. For example, an object with sendable captured references can be declared as `iso` if needed:
 
 ```pony
+use "collections"
+
 class Foo
   fun foo(str: String): Hashable iso^ =>
     object iso is Hashable
       let s: String = str
       fun apply(): String => s
-      fun hash(): U64 => s.hash64()
+      fun hash(): USize => s.hash()
     end
 ```
 
 We can also implicitly capture values from the lexical scope by using them in the object literal. Sometimes values that aren't local variables, aren't fields, and aren't parameters of a function are called _free variables_. By using them in a function, we are _closing over_ them - that is, capturing them. The code above could be written without the field `s`:
 
 ```pony
+use "collections"
+
 class Foo
   fun foo(str: String): Hashable iso^ =>
     object iso is Hashable
       fun apply(): String => str
-      fun hash(): U64 => str.hash64()
+      fun hash(): USize => str.hash()
     end
 ```
 
