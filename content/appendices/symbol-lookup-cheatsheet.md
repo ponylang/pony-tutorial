@@ -54,9 +54,8 @@ Here is a more elaborate explanation of Pony's use of special characters: (a lin
 |    | (2) in: use alias = packname |
 | `!`  | (1) boolean negation |
 |    | (2) a type that is an alias of another type |
-| `?`  | (1) T?  type T or None |
-|    | (2) partial functions |
-|    | (3) a call to a C function that could raise an error |
+| `?`  | (1) partial functions |
+|    | (2) a call to a C function that could raise an error |
 | `-`  | (1) start of line: unary negation |
 |    | (2) middle of line: subtraction |
 | `_`  | (1) to indicate a private variable, constructor, function, behavior |
