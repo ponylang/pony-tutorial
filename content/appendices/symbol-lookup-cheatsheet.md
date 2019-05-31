@@ -52,6 +52,8 @@ Here is a more elaborate explanation of Pony's use of special characters: (a lin
 | `;`  | only used to separate expressions on the same line |
 | `=`  | (1) (destructive) assignment |
 |    | (2) in: use alias = packname |
+|    | (3) supply default argument for method |
+|    | (4) supply default type for generics |
 | `!`  | (1) boolean negation |
 |    | (2) a type that is an alias of another type |
 | `?`  | (1) partial functions |
