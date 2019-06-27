@@ -28,8 +28,6 @@ Global variables are a form of what is called _ambient authority_. Another form 
 
 Pony has no global variables and no global functions. That doesn't mean all ambient authority is magically gone - we still need to be careful about the file system, for example. Having no globals is necessary, but not sufficient, to eliminate ambient authority.
 
-__Is this like referential transparency?__ Yes! It's similar. As long as you think of the receiver as being passed to a method as well (which it is).
-
 ## How does this help?
 
 Instead of having permissions lists, access control lists, or other forms of security, the object-capabilities model means that if you have a reference to an object, you can do things with that object. Simple and effective.
