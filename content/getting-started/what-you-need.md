@@ -19,7 +19,7 @@ While you can write code using any editor, it's nice to use one with some suppor
 
 * [Sublime Text](http://www.sublimetext.com/). There's a [Pony Language](https://packagecontrol.io/packages/Pony%20Language) package.
 * [Atom](https://atom.io/). There's a [language-pony](https://atom.io/packages/language-pony) package.
-* [Emacs](https://www.gnu.org/software/emacs/emacs.html). There's a [ponylang-mode](https://github.com/seantallen/ponylang-mode).
+* [Emacs](https://www.gnu.org/software/emacs/emacs.html). There's a [ponylang-mode](https://github.com/ponylang/ponylang-mode).
 * [Vim](http://www.vim.org). There's a [ pony-vim-syntax](https://github.com/dleonard0/pony-vim-syntax) plugin. Install `pony` with `vim-plug` or `pathogen`.
 * [Microsoft Visual Studio](http://www.visualstudio.com/). There's a [VS-pony](https://github.com/CausalityLtd/VS-pony) plugin.
 * [BBEdit](http://www.barebones.com/products/bbedit/). There's a [bbedit-pony](https://github.com/TheMue/bbedit-pony) module.
