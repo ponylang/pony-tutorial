@@ -87,7 +87,7 @@ end
 
 ### Read Struct Values from FFI
 
-A common pattern in C is to pass a struct pointer to a function, and that function will fill in various values in the struct. To do this in Pony, you make a `struct` and then use a `MaybePointer`:
+A common pattern in C is to pass a struct pointer to a function, and that function will fill in various values in the struct. To do this in Pony, you make a `struct` and then use a `NullablePointer`:
 
 ```pony
 struct Winsize
@@ -98,7 +98,7 @@ struct Winsize
 
 let size = Winsize
 
-@ioctl(0, 21523, MaybePointer[Winsize](size))
+@ioctl(0, 21523, NullablePointer[Winsize](size))
 
 env.out.print(size.height.string())
 ```
