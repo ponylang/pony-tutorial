@@ -10,7 +10,7 @@ toc: true
 
 All Pony code that actually does something, rather than defining types etc, appears in named blocks which are referred to as methods. There are three kinds of methods: functions, constructors, and behaviours. All methods are attached to type definitions (e.g. classes) - there are no global functions.
 
-Behaviours are used for handling asynchronous messages sent to actors, which we've seen in the "Types" chapter when we talked about actors.
+Behaviours are used for handling asynchronous messages sent to actors, which we've seen in the "Types" chapter [when we talked about actors](content/types/actors.md).
 
 __Can I have some code outside of any methods like I do in Python?__ No. All Pony code must be within a method.
 
