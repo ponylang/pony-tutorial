@@ -1,5 +1,5 @@
 ---
-title: "Function call side effects"
+title: "Function Call Side Effects"
 section: "Gotchas"
 menu:
   toc:
