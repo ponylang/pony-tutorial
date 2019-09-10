@@ -8,7 +8,7 @@ menu:
 toc: true
 ---
 
-The FFI support in pony uses the C application binary interface (ABI) to interface with native code. The C ABI is a calling convention, one of many, that allow objects from different programming languages to be used together.
+The FFI support in Pony uses the C application binary interface (ABI) to interface with native code. The C ABI is a calling convention, one of many, that allow objects from different programming languages to be used together.
 
 ## Writing a C library for Pony
 
@@ -17,7 +17,7 @@ Writing your own C library for use by Pony is almost as easy as using existing l
 Let's look at a complete example of a C function we may wish to provide to Pony. A Jump Consistent Hash, for example, could be provided in pure Pony as follows:
 
 ```pony
-// Jump consistent hashing in pony, with an inline pseudo random generator
+// Jump consistent hashing in Pony, with an inline pseudo random generator
 
 fun jch(key: U64, buckets: I64): I32 =>
   var k = key
@@ -94,7 +94,7 @@ The Pony code to use this new C library is just like the code we've already seen
 
 ```pony
 """ 
-This is an example of pony integrating with native code via the built-in FFI
+This is an example of Pony integrating with native code via the built-in FFI
 support
 """
 
@@ -119,4 +119,4 @@ actor Main
     end
 ```
 
-We can now use ponyc to compile a native executable integrating pony and our C library. And that's all we need to do.
+We can now use ponyc to compile a native executable integrating Pony and our C library. And that's all we need to do.
