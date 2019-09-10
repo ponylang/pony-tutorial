@@ -1,5 +1,5 @@
 ---
-title: "A short guide to Pony error messages"
+title: "A Short Guide to Pony Error Messages"
 section: "Appendices"
 menu:
   toc:
