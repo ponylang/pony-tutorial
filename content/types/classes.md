@@ -88,6 +88,28 @@ class Wombat
 
 Here, every `Wombat` begins a little bit thirsty, regardless of which constructor is called.
 
+__Zero Argument Constructors__
+```pony
+class Hawk
+  var _hunger_level: U64 = 0
+
+class Owl
+  var _hunger_level: U64
+
+  new create() =>
+    _hunger_level = 42
+```
+
+Here we have two classes, because the `Hawk` class defines no constructors, a default constructor with zero arguments called `create` is generated. The `Owl` defines it's own constructor that sets the `_hunger_level`.
+
+When constructing instances of classes that have zero-argument constructors, they can be constructed with just the class name:
+```pony
+class Forest
+  let _owl: Owl = Owl
+  let _hawk: Hawk = Hawk
+```
+This is explained later, in more detail in the [sugar](/expressions/sugar.html) section.
+
 ### Functions
 
 Functions in Pony are like methods in Java, C#, C++, Ruby, Python, or pretty much any other object oriented language. They are introduced with the keyword `fun`. They can have parameters like constructors do, and they can also have a result type (if no result type is given, it defaults to `None`).
