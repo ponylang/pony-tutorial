@@ -61,7 +61,7 @@ If you've used C/C++, you may be familiar with `const`, which is a _type qualifi
 
 A reference capability is a form of _type qualifier_ and provides a lot more guarantees than `const` does!
 
-In Pony, every use of a type has a reference capability. These capabilities apply to variables, rather than to the type as a whole. In other words, when you define a `class Wombat`, you don't pick a reference capability for it. Instead, `Wombat` variables each have their own reference capability.
+In Pony, every use of a type has a reference capability. These capabilities apply to variables, rather than to the type as a whole. In other words, when you define a `class Wombat`, you don't pick a reference capability for all instances of the class. Instead, `Wombat` variables each have their own reference capability.
 
 As an example, in some languages, you have to define a type that represents a mutable `String` and another type that represents an immutable `String`. For example, in Java, there is a `String` and a `StringBuilder`. In Pony, you can define a single `class String` and have some variables that are `String ref` (which are mutable) and other variables that are `String val` (which are immutable).
 
