@@ -61,9 +61,9 @@ If you've used C/C++, you may be familiar with `const`, which is a _type qualifi
 
 A reference capability is a form of _type qualifier_ and provides a lot more guarantees than `const` does!
 
-In Pony, every use of a type has a reference capability. These capabilities apply to variables, rather than to the type as a whole. In other words, when you define a `class Wombat`, you don't pick a reference capability for all instances of the class. Instead, `Wombat` variables each have their own reference capability.
+In Pony, every use of a type has a reference capability. These capabilities apply to variables, rather than to the type as a whole. In other words, when you define a class `Wombat`, you don't pick a reference capability for all instances of the class. Instead, `Wombat` variables each have their own reference capability.
 
-As an example, in some languages, you have to define a type that represents a mutable `String` and another type that represents an immutable `String`. For example, in Java, there is a `String` and a `StringBuilder`. In Pony, you can define a single `class String` and have some variables that are `String ref` (which are mutable) and other variables that are `String val` (which are immutable).
+As an example, in some languages, you have to define a type that represents a mutable `String` and another type that represents an immutable `String`. For example, in Java, there is a `String` and a `StringBuilder`. In Pony, you can define a single class `String` and have some variables that are `String ref` (which are mutable) and other variables that are `String val` (which are immutable).
 
 ## The list of reference capabilities
 
@@ -102,9 +102,14 @@ __What does it mean when a type doesn't specify a reference capability?__ It mea
 class val String
 ```
 
-When we use a String we usually mean a string value, so we make val the default reference capability for String (but not necessarily for String constructors, see below).
+When we use a String we usually mean an immutable string value, so we make `val` the default reference capability for `String` (but not necessarily for `String` constructors, see below). For example, when we don't specify the capability in the following code, the compiler understands that we are using the default reference capability `val` specified in the type definition:
 
-__So do I have to specify a reference capability when I define a type?__ Only if you want to. There are sensible defaults that most types will use. These are `ref` for classes, `val` for primitives (i.e. immutable references) and `tag` for actors.
+```pony
+let a: String val = "Hello, world!"
+let b: String = "I'm a wombat!" // Also a String val
+```
+
+__So do I have to specify a reference capability when I define a type?__ Only if you want to. There are sensible defaults that most types will use. These are `ref` for classes, `val` for primitives (i.e. immutable references), and `tag` for actors.
 
 ## How to create objects with different capabilities
 
