@@ -227,7 +227,7 @@ This way array literals can be used for creating arrays of any [Reference Capabi
 It is also possible to give the literal a hint on what kind of type it should coerce the array elements to using an `as` Expression. The expression with the desired array element type needs to be added right after the opening square bracket, delimited by a colon:
 
 ```pony
-let my_as_array: Array[Stringable] ref =
+let my_as_array =
   [ as Stringable:
     U64(0xFFEF)
     "0xFFEF"
