@@ -157,9 +157,9 @@ __Do I have to provide default values for all of my arguments?__ No, you can pro
 
 ## Named arguments
 
-So far, when calling methods we have always given all the arguments in order. This is known as using __positional__ arguments. However, you can also specify the arguments in any order you like by specifying their names. This is known as using __named__ arguments.
+So far, when calling methods we have always given all the arguments in order. This is known as using __positional__ arguments. However, we can also specify the arguments in any order by specifying their names. This is known as using __named__ arguments.
 
-To call a method using named arguments use the `where` keyword, followed by the named arguments and their values.
+To call a method using named arguments the `where` keyword is used, followed by the named arguments and their values.
 
 ```pony
 class Coord
@@ -172,10 +172,13 @@ class Coord
 
 class Bar
   fun f() =>
-    var a: Coord = Coord.create(where y = 4, x = 3)
+    var a: Coord = Coord.create(3, 4) // Contains (3, 4)
+    var b: Coord = Coord.create(where y = 4, x = 3) // Contains (3, 4)
 ```
 
-__Should I specify `where` for each named argument?__ No. There must only be one `where` in each method call.
+Note how in `b` above, the arguments were given out of order by using `where` followed using the name of the arguments.
+
+__Should I specify `where` for each named argument?__ No. There must be only one `where` in a method call.
 
 Named and positional arguments can be used together in a single call. Just start with the positional arguments you want to specify, then a `where` and finally the named arguments. But be careful, each argument must be specified only once.
 
