@@ -42,6 +42,7 @@ This listing explains the usage of every Pony keyword.
 | let | declaration of immutable variable: you can't rebind this name to a new value
 | match | pattern matching
 | new | constructor
+| not | logical negation
 | object | to make an object literal
 | primitive | declares a primitive type
 | recover | removes the reference capability of a variable
