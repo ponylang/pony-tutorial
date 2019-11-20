@@ -133,6 +133,16 @@ class Bar
     var b: Foo = a.from_int(3)
 ```
 
+We can even reuse the variable name in the assignment expression to call the constructor.
+
+```pony
+class Bar
+  fun f() =>
+    var a: Foo = a.create()
+```
+
+Here we specify that `var a` is type `Foo`, then proceed to use `a` to call the constructor, `create()`, for objects of type `Foo`.
+
 ## Default arguments
 
 When defining a method you can provide default values for any of the arguments. The caller then has the choice to use the values you have provided or to provide their own. Default argument values are specified with a `=` after the parameter name.
