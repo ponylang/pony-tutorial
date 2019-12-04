@@ -144,7 +144,7 @@ In Pony, unary operators always bind stronger than any infix operators: `not a =
 When using infix operators in complex expressions a key question is the __precedence__, i.e. which operator is evaluated first. Given this expression:
 
 ```pony
-1 + 2 * 3
+1 + 2 * 3  // Compilation failed.
 ```
 
 We will get a value of 9 if we evaluate the addition first and 7 if we evaluate the multiplication first. In mathematics, there are rules about the order in which to evaluate operators and most programming languages follow this approach.
@@ -156,11 +156,31 @@ Pony takes a different approach and outlaws infix precedence. Any expression whe
 This means that the example above is illegal in Pony and should be rewritten as:
 
 ```pony
-1 + (2 * 3)
+1 + (2 * 3)  // 7
 ```
 
 Repeated use of a single operator, however, is fine:
 
 ```pony
-1 + 2 + 3
+1 + 2 + 3  // 6
+```
+
+Meanwhile, mixing unary and infix operators do not need additional parentheses as unary operators always bind more closely, so if our example above used a negative three:
+
+```pony
+1 + 2 * -3  // Compilation failed.
+```
+
+We would still need parentheses to remove the ambiguity for our infix operators like we did above, but not for the unary arithmetic negative (`-`):
+
+```pony
+1 + (2 * -3)  // -5
+```
+
+We can see that it makes more sense for the unary operator to be applied before either infix as it only acts on a single number in the expression so it is never ambiguous.
+
+Unary operators can also be applied to parentheses and act on the result of all operations in those parentheses prior to applying any infix operators outside the parentheses:
+
+```pony
+1 + -(2 * -3)  // 7
 ```
