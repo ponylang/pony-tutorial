@@ -19,6 +19,7 @@ This listing explains the usage of every Pony keyword.
 | break | to step out of a loop statement
 | class | defines a class
 | compile_error | will provoke a compile error 
+| compile_intrinsic | implementation is written in C and not available as Pony code
 | continue | continues a loop with the next iteration
 | consume | move a value to a new variable, leaving the original variable empty
 | digestof | create a `USize` value that summarizes the Pony object, similar to a Java object's `hashCode()` value.
