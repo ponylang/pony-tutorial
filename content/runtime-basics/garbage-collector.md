@@ -20,8 +20,6 @@ Pony-ORCA manages scalability in actor system based on ideas from ownership and 
 
 Pony's type system, along with its reference capabilities, ensures at compile time that your program can **never have data races**. As well, because Pony has no locks (really), your program is also **deadlock-free**! (Though **livelock** is still possible, so be careful.)
 
-An actor can be in a variety of states, including: alive, blocked, and dead. An actor which is currently executing or processing a message from its queue is considered _alive_. When an actor has completed execution and has no pending messages on its queue, it is _blocked_. Only if an actor is itself blocked, and all actors with a reference to it are blocked is the actor considered _dead_.
-
 ## Pony-ORCA Characteristics
 
 1. An actor may perform garbage collection concurrently with other actors
