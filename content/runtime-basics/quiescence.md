@@ -8,7 +8,7 @@ menu:
 toc: true
 ---
 
-Quiescence is perhaps a term you are unfamiliar with unless you have worked with actor systems previously. In short, quiescence is the state of being calm or otherwise inactive. In Pony, both actors and the program can be quiescent.
+Quiescence is perhaps a term you are unfamiliar with unless you have worked with actor systems previously. In short, quiescence is the state of being calm or otherwise inactive. In Pony, individual actors as well as the program can be quiescent.
 
 Actors are quiescent when:
 
