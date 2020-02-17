@@ -4,7 +4,7 @@ section: "Runtime Basics"
 menu:
   toc:
     parent: "runtime-basics"
-    weight: 20
+    weight: 25
 toc: true
 ---
 
@@ -14,7 +14,7 @@ Actors are quiescent when:
 
 + they have an empty message queue
 + they cannot be sent new messages (i.e., there are no aliases to them)
-+ they are not registered for events from the runtime (via the ASIO system)
++ they are not registered for events from the runtime (via the ASIO subsystem)
 
 Once no more messages are being sent and no more behaviors are executing, the *quiescent* program is terminated.
 
@@ -26,15 +26,15 @@ Actors can be in a variety of states stemming from being either **alive** or **d
 
 Alive actors have four states centered around how the scheduler is interacting with them.
 
-- **Waiting**: messages in its queue and waiting in the scheduler's run queue for control of a scheduler thread
-- **Running**: executing a behavior or processing a message from its queue via control of a scheduler thread
-- **Blocked**: completed execution and no messages waiting in its queue so not in scheduler's run queue
-- **Muted**: has experienced some form of backpressure and has been removed from the scheduler's run queue
++ **Waiting**: messages in its queue and waiting in the scheduler's run queue for control of a scheduler thread
++ **Running**: executing a behavior or processing a message from its queue via control of a scheduler thread
++ **Blocked**: completed execution and no messages waiting in its queue so not in scheduler's run queue
++ **Muted**: has experienced some form of backpressure and has been removed from the scheduler's run queue
 
 ### Dead States
 
-- **Blocked**: completed execution and no messages waiting in its queue so not in scheduler's run queue
-- **Muted**: has experienced some form of backpressure and has been removed from the run queue
++ **Blocked**: completed execution and no messages waiting in its queue so not in scheduler's run queue
++ **Muted**: has experienced some form of backpressure and has been removed from the run queue
 
 ---
 
