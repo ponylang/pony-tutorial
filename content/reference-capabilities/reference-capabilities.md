@@ -45,7 +45,7 @@ __Isolated data may be complex__
 An isolated piece of data may be a single byte. But it can also be a large data structure with multiple references between the various objects in that structure. What matters for the data to be isolated is that there is only a single reference to that structure as a whole. We talk about the __isolation boundary__ of a data structure. For the structure to be isolated:
 
 1. There must only be a single reference outside the boundary that points to an object inside.
-1. There can be any number of references inside the boundary, but none of them must point to an object outside.
+2. There can be any number of references inside the boundary, but none of them must point to an object outside.
 
 __Every actor is single threaded__
 
@@ -137,4 +137,4 @@ class Foo
     x = x'
 ```
 
-But, that's probably not what you'd really want to do. Better to use the capabilities recovery facilities of Pony that we'll cover that later in the [Recovering Capabilities](recovering-capabilities.html) section.
+But, that's probably not what you'd really want to do. Better to use the capabilities recovery facilities of Pony that we'll cover that later in the [Recovering Capabilities]({{< relref "recovering-capabilities.md" >}}) section.

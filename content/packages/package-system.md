@@ -21,7 +21,7 @@ A package is usually split into several source files, although it does not have 
 The package is the privacy boundary for types and methods. That is:
 
 1. Private types (those whose name starts with an underscore) can be used only within the package in which they are defined.
-1. Private methods (those whose name starts with an underscore) can be called only from code within the package in which they are defined.
+2. Private methods (those whose name starts with an underscore) can be called only from code within the package in which they are defined.
 
 It follows that all code within a package is assumed to know and trust, all the rest of the code in the package.
 

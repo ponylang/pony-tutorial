@@ -129,9 +129,9 @@ actor Main
     f(Foo)
 ```
 
-Both case patterns actually __do not__ check for the match operand `x` being an instance of `Foo` or `None`, but check for equality with the instance created by evaluating the case pattern (each time). `None` is a primitive and thus there is only one instance at all, in which case this value pattern kind of does the expected thing, but not quite. If `None` had a custom `eq` function that would not use [identity equality](/expressions/equality.html#identity-equality), this could lead to surprising results.
+Both case patterns actually __do not__ check for the match operand `x` being an instance of `Foo` or `None`, but check for equality with the instance created by evaluating the case pattern (each time). `None` is a primitive and thus there is only one instance at all, in which case this value pattern kind of does the expected thing, but not quite. If `None` had a custom `eq` function that would not use [identity equality]({{< relref "expressions/equality.md#identity-equality" >}}), this could lead to surprising results.
 
-Remember to always use [Captures](#captures) if all you need is to differentiate by type. Only use value matching if you need a full blown equality check, be it for [structural equality](/expressions/equality.html#structural-equality) or [identity equality](/expressions/equality.html#identity-equality).
+Remember to always use [Captures](#captures) if all you need is to differentiate by type. Only use value matching if you need a full blown equality check, be it for [structural equality]({{< relref "expressions/equality.md#structural-equality" >}}) or [identity equality]({{< relref "expressions/equality.md#identity-equality" >}}).
 
 ## Captures
 

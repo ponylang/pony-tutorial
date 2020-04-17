@@ -264,7 +264,7 @@ This is similar to `do` `while` in C++, C# and Java except that the termination 
 The differences between `while` and `repeat` in Pony are:
 
 1. We always go around the loop at least once with `repeat`, whereas with `while` we may not go round at all.
-1. The termination condition is reversed.
+2. The termination condition is reversed.
 
 Suppose we're trying to create something and we want to keep trying until it's good enough:
 
