@@ -81,7 +81,7 @@ interface Equatable[A: Equatable[A] #read]
 
 ## Primitives and equality
 
-As you might remember from [Chapter 2](https://tutorial.ponylang.io/types/primitives.html), primitives are the same as classes except for two important differences:
+As you might remember from [Chapter 2]({{< relref "types/primitives.md" >}}), primitives are the same as classes except for two important differences:
 
 * A primitive has no fields.
 * There is only one instance of a user-defined primitive.

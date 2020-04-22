@@ -137,4 +137,4 @@ class Foo
     x = x'
 ```
 
-But, that's probably not what you'd really want to do. Better to use the capabilities recovery facilities of Pony that we'll cover that later in the [Recovering Capabilities](recovering-capabilities.html) section.
+But, that's probably not what you'd really want to do. Better to use the capabilities recovery facilities of Pony that we'll cover that later in the [Recovering Capabilities]({{< relref "recovering-capabilities.md" >}}) section.

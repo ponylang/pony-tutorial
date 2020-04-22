@@ -18,6 +18,24 @@ After the title, before diving into your first section, you should have some lev
 
 Avoid hard-wrapping lines within paragraphs (using line breaks in the middle of or between sentences to make lines shorter than a certain length). Instead, turn on soft-wrapping in your editor and expect the documentation renderer to let the text flow to the width of the container.
 
+## How to create document reference
+
+Please use Hugo's `shortcodes syntax` for creating references to documents. The `ref` and `relref` shortcode resolves the absolute or relative permalink given a path to a document. 
+
+The referenced document is in the current directory:
+````markdown
+[Object Literals section]({{< relref "object-literals.md" >}})
+[Infix Operators]({{< relref "ops.md#infix-operators" >}})
+````
+
+The referenced document is in the other directory:
+````markdown
+[Object Literals section]({{< relref "expressions/object-literals.md" >}})
+[Infix Operators]({{< relref "expressions/ops.md#infix-operators" >}})
+````
+
+For more detail, please refer to [Links and Cross References](https://gohugo.io/content-management/cross-references/)
+
 ## How to submit a pull request
 
 Once your content is done, please open a pull request against this repo with your changes. Based on the state of your particular PR, a number of requests for change might be requested:

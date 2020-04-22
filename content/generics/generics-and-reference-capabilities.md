@@ -71,7 +71,7 @@ actor Main
 ```
 
 This does not compile. The compiler complains that `get()` doesn't actually return a `String ref`, but `this->String ref`. We obviously need to simply change the type signature to fix this, but what is going on here?
-`this->String ref` is [an arrow type](/reference-capabilities/arrow-types.html). An arrow type with "this->" states to use the capability of the actual receiver (`ref` in our case), not the capability of the method (which defaults to `box` here). According to [viewpoint adaption](/reference-capabilities/combining-capabilities.html) this will be `ref->ref` which is `ref`. Without this [arrow type](/reference-capabilities/arrow-types.html) we would only see the field `_c` as `box` because we are in a `box` method.
+`this->String ref` is [an arrow type]({{< relref "reference-capabilities/arrow-types.md" >}}). An arrow type with "this->" states to use the capability of the actual receiver (`ref` in our case), not the capability of the method (which defaults to `box` here). According to [viewpoint adaption]({{< relref "reference-capabilities/combining-capabilities.md" >}}) this will be `ref->ref` which is `ref`. Without this [arrow type]({{< relref "reference-capabilities/arrow-types.md" >}}) we would only see the field `_c` as `box` because we are in a `box` method.
 
 So let's apply what we just learned:
 
@@ -150,7 +150,7 @@ A similar issue exists with the `set` method. Here we also need to consume the v
 fun set(c: String iso) => _c = consume c
 ```
 
-Now we have a version of `Foo` that is working correctly for `iso`. Note how applying the arrow type to the `get` method also works for `iso`. But here the result is a different one, by applying [viewpoint adaptation](/reference-capabilities/combining-capabilities.html) we get from `ref->iso` (with `ref` being the capability of the receiver, the `Foo` object referenced by `a`) to `iso`. Through the magic of [automatic receiver recovery](/reference-capabilities/recovering-capabilities.html) we can call the `string` method on it:
+Now we have a version of `Foo` that is working correctly for `iso`. Note how applying the arrow type to the `get` method also works for `iso`. But here the result is a different one, by applying [viewpoint adaptation]({{< relref "reference-capabilities/combining-capabilities.md" >}}) we get from `ref->iso` (with `ref` being the capability of the receiver, the `Foo` object referenced by `a`) to `iso`. Through the magic of [automatic receiver recovery]({{< relref "reference-capabilities/recovering-capabilities.md" >}}) we can call the `string` method on it:
 
 ```pony
 class Foo
