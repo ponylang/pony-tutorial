@@ -35,13 +35,11 @@ class Foo is Equatable[Foo box]
 actor Main
   new create(env: Env) =>
     try
-      let ambient = env.root as AmbientAuth
-
       // get serialization authorities
-      let serialise = SerialiseAuth(ambient)
-      let output = OutputSerialisedAuth(ambient)
-      let deserialise = DeserialiseAuth(ambient)
-      let input = InputSerialisedAuth(ambient)
+      let serialise = SerialiseAuth(env.root)
+      let output = OutputSerialisedAuth(env.root)
+      let deserialise = DeserialiseAuth(env.root)
+      let input = InputSerialisedAuth(env.root)
 
       let foo1 = Foo("abc", 123)
 
@@ -131,9 +129,8 @@ actor Main
     let csw = CStringWrapper(@get_string[Pointer[U8]]())
     csw.print()
     try
-      let ambient = env.root as AmbientAuth
-      let serialise = SerialiseAuth(ambient)
-      let deserialise = DeserialiseAuth(ambient)
+      let serialise = SerialiseAuth(env.root)
+      let deserialise = DeserialiseAuth(env.root)
 
       let sx = Serialised(serialise, csw)?
       let y = sx(deserialise)? as CStringWrapper
