@@ -195,4 +195,6 @@ In fact all elements of Pony code are required to be ASCII, except string litera
 
 A Pony type, whether it's a class, actor, trait, interface, primitive, or type alias, must start with an uppercase letter. After an underscore for private or special _methods_ (behaviors, constructors, and functions), any method or variable, including parameters and fields, must start with a lowercase letter. In all cases underscores in a row or at the end of a name are not allowed, but otherwise, any combination of letters and numbers is legal.
 
-In fact, numbers may use single underscores inside as a separator too! But only valid variable names can end in primes.
+In fact, numbers may use single underscores inside as a separator too!
+
+Only variable names can end in primes (`'`).
