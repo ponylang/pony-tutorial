@@ -55,6 +55,12 @@ f(3)
 
 Here, we bound the `mul` argument but left `add` unbound.
 
+## Partial application is just a lambda
+
+Under the hood, we're assembling an object literal for partial application, just as if you had written a lambda yourself. It captures aliases of some of the lexical scope as fields and has an `apply` function that takes some, possibly reduced, number of arguments. This is actually done as sugar, by rewriting the abstract syntax tree for partial application to be an object literal, before code generation.
+
+That means partial application results in an anonymous class and returns a `ref`. If you need another reference capability, you can wrap partial application in a `recover` expression. It also means that we can't consume unique fields for a lambda, as the apply method might be called many times.
+
 ## Partially applying a partial application
 
 Since partial application results in an object with an apply method, we can partially apply the result!
@@ -64,9 +70,3 @@ let f = foo~addmul()
 let f2 = f~apply(where mul = 4)
 f2(3)
 ```
-
-## Partial application is an object literal
-
-Under the hood, we're assembling an object literal for partial application. It captures some of the lexical scope as fields and has an `apply` method that takes some, possibly reduced, number of arguments. This is actually done as sugar, by rewriting the abstract syntax tree for partial application to be an object literal, before code generation.
-
-That means partial application results in an anonymous class and returns a `ref`. If you need another reference capability, you can wrap partial application in a `recover` expression.
