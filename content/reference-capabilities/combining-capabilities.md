@@ -23,7 +23,7 @@ Let's start with a table. This shows how __fields__ of each capability look to _
 | &#x25B7;        | iso field | trn field | ref field | val field | box field | tag field |
 |-----------------|-----------|-----------|-----------|-----------|-----------|-----------|
 | __iso origin__  | iso       | tag       | tag       | val       | tag       | tag       |
-| __trn origin__  | iso       | trn       | box       | val       | box       | tag       |
+| __trn origin__  | iso       | box       | box       | val       | box       | tag       |
 | __ref origin__  | iso       | trn       | ref       | val       | box       | tag       |
 | __val origin__  | val       | val       | val       | val       | val       | tag       |
 | __box origin__  | tag       | box       | box       | val       | box       | tag       |
@@ -59,9 +59,13 @@ Everything else, though, can break our isolation guarantees. That's why other re
 
 This is like `iso`, but with a weaker guarantee (_write uniqueness_ as opposed to _read and write uniqueness_). That makes a big difference since now we can return something readable when we enforce our guarantees.
 
-An `iso` field makes stronger guarantees than a `trn` origin, and a `trn` field makes the same guarantees, so they're fine to read. A `val` field is _globally immutable_, so that's fine too. A `box` field is readable, and we only guarantee _write uniqueness_, so that's fine too.
+An `iso` field makes stronger guarantess than `trn`, and can't alias anything readable inside the `trn` origin, so it's perfectly safe to read.
 
-A `ref` field, though, would allow writing. So instead we return a `box`.
+On the other hand, `trn` and `ref` fields have to be returned as `box`. It might seem a bit odd that `trn` has to be returned as `box`, since after all it guarantees write uniqueness itself and we might expect it to behave like `iso`. The issue is that `trn`, unlike `iso`, *can* alias with some box variables in the origin. And that `trn` origin still has to make the guarantee that nothing else can write
+to fields that it can read. On the other hand, `trn` still can't be returned as `val`, because then we might leave the original field
+in place and create a `val` alias, while that field can still be used to write! So we have to view it as `box`.
+
+Immutable and opaque capabilities, though, can never violate write uniqueness, so `val`, `box`, and `tag` are viewed as themselves.
 
 ### Reading from a `ref` variable
 
