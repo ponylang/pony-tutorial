@@ -61,7 +61,7 @@ This is like `iso`, but with a weaker guarantee (_write uniqueness_ as opposed t
 
 An `iso` field makes stronger guarantees than `trn`, and can't alias anything readable inside the `trn` origin, so it's perfectly safe to read.
 
-On the other hand, `trn` and `ref` fields have to be returned as `box`. It might seem a bit odd that `trn` has to be returned as `box`, since after all it guarantees write uniqueness itself and we might expect it to behave like `iso`. The issue is that `trn`, unlike `iso`, *can* alias with some box variables in the origin. And that `trn` origin still has to make the guarantee that nothing else can write to fields that it can read. On the other hand, `trn` still can't be returned as `val`, because then we might leave the original field in place and create a `val` alias, while that field can still be used to write! So we have to view it as `box`.
+On the other hand, `trn` and `ref` fields have to be returned as `box`. It might seem a bit odd that `trn` has to be returned as `box`, since after all it guarantees write uniqueness itself and we might expect it to behave like `iso`. The issue is that `trn`, unlike `iso`, *can* alias with some `box` variables in the origin. And that `trn` origin still has to make the guarantee that nothing else can write to fields that it can read. On the other hand, `trn` still can't be returned as `val`, because then we might leave the original field in place and create a `val` alias, while that field can still be used to write! So we have to view it as `box`.
 
 Immutable and opaque capabilities, though, can never violate write uniqueness, so `val`, `box`, and `tag` are viewed as themselves.
 
