@@ -14,9 +14,9 @@ This is because all the guarantees that the __origin__ reference capability make
 
 # Viewpoint adaptation
 
-The process of combining origin and field capabilities is called __viewpoint adaptation__. That is, the __origin__ has a __viewpoint__, and can "see" its fields only from that __viewpoint__.
+The process of combining origin and field capabilities is called __viewpoint adaptation__. That is, the __origin__ has a __viewpoint__, and its fields can be "seen" only from that __viewpoint__.
 
-Let's start with a table. This shows how __fields__ of each capability "look" to __origins__ of each capability.
+Let's start with a table. This shows how __fields__ of each capability look to __origins__ of each capability.
 
 ---
 
