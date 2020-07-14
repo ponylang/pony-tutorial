@@ -67,10 +67,10 @@ interface HasName
 interface HasAge
   fun age(): U32
 
-interface HasAddress
-  fun address(): String
+interface HasFeelings
+  fun feeling(): String
 
-type Person is (HasName & HasAge & HasAddress)
+type Person is (HasName & HasAge & HasFeelings)
 ```
 
 This use of complex types applies to traits, not just interfaces:
@@ -82,13 +82,13 @@ trait HasName
 trait HasAge
   fun age(): U32 => 42
 
-trait HasAddress
-  fun address(): String => "3 Abbey Road"
+trait HasFeelings
+  fun feeling(): String => "Great!"
 
-type Person is (HasName & HasAge & HasAddress)
+type Person is (HasName & HasAge & HasFeelings)
 ```
 
-There's another new concept here: the type has a `&` in it. This is similar to the `|` of a __union__ type: it means this is an __intersection__ type. That is, it's something that must be _all_ of `HasName`, `HasAge` _and_ `HasAddress`.
+There's another new concept here: the type has a `&` in it. This is similar to the `|` of a __union__ type: it means this is an __intersection__ type. That is, it's something that must be _all_ of `HasName`, `HasAge` _and_ `HasFeelings`.
 
 But the use of `type` here is exactly the same as the enumeration example above, it's just providing a name for a type that is otherwise a bit tedious to type out over and over.
 
