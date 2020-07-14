@@ -70,11 +70,11 @@ else
 ```
 Here it is not obvious whether the `else` is an alternative to the first or the second `if`. In fact here the `else` relates to the `if(b)` so our example contains a bug. Pony avoids this type of bug by handling `if` and `else` differently and the need for `elseif` comes out of that.
 
-## Everything is an expression
+## Control structures are expressions
 
 The big difference for control structures between Pony and other languages is that in Pony everything is an expression. In languages like C++ and Java `if` is a statement, not an expression. This means that you can't have an `if` inside an expression, there has to be a separate conditional operator '?'.
 
-In Pony there are no statements, there are only expressions; everything hands back a value. Your `if` statement hands you back a value. Your `for` loop (which we'll get to a bit later) hands you back a value.
+In Pony control flow statements like this are all expressions that hand back a value. Your `if` statement hands you back a value. Your `for` loop (which we'll get to a bit later) hands you back a value.
 
 This means you can use `if` directly in a calculation:
 
