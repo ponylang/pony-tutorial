@@ -8,9 +8,11 @@ menu:
 toc: true
 ---
 
-When a field of an object is read, its reference capability depends both on the reference capability of the field and the reference capability of the __origin__, that is, the object the field is being read from.
+When we talked about fields in the [classes]({{< relref "types/classes.md" >}}) chapter, we skimmed over a rather important detail, by only using defaults. Fields, just like variables, have their own capabilities! A field in the class has to make all the same guarantees as a variable. An `iso` field for instance, is globally unique. The only way to reference it is through this single field of the object (except of course, `tag` references, or shared `val` portions).
 
-This is because all the guarantees that the __origin__ reference capability makes have to be maintained for its fields as well.
+Once we have fields with capabilities inside objects with capabilities, now we've got two capabilities to keep track of. Of course, if you've read the title of this chapter, you might suspect that there's a way to combine them, and you'd be right.
+
+When a field of an object is accessed or extracted, its reference capability depends both on the reference capability of the field and the reference capability of the __origin__, that is, the object the field is being read from. We have to pick a capability for the combination that maintains the guarantees for both the __origin__ reference capability, and for its fields.
 
 # Viewpoint adaptation
 
