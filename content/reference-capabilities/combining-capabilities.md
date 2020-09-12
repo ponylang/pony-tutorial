@@ -18,7 +18,7 @@ When a field of an object is accessed or extracted, its reference capability dep
 
 The process of combining origin and field capabilities is called __viewpoint adaptation__. That is, the __origin__ has a __viewpoint__, and its fields can be "seen" only from that __viewpoint__.
 
-Let's start with a table. This shows how __fields__ of each capability look to __origins__ of each capability.
+Let's start with a table. This shows how __fields__ of each capability look when using __origins__ of each capability.
 
 ---
 
