@@ -8,7 +8,7 @@ menu:
 toc: true
 ---
 
-When we talked about fields in the [classes]({{< relref "types/classes.md" >}}) chapter, we skimmed over a rather important detail, by only using defaults. Fields, just like variables, have their own capabilities! A field in the class has to make all the same guarantees as a variable. An `iso` field for instance, is globally unique. The only way to reference it is through this single field of the object (except of course, `tag` references, or shared `val` portions).
+When we talked about fields in the [classes]({{< relref "types/classes.md" >}}) and [variables]({{< relref "expressions/variables.md" >}}) chapters, we passed over the detail of field capabilities. Fields, just like variables, have their own capabilities! A field in the class has to make all the same guarantees as a variable. An `iso` field for instance, is globally unique. The only way to reference it is through this single field of the object (except of course, `tag` references, or shared `val` portions).
 
 Once we have fields with capabilities inside objects with capabilities, now we've got two capabilities to keep track of. Of course, if you've read the title of this chapter, you might suspect that there's a way to combine them, and you'd be right.
 
