@@ -10,13 +10,13 @@ toc: true
 
 When we talked about fields in the [classes]({{< relref "types/classes.md" >}}) and [variables]({{< relref "expressions/variables.md" >}}) chapters, we passed over the detail of field capabilities. Fields, just like variables, have their own capabilities! A field in a class has to make the exact same guarantees. An `iso` field, for instance, is globally unique. The only way to reference it is through this single field of the object (except of course, `tag` references, or shared `val` portions).
 
-Once we have fields with capabilities inside objects with capabilities, now we have two capabilities to keep track of.  When a field of an object is accessed or extracted, its reference capability depends both on the reference capability of the field and the reference capability of the __origin__, that is, the object the __field__ is being read from. We have to pick a capability for the combination that maintains the guarantees for both the __origin__ reference capability, and for its __fields__.
+Once we have fields with capabilities inside objects with capabilities, now we have two capabilities to keep track of.  When a field of an object is accessed or extracted, its reference capability depends both on the reference capability of the field and the reference capability of the __origin__, that is, the object the __field__ is being read from. We have to pick a capability for the combination that maintains the guarantees for both the __origin__ reference capability, and for the capability of the __field__.
 
 # Viewpoint adaptation
 
 The process of combining origin and field capabilities is called __viewpoint adaptation__. That is, the __origin__ has a __viewpoint__, and its fields can be "seen" only from that __viewpoint__.
 
-Let's start with a table. This shows how __fields__ of each capability look when using __origins__ of each capability.
+Let's start with a table. This shows how a __field__ of each capability looks when using an __origin__ of each capability.
 
 ---
 
