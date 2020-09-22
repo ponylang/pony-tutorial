@@ -8,7 +8,7 @@ menu:
 toc: true
 ---
 
-When we talked about fields in the [classes]({{< relref "types/classes.md" >}}) and [variables]({{< relref "expressions/variables.md" >}}) chapters, we passed over the detail of field capabilities. Fields, just like variables, have their own capabilities! A `val` field still refers to something permanently immutable. An `iso` field is still globally unique: it can only be accessed except through this field of a single instance.
+When we talked about fields in the [classes]({{< relref "types/classes.md" >}}) and [variables]({{< relref "expressions/variables.md" >}}) chapters, we passed over the detail of field capabilities. Fields, just like variables, have their own capabilities! A `val` field still refers to something permanently immutable, a `tag` field still can't be read from. An `iso` field is still globally unique: it can only be accessed except through this field of a single instance.
 
 Once we have fields with capabilities inside objects with capabilities, now we have two capabilities to keep track of.  When a field of an object is accessed or extracted, its reference capability depends both on the reference capability of the field and the reference capability of the __origin__, that is, the object the __field__ is being read from. We have to pick a capability for the combination that maintains the guarantees for both the __origin__ reference capability, and for the capability of the __field__.
 
