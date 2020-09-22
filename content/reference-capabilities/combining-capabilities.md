@@ -8,15 +8,15 @@ menu:
 toc: true
 ---
 
-When a field of an object is read, its reference capability depends both on the reference capability of the field and the reference capability of the __origin__, that is, the object the field is being read from.
+When we talked about fields in the [classes]({{< relref "types/classes.md" >}}) and [variables]({{< relref "expressions/variables.md" >}}) chapters, we passed over the detail of field capabilities. Fields, just like variables, have their own capabilities! A `val` field still refers to something permanently immutable. A `tag` field still can't be read from. An `iso` field is still globally unique: it can only be accessed except through this field of a single instance.
 
-This is because all the guarantees that the __origin__ reference capability makes have to be maintained for its fields as well.
+Once we have fields with capabilities inside objects with capabilities, now we have two capabilities to keep track of.  When a field of an object is accessed or extracted, its reference capability depends both on the reference capability of the field and the reference capability of the __origin__, that is, the object the __field__ is being read from. We have to pick a capability for the combination that maintains the guarantees for both the __origin__ reference capability, and for the capability of the __field__.
 
 # Viewpoint adaptation
 
 The process of combining origin and field capabilities is called __viewpoint adaptation__. That is, the __origin__ has a __viewpoint__, and its fields can be "seen" only from that __viewpoint__.
 
-Let's start with a table. This shows how __fields__ of each capability look to __origins__ of each capability.
+Let's start with a table. This shows how a __field__ of each capability looks when using an __origin__ of each capability.
 
 ---
 
