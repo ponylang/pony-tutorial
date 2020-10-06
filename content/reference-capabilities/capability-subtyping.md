@@ -8,39 +8,53 @@ menu:
 toc: true
 ---
 
-Subtyping is about _substitutability_. That is, if we need to supply a certain type, what other types can we substitute instead? Reference capabilities factor into this.
+## Simple subtypes
 
-## Simple substitution
+Subtyping is about _substitutability_. That is, if we need to supply a certain type, what other types can we substitute instead? Reference capabilities are one important component. We can start by going through a few simpler cases, and then we'll talk about the full chart.
 
-First, let's cover substitution without worrying about ephemeral types (`^`) or alias types (`!`). The `<:` symbol means "is a subtype of" or alternatively "can be substituted for".
+First, let's look at the four capabilities, `ref`, `val`, `box`, `tag`. These have a very useful property: they alias to themselves (and unalias to themselves, as well). This will make the subtyping a lot simpler to work with. Then we can talk about `iso` and `trn`.
 
-* `iso <: trn`. An `iso` is _read and write unique_, and a `trn` is just _write unique_, so it's safe to substitute an `iso` for a `trn`.
-* `trn <: ref`. A `trn` is mutable and also _write unique_. A `ref` is mutable but makes no uniqueness guarantees. It's safe to substitute a `trn` for a `ref`.
-* `trn <: val`. This one is interesting. A `trn` is _write unique_ and a `val` is _globally immutable_, so why is it safe to substitute a `trn` for a `val`? The key is that, in order to do so, you have to _give up_ the `trn` you have. If you give up the _only_ variable that can write to an object, you know that no variable can write to it. That means it's safe to consider it _globally immutable_.
-* `ref <: box`. A `ref` guarantees no _other_ actor can read from or write to the object. A `box` just guarantees no _other_ actor can write to the object, so it's safe to substitute a `ref` for a `box`.
-* `val <: box`. A `val` guarantees _no_ actor, not even this one, can write to the object. A `box` just guarantees no _other_ actor can write to the object, so it's safe to substitute a `val` for a `box`.
-* `box <: tag`. A `box` guarantees no other actor can write to the object, and a `tag` makes no guarantees at all, so it's safe to substitute a `box` for a `tag`.
+To keep things brief, let's add a small shorthand. We'll use the `<:` symbol to me "is a subtype of", or you can read it as "can be used as".
 
-Subtyping is _transitive_. That means that since `iso <: trn` and `trn <: ref` and `ref <: box`, we also get `iso <: box`.
+* `ref <: box`. A `ref` can be written to and read from, but we only need to read to have `box`.
+* `val <: box`. A `val` can be read from and is globally immutable, but to have `box` all we need is the ability to read.
+* `box <: tag`. A `box` can be read from, but `tag` doesn't have any permissions at all. In fact, anything can be used as `tag`.
 
-## Aliased substitution
+That's pretty much all there is to those four. A `ref` could have other mutable aliases, so it can't become `val`, which requires global uniqueness. Likewise,
+`val` can't become `ref` since it can't be used to write (and there could be other `val` aliases requiring immutability).
 
-Now let's consider what happens when we have an alias of a reference capability. For example, if we have some `iso` and we alias it (without doing a `consume` or a destructive read), the type we get is `iso!`, not `iso`.
+Also keep in mind, subtyping is _transitive_. That means that since `val <: box` and `box <: tag`, we also get `val <: tag`.
 
-* `iso! <: tag`. This is a pretty big change. Instead of being a subtype of everything like `iso`, the only thing an `iso!` is a subtype of is `tag`. This is because the `iso` still exists, and is still _read and write unique_. Any alias can neither read from nor write to the object. That means an `iso!` can only be a subtype of `tag`.
-* `trn! <: box`. This is a change too, but not as big a change. Since `trn` is only _write unique_, it's ok for aliases to read from the object, but it's not ok for aliases to write to the object. That means we could have `box` or `val` aliases - except `val` guarantees that _no_ alias can write to the object! Since our `trn` still exists and can write to the object, a `val` alias would break the guarantees that `val` makes. So a `trn!` can only be a subtype of `box` (and, transitively, `tag` as well).
-* `ref! <: ref`. Since a `ref` only guarantees that _other_ actors can neither read from nor write to the object, it's ok to make more `ref` aliases within the same actor.
-* `val! <: val`. Since a `val` only guarantees that _no_ actor can write to the object, its ok to make more `val` aliases since they can't write to the object either.
-* `box! <: box`. A `box` only guarantees that _other_ actors can't write to the object. Both `val` and `ref` make that guarantee too, so why can `box` only alias as `box`? It's because we can't make _more_ guarantees when we alias something. That means `box` can only alias as `box`.
-* `tag! <: tag`. A `tag` doesn't make any guarantees at all. Just like with a `box`, we can't make more guarantees when we make a new alias, so a `tag` can only alias as a `tag`.
+## Subtypes of unique capabilities
 
-## Ephemeral substitution
+When it comes to talking about unique capabilities, the situation is a bit more complex. With variables, we only had the six basic capabilities,
+but we're talking about expressions here. We'll have to work with aliased and unaliased forms of the capabilities.
 
-The last case to consider is when we have an ephemeral reference capability. For example, if we have some `iso` and we `consume` it or do a destructive read, the type we get is `iso^`, not `iso`.
+Let's get one thing settled right off the bat: `iso! = tag`, and `trn! = box`. Remember that `!` is the modifier for stable, named aliases. So it's the strongest capability that is compatible with the original. In the case of `iso`, nothing else is allowed access, so we get `tag`, and for `trn` we allow readable aliases,
+so we get `box` (of course the original `trn` alias is mutable, so we can't have `val`).
 
-* `iso^ <: iso`. This is pretty simple. When we give an `iso^` a name, by assigning it to something or passing it as an argument to a method, it loses the `^` and becomes a plain old `iso`. We know we gave up our previous `iso`, so it's safe to have a new one.
-* `trn^ <: trn`. This works exactly like `iso^`. The guarantee is weaker (_write uniqueness_ instead of _read and write uniqueness_), but it works the same way.
-* `ref^ <: ref^` and `ref^ <: ref` and `ref <: ref^`. Here, we have another case. Not only is a `ref^` a subtype of a `ref`, it's also a subtype of a `ref^`. What's going on here? The reason is that an ephemeral reference capability is a way of saying "a reference capability that, when aliased, results in the base reference capability". Since a `ref` can be aliased as a `ref`, that means `ref` and `ref^` are completely interchangeable.
-* `val^`, `box^`, `tag^`. These all work the same way as `ref`, that is, they are interchangeable with the base reference capability. It's for the same reason: all of these reference capabilities can be aliased as themselves.
+From here, let's talk about ephemeral capabilities. Remember that the way to get an ephemeral capability is by _unaliasing_, that is, moving a value out of a
+named location with `consume` or destructive read.
 
-__Why do `ref^`, `val^`, `box^`, and `tag^` exist if they are interchangeable with their base reference capabilities?__ It's for two reasons: __reference capability recovery__ and __generics__. We'll cover both of those later.
+Subtyping here is surprisingly simple: `iso^` is a subcap of absolutely everything, and `trn^` is a subcap of `ref` and `val`. Let's go through the interesting cases again with these two:
+
+* `iso^ <: trn^`. An `iso^` guarantees there's no readable or writable aliases, whereas `trn^` just needs no writable aliases. So this case is easy.
+* `trn^ <: ref`. A `trn^` reference can be used to read and write, which is enough for `ref`.
+* `trn^ <: val`. This one may take a second: A `trn^` reference has no writable aliases. A `val` requires global immutability, so we can forget our
+writable access in order to get `val`, since we know no other aliases can write.
+
+Remember that subtyping is transitive, so we can get everything else from here.
+
+## Temporary unique access
+
+Above we've talked about stable aliases, and unaliasing, but what about when we just use a variable?
+If `x` is `iso`, what's the type of the expression that's just `x`? It would be pretty useless if we could only use our `iso` variables as `tag`. We couldn't modify fields or call any methods.
+
+What we get is the bare `iso` capabillity. Like `ref`, this allows us to read and write, *but* we'll have to keep the destination isolated. We'll get into what
+kind of things we can do with it later, but for now, we'll talk about subtyping.
+
+* `iso^` <: `iso`. As before, `iso^` can become *anything*. This isn't enormously useful, all told, but an `iso^` expression with no other names
+is stronger than a expression pointing to an existing `iso` name.
+* `trn^` <: `trn`. This is more or less exactly the same.
+* `iso` <: `tag`. That's it, we can't coerce `iso` to anything else since the original name is still around, but we can always drop down to `tag` (which is just `iso!`).
+* `trn` <: `box`. This is quite similar, we can forget our ability to write and just get a new `box` alias to store.
