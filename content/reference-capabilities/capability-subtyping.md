@@ -40,8 +40,7 @@ Subtyping here is surprisingly simple: `iso^` is a subcap of absolutely everythi
 
 * `iso^ <: trn^`. An `iso^` guarantees there's no readable or writable aliases, whereas `trn^` just needs no writable aliases. So this case is easy.
 * `trn^ <: ref`. A `trn^` reference can be used to read and write, which is enough for `ref`.
-* `trn^ <: val`. This one may take a second: A `trn^` reference has no writable aliases. A `val` requires global immutability, so we can forget our
-writable access in order to get `val`, since we know no other aliases can write.
+* `trn^ <: val`. A `trn^` reference has no writable aliases. A `val` requires global immutability, so we can forget our writable access in order to get `val`, since we know no other aliases can write.
 
 Remember that subtyping is transitive, so we can get everything else from here.
 
@@ -53,8 +52,8 @@ If `x` is `iso`, what's the type of the expression that's just `x`? It would be 
 What we get is the bare `iso` capabillity. Like `ref`, this allows us to read and write, *but* we'll have to keep the destination isolated. We'll get into what
 kind of things we can do with it later, but for now, we'll talk about subtyping.
 
-* `iso^` <: `iso`. As before, `iso^` can become *anything*. This isn't enormously useful, all told, but an `iso^` expression with no other names
+* `iso^` <: `iso`. As mentioned earlier, `iso^` can become *anything*. This isn't enormously useful, all told, but an `iso^` expression with no other names
 is stronger than a expression pointing to an existing `iso` name.
-* `trn^` <: `trn`. This is more or less exactly the same.
-* `iso` <: `tag`. That's it, we can't coerce `iso` to anything else since the original name is still around, but we can always drop down to `tag` (which is just `iso!`).
+* `trn^` <: `trn`. Similarly, we may use an expression that has no writable aliases, as an expression which has one unique writeable alias.
+* `iso` <: `tag`. We can't coerce `iso` to anything else since the original name is still around, but we can always drop down to `tag` (which is just `iso!`).
 * `trn` <: `box`. This is quite similar, we can forget our ability to write and just get a new `box` alias to store.
