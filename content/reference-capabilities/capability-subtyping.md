@@ -44,7 +44,7 @@ Subtyping here is surprisingly simple: `iso^` is a sub-capability of absolutely 
 We just talked about stable aliases, and unaliasing, but what about when we just use a variable without making an alias?
 If `x` is `iso`, what type do we give to the expression `x`? It would be pretty useless if we could only use our `iso` variables as `tag`. We couldn't modify fields or call any methods.
 
-What we get is the bare `iso` capabillity. Like `ref`, this allows us to read and write, *but* we will have to keep the destination isolated. We will get into what kind of things we can do with it later, but for now, we will talk about subtyping.
+What we get is the bare `iso` capability. Like `ref`, this allows us to read and write, *but* we will have to keep the destination isolated. We will get into what kind of things we can do with it later, but for now, we will talk about subtyping.
 
 * `iso^` <: `iso`. As mentioned earlier, `iso^` can become *anything*. This isn't enormously useful, all told, but an `iso^` expression with no other names
 is stronger than a expression pointing to an existing `iso` name.
