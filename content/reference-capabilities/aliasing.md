@@ -52,6 +52,19 @@ There are three things that count as making an alias:
 
 In all three cases, you are making a new _name_ for the object. This might be the name of a local variable, the name of a field, or the name of a parameter to a method.
 
+## Alias types
+
+For the same reason Pony has ephemeral types, it also has alias types. An alias type is a way of saying "whatever we can safely alias this thing as". It's only needed when dealing with generic types, which we'll discuss later.
+
+We indicate an alias type by putting a `!` at the end. Here's an example:
+
+```pony
+fun test(a: A) =>
+  var b: A! = a
+```
+
+Here, we're using `A` as a __type variable__, which we'll cover later. So `A!` means "an alias of whatever type `A` is".
+
 ## Ephemeral types
 
 In Pony, every expression has a type. So what's the type of `consume a`? It's not the same type as `a`, because it might not be possible to alias `a`. Instead, it's an __ephemeral__ type. That is, it's a type for a value that currently has no name (it might have a name through some other alias, but not the one we just consumed or destructively read).
@@ -67,15 +80,3 @@ Here, our function takes an isolated Wombat as a parameter and returns an epheme
 
 This is useful for dealing with `iso` and `trn` types, and for generic types, but it's also important for constructors. A constructor always returns an ephemeral type, because it's a new object.
 
-## Alias types
-
-For the same reason Pony has ephemeral types, it also has alias types. An alias type is a way of saying "whatever we can safely alias this thing as". It's only needed when dealing with generic types, which we'll discuss later.
-
-We indicate an alias type by putting a `!` at the end. Here's an example:
-
-```pony
-fun test(a: A) =>
-  var b: A! = a
-```
-
-Here, we're using `A` as a __type variable__, which we'll cover later. So `A!` means "an alias of whatever type `A` is".
