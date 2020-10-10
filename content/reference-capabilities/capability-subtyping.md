@@ -23,7 +23,7 @@ To keep things brief, let's add a small shorthand. We'll use the `<:` symbol to 
 That's pretty much all there is to those four. A `ref` could have other mutable aliases, so it can't become `val`, which requires global uniqueness. Likewise,
 `val` can't become `ref` since it can't be used to write (and there could be other `val` aliases requiring immutability).
 
-Also keep in mind, subtyping is _transitive_. That means that since `val <: box` and `box <: tag`, we also get `val <: tag`.
+Also keep in mind, subtyping is _transitive_. That means that since `val <: box` and `box <: tag`, we also get `val <: tag`. The basic cases will be explained below, and transitivity can be used to derive all other subtyping relationships for capabilities.
 
 ## Subtypes of unique capabilities
 
@@ -41,8 +41,6 @@ Subtyping here is surprisingly simple: `iso^` is a subcap of absolutely everythi
 * `iso^ <: trn^`. An `iso^` guarantees there's no readable or writable aliases, whereas `trn^` just needs no writable aliases.
 * `trn^ <: ref`. A `trn^` reference can be used to read and write, which is enough for `ref`.
 * `trn^ <: val`. A `trn^` reference has no writable aliases. A `val` requires global immutability, so we can forget our writable access in order to get `val`, since we know no other aliases can write.
-
-Remember that subtyping is transitive, so we can get everything else from here.
 
 ## Temporary unique access
 
