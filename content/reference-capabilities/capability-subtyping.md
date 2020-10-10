@@ -16,9 +16,9 @@ First, let's look at the four capabilities `ref`, `val`, `box`, and `tag`. These
 
 To keep things brief, let's add a small shorthand. We'll use the `<:` symbol to me "is a subtype of", or you can read it as "can be used as".
 
-* `ref <: box`. A `ref` can be written to and read from, but we only need to read to have `box`.
-* `val <: box`. A `val` can be read from and is globally immutable, but to have `box` all we need is the ability to read.
-* `box <: tag`. A `box` can be read from, but `tag` doesn't have any permissions at all. In fact, anything can be used as `tag`.
+* `ref <: box`. A `ref` can be written to and read from, while `box` only has the permission to read.
+* `val <: box`. A `val` can be read from and is globally immutable, while `box` only requires the ability to read.
+* `box <: tag`. A `box` can be read from, while a `tag` doesn't have any permissions at all. In fact, anything can be used as `tag`.
 
 That's pretty much all there is to those four. A `ref` could have other mutable aliases, so it can't become `val`, which requires global uniqueness. Likewise,
 `val` can't become `ref` since it can't be used to write (and there could be other `val` aliases requiring immutability).
@@ -38,7 +38,7 @@ named location with `consume` or destructive read.
 
 Subtyping here is surprisingly simple: `iso^` is a subcap of absolutely everything, and `trn^` is a subcap of `ref` and `val`. Let's go through the interesting cases again with these two:
 
-* `iso^ <: trn^`. An `iso^` guarantees there's no readable or writable aliases, whereas `trn^` just needs no writable aliases. So this case is easy.
+* `iso^ <: trn^`. An `iso^` guarantees there's no readable or writable aliases, whereas `trn^` just needs no writable aliases.
 * `trn^ <: ref`. A `trn^` reference can be used to read and write, which is enough for `ref`.
 * `trn^ <: val`. A `trn^` reference has no writable aliases. A `val` requires global immutability, so we can forget our writable access in order to get `val`, since we know no other aliases can write.
 
