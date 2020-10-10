@@ -36,7 +36,7 @@ so we get `box` (of course the original `trn` alias is mutable, so we can't have
 From here, let's talk about ephemeral capabilities. Remember that the way to get an ephemeral capability is by _unaliasing_, that is, moving a value out of a
 named location with `consume` or destructive read.
 
-Subtyping here is surprisingly simple: `iso^` is a subcap of absolutely everything, and `trn^` is a subcap of `ref` and `val`. Let's go through the interesting cases again with these two:
+Subtyping here is surprisingly simple: `iso^` is a sub-capability of absolutely everything, and `trn^` is a sub-capability of `ref` and `val`. Let's go through the interesting cases again with these two:
 
 * `iso^ <: trn^`. An `iso^` guarantees there's no readable or writable aliases, whereas `trn^` just needs no writable aliases.
 * `trn^ <: ref`. A `trn^` reference can be used to read and write, which is enough for `ref`.
