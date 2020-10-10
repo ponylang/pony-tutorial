@@ -20,7 +20,7 @@ To keep things brief, let's add a small shorthand. We will use the `<:` symbol t
 * `val <: box`. A `val` can be read from and is globally immutable, while `box` only requires the ability to read.
 * `box <: tag`. A `box` can be read from, while a `tag` doesn't have any permissions at all. In fact, anything can be used as `tag`.
 
-That's pretty much all there is to those four. A `ref` could have other mutable aliases, so it can't become `val`, which requires global uniqueness. Likewise,
+That's all there is to those four. A `ref` could have other mutable aliases, so it can't become `val`, which requires global uniqueness. Likewise,
 `val` can't become `ref` since it can't be used to write (and there could be other `val` aliases requiring immutability).
 
 Also keep in mind, subtyping is _transitive_. That means that since `val <: box` and `box <: tag`, we also get `val <: tag`. The basic cases will be explained below, and transitivity can be used to derive all other subtyping relationships for capabilities.
