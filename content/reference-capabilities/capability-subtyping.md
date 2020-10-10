@@ -12,7 +12,7 @@ toc: true
 
 Subtyping is about _substitutability_. That is, if we need to supply a certain type, what other types can we substitute instead? Reference capabilities are one important component. We can start by going through a few simpler cases, and then we'll talk about the full chart.
 
-First, let's look at the four capabilities, `ref`, `val`, `box`, `tag`. These have a very useful property: they alias to themselves (and unalias to themselves, as well). This will make the subtyping a lot simpler to work with. Then we can talk about `iso` and `trn`.
+First, let's look at the four capabilities `ref`, `val`, `box`, and `tag`. These have a very useful property: they alias to themselves (and unalias to themselves, as well). This will make the subtyping a lot simpler to work with. Then we can talk about `iso` and `trn`.
 
 To keep things brief, let's add a small shorthand. We'll use the `<:` symbol to me "is a subtype of", or you can read it as "can be used as".
 
