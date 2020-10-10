@@ -30,9 +30,6 @@ Also keep in mind, subtyping is _transitive_. That means that since `val <: box`
 When it comes to talking about unique capabilities, the situation is a bit more complex. With variables, we only had the six basic capabilities,
 but we're talking about expressions here. We will have to work with aliased and unaliased forms of the capabilities.
 
-Let's get one thing settled right off the bat: `iso! = tag`, and `trn! = box`. Remember that `!` is the modifier for stable, named aliases. So it's the strongest capability that is compatible with the original. In the case of `iso`, nothing else is allowed access, so we get `tag`, and for `trn` we allow readable aliases,
-so we get `box` (of course the original `trn` alias is mutable, so we can't have `val`).
-
 From here, let's talk about ephemeral capabilities. Remember that the way to get an ephemeral capability is by _unaliasing_, that is, moving a value out of a
 named location with `consume` or destructive read.
 
