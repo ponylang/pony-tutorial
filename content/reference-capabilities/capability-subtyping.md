@@ -14,7 +14,7 @@ Subtyping is about _substitutability_. That is, if we need to supply a certain t
 
 First, let's focus on the four capabilities `ref`, `val`, `box`, and `tag`. These have a very useful property: they alias to themselves (and unalias to themselves, as well). This will make the subtyping a lot simpler to work with. Then we can talk about `iso` and `trn`.
 
-To keep things brief, let's add a small shorthand. We'll use the `<:` symbol to me "is a subtype of", or you can read it as "can be used as".
+To keep things brief, let's add a small shorthand. We'll use the `<:` symbol to mean "is a subtype of", or you can read it as "can be used as".
 
 * `ref <: box`. A `ref` can be written to and read from, while `box` only has the permission to read.
 * `val <: box`. A `val` can be read from and is globally immutable, while `box` only requires the ability to read.
