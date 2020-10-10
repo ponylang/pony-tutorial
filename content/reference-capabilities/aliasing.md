@@ -63,8 +63,7 @@ fun test(a: A) =>
   var b: A! = a
 ```
 
-Here, we're using `A` as a __type variable__, which we'll cover later. So `A!` means "an alias of whatever type `A` is".
-We can also use it to talk about capabilities: we could have written the statements about `iso` and `trn` as just `iso!` = `tag` and `trn!` = `box`.
+Here, we're using `A` as a __type variable__, which we'll cover later. So `A!` means "an alias of whatever type `A` is". We can also use it to talk about capabilities: we could have written the statements about `iso` and `trn` as just `iso!` = `tag` and `trn!` = `box`.
 
 ## Ephemeral types
 
