@@ -16,7 +16,7 @@ First, let's focus on the four capabilities `ref`, `val`, `box`, and `tag`. Thes
 
 To keep things brief, let's add a small shorthand. We will use the `<:` symbol to mean "is a subtype of", or you can read it as "can be used as".
 
-* `ref <: box`. A `ref` can be written to and read from, while `box` only has the permission to read.
+* `ref <: box`. A `ref` can be written to and read from, while `box` only needs the ability to read.
 * `val <: box`. A `val` can be read from and is globally immutable, while `box` only requires the ability to read.
 * `box <: tag`. A `box` can be read from, while a `tag` doesn't have any permissions at all. In fact, anything can be used as `tag`.
 
