@@ -54,7 +54,7 @@ In all three cases, you are making a new _name_ for the object. This might be th
 
 ## Alias types
 
-For the same reason Pony has ephemeral types, it also has alias types. An alias type is a way of saying "whatever we can safely alias this thing as". It's only needed when dealing with generic types, which we'll discuss later.
+Occasionally we'll want to talk about the type of an alias generically. An alias type is a way of saying "whatever we can safely alias this thing as". We'll discuss generic types later, which will put this to use, but for now it will help us talk about aliases of capabilities in the future.
 
 We indicate an alias type by putting a `!` at the end. Here's an example:
 
