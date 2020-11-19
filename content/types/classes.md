@@ -100,7 +100,7 @@ class Owl
     _hunger_level = 42
 ```
 
-Here we have two classes, because the `Hawk` class defines no constructors, a default constructor with zero arguments called `create` is generated. The `Owl` defines it's own constructor that sets the `_hunger_level`.
+Here we have two classes, because the `Hawk` class defines no constructors, a default constructor with zero arguments called `create` is generated. The `Owl` defines its own constructor that sets the `_hunger_level`.
 
 When constructing instances of classes that have zero-argument constructors, they can be constructed with just the class name:
 ```pony
