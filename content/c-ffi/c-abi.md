@@ -49,7 +49,7 @@ extern "C"
 
 Note the use of `extern "C"`. If the library is built as C++ then we need to tell the compiler not to mangle the function name, otherwise, Pony won't be able to find it. For libraries built as C, this is not needed, of course.
 
-The implemented would be something like:
+The implementation of the previous header would be something like:
 
 ```c
 #include <stdint.h>
