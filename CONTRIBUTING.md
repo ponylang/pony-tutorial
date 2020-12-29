@@ -20,15 +20,17 @@ Avoid hard-wrapping lines within paragraphs (using line breaks in the middle of 
 
 ## How to create document reference
 
-Please use Hugo's `shortcodes syntax` for creating references to documents. The `ref` and `relref` shortcode resolves the absolute or relative permalink given a path to a document. 
+Please use Hugo's `shortcodes syntax` for creating references to documents. The `ref` and `relref` shortcode resolves the absolute or relative permalink given a path to a document.
 
 The referenced document is in the current directory:
+
 ````markdown
 [Object Literals section]({{< relref "object-literals.md" >}})
 [Infix Operators]({{< relref "ops.md#infix-operators" >}})
 ````
 
 The referenced document is in the other directory:
+
 ````markdown
 [Object Literals section]({{< relref "expressions/object-literals.md" >}})
 [Infix Operators]({{< relref "expressions/ops.md#infix-operators" >}})
@@ -55,7 +57,7 @@ Writing good documentation is hard. In the end, "good" is highly subjective. All
 * What assumptions am I making about the reader, their background and their knowledge?
 * How can I explain this in more than one way so a wider variety of people will understand it?
 
-When writing documentation for the widest possible audience, brevity is not your friend. Even if you feel you have already explained something, explain it in a different way. The person who didn't understand the first explanation but understood the second will thank you. 
+When writing documentation for the widest possible audience, brevity is not your friend. Even if you feel you have already explained something, explain it in a different way. The person who didn't understand the first explanation but understood the second will thank you.
 
 The target audience for this tutorial is anyone with a modicum of experience with another programming language. It isn't targetting people who have no programming experience. We don't assume that the reader has worked with a statically typed language before. We don't assume a wealth of experience in the field. We strive to make this tutorial as accessible to the programmer with 9 months of Python experience as it is to the polyglot programmer with 20 years of industry experience. It is acceptable to create content that targets a subset of the audience (for example Java programmers) so long as the same content is addressed in a fashion that covers the general audience as well.
 

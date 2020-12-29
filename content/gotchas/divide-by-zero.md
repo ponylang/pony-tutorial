@@ -46,7 +46,7 @@ But declaring this case as undefined does not help us out here. As a programmer 
 
 ### Divide by zero on floating points
 
-In conformance with IEEE 754, *floating point division by zero results in `inf` or `-inf`*, depending on the sign of the numerator. 
+In conformance with IEEE 754, *floating point division by zero results in `inf` or `-inf`*, depending on the sign of the numerator.
 
 If you can assert that your denominator cannot be `0`, it is possible to use [Unsafe Division]({{< relref "expressions/arithmetic.md#floating-point" >}}) to gain some performance:
 

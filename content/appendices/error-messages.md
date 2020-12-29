@@ -29,7 +29,7 @@ actor Main
 
 The error message would be:
 
-```
+```error
 Error:
 .../a.pony:6:5: can't assign to a let or embed definition more than once
     x = 12
@@ -57,7 +57,7 @@ class Wombat
 
 The error message would be:
 
-```
+```error
 Error:
 .../a.pony:4:11: cannot write to a field in a box function. If you are trying to change state in a function use fun ref
     color = new_color
@@ -83,7 +83,7 @@ In this example, rather than trying to change the value of a field, the code cal
 
 The problem is very similar to that of the last section, but the error message is significantly more complicated:
 
-```
+```error
 Error:
 ../a.pony:4:16: receiver type is not a subtype of target type
     colors.push(color)
@@ -104,7 +104,7 @@ Once again, Pony is trying to be helpful. The first few lines describe the error
 
 Unfortunately, this message does not locate the error as clearly as the previous examples.
 
-Breaking it down, the issue seems to be with the call to `push`, with the receiver `colors`. The receiver type is `this->Array[String val] ref`; in other words, the view that this method has of a field whose type is `Array[String val] ref`. In the class `Rainbow`, the field `colors` is indeed declared with the type `Array[String]`, and the default reference capability for `String`s is `val` while the default reference capability for `Array` is `ref`. 
+Breaking it down, the issue seems to be with the call to `push`, with the receiver `colors`. The receiver type is `this->Array[String val] ref`; in other words, the view that this method has of a field whose type is `Array[String val] ref`. In the class `Rainbow`, the field `colors` is indeed declared with the type `Array[String]`, and the default reference capability for `String`s is `val` while the default reference capability for `Array` is `ref`.
 
 The "target type" in this example is the type declaration for the method `push` of the class `Array`, with its type variable `A` replaced by `String` (again, with a default reference capability of `val`). The reference capability for the overall array, as required by the receiver reference capability of `push`, is `ref`. It seems that the receiver type and the target type should be pretty close.
 

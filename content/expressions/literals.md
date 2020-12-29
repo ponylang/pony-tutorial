@@ -17,7 +17,7 @@ Values!
 
 In our Pony programs!
 
-**Say no more**
+***Say no more***
 
 Every programming language has literals to encode values of certain types, and so does Pony.
 
@@ -35,9 +35,9 @@ In most cases Pony is able to infer the concrete type of the literal from the co
 
 It is possible to help the compiler determine the concrete type of the literal using a constructor of one of the numeric types:
 
- * U8, U16, U32, U64, U128, USize, ULong
- * I8, I16, I32, I64, I128, ISize, ILong
- * F32, F64
+* U8, U16, U32, U64, U128, USize, ULong
+* I8, I16, I32, I64, I128, ISize, ILong
+* F32, F64
 
 ```pony
 let my_explicit_unsigned: U32 = 42_000
@@ -84,7 +84,6 @@ It is possible to have character literals that contain multiple characters. The 
 ```pony
 let multiByte: U64 = 'ABCD' // 0x41424344
 ```
-
 
 ## String Literals
 
@@ -154,7 +153,7 @@ let triple_quoted_string_docs =
     so it can be conveniently aligned with the enclosing indentation
     e.g. each line of this literal will get its first two whitespaces removed
   * Whitespace after the opening and before the closing triple quote will be
-    removed as well. The first line will be completely removed if it only 
+    removed as well. The first line will be completely removed if it only
     contains whitespace. e.g. this strings first character is `T` not `\n`.
   """
 ```
@@ -188,7 +187,7 @@ let my_literal_array =
 If the type of the array is not specified, the resulting type of the literal array expression is `Array[T] ref` where `T` (the type of the elements) is inferred as the union of all the element types:
 
 ```pony
-let my_heterogenous_array = 
+let my_heterogenous_array =
   [
     U64(42)
     "42"
@@ -241,6 +240,6 @@ If a type is specified on the left-hand side, it needs to exactly match the type
 
 ### Arrays and References
 
-Constructing an array with a literal creates new references to its elements. Thus, to be 100% technically correct, array literal elements are inferred to be the alias of the actual element type. If all elements are of type `T` the array literal will be inferred as `Array[T!] ref` that is as an array of aliases of the type `T`. 
+Constructing an array with a literal creates new references to its elements. Thus, to be 100% technically correct, array literal elements are inferred to be the alias of the actual element type. If all elements are of type `T` the array literal will be inferred as `Array[T!] ref` that is as an array of aliases of the type `T`.
 
 It is thus necessary to use elements that can have more than one reference of the same type (e.g. types with `val` or `ref` capability) or use ephemeral types for other capabilities (as returned from [constructors]({{< relref "types/classes.md#constructors" >}}) or the [consume expression]({{< relref "reference-capabilities/consume-and-destructive-read.md" >}})).

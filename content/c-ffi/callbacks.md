@@ -59,7 +59,7 @@ struct S
 
 In the same vein as bare functions, bare lambdas cannot specify captures, cannot use `this` neither as an identifier nor as a type, and cannot specify a receiver capability. In addition, a bare lambda object always has a `val` capability.
 
-Classic lambda types and bare lambda types can never be subtypes of each other. 
+Classic lambda types and bare lambda types can never be subtypes of each other.
 
 ## An example
 

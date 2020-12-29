@@ -35,7 +35,7 @@ fun jch(key: U64, buckets: I64): I32 =>
 
 Let's say we wish to compare the pure Pony performance to an existing C function with the following header:
 
-```C
+```c
 #ifndef __JCH_H_
 #define __JCH_H_
 
@@ -51,7 +51,7 @@ Note the use of `extern "C"`. If the library is built as C++ then we need to tel
 
 The implemented would be something like:
 
-```C
+```c
 #include <stdint.h>
 #include <limits.h>
 #include "math.h"
@@ -84,7 +84,7 @@ int32_t jch_chash(uint64_t key, uint32_t num_buckets)
 
 We need to compile the native code to a shared library. This example is for OSX. The exact details may vary on other platforms.
 
-```
+```bash
 clang -fPIC -Wall -Wextra -O3 -g -MM jch.c >jch.d
 clang -fPIC -Wall -Wextra -O3 -g   -c -o jch.o jch.c
 clang -shared -lm -o libjch.dylib jch.o
@@ -93,7 +93,7 @@ clang -shared -lm -o libjch.dylib jch.o
 The Pony code to use this new C library is just like the code we've already seen for using C libraries.
 
 ```pony
-""" 
+"""
 This is an example of Pony integrating with native code via the built-in FFI
 support
 """

@@ -120,7 +120,7 @@ actor Main
 
 This fails to compile. The first error is:
 
-```
+```error
 main.pony:5:8: right side must be a subtype of left side
     _c = c
        ^

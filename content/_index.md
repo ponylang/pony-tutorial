@@ -93,7 +93,7 @@ If you are looking for an answer "right now", we suggest you give our [Zulip com
 
 Think you've found a bug? Check your understanding first by writing to the ["beginner help" stream in Zulip](https://ponylang.zulipchat.com/#narrow/stream/189985-beginner-help). Once you know it's a bug, [open an issue](https://github.com/ponylang/ponyc/issues).
 
-# Help us
+## Help us
 
 Found a typo in this tutorial? Perhaps something isn't clear? We welcome pull requests against the tutorial: [https://github.com/ponylang/pony-tutorial](https://github.com/ponylang/pony-tutorial).
 

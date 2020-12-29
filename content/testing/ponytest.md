@@ -48,6 +48,7 @@ class iso _TestSub is UnitTest
   fun apply(h: TestHelper) =>
     h.assert_eq[U32](2, 4 - 2)
 ```
+
  The make() constructor is not needed for this example. However, it allows for easy aggregation of tests (see below) so it is recommended that all test Mains provide it.
 
 Main.create() is called only for program invocations on the current package. Main.make() is called during aggregation. If so desired extra code can be added to either of these constructors to perform additional tasks.

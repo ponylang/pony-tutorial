@@ -11,12 +11,14 @@ toc: true
 Small _how do I_ examples for Pony. These will eventually find another home. Until then, they live here.
 
 ## Enum with values
+
 ```pony
 primitive Black fun apply(): U32 => 0xFF000000
 primitive Red   fun apply(): U32 => 0xFFFF0000
 ```
 
 ## Enum with values with namespace
+
 ```pony
 primitive Colours
   fun black(): U32 => 0xFF000000
@@ -24,6 +26,7 @@ primitive Colours
 ```
 
 ## Enum which can be iterated
+
 ```pony
 primitive Black
 primitive Blue
@@ -41,7 +44,9 @@ end
 ```
 
 ## Read struct values from FFI
+
 If you have a C struct which returns a struct with data like this
+
 ```c
 typedef struct {
   uint8_t code;
@@ -55,13 +60,16 @@ EGLEvent getEvent() {
 }
 
 ```
+
 the you can destructure it and get the values using a tuple
+
 ```pony
 type EGLEvent is (U8, F32, F32)
 (var code, var x, var y) = @getEvent[EGLEvent]()
 ```
 
 ## Get and pass pointers to FFI
+
 ```pony
 primitive _XDisplayHandle
 primitive _EGLDisplayHandle
@@ -78,6 +86,7 @@ end
 ```
 
 ## Pass an Array of values to FFI (TODO)
+
 ```pony
 primitive _EGLConfigHandle
 let a = Array[U16](8)
@@ -97,6 +106,7 @@ end
 ```
 
 ## How to access command line arguments
+
 ```pony
 actor Main
   new create(env: Env) =>
@@ -147,7 +157,9 @@ actor Main
 ```
 
 ## How to write tests
-Just create a test.pony file
+
+Create a test.pony file
+
 ```pony
 use "ponytest"
 
@@ -169,6 +181,7 @@ class iso _TestAddition is UnitTest
 ```
 
 Some assertions you can make with the TestHelper are
+
 ```pony
 fun tag log(msg: String, verbose: Bool = false)
 be fail() =>
@@ -188,6 +201,7 @@ fun tag expect_eq[A: (Equatable[A] #read & Stringable)]
 ```
 
 ## Operator overloading (easy for copy and paste)
+
 ```pony
 fun add(other: A): A
 fun sub(other: A): A
@@ -209,6 +223,7 @@ fun op_xor(othr: A): A
 ```
 
 ## Create empty functions in a class
+
 ```pony
 class Test
   fun alpha() =>

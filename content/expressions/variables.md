@@ -65,10 +65,10 @@ x = 5  // OK
 y = 6  // Error, y is let
 ```
 
-Using `let` instead of `var` also means the variable has to be assigned immediately. 
+Using `let` instead of `var` also means the variable has to be assigned immediately.
 
 ```pony
-let x: U32 = 3 // Ok 
+let x: U32 = 3 // Ok
 let y: U32 // Error, can't declare a let local without assigning to it
 y = 6 // Error, can't reassign to a let local
 ```
@@ -86,29 +86,34 @@ Fields have the same lifetime as the object they're in, rather than being scoped
 If the name of a field starts with `_`, it's __private__. That means only the type the field is in can have code that reads or writes that field. Otherwise, the field is __public__ and can be read or written from anywhere.
 
 Just like local variables, fields can be `var` or `let`. Nevertheless, rules for field assignment differ a bit from variable assignment. No matter the type of the field (either `var` or `let`), either:
-1. an initial value has to be assigned in their definition or 
+
+1. an initial value has to be assigned in their definition or
 2. an initial value has to be assigned in the constructor method.
 
 In the example below, the initial value of the two fields of the class `Wombat` is assigned at the definition level:
+
 ```pony
 class Wombat
   let name: String = "Fantastibat"
   var _hunger_level: U32 = 0
 ```
+
 Alternatively, these fields could be assigned in the constructor method:
 
 ```pony
 class Wombat
   let name: String
   var _hunger_level: U32
-  
+
   new create(hunger: U32) =>
     name = "Fantastibat"
     _hunger_level = hunger
 ```
-If the assignment is not done at the definition level or in the constructor, an error is raised by the compiler. This is true for both `var` and `let` fields. 
+
+If the assignment is not done at the definition level or in the constructor, an error is raised by the compiler. This is true for both `var` and `let` fields.
 
 Please note that the assignment of a value to a field has to be explicit. The below example raises an error when compiled, even when the field is of `var` type:
+
 ```pony
 class Wombat
   let name: String
@@ -118,10 +123,11 @@ class Wombat
     name = name'
     set_hunger_level(level)
     // Error: field _hunger_level left undefined in constructor
-  
+
   fun ref set_hunger_level(hunger_level: U64) =>
     _hunger_level = hunger_level
 ```
+
 We will see later in the Methods section that a class can have several constructors. For now, just remember that if the assignment of a field is not done at the definition level, it has to be done in each constructor of the class the field belongs to.
 
 As for variables, using `var` means a field can be assigned and reassigned as many times as you like in the class. Using `let` means the field can only be assigned once.

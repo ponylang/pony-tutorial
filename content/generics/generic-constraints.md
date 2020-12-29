@@ -18,9 +18,9 @@ class Foo[A: Any val]
 
 Without the constraint, the generic must work for all possible capabilities. Sometimes you don't want to be limited to a specific capability and you can't support all capabilities. The solution for this is generic constraint qualifiers. These represent classes of capabilities that are accepted in the generic. The valid qualifiers are:
 
-| &#x25B7;        | Capabilities allowed         | Description 
+| &#x25B7;        | Capabilities allowed         | Description
 |-----------------|------------------------------|-------------
-| #read           | ref, val, box                | Anything you can read from 
+| #read           | ref, val, box                | Anything you can read from
 | #send           | iso, val, tag                | Anything you can send to an actor
 | #share          | val, tag                     | Anything you can send to more than one actor
 | #any            | iso, trn, ref, val, box, tag | Default of a constraint

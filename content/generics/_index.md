@@ -65,7 +65,7 @@ actor Main
 
 The first thing to note here is that the `Foo` class now takes a type parameter in square brackets, `[A: Any val]`. That syntax for the type parameter is:
 
-    Name: Constraint ReferenceCapability
+Name: Constraint ReferenceCapability
 
 In this case, the name is `A`, the constraint is `Any` and the reference capability is `val`. `Any` is used to mean that the type can be any type - it is not constrained. The remainder of the class definition replaces `U32` with the type name `A`.
 
