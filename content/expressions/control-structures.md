@@ -60,7 +60,7 @@ end
 
 __Why can't I just say "else if" like I do in C? Why the extra keyword?__ The relationship between `if` and `else` in C, and other similar languages, is ambiguous. For example:
 
-```C
+```c
 // C code
 if(a)
   if(b)
@@ -68,6 +68,7 @@ if(a)
 else
   printf("not a\n");
 ```
+
 Here it is not obvious whether the `else` is an alternative to the first or the second `if`. In fact here the `else` relates to the `if(b)` so our example contains a bug. Pony avoids this type of bug by handling `if` and `else` differently and the need for `elseif` comes out of that.
 
 ## Control structures are expressions
@@ -109,7 +110,7 @@ The same rules that apply to the value of an `if` expression applies to loops as
 ```pony
 actor Main
   new create(env: Env) =>
-    var x: (String | None) = 
+    var x: (String | None) =
       for name in ["Bob"; "Fred"; "Sarah"].values() do
         name
       end
@@ -124,7 +125,7 @@ This will give __x__ the value "Sarah" as it is the last name in our list. If ou
 ```pony
 actor Main
   new create(env: Env) =>
-    var x: (String | None) = 
+    var x: (String | None) =
       for name in Array[String].values() do
         name
       else
@@ -141,7 +142,7 @@ Here the value of __x__ is "no names!"
 ```pony
 actor Main
   new create(env: Env) =>
-    var x: (String | None) = 
+    var x: (String | None) =
       for name in Array[String].values() do
         name
       end
@@ -234,6 +235,7 @@ end
 Note the call to `values()` on the array — this is because the loop needs an iterator, not an array.
 
 The iterator does not have to be of any particular type, but needs to provide the following methods:
+
 ```pony
   fun has_next(): Bool
   fun next(): T?

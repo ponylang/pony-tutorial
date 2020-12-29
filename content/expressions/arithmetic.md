@@ -18,7 +18,7 @@ Pony provides different ways of doing arithmetic to give programmers the freedom
 
 ## Integers
 
-### Ponys default Arithmetic
+### Pony's default Integer Arithmetic
 
 Doing arithmetic on integer types in Pony with the well known operators like `+`, `-`, `*`, `/` etc. tries to balance the needs for performance and correctness. All default arithmetic operations do not expose any undefined behaviour or error conditions. That means it handles both the cases for overflow/underflow and division by zero. Overflow/Underflow are handled with proper wrap around semantics, using one's completement on signed integers. In that respect we get behaviour like:
 
@@ -50,7 +50,7 @@ Operator | Method | Description
 
 ---
 
-### Unsafe Arithmetic
+### Unsafe Integer Arithmetic
 
 Unsafe integer arithmetic comes close to what you can expect from integer arithmetic in C. No checks, _raw speed_, possibilities of overflow, underflow or division by zero. Like in C, overflow, underflow and division by zero scenarios are undefined. Don't rely on the results in these cases. It could be anything and is highly platform specific. Division by zero might even crash your program with a `SIGFPE`. Our suggestion is to use these operators only if you can make sure you can exclude these cases.
 
@@ -176,7 +176,7 @@ Pony default arithmetic on floating point numbers (`F32`, `F64`) behave as defin
 
 That means e.g. that division by `+0` returns `Inf` and by `-0` returns `-Inf`.
 
-### Unsafe Arithmetic
+### Unsafe Floating Point Arithmetic
 
 Unsafe Floating Point operations do not necessarily comply with IEEE 754 for every input or every result. If any argument to an unsafe operation or its result are `+/-Inf` or `NaN`, the result is actually undefined.
 
@@ -203,5 +203,3 @@ Operator | Method
 ---
 
 Additionally `sqrt_unsafe()` is undefined for negative values.
-
-

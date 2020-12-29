@@ -46,7 +46,6 @@ __Is there anything my error handler has to do?__ No. If you provide an error ha
 
 __What's the resulting value of a try block?__ The result of a `try` block is the value of the last statement in the `try` block, or the value of the last statement in the `else` clause if an error was raised. If an error was raised and there was no `else` clause provided, the result value will be `None`.
 
-
 ## Partial functions
 
 Pony does not require that all errors are handled immediately as in our previous examples. Instead, functions can raise errors that are handled by whatever code calls them. These are called partial functions (this is a mathematical term meaning a function that does not have a defined result for all possible inputs, i.e. arguments). Partial functions __must__ be marked as such in Pony with a `?`, both in the function signature (after the return type) and at the call site (after the closing parentheses).

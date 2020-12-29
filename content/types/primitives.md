@@ -25,7 +25,7 @@ There are three main uses of primitives (four, if you count built-in "machine wo
 
 ```pony
 // 2 "marker values"
-primitive OpenedDoor 
+primitive OpenedDoor
 primitive ClosedDoor
 
 // An "enumeration" type
@@ -35,7 +35,7 @@ type DoorState is (OpenedDoor | ClosedDoor)
 primitive BasicMath
   fun add(a: U64, b: U64): U64 =>
     a + b
-  
+
   fun multiply(a: U64, b: U64): U64 =>
     a * b
 
@@ -43,7 +43,7 @@ actor Main
   new create(env: Env) =>
     let doorState : DoorState = ClosedDoor
     let isDoorOpen : Bool = match doorState
-      | OpenedDoor => true 
+      | OpenedDoor => true
       | ClosedDoor => false
     end
     env.out.print("Is door open? " + isDoorOpen.string())

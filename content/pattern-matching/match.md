@@ -116,7 +116,7 @@ At first sight it is easy to confuse a value matching pattern for a type check. 
 class Foo is Equatable[Foo]
 
 actor Main
-  
+
   fun f(x: (Foo | None)): String =>
     match x
     | Foo => "foo"
@@ -153,15 +153,16 @@ fun f(x: (U32 | String | None)): String =>
 __Can I omit the type from a capture, like I can from a local variable?__ Unfortunately no. Since we match on type and value the compiler has to know what type the pattern is, so it can't be inferred.
 
 ## Implicit matching on capabilities in the context of union types
+
 In union types, when we pattern match on individual classes or traits, we also implicitly pattern match on the corresponding capabilities. In the example provided below, if `_x` has static type `(A iso | B ref | None)` and dynamically matches `A`, then we also know that it must be an `A iso`.
 
 ```pony
 class A
-  fun ref sendable() => 
+  fun ref sendable() =>
     None
-  
+
 class B
-  fun ref update() => 
+  fun ref update() =>
     None
 
 actor Main
@@ -181,9 +182,9 @@ Note that using a match expression to differentiate solely based on capabilities
 
 ```pony
 class A
-  fun ref sendable() => 
+  fun ref sendable() =>
     None
-  
+
 actor Main
   var _x: (A iso | A ref | None)
 

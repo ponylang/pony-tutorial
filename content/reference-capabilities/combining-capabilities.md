@@ -12,7 +12,7 @@ When we talked about fields in the [classes]({{< relref "types/classes.md" >}}) 
 
 Once we have fields with capabilities inside objects with capabilities, now we have two capabilities to keep track of.  When a field of an object is accessed or extracted, its reference capability depends both on the reference capability of the field and the reference capability of the __origin__, that is, the object the __field__ is being read from. We have to pick a capability for the combination that maintains the guarantees for both the __origin__ reference capability, and for the capability of the __field__.
 
-# Viewpoint adaptation
+## Viewpoint adaptation
 
 The process of combining origin and field capabilities is called __viewpoint adaptation__. That is, the __origin__ has a __viewpoint__, and its fields can be "seen" only from that __viewpoint__.
 

@@ -10,8 +10,8 @@ toc: true
 Now that you've successfully installed the Pony compiler, let's start programming! Our first program will be a very traditional one. We're going to print "Hello, world!". First, create a directory called `helloworld`:
 
 ```bash
-$ mkdir helloworld
-$ cd helloworld
+mkdir helloworld
+cd helloworld
 ```
 
 __Does the name of the directory matter?__ Yes, it does. It's the name of your program! By default when your program is compiled, the resulting executable binary will have the same name as the directory your program lives in. You can also set the name using the --bin-name or -b options on the command line.

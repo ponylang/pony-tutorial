@@ -18,13 +18,13 @@ This listing explains the usage of every Pony keyword.
 | box | default reference capability – object is readable, but not writable
 | break | to step out of a loop statement
 | class | defines a class
-| compile_error | will provoke a compile error 
+| compile_error | will provoke a compile error
 | compile_intrinsic | implementation is written in C and not available as Pony code
 | continue | continues a loop with the next iteration
 | consume | move a value to a new variable, leaving the original variable empty
 | digestof | create a `USize` value that summarizes the Pony object, similar to a Java object's `hashCode()` value.
 | do | loop statement, or after a with statement
-| else | conditional statement in if, for, while, repeat, try (as a catch block), match 
+| else | conditional statement in if, for, while, repeat, try (as a catch block), match
 | elseif | conditional statement, also used with ifdef
 | embed | embed a class as a field of another class
 | end | ending of: if then, ifdef, while do, for in, repeat until, try, object, lambda, recover, match
@@ -54,7 +54,7 @@ This listing explains the usage of every Pony keyword.
 | repeat | loop statement
 | return | to return early from a function
 | tag | reference capability – neither readable nor writeable, only object identity
-| then | (1) in if conditional statement 
+| then | (1) in if conditional statement
 |      | (2) as a (finally) block in try
 | this | the current object
 | trait | used in nominal subtyping:  class Foo is TraitName
@@ -68,6 +68,6 @@ This listing explains the usage of every Pony keyword.
 |     | (4) add a search path for external libraries: use "path:/usr/local/lib"
 | var | declaration of mutable variable: you can rebind this name to a new value
 | val | reference capability – globally immutable object
-| where | when specifying named arguments 
+| where | when specifying named arguments
 | while | loop statement
 | with  | ensure disposal of an object

@@ -16,7 +16,6 @@ A `struct` is a class like mechanism used to pass data back and forth with C cod
 
 Like classes, Pony structs can contain both fields and methods. Unlike classes, Pony structs have the same binary layout as C structs and can be transparently used in C functions.  Structs do not have a type descriptor, which means they cannot be used in algebraic types or implement traits/interfaces.
 
-
 ## What goes in a struct?
 
 The same as a class! A struct is composed of some combination of:

@@ -28,26 +28,26 @@ In Pony, every reference has both a type and a reference capability. In fact, th
 
 There are a few simple concepts you need to understand before reference capabilities will make any sense. We've talked about some of these already, and some may already be obvious to you, but it's worth recapping here.
 
-__Shared mutable data is hard__
+### Shared mutable data is hard
 
 The problem with concurrency is shared mutable data. If two different threads have access to the same piece of data then they might try to update it at the same time. At best this can lead to the two threads having different versions of the data. At worst the updates can interact badly resulting in the data being overwritten with garbage. The standard way to avoid these problems is to use locks to prevent data updates from happening at the same time. This causes big performance hits and is very difficult to get right, so it causes lots of bugs.
 
-__Immutable data can be safely shared__
+### Immutable data can be safely shared
 
 Any data that is immutable (i.e. it cannot be changed) is safe to use concurrently. Since it is immutable it is never updated and it's the updates that cause concurrency problems.
 
-__Isolated data is safe__
+### Isolated data is safe
 
 If a block of data has only one reference to it then we call it __isolated__. Since there is only one reference to it, isolated data cannot be __shared__ by multiple threads, so there are no concurrency problems. Isolated data can be passed between multiple threads. As long as only one of them has a reference to it at a time then the data is still safe from concurrency problems.
 
-__Isolated data may be complex__
+### Isolated data may be complex
 
 An isolated piece of data may be a single byte. But it can also be a large data structure with multiple references between the various objects in that structure. What matters for the data to be isolated is that there is only a single reference to that structure as a whole. We talk about the __isolation boundary__ of a data structure. For the structure to be isolated:
 
 1. There must only be a single reference outside the boundary that points to an object inside.
 2. There can be any number of references inside the boundary, but none of them must point to an object outside.
 
-__Every actor is single threaded__
+### Every actor is single threaded
 
 The code within a single actor is never run concurrently. This means that, within a single actor, data updates cannot cause problems. It's only when we want to share data between actors that we have problems.
 

@@ -38,7 +38,7 @@ Here we have an `Aardvark` that can eat asynchronously. Clever Aardvark.
 
 ## Message Passing
 
-If you are familiar with actor-based languages like Erlang, you are familiar with the concept of "message passing". It's how actors communicate with one another. Behaviours are the Pony equivalent. When you call a behavior on an actor, you are sending it a message. 
+If you are familiar with actor-based languages like Erlang, you are familiar with the concept of "message passing". It's how actors communicate with one another. Behaviours are the Pony equivalent. When you call a behavior on an actor, you are sending it a message.
 
 If you aren't familiar with message passing, don't worry about it. We've got you covered. All will be explained below.
 

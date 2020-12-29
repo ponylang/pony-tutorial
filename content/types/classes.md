@@ -88,7 +88,8 @@ class Wombat
 
 Here, every `Wombat` begins a little bit thirsty, regardless of which constructor is called.
 
-__Zero Argument Constructors__
+### Zero Argument Constructors
+
 ```pony
 class Hawk
   var _hunger_level: U64 = 0
@@ -103,11 +104,13 @@ class Owl
 Here we have two classes, because the `Hawk` class defines no constructors, a default constructor with zero arguments called `create` is generated. The `Owl` defines its own constructor that sets the `_hunger_level`.
 
 When constructing instances of classes that have zero-argument constructors, they can be constructed with just the class name:
+
 ```pony
 class Forest
   let _owl: Owl = Owl
   let _hawk: Hawk = Hawk
 ```
+
 This is explained later, in more detail in the [sugar]({{< relref "expressions/sugar.md" >}}) section.
 
 ### Functions

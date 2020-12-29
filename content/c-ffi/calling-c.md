@@ -69,7 +69,9 @@ var len = U64(0)
 ```
 
 ### Get and Pass Pointers to FFI
+
 To pass and receive pointers to c structs you need to declare pointer to primitives
+
 ```pony
 primitive _XDisplayHandle
 primitive _EGLDisplayHandle
@@ -102,7 +104,6 @@ let size = Winsize
 
 env.out.print(size.height.string())
 ```
-
 
 ## FFI functions raising errors
 

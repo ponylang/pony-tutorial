@@ -35,7 +35,6 @@ And point your web browser to [http://127.0.0.1:8000](http://127.0.0.1:8000) ser
 
 Note that there is _no built-in debugger_ to interactively step through your program and interpret the results. But ponyc creates proper DWARF symbols and you can step through your programs with a conventional debugger, such as GDB or LLDB.
 
-
-# Runtime options for Pony programs
+## Runtime options for Pony programs
 
 Besides using the `cli` package, there are also several built-in options for the generated binary (_not for use with ponyc_) starting with `--pony*`, see `ponyc --help`, to tweak runtime performance. You can override the number of initial threads, tune cycle detection (_CD_), the garbage collector and even turn off yield, which is not really recommended.
