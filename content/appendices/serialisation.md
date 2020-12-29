@@ -10,6 +10,7 @@ menu:
 Pony provides a built-in mechanism for serialising and deserialising objects so that they can be passed between Pony processes. Serialisation takes an object and turns it into an array of bytes that can be used to send the object to another process by, for example, writing it to a TCP stream. Deserialisation takes an array of bytes and turns them into a Pony object.
 
 Pony uses an intermediate object type called `Serialised` to represent a serialised object. A `Serialised` object can be created in one of two ways:
+
 * calling the `create(...)` constructor with the `SerialiseAuth` authority and the object to serialize
 * calling the `input(...)` constructor with the `DeserialiseAuth` authority and an `Array[U8]` that represents the object to deserialise
 This intermediate object can then be used to either:
@@ -80,6 +81,7 @@ Since `Pointer` fields are opaque to Pony, it is assumed that the serialisation 
 ### Custom Serialisation
 
 In order to serialise an object from a pointer field, Pony needs to know how much space to set aside for that object and how to write a representation of that object into the reserved space. The programmer must provide two methods on the object:
+
 * `fun _serialise_space(): USize` -- This method returns the number of bytes that must be reserved for the object.
 * `fun _serialise(bytes: Pointer[U8] tag)` -- This method receives a pointer to the memory that has been set aside for serialising the object. The programmer must not write more bytes than were returned by the `_serialise_space` method.
 
