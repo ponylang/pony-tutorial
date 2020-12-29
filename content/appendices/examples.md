@@ -61,7 +61,7 @@ EGLEvent getEvent() {
 
 ```
 
-the you can destructure it and get the values using a tuple
+then you can destructure it and get the values using a tuple
 
 ```pony
 type EGLEvent is (U8, F32, F32)
