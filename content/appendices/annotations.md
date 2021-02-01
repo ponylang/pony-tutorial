@@ -56,7 +56,7 @@ The following annotations are recognised by the Pony compiler. Note that the Pon
 
 #### `packed`
 
-Recognised on a a `struct` declaration. Removes padding in the associated `struct`, making it ABI-compatible with a packed C structure with compatible members (declared with the `__attribute__((packed))` extension or the `#pragma pack` preprocessor directive in many C compilers).
+Recognised on a `struct` declaration. Removes padding in the associated `struct`, making it ABI-compatible with a packed C structure with compatible members (declared with the `__attribute__((packed))` extension or the `#pragma pack` preprocessor directive in many C compilers).
 
 ```pony
 struct \packed\ MyPackedStruct

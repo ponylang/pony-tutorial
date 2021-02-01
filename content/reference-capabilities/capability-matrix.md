@@ -43,7 +43,7 @@ __Don't deny any local aliases__ | `ref` | `box` | __`tag`__
 
 In the context of the matrix, "denying a capability" means that any other alias to that reference is not allowed to do that action. For example, since `trn` denies other local write aliases (but allows reads), this is the only reference that allows writing to the object; and since it denies both read and write aliases to other actors, it's safe to write inside this actor, thus being mutable. And since `box` does not break any guarantees that `trn` makes (local reads are allowed, but global writes are forbidden), we can create `box` aliases to a `trn` reference.
 
-You'll notice that the top-right side is empty. That's because, as previously discussed, we cannot make any local guarantees that are more restrictive than the global guarantees, or we'd end up with invalid capabilities that could be written to in this actor but read somewehre else at the same time.
+You'll notice that the top-right side is empty. That's because, as previously discussed, we cannot make any local guarantees that are more restrictive than the global guarantees, or we'd end up with invalid capabilities that could be written to in this actor but read somewhere else at the same time.
 
 The matrix also helps visualizing other concepts previously discussed in this chapter:
 

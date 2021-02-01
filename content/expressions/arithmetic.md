@@ -166,7 +166,7 @@ mulc()         | Checked multiplication, second tuple element is `true` on overf
 divc()         | Checked division, second tuple element is `true` on overflow or division by zero.
 remc()         | Checked remainder, second tuple element is `true` on overflow or division by zero.
 modc()         | Checked modulo, second tuple element is `true` on overflow or division by zero.
-fldc()         | Checked floored division, second typle element is `true` on overflow or division by zero.
+fldc()         | Checked floored division, second tuple element is `true` on overflow or division by zero.
 
 ---
 
