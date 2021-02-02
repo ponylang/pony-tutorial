@@ -1,9 +1,9 @@
 ---
-title: "Control Structures"
-section: "Expressions"
+title: 'Control Structures'
+section: 'Expressions'
 menu:
   toc:
-    parent: "expressions"
+    parent: 'expressions'
     weight: 50
 toc: true
 ---
@@ -20,7 +20,7 @@ if a > b then
 end
 ```
 
-__Can I use integers and pointers for the condition like I can in C?__ No. In Pony `if` conditions must have type Bool, i.e. they are always true or false. If you want to test whether a number `a` is not 0, then you need to explicitly say `a != 0`. This restriction removes a whole category of potential bugs from Pony programs.
+**Can I use integers and pointers for the condition like I can in C?** No. In Pony `if` conditions must have type Bool, i.e. they are always true or false. If you want to test whether a number `a` is not 0, then you need to explicitly say `a != 0`. This restriction removes a whole category of potential bugs from Pony programs.
 
 If you want some alternative code for when the condition fails just add an `else`:
 
@@ -58,7 +58,7 @@ else
 end
 ```
 
-__Why can't I just say "else if" like I do in C? Why the extra keyword?__ The relationship between `if` and `else` in C, and other similar languages, is ambiguous. For example:
+**Why can't I just say "else if" like I do in C? Why the extra keyword?** The relationship between `if` and `else` in C, and other similar languages, is ambiguous. For example:
 
 ```c
 // C code
@@ -83,9 +83,9 @@ This means you can use `if` directly in a calculation:
 x = 1 + if lots then 100 else 2 end
 ```
 
-This will give __x__ a value of either 3 or 101, depending on the variable __lots__.
+This will give **x** a value of either 3 or 101, depending on the variable **lots**.
 
-If the `then` and `else` branches of an `if` produce different types then the `if` produces a __union__ of the two.
+If the `then` and `else` branches of an `if` produce different types then the `if` produces a **union** of the two.
 
 ```pony
 var x: (String | Bool) =
@@ -96,7 +96,7 @@ var x: (String | Bool) =
   end
 ```
 
-__But what if my if doesn't have an else?__ Any `else` branch that doesn't exist gives an implicit `None`.
+**But what if my if doesn't have an else?** Any `else` branch that doesn't exist gives an implicit `None`.
 
 ```pony
 var x: (String | None) =
@@ -120,7 +120,21 @@ actor Main
     end
 ```
 
-This will give __x__ the value "Sarah" as it is the last name in our list. If our loop has 0 iterations, then the value of its `else` block will be the value of __x__. Or if there is no `else` block, the value will be `None`.
+This will give **x** the value "Sarah" as it is the last name in our list. If our loop has 0 iterations, then the value of its `else` block will be the value of **x**. Or if there is no `else` block, the value will be `None`.
+
+You can avoid needing `None` at all by providing a `default value` for when the loop has `0 iterations` by providing an `else` block.
+
+```pony
+  actor Main
+  new create(env: Env) =>
+    var x: String =
+      for name in Array[String].values() do
+        name
+      else
+        "no names!"
+      end
+    env.out.print("x is " + s)
+```
 
 ```pony
 actor Main
@@ -137,7 +151,7 @@ actor Main
     end
 ```
 
-Here the value of __x__ is "no names!"
+Here the value of **x** is "no names!"
 
 ```pony
 actor Main
@@ -152,7 +166,7 @@ actor Main
     end
 ```
 
-And lastly, here __x__ would be `None`.
+And lastly, here **x** would be `None`.
 
 ## Loops
 
@@ -175,9 +189,9 @@ end
 
 Just like `if` expressions, `while` is also an expression. The value returned is just the value of the expression inside the loop the last time we go round it. For this example that will be the value given by `count = count + 1` when count is incremented to 11. Since Pony assignments hand back the _old_ value our `while` loop will return 10.
 
-__But what if the condition evaluates to false the first time we try, then we don't go round the loop at all?__ In Pony `while` expressions can also have an `else` block. In general, Pony `else` blocks provide a value when the expression they are attached to doesn't. A `while` doesn't have a value to give if the condition evaluates to false the first time, so the `else` provides it instead.
+**But what if the condition evaluates to false the first time we try, then we don't go round the loop at all?** In Pony `while` expressions can also have an `else` block. In general, Pony `else` blocks provide a value when the expression they are attached to doesn't. A `while` doesn't have a value to give if the condition evaluates to false the first time, so the `else` provides it instead.
 
-__So is this like an else block on a while loop in Python?__ No, this is very different. In Python, the `else` is run when the `while` completes. In Pony the `else` is only run when the expression in the `while` isn't.
+**So is this like an else block on a while loop in Python?** No, this is very different. In Python, the `else` is run when the `while` completes. In Pony the `else` is only run when the expression in the `while` isn't.
 
 ### Break
 
@@ -206,7 +220,7 @@ The line `name'` appears at the end of the loop so that will be our value return
 
 The `else` block provides our value of "Herbert" if there are no names available at all.
 
-__Can I break out of multiple, nested loops like the Java labeled break?__ No, Pony does not support that. If you need to break out of multiple loops you should probably refactor your code or use a worker function.
+**Can I break out of multiple, nested loops like the Java labeled break?** No, Pony does not support that. If you need to break out of multiple loops you should probably refactor your code or use a worker function.
 
 ### Continue
 
@@ -216,7 +230,7 @@ Sometimes you want to stop part-way through one loop iteration and move onto the
 
 If `continue` is executed during the last iteration of the loop then we have no value to return from the loop. In this case, we use the loop's `else` expression to get a value. As with the `if` expression, if no `else` expression is provided, `None` is returned.
 
-__Can I continue an outer, nested loop like the Java labeled continue?__ No, Pony does not support that. If you need to continue an outer loop you should probably refactor your code.
+**Can I continue an outer, nested loop like the Java labeled continue?** No, Pony does not support that. If you need to continue an outer loop you should probably refactor your code.
 
 ### For
 
@@ -253,9 +267,9 @@ while iterator.has_next() do
 end
 ```
 
-Note that the variable __name__ is declared _let_, so you cannot assign to the control variable within the loop.
+Note that the variable **name** is declared _let_, so you cannot assign to the control variable within the loop.
 
-__Can I use break and continue with for loops?__ Yes, `for` loops can have `else` expressions attached and can use `break` and `continue` just as for `while`.
+**Can I use break and continue with for loops?** Yes, `for` loops can have `else` expressions attached and can use `break` and `continue` just as for `while`.
 
 ### Repeat
 
@@ -282,4 +296,4 @@ actor Main
 
 Just like `while` loops, the value given by a `repeat` loop is the value of the expression within the loop on the last iteration, and `break` and `continue` can be used.
 
-__Since you always go round a repeat loop at least once, do you ever need to give it an else expression?__ Yes, you may need to. A `continue` in the last iteration of a `repeat` loop needs to get a value from somewhere, and an `else` expression is used for that.
+**Since you always go round a repeat loop at least once, do you ever need to give it an else expression?** Yes, you may need to. A `continue` in the last iteration of a `repeat` loop needs to get a value from somewhere, and an `else` expression is used for that.
