@@ -122,6 +122,20 @@ actor Main
 
 This will give __x__ the value "Sarah" as it is the last name in our list. If our loop has 0 iterations, then the value of its `else` block will be the value of __x__. Or if there is no `else` block, the value will be `None`.
 
+You can also avoid needing `None` at all by providing a __default value__ for when the loop has __0 iterations__ by providing an `else` block.
+
+```pony
+  actor Main
+  new create(env: Env) =>
+    var x: String =
+      for name in Array[String].values() do
+        name
+      else
+        "no names!"
+      end
+    env.out.print("x is " + s)
+```
+
 ```pony
 actor Main
   new create(env: Env) =>
