@@ -153,7 +153,6 @@ actor Main
 
 And finally, here the value of __x__ is "no names!"
 
-
 ## Loops
 
 `if` allows you to choose what to do, but in order to do something more than once, you want a loop.
