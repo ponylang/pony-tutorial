@@ -128,8 +128,6 @@ actor Main
     var x: (String | None) =
       for name in Array[String].values() do
         name
-      else
-        "no names!"
       end
     match x
     | let s: String => env.out.print("x is " + s)
@@ -137,22 +135,23 @@ actor Main
     end
 ```
 
-Here the value of __x__ is "no names!"
+Here __x__ would be `None`.
+
+You can also avoid needing `None` at all by providing a __default value__ for when the loop has __0 iterations__ by providing an `else` block.
 
 ```pony
 actor Main
   new create(env: Env) =>
-    var x: (String | None) =
+    var x: String =
       for name in Array[String].values() do
         name
+      else
+        "no names!"
       end
-    match x
-    | let s: String => env.out.print("x is " + s)
-    | None => env.out.print("x is None")
-    end
+    env.out.print("x is " + s)
 ```
 
-And lastly, here __x__ would be `None`.
+And finally, here the value of __x__ is "no names!"
 
 ## Loops
 
