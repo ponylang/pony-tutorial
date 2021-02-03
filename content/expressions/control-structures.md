@@ -125,16 +125,13 @@ This will give __x__ the value "Sarah" as it is the last name in our list. If ou
 ```pony
 actor Main
   new create(env: Env) =>
-    var x: (String | None) =
+    var x: String =
       for name in Array[String].values() do
         name
       else
         "no names!"
       end
-    match x
-    | let s: String => env.out.print("x is " + s)
-    | None => env.out.print("x is None")
-    end
+    env.out.print("x is " + x)
 ```
 
 Here the value of __x__ is "no names!"
