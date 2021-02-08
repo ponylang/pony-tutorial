@@ -32,7 +32,7 @@ One of the hardest parts of learning a new language is figuring out how to do va
 
 ## Standard Library Documentation
 
-You are going to need to learn the standard library. Some of us prefer to open the source code and explore. If you prefer an online experience, we maintain a version of the standard library documentation online. And you don't have to worry about it going out of date as it is updated on every commit to the ponyc master branch.
+You are going to need to learn the standard library. Some of us prefer to open the source code and explore. If you prefer an online experience, we maintain a version of the standard library documentation online. And you don't have to worry about it going out of date as it is updated on every commit to the ponyc main branch.
 
 [Standard Library Documentation](https://stdlib.ponylang.io/)
 

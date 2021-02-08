@@ -16,4 +16,4 @@ However, if you've never used Pony before, we guarantee that you'll come across 
 
 In this tutorial we start off with familiar basics, and try our best to avoid reference capabilities in the code examples until later on when they can be covered in detail. You should feel free to follow along with the code examples in your own text editor - we absolutely encourage it. Just be aware that as you venture off the beaten path of the curated tutorial, you'll likely run into reference capabilities, and you'll need to thoroughly read and understand the basics of those concepts before you'll really feel fluent and able to work with the compiler as it tries to help you prove the safety of your program.
 
-Stick with us and read on, even if you need to read through something a few times. Know that the community is here to help as you climb the learning curve and master new concepts that will change the way you think about concurrency.
+Stick with us and read on, even if you need to read through something a few times. Know that the community is here to help as you climb the learning curve and main new concepts that will change the way you think about concurrency.

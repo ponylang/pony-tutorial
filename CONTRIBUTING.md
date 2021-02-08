@@ -46,7 +46,7 @@ Once your content is done, please open a pull request against this repo with you
 * Change to where the content appears in the Table of Contents
 * Change to where the markdown file for the content is stored in the repo
 
-Please use a separate "topic branch" based off of the latest `master` branch for your change. If you are working on multiple changes, please use separate branches for each. This helps to avoid accidentally pushing changes to your pull request. We request that you create a good commit message as laid out in ["How to Write a Git Commit Message"](http://chris.beams.io/posts/git-commit/).
+Please use a separate "topic branch" based off of the latest `main` branch for your change. If you are working on multiple changes, please use separate branches for each. This helps to avoid accidentally pushing changes to your pull request. We request that you create a good commit message as laid out in ["How to Write a Git Commit Message"](http://chris.beams.io/posts/git-commit/).
 
 Each pull request should be for a single logical change. If the pull request contains multiple commits, we'll ask you to squash them into a single commit before we merge. Steve Klabnik wrote a handy guide for that: [How to squash commits in a GitHub pull request](http://blog.steveklabnik.com/posts/2012-11-08-how-to-squash-commits-in-a-github-pull-request).
 

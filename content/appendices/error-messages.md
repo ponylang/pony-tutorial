@@ -118,4 +118,4 @@ As an aside, while trying to figure out what is happening, you may have been mis
 
 ## A note on compiler versions
 
-The error messages shown in this section are from ponyc 0.2.1-1063-g6ae110f [release], the current head of the master branch at the time this is written. The messages from other versions of the compiler may be different, to a greater or lesser degree.
+The error messages shown in this section are from ponyc 0.2.1-1063-g6ae110f [release], the current head of the main branch at the time this is written. The messages from other versions of the compiler may be different, to a greater or lesser degree.

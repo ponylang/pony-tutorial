@@ -11,11 +11,11 @@ To get started, you'll need a text editor and the [ponyc](https://github.com/pon
 
 ## The Pony compiler
 
-Before you get started, please check out the [installation instructions](https://github.com/ponylang/ponyc/blob/master/INSTALL.md) for the Pony compiler.
+Before you get started, please check out the [installation instructions](https://github.com/ponylang/ponyc/blob/main/INSTALL.md) for the Pony compiler.
 
 ## A text editor
 
-While you can write code using any editor, it's nice to use one with some support for the language. We maintain a list of [editors supporting Pony](https://github.com/ponylang/ponyc/blob/master/EDITORS.md).
+While you can write code using any editor, it's nice to use one with some support for the language. We maintain a list of [editors supporting Pony](https://github.com/ponylang/ponyc/blob/main/EDITORS.md).
 
 ## The compiler
 
