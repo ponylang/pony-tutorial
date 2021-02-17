@@ -254,8 +254,8 @@ actor Main
     var s: Array[U32] = Array[U32].init(n, 1)
     {ref(i:U32)(s): U32 =>
       try
-        s(0) = s(0) + i
-        s(0)
+        s(0)? = s(0)? + i
+        s(0)?
       else
         0
       end
