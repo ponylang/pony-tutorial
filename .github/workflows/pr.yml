@@ -4,7 +4,7 @@ on: pull_request
 
 jobs:
   superlinter:
-    name: Lint bash, docker, markdown, and yaml
+    name: Lint markdown and yaml
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
