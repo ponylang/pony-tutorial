@@ -1,4 +1,10 @@
-.DS_Store
-*.sublime-project
-*.sublime-workspace
-public
+# Dependencies
+/__pycache__
+/venv
+/.venv
+
+# Build files
+/site
+
+# Caches and logs
+*.log
