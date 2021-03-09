@@ -1,14 +1,8 @@
 # Contributing to the Pony tutorial
 
-Hi there! Thanks for your interest in contributing to the Pony Tutorial. The book is being developed in Markdown and built using [Hugo](https://gohugo.io/) and [Netlify](https://www.netlify.com/). We welcome external contributors. In fact, we encourage them.
+Hi there! Thanks for your interest in contributing to the Pony Tutorial. The book is being developed in Markdown and built using [MkDocs](https://www.mkdocs.org/) and [Netlify](https://www.netlify.com/). We welcome external contributors. In fact, we encourage them.
 
-Please note, that by submitting any content to the Pony Tutorial book you are agreeing that it can be licensed under our [license](LICENSE.md). Furthermore, you are testifying that you own the copyright to the submitted content and indemnify Pony Tutorial from any copyright claim that might result from your not being the authorized copyright holder.
-
-## How the tutorial is organized
-
-The tutorial is organized into folders, which become sections in the rendered book. Each folder contains a number of files, which each become a page within the section. New sections should be added by creating a new folder with an `index.md` file that has a level-one Markdown header (_i.e._, a line starting with `#`) and an introductory paragraph or two for the section. This introduction should describe the contents of the entire section.
-
-The ordering of the tutorial as well as the Table of Contents is handled by the `SUMMARY.md` file. This file is a list of links to each section, with sub-lists for pages within each section. If you add a new section or page, don't forget to link to them in the `SUMMARY.md` file or they won't appear in the final book.
+Please note, that by submitting any content to the Pony Tutorial you are agreeing that it can be licensed under our [license](LICENSE.md). Furthermore, you are testifying that you own the copyright to the submitted content and indemnify Pony Tutorial from any copyright claim that might result from your not being the authorized copyright holder.
 
 ## How to format chapters
 
@@ -17,26 +11,6 @@ Each chapter should start with the title of the chapter as a level one header: `
 After the title, before diving into your first section, you should have some level of expository text that explains what the reader can expect to get out of reading the page.
 
 Avoid hard-wrapping lines within paragraphs (using line breaks in the middle of or between sentences to make lines shorter than a certain length). Instead, turn on soft-wrapping in your editor and expect the documentation renderer to let the text flow to the width of the container.
-
-## How to create document reference
-
-Please use Hugo's `shortcodes syntax` for creating references to documents. The `ref` and `relref` shortcode resolves the absolute or relative permalink given a path to a document.
-
-The referenced document is in the current directory:
-
-````markdown
-[Object Literals section]({{< relref "object-literals.md" >}})
-[Infix Operators]({{< relref "ops.md#infix-operators" >}})
-````
-
-The referenced document is in the other directory:
-
-````markdown
-[Object Literals section]({{< relref "expressions/object-literals.md" >}})
-[Infix Operators]({{< relref "expressions/ops.md#infix-operators" >}})
-````
-
-For more detail, please refer to [Links and Cross References](https://gohugo.io/content-management/cross-references/)
 
 ## How to submit a pull request
 
@@ -59,6 +33,6 @@ Writing good documentation is hard. In the end, "good" is highly subjective. All
 
 When writing documentation for the widest possible audience, brevity is not your friend. Even if you feel you have already explained something, explain it in a different way. The person who didn't understand the first explanation but understood the second will thank you.
 
-The target audience for this tutorial is anyone with a modicum of experience with another programming language. It isn't targetting people who have no programming experience. We don't assume that the reader has worked with a statically typed language before. We don't assume a wealth of experience in the field. We strive to make this tutorial as accessible to the programmer with 9 months of Python experience as it is to the polyglot programmer with 20 years of industry experience. It is acceptable to create content that targets a subset of the audience (for example Java programmers) so long as the same content is addressed in a fashion that covers the general audience as well.
+The target audience for this tutorial is anyone with a modicum of experience with another programming language. It isn't targeting people who have no programming experience. We don't assume that the reader has worked with a statically typed language before. We don't assume a wealth of experience in the field. We strive to make this tutorial as accessible to the programmer with 9 months of Python experience as it is to the polyglot programmer with 20 years of industry experience. It is acceptable to create content that targets a subset of the audience (for example Java programmers) so long as the same content is addressed in a fashion that covers the general audience as well.
 
 Lastly, this is a living document. It will grow, change and adapt. Your contributions don't have to be perfect. They should merely improve the overall usefulness and quality. Welcome to the community! We look forward to your contributions.
