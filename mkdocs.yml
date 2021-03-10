@@ -120,7 +120,6 @@ nav:
       - As Operator: "pattern-matching/as.md"
   - Packages:
       - Overview: "packages/index.md"
-      - Package System: "packages/package-system.md"
       - Use Statement: "packages/use-statement.md"
       - Standard Library: "packages/standard-library.md"
   - Testing:
