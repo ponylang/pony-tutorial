@@ -1,6 +1,6 @@
 # Overview
 
-Hey, congratulations! You've made it to the end of the Pony tutorial. So, what do you do next? Well, there's actually a bit more here. Check out the [appendices](https://tutorial.ponylang.io/appendices/) as they have some useful information that doesn't fit else. After that, here are a few resources that you can look into.
+Hey, congratulations! You've made it to the end of the Pony tutorial. So, what do you do next? Well, there's actually a bit more here. Check out the [appendices](/appendices/index.md) as they have some useful information that doesn't fit else. After that, here are a few resources that you can look into.
 
 ## "Learn" section of Ponylang.io
 
