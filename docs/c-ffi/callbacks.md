@@ -1,12 +1,4 @@
----
-title: "Callbacks"
-section: "C FFI"
-menu:
-  toc:
-    parent: "c-ffi"
-    weight: 40
-toc: true
----
+# Callbacks
 
 Some C APIs let the programmer specify functions that should be called to do pieces of work. For example, the SQLite API has a function called `sqlite3_exec` that executes an SQL statement and calls a function given by the programmer on each row returned by that statement. The functions that are supplied by the programmer are known as "callback functions". Some specific Pony functions can be passed as callback functions.
 

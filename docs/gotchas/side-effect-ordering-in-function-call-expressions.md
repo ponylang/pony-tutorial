@@ -1,12 +1,4 @@
----
-title: "Function Call Side Effects"
-section: "Gotchas"
-menu:
-  toc:
-    parent: "gotchas"
-    weight: 40
-toc: true
----
+# Function Call Side Effects
 
 Consider the following code:
 

@@ -1,12 +1,4 @@
----
-title: "Combining Capabilities"
-section: "Reference Capabilities"
-menu:
-  toc:
-    parent: "reference-capabilities"
-    weight: 90
-toc: true
----
+# Combining Capabilities
 
 When we talked about fields in the [classes]({{< relref "types/classes.md" >}}) and [variables]({{< relref "expressions/variables.md" >}}) chapters, we passed over the detail of field capabilities. Fields, just like variables, have their own capabilities! A `val` field still refers to something permanently immutable. A `tag` field still can't be read from. An `iso` field is still globally unique: it can only be accessed except through this field of a single instance.
 
@@ -20,14 +12,14 @@ Let's start with a table. This shows how a __field__ of each capability looks wh
 
 ---
 
-| &#x25B7;        | iso field | trn field | ref field | val field | box field | tag field |
-|-----------------|-----------|-----------|-----------|-----------|-----------|-----------|
-| __iso origin__  | iso       | tag       | tag       | val       | tag       | tag       |
-| __trn origin__  | iso       | box       | box       | val       | box       | tag       |
-| __ref origin__  | iso       | trn       | ref       | val       | box       | tag       |
-| __val origin__  | val       | val       | val       | val       | val       | tag       |
-| __box origin__  | tag       | box       | box       | val       | box       | tag       |
-| __tag origin__  | n/a       | n/a       | n/a       | n/a       | n/a       | n/a       |
+| &#x25B7;       | iso field | trn field | ref field | val field | box field | tag field |
+| -------------- | --------- | --------- | --------- | --------- | --------- | --------- |
+| __iso origin__ | iso       | tag       | tag       | val       | tag       | tag       |
+| __trn origin__ | iso       | box       | box       | val       | box       | tag       |
+| __ref origin__ | iso       | trn       | ref       | val       | box       | tag       |
+| __val origin__ | val       | val       | val       | val       | val       | tag       |
+| __box origin__ | tag       | box       | box       | val       | box       | tag       |
+| __tag origin__ | n/a       | n/a       | n/a       | n/a       | n/a       | n/a       |
 
 ---
 
@@ -96,7 +88,7 @@ Here's a simplified version of the table above that shows which reference capabi
 ---
 
 | &#x25C1;       | iso object | trn object | ref object | val object | box object | tag object |
-|----------------|------------|------------|------------|------------|------------|------------|
+| -------------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- |
 | __iso origin__ | &#x2714;   |            |            | &#x2714;   |            | &#x2714;   |
 | __trn origin__ | &#x2714;   | &#x2714;   |            | &#x2714;   |            | &#x2714;   |
 | __ref origin__ | &#x2714;   | &#x2714;   | &#x2714;   | &#x2714;   | &#x2714;   | &#x2714;   |

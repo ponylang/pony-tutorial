@@ -1,13 +1,4 @@
----
-title: "Literals"
-section: "Expressions"
-toc: true
-menu:
-  toc:
-    parent: "expressions"
-    weight: 10
-toc: true
----
+# Literals
 
 ***What do we want?***
 

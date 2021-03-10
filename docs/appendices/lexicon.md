@@ -1,12 +1,4 @@
----
-title: "Lexicon"
-section: "Appendices"
-menu:
-  toc:
-    parent: "appendices"
-    weight: 10
-toc: true
----
+# Lexicon
 
 Words are hard. We can all be saying the same thing but do we _mean_ the same thing? It's tough to know. Hopefully, this lexicon helps a little.
 

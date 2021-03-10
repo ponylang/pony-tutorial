@@ -1,12 +1,4 @@
----
-title: "Classes"
-section: "Types"
-menu:
-  toc:
-    parent: "types"
-    weight: 20
-toc: true
----
+# Classes
 
 Just like other object-oriented languages, Pony has __classes__. A class is declared with the keyword `class`, and it has to have a name that starts with a capital letter, like this:
 

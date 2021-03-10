@@ -127,7 +127,7 @@ nav:
       - Standard Library: "packages/standard-library.md"
   - Testing:
       - Overview: "testing/index.md"
-      - Testing with Ponytest: "testing/ponytest.md"
+      - Testing with PonyTest: "testing/ponytest.md"
   - C FFI:
       - Overview: "c-ffi/index.md"
       - Calling C from Pony: "c-ffi/calling-c.md"
@@ -154,7 +154,7 @@ nav:
       - Compiler Arguments: "appendices/compiler-args.md"
       - Memory Allocation at Runtime: "appendices/memory-allocation.md"
       - Garbage Collection with Pony-ORCA: "appendices/garbage-collection.md"
-      - Platform-dependent code: "appendices/platform-dependent-code.md"
+      - Platform-dependent Code: "appendices/platform-dependent-code.md"
       - A Short Guide to Pony Error Messages: "appendices/error-messages.md"
       - Program Annotations: "appendices/annotations.md"
       - Serialisation: "appendices/serialisation.md"

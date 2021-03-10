@@ -1,12 +1,4 @@
----
-title: "Testing with Ponytest"
-section: "Testing"
-menu:
-  toc:
-    parent: "testing"
-    weight: 10
-toc: true
----
+# Testing with PonyTest
 
 PonyTest is Pony's unit testing framework. It is designed to be as simple as possible to use, both for the unit test writer and the user running the tests.
 

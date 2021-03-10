@@ -1,13 +1,4 @@
----
-title: "Overview"
-section: "Reference Capabilities"
-layout: overview
-menu:
-  toc:
-    identifier: "reference-capabilities-overview"
-    parent: "reference-capabilities"
-    weight: 1
----
+# Overview
 
 We've covered the basics of Pony's type system and then expressions, this chapter about reference capabilities will cover another feature of Pony's type system. There aren't currently any mainstream programming languages that feature reference capabilities. What is a reference capability?
 

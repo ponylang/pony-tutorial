@@ -1,12 +1,4 @@
----
-title: "Structs"
-section: "Types"
-menu:
-  toc:
-    parent: "types"
-    weight: 55
-toc: true
----
+# Structs
 
 A `struct` is similiar to a `class`. There's a couple very important differences. You'll use classes throughout your Pony code. You'll rarely use structs. We'll discuss structs in more depth in the [C-FFI chapter]({{< relref "c-ffi/_index.md" >}}) of the tutorial. In the meantime, here's a short introduction to the basics of structs.
 

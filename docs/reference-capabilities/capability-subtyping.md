@@ -1,12 +1,4 @@
----
-title: "Capability Subtyping"
-section: "Reference Capabilities"
-menu:
-  toc:
-    parent: "reference-capabilities"
-    weight: 80
-toc: true
----
+# Capability Subtyping
 
 Subtyping is about _substitutability_. That is, if we need to supply a certain type, what other types can we substitute instead? Reference capabilities factor into this.
 

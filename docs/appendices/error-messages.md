@@ -1,12 +1,4 @@
----
-title: "A Short Guide to Pony Error Messages"
-section: "Appendices"
-menu:
-  toc:
-    parent: "appendices"
-    weight: 90
-toc: true
----
+# A Short Guide to Pony Error Messages
 
 You've been through the tutorial, you've watched some videos, and now you're ready to write some Pony code. You fire up your editor, shovel coal into the compiler, and... you find yourself looking at a string of gibberish.
 

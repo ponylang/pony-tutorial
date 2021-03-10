@@ -1,13 +1,4 @@
----
-title: "Overview"
-section: "C FFI"
-layout: overview
-menu:
-  toc:
-    identifier: "c-ffi-overview"
-    parent: "c-ffi"
-    weight: 1
----
+# Overview
 
 Pony supports integration with other native languages through the Foreign Function Interface (FFI). The FFI library provides a stable and portable API and high-level programming interface allowing Pony to integrate with native libraries easily.
 

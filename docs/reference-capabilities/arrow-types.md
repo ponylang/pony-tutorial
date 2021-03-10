@@ -1,12 +1,4 @@
----
-title: "Arrow Types aka Viewpoints"
-section: "Reference Capabilities"
-menu:
-  toc:
-    parent: "reference-capabilities"
-    weight: 100
-toc: true
----
+# Arrow Types aka Viewpoints
 
 When we talked about __reference capability composition__ and __viewpoint adaptation__, we dealt with cases where we know the reference capability of the origin. However, sometimes we don't know the precise reference capability of the origin.
 

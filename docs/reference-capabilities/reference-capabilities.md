@@ -1,12 +1,4 @@
----
-title: "Reference Capabilities"
-section: "Reference Capabilities"
-menu:
-  toc:
-    parent: "reference-capabilities"
-    weight: 20
-toc: true
----
+# Reference Capabilities
 
 So if the object _is_ the capability, what controls what we can do with the object? How do we express our _access rights_ on that object?
 

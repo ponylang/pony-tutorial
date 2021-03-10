@@ -1,12 +1,4 @@
----
-title: "Reference Capability Matrix"
-section: "Reference Capabilities"
-menu:
-  toc:
-    parent: "reference-capabilities"
-    weight: 110
-toc: true
----
+# Reference Capability Matrix
 
 At this point, it's quite possible that you read the previous sections in this chapter and are still pretty confused about the relation between reference capabilities. It's okay! We have all struggled when learning this part of Pony, too. Once you start working on Pony code, you'll get a better intuition with them.
 
@@ -32,12 +24,12 @@ Without further ado, here's the reference capability matrix:
 
 ---
 
-&nbsp; | Deny global read/write aliases | Deny global write aliases | Don't deny any global aliases
------ | ----- | ----- | -----
-__Deny local read/write aliases__ | __`iso`__ | |
-__Deny local write aliases__ | `trn` | __`val`__ |
-__Don't deny any local aliases__ | `ref` | `box` | __`tag`__
-&nbsp; | _(Mutable)_ | _(Immutable)_ | _(Opaque)_
+| &nbsp;                            | Deny global read/write aliases | Deny global write aliases | Don't deny any global aliases |
+| --------------------------------- | ------------------------------ | ------------------------- | ----------------------------- |
+| __Deny local read/write aliases__ | __`iso`__                      |                           |
+| __Deny local write aliases__      | `trn`                          | __`val`__                 |
+| __Don't deny any local aliases__  | `ref`                          | `box`                     | __`tag`__                     |
+| &nbsp;                            | _(Mutable)_                    | _(Immutable)_             | _(Opaque)_                    |
 
 ---
 

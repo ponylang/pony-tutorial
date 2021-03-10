@@ -1,12 +1,4 @@
----
-title: "Divide by Zero"
-section: "Gotchas"
-menu:
-  toc:
-    parent: "gotchas"
-    weight: 10
-toc: true
----
+# Divide by Zero
 
 What's 1 divided by 0? How about 10 divided by 0? What is the result you get in your favorite programming language?
 

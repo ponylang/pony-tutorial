@@ -1,12 +1,4 @@
----
-title: "Recovering Capabilities"
-section: "Reference Capabilities"
-menu:
-  toc:
-    parent: "reference-capabilities"
-    weight: 50
-toc: true
----
+# Recovering Capabilities
 
 A `recover` expression lets you "lift" the reference capability of the result. A mutable reference capability (`iso`, `trn`, or `ref`) can become _any_ reference capability, and an immutable reference capability (`val` or `box`) can become any immutable or opaque reference capability.
 

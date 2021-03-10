@@ -1,12 +1,4 @@
----
-title: "Passing and Sharing References"
-section: "Reference Capabilities"
-menu:
-  toc:
-    parent: "reference-capabilities"
-    weight: 70
-toc: true
----
+# Passing and Sharing References
 
 Reference capabilities make it safe to both __pass__ mutable data between actors and to __share__ immutable data amongst actors. Not only that, they make it safe to do it with no copying, no locks, in fact, no runtime overhead at all.
 

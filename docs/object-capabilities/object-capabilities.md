@@ -1,12 +1,4 @@
----
-title: "Object Capabilities"
-section: "Object Capabilities"
-menu:
-  toc:
-    parent: "object-capabilities"
-    weight: 10
-toc: true
----
+# Object Capabilities
 
 Pony's capabilities-secure type system is based on the object-capability model. That sounds complicated, but really it's elegant and simple. The core idea is this:
 

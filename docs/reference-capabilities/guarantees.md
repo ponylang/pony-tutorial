@@ -1,12 +1,4 @@
----
-title: "Reference Capability Guarantees"
-section: "Reference Capabilities"
-menu:
-  toc:
-    parent: "reference-capabilities"
-    weight: 30
-toc: true
----
+# Reference Capability Guarantees
 
 Since types are guarantees, it's useful to talk about what guarantees a reference capability makes.
 

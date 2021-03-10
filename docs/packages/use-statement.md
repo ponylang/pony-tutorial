@@ -1,12 +1,4 @@
----
-title: "Use Statement"
-section: "Packages"
-menu:
-  toc:
-    parent: "packages"
-    weight: 20
-toc: true
----
+# Use Statement
 
 To use a package in your code you need to have a __use__ command. This tells the compiler to find the package you need and make the types defined in it available to you. Every Pony file that needs to know about a type from a package must have a use command for it.
 

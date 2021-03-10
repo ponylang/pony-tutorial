@@ -1,12 +1,4 @@
----
-title: "PONYPATH"
-section: "Appendices"
-menu:
-  toc:
-    parent: "appendices"
-    weight: 5
-toc: true
----
+# PONYPATH
 
 When searching for Pony packages, `ponyc` checks both the installation directory (where the standard libraries reside) and any directories listed in the optional environment variable `PONYPATH`.
 

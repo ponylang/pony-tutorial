@@ -1,13 +1,5 @@
----
-title: "Overview"
-section: "Getting Started"
-layout: overview
-menu:
-  toc:
-    identifier: "getting-started-overview"
-    parent: "getting-started"
-    weight: 1
----
+# Overview
+
 This chapter will get you up and running with Pony from installing the compiler to running your first program.
 
 As you work your way through this tutorial, you'll likely come across a lot of concepts that are familiar to you from any prior programming languages that you've had experience with. You'll likely want to skim and skip around through these areas, and that's totally fine.

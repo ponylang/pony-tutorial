@@ -1,12 +1,4 @@
----
-title: "Aliasing"
-section: "Reference Capabilities"
-menu:
-  toc:
-    parent: "reference-capabilities"
-    weight: 60
-toc: true
----
+# Aliasing
 
 __Aliasing__ means having more than one reference to the same object, within the same actor. This can be the case for a variable or a field.
 

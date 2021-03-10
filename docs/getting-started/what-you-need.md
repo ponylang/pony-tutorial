@@ -1,12 +1,5 @@
----
-title: "What You Need"
-section: "Getting Started"
-menu:
-  toc:
-    parent: "getting-started"
-    weight: 5
-toc: true
----
+# What You Need
+
 To get started, you'll need a text editor and the [ponyc](https://github.com/ponylang/ponyc) compiler. Or if you are on a not supported platform or don't want to install the compiler you can use the [Pony's Playground](https://playground.ponylang.io/).
 
 ## The Pony compiler

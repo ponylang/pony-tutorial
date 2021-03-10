@@ -1,12 +1,5 @@
----
-title: "Hello World: How It Works"
-section: "Getting Started"
-menu:
-  toc:
-    parent: "getting-started"
-    weight: 15
-toc: true
----
+# Hello World -- How It Works
+
 Let's look at our `helloworld` code again:
 
 ```pony

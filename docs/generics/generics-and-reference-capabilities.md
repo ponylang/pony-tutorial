@@ -1,12 +1,4 @@
----
-title: "Generics and Reference Capabilities"
-section: "Generics"
-menu:
-  toc:
-    parent: "generics"
-    weight: 10
-toc: true
----
+# Generics and Reference Capabilities
 
 In the examples presented previously we've explicitly set the reference capability to `val`:
 

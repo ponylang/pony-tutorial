@@ -1,12 +1,4 @@
----
-title: "Consume and Destructive Read"
-section: "Reference Capabilities"
-menu:
-  toc:
-    parent: "reference-capabilities"
-    weight: 40
-toc: true
----
+# Consume and Destructive Read
 
 An important part of Pony's capabilities is being able to say "I'm done with this thing." We'll cover two means of handling this situation: consuming a variable and destructive reads.
 

@@ -1,13 +1,4 @@
----
-title: "Overview"
-section: "Generics"
-layout: overview
-menu:
-  toc:
-    identifier: "generics-overview"
-    parent: "generics"
-    weight: 1
----
+# Overview
 
 Often when writing code you want to create similar classes or functions that differ only in the type that they operate on. The classic example of this is collection classes. You want to be able to create an `Array` that can hold objects of a particular type without creating an `IntArray`, `StringArray`, etc. This is where generics step in.
 

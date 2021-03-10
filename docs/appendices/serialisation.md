@@ -1,11 +1,4 @@
----
-title: "Serialisation"
-section: "Appendices"
-menu:
-  toc:
-    parent: "appendices"
-    weight: 110
----
+# Serialisation
 
 Pony provides a built-in mechanism for serialising and deserialising objects so that they can be passed between Pony processes. Serialisation takes an object and turns it into an array of bytes that can be used to send the object to another process by, for example, writing it to a TCP stream. Deserialisation takes an array of bytes and turns them into a Pony object.
 

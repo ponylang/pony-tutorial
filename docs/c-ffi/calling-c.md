@@ -1,12 +1,4 @@
----
-title: "Calling C from Pony"
-section: "C FFI"
-menu:
-  toc:
-    parent: "c-ffi"
-    weight: 10
-toc: true
----
+# Calling C from Pony
 
 FFI is built into Pony and native libraries may be directly referenced in Pony code. There is no need to code or configure bindings, wrappers or interfaces.
 

@@ -1,12 +1,4 @@
----
-title: "Platform-dependent code"
-section: "Appendices"
-menu:
-  toc:
-    parent: "appendices"
-    weight: 80
-toc: true
----
+# Platform-dependent Code
 
 The Pony libraries, of course, want to abstract platform differences. Sometimes you may want a `use` command that only works under certain circumstances, most commonly only on a particular OS or only for debug builds. You can do this by specifying a condition for a `use` command:
 

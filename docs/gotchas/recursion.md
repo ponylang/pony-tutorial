@@ -1,12 +1,4 @@
----
-title: "Recursion"
-section: "Gotchas"
-menu:
-  toc:
-    parent: "gotchas"
-    weight: 50
-toc: true
----
+# Recursion
 
 Recursive functions in Pony can cause many problems. Every function call in a program adds a frame on the system call stack, which is bounded. If the stack grows too big it will overflow, usually crashing the program. This is an out-of-memory type of error and it cannot be prevented by the guarantees offered by Pony.
 

@@ -1,12 +1,4 @@
----
-title: "Arithmetic"
-section: "Expressions"
-menu:
-  toc:
-    parent: "expressions"
-    weight: 40
-toc: true
----
+# Arithmetic
 
 Arithmetic is about the stuff you learn to do with numbers in primary school: Addition, Subtraction, Multiplication, Division and so on. Piece of cake. We all know that stuff. We nonetheless want to spend a whole section on this topic, because when it comes to computers the devil is in the details.
 
@@ -36,17 +28,17 @@ In contrast to [Unsafe Arithmetic](#unsafe-arithmetic) default arithmetic comes 
 
 ---
 
-Operator | Method | Description
----------|--------|------------
-`+`      | add()  | wrap around on over-/underflow
-`-`      | sub()  | wrap around on over-/underflow
-`*`      | mul()  | wrap around on over-/underflow
-`/`      | div()  | `x / 0 = 0`
-`%`      | rem()  | `x % 0 = 0`
-`%%`     | mod()  | `x %% 0 = 0`
-`-`      | neg()  | wrap around on over-/underflow
-`>>`     | shr()  | filled with zeros, so `x >> 1 == x/2` is true
-`<<`     | shl()  | filled with zeros, so `x << 1 == x*2` is true
+| Operator | Method | Description                                   |
+| -------- | ------ | --------------------------------------------- |
+| `+`      | add()  | wrap around on over-/underflow                |
+| `-`      | sub()  | wrap around on over-/underflow                |
+| `*`      | mul()  | wrap around on over-/underflow                |
+| `/`      | div()  | `x / 0 = 0`                                   |
+| `%`      | rem()  | `x % 0 = 0`                                   |
+| `%%`     | mod()  | `x %% 0 = 0`                                  |
+| `-`      | neg()  | wrap around on over-/underflow                |
+| `>>`     | shr()  | filled with zeros, so `x >> 1 == x/2` is true |
+| `<<`     | shl()  | filled with zeros, so `x << 1 == x*2` is true |
 
 ---
 
@@ -58,17 +50,17 @@ Here is a list with all unsafe operations defined on Integers:
 
 ---
 
-Operator | Method        | Undefined in case of
----------|---------------|---------------------
-`+~`     | add_unsafe()  | Overflow  E.g. `I32.max_value() +~ I32(1)`
-`-~`     | sub_unsafe()  | Overflow
-`*~`     | mul_unsafe()  | Overflow.
-`/~`     | div_unsafe()  | Division by zero and overflow. E.g. I32.min_value() / I32(-1)
-`%~`     | rem_unsafe()  | Division by zero and overflow.
-`%%~`    | mod_unsafe()  | Division by zero and overflow.
-`-~`     | neg_unsafe()  | Overflow. E.g. `-~I32.max_value()`
-`>>~`    | shr_unsafe()  | If non-zero bits are shifted out. E.g. `I32(1) >>~ U32(2)`
-`<<~`    | shl_unsafe()  | If bits differing from the final sign bit are shifted out.
+| Operator | Method       | Undefined in case of                                          |
+| -------- | ------------ | ------------------------------------------------------------- |
+| `+~`     | add_unsafe() | Overflow  E.g. `I32.max_value() +~ I32(1)`                    |
+| `-~`     | sub_unsafe() | Overflow                                                      |
+| `*~`     | mul_unsafe() | Overflow.                                                     |
+| `/~`     | div_unsafe() | Division by zero and overflow. E.g. I32.min_value() / I32(-1) |
+| `%~`     | rem_unsafe() | Division by zero and overflow.                                |
+| `%%~`    | mod_unsafe() | Division by zero and overflow.                                |
+| `-~`     | neg_unsafe() | Overflow. E.g. `-~I32.max_value()`                            |
+| `>>~`    | shr_unsafe() | If non-zero bits are shifted out. E.g. `I32(1) >>~ U32(2)`    |
+| `<<~`    | shl_unsafe() | If bits differing from the final sign bit are shifted out.    |
 
 ---
 
@@ -98,24 +90,24 @@ Here is a full list of all available conversions for numeric types:
 
 ---
 
-Safe conversion | Unsafe conversion
-----------------|------------------
-u8()            |  u8_unsafe()
-u16()           |  u16_unsafe()
-u32()           |  u32_unsafe()
-u64()           |  u64_unsafe()
-u128()          |  u128_unsafe()
-ulong()         |  ulong_unsafe()
-usize()         |  usize_unsafe()
-i8()            |  i8_unsafe()
-i16()           |  i16_unsafe()
-i32()           |  i32_unsafe()
-i64()           |  i64_unsafe()
-i128()          |  i128_unsafe()
-ilong()         |  ilong_unsafe()
-isize()         |  isize_unsafe()
-f32()           |  f32_unsafe()
-f64()           |  f64_unsafe()
+| Safe conversion | Unsafe conversion |
+| --------------- | ----------------- |
+| u8()            | u8_unsafe()       |
+| u16()           | u16_unsafe()      |
+| u32()           | u32_unsafe()      |
+| u64()           | u64_unsafe()      |
+| u128()          | u128_unsafe()     |
+| ulong()         | ulong_unsafe()    |
+| usize()         | usize_unsafe()    |
+| i8()            | i8_unsafe()       |
+| i16()           | i16_unsafe()      |
+| i32()           | i32_unsafe()      |
+| i64()           | i64_unsafe()      |
+| i128()          | i128_unsafe()     |
+| ilong()         | ilong_unsafe()    |
+| isize()         | isize_unsafe()    |
+| f32()           | f32_unsafe()      |
+| f64()           | f64_unsafe()      |
 
 ---
 
@@ -145,28 +137,28 @@ let result =
 
 Partial as well as checked arithmetic comes with the burden of handling exceptions on every case and incurs some performance overhead, be warned.
 
-Partial Operator | Method        | Description
------------------|---------------|------------
-`+?`             | add_partial() | errors on overflow/underflow
-`-?`             | sub_partial() | errors on overflow/underflow
-`*?`             | mul_partial() | errors on overflow/underflow
-`/?`             | div_partial() | errors on overflow/underflow and division by zero
-`%?`             | rem_partial() | errors on overflow/underflow and division by zero
-`%%?`            | mod_partial() | errors on overflow/underflow and division by zero
+| Partial Operator | Method        | Description                                       |
+| ---------------- | ------------- | ------------------------------------------------- |
+| `+?`             | add_partial() | errors on overflow/underflow                      |
+| `-?`             | sub_partial() | errors on overflow/underflow                      |
+| `*?`             | mul_partial() | errors on overflow/underflow                      |
+| `/?`             | div_partial() | errors on overflow/underflow and division by zero |
+| `%?`             | rem_partial() | errors on overflow/underflow and division by zero |
+| `%%?`            | mod_partial() | errors on overflow/underflow and division by zero |
 
 ---
 
 Checked arithmetic functions all return the result of the operation and a `Boolean` flag indicating overflow/underflow or division by zero in a tuple.
 
-Checked Method | Description
----------------|------------
-addc()         | Checked addition, second tuple element is `true` on overflow/underflow.
-subc()         | Checked subtraction, second tuple element is `true` on overflow/underflow.
-mulc()         | Checked multiplication, second tuple element is `true` on overflow.
-divc()         | Checked division, second tuple element is `true` on overflow or division by zero.
-remc()         | Checked remainder, second tuple element is `true` on overflow or division by zero.
-modc()         | Checked modulo, second tuple element is `true` on overflow or division by zero.
-fldc()         | Checked floored division, second tuple element is `true` on overflow or division by zero.
+| Checked Method | Description                                                                               |
+| -------------- | ----------------------------------------------------------------------------------------- |
+| addc()         | Checked addition, second tuple element is `true` on overflow/underflow.                   |
+| subc()         | Checked subtraction, second tuple element is `true` on overflow/underflow.                |
+| mulc()         | Checked multiplication, second tuple element is `true` on overflow.                       |
+| divc()         | Checked division, second tuple element is `true` on overflow or division by zero.         |
+| remc()         | Checked remainder, second tuple element is `true` on overflow or division by zero.        |
+| modc()         | Checked modulo, second tuple element is `true` on overflow or division by zero.           |
+| fldc()         | Checked floored division, second tuple element is `true` on overflow or division by zero. |
 
 ---
 
@@ -184,21 +176,21 @@ This allows more aggressive optimizations and for faster execution, but only yie
 
 ---
 
-Operator | Method
----------|---------------
-`+~`     | add_unsafe()
-`-~`     | sub_unsafe()
-`*~`     | mul_unsafe()
-`/~`     | div_unsafe()
-`%~`     | rem_unsafe()
-`%%~`    | mod_unsafe()
-`-~`     | neg_unsafe()
-`<~`     | lt_unsafe()
-`>~`     | gt_unsafe()
-`<=~`    | le_unsafe()
-`>=~`    | ge_unsafe()
-`=~`     | eq_unsafe()
-`!=~`    | ne_unsafe()
+| Operator | Method       |
+| -------- | ------------ |
+| `+~`     | add_unsafe() |
+| `-~`     | sub_unsafe() |
+| `*~`     | mul_unsafe() |
+| `/~`     | div_unsafe() |
+| `%~`     | rem_unsafe() |
+| `%%~`    | mod_unsafe() |
+| `-~`     | neg_unsafe() |
+| `<~`     | lt_unsafe()  |
+| `>~`     | gt_unsafe()  |
+| `<=~`    | le_unsafe()  |
+| `>=~`    | ge_unsafe()  |
+| `=~`     | eq_unsafe()  |
+| `!=~`    | ne_unsafe()  |
 
 ---
 

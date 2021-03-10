@@ -1,12 +1,4 @@
----
-title: "Equality in Pony"
-section: "Expressions"
-menu:
-  toc:
-    parent: "expressions"
-    weight: 80
-toc: true
----
+# Equality in Pony
 
 Pony features two forms of equality: by structure and by identity.
 

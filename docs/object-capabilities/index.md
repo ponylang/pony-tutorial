@@ -1,13 +1,4 @@
----
-title: "Overview"
-section: "Object Capabilities"
-layout: overview
-menu:
-  toc:
-    identifier: "object-capabilities-overview"
-    parent: "object-capabilities"
-    weight: 1
----
+# Overview
 
 If you are reading this tutorial in order, you've just finished the reference capabilities chapter and your brain probably hurts. We're sorry about that. Hopefully object capabilities, while a new concept, are less mind bending.
 

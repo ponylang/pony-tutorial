@@ -1,12 +1,4 @@
----
-title: "Garbage Collection with Pony-ORCA"
-section: "Appendices"
-menu:
-  toc:
-    parent: "appendices"
-    weight: 70
-toc: true
----
+# Garbage Collection with Pony-ORCA
 
 Pony-ORCA is a fully concurrent protocol for garbage collection in the actor paradigm. It allows cheap and small actors to perform garbage collection concurrently with any number of other actors, and this number can go into the millions since one actor needs only 256 bytes on 64bit systems. It does not require any form of synchronization across actors except those introduced through the actor paradigm, i.e. **message send** and **message receive**.
 

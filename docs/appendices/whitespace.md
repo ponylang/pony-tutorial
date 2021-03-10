@@ -1,12 +1,4 @@
----
-title: "Whitespace"
-section: "Appendices"
-menu:
-  toc:
-    parent: "appendices"
-    weight: 40
-toc: true
----
+# Whitespace
 
 Whitespace (e.g. spaces, tabs, newlines, etc.) in Pony isn't significant.
 

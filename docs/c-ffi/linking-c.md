@@ -1,12 +1,4 @@
----
-title: "Linking to C Libraries"
-section: "C FFI"
-menu:
-  toc:
-    parent: "c-ffi"
-    weight: 20
-toc: true
----
+# Linking to C Libraries
 
 If Pony code calls FFI functions, then those functions, or rather the libraries containing them, must be linked into the Pony program.
 

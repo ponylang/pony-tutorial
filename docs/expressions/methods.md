@@ -1,12 +1,4 @@
----
-title: "Methods"
-section: "Expressions"
-menu:
-  toc:
-    parent: "expressions"
-    weight: 60
-toc: true
----
+# Methods
 
 All Pony code that actually does something, rather than defining types etc, appears in named blocks which are referred to as methods. There are three kinds of methods: functions, constructors, and behaviours. All methods are attached to type definitions (e.g. classes) - there are no global functions.
 
