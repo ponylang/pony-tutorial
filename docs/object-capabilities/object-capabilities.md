@@ -10,7 +10,7 @@ So what's that token? It's an address. A pointer. A reference. It's just... an o
 
 Since Pony has no pointer arithmetic and is both type-safe and memory-safe, object references can't be "invented" (i.e. forged) by the program. You can only get one by constructing an object or being passed an object.
 
-__What about the C FFI?__ Using the C FFI can break this guarantee. We'll talk about the __C FFI trust boundary__ later, and how to control it.
+__What about the C-FFI?__ Using the C-FFI can break this guarantee. We'll talk about the __C-FFI trust boundary__ later, and how to control it.
 
 ## What about global variables?
 
