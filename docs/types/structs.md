@@ -1,6 +1,6 @@
 # Structs
 
-A `struct` is similiar to a `class`. There's a couple very important differences. You'll use classes throughout your Pony code. You'll rarely use structs. We'll discuss structs in more depth in the [C-FFI chapter]({{< relref "c-ffi/_index.md" >}}) of the tutorial. In the meantime, here's a short introduction to the basics of structs.
+A `struct` is similiar to a `class`. There's a couple very important differences. You'll use classes throughout your Pony code. You'll rarely use structs. We'll discuss structs in more depth in the [C-FFI chapter](/c-ffi/index.md) of the tutorial. In the meantime, here's a short introduction to the basics of structs.
 
 ## Structs are "classes for FFI"
 
@@ -56,7 +56,7 @@ struct Pointer[A]
     compile_intrinsic
 ```
 
-Here we have two constructors. One that creates a new null Pointer, and another creates a Pointer with space for many instances of the type the Pointer is pointing at. Don't worry if you don't follow everything you are seeing in the above example. The important part is, it should basically look like the class constructor example [we saw earlier]({{< relref "types/classes.md#what-goes-in-a-class" >}}).
+Here we have two constructors. One that creates a new null Pointer, and another creates a Pointer with space for many instances of the type the Pointer is pointing at. Don't worry if you don't follow everything you are seeing in the above example. The important part is, it should basically look like the class constructor example [we saw earlier](/types/classes.md#what-goes-in-a-class).
 
 ### Functions
 
@@ -64,4 +64,4 @@ Like Pony classes, Pony structs can also have functions. Everything you know abo
 
 ## We'll see structs again
 
-Structs play an important role in Pony's interactions with code written using C. We'll see them again in [C-FFI section]({{< relref "c-ffi/_index.md" >}}) of the tutorial. We probably won't see too much about structs until then.
+Structs play an important role in Pony's interactions with code written using C. We'll see them again in [C-FFI section](/c-ffi/index.md) of the tutorial. We probably won't see too much about structs until then.

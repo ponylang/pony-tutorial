@@ -18,7 +18,7 @@ A class is composed of:
 
 ### Fields
 
-These are just like fields in C structs or fields in classes in C++, C#, Java, Python, Ruby, or basically any language, really. There are three kinds of fields: `var`, `let`, and `embed` fields. A `var` field can be assigned to over and over again, but a `let` field is assigned to in the constructor and never again. Embed fields will be covered in more detail in the documentation on [variables]({{< relref "expressions/variables.md" >}}).
+These are just like fields in C structs or fields in classes in C++, C#, Java, Python, Ruby, or basically any language, really. There are three kinds of fields: `var`, `let`, and `embed` fields. A `var` field can be assigned to over and over again, but a `let` field is assigned to in the constructor and never again. Embed fields will be covered in more detail in the documentation on [variables](/expressions/variables.md).
 
 ```pony
 class Wombat
@@ -103,7 +103,7 @@ class Forest
   let _hawk: Hawk = Hawk
 ```
 
-This is explained later, in more detail in the [sugar]({{< relref "expressions/sugar.md" >}}) section.
+This is explained later, in more detail in the [sugar](/expressions/sugar.md) section.
 
 ### Functions
 

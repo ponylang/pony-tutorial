@@ -2,7 +2,7 @@
 
 All Pony code that actually does something, rather than defining types etc, appears in named blocks which are referred to as methods. There are three kinds of methods: functions, constructors, and behaviours. All methods are attached to type definitions (e.g. classes) - there are no global functions.
 
-Behaviours are used for handling asynchronous messages sent to actors, which we've seen in the "Types" chapter [when we talked about actors]({{< relref "types/actors.md#behaviours" >}}).
+Behaviours are used for handling asynchronous messages sent to actors, which we've seen in the "Types" chapter [when we talked about actors](/types/actors.md#behaviours).
 
 __Can I have some code outside of any methods like I do in Python?__ No. All Pony code must be within a method.
 
@@ -244,7 +244,7 @@ actor Main
     end
 ```
 
-They are presented more in-depth in the [Object Literals section]({{< relref "expressions/object-literals.md" >}}).
+They are presented more in-depth in the [Object Literals section](/expressions/object-literals.md).
 
 ## Privacy
 
@@ -254,7 +254,7 @@ __Can I start my method name with 2 (or more) underscores?__ No. If the first ch
 
 ## Precedence
 
-We have talked about [precedence of operators]({{< relref "expressions/ops.md#precedence" >}}) before, and in Pony, method calls and field accesses have higher precedence than any operators.
+We have talked about [precedence of operators](/expressions/ops.md#precedence) before, and in Pony, method calls and field accesses have higher precedence than any operators.
 
 To sum up, in complex expressions,
 

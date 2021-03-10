@@ -200,7 +200,7 @@ let my_stringable_array: Array[Stringable] ref =
 
 Here `my_stringable_array` is coerced to `Array[Stringable] ref`. This works because `Stringable` is a trait that both `String` and `U64` implement.
 
-It is also possible to return an array with a different [Reference Capability]({{< relref "reference-capabilities/_index.md" >}}) than `ref` just by specifying it on the type:
+It is also possible to return an array with a different [Reference Capability](/reference-capabilities/index.md) than `ref` just by specifying it on the type:
 
 ```pony
 let my_immutable_array: Array[Stringable] val =
@@ -210,7 +210,7 @@ let my_immutable_array: Array[Stringable] val =
   ]
 ```
 
-This way array literals can be used for creating arrays of any [Reference Capability]({{< relref "reference-capabilities/_index.md" >}}).
+This way array literals can be used for creating arrays of any [Reference Capability](/reference-capabilities/index.md).
 
 ### `As` Expression
 
@@ -233,4 +233,4 @@ If a type is specified on the left-hand side, it needs to exactly match the type
 
 Constructing an array with a literal creates new references to its elements. Thus, to be 100% technically correct, array literal elements are inferred to be the alias of the actual element type. If all elements are of type `T` the array literal will be inferred as `Array[T!] ref` that is as an array of aliases of the type `T`.
 
-It is thus necessary to use elements that can have more than one reference of the same type (e.g. types with `val` or `ref` capability) or use ephemeral types for other capabilities (as returned from [constructors]({{< relref "types/classes.md#constructors" >}}) or the [consume expression]({{< relref "reference-capabilities/consume-and-destructive-read.md" >}})).
+It is thus necessary to use elements that can have more than one reference of the same type (e.g. types with `val` or `ref` capability) or use ephemeral types for other capabilities (as returned from [constructors](/types/classes.md#constructors) or the [consume expression](/reference-capabilities/consume-and-destructive-read.md)).
