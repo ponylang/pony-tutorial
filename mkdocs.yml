@@ -6,6 +6,7 @@ repo_url: https://github.com/ponylang/pony-tutorial/
 use_directory_urls: false
 
 extra:
+  generator: false
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/ponylang
@@ -15,7 +16,11 @@ extra:
 markdown_extensions:
   - pymdownx.highlight
   - pymdownx.smartsymbols
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid-experimental
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - smarty
   - toc:
       permalink: true
@@ -32,6 +37,11 @@ theme:
 
   features:
     - navigation.instant
+    - navigation.indexes
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
 
   icon:
     repo: fontawesome/brands/github
@@ -39,8 +49,21 @@ theme:
   logo: assets/logo.png
 
   palette:
-    primary: brown
-    accent: amber
+    # Light mode
+    - scheme: default
+      primary: brown
+      accent: amber
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+
+    # Dark mode
+    - scheme: slate
+      primary: brown
+      accent: amber
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
 
 nav:
   - Home: "index.md"
