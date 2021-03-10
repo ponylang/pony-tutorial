@@ -32,7 +32,7 @@ You are going to need to learn the standard library. Some of us prefer to open t
 
 ## Pony Virtual Users' Group
 
-The Pony Virtual Users' Group has occassional presentations that you can attend "in person" or catch later via the recorded video. Join our [Zulip community](https://ponylang.zulipchat.com/#narrow/stream/189932-announce/topic/VUG) to stay up to date on upcoming meetings. All the previous videos are available via [Sean T Allen's Vimeo account](https://vimeo.com/user6269014).
+The Pony Virtual Users' Group has occasional presentations that you can attend "in person" or catch later via the recorded video. Join our [Zulip community](https://ponylang.zulipchat.com/#narrow/stream/189932-announce/topic/VUG) to stay up to date on upcoming meetings. All the previous videos are available via the [Main Ponylang](https://vimeo.com/ponylang) Vimeo.
 
 ## A final word
 
