@@ -12,3 +12,33 @@ ID = "Your_Site_ID"
 
 [build.environment]
   PYTHON_VERSION = "3.7"
+
+[[redirects]]
+  from = "/expressions/exceptions.html"
+  to = "/expressions/errors.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/capabilities.html"
+  to = "/reference-capabilities.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/capabilities/object-capabilities.html"
+  to = "/object-capabilities.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/capabilities/trust-boundary.html"
+  to = "/object-capabilities/trust-boundary.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/capabilities/*"
+  to = "/reference-capabilities/:splat"
+  status = 301
+  force = true
