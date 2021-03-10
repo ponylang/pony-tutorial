@@ -27,6 +27,7 @@ markdown_extensions:
 
 plugins:
   - search
+  - autolinks
 
 theme:
   name: material
