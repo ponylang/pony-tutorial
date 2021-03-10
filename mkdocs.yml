@@ -27,8 +27,6 @@ markdown_extensions:
 
 plugins:
   - search
-  - htmlproofer:
-      raise_error: True
 
 theme:
   name: material
