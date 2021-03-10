@@ -11,4 +11,4 @@ ID = "Your_Site_ID"
   command = "mkdocs build"
 
 [build.environment]
-  PYTHON_VERSION = "3.6"
+  PYTHON_VERSION = "3.5"
