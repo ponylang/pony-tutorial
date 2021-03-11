@@ -28,6 +28,8 @@ markdown_extensions:
 plugins:
   - search
   - ezlinks
+  - htmlproofer:
+      raise_error: True
 
 theme:
   name: material
