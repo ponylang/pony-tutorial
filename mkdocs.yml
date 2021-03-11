@@ -1,0 +1,157 @@
+site_name: Pony Tutorial
+
+copyright: Copyright &copy; 2021 The Pony Developers
+edit_uri: edit/main/docs/
+repo_url: https://github.com/ponylang/pony-tutorial/
+use_directory_urls: false
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ponylang
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/ponylang
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid-experimental
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - smarty
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+  - ezlinks
+
+theme:
+  name: material
+
+  favicon: assets/logo.png
+
+  features:
+    - navigation.instant
+    - navigation.indexes
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+
+  icon:
+    repo: fontawesome/brands/github
+
+  logo: assets/logo.png
+
+  palette:
+    # Light mode
+    - scheme: default
+      primary: brown
+      accent: amber
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+
+    # Dark mode
+    - scheme: slate
+      primary: brown
+      accent: amber
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+
+nav:
+  - Home: "index.md"
+  - Getting Started:
+      - Overview: "getting-started/index.md"
+      - What You Need: "getting-started/what-you-need.md"
+      - Hello World -- Your First Pony Program: "getting-started/hello-world.md"
+      - Hello World -- How It Works: "getting-started/how-it-works.md"
+  - Types:
+      - Overview: "types/index.md"
+      - The Pony Type System at a Glance: "types/at-a-glance.md"
+      - Classes: "types/classes.md"
+      - Primitives: "types/primitives.md"
+      - Actors: "types/actors.md"
+      - Traits and Interfaces: "types/traits-and-interfaces.md"
+      - Structs: "types/structs.md"
+      - Type Aliases: "types/type-aliases.md"
+      - Type Expressions: "types/type-expressions.md"
+  - Expressions:
+      - Overview: "expressions/index.md"
+      - Literals: "expressions/literals.md"
+      - Variables: "expressions/variables.md"
+      - Operators: "expressions/ops.md"
+      - Arithmetic: "expressions/arithmetic.md"
+      - Control Structures: "expressions/control-structures.md"
+      - Methods: "expressions/methods.md"
+      - Errors: "expressions/errors.md"
+      - Equality in Pony: "expressions/equality.md"
+      - Sugar: "expressions/sugar.md"
+      - Object Literals: "expressions/object-literals.md"
+      - Partial Application: "expressions/partial-application.md"
+  - Reference Capabilities:
+      - Overview: "reference-capabilities/index.md"
+      - Reference Capabilities: "reference-capabilities/reference-capabilities.md"
+      - Reference Capability Guarantees: "reference-capabilities/guarantees.md"
+      - Consume and Destructive Read: "reference-capabilities/consume-and-destructive-read.md"
+      - Recovering Capabilities: "reference-capabilities/recovering-capabilities.md"
+      - Aliasing: "reference-capabilities/aliasing.md"
+      - Passing and Sharing References: "reference-capabilities/passing-and-sharing.md"
+      - Capability Subtyping: "reference-capabilities/capability-subtyping.md"
+      - Combining Capabilities: "reference-capabilities/combining-capabilities.md"
+      - Arrow Types aka Viewpoints: "reference-capabilities/arrow-types.md"
+      - Reference Capability Matrix: "reference-capabilities/capability-matrix.md"
+  - Object Capabilities:
+      - Overview: "object-capabilities/index.md"
+      - Object Capabilities: "object-capabilities/object-capabilities.md"
+      - Trust Boundary: "object-capabilities/trust-boundary.md"
+  - Generics:
+      - Overview: "generics/index.md"
+      - Generics and Reference Capabilities: "generics/generics-and-reference-capabilities.md"
+      - Constraints: "generics/generic-constraints.md"
+  - Pattern Matching:
+      - Overview: "pattern-matching/index.md"
+      - Match Expressions: "pattern-matching/match.md"
+      - As Operator: "pattern-matching/as.md"
+  - Packages:
+      - Overview: "packages/index.md"
+      - Use Statement: "packages/use-statement.md"
+      - Standard Library: "packages/standard-library.md"
+  - Testing:
+      - Overview: "testing/index.md"
+      - Testing with PonyTest: "testing/ponytest.md"
+  - C-FFI:
+      - Overview: "c-ffi/index.md"
+      - Calling C from Pony: "c-ffi/calling-c.md"
+      - Linking to C Libraries: "c-ffi/linking-c.md"
+      - C ABI: "c-ffi/c-abi.md"
+      - Callbacks: "c-ffi/callbacks.md"
+  - Gotchas:
+      - Overview: "gotchas/index.md"
+      - Divide by Zero: "gotchas/divide-by-zero.md"
+      - Garbage Collection: "gotchas/garbage-collection.md"
+      - Scheduling: "gotchas/scheduling.md"
+      - Function Call Side Effects: "gotchas/side-effect-ordering-in-function-call-expressions.md"
+      - Recursion: "gotchas/recursion.md"
+  - Where Next?:
+      - Overview: "where-next/index.md"
+  - Appendices:
+      - Overview: "appendices/index.md"
+      - PONYPATH: "appendices/ponypath.md"
+      - Lexicon: "appendices/lexicon.md"
+      - Symbol Lookup Cheatsheet: "appendices/symbol-lookup-cheatsheet.md"
+      - Keywords: "appendices/keywords.md"
+      - Examples: "appendices/examples.md"
+      - Whitespace: "appendices/whitespace.md"
+      - Compiler Arguments: "appendices/compiler-args.md"
+      - Memory Allocation at Runtime: "appendices/memory-allocation.md"
+      - Garbage Collection with Pony-ORCA: "appendices/garbage-collection.md"
+      - Platform-dependent Code: "appendices/platform-dependent-code.md"
+      - A Short Guide to Pony Error Messages: "appendices/error-messages.md"
+      - Program Annotations: "appendices/annotations.md"
+      - Serialisation: "appendices/serialisation.md"
