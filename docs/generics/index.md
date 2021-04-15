@@ -82,6 +82,33 @@ class FooString
   fun ref set(c: String val) => _c = c
 ```
 
+### Type parameter defaults
+
+Sometimes the same parameter type is used over and over again, and it is tedious to always specify it when using the generic class.
+The class `Bar` expects its type parameter to be a `USize val` by default:
+
+```pony
+class Bar[A: Any box = USize val]
+  var _c: A
+
+  new create(c: A) =>
+    _c = c
+
+  fun get(): A => _c
+
+  fun ref set(c: A) => _c = c
+```
+
+Now, when the default type parameter is the desired one, it can simply be omitted. But it is still possible to be explicit or use a different type.
+
+```pony
+let a = Bar(42)
+let b = Bar[USize](42)
+let c = Bar[F32](1.5)
+```
+
+Note that we could simply write `class Bar[A: Any box = USize]` because `val` is the default reference capability of the `USize` type.
+
 ## Generic Methods
 
 Methods can be generic too. They are defined in the same way as normal methods but have type parameters inside square brackets after the method name:
