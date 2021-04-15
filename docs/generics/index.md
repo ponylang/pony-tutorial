@@ -4,7 +4,8 @@ Often when writing code you want to create similar classes or functions that dif
 
 ## Generic Classes
 
-A generic class is a class that can have parameters, much like a method has parameters. The parameters for a generic class are types. Parameters are introduced to a class using square brackets.
+A generic class is a class that can have parameters, much like a method has parameters. The parameters for a generic class are types, including their reference capability.
+Parameters are introduced to a class using square brackets.
 
 Take the following example of a non-generic class:
 
