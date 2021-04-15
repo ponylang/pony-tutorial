@@ -56,22 +56,26 @@ EGLEvent getEvent() {
 then you can destructure it and get the values using a tuple
 
 ```pony
+use @getEvent[EGLEvent]()
 type EGLEvent is (U8, F32, F32)
-(var code, var x, var y) = @getEvent[EGLEvent]()
+(var code, var x, var y) = @getEvent()
 ```
 
 ## Get and pass pointers to FFI
 
 ```pony
+use @XOpenDisplay[Pointer[_XDisplayHandle]](name: Pointer[U8] tag)
+use @eglGetDisplay[Pointer[_EGLDisplayHandle]](disp: Pointer[_XDisplayHandle])
+
 primitive _XDisplayHandle
 primitive _EGLDisplayHandle
 
-let x_dpy = @XOpenDisplay[Pointer[_XDisplayHandle]](U32(0))
+let x_dpy = @XOpenDisplay(Pointer[U8])
 if x_dpy.is_null() then
   env.out.print("XOpenDisplay failed")
 end
 
-let e_dpy = @eglGetDisplay[Pointer[_EGLDisplayHandle]](x_dpy)
+let e_dpy = @eglGetDisplay(x_dpy)
 if e_dpy.is_null() then
   env.out.print("eglGetDisplay failed")
 end
@@ -80,6 +84,9 @@ end
 ## Pass an Array of values to FFI (TODO)
 
 ```pony
+use @eglChooseConfig[U32](disp: Pointer[_EGLDisplayHandle], attrs: Pointer[U16] tag,
+  config: Pointer[_EGLConfigHandle], config_size: U32, num_config: Pointer[U32])
+
 primitive _EGLConfigHandle
 let a = Array[U16](8)
 a.push(0x3040)
@@ -92,7 +99,7 @@ a.push(0x3023)
 a.push(0x8)
 a.push(0x3024)
 let config = Pointer[_EGLConfigHandle]
-if @eglChooseConfig[U32](e_dpy, a, config, U32(1), Pointer[U32]) == 0 then
+if @eglChooseConfig(e_dpy, a.cpointer(), config, U32(1), Pointer[U32]) == 0 then
     env.out.print("eglChooseConfig failed")
 end
 ```

@@ -21,13 +21,16 @@ use "lib:crypto" if not windows
 use "lib:libssl-32" if windows
 use "lib:libcrypto-32" if windows
 
+use @SSL_load_error_strings[None]()
+use @SSL_library_init[I32]()
+
 primitive _SSLInit
   """
   This initialises SSL when the program begins.
   """
   fun _init() =>
-    @SSL_load_error_strings[None]()
-    @SSL_library_init[I32]()
+    @SSL_load_error_strings()
+    @SSL_library_init()
 ```
 
 On Windows, we use the libraries "libssl-32" and "libcrypto-32" and on other platforms we use "ssl" and "crypto". These contain the FFI functions SSL_library_init and SSL_load_error_strings (amongst others).

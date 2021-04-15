@@ -81,11 +81,14 @@ char **pzErrMsg             /* Write error messages here */
 Here's the skeleton of some Pony code that uses `sqlite3_exec` to query an SQLite database, with examples of both the bare method way and the bare lambda way:
 
 ```pony
+use @sqlite3_exec[I32](db: Pointer[None] tag, sql: Pointer[U8] tag,
+  callback: Pointer[None], data: Pointer[None], err_msg: Pointer[Pointer[U8] tag] tag)
+
 class SQLiteClient
   fun client_code() =>
     ...
-    @sqlite3_exec[I32](db, sql.cstring(), addressof this.method_callback,
-                       this, addressof zErrMsg)
+    @sqlite3_exec(db, sql.cstring(), addressof this.method_callback,
+                  this, addressof zErrMsg)
     ...
 
   fun @method_callback(client: SQLiteClient, argc: I32,
@@ -95,6 +98,9 @@ class SQLiteClient
 ```
 
 ```pony
+use @sqlite3_exec[I32](db: Pointer[None] tag, sql: Pointer[U8] tag,
+  callback: Pointer[None], data: Pointer[None], err_msg: Pointer[Pointer[U8] tag] tag)
+
 class SQLiteClient
   fun client_code() =>
     ...
@@ -105,8 +111,8 @@ class SQLiteClient
         ...
       }
 
-    @sqlite3_exec[I32](db, sql.cstring(), lambda_callback, this,
-                       addressof zErrMsg)
+    @sqlite3_exec(db, sql.cstring(), lambda_callback, this,
+                  addressof zErrMsg)
     ...
 ```
 
