@@ -17,7 +17,6 @@ fun test(a: Wombat iso) =>
 
 Here we have some function that gets passed an isolated Wombat. If we try to alias `a` by assigning it to `b`, we'll be breaking reference capability guarantees, so the compiler will stop us. Instead, we can only store aliases that are compatible with the original capability.
 
-
 __What can I alias an `iso` as?__ Since an `iso` says no other variable can be used by _any_ actor to read from or write to that object, we can only create aliases to an `iso` that can neither read nor write. Fortunately, we have a reference capability that does exactly that: `tag`. So we can do this and the compiler will be happy:
 
 ```pony
