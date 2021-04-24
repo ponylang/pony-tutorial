@@ -71,4 +71,3 @@ fun test(a: Wombat iso): Wombat iso^ =>
 Here, our function takes an isolated Wombat as a parameter and returns an ephemeral isolated Wombat.
 
 This is useful for dealing with `iso` and `trn` types, and for generic types, but it's also important for constructors. A constructor always returns an ephemeral type, because it's a new object.
-
