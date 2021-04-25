@@ -89,7 +89,7 @@ env.out.print(size.height.string())
 
 ### Variadic C functions
 
-Some C functions are variadic, that is, they can take a variable number of parameters. To interact with these functions, you should also specify that the FFI declaration takes a variable number of parameters:
+Some C functions are variadic, that is, they can take a variable number of parameters. To interact with these functions, you should also specify that fact in the FFI signature:
 
 ```pony
 use @printf[I32](fmt: Pointer[U8] tag, ...)
@@ -99,7 +99,7 @@ let rate: I64 = (_partial_count.i64() * 1_000_000_000) / run_ns
 @printf("Elapsed: %lld,%lld\n".cstring(), run_ns, rate)
 ```
 
-In the example above, the compiler will type-check the first argument to `printf`, but will not be able to check any other argument, since it lacks the necessary type information. It is __very__ important that you use `...` if the corresponding C function is variadic: if you don't, the compiler might generate a program that is incorrect or crash, depending on the target platform.
+In the example above, the compiler will type-check the first argument to `printf`, but will not be able to check any other argument, since it lacks the necessary type information. It is __very__ important that you use `...` in the FFI signature if the corresponding C function is variadic: if you don't, the compiler might generate a program that is incorrect or crash, depending on the target platform.
 
 ## FFI functions raising errors
 
