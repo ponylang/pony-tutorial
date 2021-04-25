@@ -26,6 +26,8 @@ class val FilePath
 
 FFI functions have the @ symbol before its name, and FFI signatures are declared using the `use` command. The types specified here are considered authoritative, and any FFI calls that differ are considered to be an error.
 
+An FFI signature is public to all Pony files inside the same package, so you only need to write them once. Separate packages might define different FFI signatures for the same C function, in which case the compiler will ensure that all signatures are compatible with each other.
+
 The use @ command can take a condition just like other `use` commands. This is useful in this case, since the `_mkdir` function only exists in Windows.
 
 ## C types
