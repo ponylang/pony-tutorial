@@ -24,8 +24,10 @@ encodings
 endian
 et
 FFI
+filesystem
 finaliser
 finalisers
+forgeable
 GC
 GDB
 interoperable
@@ -66,6 +68,7 @@ struct
 structs
 TCP
 TypeScript
+UDP
 unalias
 unaliased
 unaliasing
