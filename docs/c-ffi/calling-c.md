@@ -101,7 +101,7 @@ let rate: I64 = (_partial_count.i64() * 1_000_000_000) / run_ns
 @printf("Elapsed: %lld,%lld\n".cstring(), run_ns, rate)
 ```
 
-In the example above, the compiler will type-check the first argument to `printf`, but will not be able to check any other argument, since it lacks the necessary type information. It is __very__ important that you use `...` in the FFI signature if the corresponding C function is variadic: if you don't, the compiler might generate a program that is incorrect or crash, depending on the target platform.
+In the example above, the compiler will type-check the first argument to `printf`, but will not be able to check any other argument, since it lacks the necessary type information. It is __very__ important that you use `...` in the FFI signature if the corresponding C function is variadic: if you don't, the compiler might generate a program that is incorrect or crash on some platforms while appearing to work correctly on others.
 
 ## FFI functions raising errors
 
