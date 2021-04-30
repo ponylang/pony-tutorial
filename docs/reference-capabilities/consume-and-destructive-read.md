@@ -23,6 +23,15 @@ fun test(a: Wombat iso) =>
 
 Here's an example of that. When you try to assign `a` to `c`, the compiler will complain.
 
+By default, a `consume` expression returns a type with the capability of the variable that you are assigning to. You can see this in the example above, where we say that `b` is `Wombat iso`, and as such the result of the `consume` expression is `Wombat iso`. We could also have said that `b` is a `Wombat val`, but sometimes, like for example if the type of a variable is quite long, we can instead give an explicit reference capability to the `consume` expression:
+
+```pony
+fun test(a: AnIncrediblyLongTypeName iso) =>
+  var b = consume val a
+```
+
+The example above is equivalent to saying `var b: AnIncrediblyLongTypeName val = consume a`.
+
 __Can I `consume` a field?__ Definitely not! Consuming something means it is empty, that is, it has no value. There's no way to be sure no other alias to the object will access that field. If we tried to access a field that was empty, we would crash. But there's a way to do what you want to do: _destructive read_.
 
 ## Destructive read
