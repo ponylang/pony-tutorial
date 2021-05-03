@@ -26,9 +26,9 @@ class val FilePath
 
 FFI functions have the @ symbol before its name, and FFI signatures are declared using the `use` command. The types specified here are considered authoritative, and any FFI calls that differ are considered to be an error.
 
-An FFI signature is public to all Pony files inside the same package, so you only need to write them once. Separate packages might define different FFI signatures for the same C function, in which case the compiler will ensure that all signatures are compatible with each other.
-
 The use @ command can take a condition just like other `use` commands. This is useful in this case, since the `_mkdir` function only exists in Windows.
+
+An FFI signature is public to all Pony files inside the same package, so you only need to write them once.
 
 ## C types
 
@@ -115,3 +115,22 @@ use @pony_os_send[USize](event: AsioEventID, buffer: Pointer[U8] tag, size: USiz
 // May raise an error
 @pony_os_send(_event, data.cpointer(), data.size()) ?
 ```
+
+## Type signature compatibility
+
+Since type signature declarations are scoped to a single Pony package, separate packages might define different FFI signatures for the same C function. In these cases, the compiler will make sure that all declarations are compatible with each other. Two declarations are compatible if their arguments and return types are compatible. Two types are compatible with each other if they have the same ABI size and they can be safely casted to each other. Currently, the compiler allows the following type casts:
+
+* Any `struct` type can be casted to any other `struct`.
+* Pointers and integers can be casted to each other.
+
+Consider the following example:
+
+```pony
+// In library lib_a
+use @memcmp[I32](dst: Pointer[None] tag, src: Pointer[None] tag, len: USize)
+
+// In library lib_b
+use @memcmp[I32](dst: Pointer[None] tag, src: USize, len: U64)
+```
+
+These two declarations have different types for the `src` and `len` parameters. In the case of `src`, the types are compatible since an integer can be casted as a pointer, and vice versa. For `len`, the types will not be compatible on 32 bit platforms, where `USize` is equivalent to `U32`. It is important to take the rules around casting into account when writing type declarations in libraries that will be used by others, as it will avoid any compatibility problems with other libraries.
