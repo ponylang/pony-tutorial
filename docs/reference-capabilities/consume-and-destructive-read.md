@@ -4,9 +4,9 @@ An important part of Pony's capabilities is being able to say "I'm done with thi
 
 ## Consuming a variable
 
-Sometimes, you want to _move_ an object from one variable to another. In other words, you don't want to make a _new_ name for the object, exactly, you want to move the object from some existing name to a different one.
+Sometimes, you want to _move_ an object from one variable to another. In other words, you don't want to make a _second_ name for the object, you want to move the object from some existing name to a different one.
 
-You can do this by using `consume`. When you `consume` a variable you take the value out of it, effectively leaving the variable empty. No code can read from that variable again until a new value is written to it. Consuming a local variable or a parameter allows you to make an alias with the same type, even if it's an `iso` or `trn`. For example:
+You can do this by using `consume`. When you `consume` a variable you take the value out of it, effectively leaving the variable empty. No code can read from that variable again until a new value is written to it. Consuming a local variable or a parameter allows you to move it to a new location, most importantly for `iso` and `trn`.
 
 ```pony
 fun test(a: Wombat iso) =>

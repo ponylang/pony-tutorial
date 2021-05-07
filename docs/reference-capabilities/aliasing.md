@@ -15,16 +15,16 @@ fun test(a: Wombat iso) =>
   var b: Wombat iso = a // Not allowed!
 ```
 
-Here we have some function that gets passed an isolated Wombat. If we try to alias `a` by assigning it to `b`, we'll be breaking reference capability guarantees so the compiler will stop us.
+Here we have some function that gets passed an isolated Wombat. If we try to alias `a` by assigning it to `b`, we'll be breaking reference capability guarantees, so the compiler will stop us. Instead, we can only store aliases that are compatible with the original capability.
 
-__What can I alias an `iso` as?__ Since an `iso` says no other variable can be used by _any_ actor to read from or write to that object, we can only create aliases to an `iso` that can neither read nor write. Fortunately, we've got a reference capability that does exactly that: `tag`. So we can do this and the compiler will be happy:
+__What can I alias an `iso` as?__ Since an `iso` says no other variable can be used by _any_ actor to read from or write to that object, we can only create aliases to an `iso` that can neither read nor write. Fortunately, we have a reference capability that does exactly that: `tag`. So we can do this and the compiler will be happy:
 
 ```pony
 fun test(a: Wombat iso) =>
   var b: Wombat tag = a // Allowed!
 ```
 
-__What about aliasing `trn`?__ Since a `trn` says no other variable can be used by _any_ actor to write to that object, we need something that doesn't allow writing but also doesn't prevent our `trn` variable from writing. Fortunately, we've got a reference capability that does that too: `box`. So we can do this and the compiler will be happy:
+__What about aliasing `trn`?__ Since a `trn` says no other variable can be used by _any_ actor to write to that object, we need something that doesn't allow writing but also doesn't prevent our `trn` variable from writing. Fortunately, we have a reference capability that does that too: `box`. So we can do this and the compiler will be happy:
 
 ```pony
 fun test(a: Wombat trn) =>
@@ -43,6 +43,19 @@ There are three things that count as making an alias:
 
 In all three cases, you are making a new _name_ for the object. This might be the name of a local variable, the name of a field, or the name of a parameter to a method.
 
+## Alias types
+
+Occasionally we'll want to talk about the type of an alias generically. An alias type is a way of saying "whatever we can safely alias this thing as". We'll discuss generic types later, which will put this to use, but for now it will help us talk about aliases of capabilities in the future.
+
+We indicate an alias type by putting a `!` at the end. Here's an example:
+
+```pony
+fun test(a: A) =>
+  var b: A! = a
+```
+
+Here, we're using `A` as a __type variable__, which we'll cover later. So `A!` means "an alias of whatever type `A` is". We can also use it to talk about capabilities: we could have written the statements about `iso` and `trn` as just `iso!` = `tag` and `trn!` = `box`.
+
 ## Ephemeral types
 
 In Pony, every expression has a type. So what's the type of `consume a`? It's not the same type as `a`, because it might not be possible to alias `a`. Instead, it's an __ephemeral__ type. That is, it's a type for a value that currently has no name (it might have a name through some other alias, but not the one we just consumed or destructively read).
@@ -57,16 +70,3 @@ fun test(a: Wombat iso): Wombat iso^ =>
 Here, our function takes an isolated Wombat as a parameter and returns an ephemeral isolated Wombat.
 
 This is useful for dealing with `iso` and `trn` types, and for generic types, but it's also important for constructors. A constructor always returns an ephemeral type, because it's a new object.
-
-## Alias types
-
-For the same reason Pony has ephemeral types, it also has alias types. An alias type is a way of saying "whatever we can safely alias this thing as". It's only needed when dealing with generic types, which we'll discuss later.
-
-We indicate an alias type by putting a `!` at the end. Here's an example:
-
-```pony
-fun test(a: A) =>
-  var b: A! = a
-```
-
-Here, we're using `A` as a __type variable__, which we'll cover later. So `A!` means "an alias of whatever type `A` is".
