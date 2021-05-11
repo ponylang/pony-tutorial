@@ -71,7 +71,7 @@ var mantissa = @frexp(this, addressof exponent)
 
 ### Get and Pass Pointers to FFI
 
-To pass and receive pointers to c structs you need to declare pointer to primitives
+If you want to receive a pointer to an opaque C type, using a pointer to a primitive can be useful:
 
 ```pony
 use @XOpenDisplay[Pointer[_XDisplayHandle]](name: Pointer[U8] tag)
@@ -90,6 +90,8 @@ if e_dpy.is_null() then
   env.out.print("eglGetDisplay failed")
 end
 ```
+
+The above example would also work if we used `Pointer[None]` for all the pointer types. By using a pointer to a primitive, we are adding a level of type safety, as the compiler will ensure that we don't pass a pointer to any other type as a parameter to `eglGetDisplay`. It is important to note that these primitives should __not be used anywhere except as a type parameter__ of `Pointer[]`, to avoid misuse.
 
 ### Read Struct Values from FFI
 
