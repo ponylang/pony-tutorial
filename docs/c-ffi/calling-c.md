@@ -28,30 +28,50 @@ FFI functions have the @ symbol before its name, and FFI signatures are declared
 
 The use @ command can take a condition just like other `use` commands. This is useful in this case, since the `_mkdir` function only exists in Windows.
 
+If the name of the C function that you want to call is also a [reserved keyword in Pony](/appendices/keywords.md) (such as `box`), you will need to wrap the name in double quotes (`@"box"`). If you forget to do so, your program will not compile.
+
 An FFI signature is public to all Pony files inside the same package, so you only need to write them once.
 
 ## C types
 
 Many C functions require types that don't have an exact equivalent in Pony. A variety of features is provided for these.
 
-For FFI functions that have no return value (ie they return `void` in C) the return value specified should be `[None]`.
+For FFI functions that have no return value (i.e. they return `void` in C) the return value specified should be `None`.
 
-In Pony String is an object with a header and fields, but in C a `char*` is simply a pointer to character data. The `.cstring()` function on String provides us with a valid pointer to hand to C. Our `fwrite` example above makes use of this for the first argument.
+In Pony, a String is an object with a header and fields, while in C a `char*` is simply a pointer to character data. The `.cstring()` function on String provides us with a valid pointer to hand to C. Our `mkdir` example above makes use of this for the first argument.
 
-Pony classes correspond directly to pointers to the class in C.
+Pony classes and structs correspond directly to pointers to the class or struct in C.
 
-For C pointers to simple types, such as U64, the Pony `Pointer[]` polymorphic type should be used, with a `tag` reference capability. `Pointer[U8] tag` should be used for void*.
-
-To pass pointers to values to C the `addressof` operator can be used (previously `&`), just like taking an address in C. This is done in the standard library to pass the address of a `U64` to an FFI function that takes a `uint64_t*` as an out parameter:
+For C pointers to simple types, such as U64, the Pony `Pointer[]` polymorphic type should be used, with a `tag` reference capability. To represent `void*` arguments, you should the `Pointer[None] tag` type, which will allow you to pass a pointer to any type, including other pointers. This is needed to write declarations for certain POSIX functions, such as `memcpy`:
 
 ```pony
-var len = U64(0)
-@pcre2_substring_length_bynumber_8[I32](_match, i.u32(), addressof len)
+// The C type is void* memcpy(void *restrict dst, const void *restrict src, size_t n);
+use @memcpy[Pointer[U8]](dst: Pointer[None] tag, src: Pointer[None] tag, n: USize)
+
+// Now we can use memcpy with any Pointer type
+let out: Pointer[Pointer[U8] tag] tag = // ...
+let outlen: Pointer[U8] tag = // ...
+let ptr: Pointer[U8] tag = // ...
+let size: USize = // ...
+// ...
+@memcpy(out, addressof ptr, size.bitwidth() / 8)
+@memcpy(outlen, addressof size, 1)
+```
+
+When dealing with `void*` return types from C, it is good practice to try to narrow the type down to the most specific Pony type that you expect to receive. In the example above, we chose `Pointer[U8]` as the return type, since we can use such a pointer to construct Pony Arrays and Strings.
+
+To pass pointers to values to C the `addressof` operator can be used (previously `&`), just like taking an address in C. This is done in the standard library to pass the address of a `U32` to an FFI function that takes a `int*` as an out parameter:
+
+```pony
+use @frexp[F64](value: F64, exponent: Pointer[U32])
+// ...
+var exponent: U32 = 0
+var mantissa = @frexp(this, addressof exponent)
 ```
 
 ### Get and Pass Pointers to FFI
 
-To pass and receive pointers to c structs you need to declare pointer to primitives
+If you want to receive a pointer to an opaque C type, using a pointer to a primitive can be useful:
 
 ```pony
 use @XOpenDisplay[Pointer[_XDisplayHandle]](name: Pointer[U8] tag)
@@ -71,11 +91,53 @@ if e_dpy.is_null() then
 end
 ```
 
-### Read Struct Values from FFI
+The above example would also work if we used `Pointer[None]` for all the pointer types. By using a pointer to a primitive, we are adding a level of type safety, as the compiler will ensure that we don't pass a pointer to any other type as a parameter to `eglGetDisplay`. It is important to note that these primitives should __not be used anywhere except as a type parameter__ of `Pointer[]`, to avoid misuse.
 
-A common pattern in C is to pass a struct pointer to a function, and that function will fill in various values in the struct. To do this in Pony, you make a `struct` and then use a `NullablePointer`:
+### Working with Structs: from Pony to C
+
+Like we mentioned above, Pony classes and structs correspond directly to pointers to the class or struct in C. This means that in most cases we won't need to use the `addressof` operator when passing struct types to C. For example, let's imagine we want to use the `writev` function from Pony on Linux:
 
 ```pony
+// In C: ssize_t writev(int fd, const struct iovec *iov, int iovcnt)
+use @writev[USize](fd: U32, iov: IOVec tag, iovcnt: I32)
+
+// In C:
+// struct iovec {
+//     void  *iov_base;    /* Starting address */
+//     size_t iov_len;     /* Number of bytes to transfer */
+// };
+struct IOVec
+  var base: Pointer[U8] tag = Pointer[U8]
+  var len: USize = 0
+
+let data = "Hello from Pony!"
+var iov = IOVec
+iov.base = data.cpointer()
+iov.len = data.size()
+@writev(1, iov, 1) // Will print "Hello from Pony!"
+```
+
+As you saw, a `IOVec` instance in Pony is equivalent to `struct iovec*`. In some cases, like the above example, it can be cumbersome to define a `struct` type in Pony if you only want to use it in a single place. You can also use a pointer to a tuple type as a shorthand for a struct: let's rework the above example:
+
+```pony
+use @writev[USize](fd: U32, iov: Pointer[(Pointer[U8] tag, USize)] tag, iovcnt: I32)
+
+let data = "Hello from Pony!"
+var iov = (data.cpointer(), data.size())
+@writev(1, addressof iov, 1) // Will print "Hello from Pony!"
+```
+
+In the example above, the type `Pointer[(Pointer[U8] tag, USize)] tag` is equivalent to the `IOVec` struct type we defined earlier. That is, _a struct type is equivalent to a pointer to a tuple type with the fields of the struct as elements, in the same order as the original struct type defined them_.
+
+**Can I pass struct types by value, instead of passing a pointer?** Not at the moment. This is a known limitation of the current FFI system, but it is something the Pony team is interested in fixing.
+
+### Working with Structs: from C to Pony
+
+A common pattern in C is to pass a struct pointer to a function, and that function will fill in various values in the struct. To do this in Pony, you make a `struct` and then use a `NullablePointer`, which denotes a possibly-null type:
+
+```pony
+use @ioctl[I32](fd: I32, req: U32, ...)
+
 struct Winsize
   var height: U16 = 0
   var width: U16 = 0
@@ -88,6 +150,8 @@ let size = Winsize
 
 env.out.print(size.height.string())
 ```
+
+A `NullablePointer` type can only be used with `structs`, and is only intended for output parameters (like in the example above) or for return types from C. You don't need to use a `NullablePointer` if you are only passing a `struct` as a regular input parameter.
 
 ### Variadic C functions
 
@@ -115,6 +179,31 @@ use @pony_os_send[USize](event: AsioEventID, buffer: Pointer[U8] tag, size: USiz
 // May raise an error
 @pony_os_send(_event, data.cpointer(), data.size()) ?
 ```
+
+If you're writing a C library that wants to raise a Pony error, you should do so using the `pony_error` function. Here's an example from the Pony runtime:
+
+```C
+// In pony.h
+PONY_API void pony_error();
+
+// In socket.c
+PONY_API size_t pony_os_send(asio_event_t* ev, const char* buf, size_t len)
+{
+  ssize_t sent = send(ev->fd, buf, len, 0);
+
+  if(sent < 0)
+  {
+    if(errno == EWOULDBLOCK || errno == EAGAIN)
+      return 0;
+
+    pony_error();
+  }
+
+  return (size_t)sent;
+}
+```
+
+A function that calls the `pony_error` function should only be called from inside a `try` block in Pony. If this is not done, the call to `pony_error` will result in a call to C's `abort` function, which will terminate the program.
 
 ## Type signature compatibility
 
