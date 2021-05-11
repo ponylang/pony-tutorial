@@ -42,7 +42,23 @@ In Pony, a String is an object with a header and fields, while in C a `char*` is
 
 Pony classes and structs correspond directly to pointers to the class or struct in C.
 
-For C pointers to simple types, such as U64, the Pony `Pointer[]` polymorphic type should be used, with a `tag` reference capability. `Pointer[U8] tag` should be used for void*.
+For C pointers to simple types, such as U64, the Pony `Pointer[]` polymorphic type should be used, with a `tag` reference capability. To represent `void*` arguments, you should the `Pointer[None] tag` type, which will allow you to pass a pointer to any type, including other pointers. This is needed to write declarations for certain POSIX functions, such as `memcpy`:
+
+```pony
+// The C type is void* memcpy(void *restrict dst, const void *restrict src, size_t n);
+use @memcpy[Pointer[U8]](dst: Pointer[None] tag, src: Pointer[None] tag, n: USize)
+
+// Now we can use memcpy with any Pointer type
+let out: Pointer[Pointer[U8] tag] tag = // ...
+let outlen: Pointer[U8] tag = // ...
+let ptr: Pointer[U8] tag = // ...
+let size: USize = // ...
+// ...
+@memcpy(out, addressof ptr, size.bitwidth() / 8)
+@memcpy(outlen, addressof size, 1)
+```
+
+When dealing with `void*` return types from C, it is good practice to try to narrow the type down to the most specific Pony type that you expect to receive. In the example above, we chose `Pointer[U8]` as the return type, since we can use such a pointer to construct Pony Arrays and Strings.
 
 To pass pointers to values to C the `addressof` operator can be used (previously `&`), just like taking an address in C. This is done in the standard library to pass the address of a `U32` to an FFI function that takes a `int*` as an out parameter:
 
