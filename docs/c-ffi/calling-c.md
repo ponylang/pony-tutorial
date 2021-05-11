@@ -36,19 +36,21 @@ An FFI signature is public to all Pony files inside the same package, so you onl
 
 Many C functions require types that don't have an exact equivalent in Pony. A variety of features is provided for these.
 
-For FFI functions that have no return value (ie they return `void` in C) the return value specified should be `[None]`.
+For FFI functions that have no return value (i.e. they return `void` in C) the return value specified should be `None`.
 
-In Pony String is an object with a header and fields, but in C a `char*` is simply a pointer to character data. The `.cstring()` function on String provides us with a valid pointer to hand to C. Our `fwrite` example above makes use of this for the first argument.
+In Pony, a String is an object with a header and fields, while in C a `char*` is simply a pointer to character data. The `.cstring()` function on String provides us with a valid pointer to hand to C. Our `mkdir` example above makes use of this for the first argument.
 
-Pony classes correspond directly to pointers to the class in C.
+Pony classes and structs correspond directly to pointers to the class or struct in C.
 
 For C pointers to simple types, such as U64, the Pony `Pointer[]` polymorphic type should be used, with a `tag` reference capability. `Pointer[U8] tag` should be used for void*.
 
-To pass pointers to values to C the `addressof` operator can be used (previously `&`), just like taking an address in C. This is done in the standard library to pass the address of a `U64` to an FFI function that takes a `uint64_t*` as an out parameter:
+To pass pointers to values to C the `addressof` operator can be used (previously `&`), just like taking an address in C. This is done in the standard library to pass the address of a `U32` to an FFI function that takes a `int*` as an out parameter:
 
 ```pony
-var len = U64(0)
-@pcre2_substring_length_bynumber_8[I32](_match, i.u32(), addressof len)
+use @frexp[F64](value: F64, exponent: Pointer[U32])
+// ...
+var exponent: U32 = 0
+var mantissa = @frexp(this, addressof exponent)
 ```
 
 ### Get and Pass Pointers to FFI
