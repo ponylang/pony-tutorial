@@ -95,9 +95,11 @@ The above example would also work if we used `Pointer[None]` for all the pointer
 
 ### Read Struct Values from FFI
 
-A common pattern in C is to pass a struct pointer to a function, and that function will fill in various values in the struct. To do this in Pony, you make a `struct` and then use a `NullablePointer`:
+A common pattern in C is to pass a struct pointer to a function, and that function will fill in various values in the struct. To do this in Pony, you make a `struct` and then use a `NullablePointer`, which denotes a possibly-null type:
 
 ```pony
+use @ioctl[I32](fd: I32, req: U32, ...)
+
 struct Winsize
   var height: U16 = 0
   var width: U16 = 0
@@ -110,6 +112,8 @@ let size = Winsize
 
 env.out.print(size.height.string())
 ```
+
+A `NullablePointer` type can only be used with `structs`, and is only intended for output parameters (like in the example above) or for return types from C. You don't need to use a `NullablePointer` if you are only passing a `struct` as a regular input parameter.
 
 ### Variadic C functions
 
