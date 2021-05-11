@@ -116,6 +116,31 @@ use @pony_os_send[USize](event: AsioEventID, buffer: Pointer[U8] tag, size: USiz
 @pony_os_send(_event, data.cpointer(), data.size()) ?
 ```
 
+If you're writing a C library that wants to raise a Pony error, you should do so using the `pony_error` function. Here's an example from the Pony runtime:
+
+```C
+// In pony.h
+PONY_API void pony_error();
+
+// In socket.c
+PONY_API size_t pony_os_send(asio_event_t* ev, const char* buf, size_t len)
+{
+  ssize_t sent = send(ev->fd, buf, len, 0);
+
+  if(sent < 0)
+  {
+    if(errno == EWOULDBLOCK || errno == EAGAIN)
+      return 0;
+
+    pony_error();
+  }
+
+  return (size_t)sent;
+}
+```
+
+A function that calls the `pony_error` function should only be called from inside a `try` block in Pony. If this is not done, the call to `pony_error` will result in a call to C's `abort` function, which will terminate the program.
+
 ## Type signature compatibility
 
 Since type signature declarations are scoped to a single Pony package, separate packages might define different FFI signatures for the same C function. In these cases, the compiler will make sure that all declarations are compatible with each other. Two declarations are compatible if their arguments and return types are compatible. Two types are compatible with each other if they have the same ABI size and they can be safely casted to each other. Currently, the compiler allows the following type casts:
