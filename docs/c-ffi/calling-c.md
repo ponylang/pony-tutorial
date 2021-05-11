@@ -93,7 +93,43 @@ end
 
 The above example would also work if we used `Pointer[None]` for all the pointer types. By using a pointer to a primitive, we are adding a level of type safety, as the compiler will ensure that we don't pass a pointer to any other type as a parameter to `eglGetDisplay`. It is important to note that these primitives should __not be used anywhere except as a type parameter__ of `Pointer[]`, to avoid misuse.
 
-### Read Struct Values from FFI
+### Working with Structs: from Pony to C
+
+Like we mentioned above, Pony classes and structs correspond directly to pointers to the class or struct in C. This means that in most cases we won't need to use the `addressof` operator when passing struct types to C. For example, let's imagine we want to use the `writev` function from Pony on Linux:
+
+```pony
+// In C: ssize_t writev(int fd, const struct iovec *iov, int iovcnt)
+use @writev[USize](fd: U32, iov: IOVec tag, iovcnt: I32)
+
+// In C:
+// struct iovec {
+//     void  *iov_base;    /* Starting address */
+//     size_t iov_len;     /* Number of bytes to transfer */
+// };
+struct IOVec
+  var base: Pointer[U8] tag = Pointer[U8]
+  var len: USize = 0
+
+let data = "Hello from Pony!"
+var iov = IOVec
+iov.base = data.cpointer()
+iov.len = data.size()
+@writev(1, iov, 1) // Will print "Hello from Pony!"
+```
+
+As you saw, a `IOVec` instance in Pony is equivalent to `struct iovec*`. In some cases, like the above example, it can be cumbersome to define a `struct` type in Pony if you only want to use it in a single place. You can also use a pointer to a tuple type as a shorthand for a struct: let's rework the above example:
+
+```pony
+use @writev[USize](fd: U32, iov: Pointer[(Pointer[U8] tag, USize)] tag, iovcnt: I32)
+
+let data = "Hello from Pony!"
+var iov = (data.cpointer(), data.size())
+@writev(1, addressof iov, 1) // Will print "Hello from Pony!"
+```
+
+In the example above, the type `Pointer[(Pointer[U8] tag, USize)] tag` is equivalent to the `IOVec` struct type we defined earlier. That is, _a struct type is equivalent to a pointer to a tuple type with the fields of the struct as elements, in the same order as the original struct type defined them_.
+
+### Working with Structs: from C to Pony
 
 A common pattern in C is to pass a struct pointer to a function, and that function will fill in various values in the struct. To do this in Pony, you make a `struct` and then use a `NullablePointer`, which denotes a possibly-null type:
 
