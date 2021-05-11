@@ -28,6 +28,8 @@ FFI functions have the @ symbol before its name, and FFI signatures are declared
 
 The use @ command can take a condition just like other `use` commands. This is useful in this case, since the `_mkdir` function only exists in Windows.
 
+If the name of the C function that you want to call is also a [reserved keyword in Pony](/appendices/keywords.md) (such as `box`), you will need to wrap the name in double quotes (`@"box"`). If you forget to do so, your program will not compile.
+
 An FFI signature is public to all Pony files inside the same package, so you only need to write them once.
 
 ## C types
