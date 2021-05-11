@@ -35,32 +35,6 @@ for colour in ColourList().values() do
 end
 ```
 
-## Read struct values from FFI
-
-If you have a C struct which returns a struct with data like this
-
-```c
-typedef struct {
-  uint8_t code;
-  float x;
-  float y;
-} EGLEvent;
-
-EGLEvent getEvent() {
-    EGLEvent e = {1, ev.xconfigure.width, ev.xconfigure.height};
-    return e;
-}
-
-```
-
-then you can destructure it and get the values using a tuple
-
-```pony
-use @getEvent[EGLEvent]()
-type EGLEvent is (U8, F32, F32)
-(var code, var x, var y) = @getEvent()
-```
-
 ## Pass an Array of values to FFI (TODO)
 
 ```pony
