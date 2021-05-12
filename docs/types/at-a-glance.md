@@ -37,7 +37,6 @@ Some of those will make sense right now. Some of them may not mean much to you y
 
 __If I use Pony's FFI to call code written in another language, does Pony magically make the same guarantees for the code I call?__ Sadly, no. Pony's type system can only guarantee code written in Pony. Code written in other languages gets only the guarantees provided by that language.
 
-Pony requires FFI parameters be explicitly defined as Pony types in advance. This allows the typechecker to guarantee that no code-paths exist that would result in an FFI call that violated the top-level definition. This assurance is not available in many other languages.
+Pony requires FFI parameters to be explicitly defined as Pony types in advance. This allows the typechecker to guarantee that no code-paths exist that would result in an FFI call that violated the top-level definition. This assurance is not available in many other languages.
 
 Unfortunately, As there is no way Pony can validate compatibility between your top-level definition and what the library expects Pony's guarantees cannot be extended.
-
