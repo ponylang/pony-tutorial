@@ -39,4 +39,4 @@ __If I use Pony's FFI to call code written in another language, does Pony magica
 
 Pony requires FFI parameters to be explicitly defined as Pony types in advance. This allows the typechecker to guarantee that no code-paths exist that would result in an FFI call that violated the top-level definition. This assurance is not available in many other languages.
 
-Unfortunately, As there is no way Pony can validate compatibility between your top-level definition and what the library expects Pony's guarantees cannot be extended.
+Unfortunately, as there is no way Pony can validate compatibility between your top-level definition and what the library expects, Pony's guarantees cannot be extended.
