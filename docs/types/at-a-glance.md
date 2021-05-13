@@ -35,8 +35,9 @@ The Pony type system offers a lot of guarantees, even more than other statically
 
 Some of those will make sense right now. Some of them may not mean much to you yet (like capabilities-security and causal messaging), but we'll get to those concepts later on.
 
-__If I use Pony's FFI to call code written in another language, does Pony magically make the same guarantees for the code I call?__ Sadly, no. Pony's type system can only guarantee code written in Pony. Code written in other languages gets only the guarantees provided by that language.
+__If I use Pony's FFI to call code written in another language, does Pony make the same guarantees for the code I call?__ Sadly, no. Pony's type system can only guarantee code written in Pony. Code written in other languages get only the guarantees provided by that language.
 
-Pony requires FFI parameters to be explicitly defined as Pony types in advance. The type system guarantees at compile-time that no code-paths exist that violate the definitions you provide on the Pony side of the FFI Interface.
+Pony requires FFI parameters to be explicitly declared as Pony types in advance. The type system provides a guarantee at compile-time that no code-paths exist that violate the definitions you provided on the Pony side of your FFI call.
 
-Unfortunately, Pony can't extend this guarantee to include the execution of external functions as it cannot possibly know if the code on the other side of the FFI Interface will break any of Pony's guarantees.
+This guarantee cannot be inclusive of foreign code as the compiler has no way to verify that it won't violate Pony's type system guarantees at runtime.
+
