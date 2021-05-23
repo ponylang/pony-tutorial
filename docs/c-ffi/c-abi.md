@@ -74,7 +74,7 @@ int32_t jch_chash(uint64_t key, uint32_t num_buckets)
 }
 ```
 
-We need to compile the native code to a shared library. This example is for OSX. The exact details may vary on other platforms.
+We need to compile the native code to a shared library. This example is for MacOS. The exact details may vary on other platforms.
 
 ```bash
 clang -fPIC -Wall -Wextra -O3 -g -MM jch.c >jch.d

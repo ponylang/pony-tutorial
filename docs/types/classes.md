@@ -18,7 +18,7 @@ A class is composed of:
 
 ### Fields
 
-These are just like fields in C structs or fields in classes in C++, C#, Java, Python, Ruby, or basically any language, really. There are three kinds of fields: `var`, `let`, and `embed` fields. A `var` field can be assigned to over and over again, but a `let` field is assigned to in the constructor and never again. Embed fields will be covered in more detail in the documentation on [variables](/expressions/variables.md).
+These are just like fields in C structures or fields in classes in C++, C#, Java, Python, Ruby, or basically any language, really. There are three kinds of fields: `var`, `let`, and `embed` fields. A `var` field can be assigned to over and over again, but a `let` field is assigned to in the constructor and never again. Embed fields will be covered in more detail in the documentation on [variables](/expressions/variables.md).
 
 ```pony
 class Wombat
@@ -186,7 +186,7 @@ We'll talk about all that stuff in detail later.
 
 All names in Pony, such as type names, method names, and variable names may contain only [__ASCII__](https://en.wikipedia.org/wiki/ASCII) characters.
 
-In fact all elements of Pony code are required to be ASCII, except string literals, which happily accept any kind of bytes directly from the source file, be it UTF-8 encoded or ISO-8859-2 and represent them in their encoded form.
+In fact all elements of Pony code are required to be ASCII, except string literals, which happily accept any kind of bytes directly from the source file, be it `UTF-8` encoded or `ISO-8859-2` and represent them in their encoded form.
 
 A Pony type, whether it's a class, actor, trait, interface, primitive, or type alias, must start with an uppercase letter. After an underscore for private or special _methods_ (behaviors, constructors, and functions), any method or variable, including parameters and fields, must start with a lowercase letter. In all cases underscores in a row or at the end of a name are not allowed, but otherwise, any combination of letters and numbers is legal.
 

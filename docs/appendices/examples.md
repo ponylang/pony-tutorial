@@ -2,14 +2,14 @@
 
 Small _how do I_ examples for Pony. These will eventually find another home. Until then, they live here.
 
-## Enum with values
+## Enumeration with values
 
 ```pony
 primitive Black fun apply(): U32 => 0xFF000000
 primitive Red   fun apply(): U32 => 0xFFFF0000
 ```
 
-## Enum with values with namespace
+## Enumeration with values with namespace
 
 ```pony
 primitive Colours
@@ -17,7 +17,7 @@ primitive Colours
   fun red(): U32 => 0xFFFF0000
 ```
 
-## Enum which can be iterated
+## Enumeration which can be iterated
 
 ```pony
 primitive Black
@@ -35,7 +35,7 @@ for colour in ColourList().values() do
 end
 ```
 
-## Pass an Array of values to FFI (TODO)
+## Pass an Array of values to FFI
 
 ```pony
 use @eglChooseConfig[U32](disp: Pointer[_EGLDisplayHandle], attrs: Pointer[U16] tag,
@@ -72,7 +72,7 @@ actor Main
     try env.out.print(env.args(0)?) end
 ```
 
-## How to use cli to parse command line arguments
+## How to use the `cli` package to parse command line arguments
 
 ```pony
 use "cli"
@@ -133,7 +133,7 @@ class iso _TestAddition is UnitTest
     h.expect_eq[U32](2 + 2, 4)
 ```
 
-Some assertions you can make with the TestHelper are
+Some assertions you can make with `TestHelper` are
 
 ```pony
 fun tag log(msg: String, verbose: Bool = false)

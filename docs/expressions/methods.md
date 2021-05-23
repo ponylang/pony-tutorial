@@ -260,4 +260,4 @@ To sum up, in complex expressions,
 
 1. Method calls and field accesses have higher precedence than any operators.
 2. Unary operator have higher precedence than infix operators.
-3. When mixing infix operators in complex expressions, we must use parentheses to specify precedences explicitly.
+3. When mixing infix operators in complex expressions, we must use parentheses to specify any precedence explicitly.

@@ -14,7 +14,7 @@ Every programming language has literals to encode values of certain types, and s
 
 In Pony you can express booleans, numeric types, characters, strings and arrays as literals.
 
-## Bool Literals
+## Boolean Literals
 
 There is `true`, there is `false`. That's it.
 
@@ -26,9 +26,9 @@ In most cases Pony is able to infer the concrete type of the literal from the co
 
 It is possible to help the compiler determine the concrete type of the literal using a constructor of one of the numeric types:
 
-* U8, U16, U32, U64, U128, USize, ULong
-* I8, I16, I32, I64, I128, ISize, ILong
-* F32, F64
+* `U8`, `U16`, `U32`, `U64`, `U128`, `USize`, `ULong`
+* `I8`, `I16`, `I32`, `I64`, `I128`, `ISize`, `ILong`
+* `F32`, `F64`
 
 ```pony
 let my_explicit_unsigned: U32 = 42_000
@@ -65,7 +65,7 @@ let newline: U32 = '\n'             // 10
 
 The following escape sequences are supported:
 
-* `\x4F` hex escape sequence with 2 hex digits (up to 0xFF)
+* `\x4F` hex escape sequence with 2 hex digits (up to `0xFF`)
 * `\a`, `\b`, `\e`, `\f`, `\n`, `\r`, `\t`, `\v`, `\\`, `\0`, `\'`
 
 ### Multibyte Character literals
@@ -80,9 +80,9 @@ let multiByte: U64 = 'ABCD' // 0x41424344
 
 String literals are enclosed with double quotes `"` or triple-quoted `"""`. They can contain any kind of bytes and various escape sequences:
 
-* `\u00FE` unicode escape sequence with 4 hex digits encoding one code point
-* `\u10FFFE` unicode escape sequence with 6 hex digits encoding one code point
-* `\x4F` hex escape sequence for unicode letters with 2 hex digits (up to 0xFF)
+* `\u00FE` Unicode escape sequence with 4 hex digits encoding one code point
+* `\u10FFFE` Unicode escape sequence with 6 hex digits encoding one code point
+* `\x4F` hex escape sequence for Unicode letters with 2 hex digits (up to `0xFF`)
 * `\a`, `\b`, `\e`, `\f`, `\n`, `\r`, `\t`, `\v`, `\\`, `\0`, `\"`
 
 Each escape sequence encodes a full character, not byte.
@@ -104,7 +104,7 @@ actor Main
 
 ```
 
-All string literals support multiline strings:
+All string literals support multi-line strings:
 
 ```pony
 
@@ -125,7 +125,7 @@ Consider the following example:
 let u_umlaut = "ü"
 ```
 
-If the file containing this code is encoded as *UTF-8* the byte-value of `u_umlaut` will be: `\xc3\xbc`. If the file is encoded with *ISO-8559-1* (Latin-1) its value will be `\xfc`.
+If the file containing this code is encoded as `UTF-8` the byte-value of `u_umlaut` will be: `\xc3\xbc`. If the file is encoded with *ISO-8559-1* (Latin-1) its value will be `\xfc`.
 
 ### Triple quoted Strings
 
@@ -134,7 +134,7 @@ For embedding multi-line text in string literals, there are triple quoted string
 ```pony
 let triple_quoted_string_docs =
   """
-  Triple quoted strings are the way to go for long multiline text.
+  Triple quoted strings are the way to go for long multi-line text.
   They are extensively used as docstrings which are turned into api documentation.
 
   They get some special treatment, in order to keep Pony code readable:

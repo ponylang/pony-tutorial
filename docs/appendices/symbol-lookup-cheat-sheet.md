@@ -1,4 +1,4 @@
-# Symbol Lookup Cheatsheet
+# Symbol Lookup Cheat Sheet
 
 Pony, like just about any other programming language, has plenty of odd symbols that make up its syntax. If you don't remember what one means, it can be hard to search for them. Below you'll find a table with various Pony symbols and what you should search the tutorial for in order to learn more about the symbol.
 
@@ -42,7 +42,7 @@ Here is a more elaborate explanation of Pony's use of special characters: (a lin
 |         | (3) a type constraint                                                           |
 | `;`     | only used to separate expressions on the same line                              |
 | `=`     | (1) (destructive) assignment                                                    |
-|         | (2) in: use alias = packname                                                    |
+|         | (2) in: use alias = package name                                                    |
 |         | (3) supply default argument for method                                          |
 |         | (4) supply default type for generics                                            |
 | `!`     | (1) boolean negation                                                            |
@@ -66,5 +66,5 @@ Here is a more elaborate explanation of Pony's use of special characters: (a lin
 |         | (2) starts the code of a matching branch                                        |
 | `->`    | (1) arrow type                                                                  |
 |         | (2) viewpoint                                                                   |
-| `._i`   | where `i = 1,2,…`  means the ith item of a tuple                                |
+| `._i`   | where `i = 1,2,…`  means the item at position i in the tuple                                |
 | `<:`    | "is a subtype of" or "can be substituted for"                                   |

@@ -2,11 +2,11 @@
 
 Hey, congratulations! You've made it to the end of the Pony tutorial. So, what do you do next? Well, there's actually a bit more here. Check out the [appendices](/appendices/index.md) as they have some useful information that doesn't fit else. After that, here are a few resources that you can look into.
 
-## "Learn" section of Ponylang.io
+## "Learn" section the Pony website
 
 If you haven't already visited it, the learn section of the Pony website has a lot of good content to help you get started with Pony. In particular, materials to help you grapple with reference capabilities.
 
-["Learn" on Ponylang.io](https://www.ponylang.io/learn/)
+["Learn" on the Pony website](https://www.ponylang.io/learn/)
 
 ## Planet Pony
 
@@ -26,7 +26,7 @@ You are going to need to learn the standard library. Some of us prefer to open t
 
 [Standard Library Documentation](https://stdlib.ponylang.io/)
 
-## Ponylang Zulip
+## Pony Zulip
 
 [Pony Zulip](https://ponylang.zulipchat.com)
 

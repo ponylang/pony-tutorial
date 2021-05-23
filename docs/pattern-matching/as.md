@@ -8,7 +8,7 @@ The `as` operator can be used to create a reference to an object with a more spe
 
 Let's look at an example. The `json` package provides a type called `JsonDoc` that can attempt to parse strings as fragments of JSON. The parsed value is stored in the `data` field of the object, and that field's type is the union `(F64 | I64 | Bool | None | String | JsonArray | JsonObject)`. So if there is a `JsonDoc` object referenced by `jsonDoc` then `jsonDoc.parse("42")` will store an `I64` equal to `42` in `jsonDoc.data`. If the programmer wants to treat `jsonDoc.data` as an `I64` then they can get an `I64` reference to the data by using `jsonDoc.data as I64`.
 
-In the following program, the command line arguments are parsed as Json. A running sum is kept of all of the arguments that can be parsed as `I64` numbers, and all other arguments are ignored.
+In the following program, the command line arguments are parsed as JSON. A running sum is kept of all of the arguments that can be parsed as `I64` numbers, and all other arguments are ignored.
 
 ```pony
 use "json"

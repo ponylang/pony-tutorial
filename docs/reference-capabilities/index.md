@@ -3,7 +3,7 @@
 We've covered the basics of Pony's type system and then expressions, this chapter about reference capabilities will cover another feature of Pony's type system. There aren't currently any mainstream programming languages that feature reference capabilities. What is a reference capability?
 
 Well, a reference capability is built on the idea of "a capability".
-A capability is the ability to do "something". Usually that "something" involves an external resource that you might want access to; like the filesystem or the network. This usage of capability is called an object capability and is discussed [in the next chapter](/object-capabilities/index.md).
+A capability is the ability to do "something". Usually that "something" involves an external resource that you might want access to; like the file system or the network. This usage of capability is called an object capability and is discussed [in the next chapter](/object-capabilities/index.md).
 
 Pony also features a different kind of capability, called a "reference capability". Where object capabilities are about being granted the ability to do things with objects, reference capabilities are about denying you the ability to do things with memory references. For example, "you can have access to this memory BUT ONLY for reading it. You can not write to it". That's a reference capability and it's denying you access to do things.
 

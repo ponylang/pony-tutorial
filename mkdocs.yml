@@ -147,7 +147,7 @@ nav:
       - Overview: "appendices/index.md"
       - PONYPATH: "appendices/ponypath.md"
       - Lexicon: "appendices/lexicon.md"
-      - Symbol Lookup Cheatsheet: "appendices/symbol-lookup-cheatsheet.md"
+      - Symbol Lookup Cheat Sheet: "appendices/symbol-lookup-cheat-sheet.md"
       - Keywords: "appendices/keywords.md"
       - Examples: "appendices/examples.md"
       - Whitespace: "appendices/whitespace.md"

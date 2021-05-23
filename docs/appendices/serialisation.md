@@ -82,7 +82,7 @@ In order to serialise an object from a pointer field, Pony needs to know how muc
 
 Custom deserialisation is handled by a `fun ref _deserialise(bytes: Pointer[U8] tag)` method. This method receives a pointer to the character array that stores the serialised representation of the object (or objects) that the `Pointer` fields should point to. The programmer must copy out any bytes that will be used by the deserialised object.
 
-The custom deserialization method is expected to modify the values of the objects `Pointer` fields, so the fields must be declared `var` so that they can be modified.
+The custom deserialisation method is expected to modify the values of the objects `Pointer` fields, so the fields must be declared `var` so that they can be modified.
 
 ### Considerations
 

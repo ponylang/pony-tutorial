@@ -12,7 +12,7 @@ if a > b then
 end
 ```
 
-__Can I use integers and pointers for the condition like I can in C?__ No. In Pony `if` conditions must have type Bool, i.e. they are always true or false. If you want to test whether a number `a` is not 0, then you need to explicitly say `a != 0`. This restriction removes a whole category of potential bugs from Pony programs.
+__Can I use integers and pointers for the condition like I can in C?__ No. In Pony `if` conditions must have type `Bool`, i.e. they are always true or false. If you want to test whether a number `a` is not 0, then you need to explicitly say `a != 0`. This restriction removes a whole category of potential bugs from Pony programs.
 
 If you want some alternative code for when the condition fails just add an `else`:
 

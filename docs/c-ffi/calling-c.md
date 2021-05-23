@@ -207,10 +207,10 @@ A function that calls the `pony_error` function should only be called from insid
 
 ## Type signature compatibility
 
-Since type signature declarations are scoped to a single Pony package, separate packages might define different FFI signatures for the same C function. In these cases, the compiler will make sure that all declarations are compatible with each other. Two declarations are compatible if their arguments and return types are compatible. Two types are compatible with each other if they have the same ABI size and they can be safely casted to each other. Currently, the compiler allows the following type casts:
+Since type signature declarations are scoped to a single Pony package, separate packages might define different FFI signatures for the same C function. In these cases, the compiler will make sure that all declarations are compatible with each other. Two declarations are compatible if their arguments and return types are compatible. Two types are compatible with each other if they have the same ABI size and they can be safely cast to each other. Currently, the compiler allows the following type casts:
 
-* Any `struct` type can be casted to any other `struct`.
-* Pointers and integers can be casted to each other.
+* Any `struct` type can be cast to any other `struct`.
+* Pointers and integers can be cast to each other.
 
 Consider the following example:
 
@@ -222,4 +222,4 @@ use @memcmp[I32](dst: Pointer[None] tag, src: Pointer[None] tag, len: USize)
 use @memcmp[I32](dst: Pointer[None] tag, src: USize, len: U64)
 ```
 
-These two declarations have different types for the `src` and `len` parameters. In the case of `src`, the types are compatible since an integer can be casted as a pointer, and vice versa. For `len`, the types will not be compatible on 32 bit platforms, where `USize` is equivalent to `U32`. It is important to take the rules around casting into account when writing type declarations in libraries that will be used by others, as it will avoid any compatibility problems with other libraries.
+These two declarations have different types for the `src` and `len` parameters. In the case of `src`, the types are compatible since an integer can be cast as a pointer, and vice versa. For `len`, the types will not be compatible on 32 bit platforms, where `USize` is equivalent to `U32`. It is important to take the rules around casting into account when writing type declarations in libraries that will be used by others, as it will avoid any compatibility problems with other libraries.
