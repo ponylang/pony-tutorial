@@ -34,7 +34,6 @@ This listing explains the usage of every Pony keyword.
 |                   | (3) identity comparison                                                                                |
 | isnt              | negative identity comparison                                                                           |
 | iso               | reference capability – read and write uniqueness                                                       |
-| lambda            | to make a closure                                                                                      |
 | let               | declaration of immutable variable: you can't rebind this name to a new value                           |
 | match             | pattern matching                                                                                       |
 | new               | constructor                                                                                            |
