@@ -56,7 +56,7 @@ fun f(x: U32): String =>
 
 For value matching the pattern is simply the value we want to match to, just like a C switch statement. The case with the same value as the operand wins and we use its expression.
 
-The compiler calls the eq() function on the operand, passing the pattern as the argument. This means that you can use your own types as match operands and patterns, as long as you define an eq() function.
+The compiler calls the `eq()` function on the operand, passing the pattern as the argument. This means that you can use your own types as match operands and patterns, as long as you define an `eq()` function.
 
 ```pony
 class Foo
@@ -190,7 +190,7 @@ actor Main
     end
 ```
 
-does not typecheck.
+does not type check.
 
 ## Matching tuples
 

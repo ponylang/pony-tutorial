@@ -31,7 +31,7 @@ The Pony type system offers a lot of guarantees, even more than other statically
 * Your program will never deadlock.
 * Your code will always be capabilities-secure.
 * All message passing is
-[causal](https://courses.cs.vt.edu/~cs5204/fall00/causal.html). (Not ca**su**al!)
+[causal](https://courses.cs.vt.edu/~cs5204/fall00/causal.html). (Not **casual**!)
 
 Some of those will make sense right now. Some of them may not mean much to you yet (like capabilities-security and causal messaging), but we'll get to those concepts later on.
 

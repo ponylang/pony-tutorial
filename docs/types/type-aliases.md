@@ -40,7 +40,7 @@ primitive Colours
   fun green(): U32 => 0x00FF00FF
 ```
 
-You might also want to iterate over the enum like this to print its name for debugging purposes
+You might also want to iterate over the enumeration like this to print its name for debugging purposes
 
 ```pony
 primitive ColourList

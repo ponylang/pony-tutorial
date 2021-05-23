@@ -12,14 +12,14 @@ Let's start with a table. This shows how a __field__ of each capability looks wh
 
 ---
 
-| &#x25B7;       | iso field | trn field | ref field | val field | box field | tag field |
+| &#x25B7;       | `iso` field | `trn` field | `ref` field | `val` field | `box` field | tag field |
 | -------------- | --------- | --------- | --------- | --------- | --------- | --------- |
-| __iso origin__ | iso       | tag       | tag       | val       | tag       | tag       |
-| __trn origin__ | iso       | box       | box       | val       | box       | tag       |
-| __ref origin__ | iso       | trn       | ref       | val       | box       | tag       |
-| __val origin__ | val       | val       | val       | val       | val       | tag       |
-| __box origin__ | tag       | box       | box       | val       | box       | tag       |
-| __tag origin__ | n/a       | n/a       | n/a       | n/a       | n/a       | n/a       |
+| __`iso` origin__ | `iso`       | `tag`       | `tag`       | `val`       | `tag`       | tag       |
+| __`trn` origin__ | `iso`       | `box`       | `box`       | `val`       | `box`       | tag       |
+| __`ref` origin__ | `iso`       | `trn`       | `ref`       | `val`       | `box`       | tag       |
+| __`val` origin__ | `val`       | `val`       | `val`       | `val`       | `val`       | tag       |
+| __`box` origin__ | `tag`       | `box`       | `box`       | `val`       | `box`       | tag       |
+| __`tag` origin__ | n/a       | n/a       | n/a       | n/a       | n/a       | n/a       |
 
 ---
 
@@ -81,20 +81,20 @@ This one is easy: `tag` variables are opaque! They can't be read from.
 
 ## Writing to the field of an object
 
-Like reading the field of an object, writing to a field depends on the reference capability of the object reference being stored and the reference capability of the origin object containing the field. The reference capability of the object being stored must not violate the guarantees made by the origin object's reference capability. For example, a val object reference can be stored in an iso origin. This is because the val reference capability guarantees that no alias to that object exists which could violate the guarantees that the iso capability makes.
+Like reading the field of an object, writing to a field depends on the reference capability of the object reference being stored and the reference capability of the origin object containing the field. The reference capability of the object being stored must not violate the guarantees made by the origin object's reference capability. For example, a val object reference can be stored in an `iso` origin. This is because the val reference capability guarantees that no alias to that object exists which could violate the guarantees that the `iso` capability makes.
 
 Here's a simplified version of the table above that shows which reference capabilities can be stored in the field of an origin object.
 
 ---
 
-| &#x25C1;       | iso object | trn object | ref object | val object | box object | tag object |
+| &#x25C1;       | `iso` object | `trn` object | `ref` object | `val` object | `box` object | `tag` object |
 | -------------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-| __iso origin__ | &#x2714;   |            |            | &#x2714;   |            | &#x2714;   |
-| __trn origin__ | &#x2714;   | &#x2714;   |            | &#x2714;   |            | &#x2714;   |
-| __ref origin__ | &#x2714;   | &#x2714;   | &#x2714;   | &#x2714;   | &#x2714;   | &#x2714;   |
-| __val origin__ |            |            |            |            |            |            |
-| __box origin__ |            |            |            |            |            |            |
-| __tag origin__ |            |            |            |            |            |            |
+| __`iso` origin__ | &#x2714;   |            |            | &#x2714;   |            | &#x2714;   |
+| __`trn` origin__ | &#x2714;   | &#x2714;   |            | &#x2714;   |            | &#x2714;   |
+| __`ref` origin__ | &#x2714;   | &#x2714;   | &#x2714;   | &#x2714;   | &#x2714;   | &#x2714;   |
+| __`val` origin__ |            |            |            |            |            |            |
+| __`box` origin__ |            |            |            |            |            |            |
+| __`tag` origin__ |            |            |            |            |            |            |
 
 ---
 

@@ -46,14 +46,14 @@ Primitives are quite powerful, particularly as enumerations. Unlike enumerations
 
 ## Built-in primitive types
 
-The __primitive__ keyword is also used to introduce certain built-in "machine word" types. Other than having a value associated with them, these work like user-defined primitives. These are:
+The `primitive` keyword is also used to introduce certain built-in "machine word" types. Other than having a value associated with them, these work like user-defined primitives. These are:
 
-* __Bool__. This is a 1-bit value that is either `true` or `false`.
-* __ISize, ILong, I8, I16, I32, I64, I128__. Signed integers of various widths.
-* __USize, ULong, U8, U16, U32, U64, U128__. Unsigned integers of various widths.
-* __F32, F64__. Floating point numbers of various widths.
+* `Bool`. This is a 1-bit value that is either `true` or `false`.
+* `ISize`, `ILong`, `I8`, `I16`, `I32`, `I64`, `I128`. Signed integers of various widths.
+* `USize`, `ULong`, `U8`, `U16`, `U32`, `U64`, `U128`. Unsigned integers of various widths.
+* `F32`, `F64`. Floating point numbers of various widths.
 
-__ISize/USize__ correspond to the bit width of the native type `size_t`, which varies by platform. __ILong/ULong__ similarly correspond to the bit width of the native type `long`, which also varies by platform. The bit width of a native `int` is the same across all the platforms that Pony supports, and you can use __I32/U32__ for this.
+`ISize`/`USize` correspond to the bit width of the native type `size_t`, which varies by platform. `ILong`/`ULong` similarly correspond to the bit width of the native type `long`, which also varies by platform. The bit width of a native `int` is the same across all the platforms that Pony supports, and you can use `I32`/`U32` for this.
 
 ## Primitive initialisation and finalisation
 

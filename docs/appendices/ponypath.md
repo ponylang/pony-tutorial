@@ -1,4 +1,4 @@
-# PONYPATH
+# `PONYPATH`
 
 When searching for Pony packages, `ponyc` checks both the installation directory (where the standard libraries reside) and any directories listed in the optional environment variable `PONYPATH`.
 
@@ -8,7 +8,7 @@ Assuming you just placed new Pony code under a directory called `pony` in your h
 
 ### Unix/Mac
 
-Edit/add the "rc" file corresponding to your chosen shell (`echo $SHELL` will tell you what shell you are running). For example, if using bash, add the following to your `~/.bashrc`:
+Edit/add the `rc` file corresponding to your chosen shell (`echo $SHELL` will tell you what shell you are running). For example, if using bash, add the following to your `~/.bashrc`:
 
 ```bash
 export PONYPATH=$PONYPATH:$HOME/pony

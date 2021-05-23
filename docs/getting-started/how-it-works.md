@@ -50,12 +50,12 @@ This is your program! What the heck is it doing?
 
 In Pony, a dot is either a field access or a method call, much like other languages. If the name after the dot has parentheses after it, it's a method call. Otherwise, it's a field access.
 
-So here, we start with a reference to `env`. We then look up the field `out` on our object `env`. As it happens, that field represents __stdout__, i.e. usually it means printing to your console. Then, we call the `print` method on `env.out`. The stuff inside the parentheses are the arguments to the function. In this case, we are passing a __string literal__, i.e. the stuff in double quotes.
+So here, we start with a reference to `env`. We then look up the field `out` on our object `env`. As it happens, that field represents `stdout`, i.e. usually it means printing to your console. Then, we call the `print` method on `env.out`. The stuff inside the parentheses are the arguments to the function. In this case, we are passing a __string literal__, i.e. the stuff in double quotes.
 
 In Pony, string literals can be in double quotes, `"`, in which case they follow C/C++ style escaping (using stuff like \n), or they can be triple-quoted, `"""` like in Python, in which case they are considered raw data.
 
-__What's an Env, anyway?__ It's the "environment" your program was invoked with. That means it has command line arguments, environment variables, __stdin__, __stdout__, and __stderr__. Pony has no global variables, so these things are explicitly passed to your program.
+__What's an `Env`, anyway?__ It's the "environment" your program was invoked with. That means it has command line arguments, environment variables, `stdin`, `stdout`, and `stderr`. Pony has no global variables, so these things are explicitly passed to your program.
 
 ## That's it!
 
-Really, that's it. The program begins by creating a `Main` actor, and in the constructor, we print "Hello, world!" to __stdout__. Next, we'll start diving into the Pony type system.
+Really, that's it. The program begins by creating a `Main` actor, and in the constructor, we print "Hello, world!" to `stdout`. Next, we'll start diving into the Pony type system.

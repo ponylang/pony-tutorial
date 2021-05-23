@@ -7,7 +7,8 @@ jobs:
     name: Lint markdown and yaml
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout source
+        uses: actions/checkout@v2
       - name: Lint codebase
         uses: docker://github/super-linter:v3.8.3
         env:
@@ -15,3 +16,12 @@ jobs:
           VALIDATE_ALL_CODEBASE: true
           VALIDATE_MD: true
           VALIDATE_YAML: true
+
+  check-spelling:
+    name: Spellcheck markdown
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+      - name: Check spelling
+        uses: rojopolis/spellcheck-github-actions@e0dcc87bedf34ff10d6be443753f1c770bacbaa2

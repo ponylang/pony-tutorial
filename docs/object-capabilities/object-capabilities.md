@@ -18,7 +18,7 @@ They're bad! Because you can get them without either constructing them or being 
 
 Global variables are a form of what is called _ambient authority_. Another form of ambient authority is unfettered access to the file system.
 
-Pony has no global variables and no global functions. That doesn't mean all ambient authority is magically gone - we still need to be careful about the file system, for example. Having no globals is necessary, but not sufficient, to eliminate ambient authority.
+Pony has no global variables and no global functions. That doesn't mean all ambient authority is magically gone - we still need to be careful about the file system, for example. Having no global variables is necessary, but not sufficient, to eliminate ambient authority.
 
 ## How does this help?
 

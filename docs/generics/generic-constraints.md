@@ -12,11 +12,11 @@ Without the constraint, the generic must work for all possible capabilities. Som
 
 | &#x25B7; | Capabilities allowed         | Description                                                     |
 | -------- | ---------------------------- | --------------------------------------------------------------- |
-| #read    | ref, val, box                | Anything you can read from                                      |
-| #send    | iso, val, tag                | Anything you can send to an actor                               |
-| #share   | val, tag                     | Anything you can send to more than one actor                    |
-| #any     | iso, trn, ref, val, box, tag | Default of a constraint                                         |
-| #alias   | ref, val, box, tag           | Set of capabilities that alias as themselves (used by compiler) |
+| `#read`    | `ref`, `val`, `box`                | Anything you can read from                                      |
+| `#send`    | `iso`, `val`, `tag`                | Anything you can send to an actor                               |
+| `#share`   | `val`, `tag`                     | Anything you can send to more than one actor                    |
+| `#any`     | `iso`, `trn`, `ref`, `val`, `box`, `tag` | Default of a constraint                                         |
+| `#alias`   | `ref`, `val`, `box`, `tag`           | Set of capabilities that alias as themselves (used by compiler) |
 
 In the previous section, we went through extra work to support `iso`. If there's no requirement for `iso` support we can use `#read` and support `ref`, `val`, and `box`:
 

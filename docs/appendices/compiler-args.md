@@ -14,16 +14,16 @@ The most useful options are `--debug`, `--path` or just `-p`, `--output` or just
 
 `--output` or `-o` takes a directory name where the final binary is created.
 
-`--docs` or -`g` creates a directory of the package with documentation in [readthedocs.org](http://readthedocs.org) format, i.e. markdown with nice navigation.
+`--docs` or -`g` creates a directory of the package with documentation in [Read the Docs](http://readthedocs.org) format, i.e. markdown with nice navigation.
 
-Let's study the documentation of the builtin stdlib:
+Let's study the documentation of the builtin standard library:
 
 ```bash
   pip install mkdocs
   ponyc packages/stdlib --docs && cd stdlib-docs && mkdocs serve
 ```
 
-And point your web browser to [http://127.0.0.1:8000](http://127.0.0.1:8000) serving a live-reloading local version of the docs.
+And point your web browser to [127.0.0.1:8000](http://127.0.0.1:8000) serving a live-reloading local version of the docs.
 
 Note that there is _no built-in debugger_ to interactively step through your program and interpret the results. But ponyc creates proper DWARF symbols and you can step through your programs with a conventional debugger, such as GDB or LLDB.
 

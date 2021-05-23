@@ -10,7 +10,7 @@ Words are hard. We can all be saying the same thing but do we _mean_ the same th
 
 **Compatible type**: Two types are compatible if there can be any single object which is an instance of both types. Note that a suitable type for the single object does not have to have been defined, as long as it could be. For example, any two traits are compatible because a class could be defined that provides both of them, even if such a class has not been defined. Conversely, no two classes can ever be compatible because no object can be an instance of both.
 
-**Compound type**: A type combining multiple other types, ie union, intersection, and tuple. Opposite of a single type.
+**Compound type**: A type combining multiple other types, i.e. union, intersection, and tuple. Opposite of a single type.
 
 **Concrete type**: An actor, class or primitive.
 
@@ -20,7 +20,7 @@ Words are hard. We can all be saying the same thing but do we _mean_ the same th
 
 **Default method body**: Method body defined in a trait and optionally used by concrete types.
 
-**Entity**: Top level definition within a file, ie alias, trait, actor, class, primitive.
+**Entity**: Top level definition within a file, i.e. alias, trait, actor, class, primitive.
 
 **Explicit type**: An actor, class or primitive.
 
