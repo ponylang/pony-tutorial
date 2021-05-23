@@ -40,4 +40,3 @@ __If I use Pony's FFI to call code written in another language, does Pony make t
 Pony requires FFI parameters to be explicitly declared as Pony types in advance. The type system provides a guarantee at compile-time that no code-paths exist that violate the definitions you provided on the Pony side of your FFI call.
 
 This guarantee cannot be inclusive of foreign code as the compiler has no way to verify that it won't violate Pony's type system guarantees at runtime.
-
