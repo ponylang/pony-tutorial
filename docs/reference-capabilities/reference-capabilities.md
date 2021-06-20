@@ -105,7 +105,7 @@ __So do I have to specify a reference capability when I define a type?__ Only if
 
 ## How to create objects with different capabilities
 
-When you write a constructor, by default, that constructor will either create a new object with `ref` or `tag` as the capability. In the case of actors, the constructor will always create a `tag`. For classes, if defaults to `ref` but you can create with other capabilities. Let's take a look at an example:
+When you write a constructor, by default, that constructor will either create a new object with `ref` or `tag` as the capability. In the case of actors, the constructor will always create a `tag`. For classes, it defaults to `ref` but you can create with other capabilities. Let's take a look at an example:
 
 ```pony
 class Foo
