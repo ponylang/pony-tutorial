@@ -3,6 +3,7 @@ site_name: Pony Tutorial
 copyright: Copyright &copy; 2021 The Pony Developers
 edit_uri: edit/main/docs/
 repo_url: https://github.com/ponylang/pony-tutorial/
+site_url: https://tutorial.ponylang.io/
 use_directory_urls: false
 
 extra:
@@ -30,7 +31,9 @@ plugins:
   - ezlinks
   - htmlproofer:
       raise_error: True
-      raise_error_excludes: [429, 404, "https://github.com/ponylang"]
+      raise_error_excludes:
+        429: ["https://github.com/ponylang"]
+        404: ["https://github.com/ponylang"]
 
 theme:
   name: material
