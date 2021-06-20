@@ -1,1 +1,0 @@
-return {["views"]={[1]={["selection"]={[1]=108,[2]=223,[3]=108,[4]=223},["type"]="doc",["scroll"]={["y"]=1888,["x"]=901.6},["text"]=false,["filename"]="reference-capabilities/reference-capabilities.md",["active"]=true}},["type"]="leaf",["active_view"]=1}
