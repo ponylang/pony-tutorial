@@ -115,6 +115,7 @@ nav:
   - Object Capabilities:
       - Overview: "object-capabilities/index.md"
       - Object Capabilities: "object-capabilities/object-capabilities.md"
+      - Derived Authority: "object-capabilities/derived-authority.md"
       - Trust Boundary: "object-capabilities/trust-boundary.md"
   - Generics:
       - Overview: "generics/index.md"
