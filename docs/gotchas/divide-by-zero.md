@@ -27,7 +27,7 @@ let x =
 
 Defining division as partial leads to code littered with `try`s attempting to deal with the possibility of division by zero. Even if you had asserted that your denominator was not zero, you'd still need to protect against divide by zero because, at this time, the compiler can't detect that value dependent typing.
 
-Pony also offers [Unsafe Division](/expressions/arithmetic.md#unsafe-arithmetic), which declares division by zero as undefined, as in C:
+Pony also offers [Unsafe Division](/expressions/arithmetic.md#unsafe-integer-arithmetic), which declares division by zero as undefined, as in C:
 
 ```pony
 // the value of x is undefined
