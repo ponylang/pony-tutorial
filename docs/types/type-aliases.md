@@ -22,8 +22,8 @@ The second new concept is the type that comes after `is`. It's not a single type
 
 A union type is a form of _closed world_ type. That is, it says every type that can possibly be a member of it. In contrast, object-oriented subtyping is usually _open world_, e.g. in Java, an interface can be implemented by any number of classes.
 
-You can also declare constants like in C or Go like this, making use of `apply`, 
-which can be omitted during call (will be discussed further in [sugar](/expressions/sugar.md)),
+You can also declare constants like in C or Go like this, making use of `apply`,
+which can be omitted during call (will be discussed further in [Sugar](/expressions/sugar.md)),
 
 ```pony
 primitive Red    fun apply(): U32 => 0xFF0000FF
