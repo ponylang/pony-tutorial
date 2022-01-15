@@ -73,7 +73,7 @@ theme:
 nav:
   - Home: "index.md"
   - Getting Started:
-      - "getting-started/index.md"
+      - Overview: "getting-started/index.md"
       - What You Need: "getting-started/what-you-need.md"
       - Hello World -- Your First Pony Program: "getting-started/hello-world.md"
       - Hello World -- How It Works: "getting-started/how-it-works.md"
