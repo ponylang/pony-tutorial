@@ -42,6 +42,8 @@ theme:
 
   features:
     - navigation.instant
+    - navigation.indexes
+    - navigation.sections
     - navigation.tracking
     - search.highlight
     - search.share
