@@ -34,7 +34,7 @@ actor Connect
 
 actor Main
   new create(env: Env) =>
-    try Connect(env.out, env.root as AmbientAuth) end
+    Connect(env.out, env.root)
 ```
 
 The `Main` actor authorizes the `Connect` actor by passing the ambient authority token on to it. This token is unforgeable since the `AmbientAuth` constructor is private and the only existing instance is provided by the runtime itself.
