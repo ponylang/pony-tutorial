@@ -4,7 +4,7 @@ The `as` operator in Pony has two related uses. First, it provides a safe way to
 
 ## Safely converting to a more specific type
 
-As we know, each object has one or more types, and each alias of an object is of one or more types. `as` allows an object alias to be expressed as one of the other types of the object which is not part of the alias type. Simple example;
+As we know, each object instance has one or more types, and each alias is of one or more types. `as` allows an object alias to be expressed as one of the other types of the object which is not implied by the alias type. Simple example;
 
 ```pony
   type Animal is (Cat | Dog | Fish)
@@ -13,7 +13,9 @@ As we know, each object has one or more types, and each alias of an object is of
     let cat: Cat = animal as Cat  // raises error if not a Cat
 ```
 
-This can be applied to types that are related through inheritance, as well as unions and intersections. This is done at runtime, and if it fails then an error is raised. Note that the type requested as the `as` argument must exist as a type of the value, unlike C casting where one type can be forced into become another type. Type coercion is not possible in Pony, so one can not do `let value:F64 = F32(1.0) as F64` and we have to use type conversion methods, `let value:F64 = F32(1.0).f64()` or `env.out.print( F32(12).string() )`
+This can be applied to types that are related through inheritance, as well as unions and intersections. This is done at runtime, and if it fails then an error is raised. Note that the type requested as the `as` argument must exist as a type of the object instance, unlike C casting where one type can be forced into become another type. Type coercion is not possible in Pony, so one can not do `let value:F64 = F32(1.0) as F64` and we have to use type conversion methods, `let value:F64 = F32(1.0).f64()` or `env.out.print( F32(12).string() )`
+
+Furthermore, it is not necessary (compiler will disallow it) to use `as` for [interfaces and structural subtyping](../types/traits-and-interfaces.md#structural-subtyping).
 
 Let's look at larger examples.
 
