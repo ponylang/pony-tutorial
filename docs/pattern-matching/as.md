@@ -1,12 +1,23 @@
 # As Operator
 
-The `as` operator in Pony has two related uses. First, it provides a safe way to increase the specificity of an object's type (casting). Second, it gives the programmer a way to specify the type of the items in an array literal.
+The `as` operator in Pony has two related uses. First, it provides a safe way to increase the specificity of an object's type. Second, it gives the programmer a way to specify the type of the items in an array literal.
 
-## Safely converting to a more specific type (casting)
+## Safely converting to a more specific type
 
-The `as` operator can be used to create a reference to an object with a more specific type than the given reference, if possible. This can be applied to types that are related through inheritance, as well as unions and intersections. This is done at runtime, and if it fails then an error is raised.
+As we know, each object/value has one or more types, and each alias/reference of such object is of one or more types. `as` allows an aliased object/value to be assigned as one of the other types of the object, compatible with the alias assigned to. Simple example;
 
-Let's look at an example. The `json` package provides a type called `JsonDoc` that can attempt to parse strings as fragments of JSON. The parsed value is stored in the `data` field of the object, and that field's type is the union `(F64 | I64 | Bool | None | String | JsonArray | JsonObject)`. So if there is a `JsonDoc` object referenced by `jsonDoc` then `jsonDoc.parse("42")` will store an `I64` equal to `42` in `jsonDoc.data`. If the programmer wants to treat `jsonDoc.data` as an `I64` then they can get an `I64` reference to the data by using `jsonDoc.data as I64`.
+```pony
+  type Animal is (Cat | Dog | Fish)
+
+  fun petCat(animal: Animal)? => 
+    let cat: Cat = animal as Cat  // raises error if not a Cat
+```
+
+This can be applied to types that are related through inheritance, as well as unions and intersections. This is done at runtime, and if it fails then an error is raised. Note that the type requested as the `as` argument must exist as a type of the value, unlike C casting where one type can be forced into become another type. Type coercion is not possible in Pony, so one can not do `let value:F64 = F32(1.0) as F64` and we have to use type conversion methods, `let value:F64 = F32(1.0).f64()` or `env.out.print( F32(12).string() )`
+
+Let's look at larger examples.
+
+The `json` package provides a type called `JsonDoc` that can attempt to parse strings as fragments of JSON. The parsed value is stored in the `data` field of the object, and that field's type is the union `(F64 | I64 | Bool | None | String | JsonArray | JsonObject)`. So if there is a `JsonDoc` object referenced by `jsonDoc` then `jsonDoc.parse("42")` will store an `I64` equal to `42` in `jsonDoc.data`. If the programmer wants to treat `jsonDoc.data` as an `I64` then they can get an `I64` reference to the data by using `jsonDoc.data as I64`.
 
 In the following program, the command line arguments are parsed as JSON. A running sum is kept of all of the arguments that can be parsed as `I64` numbers, and all other arguments are ignored.
 
@@ -61,7 +72,7 @@ actor Main
 
 ## Specify the type of items in an array literal
 
-The `as` operator can be used to tell the compiler what type to use for the items in an array literal. In many cases, the compiler can infer the type, but sometimes it is ambiguous.
+The `as` operator can also be used to tell the compiler what type to use for the items in an array literal. In many cases, the compiler can infer the type, but sometimes it is ambiguous.
 
 For example, in the case of the following program, the method `foo` can take either an `Array[U32] ref` or an `Array[U64] ref` as an argument. If a literal array is passed as an argument to the method and no type is specified then the compiler cannot deduce the correct one because there are two equally valid ones.
 
