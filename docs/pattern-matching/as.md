@@ -24,8 +24,8 @@ We can also express an intersected type of the object with the `as` operator, me
 
   class Person is (Alive & Well)
 
-  class SomeSystem
-  fun doSomething(alive: Alive)? =>   
+  class LifeSigns
+  fun isAllGood(alive: Alive)? =>   
     let well: Well = alive as Well  // if the instance 'alive' is also of type 'Well' (such as a Person instance). raises error if not possible
 ```
 
