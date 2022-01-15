@@ -4,7 +4,7 @@ The `as` operator in Pony has two related uses. First, it provides a safe way to
 
 ## Safely converting to a more specific type
 
-As we know, each object/value has one or more types, and each alias/reference of such object is of one or more types. `as` allows an aliased object/value to be assigned as one of the other types of the object, compatible with the alias assigned to. Simple example;
+As we know, each object has one or more types, and each alias of an object is of one or more types. `as` allows an object alias to be expressed as one of the other types of the object which is not part of the alias type. Simple example;
 
 ```pony
   type Animal is (Cat | Dog | Fish)
