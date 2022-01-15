@@ -2,7 +2,7 @@
 
 The `as` operator in Pony has two related uses. First, it provides a safe way to increase the specificity of an object's type. Second, it gives the programmer a way to specify the type of the items in an array literal.
 
-## Safely converting to a more specific type
+## Expressing a different type of an object
 
 As we know, each object instance has one or more types, and each alias is of one or more types. `as` allows an object alias to be expressed as one of the other types of the object which is not implied by the alias type. Simple example;
 
@@ -14,6 +14,20 @@ As we know, each object instance has one or more types, and each alias is of one
 ```
 
 This can be applied to types that are related through inheritance, as well as unions and intersections. This is done at runtime, and if it fails then an error is raised. Note that the type requested as the `as` argument must exist as a type of the object instance, unlike C casting where one type can be forced into become another type. Type coercion is not possible in Pony, so one can not do `let value:F64 = F32(1.0) as F64` and we have to use type conversion methods, `let value:F64 = F32(1.0).f64()` or `env.out.print( F32(12).string() )`
+
+We can also express an intersected type of the object with the `as`, meaning the object has the type but the alias we have for the object is not directly related to the type we want to express. Example;
+
+```pony
+  trait Alive
+
+  trait Well
+
+  class Person is (Alive & Well)
+
+  class SomeSystem
+  fun doSomething(alive: Alive)? =>   
+    let well: Well = alive as Well  // if the instance 'alive' is also of type 'Well' (such as a Person instance)
+```
 
 Furthermore, it is not necessary (compiler will disallow it) to use `as` for [interfaces and structural subtyping](../types/traits-and-interfaces.md#structural-subtyping).
 
