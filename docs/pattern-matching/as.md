@@ -8,8 +8,6 @@ In Pony, each object is an instance of a single concrete type, which is the most
 
 `as` (like `match`) allows a program to check the runtime type of a abstract-typed value to see whether or not the object matches a given type which is more specific. If it doesn't match the more specific type, then a runtime `error` is raised. For example:
 
-`as` can be applied to types that are related through subtyping, as well as unions and intersections. This is done at runtime, and if it fails then an error is raised. For example:
-
 ```pony
   class Cat
     fun pet() =>
