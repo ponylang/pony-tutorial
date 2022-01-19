@@ -37,7 +37,7 @@ In addition to using to using `as` with a union of disjoint types, we can also e
   class Person is (Alive & Well)
 
   class LifeSigns
-    fun isAllGood(alive: Alive)? =>
+    fun is_all_good(alive: Alive)? =>
       // if the instance 'alive' is also of type 'Well' (such as a Person instance). raises error if not possible
       let well: Well = alive as Well
 ```
