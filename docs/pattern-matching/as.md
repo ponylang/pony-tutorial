@@ -4,7 +4,9 @@ The `as` operator in Pony has two related uses. First, it provides a safe way to
 
 ## Expressing a different type of an object
 
-In Pony, each object instance has a single concrete type and can fulfill one or more interfaces or traits. In short hand, we often refer to this as an instance having multiple types. `as` allows an object alias to be expressed as one of the other types of the object which is not implied by the alias type.
+In Pony, each object is an instance of a single concrete type, which is the most specific type for that object. But the object can also be held as part of a "wider" abstract type such as an interface, trait, or type union which the concrete type is said to be a subtype of.
+
+`as` (like `match`) allows a program to check the runtime type of a abstract-typed value to see whether or not the object matches a given type which is more specific. If it doesn't match the more specific type, then a runtime `error` is raised. For example:
 
 `as` can be applied to types that are related through subtyping, as well as unions and intersections. This is done at runtime, and if it fails then an error is raised. For example:
 
