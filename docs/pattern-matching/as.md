@@ -104,7 +104,7 @@ actor Main
     end
 ```
 
-Thinking of the `as` keyword as "an attempt to match that will error if not matched" is a good mental mode to have. If you don't care about handling the "not matched" case that causes an error when using `as`, you can rewrite an `as` to use match without an error like:
+Thinking of the `as` keyword as "an attempt to match that will error if not matched" is a good mental model to have. If you don't care about handling the "not matched" case that causes an error when using `as`, you can rewrite an `as` to use match without an error like:
 
 ```pony
 actor Main
