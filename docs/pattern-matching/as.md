@@ -4,18 +4,30 @@ The `as` operator in Pony has two related uses. First, it provides a safe way to
 
 ## Expressing a different type of an object
 
-As we know, each object instance has one or more types, and each alias is of one or more types. `as` allows an object alias to be expressed as one of the other types of the object which is not implied by the alias type. Simple example;
+In Pony, each object instance has a single concrete type and can fulfill one or more interfaces or traits. In short hand, we often refer to this as an instance having multiple types. `as` allows an object alias to be expressed as one of the other types of the object which is not implied by the alias type.
+
+`as` can be applied to types that are related through subtyping, as well as unions and intersections. This is done at runtime, and if it fails then an error is raised. For example:
 
 ```pony
-  type Animal is (Cat | Dog | Fish)
+  class Cat
+    fun pet() =>
+      ...
 
-  fun petCat(animal: Animal)? => 
-    let cat: Cat = animal as Cat  // raises error if not a Cat
+  type Animal is (Cat | Fish | Snake)
+
+  fun pet(animal: Animal) =>
+    try
+      // raises error if not a Cat
+      let cat: Cat = animal as Cat
+      cat.pet()
+    end
 ```
 
-This can be applied to types that are related through inheritance, as well as unions and intersections. This is done at runtime, and if it fails then an error is raised. Note that the type requested as the `as` argument must exist as a type of the object instance, unlike C casting where one type can be forced into become another type. Type coercion is not possible in Pony, so one can not do `let value:F64 = F32(1.0) as F64` and we have to use type conversion methods, `let value:F64 = F32(1.0).f64()` or `env.out.print( F32(12).string() )`
+In the above example, within `pet` our current view of `animal` is via the type union `Animal`. To treat `animal` as a cat, we need to do a runtime check that the concrete type of the object instance is `Cat`. If it is, then we can pet it. This example is a little contrived, by hopefully elucidates how `as` can be used to take a type that is a union and get a specific concrete type from it.
 
-We can also express an intersected type of the object with the `as` operator, meaning the object has a type that the alias we have for the object is not directly related to the type we want to express. Example;
+Note that the type requested as the `as` argument must exist as a type of the object instance, unlike C casting where one type can be forced into become another type. Type coercion is not possible in Pony, so one can not do `let value:F64 = F32(1.0) as F64`. `F32` and `F64` are both concrete types and each object can only have a single concrete type. Many concrete types do provide methods that allow you do convert them to another concrete type, for example, `F32(1.0).f64()` to convert an `F32` to an `F64` or `F32(1.0).string()` to convert to a string.
+
+In addition to using to using `as` with a union of disjoint types, we can also express an intersected type of the object, meaning the object has a type that the alias we have for the object is not directly related to the type we want to express. Example;
 
 ```pony
   trait Alive
@@ -25,37 +37,12 @@ We can also express an intersected type of the object with the `as` operator, me
   class Person is (Alive & Well)
 
   class LifeSigns
-  fun isAllGood(alive: Alive)? =>   
-    let well: Well = alive as Well  // if the instance 'alive' is also of type 'Well' (such as a Person instance). raises error if not possible
+    fun isAllGood(alive: Alive)? =>
+      // if the instance 'alive' is also of type 'Well' (such as a Person instance). raises error if not possible
+      let well: Well = alive as Well
 ```
 
-Furthermore, it is not necessary (compiler will disallow it) to use `as` for [interfaces and structural subtyping](../types/traits-and-interfaces.md#structural-subtyping).
-
-Let's look at larger examples.
-
-The `json` package provides a type called `JsonDoc` that can attempt to parse strings as fragments of JSON. The parsed value is stored in the `data` field of the object, and that field's type is the union `(F64 | I64 | Bool | None | String | JsonArray | JsonObject)`. So if there is a `JsonDoc` object referenced by `jsonDoc` then `jsonDoc.parse("42")` will store an `I64` equal to `42` in `jsonDoc.data`. If the programmer wants to treat `jsonDoc.data` as an `I64` then they can get an `I64` reference to the data by using `jsonDoc.data as I64`.
-
-In the following program, the command line arguments are parsed as JSON. A running sum is kept of all of the arguments that can be parsed as `I64` numbers, and all other arguments are ignored.
-
-```pony
-use "json"
-
-actor Main
-  new create(env: Env) =>
-    var jsonSum: I64 = 0
-    let jd: JsonDoc = JsonDoc
-    for arg in env.args.slice(1).values() do
-      try
-        jd.parse(arg)?
-        jsonSum = jsonSum + (jd.data as I64)
-      end
-    end
-    env.out.print(jsonSum.string())
-```
-
-When run with the arguments `2 and 4 et 7 y 15`, the program's output is `28`.
-
-The same thing can be done with interfaces, using `as` to create a reference to a more specific interface or class. Let's say, for example, that you have a library for doing things with furry, rodent-like creatures. It provides a `Critter` interface which programmers can then use to create specific types of critters.
+`as` can also be used to get a more specific type of an object from an alias to it that is an interface or a trait. Let's say, for example, that you have a library for doing things with furry, rodent-like creatures. It provides a `Critter` interface which programmers can then use to create specific types of critters.
 
 ```pony
 interface Critter
@@ -85,6 +72,53 @@ actor Main
       end
     end
 ```
+
+You can do the same with interfaces as well. In the example below, we have an Array of `Any` which is an interface where we want to try wash any entries that conform to the `Critter` interface.
+
+```pony
+actor Main
+  new create(env: Env) =>
+    let anys = Array[Any ref].>push(Wombat).>push(Capybara)
+    for any in anys.values() do
+      try
+        env.out.print((any as Critter).wash())
+      end
+    end
+```
+
+Note, All the `as` examples above could be written using a `match` statement where a failure to match results in `error`. For example, our last example written to use `match` would be:
+
+```pony
+actor Main
+  new create(env: Env) =>
+    let anys = Array[Any ref].>push(Wombat).>push(Capybara)
+    for any in anys.values() do
+      try
+        match any
+        | let critter: Critter =>
+          env.out.print(critter.wash())
+        else
+          error
+        end
+      end
+    end
+```
+
+Thinking of the `as` keyword as "an attempt to match that will error if not matched" is a good mental mode to have. If you don't care about handling the "not matched" case that causes an error when using `as`, you can rewrite an `as` to use match without an error like:
+
+```pony
+actor Main
+  new create(env: Env) =>
+    let anys = Array[Any ref].>push(Wombat).>push(Capybara)
+    for any in anys.values() do
+      match any
+      | let critter: Critter =>
+        env.out.print(critter.wash())
+      end
+    end
+```
+
+You can learn more about matching on type in the [captures section of the match documentation](/pattern-matching/match.md#captures.)
 
 ## Specify the type of items in an array literal
 
