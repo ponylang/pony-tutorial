@@ -6,7 +6,7 @@ The `as` operator in Pony has two related uses. First, it provides a safe way to
 
 In Pony, each object is an instance of a single concrete type, which is the most specific type for that object. But the object can also be held as part of a "wider" abstract type such as an interface, trait, or type union which the concrete type is said to be a subtype of.
 
-`as` (like `match`) allows a program to check the runtime type of a abstract-typed value to see whether or not the object matches a given type which is more specific. If it doesn't match the more specific type, then a runtime `error` is raised. For example:
+`as` (like `match`) allows a program to check the runtime type of an abstract-typed value to see whether or not the object matches a given type which is more specific. If it doesn't match the more specific type, then a runtime `error` is raised. For example:
 
 ```pony
   class Cat
@@ -23,11 +23,11 @@ In Pony, each object is an instance of a single concrete type, which is the most
     end
 ```
 
-In the above example, within `pet` our current view of `animal` is via the type union `Animal`. To treat `animal` as a cat, we need to do a runtime check that the concrete type of the object instance is `Cat`. If it is, then we can pet it. This example is a little contrived, by hopefully elucidates how `as` can be used to take a type that is a union and get a specific concrete type from it.
+In the above example, within `pet` our current view of `animal` is via the type union `Animal`. To treat `animal` as a cat, we need to do a runtime check that the concrete type of the object instance is `Cat`. If it is, then we can pet it. This example is a little contrived, but hopefully elucidates how `as` can be used to take a type that is a union and get a specific concrete type from it.
 
-Note that the type requested as the `as` argument must exist as a type of the object instance, unlike C casting where one type can be forced into become another type. Coercion from one concrete type to another is not possible using `as`, so one can not do `let value:F64 = F32(1.0) as F64`. `F32` and `F64` are both concrete types and each object can only have a single concrete type. Many concrete types do provide methods that allow you do convert them to another concrete type, for example, `F32(1.0).f64()` to convert an `F32` to an `F64` or `F32(1.0).string()` to convert to a string.
+Note that the type requested as the `as` argument must exist as a type of the object instance, unlike C casting where one type can be forced to become another type. Coercion from one concrete type to another is not possible using `as`, so one can not do `let value:F64 = F32(1.0) as F64`. `F32` and `F64` are both concrete types and each object can only have a single concrete type. Many concrete types do provide methods that allow you to convert them to another concrete type, for example, `F32(1.0).f64()` to convert an `F32` to an `F64` or `F32(1.0).string()` to convert to a string.
 
-In addition to using to using `as` with a union of disjoint types, we can also express an intersected type of the object, meaning the object has a type that the alias we have for the object is not directly related to the type we want to express. Example;
+In addition to using `as` with a union of disjoint types, we can also express an intersected type of the object, meaning the object has a type that the alias we have for the object is not directly related to the type we want to express. For example:
 
 ```pony
   trait Alive
