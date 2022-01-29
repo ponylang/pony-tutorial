@@ -78,3 +78,14 @@ match obj
 | \unlikely\ let capt: T => bar
 end
 ```
+
+### `nodoc`
+
+Recognised on objects and methods (`actor`, `class`, `struct`, `primitive`, `trait`, `interface`, `new`, `be`, `fun`). Indicates to the documentation system that the item and any of its children shouldn't be included in generated output.
+
+```pony
+class \nodoc\Foo
+   """
+   We don't want this class and its methods to appear in generated documentation
+   """
+```
