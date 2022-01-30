@@ -6,7 +6,7 @@
 ponyc [OPTIONS] <package directory>
 ```
 
-The most useful options are `--debug`, `--path` or just `-p`, `--output` or just `-o` and `--docs` or `-g`. With `-l` you can generate a C library, `lib<directory>`.
+The most useful options are `--debug`, `--path` or just `-p`, `--output` or just `-o` and `--docs` or `-g`.
 
 `--debug` will skip the LLVM optimizations passes. This should not be mixed up with `make config=debug`, the default make configuration target. `config=debug` will create DWARF symbols, and add slower assertions to ponyc, but not to the generated binaries. For those, you can omit DWARF symbols with the `--strip` or `-s` option.
 
