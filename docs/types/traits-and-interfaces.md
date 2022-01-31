@@ -183,7 +183,7 @@ primitive Red
   fun is_color(): None => None
 ```
 
-Here we are using structural typing to create a collection of things that are in the category `Color` by providing a method that "marks" being a member of the category; `is_color`.
+Here we are using structural typing to create a collection of things that are in the category `Color` by providing a method that "marks" being a member of the category: `is_color`.
 
 ### Open world typing
 
