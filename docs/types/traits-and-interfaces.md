@@ -26,7 +26,7 @@ A concrete type is a member of a structural category if it happens to have all t
 
 Structural typing is very similar to [duck typing](https://en.wikipedia.org/wiki/Duck_typing) from dynamic programming languages, except that type compatibility is determined at compile time rather than at run time. If you've used Go, you'll recognise that Go interfaces are structural types.
 
-You do not declare structural relationships ahead of time, instead it done by checking if a given concrete type can fulfill the required interface. For example, in the code below, we have the interface `Stringable` from the standard library. Anything can be used as a `Stringable` so long as it provides the method `fun string(): String iso^`. In our example below, `ExecveError` provides the `Stringable` interface and can be used anywhere a `Stringable` is needed. Because `Stringable` is a structural type, `ExecveError` doesn't have to declare a relationship to `Stringable`, it simply has that relationship because it has "the same shape".
+You do not declare structural relationships ahead of time, instead it is done by checking if a given concrete type can fulfill the required interface. For example, in the code below, we have the interface `Stringable` from the standard library. Anything can be used as a `Stringable` so long as it provides the method `fun string(): String iso^`. In our example below, `ExecveError` provides the `Stringable` interface and can be used anywhere a `Stringable` is needed. Because `Stringable` is a structural type, `ExecveError` doesn't have to declare a relationship to `Stringable`, it simply has that relationship because it has "the same shape".
 
 ```pony
 interface box Stringable
