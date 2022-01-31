@@ -98,7 +98,7 @@ Here, we have a class `Larry` that has a `name` function with the same signature
 
 __Wait, why not?__ Because `Larry` doesn't say it `is Named`. Remember, traits are __nominal__: a type that wants to provide a trait has to explicitly declare that it does. And `Larry` doesn't.
 
-You can also do nominal subtyping using the keyword `interface`. __Interfaces__ in Pony are primarily used for structural subtyping. However, interfaces, like traits can have default method implementations and in order to use default method implementations, an interface must be used in a nominal fashion. For example:
+You can also do nominal subtyping using the keyword `interface`. __Interfaces__ in Pony are primarily used for structural subtyping. Like traits, interfaces can also have default method implementations, but in order to use default method implementations, an interface must be used in a nominal fashion. For example:
 
 ```pony
 interface HasName
