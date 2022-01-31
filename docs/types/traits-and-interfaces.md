@@ -143,7 +143,7 @@ interface Foo
   fun ref _set(i: USize, value: U8): U8
 ```
 
-In the code above, the interface `Foo` allows access to the private `_set` method of String and allows for changing `sailor` to `failor` or it would anyway, if interfaces were allowed to have private methods.
+In the code above, the interface `Foo` allows access to the private `_set` method of `String` and allows for changing `sailor` to `failor` or it would anyway, if interfaces were allowed to have private methods.
 
 ### Open world enumerations
 
