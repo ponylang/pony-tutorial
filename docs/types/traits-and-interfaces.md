@@ -156,7 +156,7 @@ primitive Red is Color
 primitive Blue is Color
 ```
 
-Here we are using a trait to provide a category of things, `Color` that any things can opt into by declaring itself to be a `Color`. The creates an "open world" of enumerations that you can't do using the more traditional Pony approach using type unions.
+Here we are using a trait to provide a category of things, `Color`, that any other types can opt into by declaring itself to be a `Color`. This creates an "open world" of enumerations that you can't do using the more traditional Pony approach using type unions.
 
 ```pony
 primitive Red
