@@ -111,7 +111,7 @@ The above code won't compile because you could supply `Empty ref`. Doing so resu
 By adding `nosupertype` to the definition of `Empty`, we declare that `Empty` is not a subtype of `Any` and thereby allow the code to compile as there is no longer an unsafe match.
 
 ```pony
-class \nosuperclass\ Empty
+class \nosupertype\ Empty
 
 class Foo
   fun foo[A: Any](a: (A | Empty val)) =>
