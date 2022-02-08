@@ -120,4 +120,4 @@ class Foo
     end
 ```
 
-`nosuperclass` is particularly valuable when constructing generic classes like collections that need a marker class to describe "lack of an item".
+`nosupertype` is particularly valuable when constructing generic classes like collections that need a marker class to describe "lack of an item".
