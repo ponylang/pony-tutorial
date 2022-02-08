@@ -89,3 +89,35 @@ class \nodoc\Foo
    We don't want this class and its methods to appear in generated documentation
    """
 ```
+
+### `nosupertype`
+
+Recognised on objects(`actor`, `class`, `primitive`, `struct`). A type annotated with `nosupertype` will not be a subtype of any other type (except _), even if the type structurally provides an interface. If a `nosupertype` type has a provides list, a compiler error is reported. As a result, a `nosupertype` type is excluded from both nominal and structural subtyping.
+
+Here's an example of how `nosupertype` can be important:
+
+```pony
+class Empty
+
+class Foo
+  fun foo[A: Any](a: (A | Empty val)) =>
+    match consume a
+    | let a': A => None
+    end
+```
+
+The above code won't compile because you could supply `Empty ref`. Doing so results in a compiler error about an unsafe match because we would need to distinguish between `Empty val` and `Empty ref` at runtime.
+
+By adding `nosupertype` to the definition of `Empty`, we declare that `Empty` is not a subtype of `Any` and thereby allow the code to compile as there is no longer an unsafe match.
+
+```pony
+class \nosupertype\ Empty
+
+class Foo
+  fun foo[A: Any](a: (A | Empty val)) =>
+    match consume a
+    | let a': A => None
+    end
+```
+
+`nosupertype` is particularly valuable when constructing generic classes like collections that need a marker class to describe "lack of an item".
