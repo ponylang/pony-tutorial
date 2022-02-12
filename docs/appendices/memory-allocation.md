@@ -11,7 +11,7 @@ Pony is a null-free, type-safe language, with no dangling pointers, no buffer ov
 
 ## But Caveat Emptor
 
-But Pony can be used to create **C libraries** and Pony can use external C libraries via the **FFI** which does not have this luxury.
+But Pony can use external C libraries via the **FFI** which does not have this luxury.
 
 So you **can** use any external C library out there, but the question is if you **need to** and if you **should**.
 
