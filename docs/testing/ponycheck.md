@@ -1,14 +1,14 @@
-# Testing with PonyCheck
+# Testing with `PonyCheck`
 
 PonyCheck is Pony's property based testing framework. It is designed to work seamlessly with [PonyTest](ponytest.md), Pony's unit testing framework. How is property based testing different than unit testing? Why does Pony include both?
 
 In traditional unit testing, it is the duty and burden of the developer to provide and craft meaningful input examples for the unit under test (be it a class, a function or whatever) and check if some output conditions hold. This is a tedious and error-prone activity.
 
-Property based testing leaves generation of test input samples to the testing engine which generates random examples taken from a description how to do so, so called *Generators*. The developer needs to define a *Generator* and describe the condition that should hold for each and every input sample.
+Property based testing leaves generation of test input samples to the testing engine which generates random examples taken from a description how to do so, so called `Generators`. The developer needs to define a `Generator` and describe the condition that should hold for each and every input sample.
 
-Property based Testing first came up as [QuickCheck](http://www.cse.chalmers.se/~rjmh/QuickCheck/) in Haskell. It has the nice property of automatically inferring Generators from the type of the property parameter, the test input sample.
+Property based Testing first came up as [`QuickCheck`](http://www.cse.chalmers.se/~rjmh/QuickCheck/) in Haskell. It has the nice property of automatically inferring `Generators` from the type of the property parameter, the test input sample.
 
-Ponycheck is heavily inspired by QuickCheck and other great Property Based testing libraries, namely:
+PonyCheck is heavily inspired by QuickCheck and other great property sased testing libraries, namely:
 
 * [Hypothesis](https://github.com/HypothesisWorks/hypothesis-python)
 * [Theft](https://github.com/silentbicycle/theft)
@@ -16,7 +16,7 @@ Ponycheck is heavily inspired by QuickCheck and other great Property Based testi
 
 ## Usage
 
-Writing property based tests in PonyCheck is done by implementing the trait [`Property1`](https://stdlib.ponylang.io/ponycheck-Property1). A [`Property1`](https://stdlib.ponylang.io/ponycheck-Property1) needs to define a type parameter for the type of the input sample, a [Generator](https://stdlib.ponylang.io/ponycheck-Generator) and a property function. Here is a minimal example to get a first feeling:
+Writing property based tests in PonyCheck is done by implementing the trait [`Property1`](https://stdlib.ponylang.io/PonyCheck-Property1). A [`Property1`](https://stdlib.ponylang.io/PonyCheck-Property1) needs to define a type parameter for the type of the input sample, a [`Generator`](https://stdlib.ponylang.io/PonyCheck-Generator) and a property function. Here is a minimal example:
 
 ```pony
 use "ponytest"
@@ -32,9 +32,9 @@ class _MyFirstProperty is Property1[String]
     h.assert_eq[String](arg1, arg1)
 ```
 
-A Property needs a name for identification in test output. We created a Generator by using one of the many convenience factory methods and combinators defined in the [Generators](https://stdlib.ponylang.iok/ponycheck-Generators) primitive and we used [PropertyHelper](https://stdlib.ponylang.io/ponycheck-PropertyHelper) to assert on a (in this case trivial) condition that should hold for all samples
+A `Property` needs a name for identification in test output. We created a `Generator` by using one of the many convenience factory methods and combinators defined in the [`Generators`](https://stdlib.ponylang.iok/PonyCheck-Generators) primitive and we used [`PropertyHelper`](https://stdlib.ponylang.io/PonyCheck-PropertyHelper) to assert on a condition that should hold for all samples
 
-Here is the classical List reverse properties from the QuickCheck paper adapted to Pony Arrays:
+Below is a classical List reverse properties from the QuickCheck paper adapted to Pony Arrays:
 
 ```pony
 use "ponycheck"
@@ -61,7 +61,7 @@ class _ListReverseOneProperty is Property1[Array[USize]]
 
 ## Integration with PonyTest
 
-PonyCheck properties need to be executed. The test runner for PonyCheck is [PonyTest](https://stdlib.ponylang.org/ponytest--index). To integrate [Property1](https://stdlib.ponylang.io/ponycheck-Property1) into [PonyTest](https://stdlib.ponylang.org/ponytest--index), Property1 needs to be wrapped inside a [Property1UnitTest](hhttps://stdlib.ponylang.io/ponycheck-Property1UnitTest) and passed to the PonyTest.apply method as all regular PonyTest [UnitTests](https://stdlib.ponylang.org/ponytest-UnitTest):
+PonyCheck properties need to be executed. The test runner for PonyCheck is [PonyTest](https://stdlib.ponylang.org/ponytest--index). To integrate [`Property1`](https://stdlib.ponylang.io/PonyCheck-Property1) into [PonyTest](https://stdlib.ponylang.org/ponytest--index), `Property1` needs to be wrapped inside a [`Property1UnitTest`](hhttps://stdlib.ponylang.io/PonyCheck-Property1UnitTest) and passed to the PonyTest `apply` method as all regular PonyTest [`UnitTests`](https://stdlib.ponylang.org/ponytest-UnitTest):
 
 ```pony
 use "ponytest"
@@ -76,7 +76,7 @@ actor Main is TestList
 ```
 
 It is also possible to integrate any number of properties directly into one
-[UnitTest](https://stdlib.ponylang.org/ponytest-UnitTest) using the [PonyCheck.forAll](https://stdlib.ponylang.io/ponycheck-Ponycheck) convenience function:
+[`UnitTest`](https://stdlib.ponylang.org/ponytest-UnitTest) using the [`PonyCheck.forAll`](https://stdlib.ponylang.io/PonyCheck-ponycheck) convenience function:
 
 ```pony
 class _ListReverseProperties is UnitTest
@@ -97,8 +97,6 @@ class _ListReverseProperties is UnitTest
 
 ## Additional resources
 
-You can learn more about PonyCheck specifics by checking out the [API documentation](https://stdlib.ponylang.io/ponycheck--index/). You can also find some [example tests](https://github.com/ponylang/ponyc/tree/main/examples/ponycheck) in [ponyc GitHub repository](https://github.com/ponylang/ponyc).
+You can learn more about PonyCheck specifics by checking out the [API documentation](https://stdlib.ponylang.io/PonyCheck--index/). You can also find some [example tests](https://github.com/ponylang/ponyc/tree/main/examples/ponycheck) in [ponyc GitHub repository](https://github.com/ponylang/ponyc).
 
-To learn more about testing in Pony in general, there's a [testing section](http://patterns.ponylang.io/testing.html) in the [Pony Patterns](http://patterns.ponylang.io/) book which isn't specific to PonyCheck.
-
-
+To learn more about testing in Pony in general, there's a [testing section](http://patterns.ponylang.io/testing.html) in the [Pony Patterns](http://patterns.ponylang.io/) book which isn't specific to `PonyCheck`.
