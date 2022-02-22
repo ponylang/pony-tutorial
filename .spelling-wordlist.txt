@@ -8,6 +8,7 @@ bitwise
 boolean
 booleans
 capybaras
+combinators
 compilable
 dereference
 deserialise
@@ -54,6 +55,7 @@ Ponylang
 PonyTest
 POSIX
 preprocessor
+QuickCheck
 Reddit
 reraise
 runtime

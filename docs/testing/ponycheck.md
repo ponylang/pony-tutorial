@@ -8,7 +8,7 @@ Property based testing leaves generation of test input samples to the testing en
 
 Property based Testing first came up as [`QuickCheck`](http://www.cse.chalmers.se/~rjmh/QuickCheck/) in Haskell. It has the nice property of automatically inferring `Generators` from the type of the property parameter, the test input sample.
 
-PonyCheck is heavily inspired by QuickCheck and other great property sased testing libraries, namely:
+PonyCheck is heavily inspired by QuickCheck and other great property based testing libraries, namely:
 
 * [Hypothesis](https://github.com/HypothesisWorks/hypothesis-python)
 * [Theft](https://github.com/silentbicycle/theft)
