@@ -132,6 +132,7 @@ nav:
   - Testing:
       - Overview: "testing/index.md"
       - Testing with PonyTest: "testing/ponytest.md"
+      - Testing with PonyCheck: "testing/ponycheck.md"
   - C-FFI:
       - Overview: "c-ffi/index.md"
       - Calling C from Pony: "c-ffi/calling-c.md"
