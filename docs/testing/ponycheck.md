@@ -16,7 +16,7 @@ PonyCheck is heavily inspired by QuickCheck and other great property based testi
 
 ## Usage
 
-Writing property based tests in PonyCheck is done by implementing the trait [`Property1`](https://stdlib.ponylang.io/PonyCheck-Property1). A [`Property1`](https://stdlib.ponylang.io/PonyCheck-Property1) needs to define a type parameter for the type of the input sample, a [`Generator`](https://stdlib.ponylang.io/PonyCheck-Generator) and a property function. Here is a minimal example:
+Writing property based tests in PonyCheck is done by implementing the trait [`Property1`](https://stdlib.ponylang.io/pony_check-Property1). A [`Property1`](https://stdlib.ponylang.io/pony_check-Property1) needs to define a type parameter for the type of the input sample, a [`Generator`](https://stdlib.ponylang.io/pony_check-Generator) and a property function. Here is a minimal example:
 
 ```pony
 use "pony_test"
