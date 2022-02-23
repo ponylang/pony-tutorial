@@ -19,7 +19,7 @@ PonyCheck is heavily inspired by QuickCheck and other great property based testi
 Writing property based tests in PonyCheck is done by implementing the trait [`Property1`](https://stdlib.ponylang.io/PonyCheck-Property1). A [`Property1`](https://stdlib.ponylang.io/PonyCheck-Property1) needs to define a type parameter for the type of the input sample, a [`Generator`](https://stdlib.ponylang.io/PonyCheck-Generator) and a property function. Here is a minimal example:
 
 ```pony
-use "ponytest"
+use "pony_test"
 
 class _MyFirstProperty is Property1[String]
   fun name(): String =>
@@ -37,7 +37,7 @@ A `Property` needs a name for identification in test output. We created a `Gener
 Below is a classical List reverse properties from the QuickCheck paper adapted to Pony Arrays:
 
 ```pony
-use "ponycheck"
+use "pony_check"
 use "collections"
 
 class _ListReverseProperty is Property1[Array[USize]]
@@ -61,11 +61,11 @@ class _ListReverseOneProperty is Property1[Array[USize]]
 
 ## Integration with PonyTest
 
-PonyCheck properties need to be executed. The test runner for PonyCheck is [PonyTest](https://stdlib.ponylang.org/ponytest--index). To integrate [`Property1`](https://stdlib.ponylang.io/PonyCheck-Property1) into [PonyTest](https://stdlib.ponylang.org/ponytest--index), `Property1` needs to be wrapped inside a [`Property1UnitTest`](hhttps://stdlib.ponylang.io/PonyCheck-Property1UnitTest) and passed to the PonyTest `apply` method as all regular PonyTest [`UnitTests`](https://stdlib.ponylang.org/ponytest-UnitTest):
+PonyCheck properties need to be executed. The test runner for PonyCheck is [PonyTest](https://stdlib.ponylang.org/pony_test--index). To integrate [`Property1`](https://stdlib.ponylang.io/PonyCheck-Property1) into [PonyTest](https://stdlib.ponylang.org/pony_test--index), `Property1` needs to be wrapped inside a [`Property1UnitTest`](hhttps://stdlib.ponylang.io/PonyCheck-Property1UnitTest) and passed to the PonyTest `apply` method as all regular PonyTest [`UnitTests`](https://stdlib.ponylang.org/pony_test-UnitTest):
 
 ```pony
-use "ponytest"
-use "ponycheck"
+use "pony_test"
+use "pony_check"
 
 actor Main is TestList
   new create(env: Env) =>
@@ -76,7 +76,7 @@ actor Main is TestList
 ```
 
 It is also possible to integrate any number of properties directly into one
-[`UnitTest`](https://stdlib.ponylang.org/ponytest-UnitTest) using the [`PonyCheck.forAll`](https://stdlib.ponylang.io/PonyCheck-ponycheck) convenience function:
+[`UnitTest`](https://stdlib.ponylang.org/pony_test-UnitTest) using the [`PonyCheck.forAll`](https://stdlib.ponylang.io/pony_check-ponycheck) convenience function:
 
 ```pony
 class _ListReverseProperties is UnitTest
