@@ -29,17 +29,17 @@ class MyTCPConnectionNotify is TCPConnectionNotify
     _out.print("connect_failed")
 
 actor Connect
-  new create(out: OutStream, auth: AmbientAuth) =>
+  new create(out: OutStream, auth: TCPConnectAuth) =>
     TCPConnection(auth, MyTCPConnectionNotify(out), "example.com", "80")
 
 actor Main
   new create(env: Env) =>
-    Connect(env.out, env.root)
+    Connect(env.out, TCPConnectAuth(env.root))
 ```
 
-The `Main` actor authorizes the `Connect` actor by passing the ambient authority token on to it. This token is unforgeable since the `AmbientAuth` constructor is private and the only existing instance is provided by the runtime itself.
+The `Main` actor authorizes the `Connect` actor a `TCPConnectAuth` token created from ambient authority token in `env.root`. The ambient authority token is unforgeable since the `AmbientAuth` constructor is private and the only existing instance is provided by the runtime itself. The `TCPConnectAuth` token is derived from ambient authority token.
 
-The `Connect` actor uses this authority when it creates a TCP connection:
+The `Connect` actor uses this derived authority when it creates a TCP connection:
 
 ```pony
 TCPConnection(auth, MyTCPConnectionNotify(out), "example.com", "80")
@@ -53,48 +53,62 @@ The implementation of the `TCPConnection` constructor does not even use the auth
 
 In order to handle our own code and that of others more safely, and also to understand our code better, we want to split up the authority, and only grant the particular authority a piece of code actually requires.
 
-Imagine we don't trust the `Connect` actor, so we don't want to provide it with more authority than needed. For example, there is no point in granting it filesystem access, since it is supposed to do network things (specifically, TCP), not access the filesystem. To understand how we can achieve this, let's look at the authority types involved.
+The first parameter of the `TCPConnection` constructor has the type `TCPConnectAuth`. This is what we call "the most specific authority". All classes in the standard library that require an authority token only accept a single type of token; the token of "most specific authority". In the case of `TCPConnection`, this is `TCPConnectAuth`.
 
-The first parameter of the `TCPConnection` constructor has the type
-
-```pony
-type TCPConnectionAuth is (AmbientAuth | NetAuth | TCPAuth | TCPConnectAuth)
-```
-
-so instead of passing the entire `AmbientAuth` (the root of all authority), we can "downgrade" that to a `TCPConnectAuth` (the most restrictive authority in `net`), pass it to the `Connect` actor, and have that pass it to the `TCPConnection` constructor:
+Now imagine we don't trust the `Connect` actor, so we don't want to provide it with more authority than needed. For example, there is no point in granting it filesystem access, since it is supposed to do network things (specifically, TCP), not access the filesystem. Instead of passing the entire `AmbientAuth` (the root of all authority), we "downgrade" that to a `TCPConnectAuth` (the most restrictive authority in `net`), pass it to the `Connect` actor, and have that pass it to the `TCPConnection` constructor:
 
 ```pony
 actor Connect
-  new create(out: OutStream, auth: TCPConnectionAuth) =>
+  new create(out: OutStream, auth: TCPConnectAuth) =>
     TCPConnection(auth, MyTCPConnectionNotify(out), "example.com", "80")
 
 actor Main
   new create(env: Env) =>
-    try Connect(env.out, TCPConnectAuth(env.root as AmbientAuth)) end
+    try Connect(env.out, TCPConnectAuth(env.root)) end
 ```
 
-Now we are sure it cannot access the filesystem or listen on a TCP or UDP port.
+Now we are sure it cannot access the filesystem or listen on a TCP or UDP port. Pay close mind to the authority that code you are calling is asking for. Never give `AmbientAuth` to __any__ code you do not trust completely both now and in the future. You should always create the most specific authority and give the library that authority. If the library is asking for more authority than it needs, __do not use the library__.
 
 ## Authorization-friendly interface
 
 Consider the above example again, but this time let's think of the `Connect` actor being part of a 3rd party package that we are building. Our goal is to write the actor in such a way that users of our package can grant it only the authority necessary for it to function.
 
-As the package author, it is then our responsibility to realize that the minimal authority possible is the `TCPConnectAuth`. But anything that the `TCPConnection` constructor accepts is valid, and a user of our package might be strict and pass a `TCPConnectAuth`, or might be lax and just pass the `AmbientAuth`.
-
-Our current implementation already satisfies all this, because `TCPConnectionAuth` is a union type of all possible authorization types and we use that. If we want, we could also write
-
-```pony
-type ConnectActorAuth is TCPConnectionAuth
-```
-
-and use this type alias instead, signalling to the user that anything that is a `TCPConnectionAuth` is allowed as the authority token passed to the `Connect` actor.
+As the package author, it is then our responsibility to realize that the minimal authority possible is the `TCPConnectAuth`. We should only request `TCPConnectAuth` from our users. Our current implementation already satisfies this requirement. Rather than requesting a less specific authority like `AmbientAuth` from our users and creating the `TCPConnectAuth` in our library, we only ask for the `TCPConnetAuth` that is required.
 
 ## Authority hierarchies
 
-Looking again at the type of the authorization parameter to `TCPConnection`,
+Let's have a look at the authorizations available in the standard library's `net` package.
 
 ```pony
-type TCPConnectionAuth is (AmbientAuth | NetAuth | TCPAuth | TCPConnectAuth)
+primitive NetAuth
+  new create(from: AmbientAuth) =>
+    None
+
+primitive DNSAuth
+  new create(from: (AmbientAuth | NetAuth)) =>
+    None
+
+primitive UDPAuth
+  new create(from: (AmbientAuth | NetAuth)) =>
+    None
+
+primitive TCPAuth
+  new create(from: (AmbientAuth | NetAuth)) =>
+    None
+
+primitive TCPListenAuth
+  new create(from: (AmbientAuth | NetAuth | TCPAuth)) =>
+    None
+
+primitive TCPConnectAuth
+  new create(from: (AmbientAuth | NetAuth | TCPAuth)) =>
+    None
+```
+
+Look at the constructor for `TCPConnectAuth`:
+
+```pony
+new create(from: (AmbientAuth | NetAuth | TCPAuth))
 ```
 
 you might notice that this looks like a hierarchy of authorities:
@@ -106,5 +120,9 @@ where in this paragraph, ">>" means "grants at least as much authority as". In f
 This hierarchy is established by means of the constructor of the weaker authority accepting one of the stronger authorities, for example:
 
 ```pony
-new val create(from: (AmbientAuth val | NetAuth val)) : TCPAuth val^
+primitive TCPAuth
+  new create(from: (AmbientAuth | NetAuth)) =>
+    None
 ```
+
+Where `TCPAuth` grants less authority than `NetAuth`. `NetAuth` can be used to create any of the derived authorities `DNSAuth`, `UDPAuth`, `TCPAuth`, `TCPListenAuth`, `TCPConnectAuth` whereas `TCPAuth` can only be used to derive `TCPListenAuth` and `TCPConnectAuth`.
