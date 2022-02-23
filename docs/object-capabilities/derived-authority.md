@@ -37,7 +37,7 @@ actor Main
     Connect(env.out, TCPConnectAuth(env.root))
 ```
 
-The `Main` actor authorizes the `Connect` actor a `TCPConnectAuth` token created from ambient authority token in `env.root`. The ambient authority token is unforgeable since the `AmbientAuth` constructor is private and the only existing instance is provided by the runtime itself. The `TCPConnectAuth` token is derived from ambient authority token.
+The `Main` actor authorizes the `Connect` actor by passing a `TCPConnectAuth` token created from the ambient authority token in `env.root`. The ambient authority token is unforgeable since the `AmbientAuth` constructor is private and the only existing instance is provided by the runtime itself.
 
 The `Connect` actor uses this derived authority when it creates a TCP connection:
 
