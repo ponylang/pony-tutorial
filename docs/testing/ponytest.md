@@ -15,7 +15,7 @@ To use PonyTest simply write a class for each test and a `TestList` type that te
 The following is a complete program with 2 trivial tests.
 
 ```pony
-use "ponytest"
+use "pony_test"
 
 actor Main is TestList
   new create(env: Env) =>
@@ -58,7 +58,7 @@ Often it is desirable to run a collection of unit tests from multiple different 
 This can be achieved by writing an aggregate test list class, which calls the list function for each package. The following is an example that aggregates the tests from packages `foo` and `bar`.
 
 ```pony
-use "ponytest"
+use "pony_test"
 use foo = "foo"
 use bar = "bar"
 
@@ -114,4 +114,4 @@ The test's `TestHelper` is handed to `tear_down()` and it is permitted to log me
 
 ## Additional resources
 
-You can learn more about PonyTest specifics by checking out the [API documentation](https://stdlib.ponylang.io/ponytest--index/). There's also a [testing section](http://patterns.ponylang.io/testing.html) in the [Pony Patterns](http://patterns.ponylang.io/) book.
+You can learn more about PonyTest specifics by checking out the [API documentation](https://stdlib.ponylang.io/pony_test--index/). There's also a [testing section](http://patterns.ponylang.io/testing.html) in the [Pony Patterns](http://patterns.ponylang.io/) book.
