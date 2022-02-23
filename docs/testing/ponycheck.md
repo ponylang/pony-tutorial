@@ -6,7 +6,7 @@ In traditional unit testing, it is the duty and burden of the developer to provi
 
 Property based testing leaves generation of test input samples to the testing engine which generates random examples taken from a description how to do so, so called `Generators`. The developer needs to define a `Generator` and describe the condition that should hold for each and every input sample.
 
-Property based Testing first came up as [`QuickCheck`](http://www.cse.chalmers.se/~rjmh/QuickCheck/) in Haskell. It has the nice property of automatically inferring `Generators` from the type of the property parameter, the test input sample.
+Property based testing first came up as [`QuickCheck`](http://www.cse.chalmers.se/~rjmh/QuickCheck/) in Haskell. It has the nice property of automatically inferring `Generators` from the type of the property parameter, the test input sample.
 
 PonyCheck is heavily inspired by QuickCheck and other great property based testing libraries, namely:
 
@@ -32,9 +32,9 @@ class _MyFirstProperty is Property1[String]
     h.assert_eq[String](arg1, arg1)
 ```
 
-A `Property` needs a name for identification in test output. We created a `Generator` by using one of the many convenience factory methods and combinators defined in the [`Generators`](https://stdlib.ponylang.iok/pony_check-Generators) primitive and we used [`PropertyHelper`](https://stdlib.ponylang.io/pony_check-PropertyHelper) to assert on a condition that should hold for all samples
+A `Property1` needs a name for identification in test output. We created a `Generator` by using one of the many convenience factory methods and combinators defined in the [`Generators`](https://stdlib.ponylang.iok/pony_check-Generators) primitive and we used [`PropertyHelper`](https://stdlib.ponylang.io/pony_check-PropertyHelper) to assert on a condition that should hold for all samples
 
-Below is a classical List reverse properties from the QuickCheck paper adapted to Pony Arrays:
+Below is a classical list reverse properties from the QuickCheck paper adapted to Pony arrays:
 
 ```pony
 use "pony_check"
