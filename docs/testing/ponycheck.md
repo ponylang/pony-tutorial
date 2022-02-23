@@ -32,7 +32,7 @@ class _MyFirstProperty is Property1[String]
     h.assert_eq[String](arg1, arg1)
 ```
 
-A `Property` needs a name for identification in test output. We created a `Generator` by using one of the many convenience factory methods and combinators defined in the [`Generators`](https://stdlib.ponylang.iok/PonyCheck-Generators) primitive and we used [`PropertyHelper`](https://stdlib.ponylang.io/PonyCheck-PropertyHelper) to assert on a condition that should hold for all samples
+A `Property` needs a name for identification in test output. We created a `Generator` by using one of the many convenience factory methods and combinators defined in the [`Generators`](https://stdlib.ponylang.iok/pony_check-Generators) primitive and we used [`PropertyHelper`](https://stdlib.ponylang.io/pony_check-PropertyHelper) to assert on a condition that should hold for all samples
 
 Below is a classical List reverse properties from the QuickCheck paper adapted to Pony Arrays:
 
@@ -97,6 +97,6 @@ class _ListReverseProperties is UnitTest
 
 ## Additional resources
 
-You can learn more about PonyCheck specifics by checking out the [API documentation](https://stdlib.ponylang.io/PonyCheck--index/). You can also find some [example tests](https://github.com/ponylang/ponyc/tree/main/examples/ponycheck) in [ponyc GitHub repository](https://github.com/ponylang/ponyc).
+You can learn more about PonyCheck specifics by checking out the [API documentation](https://stdlib.ponylang.io/pony_check--index/). You can also find some [example tests](https://github.com/ponylang/ponyc/tree/main/examples/ponycheck) in [ponyc GitHub repository](https://github.com/ponylang/ponyc).
 
 To learn more about testing in Pony in general, there's a [testing section](http://patterns.ponylang.io/testing.html) in the [Pony Patterns](http://patterns.ponylang.io/) book which isn't specific to `PonyCheck`.
