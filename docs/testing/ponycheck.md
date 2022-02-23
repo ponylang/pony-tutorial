@@ -76,7 +76,7 @@ actor Main is TestList
 ```
 
 It is also possible to integrate any number of properties directly into one
-[`UnitTest`](https://stdlib.ponylang.io/pony_test-UnitTest) using the [`PonyCheck.forAll`](https://stdlib.ponylang.io/pony_check-PonyCheck) convenience function:
+[`UnitTest`](https://stdlib.ponylang.io/pony_test-UnitTest) using the [`PonyCheck.for_all`](https://stdlib.ponylang.io/pony_check-PonyCheck) convenience function:
 
 ```pony
 class _ListReverseProperties is UnitTest
@@ -84,12 +84,12 @@ class _ListReverseProperties is UnitTest
 
   fun apply(h: TestHelper) ? =>
     let gen1 = Generators.seq_of[USize, Array[USize]](Generators.usize())
-    PonyCheck.forAll[Array[USize]](gen1, h)({
+    PonyCheck.for_all[Array[USize]](gen1, h)({
       (arg1: Array[USize], ph: PropertyHelper) =>
         ph.assert_array_eq[USize](arg1, arg1.reverse().reverse())
     })
     let gen2 = Generators.seq_of[USize, Array[USize]](1, Generators.usize())
-    PonyCheck.forAll[Array[USize]](gen2, h)({
+    PonyCheck.for_all[Array[USize]](gen2, h)({
       (arg1: Array[USize], ph: PropertyHelper) =>
         ph.assert_array_eq[USize](arg1, arg1.reverse())
     })
