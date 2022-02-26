@@ -108,16 +108,6 @@ class SomeObjectThatNeedsDisposing
     // release resources
 ```
 
-It is possible to provide an `else` clause, which is called only in error cases:
-
-```pony
-with obj = SomeObjectThatNeedsDisposing() do
-  // use obj
-else
-  // only run if an error has occurred
-end
-```
-
 Multiple objects can be set up for disposal:
 
 ```pony
@@ -126,7 +116,7 @@ with obj = SomeObjectThatNeedsDisposing(), other = SomeOtherDisposableObject() d
 end
 ```
 
-The value of a `with` expression is the value of the last expression in the block, or of the last expression in the `else` block if there is one and an error occurred.
+The value of a `with` expression is the value of the last expression in the block.
 
 ## Language constructs that can raise errors
 
