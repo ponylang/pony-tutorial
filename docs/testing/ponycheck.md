@@ -97,6 +97,6 @@ class _ListReverseProperties is UnitTest
 
 ## Additional resources
 
-You can learn more about PonyCheck specifics by checking out the [API documentation](https://stdlib.ponylang.io/pony_check--index/). You can also find some [example tests](https://github.com/ponylang/ponyc/tree/main/examples/ponycheck) in [ponyc GitHub repository](https://github.com/ponylang/ponyc).
+You can learn more about PonyCheck specifics by checking out the [API documentation](https://stdlib.ponylang.io/pony_check--index/). You can also find some [example tests](https://github.com/ponylang/ponyc/tree/main/examples/pony_check) in [ponyc GitHub repository](https://github.com/ponylang/ponyc).
 
 To learn more about testing in Pony in general, there's a [testing section](http://patterns.ponylang.io/testing.html) in the [Pony Patterns](http://patterns.ponylang.io/) book which isn't specific to `PonyCheck`.
