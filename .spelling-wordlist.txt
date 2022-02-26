@@ -8,6 +8,7 @@ bitwise
 boolean
 booleans
 capybaras
+combinators
 compilable
 dereference
 deserialise
@@ -30,6 +31,7 @@ finalisers
 forgeable
 GC
 GDB
+Hypothesis
 interoperable
 invariants
 JIT
@@ -48,13 +50,16 @@ ok
 ORCA
 polymorphism
 ponyc
+PonyCheck
 Ponylang
 PonyTest
 POSIX
 preprocessor
+QuickCheck
 Reddit
 reraise
 runtime
+ScalaCheck
 sendable
 sequentiality
 snuck
@@ -67,6 +72,7 @@ supertype
 struct
 structs
 TCP
+Theft
 TypeScript
 UDP
 unalias
