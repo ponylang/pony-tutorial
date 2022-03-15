@@ -194,7 +194,7 @@ Here's a contrived example:
 ```pony
 interface Compactable
   fun ref compact()
-  fun size()
+  fun size(): USize
 
 class Compactor
   """
