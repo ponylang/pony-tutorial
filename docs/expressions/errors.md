@@ -26,7 +26,7 @@ In either case, execution will then carry on with whatever code comes after the 
 
 __Do I have to provide an error handler?__ No. The `try` block will handle any errors regardless. If you don't provide an error handler then no error handling action will be taken - execution will simply continue after the `try` expression.
 
-If you want to do something that might raise an error, but you don't care if it does you can just put in it a `try` block without an `else`.
+If you want to do something that might raise an error, but you don't care if it does you can just put it in a `try` block without an `else`.
 
 ```pony
 try
