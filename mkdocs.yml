@@ -112,6 +112,7 @@ nav:
       - Combining Capabilities: "reference-capabilities/combining-capabilities.md"
       - Arrow Types aka Viewpoints: "reference-capabilities/arrow-types.md"
       - Reference Capability Matrix: "reference-capabilities/capability-matrix.md"
+      - Default Reference Types: "reference-capabilities/default-capabilities.md"
   - Object Capabilities:
       - Overview: "object-capabilities/index.md"
       - Object Capabilities: "object-capabilities/object-capabilities.md"
