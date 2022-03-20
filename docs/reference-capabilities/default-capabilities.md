@@ -34,7 +34,7 @@ class ref MyPersonalString
 
 Getting from the former to the latter isn't always obvious, so you may want to keep this document open as you read and write Pony source code. Let's start with a couple tables for quick reference:
 
-### Permanent Reference Capability Types
+## Permanent Reference Capability Types
 
 Actors and primitives are required to be constructed with a certain capability and we aren't able to instruct the compiler otherwise.
 
@@ -48,7 +48,7 @@ Actors and primitives are required to be constructed with a certain capability a
 | receiver (behaviour)    | `ref`      |
 | literal (actor)         | `tag`      |
 
-### Default Reference Capability Types
+## Default Reference Capability Types
 
 | Item                         | Default Capability |
 | ---------------------------- | ------------------ |
@@ -200,7 +200,7 @@ class MyClass
 
 Notably, you can't mutate a `box`, so mutable methods _must_ be defined as `fun ref` or `fun trn`.
 
-TODO: THIS IS WRONG. The _only_ behavior capability for an actor is `ref`. You cannot specify a `be val` for example, or even `be ref`. This may be counter-intuitive since the _caller_ only has a tag to the actor, but the actor is totally free to reference its own fields from the behaviour.
+TO DO: THIS IS WRONG. The _only_ behavior capability for an actor is `ref`. You cannot specify a `be val` for example, or even `be ref`. This may be counter-intuitive since the _caller_ only has a tag to the actor, but the actor is totally free to reference its own fields from the behaviour.
 
 ## Default recover capabilities
 
