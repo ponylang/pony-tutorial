@@ -24,7 +24,7 @@ class val FilePath
       end
 ```
 
-FFI functions have the @ symbol before its name, and FFI signatures are declared using the `use` command. The types specified here are considered authoritative, and any FFI calls that differ are considered to be an error.
+FFI functions have the @ symbol before its name, and FFI signatures are declared using the `use` command. The types specified here are considered authoritative, and any FFI calls that use different types will result in a compile error.
 
 The use @ command can take a condition just like other `use` commands. This is useful in this case, since the `_mkdir` function only exists in Windows.
 
@@ -152,6 +152,73 @@ env.out.print(size.height.string())
 ```
 
 A `NullablePointer` type can only be used with `structs`, and is only intended for output parameters (like in the example above) or for return types from C. You don't need to use a `NullablePointer` if you are only passing a `struct` as a regular input parameter.
+
+### Return-type Polymorphism
+
+We mentioned before that you should use the `Pointer[None]` type in Pony when dealing with values of `void*` type in C. This is very useful for function parameters, but when we use `Pointer[None]` for the return type of a C function, we won't be able to access the value that the pointer points to. Let's imagine a generic list in C:
+
+```C
+struct List;
+
+struct List* list_create();
+void list_free(struct List* list);
+
+void list_push(struct List* list, void *data);
+void* list_pop(struct List* list);
+```
+
+Following the advice from previous sections, we can write the following Pony declarations:
+
+```pony
+use @list_create[Pointer[_List]]()
+use @list_free[None](list: Pointer[_List])
+
+use @list_push[None](list: Pointer[_List], data: Pointer[None])
+use @list_pop[Pointer[None]](list: Pointer[_List])
+
+primitive _List
+```
+
+We can use these declarations to create lists of different types, and insert elements into them:
+
+```pony
+struct Point
+  var x: U64 = 0
+  var y: U64 = 0
+
+let list_of_points = @list_create()
+@list_push(list_of_points, NullablePointer[Point].create(Point))
+
+let list_of_strings = @list_create()
+@list_push(list_of_strings, "some data".cstring())
+```
+
+We can also get elements out of the list, although we won't be able to do anything with them:
+
+```pony
+// Compiler error: couldn't find 'x' in 'Pointer'
+let point_x = @list_pop(list_of_points)
+point.x
+
+// Compiler error: wanted Pointer[U8 val] ref^, got Pointer[None val] ref
+let head = String.from_cstring(@list_pop(list_of_strings))
+```
+
+We can fix this problem by adding an explicit return type parameter when calling `list_pop`:
+
+```pony
+// OK
+let point = @list_pop[Point](list_of_points)
+let x_coord = point.x
+
+// OK
+let pointer = @list_pop[Pointer[U8]](list_of_strings)
+let data = String.from_cstring(pointer)
+```
+
+Note that the declaration for `list_pop` is still needed: if we don't add an explicit return type when calling `list_pop`, the default type will be the return type of the declaration.
+
+You'll notice that this feature enables you to cast the return type of a C function to any other type, **making this feature potentially dangerous if you cast to the wrong type**. As we have noted before, when it comes to FFI, the Pony compiler trusts that you know what you are doing, so you MUST get the return type right.
 
 ### Variadic C functions
 
