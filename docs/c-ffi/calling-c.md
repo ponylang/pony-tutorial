@@ -24,7 +24,7 @@ class val FilePath
       end
 ```
 
-FFI functions have the @ symbol before its name, and FFI signatures are declared using the `use` command. The types specified here are considered authoritative, and any FFI calls that use different types will result in a compile error.
+FFI functions have the @ symbol before its name, and FFI signatures are declared using the `use` command. The types specified here are considered authoritative, and any FFI calls that use different parameter types will result in a compile error.
 
 The use @ command can take a condition just like other `use` commands. This is useful in this case, since the `_mkdir` function only exists in Windows.
 
@@ -204,7 +204,7 @@ point.x
 let head = String.from_cstring(@list_pop(list_of_strings))
 ```
 
-We can fix this problem by adding an explicit return type parameter when calling `list_pop`:
+We can fix this problem by adding an explicit return type when calling `list_pop`:
 
 ```pony
 // OK
