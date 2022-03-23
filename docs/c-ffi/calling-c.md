@@ -218,7 +218,7 @@ let data = String.from_cstring(pointer)
 
 Note that the declaration for `list_pop` is still needed: if we don't add an explicit return type when calling `list_pop`, the default type will be the return type of the declaration.
 
-You'll notice that this feature enables you to cast the return type of a C function to any other type, **making this feature potentially dangerous if you cast to the wrong type**. As we have noted before, when it comes to FFI, the Pony compiler trusts that you know what you are doing, so you MUST get the return type right.
+When specifying a different return type for an FFI function, make sure that the new type is [compatible](#type-signature-compatibility) with the type specified in the declaration.
 
 ### Variadic C functions
 
@@ -274,9 +274,9 @@ A function that calls the `pony_error` function should only be called from insid
 
 ## Type signature compatibility
 
-Since type signature declarations are scoped to a single Pony package, separate packages might define different FFI signatures for the same C function. In these cases, the compiler will make sure that all declarations are compatible with each other. Two declarations are compatible if their arguments and return types are compatible. Two types are compatible with each other if they have the same ABI size and they can be safely cast to each other. Currently, the compiler allows the following type casts:
+Since type signature declarations are scoped to a single Pony package, separate packages might define different FFI signatures for the same C function. In this case, as well as the case where you specify a different return type for an FFI call, the compiler will make sure that all calls and declarations are compatible with each other. Two functions are compatible if their arguments and return types are compatible. Two types are compatible with each other if they have the same ABI size and they can be safely cast to each other. The compiler allows the following type casts:
 
-* Any `struct` type can be cast to any other `struct`.
+* Any `struct` type can be cast to any other `struct` (as they are both pointer types)
 * Pointers and integers can be cast to each other.
 
 Consider the following example:
