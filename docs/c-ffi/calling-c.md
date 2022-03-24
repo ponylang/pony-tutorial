@@ -223,3 +223,45 @@ use @memcmp[I32](dst: Pointer[None] tag, src: USize, len: U64)
 ```
 
 These two declarations have different types for the `src` and `len` parameters. In the case of `src`, the types are compatible since an integer can be cast as a pointer, and vice versa. For `len`, the types will not be compatible on 32 bit platforms, where `USize` is equivalent to `U32`. It is important to take the rules around casting into account when writing type declarations in libraries that will be used by others, as it will avoid any compatibility problems with other libraries.
+
+## Calling FFI functions from Interfaces or Traits
+
+We mentioned in the previous section that FFI declarations are scoped to a single Pony package, with separate packages possibly defining different FFI signatures for the same C function. Importing an external package will not import any FFI declarations, since any name collisions would produce multiple declarations for the same C function name, and thus deciding which declaration to use would be ambiguous.
+
+Given the above fact, if you define any default methods (or behaviors) in an interface or trait, you will not be able to perform an FFI call from them. For example, the code below will fail to compile:
+
+```pony
+use @printf[I32](fmt: Pointer[None] tag, ...)
+
+trait Foo
+  fun apply() =>
+    // Error: Can't call an FFI function in a default method or behavior
+    @printf("Hello from trait Foo\n".cstring())
+
+actor Main is Foo
+  new create(env: Env) =>
+    this.apply()
+```
+
+If the trait `Foo` above was part of the public API of a package, allowing its `apply` method to perform an FFI call would render `Foo` unusable for any external users, given that the declaration for `printf` would not be in scope.
+
+Fortunately, avoiding this limitation is relatively painless. Whenever you need to call an FFI function from a default method implementation, consider moving said function to a separate type:
+
+```pony
+use @printf[I32](fmt: Pointer[None] tag, ...)
+
+trait Foo
+  fun apply() =>
+    // OK
+    Printf("Hello from trait Foo\n")
+
+primitive Printf
+  fun apply(str: String) =>
+    @printf(str.cstring())
+
+actor Main is Foo
+  new create(env: Env) =>
+    this.apply()
+```
+
+By making the change above, we avoid exposing the call to `printf` to any consumers of our trait, thus making it usable by external users.
