@@ -129,8 +129,8 @@ class iso _TestAddition is UnitTest
   """
   fun name(): String => "u32/add"
 
-  fun apply(h: TestHelper): TestResult =>
-    h.expect_eq[U32](2 + 2, 4)
+  fun apply(h: TestHelper) =>
+    h.assert_eq[U32](2 + 2, 4)
 ```
 
 Some assertions you can make with `TestHelper` are

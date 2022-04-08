@@ -69,6 +69,9 @@ class Foo
     _x == that._x
 
 actor Main
+  new create(env: Env) =>
+    None
+
   fun f(x: Foo): String =>
     match x
     | Foo(1) => "one"
