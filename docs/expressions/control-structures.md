@@ -140,7 +140,7 @@ actor Main
       else
         "no names!"
       end
-    env.out.print("x is " + s)
+    env.out.print("x is " + x)
 ```
 
 And finally, here the value of __x__ is "no names!"

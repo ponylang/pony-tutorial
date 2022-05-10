@@ -15,8 +15,10 @@ Garbage collection is never attempted on any actor while it is executing a behav
 Here's a typical "I'm learning Pony" program:
 
 ```pony
+use "collections"
+
 actor Main
-  new create(env: Env)
+  new create(env: Env) =>
     for i in Range(1, 2_000_000) do
       ... something that uses up heap ...
     end
