@@ -59,7 +59,7 @@ actor Main
 
 There are several things to keep in mind when using Pony's serialisation system:
 
-* Serialised objects will currently only work when passed between two running instances of the same Pony executable. Passing objects between different Pony programs or between different versions of the same program may lead to a crash or unsafe memory manipulation. You might use the `Serialise.signature` function to determine that sharing two different Pony programs is safe.
+* Serialised objects will currently only work when passed between two running instances of the same Pony executable. You cannot pass objects between different Pony programs, nor can you pass them between different versions of the same program. Using the `Serialise.signature` function can help you determine if your two Pony programs are the same.
 * Objects with `embed` fields will not be properly serialised.
 * Objects with `Pointer` fields must use the custom serialisation mechanism or else the `Pointer` fields will be null when the object is deserialised. For information on how to handle these kinds of fields, please see the discussion of custom serialisation and deserialisation below.
 
