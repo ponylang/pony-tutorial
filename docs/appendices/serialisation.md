@@ -5,10 +5,10 @@ Pony provides a built-in mechanism for serialising and deserialising objects so 
 Pony uses an intermediate object type called `Serialised` to represent a serialised object. A `Serialised` object can be created in one of two ways:
 
 * calling the `create(...)` constructor with the `SerialiseAuth` authority and the object to serialize
-* calling the `input(...)` constructor with the `DeserialiseAuth` authority and an `Array[U8]` that represents the object to deserialise
-This intermediate object can then be used to either:
-* generate an `Array[U8]` that represents the object by calling the `output(...)` method with the `OutputSerialisedAuth` authority
-* generate a deserialised object by calling the `apply(...)` method with the `InputSerialisedAuth` authority
+* calling the `input(...)` constructor with the `DeserialiseAuth` authority and an `Array[U8]` that represents the object to deserialise. This intermediate object can then be used to either:
+
+    * generate an `Array[U8]` that represents the object by calling the `output(...)` method with the `OutputSerialisedAuth` authority, or
+    * generate a deserialised object by calling the `apply(...)` method with the `InputSerialisedAuth` authority
 
 This program serialises and deserialise an object, and checks that the fields of the original object are the same as the fields of the deserialised object.
 
@@ -59,7 +59,7 @@ actor Main
 
 There are several things to keep in mind when using Pony's serialisation system:
 
-* Serialised objects will currently only work when passed between two running instances of the same Pony executable. You cannot pass objects between different Pony programs, nor can you pass them between different versions of the same program.
+* Serialised objects will currently only work when passed between two running instances of the same Pony executable. Passing objects between different Pony programs or between different versions of the same program may lead to a crash or unsafe memory manipulation. You might use the `Serialise.signature` function to determine that sharing two different Pony programs is safe.
 * Objects with `embed` fields will not be properly serialised.
 * Objects with `Pointer` fields must use the custom serialisation mechanism or else the `Pointer` fields will be null when the object is deserialised. For information on how to handle these kinds of fields, please see the discussion of custom serialisation and deserialisation below.
 
@@ -86,11 +86,11 @@ The custom deserialisation method is expected to modify the values of the object
 
 #### Fixed Versus Variable Object Sizes
 
-The programmer must write their custom serialisation and deserialisation code in such a way that it is aware of how many bytes are available in the byte arrays that are passed to the methods. If the objects are always of a fixed size then the functions can read and write than many bytes to the buffer. However, if the objects are of varying sizes (for example, if the object was a string), then the serialized representation must include information that the deserialisation code can use to ensure that it does not read beyond the end of the memory occupied by the object. The custom serialisation system does not provide a mechanism for doing this, so it is up to the program to choose a mechanism and implement it. In the case of a string, the serialisation format could consist of a 4-byte header that encodes the length of the string, followed by a string of the specified length. This additional four bytes must be included in the value returned by `_serialise_space()`. The deserialisation function would then start by reading the first four bytes of the array to obtain the size of the string and then read only that many bytes from the array.
+The programmer must write their custom serialisation and deserialisation code in such a way that it is aware of how many bytes are available in the byte arrays that are passed to the methods. If the objects are always of a fixed size then the functions can read and write that many bytes to the buffer. However, if the objects are of varying sizes (for example, if the object was a string), then the serialized representation must include information that the deserialisation code can use to ensure that it does not read beyond the end of the memory occupied by the object. The custom serialisation system does not provide a mechanism for doing this, so it is up to the program to choose a mechanism and implement it. In the case of a string, the serialisation format could consist of a 4-byte header that encodes the length of the string, followed by a string of the specified length. These additional four bytes must be included in the value returned by `_serialise_space()`. The deserialisation function would then start by reading the first four bytes of the array to obtain the size of the string and then read only that many bytes from the array.
 
 #### Classes With Multiple `Pointer` Fields
 
-If a class has more than one `Pointer` field then all of those fields must be handled by the custom serialisation and deserialisation methods for that class; there are not methods for each field. For example, if a class has three `Pointer` fields then the `_serialise_space()` method must return the total number of bytes required to serialise the objects from all three fields.
+If a class has more than one `Pointer` field then all of those fields must be handled by the custom serialisation and deserialisation methods for that class; there are not methods for each field. For example, if a class has three `Pointer` fields, then the `_serialise_space()` method must return the total number of bytes required to serialise the objects from all three fields.
 
 ### Example
 
