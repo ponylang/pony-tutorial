@@ -90,7 +90,7 @@ The programmer must write their custom serialisation and deserialisation code in
 
 #### Classes With Multiple `Pointer` Fields
 
-If a class has more than one `Pointer` field then all of those fields must be handled by the custom serialisation and deserialisation methods for that class; there are not methods for each field. For example, if a class has three `Pointer` fields, then the `_serialise_space()` method must return the total number of bytes required to serialise the objects from all three fields.
+If a class has more than one `Pointer` field then all of those fields must be handled by the custom serialisation and deserialisation methods for that class; there are not methods for each field. For example, if a class has three `Pointer` fields then the `_serialise_space()` method must return the total number of bytes required to serialise the objects from all three fields.
 
 ### Example
 
