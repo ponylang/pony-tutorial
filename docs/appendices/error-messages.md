@@ -1,6 +1,6 @@
 # A Short Guide to Pony Error Messages
 
-You've been through the tutorial, you've watched some videos, and now you're ready to write some Pony code. You fire up your editor, shovel coal into the compiler, and... you find yourself looking at a string of gibberish.
+You've been through the tutorial, you've watched some videos, and now you're ready to write some Pony code. You fire up your editor, shovel coal into the compiler, and...you find yourself looking at a string of gibberish.
 
 Don't panic! Pony's error messages try to be as helpful as possible and the ultimate goal is to improve them further. But, in the meantime, they can be a little intimidating.
 
@@ -23,11 +23,11 @@ The error message would be:
 
 ```error
 Error:
-.../a.pony:6:5: can't assign to a let or embed definition more than once
+main.pony:4:5: can't assign to a let or embed definition more than once
     x = 12
     ^
 Error:
-.../a.pony:6:7: left side must be something that can be assigned to
+main.pony:4:7: left side must be something that can be assigned to
     x = 12
       ^
 ```
@@ -36,7 +36,7 @@ What happened is that you declared `x` as a constant, by writing `let x`, and th
 
 That one error resulted in two error messages. The first, pointing to the `x`, describes the specific problem, that `x` was defined with `let`. The second, pointing to the `=` describes a more general error, that whatever is on the left side of the assignment is not something that can be assigned to. You would get that same error message if you attempted to assign a value to a literal, like `3`.
 
-## cannot write to a field in a box function
+## left side is immutable
 
 Suppose you create a class with a mutable field and added a method to change the field:
 
@@ -51,7 +51,7 @@ The error message would be:
 
 ```error
 Error:
-.../a.pony:4:11: cannot write to a field in a box function. If you are trying to change state in a function use fun ref
+main.pony:4:11: left side is immutable
     color = new_color
           ^
 ```
@@ -77,19 +77,22 @@ The problem is very similar to that of the last section, but the error message i
 
 ```error
 Error:
-../a.pony:4:16: receiver type is not a subtype of target type
+main.pony:4:16: receiver type is not a subtype of target type
     colors.push(color)
                ^
     Info:
-    .../a.pony:4:5: receiver type: this->Array[String val] ref
+    main.pony:4:5: receiver type: this->Array[String val] ref (which becomes 'Array[String val] box' in this context)
         colors.push(color)
         ^
-    .../ponyc/packages/builtin/array.pony:252:3: target type: Array[String val] ref
-      fun ref push(value: A): Array[A]^ =>
+    /root/.local/share/ponyup/ponyc-release-0.58.0-x86_64-linux-musl/packages/builtin/array.pony:623:3: target type: Array[String val] ref^
+      fun ref push(value: A) =>
       ^
-    .../a.pony:2:15: Array[String val] box is not a subtype of Array[String val] ref: box is not a subtype of ref
-      let colors: Array[String] = Array[String]()
+    main.pony:2:15: Array[String val] box is not a subtype of Array[String val] ref^: box is not a subcap of ref^
+      let colors: Array[String] = Array[String]
                   ^
+    main.pony:3:3: you are trying to change state in a box function; this would be possible in a ref function
+      fun add_stripe(color: String) =>
+      ^
 ```
 
 Once again, Pony is trying to be helpful. The first few lines describe the error, in general terms that only a programming language maven would like: an incompatibility between the receiver type and the target type. However, Pony provides more information: the lines immediately after "Info:" tell you what it believes the receiver type to be and the next few lines describe what it believes the target type to be. Finally, the last few lines describe in detail what the problem is.
@@ -110,4 +113,4 @@ As an aside, while trying to figure out what is happening, you may have been mis
 
 ## A note on compiler versions
 
-The error messages shown in this section are from ponyc `0.2.1-1063-g6ae110f` release, the current head of the main branch at the time this is written. The messages from other versions of the compiler may be different, to a greater or lesser degree.
+The error messages shown in this section are from ponyc `0.58.0-a161b7c` release, the current "release" version at the time this is written. The messages from other versions of the compiler may be different, to a greater or lesser degree.
