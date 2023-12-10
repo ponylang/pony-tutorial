@@ -61,7 +61,7 @@ class _ListReverseOneProperty is Property1[Array[USize]]
 
 ## Integration with PonyTest
 
-PonyCheck properties need to be executed. The test runner for PonyCheck is [PonyTest](https://stdlib.ponylang.io/pony_test--index). To integrate [`Property1`](https://stdlib.ponylang.io/pony_check-Property1) into [PonyTest](https://stdlib.ponylang.io/pony_test--index), `Property1` needs to be wrapped inside a [`Property1UnitTest`](hhttps://stdlib.ponylang.io/pony_check-Property1UnitTest) and passed to the PonyTest `apply` method as a regular PonyTest [`UnitTest`](https://stdlib.ponylang.io/pony_test-UnitTest):
+PonyCheck properties need to be executed. The test runner for PonyCheck is [PonyTest](https://stdlib.ponylang.io/pony_test--index). To integrate [`Property1`](https://stdlib.ponylang.io/pony_check-Property1) into [PonyTest](https://stdlib.ponylang.io/pony_test--index), `Property1` needs to be wrapped inside a [`Property1UnitTest`](https://stdlib.ponylang.io/pony_check-Property1UnitTest) and passed to the PonyTest `apply` method as a regular PonyTest [`UnitTest`](https://stdlib.ponylang.io/pony_test-UnitTest):
 
 ```pony
 use "pony_test"
