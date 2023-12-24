@@ -72,7 +72,7 @@ trait Named
 trait Bald
   fun hair(): Bool => false
 
- class Bob is (Named & Bald)
+class Bob is (Named & Bald)
 ```
 
 It is possible for a class to have relationships with multiple categories. In the above example, the class `Bob` _provides both Named and Bald_.
@@ -84,7 +84,7 @@ trait Named
 trait Bald is Named
   fun hair(): Bool => false
 
- class Bob is Bald
+class Bob is Bald
 ```
 
 It is also possible to combine categories together. In the example above, all `Bald` classes are automatically `Named`. Consequently, the `Bob` class has access to both hair() and name() default implementation of their respective trait. One can think of the `Bald` category to be more specific than the `Named` one.

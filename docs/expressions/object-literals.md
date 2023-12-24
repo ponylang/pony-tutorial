@@ -100,7 +100,7 @@ Lambdas can be used to capture from the lexical scope in the same way as object 
 
 ```pony
 class Foo
-  new create(env:Env) =>
+  new create(env: Env) =>
     foo({(s: String)(env) => env.out.print(s) })
 
   fun foo(f: {(String)}) =>
@@ -110,7 +110,7 @@ class Foo
 It's also possible to use a _capture list_ to create new names for things. A capture list is a second parenthesised list after the parameters:
 
 ```pony
-  new create(env:Env) =>
+  new create(env: Env) =>
     foo({(s: String)(myenv = env) => myenv.out.print(s) })
 ```
 
@@ -122,7 +122,7 @@ If the lambda object is not declared with a specific reference capability, the r
 use "collections"
 
 actor Main
-  new create(env:Env) =>
+  new create(env: Env) =>
     let l = List[U32]
     l.>push(10).>push(20).>push(30).push(40)
     let r = reduce(l, 0, {(a:U32, b:U32): U32 => a + b })
@@ -145,7 +145,7 @@ As mentioned previously the lambda desugars to an object literal with an `apply`
 use "collections"
 
 actor Main
-  new create(env:Env) =>
+  new create(env: Env) =>
     let l = List[String]
     l.>push("hello").push("world")
     var count = U32(0)
