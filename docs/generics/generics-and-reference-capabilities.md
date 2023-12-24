@@ -33,7 +33,7 @@ class Foo[A]
   fun ref set(c: A) => _c = c
 
 actor Main
-  new create(env:Env) =>
+  new create(env: Env) =>
     let a = Foo[U32](42)
     env.out.print(a.get().string())
     a.set(21)
@@ -55,7 +55,7 @@ class Foo
   fun ref set(c: String ref) => _c = c
 
 actor Main
-  new create(env:Env) =>
+  new create(env: Env) =>
     let a = Foo(recover ref String end)
     env.out.print(a.get().string())
     a.set(recover ref String end)
@@ -79,7 +79,7 @@ class Foo
   fun ref set(c: String ref) => _c = c
 
 actor Main
-  new create(env:Env) =>
+  new create(env: Env) =>
     let a = Foo(recover ref String end)
     env.out.print(a.get().string())
     a.set(recover ref String end)
@@ -103,7 +103,7 @@ class Foo
   fun ref set(c: String iso) => _c = c
 
 actor Main
-  new create(env:Env) =>
+  new create(env: Env) =>
     let a = Foo(recover iso String end)
     env.out.print(a.get().string())
     a.set(recover iso String end)
@@ -156,7 +156,7 @@ class Foo
   fun ref set(c: String iso) => _c = consume c
 
 actor Main
-  new create(env:Env) =>
+  new create(env: Env) =>
     let a = Foo(recover iso String end)
     env.out.print(a.get().string())
     a.set(recover iso String end)
@@ -179,7 +179,7 @@ class Foo[A]
   fun ref set(c: A) => _c = consume c
 
 actor Main
-  new create(env:Env) =>
+  new create(env: Env) =>
     let a = Foo[String iso]("Hello".clone())
     env.out.print(a.get().string())
 
