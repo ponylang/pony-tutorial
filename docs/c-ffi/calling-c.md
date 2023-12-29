@@ -80,7 +80,8 @@ use @eglGetDisplay[Pointer[_EGLDisplayHandle]](disp: Pointer[_XDisplayHandle])
 primitive _XDisplayHandle
 primitive _EGLDisplayHandle
 
-let x_dpy = @XOpenDisplay(Pointer[U8])
+let x_dpy_name: String = // ...
+let x_dpy = @XOpenDisplay(x_dpy_name.cstring())
 if x_dpy.is_null() then
   env.out.print("XOpenDisplay failed")
 end
