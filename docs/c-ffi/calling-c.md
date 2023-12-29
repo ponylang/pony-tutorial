@@ -42,7 +42,7 @@ In Pony, a String is an object with a header and fields, while in C a `char*` is
 
 Pony classes and structs correspond directly to pointers to the class or struct in C.
 
-For C pointers to simple types, such as U64, the Pony `Pointer[]` polymorphic type should be used, with a `tag` reference capability. To represent `void*` arguments, you should the `Pointer[None] tag` type, which will allow you to pass a pointer to any type, including other pointers. This is needed to write declarations for certain POSIX functions, such as `memcpy`:
+For C pointers to simple types, such as U64, the Pony `Pointer[]` polymorphic type should be used, with a `tag` reference capability. To represent `void*` arguments, you should use the `Pointer[None] tag` type, which will allow you to pass a pointer to any type, including other pointers. This is needed to write declarations for certain POSIX functions, such as `memcpy`:
 
 ```pony
 // The C type is void* memcpy(void *restrict dst, const void *restrict src, size_t n);
