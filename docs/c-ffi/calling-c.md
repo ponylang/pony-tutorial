@@ -129,7 +129,7 @@ var iov = (data.cpointer(), data.size())
 
 In the example above, the type `Pointer[(Pointer[U8] tag, USize)] tag` is equivalent to the `IOVec` struct type we defined earlier. That is, _a struct type is equivalent to a pointer to a tuple type with the fields of the struct as elements, in the same order as the original struct type defined them_.
 
-**Can I pass struct types by value, instead of passing a pointer?** Not at the moment. This is a known limitation of the current FFI system, but it is something the Pony team is interested in fixing.
+**Can I pass struct types by value, instead of passing a pointer?** Not at the moment. This is a known limitation of the current FFI system, but it is something the Pony team is interested in fixing. If you'd like to work on adding support for passing structs by value, contact us [on the Zulip](https://ponylang.zulipchat.com/#narrow/stream/192795-contribute-to-Pony).
 
 ### Working with Structs: from C to Pony
 
