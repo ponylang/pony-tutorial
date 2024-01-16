@@ -153,7 +153,7 @@ env.out.print(size.height.string())
 
 A `NullablePointer` type can only be used with `structs`, and is only intended for output parameters (like in the example above) or for return types from C. You don't need to use a `NullablePointer` if you are only passing a `struct` as a regular input parameter.
 
-If you are using a C function that returns a struct, remember, that you need to return a pointer to the struct. The following in Pony should be read as **returns a pointer to struct `Rect`**:
+If you are using a C function that returns a struct, remember, that the C function needs to return a pointer to the struct. The following in Pony should be read as **returns a pointer to struct `Rect`**:
 
 ```pony
 use @from_c[Rect]()
