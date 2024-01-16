@@ -153,6 +153,20 @@ env.out.print(size.height.string())
 
 A `NullablePointer` type can only be used with `structs`, and is only intended for output parameters (like in the example above) or for return types from C. You don't need to use a `NullablePointer` if you are only passing a `struct` as a regular input parameter.
 
+If you are using a C function that returns a struct, remember, that the C function needs to return a pointer to the struct. The following in Pony should be read as **returns a pointer to struct `Rect`**:
+
+```pony
+use @from_c[Rect]()
+
+struct Rect
+  var length: U16
+  var width: U16
+```
+
+As we saw earlier, you can also use a `Pointer[(U16, U16)]` as well. It is the equivalent to our `Rect`.
+
+**Can I return struct types by value, instead of passing a pointer?** Not at the moment. This is a known limitation of the current FFI system, but it is something the Pony team is interested in fixing. If you'd like to work on adding support for returning structs by value, contact us [on the Zulip](https://ponylang.zulipchat.com/#narrow/stream/192795-contribute-to-Pony).
+
 ### Return-type Polymorphism
 
 We mentioned before that you should use the `Pointer[None]` type in Pony when dealing with values of `void*` type in C. This is very useful for function parameters, but when we use `Pointer[None]` for the return type of a C function, we won't be able to access the value that the pointer points to. Let's imagine a generic list in C:
