@@ -11,7 +11,7 @@ ID = "Your_Site_ID"
   command = "mkdocs build"
 
 [build.environment]
-  PYTHON_VERSION = "3.8"
+  PYTHON_VERSION = "3.12.1"
 
 [[redirects]]
   from = "/expressions/exceptions.html"
