@@ -16,7 +16,7 @@ When we say Pony is __capabilities-secure__, we mean a few things:
 * It's data-race free. Pony doesn't have locks or atomic operations or anything like that. Instead, the type system ensures _at compile time_ that your concurrent program can never have data races. So you can write highly concurrent code and never get it wrong.
 * It's deadlock free. This one is easy, because Pony has no locks at all! So they definitely don't deadlock, because they don't exist.
 
-Pony can't stop you from writing logical bugs, but it can remove entire classes of bugs from being possible. The Pony compiler prevents you from unsafely accessing memory concurrently. If you've ever done concurrent programming, you know how hard such things can be to track down. With Pony, **poof**, don't worry about. Concentrate on "your logic". We think that makes Pony awesome and we hope you come to agree with us.
+Pony can't stop you from writing logical bugs, but it can remove entire classes of bugs from being possible. The Pony compiler prevents you from unsafely accessing memory concurrently. If you've ever done concurrent programming, you know how hard such things can be to track down. With Pony, **poof**, don't worry about it; concentrate on "your logic". We think that makes Pony awesome and we hope you come to agree with us.
 
 We'll talk more about capabilities-security, including both __object capabilities__ and __reference capabilities__ later.
 
