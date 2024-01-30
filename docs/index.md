@@ -12,9 +12,11 @@ When we say Pony is __capabilities-secure__, we mean a few things:
 
 * It's type safe. Really type safe. There's a mathematical [proof](https://www.ponylang.io/media/papers/opsla237-clebsch.pdf) and everything.
 * It's memory safe. Ok, this comes with type safe, but it's still interesting. There are no dangling pointers, no buffer overruns, heck, the language doesn't even have the concept of _null_!
-* It's exception safe. There are no runtime exceptions. All exceptions have defined semantics, and they are _always_ handled.
+* It's exception safe. There are no runtime exceptions. All "exceptional situations" have defined semantics, and they are _always_ handled.
 * It's data-race free. Pony doesn't have locks or atomic operations or anything like that. Instead, the type system ensures _at compile time_ that your concurrent program can never have data races. So you can write highly concurrent code and never get it wrong.
 * It's deadlock free. This one is easy, because Pony has no locks at all! So they definitely don't deadlock, because they don't exist.
+
+Pony can't stop you from writing logical bugs, but it can remove entire classes of bugs from being possible. The Pony compiler prevents you from unsafely accessing memory concurrently. If you've ever done concurrent programming, you know how hard such things can be to track down. With Pony, **poof**, don't worry about it; concentrate on "your logic". We think that makes Pony awesome and we hope you come to agree with us.
 
 We'll talk more about capabilities-security, including both __object capabilities__ and __reference capabilities__ later.
 
