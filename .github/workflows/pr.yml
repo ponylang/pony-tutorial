@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.1.1
       - name: Lint codebase
         uses: docker://github/super-linter:v3.8.3
         env:
@@ -26,6 +26,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.1.1
       - name: Check spelling
         uses: rojopolis/spellcheck-github-actions@e0dcc87bedf34ff10d6be443753f1c770bacbaa2
