@@ -112,7 +112,7 @@ Multiple objects can be set up for disposal:
 
 ```pony
 with obj = SomeObjectThatNeedsDisposing(), other = SomeOtherDisposableObject() do
-  // use obj
+  // use obj and other
 end
 ```
 
