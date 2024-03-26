@@ -42,3 +42,9 @@ ID = "Your_Site_ID"
   to = "/reference-capabilities/:splat"
   status = 301
   force = true
+
+[[redirects]]
+  from = "/pattern-matching/*"
+  to = "/expressions/pattern-matching/:splat"
+  status = 301
+  force = true
