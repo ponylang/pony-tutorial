@@ -116,6 +116,6 @@ __Does it matter where `value` appears in my parameter list?__ Whilst it doesn't
 
 ## See also
 
-* [Lambdas](https://tutorial.ponylang.io/expressions/object-literals#lambdas) (_Shortcut for an object with an `apply()` method_)
-* [Capability constraints](https://tutorial.ponylang.io/generics/generic-constraints.html) (_Shortcut for [reference capability](https://tutorial.ponylang.io/reference-capabilities/) combinations_)
-* [Default reference capabilities](https://tutorial.ponylang.io/generics/generics-and-reference-capabilities) (_Shortcut for implicit default values_)
+* [Lambdas](/expressions/object-literals.md#lambdas) (_Shortcut for an object with an `apply()` method_)
+* [Capability constraints](/generics/generic-constraints.md) (_Shortcut for [reference capability](/reference-capabilities/index.md) combinations_)
+* [Default reference capabilities](/generics/generics-and-reference-capabilities.md) (_Shortcut for implicit default values_)
