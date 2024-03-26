@@ -96,6 +96,10 @@ nav:
       - Operators: "expressions/ops.md"
       - Arithmetic: "expressions/arithmetic.md"
       - Control Structures: "expressions/control-structures.md"
+      - Pattern Matching:
+        - Overview: "pattern-matching/index.md"
+        - Match Expressions: "pattern-matching/match.md"
+        - As Operator: "pattern-matching/as.md"
       - Methods: "expressions/methods.md"
       - Errors: "expressions/errors.md"
       - Equality in Pony: "expressions/equality.md"
@@ -123,10 +127,6 @@ nav:
       - Overview: "generics/index.md"
       - Generics and Reference Capabilities: "generics/generics-and-reference-capabilities.md"
       - Constraints: "generics/generic-constraints.md"
-  - Pattern Matching:
-      - Overview: "pattern-matching/index.md"
-      - Match Expressions: "pattern-matching/match.md"
-      - As Operator: "pattern-matching/as.md"
   - Packages:
       - Overview: "packages/index.md"
       - Use Statement: "packages/use-statement.md"
