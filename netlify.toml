@@ -45,6 +45,6 @@ ID = "Your_Site_ID"
 
 [[redirects]]
   from = "/pattern-matching/*"
-  to = "/expressions/pattern-matching/:splat"
+  to = "/expressions/:splat"
   status = 301
   force = true

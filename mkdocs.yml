@@ -96,10 +96,8 @@ nav:
       - Operators: "expressions/ops.md"
       - Arithmetic: "expressions/arithmetic.md"
       - Control Structures: "expressions/control-structures.md"
-      - Pattern Matching:
-        - Overview: "expressions/pattern-matching/index.md"
-        - Match Expressions: "expressions/pattern-matching/match.md"
-        - As Operator: "expressions/pattern-matching/as.md"
+      - Match Expressions: "expressions/match.md"
+      - As Operator: "expressions/as.md"
       - Methods: "expressions/methods.md"
       - Errors: "expressions/errors.md"
       - Equality in Pony: "expressions/equality.md"
