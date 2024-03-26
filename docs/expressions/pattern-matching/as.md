@@ -118,7 +118,7 @@ actor Main
     end
 ```
 
-You can learn more about matching on type in the [captures section of the match documentation](/pattern-matching/match.md#captures).
+You can learn more about matching on type in the [captures section of the match documentation](/expressions/pattern-matching/match.md#captures).
 
 ## Specify the type of items in an array literal
 
