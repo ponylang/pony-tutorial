@@ -115,6 +115,7 @@ foo3(37, "Hello", 3.5 where a = 2, b = 3) = x
 __Does it matter where `value` appears in my parameter list?__ Whilst it doesn't strictly matter it is good practice to put `value` as the last parameter. That way all of the others can be specified by position.
 
 ## See also
+
 * [Lambdas](https://tutorial.ponylang.io/expressions/object-literals#lambdas) (_Shortcut for an object with an `apply()` method_)
 * [Capability constraints](https://tutorial.ponylang.io/generics/generic-constraints.html) (_Shortcut for [reference capability](https://tutorial.ponylang.io/reference-capabilities/) combinations_)
 * [Default reference capabilities](https://tutorial.ponylang.io/generics/generics-and-reference-capabilities) (_Shortcut for implicit default values_)
