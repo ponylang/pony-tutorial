@@ -113,3 +113,9 @@ foo3(37, "Hello", 3.5 where a = 2, b = 3) = x
 ```
 
 __Does it matter where `value` appears in my parameter list?__ Whilst it doesn't strictly matter it is good practice to put `value` as the last parameter. That way all of the others can be specified by position.
+
+## See also
+
+* [Lambdas](/expressions/object-literals.md#lambdas) (_Shortcut for an object with an `apply()` method_)
+* [Capability constraints](/generics/generic-constraints.md) (_Shortcut for [reference capability](/reference-capabilities/index.md) combinations_)
+* [Default reference capabilities](/generics/generics-and-reference-capabilities.md) (_Shortcut for implicit default values_)
