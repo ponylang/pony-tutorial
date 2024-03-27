@@ -44,7 +44,19 @@ ID = "Your_Site_ID"
   force = true
 
 [[redirects]]
-  from = "/pattern-matching/*"
-  to = "/expressions/:splat"
+  from = "/pattern-matching/index.html"
+  to = "/expressions/match.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pattern-matching/match.html"
+  to = "/expressions/match.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pattern-matching/as.html"
+  to = "/expressions/as.html"
   status = 301
   force = true
