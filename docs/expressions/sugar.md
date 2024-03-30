@@ -116,6 +116,6 @@ __Does it matter where `value` appears in my parameter list?__ Whilst it doesn't
 
 ## See also
 
-* [Lambdas](/expressions/object-literals.md#lambdas) (_Shortcut for an object with an `apply()` method_)
-* [Capability constraints](/generics/generic-constraints.md) (_Shortcut for [reference capability](/reference-capabilities/index.md) combinations_)
-* [Default reference capabilities](/generics/generics-and-reference-capabilities.md) (_Shortcut for implicit default values_)
+* [Lambdas](/expressions/object-literals.md#lambdas) (_Sugar for an object with an `apply()` method_)
+* [Capability constraints](/generics/generic-constraints.md) (_Sugar for [reference capability](/reference-capabilities/index.md) combinations in the context of generic types_)
+* [Default reference capabilities](/generics/generics-and-reference-capabilities.md) (_Sugar for implicit default values in the context of generic types_)
