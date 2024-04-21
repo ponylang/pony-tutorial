@@ -1,0 +1,1 @@
+HashSet[A, HashIs[A!]]
