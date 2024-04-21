@@ -15,15 +15,7 @@ Like a function, a behaviour can have parameters. Unlike a function, it doesn't 
 __So what does a behaviour return?__ Behaviours always return `None`, like a function without explicit result type, because they can't return something they calculate (since they haven't run yet).
 
 ```pony
-actor Aardvark
-  let name: String
-  var _hunger_level: U64 = 0
-
-  new create(name': String) =>
-    name = name'
-
-  be eat(amount: U64) =>
-    _hunger_level = _hunger_level - amount.min(_hunger_level)
+--8<-- "actors-behaviors.pony"
 ```
 
 Here we have an `Aardvark` that can eat asynchronously. Clever Aardvark.
@@ -47,13 +39,7 @@ When you're writing Pony code, it's nice to think of actors not as a unit of par
 In the example below, the `Main` actor calls a behaviour `call_me_later` which, as we know, is _asynchronous_, so we won't wait for it to run before continuing. Then, we run the method `env.out.print`, which is _also asynchronous_, and will print the provided text to the terminal. Now that we've finished executing code inside the `Main` actor, the behaviour we've called earlier will eventually run, and it will print the last text.
 
 ```pony
-actor Main
-  new create(env: Env) =>
-    call_me_later(env)
-    env.out.print("This is printed first")
-
-  be call_me_later(env: Env) =>
-    env.out.print("This is printed last")
+--8<-- "actors-sequential.pony"
 ```
 
 Since all this code runs inside the same actor, and the calls to the other behaviour `env.out.print` are sequential as well, we are guaranteed that `"This is printed first"` is always printed __before__ `"This is printed last"`.

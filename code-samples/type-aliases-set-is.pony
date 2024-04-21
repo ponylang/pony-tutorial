@@ -1,0 +1,1 @@
+type SetIs[A] is HashSet[A, HashIs[A!]]

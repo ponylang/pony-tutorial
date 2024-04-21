@@ -1,0 +1,1 @@
+type Map[K: (Hashable box & Comparable[K] box), V] is HashMap[K, V, HashEq[K]]
