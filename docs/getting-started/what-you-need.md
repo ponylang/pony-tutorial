@@ -35,7 +35,7 @@ When you use Pony, you don't do any of that!
 If you are in the same directory as your program, you can just do:
 
 ```bash
---8<-- "what-you-need-run-compile-pony.sh"
+--8<-- "what-you-need-compile-pony.sh"
 ```
 
 That tells the Pony compiler that your current working directory contains your source code, and to please compile it. If your source code is in some other directory, you can tell ponyc where it is:
