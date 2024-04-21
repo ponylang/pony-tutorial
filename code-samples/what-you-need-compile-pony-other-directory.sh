@@ -1,0 +1,1 @@
+ponyc path/to/my/code

@@ -3,8 +3,7 @@
 Now that you've successfully installed the Pony compiler, let's start programming! Our first program will be a very traditional one. We're going to print "Hello, world!". First, create a directory called `helloworld`:
 
 ```bash
-mkdir helloworld
-cd helloworld
+--8<-- "hello-world-create-directory.sh"
 ```
 
 __Does the name of the directory matter?__ Yes, it does. It's the name of your program! By default when your program is compiled, the resulting executable binary will have the same name as the directory your program lives in. You can also set the name using the --bin-name or -b options on the command line.
@@ -18,9 +17,7 @@ __Does the name of the file matter?__ Not to the compiler, no. Pony doesn't care
 In your file, put the following code:
 
 ```pony
-actor Main
-  new create(env: Env) =>
-    env.out.print("Hello, world!")
+--8<-- "hello-world-main.pony"
 ```
 
 ## Compiling the program
@@ -28,13 +25,7 @@ actor Main
 Now compile it:
 
 ```bash
-$ ponyc
-Building .
-Building builtin
-Generating
-Optimising
-Writing ./helloworld.o
-Linking ./helloworld
+--8<-- "hello-world-compile.sh"
 ```
 
 (If you're using Docker, you'd write something like `$ docker run -v Some_Absolute_Path/helloworld:/src/main ponylang/ponyc`, depending of course on what the absolute path to your `helloworld` directory is.)
@@ -48,8 +39,7 @@ __Wait, it linked too?__ Yes. You won't need a build system (like `make`) for Po
 Now we can run the program:
 
 ```bash
-$ ./helloworld
-Hello, world!
+--8<-- "hello-world-run.sh"
 ```
 
 Congratulations, you've written your first Pony program! Next, we'll explain what some of that code does.
