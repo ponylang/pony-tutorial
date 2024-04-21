@@ -7,9 +7,7 @@ To do real work in a program you have to be able to make decisions, iterate thro
 The simplest control structure is the good old `if`. It allows you to perform some action only when a condition is true. In Pony it looks like this:
 
 ```pony
-if a > b then
-  env.out.print("a is bigger")
-end
+--8<-- "control-structures-conditionals-if.pony"
 ```
 
 __Can I use integers and pointers for the condition like I can in C?__ No. In Pony `if` conditions must have type `Bool`, i.e. they are always true or false. If you want to test whether a number `a` is not 0, then you need to explicitly say `a != 0`. This restriction removes a whole category of potential bugs from Pony programs.
@@ -17,48 +15,25 @@ __Can I use integers and pointers for the condition like I can in C?__ No. In Po
 If you want some alternative code for when the condition fails just add an `else`:
 
 ```pony
-if a > b then
-  env.out.print("a is bigger")
-else
-  env.out.print("a is not bigger")
-end
+--8<-- "control-structures-conditionals-if-else.pony"
 ```
 
 Often you want to test more than one condition in one go, giving you more than two possible outcomes. You can nest `if` statements, but this quickly gets ugly:
 
 ```pony
-if a == b then
-  env.out.print("they are the same")
-else
-  if a > b then
-    env.out.print("a is bigger")
-  else
-    env.out.print("b bigger")
-  end
-end
+--8<-- "control-structures-conditionals-nested-if-else.pony"
 ```
 
 As an alternative Pony provides the `elseif` keyword that combines an `else` and an `if`. This works the same as saying `else if` in other languages and you can have as many `elseif`s as you like for each `if`.
 
 ```pony
-if a == b then
-  env.out.print("they are the same")
-elseif a > b then
-  env.out.print("a is bigger")
-else
-  env.out.print("b bigger")
-end
+--8<-- "control-structures-conditionals-if-elseif-else.pony"
 ```
 
 __Why can't I just say "else if" like I do in C? Why the extra keyword?__ The relationship between `if` and `else` in C, and other similar languages, is ambiguous. For example:
 
 ```c
-// C code
-if(a)
-  if(b)
-    printf("a and b\n");
-else
-  printf("not a\n");
+--8<-- "control-structures-conditionals-if-else-c-ambiguous-relationship.c"
 ```
 
 Here it is not obvious whether the `else` is an alternative to the first or the second `if`. In fact here the `else` relates to the `if(b)` so our example contains a bug. Pony avoids this type of bug by handling `if` and `else` differently and the need for `elseif` comes out of that.
@@ -72,7 +47,7 @@ In Pony control flow statements like this are all expressions that hand back a v
 This means you can use `if` directly in a calculation:
 
 ```pony
-x = 1 + if lots then 100 else 2 end
+--8<-- "control-structures-conditionals-expressions.pony"
 ```
 
 This will give __x__ a value of either 3 or 101, depending on the variable __lots__.
@@ -80,51 +55,25 @@ This will give __x__ a value of either 3 or 101, depending on the variable __lot
 If the `then` and `else` branches of an `if` produce different types then the `if` produces a __union__ of the two.
 
 ```pony
-var x: (String | Bool) =
-  if friendly then
-    "Hello"
-  else
-    false
-  end
+--8<-- "control-structures-conditionals-expression-union-type.pony"
 ```
 
 __But what if my if doesn't have an else?__ Any `else` branch that doesn't exist gives an implicit `None`.
 
 ```pony
-var x: (String | None) =
-  if friendly then
-    "Hello"
-  end
+--8<-- "control-structures-conditionals-expression-implicit-none.pony"
 ```
 
 The same rules that apply to the value of an `if` expression applies to loops as well. Let's take a look at what a loop value would look like:
 
 ```pony
-actor Main
-  new create(env: Env) =>
-    var x: (String | None) =
-      for name in ["Bob"; "Fred"; "Sarah"].values() do
-        name
-      end
-    match x
-    | let s: String => env.out.print("x is " + s)
-    | None => env.out.print("x is None")
-    end
+--8<-- "control-structures-loop-expression.pony"
 ```
 
 This will give __x__ the value "Sarah" as it is the last name in our list. If our loop has 0 iterations, then the value of its `else` block will be the value of __x__. Or if there is no `else` block, the value will be `None`.
 
 ```pony
-actor Main
-  new create(env: Env) =>
-    var x: (String | None) =
-      for name in Array[String].values() do
-        name
-      end
-    match x
-    | let s: String => env.out.print("x is " + s)
-    | None => env.out.print("x is None")
-    end
+--8<-- "control-structures-loop-expression-none.pony"
 ```
 
 Here __x__ would be `None`.
@@ -132,15 +81,7 @@ Here __x__ would be `None`.
 You can also avoid needing `None` at all by providing a __default value__ for when the loop has __0 iterations__ by providing an `else` block.
 
 ```pony
-actor Main
-  new create(env: Env) =>
-    var x: String =
-      for name in Array[String].values() do
-        name
-      else
-        "no names!"
-      end
-    env.out.print("x is " + x)
+--8<-- "control-structures-loop-expression-else.pony"
 ```
 
 And finally, here the value of __x__ is "no names!"
@@ -156,12 +97,7 @@ Pony `while` loops are very similar to those in other languages. A condition exp
 Here's an example that prints out the numbers 1 to 10:
 
 ```pony
-var count: U32 = 1
-
-while count <= 10 do
-  env.out.print(count.string())
-  count = count + 1
-end
+--8<-- "control-structures-loops-while.pony"
 ```
 
 Just like `if` expressions, `while` is also an expression. The value returned is just the value of the expression inside the loop the last time we go round it. For this example that will be the value given by `count = count + 1` when count is incremented to 11. Since Pony assignments hand back the _old_ value our `while` loop will return 10.
@@ -179,16 +115,7 @@ Sometimes you want to stop part-way through a loop and give up altogether. Pony 
 Let's have an example. Suppose you want to go through a list of names, looking for either "Jack" or "Jill". If neither of those appear, you'll just take the last name you're given, and if you're not given any names at all, you'll use "Herbert".
 
 ```pony
-var name =
-  while moreNames() do
-    var name' = getName()
-    if name' == "Jack" or name' == "Jill" then
-      break name'
-    end
-    name'
-  else
-    "Herbert"
-  end
+--8<-- "control-structures-loops-while-break-else.pony"
 ```
 
 So first we ask if there are any more names to get. If there are then we get a name and see if it's "Jack" or "Jill". If it is we're done and we break out of the loop, handing back the name we've found. If not we try again.
@@ -218,9 +145,7 @@ The Pony `for` loop iterates over a collection of items using an iterator. On ea
 For example, to print out all the strings in an array:
 
 ```pony
-for name in ["Bob"; "Fred"; "Sarah"].values() do
-  env.out.print(name)
-end
+--8<-- "control-structures-loops-for.pony"
 ```
 
 Note the call to `values()` on the array — this is because the loop needs an iterator, not an array.
@@ -228,8 +153,7 @@ Note the call to `values()` on the array — this is because the loop needs an i
 The iterator does not have to be of any particular type, but needs to provide the following methods:
 
 ```pony
-  fun has_next(): Bool
-  fun next(): T?
+--8<-- "control-structures-iterator-methods.pony"
 ```
 
 where T is the type of the objects in the collection. You don't need to worry about this unless you're writing your own iterators. To use existing collections, such as those provided in the standard library, you can just use `for` and it will all work. If you do write your own iterators, note that we use structural typing, so your iterator doesn't need to declare that it provides any particular type.
@@ -237,11 +161,7 @@ where T is the type of the objects in the collection. You don't need to worry ab
 You can think of the above example as being equivalent to:
 
 ```pony
-let iterator = ["Bob"; "Fred"; "Sarah"].values()
-while iterator.has_next() do
-  let name = iterator.next()?
-  env.out.print(name)
-end
+--8<-- "control-structures-loops-for-while-comparison.pony"
 ```
 
 Note that the variable __name__ is declared _let_, so you cannot assign to the control variable within the loop.
@@ -262,13 +182,7 @@ The differences between `while` and `repeat` in Pony are:
 Suppose we're trying to create something and we want to keep trying until it's good enough:
 
 ```pony
-actor Main
-  new create(env: Env) =>
-    var counter = U64(1)
-    repeat
-      env.out.print("hello!")
-      counter = counter + 1
-    until counter > 7 end
+--8<-- "control-structures-loops-repeat.pony"
 ```
 
 Just like `while` loops, the value given by a `repeat` loop is the value of the expression within the loop on the last iteration, and `break` and `continue` can be used.

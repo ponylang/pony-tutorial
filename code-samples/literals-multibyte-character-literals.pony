@@ -1,0 +1,1 @@
+let multiByte: U64 = 'ABCD' // 0x41424344

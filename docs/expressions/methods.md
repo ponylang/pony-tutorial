@@ -11,12 +11,7 @@ __Can I have some code outside of any methods like I do in Python?__ No. All Pon
 Pony functions are quite like functions (or methods) in other languages. They can have 0 or more parameters and 0 or 1 return values. If the return type is omitted then the function will have a return value of `None`.
 
 ```pony
-class C
-  fun add(x: U32, y: U32): U32 =>
-    x + y
-
-  fun nop() =>
-    add(1, 2)  // Pointless, we ignore the result
+--8<-- "methods-functions.pony"
 ```
 
 The function parameters (if any) are specified in parentheses after the function name. Functions that don't take any parameters still need to have the parentheses.
@@ -36,14 +31,7 @@ __Can I overload functions by argument type?__ No, you cannot have multiple meth
 Pony constructors are used to initialise newly created objects, as in many languages. However, unlike many languages, Pony constructors are named so you can have as many as you like, taking whatever parameters you like. By convention, the main constructor of each type (if there is such a thing for any given type) is called `create`.
 
 ```pony
-class Foo
-  var _x: U32
-
-  new create() =>
-    _x = 0
-
-  new from_int(x: U32) =>
-    _x = x
+--8<-- "methods-constructors.pony"
 ```
 
 The purpose of a constructor is to set up the internal state of the object being created. To ensure this is done constructors must initialise all the fields in the object being constructed.
@@ -55,82 +43,31 @@ __Can I exit a constructor early?__ Yes. Just then use the `return` command with
 As in many other languages, methods in Pony are called by providing the arguments within parentheses after the method name. The parentheses are required even if there are no arguments being passed to the method.
 
 ```pony
-class Foo
-  fun hello(name: String): String =>
-    "hello " + name
-
-  fun f() =>
-    let a = hello("Fred")
+--8<-- "methods-functions-calling.pony"
 ```
 
 Constructors are usually called "on" a type, by specifying the type that is to be created. To do this just specify the type, followed by a dot, followed by the name of the constructor you want to call.
 
 ```pony
-class Foo
-  var _x: U32
-
-  new create() =>
-    _x = 0
-
-  new from_int(x: U32) =>
-    _x = x
-
-class Bar
-  fun f() =>
-    var a: Foo = Foo.create()
-    var b: Foo = Foo.from_int(3)
+--8<-- "methods-constructors-calling.pony"
 ```
 
 Functions are always called on an object. Again just specify the object, followed by a dot, followed by the name of the function to call. If the object to call on is omitted then the current object is used (i.e. `this`).
 
 ```pony
-class Foo
-  var _x: U32
-
-  new create() =>
-    _x = 0
-
-  new from_int(x: U32) =>
-    _x = x
-
-  fun get(): U32 =>
-    _x
-
-class Bar
-  fun f() =>
-    var a: Foo = Foo.from_int(3)
-    var b: U32 = a.get()
-    var c: U32 = g(b)
-
-  fun g(x: U32): U32 =>
-    x + 1
-
+--8<-- "methods-functions-calling-implicit-this.pony"
 ```
 
 Constructors can also be called on an expression. Here an object is created of the same type as the specified expression - this is equivalent to directly specifying the type.
 
 ```pony
-class Foo
-  var _x: U32
-
-  new create() =>
-    _x = 0
-
-  new from_int(x: U32) =>
-    _x = x
-
-class Bar
-  fun f() =>
-    var a: Foo = Foo.create()
-    var b: Foo = a.from_int(3)
+--8<-- "methods-constructors-calling-on-expression.pony"
 ```
 
 We can even reuse the variable name in the assignment expression to call the constructor.
 
 ```pony
-class Bar
-  fun f() =>
-    var a: Foo = a.create()
+--8<-- "methods-constructors-calling-reuse-variable-name.pony"
 ```
 
 Here we specify that `var a` is type `Foo`, then proceed to use `a` to call the constructor, `create()`, for objects of type `Foo`.
@@ -140,19 +77,7 @@ Here we specify that `var a` is type `Foo`, then proceed to use `a` to call the 
 When defining a method you can provide default values for any of the arguments. The caller then has the choice to use the values you have provided or to provide their own. Default argument values are specified with a `=` after the parameter name.
 
 ```pony
-class Coord
-  var _x: U32
-  var _y: U32
-
-  new create(x: U32 = 0, y: U32 = 0) =>
-    _x = x
-    _y = y
-
-class Bar
-  fun f() =>
-    var a: Coord = Coord.create()     // Contains (0, 0)
-    var b: Coord = Coord.create(3)    // Contains (3, 0)
-    var c: Coord = Coord.create(3, 4) // Contains (3, 4)
+--8<-- "methods-default-arguments.pony"
 ```
 
 __Do I have to provide default values for all of my arguments?__ No, you can provide defaults for as many, or as few, as you like.
@@ -164,18 +89,7 @@ So far, when calling methods we have always given all the arguments in order. Th
 To call a method using named arguments the `where` keyword is used, followed by the named arguments and their values.
 
 ```pony
-class Coord
-  var _x: U32
-  var _y: U32
-
-  new create(x: U32 = 0, y: U32 = 0) =>
-    _x = x
-    _y = y
-
-class Bar
-  fun f() =>
-    var a: Coord = Coord.create(3, 4) // Contains (3, 4)
-    var b: Coord = Coord.create(where y = 4, x = 3) // Contains (3, 4)
+--8<-- "methods-named-arguments.pony"
 ```
 
 Note how in `b` above, the arguments were given out of order by using `where` followed using the name of the arguments.
@@ -187,14 +101,7 @@ Named and positional arguments can be used together in a single call. Just start
 Default arguments can also be used in combination with positional and named arguments - just miss out any for which you want to use the default.
 
 ```pony
-class Foo
-  fun f(a: U32 = 1, b: U32 = 2, c: U32 = 3, d: U32 = 4, e: U32 = 5): U32  =>
-    0
-
-  fun g() =>
-    f(6, 7 where d = 8)
-    // Equivalent to:
-    f(6, 7, 3, 8, 5)
+--8<-- "methods-named-and-positional-arguments-combined.pony"
 ```
 
 __Can I call using positional arguments but miss out the first one?__ No. If you use positional arguments they must be the first ones in the call.
@@ -204,28 +111,13 @@ __Can I call using positional arguments but miss out the first one?__ No. If you
 Method chaining allows you to chain calls on an object without requiring the method to return its receiver. The syntax to call a method and chain the receiver is `object.>method()`, which is roughly equivalent to `(object.method() ; object)`. Chaining a method discards its normal return value.
 
 ```pony
-primitive Printer
-  fun print_two_strings(out: StdStream, s1: String, s2: String) =>
-    out.>print(s1).>print(s2)
-    // Equivalent to:
-    out.print(s1)
-    out.print(s2)
-    out
+--8<-- "methods-chaining.pony"
 ```
 
 Note that the last `.>` in a chain can be a `.` if the return value of the last call matters.
 
 ```pony
-interface Factory
-  fun add_option(o: Option)
-  fun make_object(): Object
-
-primitive Foo
-  fun object_wrong(f: Factory, o1: Option, o2: Option): Object =>
-    f.>add_option(o1).>add_option(o2).>make_object() // Error! The expression returns a Factory
-
-  fun object_right(f: Factory, o1: Option, o2: Option): Object =>
-    f.>add_option(o1).>add_option(o2).make_object() // Works. The expression returns an Object
+--8<-- "methods-chaining-return-value.pony"
 ```
 
 ## Anonymous methods
@@ -233,15 +125,7 @@ primitive Foo
 Pony has anonymous methods (or Lambdas). They look like this:
 
 ```pony
-use "collections"
-
-actor Main
-  new create(env: Env) =>
-    let list_of_numbers = List[U32].from([1; 2; 3; 4])
-    let is_odd = {(n: U32): Bool => (n % 2) == 1}
-    for odd_number in list_of_numbers.filter(is_odd).values() do
-      env.out.print(odd_number.string())
-    end
+--8<-- "methods-anonymous-methods.pony"
 ```
 
 They are presented more in-depth in the [Object Literals section](/expressions/object-literals.md).

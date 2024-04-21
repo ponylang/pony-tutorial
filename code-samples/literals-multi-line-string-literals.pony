@@ -1,0 +1,5 @@
+let stacked_ponies = "
+🐎
+🐎
+🐎
+"

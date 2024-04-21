@@ -9,13 +9,7 @@ An error is raised with the command `error`. At any point, the code may decide t
 Error handlers are declared using the `try`-`else` syntax.
 
 ```pony
-try
-  callA()
-  if not callB() then error end
-  callC()
-else
-  callD()
-end
+--8<-- "errors-try-else.pony"
 ```
 
 In the above code `callA()` will always be executed and so will `callB()`. If the result of `callB()` is true then we will proceed to `callC()` in the normal fashion and `callD()` will not then be executed.
@@ -29,9 +23,7 @@ __Do I have to provide an error handler?__ No. The `try` block will handle any e
 If you want to do something that might raise an error, but you don't care if it does you can just put it in a `try` block without an `else`.
 
 ```pony
-try
-  // Do something that may raise an error
-end
+--8<-- "errors-try-without-else.pony"
 ```
 
 __Is there anything my error handler has to do?__ No. If you provide an error handler then it must contain some code, but it is entirely up to you what it does.
@@ -45,13 +37,7 @@ Pony does not require that all errors are handled immediately as in our previous
 For example, a somewhat contrived version of the factorial function that accepts a signed integer will error if given a negative input. It's only partially defined over its valid input type.
 
 ```pony
-fun factorial(x: I32): I32 ? =>
-  if x < 0 then error end
-  if x == 0 then
-    1
-  else
-    x * factorial(x - 1)?
-  end
+--8<-- "errors-partial-functions.pony"
 ```
 
 Everywhere that an error can be generated in Pony (an error command, a call to a partial function, or certain built-in language constructs) must appear within a `try` block or a function that is marked as partial. This is checked at compile time, ensuring that an error cannot escape handling and crash the program.
@@ -71,15 +57,7 @@ Behaviours are also executed asynchronously and so cannot be partial for the sam
 In addition to an `else` error handler, a `try` command can have a `then` block. This is executed after the rest of the `try`, whether or not an error is raised or handled. Expanding our example from earlier:
 
 ```pony
-try
-  callA()
-  if not callB() then error end
-  callC()
-else
-  callD()
-then
-  callE()
-end
+--8<-- "errors-try-then.pony"
 ```
 
 The `callE()` will always be executed. If `callB()` returns true then the sequence executed is `callA()`, `callB()`, `callC()`, `callE()`. If `callB()` returns false then the sequence executed is `callA()`, `callB()`, `callD()`, `callE()`.
@@ -93,27 +71,19 @@ __Will my then block really always be executed, even if I return inside the try?
 A `with` expression can be used to ensure disposal of an object when it is no longer needed. A common case is a database connection which needs to be closed after use to avoid resource leaks on the server. For example:
 
 ```pony
-with obj = SomeObjectThatNeedsDisposing() do
-  // use obj
-end
+--8<-- "errors-with-blocks.pony"
 ```
 
 `obj.dispose()` will be called whether the code inside the `with` block completes successfully or raises an error. To take part in a `with` expression, the object that needs resource clean-up must, therefore, provide a `dispose()` method:
 
 ```pony
-class SomeObjectThatNeedsDisposing
-  // constructor, other functions
-
-  fun dispose() =>
-    // release resources
+--8<-- "errors-dispose.pony"
 ```
 
 Multiple objects can be set up for disposal:
 
 ```pony
-with obj = SomeObjectThatNeedsDisposing(), other = SomeOtherDisposableObject() do
-  // use obj and other
-end
+--8<-- "errors-dispose-multiple.pony"
 ```
 
 The value of a `with` expression is the value of the last expression in the block.

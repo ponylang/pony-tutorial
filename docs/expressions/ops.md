@@ -5,8 +5,7 @@
 Infix operators take two operands and are written between those operands. Arithmetic and comparison operators are the most common:
 
 ```pony
-1 + 2
-a < b
+--8<-- "operators-infix-operator.pony"
 ```
 
 Pony has pretty much the same set of infix operators as other languages.
@@ -16,8 +15,7 @@ Pony has pretty much the same set of infix operators as other languages.
 Most infix operators in Pony are actually aliases for functions. The left operand is the receiver the function is called on and the right operand is passed as an argument. For example, the following expressions are equivalent:
 
 ```pony
-x + y
-x.add(y)
+--8<-- "operators-operator-aliasing.pony"
 ```
 
 This means that `+` is not a special symbol that can only be applied to magic types. Any type can provide its own `add` function and the programmer can then use `+` with that type if they want to.
@@ -27,25 +25,7 @@ When defining your own `add` function there is no restriction on the types of th
 Here's a full example for defining a type which allows the use of `+`. This is all you need:
 
 ```pony
-// Define a suitable type
-class Pair
-  var _x: U32 = 0
-  var _y: U32 = 0
-
-  new create(x: U32, y: U32) =>
-    _x = x
-    _y = y
-
-  // Define a + function
-  fun add(other: Pair): Pair =>
-    Pair(_x + other._x, _y + other._y)
-
-// Now let's use it
-class Foo
-  fun foo() =>
-    var x = Pair(1, 2)
-    var y = Pair(3, 4)
-    var z = x + y
+--8<-- "operators-add.pony"
 ```
 
 It is possible to overload infix operators to some degree using union types or f-bounded polymorphism, but this is beyond the scope of this tutorial. See the Pony standard library for further information.
@@ -113,8 +93,7 @@ This is a special feature built into the compiler, it cannot be used with operat
 The unary operators are handled in the same manner, but with only one operand. For example, the following expressions are equivalent:
 
 ```pony
--x
-x.neg()
+--8<-- "operators-unary-operators.pony"
 ```
 
 The full list of unary operators that are aliases for functions is:
@@ -136,7 +115,7 @@ In Pony, unary operators always bind stronger than any infix operators: `not a =
 When using infix operators in complex expressions a key question is the __precedence__, i.e. which operator is evaluated first. Given this expression:
 
 ```pony
-1 + 2 * 3  // Compilation failed.
+--8<-- "operators-precedence-without-parentheses.pony"
 ```
 
 We will get a value of 9 if we evaluate the addition first and 7 if we evaluate the multiplication first. In mathematics, there are rules about the order in which to evaluate operators and most programming languages follow this approach.
@@ -148,25 +127,25 @@ Pony takes a different approach and outlaws infix precedence. Any expression whe
 This means that the example above is illegal in Pony and should be rewritten as:
 
 ```pony
-1 + (2 * 3)  // 7
+--8<-- "operators-precedence-with-parentheses.pony"
 ```
 
 Repeated use of a single operator, however, is fine:
 
 ```pony
-1 + 2 + 3  // 6
+--8<-- "operators-precedence-single-operator.pony"
 ```
 
 Meanwhile, mixing unary and infix operators do not need additional parentheses as unary operators always bind more closely, so if our example above used a negative three:
 
 ```pony
-1 + 2 * -3  // Compilation failed.
+--8<-- "operators-precedence-infix-and-unary-operators-without-parentheses.pony"
 ```
 
 We would still need parentheses to remove the ambiguity for our infix operators like we did above, but not for the unary arithmetic negative (`-`):
 
 ```pony
-1 + (2 * -3)  // -5
+--8<-- "operators-precedence-infix-and-unary-operators-with-parentheses.pony"
 ```
 
 We can see that it makes more sense for the unary operator to be applied before either infix as it only acts on a single number in the expression so it is never ambiguous.
@@ -174,5 +153,5 @@ We can see that it makes more sense for the unary operator to be applied before 
 Unary operators can also be applied to parentheses and act on the result of all operations in those parentheses prior to applying any infix operators outside the parentheses:
 
 ```pony
-1 + -(2 * -3)  // 7
+--8<-- "operators-precedence-unary-operator-with-parentheses.pony"
 ```

@@ -1,0 +1,1 @@
+var foo = Foo.create(x, 37 where crash = false)
