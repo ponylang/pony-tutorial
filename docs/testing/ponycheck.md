@@ -35,14 +35,14 @@ Below are two classic list reverse properties from the QuickCheck paper adapted 
 PonyCheck properties need to be executed. The test runner for PonyCheck is [PonyTest](https://stdlib.ponylang.io/pony_test--index). To integrate [`Property1`](https://stdlib.ponylang.io/pony_check-Property1) into [PonyTest](https://stdlib.ponylang.io/pony_test--index), `Property1` needs to be wrapped inside a [`Property1UnitTest`](https://stdlib.ponylang.io/pony_check-Property1UnitTest) and passed to the PonyTest `apply` method as a regular PonyTest [`UnitTest`](https://stdlib.ponylang.io/pony_test-UnitTest):
 
 ```pony
---8<-- "ponycheck-usage-ponytest.pony"
+--8<-- "ponycheck-ponytest.pony"
 ```
 
 It is also possible to integrate any number of properties directly into one
 [`UnitTest`](https://stdlib.ponylang.io/pony_test-UnitTest) using the [`PonyCheck.for_all`](https://stdlib.ponylang.io/pony_check-PonyCheck) convenience function:
 
 ```pony
---8<-- "ponycheck-usage-ponytest-for-all.pony"
+--8<-- "ponycheck-ponytest-for-all.pony"
 ```
 
 ## Additional resources
