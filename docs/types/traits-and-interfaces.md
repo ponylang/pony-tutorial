@@ -141,7 +141,7 @@ We've covered a couple ways that traits can be better than interfaces, let's clo
 Here's a contrived example:
 
 ```pony
---8<-- "traits-and-interfaces-open-world-tying.pony"
+--8<-- "traits-and-interfaces-open-world-typing.pony"
 ```
 
 The flexibility of `interface` has allowed us to define a type `Compactable` that we can use to allow our `Compactor` to accept a variety of data types including `Array`, `Map`, and `String` from the standard library.
