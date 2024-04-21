@@ -13,28 +13,7 @@ In Pony, the `Main` actor is created with an `Env` object, which holds the unfor
 Here is a program that connects to example.com via TCP on port 80 and quits:
 
 ```pony
-use "net"
-
-class MyTCPConnectionNotify is TCPConnectionNotify
-  let _out: OutStream
-
-  new iso create(out: OutStream) =>
-    _out = out
-
-  fun ref connected(conn: TCPConnection ref) =>
-    _out.print("connected")
-    conn.close()
-
-  fun ref connect_failed(conn: TCPConnection ref) =>
-    _out.print("connect_failed")
-
-actor Connect
-  new create(out: OutStream, auth: TCPConnectAuth) =>
-    TCPConnection(auth, MyTCPConnectionNotify(out), "example.com", "80")
-
-actor Main
-  new create(env: Env) =>
-    Connect(env.out, TCPConnectAuth(env.root))
+--8<-- "derived-authority-delegating-and-restricting-authority.pony"
 ```
 
 The `Main` actor authorizes the `Connect` actor by passing a `TCPConnectAuth` token created from the ambient authority token in `env.root`. The ambient authority token is unforgeable since the `AmbientAuth` constructor is private and the only existing instance is provided by the runtime itself.
@@ -42,7 +21,7 @@ The `Main` actor authorizes the `Connect` actor by passing a `TCPConnectAuth` to
 The `Connect` actor uses this derived authority when it creates a TCP connection:
 
 ```pony
-TCPConnection(auth, MyTCPConnectionNotify(out), "example.com", "80")
+--8<-- "derived-authority-delegating-and-restricting-authority.pony:18:18"
 ```
 
 The `TCPConnection` requires an authority as first parameter, and since the compiler checks that the correct type was passed, this guarantees that a `TCPConnection` can only be created by an actor holding the required authorization.
@@ -58,13 +37,7 @@ The first parameter of the `TCPConnection` constructor has the type `TCPConnectA
 Now imagine we don't trust the `Connect` actor, so we don't want to provide it with more authority than needed. For example, there is no point in granting it filesystem access, since it is supposed to do network things (specifically, TCP), not access the filesystem. Instead of passing the entire `AmbientAuth` (the root of all authority), we "downgrade" that to a `TCPConnectAuth` (the most restrictive authority in `net`), pass it to the `Connect` actor, and have that pass it to the `TCPConnection` constructor:
 
 ```pony
-actor Connect
-  new create(out: OutStream, auth: TCPConnectAuth) =>
-    TCPConnection(auth, MyTCPConnectionNotify(out), "example.com", "80")
-
-actor Main
-  new create(env: Env) =>
-    try Connect(env.out, TCPConnectAuth(env.root)) end
+--8<-- "derived-authority-restrict-then-delegate-your-authority.pony"
 ```
 
 Now we are sure it cannot access the filesystem or listen on a TCP or UDP port. Pay close mind to the authority that code you are calling is asking for. Never give `AmbientAuth` to __any__ code you do not trust completely both now and in the future. You should always create the most specific authority and give the library that authority. If the library is asking for more authority than it needs, __do not use the library__.
@@ -80,35 +53,13 @@ As the package author, it is then our responsibility to realize that the minimal
 Let's have a look at the authorizations available in the standard library's `net` package.
 
 ```pony
-primitive NetAuth
-  new create(from: AmbientAuth) =>
-    None
-
-primitive DNSAuth
-  new create(from: (AmbientAuth | NetAuth)) =>
-    None
-
-primitive UDPAuth
-  new create(from: (AmbientAuth | NetAuth)) =>
-    None
-
-primitive TCPAuth
-  new create(from: (AmbientAuth | NetAuth)) =>
-    None
-
-primitive TCPListenAuth
-  new create(from: (AmbientAuth | NetAuth | TCPAuth)) =>
-    None
-
-primitive TCPConnectAuth
-  new create(from: (AmbientAuth | NetAuth | TCPAuth)) =>
-    None
+--8<-- "derived-authority-authority-hierarchies.pony"
 ```
 
 Look at the constructor for `TCPConnectAuth`:
 
 ```pony
-new create(from: (AmbientAuth | NetAuth | TCPAuth))
+--8<-- "derived-authority-authority-hierarchies.pony:22:22"
 ```
 
 you might notice that this looks like a hierarchy of authorities:
@@ -120,9 +71,7 @@ where in this paragraph, ">>" means "grants at least as much authority as". In f
 This hierarchy is established by means of the constructor of the weaker authority accepting one of the stronger authorities, for example:
 
 ```pony
-primitive TCPAuth
-  new create(from: (AmbientAuth | NetAuth)) =>
-    None
+--8<-- "derived-authority-authority-hierarchies.pony:13:15"
 ```
 
 Where `TCPAuth` grants less authority than `NetAuth`. `NetAuth` can be used to create any of the derived authorities `DNSAuth`, `UDPAuth`, `TCPAuth`, `TCPListenAuth`, `TCPConnectAuth` whereas `TCPAuth` can only be used to derive `TCPListenAuth` and `TCPConnectAuth`.

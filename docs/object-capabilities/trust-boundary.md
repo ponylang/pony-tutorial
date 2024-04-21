@@ -17,7 +17,7 @@ But we can do better than that.
 In Pony, you can optionally declare a set of _safe_ packages on the `ponyc` command line, like this:
 
 ```sh
-ponyc --safe=files:net:process my_project
+--8<-- "trust-boundary-safe-packages.sh"
 ```
 
 Here, we are declaring that only the `files`, `net` and `process` packages are allowed to use C-FFI calls. We've established our trust boundary: any other packages that try to use C-FFI calls will result in a compile-time error.
