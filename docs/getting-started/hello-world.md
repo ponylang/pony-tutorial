@@ -19,6 +19,7 @@ In your file, put the following code:
 ```pony
 --8<-- "hello-world-main.pony"
 ```
+[:fontawesome-solid-play: Run in playground](https://playground.ponylang.io/?snippet=hello-world-main.pony){ .md-button .md-button--primary target="_blank" }
 
 ## Compiling the program
 
