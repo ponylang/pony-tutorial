@@ -7,7 +7,7 @@ If Pony code calls FFI functions, then those functions, or rather the libraries 
 To link an external library to Pony code another variant of the use command is used. The `lib` specifier is used to tell the compiler you want to link to a library. For example:
 
 ```pony
-use "lib:foo"
+--8<-- "linking-c-use-lib-foo.pony"
 ```
 
 As with other `use` commands a condition may be specified. This is particularly useful when the library has slightly different names on different platforms.
@@ -15,22 +15,7 @@ As with other `use` commands a condition may be specified. This is particularly 
 Here's a real example from the standard library:
 
 ```pony
-use "path:/usr/local/opt/libressl/lib" if osx
-use "lib:ssl" if not windows
-use "lib:crypto" if not windows
-use "lib:libssl-32" if windows
-use "lib:libcrypto-32" if windows
-
-use @SSL_load_error_strings[None]()
-use @SSL_library_init[I32]()
-
-primitive _SSLInit
-  """
-  This initialises SSL when the program begins.
-  """
-  fun _init() =>
-    @SSL_load_error_strings()
-    @SSL_library_init()
+--8<-- "linking-c-use-with-condition.pony"
 ```
 
 On Windows, we use the libraries `libssl-32` and `libcrypto-32` and on other platforms we use `ssl` and `crypto`. These contain the FFI functions `SSL_library_init` and `SSL_load_error_strings` (amongst others).
