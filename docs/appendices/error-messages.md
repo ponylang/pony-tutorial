@@ -37,7 +37,7 @@ Suppose you create a class with a mutable field and added a method to change the
 The error message would be:
 
 ```error
---8<-- "error-messages-left-side-is-immutable-error-message-txt"
+--8<-- "error-messages-left-side-is-immutable-error-message.txt"
 ```
 
 To understand this error message, you have to have some background. The field `color` is mutable since it is declared with `var`, but the method `dye` does not have an explicit receiver reference capability. The default receiver reference capability is `box`, which allows `dye` to be called on any mutable or immutable `Wombat`; the `box` reference capability says that the method may read from but not write to the receiver. As a result, it is illegal to attempt to modify the receiver in the method.
