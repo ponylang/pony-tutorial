@@ -1,0 +1,1 @@
+ponyc [OPTIONS] <package directory>

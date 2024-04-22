@@ -3,7 +3,7 @@
 `ponyc`, the compiler, is usually called in the project directory, where it finds the `.pony` files and its dependencies automatically. There it will create the binary based on the directory name. You can override this and tune the compilation with several options as described via `ponyc --help` and you can pass a separate source directory as an argument.
 
 ```bash
-ponyc [OPTIONS] <package directory>
+--8<-- "appendices-compiler-args-ponyc.sh"
 ```
 
 The most useful options are `--debug`, `--path` or just `-p`, `--output` or just `-o` and `--docs` or `-g`.
@@ -19,8 +19,7 @@ The most useful options are `--debug`, `--path` or just `-p`, `--output` or just
 Let's study the documentation of the builtin standard library:
 
 ```bash
-  pip install mkdocs
-  ponyc packages/stdlib --docs && cd stdlib-docs && mkdocs serve
+--8<-- "appendices-compiler-args-stdlib-docs.sh"
 ```
 
 And point your web browser to [127.0.0.1:8000](http://127.0.0.1:8000) serving a live-reloading local version of the docs.

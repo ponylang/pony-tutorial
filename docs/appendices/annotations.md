@@ -3,7 +3,7 @@
 In Pony, we provide a special syntax for implementation-specific annotations to various elements of a program. The basic syntax is a comma-separated list of identifiers surrounded by backslashes:
 
 ```pony
-\annotation1, annotation2\
+--8<-- "appendices-annotations-syntax.pony"
 ```
 
 Here, `annotation1` and `annotation2` can be any valid Pony identifier, i.e. a sequence of alphanumeric characters starting with a letter or an underscore.
@@ -51,9 +51,7 @@ The following annotations are recognised by the Pony compiler. Note that the Pon
 Recognised on a `struct` declaration. Removes padding in the associated `struct`, making it ABI-compatible with a packed C structure with compatible members (declared with the `__attribute__((packed))` extension or the `#pragma pack` preprocessor directive in many C compilers).
 
 ```pony
-struct \packed\ MyPackedStruct
-  var x: U8
-  var y: U32
+--8<-- "appendices-annotations-packed-annotation.pony"
 ```
 
 #### `likely` and `unlikely`
@@ -61,22 +59,7 @@ struct \packed\ MyPackedStruct
 Recognised on a conditional expression (`if`, `while`, `until` and `|` (as a pattern matching case)). Gives optimisation hints to the compiler on the likelihood of a given conditional expression.
 
 ```pony
-if \likely\ cond then
-  foo
-end
-
-while \unlikely\ cond then
-  bar
-end
-
-repeat
-  baz
-until \likely\ cond end
-
-match obj
-| \likely\ expr => foo
-| \unlikely\ let capt: T => bar
-end
+--8<-- "appendices-annotations-likely-and-unlikely-annotations.pony"
 ```
 
 ### `nodoc`
@@ -84,10 +67,7 @@ end
 Recognised on objects and methods (`actor`, `class`, `struct`, `primitive`, `trait`, `interface`, `new`, `be`, `fun`). Indicates to the documentation system that the item and any of its children shouldn't be included in generated output.
 
 ```pony
-class \nodoc\Foo
-   """
-   We don't want this class and its methods to appear in generated documentation
-   """
+--8<-- "appendices-annotations-nodoc-annotation.pony"
 ```
 
 ### `nosupertype`
@@ -97,13 +77,7 @@ Recognised on objects(`actor`, `class`, `primitive`, `struct`). A type annotated
 Here's an example of how `nosupertype` can be important:
 
 ```pony
-class Empty
-
-class Foo
-  fun foo[A: Any](a: (A | Empty val)) =>
-    match consume a
-    | let a': A => None
-    end
+--8<-- "appendices-annotations-empty-without-nosupertype-annotation.pony"
 ```
 
 The above code won't compile because you could supply `Empty ref`. Doing so results in a compiler error about an unsafe match because we would need to distinguish between `Empty val` and `Empty ref` at runtime.
@@ -111,13 +85,7 @@ The above code won't compile because you could supply `Empty ref`. Doing so resu
 By adding `nosupertype` to the definition of `Empty`, we declare that `Empty` is not a subtype of `Any` and thereby allow the code to compile as there is no longer an unsafe match.
 
 ```pony
-class \nosupertype\ Empty
-
-class Foo
-  fun foo[A: Any](a: (A | Empty val)) =>
-    match consume a
-    | let a': A => None
-    end
+--8<-- "appendices-annotations-empty-with-nosupertype-annotation.pony"
 ```
 
 `nosupertype` is particularly valuable when constructing generic classes like collections that need a marker class to describe "lack of an item".

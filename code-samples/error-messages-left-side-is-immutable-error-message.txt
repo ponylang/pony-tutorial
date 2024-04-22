@@ -1,0 +1,4 @@
+Error:
+main.pony:4:11: left side is immutable
+    color = new_color
+          ^

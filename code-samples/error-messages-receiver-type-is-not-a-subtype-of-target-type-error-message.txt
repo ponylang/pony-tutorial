@@ -1,0 +1,17 @@
+Error:
+main.pony:4:16: receiver type is not a subtype of target type
+    colors.push(color)
+               ^
+    Info:
+    main.pony:4:5: receiver type: this->Array[String val] ref (which becomes 'Array[String val] box' in this context)
+        colors.push(color)
+        ^
+    /root/.local/share/ponyup/ponyc-release-0.58.0-x86_64-linux-musl/packages/builtin/array.pony:623:3: target type: Array[String val] ref^
+      fun ref push(value: A) =>
+      ^
+    main.pony:2:15: Array[String val] box is not a subtype of Array[String val] ref^: box is not a subcap of ref^
+      let colors: Array[String] = Array[String]
+                  ^
+    main.pony:3:3: you are trying to change state in a box function; this would be possible in a ref function
+      fun add_stripe(color: String) =>
+      ^
