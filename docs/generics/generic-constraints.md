@@ -5,7 +5,7 @@
 The type parameter constraint for a generic class or method can constrain to a particular capability as seen previously:
 
 ```pony
-class Foo[A: Any val]
+--8<-- "generics-foo-with-any-val.pony:1:1"
 ```
 
 Without the constraint, the generic must work for all possible capabilities. Sometimes you don't want to be limited to a specific capability and you can't support all capabilities. The solution for this is generic constraint qualifiers. These represent classes of capabilities that are accepted in the generic. The valid qualifiers are:
@@ -21,21 +21,5 @@ Without the constraint, the generic must work for all possible capabilities. Som
 In the previous section, we went through extra work to support `iso`. If there's no requirement for `iso` support we can use `#read` and support `ref`, `val`, and `box`:
 
 ```pony
-class Foo[A: Any #read]
-  var _c: A
-
-  new create(c: A) =>
-    _c = c
-
-  fun get(): this->A => _c
-
-  fun ref set(c: A) => _c = c
-
-actor Main
-  new create(env:Env) =>
-    let a = Foo[String ref](recover ref "hello".clone() end)
-    env.out.print(a.get().string())
-
-    let b = Foo[String val]("World")
-    env.out.print(b.get().string())
+--8<-- "generic-constraints-foo-any-read.pony"
 ```
