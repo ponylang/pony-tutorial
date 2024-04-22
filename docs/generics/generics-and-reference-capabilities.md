@@ -15,7 +15,7 @@ If the capability is left out of the type parameter then the generic class or fu
 It can be made shorter because `Any` is the default constraint, leaving us with:
 
 ```pony
---8<-- "generics-and-reference-capabilities-with-default-capability-and-constraint.pony"
+--8<-- "generics-and-reference-capabilities-default-capability-and-constraint.pony"
 ```
 
 This is what the example shown before looks like but with any reference capability accepted:
