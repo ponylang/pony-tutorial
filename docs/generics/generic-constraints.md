@@ -5,7 +5,7 @@
 The type parameter constraint for a generic class or method can constrain to a particular capability as seen previously:
 
 ```pony
---8<-- "generics-foo-with-any-val.pony:1:1"
+--8<-- "generics-foo-with-any-val.pony::1"
 ```
 
 Without the constraint, the generic must work for all possible capabilities. Sometimes you don't want to be limited to a specific capability and you can't support all capabilities. The solution for this is generic constraint qualifiers. These represent classes of capabilities that are accepted in the generic. The valid qualifiers are:

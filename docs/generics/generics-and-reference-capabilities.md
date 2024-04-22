@@ -3,7 +3,7 @@
 In the examples presented previously we've explicitly set the reference capability to `val`:
 
 ```pony
---8<-- "generics-foo-with-any-val.pony:1:1"
+--8<-- "generics-foo-with-any-val.pony::1"
 ```
 
 If the capability is left out of the type parameter then the generic class or function can accept any reference capability. This would look like:
