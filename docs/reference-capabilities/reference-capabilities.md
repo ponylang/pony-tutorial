@@ -9,7 +9,7 @@ In Pony, we do it with _reference capabilities_.
 If you open a file in UNIX and get a file descriptor back, that file descriptor is a token that designates an object - but it isn't a capability. To be a capability, we need to open that file with some permission - some access right. For example:
 
 ```C
-int fd = open("/etc/passwd", O_RDWR);
+--8<-- "reference-capabilities-file-open.c"
 ```
 
 Now we have a token and a set of rights.
@@ -80,25 +80,19 @@ Note that if you have a variable referring to an actor then you can send message
 A reference capability comes at the end of a type. So, for example:
 
 ```pony
-String iso // An isolated string
-String trn // A transition string
-String ref // A string reference
-String val // A string value
-String box // A string box
-String tag // A string tag
+--8<-- "reference-capabilities-string-capabilities.pony"
 ```
 
 __What does it mean when a type doesn't specify a reference capability?__ It means you are using the _default_ reference capability for that type, which is defined along with the type. Here’s an example from the standard library:
 
 ```pony
-class val String
+--8<-- "reference-capabilities-string-default.pony"
 ```
 
 When we use a String we usually mean an immutable string value, so we make `val` the default reference capability for `String` (but not necessarily for `String` constructors, see below). For example, when we don't specify the capability in the following code, the compiler understands that we are using the default reference capability `val` specified in the type definition:
 
 ```pony
-let a: String val = "Hello, world!"
-let b: String = "I'm a wombat!" // Also a String val
+--8<-- "reference-capabilities-default-vs-explicit.pony"
 ```
 
 __So do I have to specify a reference capability when I define a type?__ Only if you want to. There are sensible defaults that most types will use. These are `ref` for classes, `val` for primitives (i.e. immutable references), and `tag` for actors.
@@ -108,25 +102,14 @@ __So do I have to specify a reference capability when I define a type?__ Only if
 When you write a constructor, by default, that constructor will either create a new object with `ref` or `tag` as the capability. In the case of actors, the constructor will always create a `tag`. For classes, it defaults to `ref` but you can create with other capabilities. Let's take a look at an example:
 
 ```pony
-class Foo
-  let x: U32
-
-  new val create(x': U32) =>
-    x = x'
+--8<-- "reference-capability-specificy-a-capability-other-than-the-default.pony"
 ```
 
 Now when you call `Foo.create(1)`, you'll get a `Foo val` instead of `Foo ref`.
 But what if you want to create both `val` and `ref` `Foo`s? You could do something like this:
 
 ```pony
-class Foo
-  let x: U32
-
-  new val create_val(x': U32) =>
-    x = x'
-
-  new ref create_ref(x': U32) =>
-    x = x'
+--8<-- "reference-capabilities-constructors-for-different-capabilities.pony"
 ```
 
 But, that's probably not what you'd really want to do. Better to use the capabilities recovery facilities of Pony that we'll cover later in the [Recovering Capabilities](/reference-capabilities/recovering-capabilities.md) section.

@@ -11,8 +11,7 @@ In Pony, that works for some reference capabilities, but not all.
 The reason for this is that the `iso` reference capability denies other `iso` variables that point to the same object. That is, you can only have one `iso` variable pointing to any given object. The same goes for `trn`.
 
 ```pony
-fun test(a: Wombat iso) =>
-  var b: Wombat iso = a // Not allowed!
+--8<-- "aliasing-multiple-references-to-an-iso-object.pony"
 ```
 
 Here we have some function that gets passed an isolated Wombat. If we try to alias `a` by assigning it to `b`, we'll be breaking reference capability guarantees, so the compiler will stop us. Instead, we can only store aliases that are compatible with the original capability.
@@ -20,15 +19,13 @@ Here we have some function that gets passed an isolated Wombat. If we try to ali
 __What can I alias an `iso` as?__ Since an `iso` says no other variable can be used by _any_ actor to read from or write to that object, we can only create aliases to an `iso` that can neither read nor write. Fortunately, we have a reference capability that does exactly that: `tag`. So we can do this and the compiler will be happy:
 
 ```pony
-fun test(a: Wombat iso) =>
-  var b: Wombat tag = a // Allowed!
+--8<-- "aliasing-iso-to-tag.pony"
 ```
 
 __What about aliasing `trn`?__ Since a `trn` says no other variable can be used by _any_ actor to write to that object, we need something that doesn't allow writing but also doesn't prevent our `trn` variable from writing. Fortunately, we have a reference capability that does that too: `box`. So we can do this and the compiler will be happy:
 
 ```pony
-fun test(a: Wombat trn) =>
-  var b: Wombat box = a // Allowed!
+--8<-- "aliasing-trn-to-box.pony"
 ```
 
 __What about aliasing other stuff?__ For both `iso` and `trn`, the guarantees require that aliases must give up on some ability (reading and writing for `iso`, writing for `trn`). For the other capabilities (`ref`, `val`, `box` and `tag`), aliases allow for the same operations, so such a reference can just be aliased as itself.
@@ -50,8 +47,7 @@ Occasionally we'll want to talk about the type of an alias generically. An alias
 We indicate an alias type by putting a `!` at the end. Here's an example:
 
 ```pony
-fun test(a: A) =>
-  var b: A! = a
+--8<-- "aliasing-alias-types.pony"
 ```
 
 Here, we're using `A` as a __type variable__, which we'll cover later. So `A!` means "an alias of whatever type `A` is". We can also use it to talk about capabilities: we could have written the statements about `iso` and `trn` as just `iso!` = `tag` and `trn!` = `box`.
@@ -63,8 +59,7 @@ In Pony, every expression has a type. So what's the type of `consume a`? It's no
 To show a type is ephemeral, we put a `^` at the end. For example:
 
 ```pony
-fun test(a: Wombat iso): Wombat iso^ =>
-  consume a
+--8<-- "aliasing-ephemeral-types.pony"
 ```
 
 Here, our function takes an isolated Wombat as a parameter and returns an ephemeral isolated Wombat.

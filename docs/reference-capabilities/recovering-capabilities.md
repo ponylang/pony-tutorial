@@ -15,7 +15,7 @@ This most straightforward use of `recover` is to get an `iso` that you can pass 
 The `recover` expression wraps a list of expressions and is terminated by an `end`, like this:
 
 ```pony
-recover Array[String].create() end
+--8<-- "recovering-capabilities-ref-to-iso.pony"
 ```
 
 This expression returns an `Array[String] iso`, instead of the usual `Array[String] ref` you would get. The reason it is `iso` and not any of the other mutable reference capabilities is because there is a default reference capability when you don't specify one. The default for any mutable reference capability is `iso` and the default for any immutable reference capability is `val`.
@@ -23,27 +23,7 @@ This expression returns an `Array[String] iso`, instead of the usual `Array[Stri
 Here's a more complicated example from the standard library:
 
 ```pony
-recover
-  var s = String((prec + 1).max(width.max(31)))
-  var value = x
-
-  try
-    if value == 0 then
-      s.push(table(0)?)
-    else
-      while value != 0 do
-        let index = ((value = value / base) - (value * base))
-        s.push(table(index.usize())?)
-      end
-    end
-  end
-
-  _extend_digits(s, prec')
-  s.append(typestring)
-  s.append(prestring)
-  _pad(s, width, align, fill)
-  s
-end
+--8<-- "recovering-capabilities-format-int.pony"
 ```
 
 That's from `format/_FormatInt`. It creates a `String ref`, does a bunch of stuff with it, and finally returns it as a `String iso`.
@@ -51,7 +31,7 @@ That's from `format/_FormatInt`. It creates a `String ref`, does a bunch of stuf
 You can also give an explicit reference capability:
 
 ```pony
-let key = recover val line.substring(0, i).>strip() end
+--8<-- "recovering-capabilities-with-explicit-reference-capability.pony"
 ```
 
 That's from `net/http/_PayloadBuilder`. We get a substring of `line`, which is a `String iso^`, then we call strip on it, which returns itself. But since strip is a `ref` function, it returns itself as a `String ref^` - so we use a `recover val` to end up with a `String val`.
@@ -75,8 +55,7 @@ Notice that this technique looks mostly at the call-site, rather than at the def
 This may sound a little complicated, but in practice, it means you can write code that treats an `iso` mostly like a `ref`, and the compiler will complain when it's wrong. For example:
 
 ```pony
-let s = recover String end
-s.append("hi")
+--8<-- "recovering-capabilities-string-append.pony"
 ```
 
 Here, we create a `String iso` and then append some text to it. The append method takes a `ref` receiver and a `box` parameter. We can automatically recover the `iso` receiver since we pass a `val` parameter, so everything is fine.

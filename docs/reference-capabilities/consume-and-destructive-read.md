@@ -9,16 +9,13 @@ Sometimes, you want to _move_ an object from one variable to another. In other w
 You can do this by using `consume`. When you `consume` a variable you take the value out of it, effectively leaving the variable empty. No code can read from that variable again until a new value is written to it. Consuming a local variable or a parameter allows you to move it to a new location, most importantly for `iso` and `trn`.
 
 ```pony
-fun test(a: Wombat iso) =>
-  var b: Wombat iso = consume a // Allowed!
+--8<-- "consume-and-destructive-read-consuming-a-variable.pony:1:2"
 ```
 
 The compiler is happy with that because by consuming `a`, you've said the value can't be used again and the compiler will complain if you try to.
 
 ```pony
-fun test(a: Wombat iso) =>
-  var b: Wombat iso = consume a // Allowed!
-  var c: Wombat tag = a // Not allowed!
+--8<-- "consume-and-destructive-read-consuming-a-variable.pony"
 ```
 
 Here's an example of that. When you try to assign `a` to `c`, the compiler will complain.
@@ -26,8 +23,7 @@ Here's an example of that. When you try to assign `a` to `c`, the compiler will 
 By default, a `consume` expression returns a type with the capability of the variable that you are assigning to. You can see this in the example above, where we say that `b` is `Wombat iso`, and as such the result of the `consume` expression is `Wombat iso`. We could also have said that `b` is a `Wombat val`, but we can instead give an explicit reference capability to the `consume` expression:
 
 ```pony
-fun test(a: AnIncrediblyLongTypeName iso) =>
-  var b = consume val a
+--8<-- "consume-and-destructive-read-consuming-a-variable-and-change-its-reference-capability.pony"
 ```
 
 The expression in line 2 of the example above is equivalent to saying `var b: AnIncrediblyLongTypeName val = consume a`.
@@ -39,14 +35,7 @@ __Can I `consume` a field?__ Definitely not! Consuming something means it is emp
 There's another way to _move_ a value from one name to another. Earlier, we talked about how assignment in Pony returns the _old_ value of the left-hand side, rather than the new value. This is called _destructive read_, and we can use it to do what we want to do, even with fields.
 
 ```pony
-class Aardvark
-  var buddy: Wombat iso
-
-  new create() =>
-    buddy = recover Wombat end
-
-  fun ref test(a: Wombat iso) =>
-    var b: Wombat iso = buddy = consume a // Allowed!
+--8<-- "consume-and-destructive-read-moving-a-value.pony"
 ```
 
 Here, we consume `a`, assign it to the field `buddy`, and assign the _old_ value of `buddy` to `b`.
