@@ -3,10 +3,23 @@
  */
 async function runSnippetInline(evt) {
     evt.preventDefault();
-    const res = await fetch(`https://playground.ponylang.io/?snippet=${evt.target.dataset.snippet}`)
-    const json = await res.json()
+    const snippetRes = await fetch(`https://raw.githubusercontent.com/ponylang/pony-tutorial/main/code-samples/${evt.target.dataset.snippet}`)
+    const snippetCode = await snippetRes.text()
+    const evaluateRes = await fetch('https://playground.ponylang.io/evaluate.json', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            "code": snippetCode,
+            "separate_output": true,
+            "color": true,
+            "branch": "release"
+        })
+    })
+    const json = await evaluateRes.json()
     evt.target.previousElementSibling.querySelector('pre').append(Object.assign(document.create('pre'), {
-        innerHTML: json.success ? json.stdout : json.compiler
+        innerHTML: json.success ? json.stdout : json.compiler,
     }))
 }
 
