@@ -6,6 +6,9 @@ repo_url: https://github.com/ponylang/pony-tutorial/
 site_url: https://tutorial.ponylang.io/
 use_directory_urls: false
 
+extra_javascript:
+  - docs/assets/snippets.js
+
 extra:
   generator: false
   social:
