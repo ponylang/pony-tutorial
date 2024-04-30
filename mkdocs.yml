@@ -7,7 +7,7 @@ site_url: https://tutorial.ponylang.io/
 use_directory_urls: false
 
 extra_javascript:
-  - docs/assets/snippets.js
+  - assets/snippets.js
 
 extra:
   generator: false
