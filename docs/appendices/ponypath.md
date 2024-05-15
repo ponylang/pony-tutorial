@@ -11,7 +11,7 @@ Assuming you just placed new Pony code under a directory called `pony` in your h
 Edit/add the `rc` file corresponding to your chosen shell (`echo $SHELL` will tell you what shell you are running). For example, if using bash, add the following to your `~/.bashrc`:
 
 ```bash
---8<-- "ponypath-unix-mac.sh"
+export PONYPATH=$PONYPATH:$HOME/pony
 ```
 
 (Then run `source ~/.bashrc` to add this variable to a running session. New terminal session will automatically source `~/.bashrc`.)
@@ -30,5 +30,5 @@ Edit/add the `rc` file corresponding to your chosen shell (`echo $SHELL` will te
 You can also add to `PONYPATH` from the command prompt via:
 
 ```bash
---8<-- "ponypath-windows.sh"
+setx PONYPATH %PONYPATH%;%USERPROFILE%\pony
 ```

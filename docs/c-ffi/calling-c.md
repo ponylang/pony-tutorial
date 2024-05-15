@@ -99,7 +99,13 @@ As we saw earlier, you can also use a `Pointer[(U16, U16)]` as well. It is the e
 We mentioned before that you should use the `Pointer[None]` type in Pony when dealing with values of `void*` type in C. This is very useful for function parameters, but when we use `Pointer[None]` for the return type of a C function, we won't be able to access the value that the pointer points to. Let's imagine a generic list in C:
 
 ```C
---8<-- "calling-c-generic-list.c"
+struct List;
+
+struct List* list_create();
+void list_free(struct List* list);
+
+void list_push(struct List* list, void *data);
+void* list_pop(struct List* list);
 ```
 
 Following the advice from previous sections, we can write the following Pony declarations:
@@ -153,7 +159,24 @@ FFI calls to functions that __might__ raise an error __must__ mark it as such by
 If you're writing a C library that wants to raise a Pony error, you should do so using the `pony_error` function. Here's an example from the Pony runtime:
 
 ```C
---8<-- "calling-c-ffi-functions-raising-errors.c"
+// In pony.h
+PONY_API void pony_error();
+
+// In socket.c
+PONY_API size_t pony_os_send(asio_event_t* ev, const char* buf, size_t len)
+{
+  ssize_t sent = send(ev->fd, buf, len, 0);
+
+  if(sent < 0)
+  {
+    if(errno == EWOULDBLOCK || errno == EAGAIN)
+      return 0;
+
+    pony_error();
+  }
+
+  return (size_t)sent;
+}
 ```
 
 A function that calls the `pony_error` function should only be called from inside a `try` block in Pony. If this is not done, the call to `pony_error` will result in a call to C's `abort` function, which will terminate the program.

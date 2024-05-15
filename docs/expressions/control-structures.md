@@ -33,7 +33,12 @@ As an alternative Pony provides the `elseif` keyword that combines an `else` and
 __Why can't I just say "else if" like I do in C? Why the extra keyword?__ The relationship between `if` and `else` in C, and other similar languages, is ambiguous. For example:
 
 ```c
---8<-- "control-structures-conditionals-if-else-c-ambiguous-relationship.c"
+// C code
+if(a)
+  if(b)
+    printf("a and b\n");
+else
+  printf("not a\n");
 ```
 
 Here it is not obvious whether the `else` is an alternative to the first or the second `if`. In fact here the `else` relates to the `if(b)` so our example contains a bug. Pony avoids this type of bug by handling `if` and `else` differently and the need for `elseif` comes out of that.

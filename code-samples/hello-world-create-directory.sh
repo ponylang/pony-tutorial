@@ -1,2 +1,0 @@
-mkdir helloworld
-cd helloworld

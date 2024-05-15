@@ -39,7 +39,10 @@ Bare lambdas can also be used to define structures containing function pointers.
 This Pony structure is equivalent to the following C structure:
 
 ```c
---8<-- "c-ffi-callbacks-struct-with-function-pointers.c"
+struct S
+{
+  void(*fun_ptr)();
+};
 ```
 
 In the same vein as bare functions, bare lambdas cannot specify captures, cannot use `this` neither as an identifier nor as a type, and cannot specify a receiver capability. In addition, a bare lambda object always has a `val` capability.
@@ -51,7 +54,22 @@ Classic lambda types and bare lambda types can never be subtypes of each other.
 Consider SQLite, mentioned earlier. When the client code calls `sqlite3_exec`, an SQL query is executed against a database, and the callback function is called for each row returned by the SQL statement. Here's the signature for `sqlite3_exec`:
 
 ```c
---8<-- "c-ffi-callbacks-sqlite3-callback.c"
+typedef int (*sqlite3_callback)(void*,int,char**, char**);
+
+...
+
+SQLITE_API int SQLITE_STDCALL sqlite3_exec(
+sqlite3 *db,                /* The database on which the SQL executes */
+const char *zSql,           /* The SQL to be executed */
+sqlite3_callback xCallback, /* Invoke this callback routine */
+void *pArg,                 /* First argument to xCallback() */
+char **pzErrMsg             /* Write error messages here */
+)
+{
+  ...
+  xCallback(pArg, nCol, azVals, azCols)
+  ...
+}
 ```
 
 `sqlite3_callback` is the type of the callback function that will be called by `sqlite3_exec` for each row returned by the `sql` statement. The first argument to the callback function is the pointer `pArg` that was passed to `sqlite3_exec`, the second argument is the number of columns in the row being processed, the third argument is data for each column, and the fourth argument is the name of each column.
