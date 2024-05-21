@@ -15,7 +15,7 @@ You can do this by using `consume`. When you `consume` a variable you take the v
 The compiler is happy with that because by consuming `a`, you've said the value can't be used again and the compiler will complain if you try to.
 
 ```pony
---8<-- "consume-and-destructive-read-consuming-a-variable.pony-failure:5:7"
+--8<-- "consume-and-destructive-read-consuming-a-variable-failure.pony:5:7"
 ```
 
 Here's an example of that. When you try to assign `a` to `c`, the compiler will complain.
