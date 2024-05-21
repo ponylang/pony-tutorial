@@ -5,19 +5,7 @@ Recursive functions in Pony can cause many problems. Every function call in a pr
 If you have a heavy recursive algorithm, you must take some precautions in your code to avoid stack overflows. Most recursive functions can be easily transformed into tail-recursive function which are less problematic. A tail-recursive function is a function in which the recursive call is the last instruction of the function. Here is an example with a factorial function:
 
 ```pony
-fun recursive_factorial(x: U32): U32 =>
-  if x == 0 then
-    1
-  else
-    x * recursive_factorial(x - 1)
-  end
-
-fun tail_recursive_factorial(x: U32, y: U32): U32 =>
-  if x == 0 then
-    y
-  else
-    tail_recursive_factorial(x - 1, x * y)
-  end
+--8<-- "recursion.pony"
 ```
 
 The compiler can optimise a tail-recursive function to a loop, completely avoiding call stack growth. Note that this is an _optimisation_ which is only performed in release builds (i.e. builds without the `-d` flag passed to ponyc.) If you need to avoid stack growth in debug builds as well then you have to write your function as a loop manually.

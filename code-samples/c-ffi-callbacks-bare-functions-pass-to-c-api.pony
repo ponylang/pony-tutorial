@@ -1,0 +1,1 @@
+@setup_callback(addressof C.callback)

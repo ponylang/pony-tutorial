@@ -9,11 +9,7 @@ We'll give a couple examples of using type aliases, just to get the feel of them
 One way to use type aliases is to express an enumeration. For example, imagine we want to say something must either be Red, Blue or Green. We could write something like this:
 
 ```pony
-primitive Red
-primitive Blue
-primitive Green
-
-type Colour is (Red | Blue | Green)
+--8<-- "type-aliases-enumerations.pony"
 ```
 
 There are two new concepts in there. The first is the type alias, introduced with the keyword `type`. It just means that the name that comes after `type` will be translated by the compiler to the type that comes after `is`.
@@ -26,31 +22,19 @@ You can also declare constants like in C or Go like this, making use of `apply`,
 which can be omitted during call (will be discussed further in [Sugar](/expressions/sugar.md)),
 
 ```pony
-primitive Red    fun apply(): U32 => 0xFF0000FF
-primitive Green  fun apply(): U32 => 0x00FF00FF
-primitive Blue   fun apply(): U32 => 0x0000FFFF
-
-type Colour is (Red | Blue | Green)
+--8<-- "type-aliases-enumerations-apply.pony"
 ```
 
 or namespace them like this
 
 ```pony
-primitive Colours
-  fun red(): U32 => 0xFF0000FF
-  fun green(): U32 => 0x00FF00FF
+--8<-- "type-aliases-enumerations-namespace.pony"
 ```
 
 You might also want to iterate over the enumeration items like this to print their value for debugging purposes
 
 ```pony
-primitive ColourList
-  fun apply(): Array[Colour] =>
-    [Red; Green; Blue]
-
-for colour in ColourList().values() do
-  env.out.print(colour().string())
-end
+--8<-- "type-aliases-enumerations-iteration.pony"
 ```
 
 ## Complex types
@@ -58,31 +42,13 @@ end
 If a type is complicated, it can be nice to give it a mnemonic name. For example, if we want to say that a type must implement more than one interface, we could say:
 
 ```pony
-interface HasName
-  fun name(): String
-
-interface HasAge
-  fun age(): U32
-
-interface HasFeelings
-  fun feeling(): String
-
-type Person is (HasName & HasAge & HasFeelings)
+--8<-- "type-aliases-complex-types-interface.pony"
 ```
 
 This use of complex types applies to traits, not just interfaces:
 
 ```pony
-trait HasName
-  fun name(): String => "Bob"
-
-trait HasAge
-  fun age(): U32 => 42
-
-trait HasFeelings
-  fun feeling(): String => "Great!"
-
-type Person is (HasName & HasAge & HasFeelings)
+--8<-- "type-aliases-complex-types-trait.pony"
 ```
 
 There's another new concept here: the type has a `&` in it. This is similar to the `|` of a __union__ type: it means this is an __intersection__ type. That is, it's something that must be _all_ of `HasName`, `HasAge` _and_ `HasFeelings`.
@@ -92,7 +58,7 @@ But the use of `type` here is exactly the same as the enumeration example above,
 Another example, this time from the standard library, is `SetIs`. Here's the actual definition:
 
 ```pony
-type SetIs[A] is HashSet[A, HashIs[A!]]
+--8<-- "type-aliases-set-is.pony"
 ```
 
 Again there's something new here. After the name `SetIs` comes the name `A` in square brackets. That's because `SetIs` is a __generic type__. That is, you can give a `SetIs` another type as a parameter, to make specific kinds of set. If you've used Java or C#, this will be pretty familiar. If you've used C++, the equivalent concept is templates, but they work quite differently.
@@ -100,7 +66,7 @@ Again there's something new here. After the name `SetIs` comes the name `A` in s
 And again the use of `type` just provides a more convenient way to refer to the type we're aliasing:
 
 ```pony
-HashSet[A, HashIs[A!]]
+--8<-- "type-aliases-hash-set.pony"
 ```
 
 That's another __generic type__. It means a `SetIs` is really a kind of `HashSet`. Another concept has snuck in, which is `!` types. This is a type that is the __alias__ of another type. That's tricky stuff that you only need when writing complex generic types, so we'll leave it for later.
@@ -108,7 +74,7 @@ That's another __generic type__. It means a `SetIs` is really a kind of `HashSet
 One more example, again from the standard library, is the `Map` type that gets used a lot. It's actually a type alias. Here's the real definition of `Map`:
 
 ```pony
-type Map[K: (Hashable box & Comparable[K] box), V] is HashMap[K, V, HashEq[K]]
+--8<-- "type-aliases-map.pony"
 ```
 
 Unlike our previous example, the first type parameter, `K`, has a type associated with it. This is a __constraint__, which means when you parameterise a `Map`, the type you pass for `K` must be a subtype of the constraint.

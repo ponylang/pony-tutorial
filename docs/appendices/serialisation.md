@@ -13,46 +13,7 @@ Pony uses an intermediate object type called `Serialised` to represent a seriali
 This program serialises and deserialise an object, and checks that the fields of the original object are the same as the fields of the deserialised object.
 
 ```pony
-use "serialise"
-
-class Foo is Equatable[Foo box]
-  let _s: String
-  let _u: U32
-
-  new create(s: String, u: U32) =>
-    _s = s
-    _u = u
-
-  fun eq(foo: Foo box): Bool =>
-    (_s == foo._s) and (_u == foo._u)
-
-actor Main
-  new create(env: Env) =>
-    try
-      // get serialization authorities
-      let serialise = SerialiseAuth(env.root)
-      let output = OutputSerialisedAuth(env.root)
-      let deserialise = DeserialiseAuth(env.root)
-      let input = InputSerialisedAuth(env.root)
-
-      let foo1 = Foo("abc", 123)
-
-      // serialisation
-      let sfoo = Serialised(serialise, foo1)?
-      let bytes_foo: Array[U8] val = sfoo.output(output)
-
-      env.out.print("serialised representation is " +
-        bytes_foo.size().string() +
-        " bytes long")
-
-      // deserialisation
-      let dfoo = Serialised.input(input, bytes_foo)
-      let foo2 = dfoo(deserialise)? as Foo
-
-      env.out.print("(foo1 == foo2) is " + (foo1 == foo2).string())
-    else
-      env.err.print("there was an error")
-    end
+--8<-- "appendices-serialization-compare-original-object-with-deserialized-object.pony"
 ```
 
 ## Caveats
@@ -97,48 +58,7 @@ If a class has more than one `Pointer` field then all of those fields must be ha
 Assume we have a Pony class with a field that is a pointer to a C string. We would like to be able to serialise and deserialise this object. In order to do that, the Pony class implements the methods `_serialise_space(...)`, `_serialise(...)`, and `_deserialise(...)`. These methods, in turn, call C functions that calculate the number of bytes needed to serialise the string and serialise and deserialise it. In this example the serialised string is represented by a four-byte big-endian number that represents the length of the string, followed by the string itself without the terminating null. So if the C string is `hello world\0` then the serialised string is `\0x00\0x00\0x00\0x0Bhello world` (where the first four bytes of the serialised string are a big-endian representation of the number `0x0000000B`, which is `11`).
 
 ```pony
-use "serialise"
-
-use "lib:custser"
-
-use @get_string[Pointer[U8]]()
-use @serialise_space[USize](s: Pointer[U8] tag)
-use @serialise[None](bytes: Pointer[U8] tag, str: Pointer[U8] tag)
-use @deserialise[Pointer[U8] tag](bytes: Pointer[U8] tag)
-use @printf[I32](fmt: Pointer[U8] tag, ...)
-
-class CStringWrapper
-  var _cstr: Pointer[U8] tag
-
-  new create(cstr: Pointer[U8] tag) =>
-    _cstr = cstr
-
-  fun _serialise_space(): USize =>
-    @serialise_space(_cstr)
-
-  fun _serialise(bytes: Pointer[U8] tag) =>
-    @serialise(bytes, _cstr)
-
-  fun ref _deserialise(bytes: Pointer[U8] tag) =>
-    _cstr = @deserialise(bytes)
-
-  fun print() =>
-    @printf(_cstr)
-
-actor Main
-  new create(env: Env) =>
-    let csw = CStringWrapper(@get_string())
-    csw.print()
-    try
-      let serialise = SerialiseAuth(env.root)
-      let deserialise = DeserialiseAuth(env.root)
-
-      let sx = Serialised(serialise, csw)?
-      let y = sx(deserialise)? as CStringWrapper
-      y.print()
-    else
-      env.err.print("there was an error")
-    end
+--8<-- "appendices-serialization-custom-serialization.pony"
 ```
 
 ```c

@@ -9,32 +9,19 @@ But Pony is statically typed, so an object literal also creates an anonymous typ
 It basically looks like any other type definition, but with some small differences. Here's a simple one:
 
 ```pony
-object
-  fun apply(): String => "hi"
-end
+--8<-- "object-literals-object-literal.pony"
 ```
 
 Ok, that's pretty trivial. Let's extend it so that it explicitly provides an interface so that the compiler will make sure the anonymous type fulfills that interface. You can use the same notation to provide traits as well.
 
 ```pony
-object is Hashable
-  fun apply(): String => "hi"
-  fun hash(): USize => this().hash()
-end
+--8<-- "object-literals-object-literal-with-interface.pony"
 ```
 
 What we can't do is specify constructors in an object literal, because the literal _is_ the constructor. So how do we assign to fields? Well, we just assign to them. For example:
 
 ```pony
-use "collections"
-
-class Foo
-  fun foo(str: String): Hashable =>
-    object is Hashable
-      let s: String = str
-      fun apply(): String => s
-      fun hash(): USize => s.hash()
-    end
+--8<-- "object-literals-fields-assignment.pony"
 ```
 
 When we assign to a field in the constructor, we are _capturing_ from the lexical scope the object literal is in. Pretty fun stuff! It lets us have arbitrarily complex __closures__ that can even have multiple entry points (i.e. functions you can call on a closure).
@@ -42,28 +29,13 @@ When we assign to a field in the constructor, we are _capturing_ from the lexica
 An object literal with fields is returned as a `ref` by default unless an explicit reference capability is declared by specifying the capability after the `object` keyword. For example, an object with sendable captured references can be declared as `iso` if needed:
 
 ```pony
-use "collections"
-
-class Foo
-  fun foo(str: String): Hashable iso^ =>
-    object iso is Hashable
-      let s: String = str
-      fun apply(): String => s
-      fun hash(): USize => s.hash()
-    end
+--8<-- "object-literals-reference-capability.pony"
 ```
 
 We can also implicitly capture values from the lexical scope by using them in the object literal. Sometimes values that aren't local variables, aren't fields, and aren't parameters of a function are called _free variables_. By using them in a function, we are _closing over_ them - that is, capturing them. The code above could be written without the field `s`:
 
 ```pony
-use "collections"
-
-class Foo
-  fun foo(str: String): Hashable iso^ =>
-    object iso is Hashable
-      fun apply(): String => str
-      fun hash(): USize => str.hash()
-    end
+--8<-- "object-literals-closing-over-values.pony"
 ```
 
 ## Lambdas
@@ -71,47 +43,37 @@ class Foo
 Arbitrarily complex closures are nice, but sometimes we just want a simple closure. In Pony, you can use the lambdas for that. A lambda is written as a function (implicitly named `apply`) enclosed in curly brackets:
 
 ```pony
-{(s: String): String => "lambda: " + s }
+--8<-- "object-literals-lambda.pony"
 ```
 
 This produces the same code as:
 
 ```pony
-object
-  fun apply(s: String): String => "lambda: " + s
-end
+--8<-- "object-literals-lambda-as-explicit-object-literal.pony"
 ```
 
 The reference capability of the lambda object can be declared by appending it after the closing curly bracket:
 
 ```pony
-{(s: String): String => "lambda: " + s } iso
+--8<-- "object-literals-lambda-with-reference-capability.pony"
 ```
 
 This produces the same code as:
 
 ```pony
-object iso
-  fun apply(s: String): String => "lambda: " + s
-end
+--8<-- "object-literals-lambda-with-reference-capability-as-explicit-object-literal.pony"
 ```
 
 Lambdas can be used to capture from the lexical scope in the same way as object literals can assign from the lexical scope to a field. This is done by adding a second argument list after the parameters:
 
 ```pony
-class Foo
-  new create(env: Env) =>
-    foo({(s: String)(env) => env.out.print(s) })
-
-  fun foo(f: {(String)}) =>
-    f("Hello World")
+--8<-- "object-literals-lambda-capture-values.pony"
 ```
 
 It's also possible to use a _capture list_ to create new names for things. A capture list is a second parenthesised list after the parameters:
 
 ```pony
-  new create(env: Env) =>
-    foo({(s: String)(myenv = env) => myenv.out.print(s) })
+--8<-- "object-literals-lambda-capture-and-rename-values.pony"
 ```
 
 The type of a lambda is also declared using curly brackets. Within the brackets, the function parameter types are specified within parentheses followed by an optional colon and return type. The example above uses `{(String)}` to be the type of a lambda function that takes a `String` as an argument and returns nothing.
@@ -119,22 +81,7 @@ The type of a lambda is also declared using curly brackets. Within the brackets,
 If the lambda object is not declared with a specific reference capability, the reference capability is inferred from the structure of the lambda. If the lambda does not have any captured references, it will be `val` by default; if it does have captured references, it will be `ref` by default. The following is an example of a `val` lambda object:
 
 ```pony
-use "collections"
-
-actor Main
-  new create(env: Env) =>
-    let l = List[U32]
-    l.>push(10).>push(20).>push(30).push(40)
-    let r = reduce(l, 0, {(a:U32, b:U32): U32 => a + b })
-    env.out.print("Result: " + r.string())
-
-  fun reduce(l: List[U32], acc: U32, f: {(U32, U32): U32} val): U32 =>
-    try
-      let acc' = f(acc, l.shift()?)
-      reduce(l, acc', f)
-    else
-      acc
-    end
+--8<-- "object-literals-lambda-reference-capabilities.pony"
 ```
 
 The `reduce` method in this example requires the lambda type for the `f` parameter to require a reference capability of `val`. The lambda object passed in as an argument does not need to declare an explicit reference capability because `val` is the default for a lambda that does not capture anything.
@@ -142,25 +89,7 @@ The `reduce` method in this example requires the lambda type for the `f` paramet
 As mentioned previously the lambda desugars to an object literal with an `apply` method. The reference capability for the `apply` method defaults to `box` like any other method. In a lambda that captures references, this needs to be `ref` if the function needs to modify any of the captured variables or call `ref` methods on them. The reference capability for the method (versus the reference capability for the object which was described above) is defined by putting the capability before the parenthesized argument list.
 
 ```pony
-use "collections"
-
-actor Main
-  new create(env: Env) =>
-    let l = List[String]
-    l.>push("hello").push("world")
-    var count = U32(0)
-    for_each(l, {ref(s:String) =>
-      env.out.print(s)
-      count = count + 1
-    })
-    // Displays '0' as the count
-    env.out.print("Count: " + count.string())
-
-  fun for_each(l: List[String], f: {ref(String)} ref) =>
-    try
-      f(l.shift()?)
-      for_each(l, f)
-    end
+--8<-- "object-literals-lambda-reference-capabilities-2.pony"
 ```
 
 This example declares the type of the apply function that is generated by the lambda expression as being `ref`. The lambda type declaration for the `f` parameter in the `for_each` method also declares it as `ref`. The reference capability of the lambda type must also be `ref` so that the method can be called. The lambda object does not need to declare an explicit reference capability because `ref` is the default for a lambda that has captures.
@@ -172,9 +101,7 @@ The above example also notes a subtle reality of captured references. At first g
 Normally, an object literal is an instance of an anonymous class. To make it an instance of an anonymous actor, just include one or more behaviours in the object literal definition.
 
 ```pony
-object
-  be apply() => env.out.print("hi")
-end
+--8<-- "object-literals-actor-literal.pony"
 ```
 
 An actor literal is always returned as a `tag`.

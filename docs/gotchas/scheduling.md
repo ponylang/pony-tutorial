@@ -11,10 +11,7 @@ An easy way to monopolize a scheduler thread is to use the FFI facilities of Pon
 Another way to monopolize a scheduler thread is to write a behavior that never exits or takes a really long time to exit.
 
 ```pony
-be bad_citizen() =>
-  while true do
-    _env.out.print("Never gonna give you up. Really gonna make you cry")
-  end
+--8<-- "scheduling.pony"
 ```
 
 That is some seriously bad citizen code that will hog a scheduler thread forever. Call that behavior a few times and your program will grind to a halt. If you find yourself writing code with loops that will run for a long time, stop and rethink your design. Take a look at the [Timer](https://stdlib.ponylang.io/time-Timer/) class from the standard library. Combine that together with a counter in your class and you can execute the same behavior repeatedly while yielding your scheduler thread to other actors.

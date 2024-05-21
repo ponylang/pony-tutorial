@@ -1,0 +1,1 @@
+class ListValues[A, N: ListNode[A] box] is Iterator[N->A]

@@ -13,10 +13,7 @@ Let's start with a simple one.
 Suppose you wrote:
 
 ```pony
-actor Main
-  let x: I64 = 0
-  new create(env: Env) =>
-    x = 12
+--8<-- "error-messages-left-side-must-be-something-that-can-be-assigned-to.pony"
 ```
 
 The error message would be:
@@ -41,10 +38,7 @@ That one error resulted in two error messages. The first, pointing to the `x`, d
 Suppose you create a class with a mutable field and added a method to change the field:
 
 ```pony
-class Wombat
-  var color: String = "brown"
-  fun dye(new_color: String) =>
-    color = new_color
+--8<-- "error-messages-left-side-is-immutable.pony"
 ```
 
 The error message would be:
@@ -65,10 +59,7 @@ To fix the error, you would need to give the `dye` method a mutable reference ca
 Suppose you made a related, but slightly different error:
 
 ```pony
-class Rainbow
-  let colors: Array[String] = Array[String]
-  fun add_stripe(color: String) =>
-    colors.push(color)
+--8<-- "error-messages-receiver-type-is-not-a-subtype-of-target-type.pony"
 ```
 
 In this example, rather than trying to change the value of a field, the code calls a method which attempts to modify the object referred to by the field.

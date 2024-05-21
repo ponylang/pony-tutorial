@@ -1,0 +1,1 @@
+{(s: String): String => "lambda: " + s } iso

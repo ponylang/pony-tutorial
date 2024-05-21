@@ -3,16 +3,7 @@
 Consider the following code:
 
 ```pony
-class Foo
-  fun fn(x: U64) => None
-
-actor Main
-  new create(env: Env) =>
-    var x: U64 = 0
-    try foo()?.fn(x = 42) end
-    env.out.print(x.string())
-
-  fun foo(): Foo ? => error
+--8<-- "function-call-side-effects.pony"
 ```
 
 What do you think it will print? Probably `0` right? Or maybe you realized this code is in the gotchas section so it must be `42`. If you went with `42`, you'd be right. Why?

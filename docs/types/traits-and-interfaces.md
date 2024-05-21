@@ -15,7 +15,7 @@ The core idea is that you have a type that declares it has a relationship to som
 In Pony, nominal subtyping is done via the keyword `is`. `is` declares at the point of declaration that an object has a relationship to a category type. For example, to use nominal subtyping to declare that the class `Name` provides `Stringable`, you'd do:
 
 ```pony
-class Name is Stringable
+--8<-- "traits-and-interfaces-nominal-subtyping.pony"
 ```
 
 ## Structural subtyping
@@ -29,17 +29,7 @@ Structural typing is very similar to [duck typing](https://en.wikipedia.org/wiki
 You do not declare structural relationships ahead of time, instead it is done by checking if a given concrete type can fulfill the required interface. For example, in the code below, we have the interface `Stringable` from the standard library. Anything can be used as a `Stringable` so long as it provides the method `fun string(): String iso^`. In our example below, `ExecveError` provides the `Stringable` interface and can be used anywhere a `Stringable` is needed. Because `Stringable` is a structural type, `ExecveError` doesn't have to declare a relationship to `Stringable`, it simply has that relationship because it has "the same shape".
 
 ```pony
-interface box Stringable
-  """
-  Things that can be turned into a String.
-  """
-  fun string(): String iso^
-    """
-    Generate a string representation of this object.
-    """
-
-primitive ExecveError
-  fun string(): String iso^ => "ExecveError".clone()
+--8<-- "traits-and-interfaces-structural-subtyping.pony"
 ```
 
 ## Nominal and structural subtyping in Pony
@@ -53,10 +43,7 @@ Both `trait` and `interface` can establish a relationship via nominal subtyping.
 The primary means of doing nominal subtyping in Pony is using __traits__. A __trait__ looks a bit like a __class__, but it uses the keyword `trait` and it can't have any fields.
 
 ```pony
-trait Named
-  fun name(): String => "Bob"
-
-class Bob is Named
+--8<-- "traits-and-interfaces-trait.pony"
 ```
 
 Here, we have a trait `Named` that has a single function `name` that returns a String. It also provides a default implementation of `name` that returns the string literal "Bob".
@@ -66,32 +53,19 @@ We also have a class `Bob` that says it `is Named`. This means `Bob` is in the `
 Since `Bob` doesn't have its own `name` function, it uses the one from the trait. If the trait's function didn't have a default implementation, the compiler would complain that `Bob` had no implementation of `name`.
 
 ```pony
-trait Named
-  fun name(): String => "Bob"
-
-trait Bald
-  fun hair(): Bool => false
-
-class Bob is (Named & Bald)
+--8<-- "traits-and-interfaces-multiple-traits.pony"
 ```
 
 It is possible for a class to have relationships with multiple categories. In the above example, the class `Bob` _provides both Named and Bald_.
 
 ```pony
-trait Named
-  fun name(): String => "Bob"
-
-trait Bald is Named
-  fun hair(): Bool => false
-
-class Bob is Bald
+--8<-- "traits-and-interfaces-nested-traits.pony"
 ```
 
 It is also possible to combine categories together. In the example above, all `Bald` classes are automatically `Named`. Consequently, the `Bob` class has access to both hair() and name() default implementation of their respective trait. One can think of the `Bald` category to be more specific than the `Named` one.
 
 ```pony
-class Larry
-  fun name(): String => "Larry"
+--8<-- "traits-and-interfaces-nominal-subtyping-in-pony.pony"
 ```
 
 Here, we have a class `Larry` that has a `name` function with the same signature. But `Larry` does __not__ provide `Named`!
@@ -101,13 +75,7 @@ __Wait, why not?__ Because `Larry` doesn't say it `is Named`. Remember, traits a
 You can also do nominal subtyping using the keyword `interface`. __Interfaces__ in Pony are primarily used for structural subtyping. Like traits, interfaces can also have default method implementations, but in order to use default method implementations, an interface must be used in a nominal fashion. For example:
 
 ```pony
-interface HasName
-  fun name(): String => "Bob"
-
-class Bob is HasName
-
-class Larry
-  fun name(): String => "Larry"
+--8<-- "traits-and-interfaces-nominal-and-structural-subtyping.pony"
 ```
 
 Both `Bob` and `Larry` are in the category `HasName`. `Bob` because it has declared that it is a `HasName` and `Larry` because it is structurally a `HasName`.
@@ -117,8 +85,7 @@ Both `Bob` and `Larry` are in the category `HasName`. `Bob` because it has decla
 Pony has structural subtyping using __interfaces__. Interfaces look like traits, but they use the keyword `interface`.
 
 ```pony
-interface HasName
-  fun name(): String
+--8<-- "traits-and-interfaces-structural-subtyping-in-pony.pony"
 ```
 
 Here, `HasName` looks a lot like `Named`, except it's an interface instead of a trait. This means both `Bob` and `Larry` provide `HasName`! The programmers that wrote `Bob` and `Larry` don't even have to be aware that `HasName` exists.
@@ -132,15 +99,7 @@ It is common for new Pony users to ask, __Should I use traits or interfaces in m
 A key difference between traits and interfaces is that interfaces can't have private methods. So, if you need private methods, you'll need to use a trait and have users opt in via nominal typing. Interfaces can't have private methods because otherwise, users could use them to break encapsulation and access private methods on concrete types from other packages. For example:
 
 ```pony
-actor Main
-  new create(env: Env) =>
-    let x: String ref = "sailor".string()
-    let y: Foo = x
-    y._set(0, 'f')
-    env.out.print("Hello, " + x)
-
-interface Foo
-  fun ref _set(i: USize, value: U8): U8
+--8<-- "traits-and-interfaces-private-methods.pony"
 ```
 
 In the code above, the interface `Foo` allows access to the private `_set` method of `String` and allows for changing `sailor` to `failor` or it would anyway, if interfaces were allowed to have private methods.
@@ -150,19 +109,13 @@ In the code above, the interface `Foo` allows access to the private `_set` metho
 Traits allow you to create "open world enumerations" that others can participate in. For example:
 
 ```pony
-trait Color
-
-primitive Red is Color
-primitive Blue is Color
+--8<-- "traits-and-interfaces-open-world-enumerations.pony"
 ```
 
 Here we are using a trait to provide a category of things, `Color`, that any other types can opt into by declaring itself to be a `Color`. This creates an "open world" of enumerations that you can't do using the more traditional Pony approach using type unions.
 
 ```pony
-primitive Red
-primitive Blue
-
-type Color is (Red | Blue)
+--8<-- "traits-and-interfaces-type-union.pony"
 ```
 
 In our trait based example, we can add new colors at any time. With the type union based approach, we can only add them by modifying definition of `Color` in the package that provides it.
@@ -170,17 +123,13 @@ In our trait based example, we can add new colors at any time. With the type uni
 Interfaces can't be used for open world enumerations. If we defined `Color` as an interface:
 
 ```pony
-interface Color
+--8<-- "traits-and-interfaces-open-world-interface.pony"
 ```
 
 Then literally everything in Pony would be a `Color` because everything matches the `Color` interface. You can however, do something similar using "marker methods" with an interface:
 
 ```pony
-interface Color
-  fun is_color(): None
-
-primitive Red
-  fun is_color(): None => None
+--8<-- "traits-and-interfaces-marker-methods.pony"
 ```
 
 Here we are using structural typing to create a collection of things that are in the category `Color` by providing a method that "marks" being a member of the category: `is_color`.
@@ -192,23 +141,7 @@ We've covered a couple ways that traits can be better than interfaces, let's clo
 Here's a contrived example:
 
 ```pony
-interface Compactable
-  fun ref compact()
-  fun size(): USize
-
-class Compactor
-  """
-  Compacts data structures when their size crosses a threshold
-  """
-  let _threshold: USize
-
-  new create(threshold: USize) =>
-    _threshold = threshold
-
-  fun ref try_compacting(thing: Compactable) =>
-    if thing.size() > _threshold then
-      thing.compact()
-    end
+--8<-- "traits-and-interfaces-open-world-typing.pony"
 ```
 
 The flexibility of `interface` has allowed us to define a type `Compactable` that we can use to allow our `Compactor` to accept a variety of data types including `Array`, `Map`, and `String` from the standard library.

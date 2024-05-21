@@ -15,13 +15,7 @@ Garbage collection is never attempted on any actor while it is executing a behav
 Here's a typical "I'm learning Pony" program:
 
 ```pony
-use "collections"
-
-actor Main
-  new create(env: Env) =>
-    for i in Range(1, 2_000_000) do
-      ... something that uses up heap ...
-    end
+--8<-- "garbage-collection.pony"
 ```
 
 This program will never garbage collect before exiting. `create` is run as a behavior on actors, which means that no garbage collection will occur while it's running. Long loops in behaviors are a good way to exhaust memory. Don't do it. If you want to execute something in such a fashion, use a [Timer](https://stdlib.ponylang.io/time-Timer/).

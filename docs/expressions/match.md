@@ -7,13 +7,7 @@ If we want to compare an expression to a value then we use an `if`. But if we wa
 Here's a simple example of a match expression that produces a string.
 
 ```pony
-match x
-| 2 => "int"
-| 2.0 => "float"
-| "2" => "string"
-else
-  "something else"
-end
+--8<-- "match-expression.pony"
 ```
 
 If you're used to functional languages this should be very familiar.
@@ -43,15 +37,7 @@ The compiler recognizes a match as exhaustive when the union of the types for al
 The simplest match expression just matches on value.
 
 ```pony
-fun f(x: U32): String =>
-  match x
-  | 1 => "one"
-  | 2 => "two"
-  | 3 => "three"
-  | 5 => "not four"
-  else
-    "something else"
-  end
+--8<-- "match-values.pony"
 ```
 
 For value matching the pattern is simply the value we want to match to, just like a C switch statement. The case with the same value as the operand wins and we use its expression.
@@ -59,28 +45,7 @@ For value matching the pattern is simply the value we want to match to, just lik
 The compiler calls the `eq()` function on the operand, passing the pattern as the argument. This means that you can use your own types as match operands and patterns, as long as you define an `eq()` function.
 
 ```pony
-class Foo
-  var _x: U32
-
-  new create(x: U32) =>
-    _x = x
-
-  fun eq(that: Foo): Bool =>
-    _x == that._x
-
-actor Main
-  new create(env: Env) =>
-    None
-
-  fun f(x: Foo): String =>
-    match x
-    | Foo(1) => "one"
-    | Foo(2) => "two"
-    | Foo(3) => "three"
-    | Foo(5) => "not four"
-    else
-      "something else"
-    end
+--8<-- "match-custom-eq-operand.pony"
 ```
 
 ## Matching on type and value
@@ -88,15 +53,7 @@ actor Main
 Matching on value is fine if the match operand and case patterns have all the same type. However, match can cope with multiple different types. Each case pattern is first checked to see if it is the same type as the runtime type of the operand. Only then will the values be compared.
 
 ```pony
-fun f(x: (U32 | String | None)): String =>
-  match x
-  | None => "none"
-  | 2 => "two"
-  | 3 => "three"
-  | "5" => "not four"
-  else
-    "something else"
-  end
+--8<-- "match-type-and-value.pony"
 ```
 
 In many languages using runtime type information is very expensive and so it is generally avoided whenever possible.
@@ -108,20 +65,7 @@ __When are case patterns for value matching evaluated?__ Each case pattern expre
 At first sight it is easy to confuse a value matching pattern for a type check. Consider the following example:
 
 ```pony
-class Foo is Equatable[Foo]
-
-actor Main
-
-  fun f(x: (Foo | None)): String =>
-    match x
-    | Foo => "foo"
-    | None => "bar"
-    else
-      ""
-    end
-
-  new create(env: Env) =>
-    f(Foo)
+--8<-- "match-value-pattern-matching-vs-type-check.pony"
 ```
 
 Both case patterns actually __do not__ check for the match operand `x` being an instance of `Foo` or `None`, but check for equality with the instance created by evaluating the case pattern (each time). `None` is a primitive and thus there is only one instance at all, in which case this value pattern kind of does the expected thing, but not quite. If `None` had a custom `eq` function that would not use [identity equality](/expressions/equality.md#identity-equality), this could lead to surprising results.
@@ -135,14 +79,7 @@ Sometimes you want to be able to match the type, for any value of that type. For
 Captures look just like variable declarations within the pattern. Like normal variables, they can be declared as var or let. If you're not going to reassign them within the case expression it is good practice to use let.
 
 ```pony
-fun f(x: (U32 | String | None)): String =>
-  match x
-  | None => "none"
-  | 2 => "two"
-  | 3 => "three"
-  | let u: U32 => "other integer"
-  | let s: String => s
-  end
+--8<-- "match-captures.pony"
 ```
 
 __Can I omit the type from a capture, like I can from a local variable?__ Unfortunately no. Since we match on type and value the compiler has to know what type the pattern is, so it can't be inferred.
@@ -152,45 +89,13 @@ __Can I omit the type from a capture, like I can from a local variable?__ Unfort
 In union types, when we pattern match on individual classes or traits, we also implicitly pattern match on the corresponding capabilities. In the example provided below, if `_x` has static type `(A iso | B ref | None)` and dynamically matches `A`, then we also know that it must be an `A iso`.
 
 ```pony
-class A
-  fun ref sendable() =>
-    None
-
-class B
-  fun ref update() =>
-    None
-
-actor Main
-  var _x: (A iso | B ref | None)
-
-  new create(env: Env) =>
-    _x = None
-
-  be f(a': A iso) =>
-    match (_x = None) // type of this expression: (A iso^ | B ref | None)
-    | let a: A iso => f(consume a)
-    | let b: B ref => b.update()
-    end
+--8<-- "match-capabilities.pony"
 ```
 
 Note that using a match expression to differentiate solely based on capabilities at runtime is not possible, that is:
 
 ```pony
-class A
-  fun ref sendable() =>
-    None
-
-actor Main
-  var _x: (A iso | A ref | None)
-
-  new create(env: Env) =>
-    _x = None
-
-  be f() =>
-    match (_x = None)
-    | let a1: A iso => None
-    | let a2: A ref => None
-    end
+--8<-- "match-capabilities-only.pony"
 ```
 
 does not type check.
@@ -200,29 +105,13 @@ does not type check.
 If you want to match on more than one operand at once then you can simply use a tuple. Cases will only match if __all__ the tuple elements match.
 
 ```pony
-fun f(x: (String | None), y: U32): String =>
-  match (x, y)
-  | (None, let u: U32) => "none"
-  | (let s: String, 2) => s + " two"
-  | (let s: String, 3) => s + " three"
-  | (let s: String, let u: U32) => s + " other integer"
-  else
-    "something else"
-  end
+--8<-- "match-tuples.pony"
 ```
 
 __Do I have to specify all the elements in a tuple?__ No, you don't. Any tuple elements in a pattern can be marked as "don't care" by using an underscore ('_'). The first and fourth cases in our example don't actually care about the U32 element, so we can ignore it.
 
 ```pony
-fun f(x: (String | None), y: U32): String =>
-  match (x, y)
-  | (None, _) => "none"
-  | (let s: String, 2) => s + " two"
-  | (let s: String, 3) => s + " three"
-  | (let s: String, _) => s + " other integer"
-  else
-    "something else"
-  end
+--8<-- "match-tuples-ignore-elements.pony"
 ```
 
 ## Guards
@@ -234,14 +123,5 @@ Guards are introduced with the `if` keyword (_was `where` until 0.2.1_).
 A guard expression may use any captured variables from that case, which allows for handling ranges and complex functions.
 
 ```pony
-fun f(x: (String | None), y: U32): String =>
-  match (x, y)
-  | (None, _) => "none"
-  | (let s: String, 2) => s + " two"
-  | (let s: String, 3) => s + " three"
-  | (let s: String, let u: U32) if u > 14 => s + " other big integer"
-  | (let s: String, _) => s + " other small integer"
-  else
-    "something else"
-  end
+--8<-- "match-guards.pony"
 ```

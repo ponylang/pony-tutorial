@@ -9,21 +9,7 @@ Writing your own C library for use by Pony is almost as easy as using existing l
 Let's look at a complete example of a C function we may wish to provide to Pony. Let's consider a pure Pony implementation of a [Jump Consistent Hash](https://arxiv.org/abs/1406.2294):
 
 ```pony
-// Jump consistent hashing in Pony, with an inline pseudo random generator
-// https://arxiv.org/abs/1406.2294
-
-fun jch(key: U64, buckets: U32): I32 =>
-  var k = key
-  var b = I64(0)
-  var j = I64(0)
-
-  while j < buckets.i64() do
-    b = j
-    k = (k * 2862933555777941757) + 1
-    j = ((b + 1).f64() * (I64(1 << 31).f64() / ((k >> 33) + 1).f64())).i64()
-  end
-
-  b.i32()
+--8<-- "c-abi-jump-consistent-hashing.pony"
 ```
 
 Let's say we wish to compare the pure Pony performance to an existing C function with the following header:
@@ -75,47 +61,7 @@ clang -shared -lm -o libjch.dylib jch.o
 The Pony code to use this new C library is just like the code we've already seen for using C libraries.
 
 ```pony
-"""
-This is an example of Pony integrating with native code via the built-in FFI
-support
-"""
-
-use "lib:jch"
-use "collections"
-use @jch_chash[I32](hash: U64, bucket_size: U32)
-
-actor Main
-  var _env: Env
-
-  new create(env: Env) =>
-    _env = env
-
-    let bucket_size: U32 = 1000000
-
-    _env.out.print("C implementation:")
-    for i in Range[U64](1, 20) do
-      let hash = @jch_chash(i, bucket_size)
-      _env.out.print(i.string() + ": " + hash.string())
-    end
-
-    _env.out.print("Pony implementation:")
-    for i in Range[U64](1, 20) do
-      let hash = jch(i, bucket_size)
-      _env.out.print(i.string() + ": " + hash.string())
-    end
-
-  fun jch(key: U64, buckets: U32): I32 =>
-    var k = key
-    var b = I64(0)
-    var j = I64(0)
-
-    while j < buckets.i64() do
-      b = j
-      k = (k * 2862933555777941757) + 1
-      j = ((b + 1).f64() * (I64(1 << 31).f64() / ((k >> 33) + 1).f64())).i64()
-    end
-
-    b.i32()
+--8<-- "c-abi-pony-use-native-jump-consistent-hashing-c-implementation.pony"
 ```
 
 We can now use ponyc to compile a native executable integrating Pony and our C library. And that's all we need to do.

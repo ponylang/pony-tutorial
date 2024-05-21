@@ -19,14 +19,13 @@ There are three exceptions:
 That stuff may seem a little esoteric right now, but we'll explain it all later. The `-` part should make sense though.
 
 ```pony
-a - b
+--8<-- "appendices-whitespace-subtract-b-from-a.pony"
 ```
 
 That means "subtract b from a".
 
 ```pony
-a
--b
+--8<-- "appendices-whitespace-do-a-then-do-a-unary-negation-of-b.pony"
 ```
 
 That means "first do a, then, in a new expression, do a unary negation of b".
@@ -50,27 +49,7 @@ For traits and interfaces that have methods without bodies, you can put the docs
 By convention, a docstring should be a triple-quoted string, and it should use Markdown for any formatting.
 
 ```pony
-actor Main
-  """
-  This is documentation for my Main actor
-  """
-
-  var count: USize = 0
-    """
-    This is documentation for my count field
-    """
-
-  new create(env: Env) =>
-    """
-    This is documentation for my create method
-    """
-    None
-
-trait Readable
-  fun val read()
-    """
-    This is documentation for my unimplemented read method
-    """
+--8<-- "appendices-whitespace-docstrings.pony"
 ```
 
 ## Comments
@@ -78,7 +57,5 @@ trait Readable
 Use __docstrings__ first! But if you need to put some comments in the implementation of your methods, perhaps to explain what's happening on various lines, you can use C++ style comments. In Pony, block comments can be nested.
 
 ```pony
-// This is a line comment.
-/* This is a block comment. */
-/* This block comment /* has another block comment */ inside of it. */
+--8<-- "appendices-whitespace-comments.pony"
 ```

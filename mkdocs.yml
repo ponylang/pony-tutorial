@@ -22,6 +22,9 @@ markdown_extensions:
         - name: mermaid
           class: mermaid-experimental
           format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.snippets:
+      base_path: ['code-samples']
+      check_paths: true
   - smarty
   - toc:
       permalink: true

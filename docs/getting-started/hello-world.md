@@ -18,9 +18,7 @@ __Does the name of the file matter?__ Not to the compiler, no. Pony doesn't care
 In your file, put the following code:
 
 ```pony
-actor Main
-  new create(env: Env) =>
-    env.out.print("Hello, world!")
+--8<-- "hello-world-main.pony"
 ```
 
 ## Compiling the program

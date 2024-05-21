@@ -7,17 +7,7 @@ Partial application lets us supply _some_ of the arguments to a constructor, fun
 A simple case is to create a "callback" function. For example:
 
 ```pony
-class Foo
-  var _f: F64 = 0
-
-  fun ref addmul(add: F64, mul: F64): F64 =>
-    _f = (_f + add) * mul
-
-class Bar
-  fun apply() =>
-    let foo: Foo = Foo
-    let f = foo~addmul(3)
-    f(4)
+--8<-- "partial-application-callback-function-with-some-arguments-bound.pony"
 ```
 
 This is a bit of a silly example, but hopefully, the idea is clear. We partially apply the `addmul` function on `foo`, binding the receiver to `foo` and the `add` argument to `3`. We get back an object, `f`, that has an `apply` method that takes a `mul` argument. When it's called, it in turn calls `foo.addmul(3, mul)`.
@@ -25,15 +15,13 @@ This is a bit of a silly example, but hopefully, the idea is clear. We partially
 We can also bind all the arguments:
 
 ```pony
-let f = foo~addmul(3, 4)
-f()
+--8<-- "partial-application-callback-function-with-all-arguments-bound.pony"
 ```
 
 Or even none of the arguments:
 
 ```pony
-let f = foo~addmul()
-f(3, 4)
+--8<-- "partial-application-callback-function-with-no-arguments-bound.pony"
 ```
 
 ## Out of order arguments
@@ -41,8 +29,7 @@ f(3, 4)
 Partial application with named arguments allows binding arguments in any order, not just left to right. For example:
 
 ```pony
-let f = foo~addmul(where mul = 4)
-f(3)
+--8<-- "partial-application-callback-function-with-out-of-order-arguments.pony"
 ```
 
 Here, we bound the `mul` argument but left `add` unbound.
@@ -58,7 +45,5 @@ That means partial application results in an anonymous class and returns a `ref`
 Since partial application results in an object with an apply method, we can partially apply the result!
 
 ```pony
-let f = foo~addmul()
-let f2 = f~apply(where mul = 4)
-f2(3)
+--8<-- "partial-application-partially-applying-a-partial-application.pony"
 ```

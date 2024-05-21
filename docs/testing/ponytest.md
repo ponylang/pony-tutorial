@@ -15,30 +15,7 @@ To use PonyTest simply write a class for each test and a `TestList` type that te
 The following is a complete program with 2 trivial tests.
 
 ```pony
-use "pony_test"
-
-actor Main is TestList
-  new create(env: Env) =>
-    PonyTest(env, this)
-
-  new make() =>
-    None
-
-  fun tag tests(test: PonyTest) =>
-    test(_TestAdd)
-    test(_TestSub)
-
-class iso _TestAdd is UnitTest
-  fun name(): String => "addition"
-
-  fun apply(h: TestHelper) =>
-    h.assert_eq[U32](4, 2 + 2)
-
-class iso _TestSub is UnitTest
-  fun name(): String => "subtraction"
-
-  fun apply(h: TestHelper) =>
-    h.assert_eq[U32](2, 4 - 2)
+--8<-- "ponytest-example.pony"
 ```
 
  The make() constructor is not needed for this example. However, it allows for easy aggregation of tests (see below) so it is recommended that all test Mains provide it.
@@ -58,20 +35,7 @@ Often it is desirable to run a collection of unit tests from multiple different 
 This can be achieved by writing an aggregate test list class, which calls the list function for each package. The following is an example that aggregates the tests from packages `foo` and `bar`.
 
 ```pony
-use "pony_test"
-use foo = "foo"
-use bar = "bar"
-
-actor Main is TestList
-  new create(env: Env) =>
-    PonyTest(env, this)
-
-  new make() =>
-    None
-
-  fun tag tests(test: PonyTest) =>
-    foo.Main.make().tests(test)
-    bar.Main.make().tests(test)
+--8<-- "ponytest-aggregation.pony"
 ```
 
 Aggregate test classes may themselves be aggregated. Every test list class may contain any combination of its own tests and aggregated lists.

@@ -1,0 +1,16 @@
+if \likely\ cond then
+  foo
+end
+
+while \unlikely\ cond then
+  bar
+end
+
+repeat
+  baz
+until \likely\ cond end
+
+match obj
+| \likely\ expr => foo
+| \unlikely\ let capt: T => bar
+end

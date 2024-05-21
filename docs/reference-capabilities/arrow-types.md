@@ -9,10 +9,7 @@ When that happens, we can write a __viewpoint adapted type__, which we call an _
 A function with a `box` receiver can be called with a `ref` receiver or a `val` receiver as well since those are both subtypes of `box`. Sometimes, we want to be able to talk about a type to take this into account. For example:
 
 ```pony
-class Wombat
-  var _friend: Wombat
-
-  fun friend(): this->Wombat => _friend
+--8<-- "arrow-types-this.pony"
 ```
 
 Here, we have a `Wombat`, and every `Wombat` has a friend that's also a `Wombat` (lucky `Wombat`). In fact, it's a `Wombat ref`, since `ref` is the default reference capability for a `Wombat` (since we didn't specify one). We also have a function that returns that friend. It's got a `box` receiver (because `box` is the default receiver reference capability for a function if we don't specify it).
@@ -32,7 +29,7 @@ We haven't covered generics yet, so this may seem a little weird. We'll cover th
 Another time we don't know the precise reference capability of something is if we are using a type parameter. Here's an example from the standard library:
 
 ```pony
-class ListValues[A, N: ListNode[A] box] is Iterator[N->A]
+--8<-- "arrow-types-type-parameter.pony"
 ```
 
 Here, we have a `ListValues` type that has two type parameters, `A` and `N`. In addition, `N` has a constraint: it has to be a subtype of `ListNode[A] box`. That's all fine and well, but we also say the `ListValues[A, N]` provides `Iterator[N->A]`. That's the interesting bit: we provide an interface that let's us iterate over values of the type `N->A`.
@@ -46,9 +43,7 @@ There's one more way we use arrow types, and it's also related to generics. Some
 In other words, the unknown type will be a subtype of `box`, but that's all we know. Here's an example from the standard library:
 
 ```pony
-interface Comparable[A: Comparable[A] box]
-  fun eq(that: box->A): Bool => this is that
-  fun ne(that: box->A): Bool => not eq(that)
+--8<-- "arrow-types-box.pony"
 ```
 
 Here, we say that something is `Comparable[A]` if and only if it has functions `eq` and `ne` and those functions have a single parameter of type `box->A` and return a `Bool`. In other words, whatever `A` is bound to, we only need to be able to read it.

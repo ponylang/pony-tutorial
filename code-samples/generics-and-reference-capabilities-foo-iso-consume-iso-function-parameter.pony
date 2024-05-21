@@ -1,0 +1,1 @@
+fun set(c: String iso) => _c = consume c

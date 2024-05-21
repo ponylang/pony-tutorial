@@ -19,8 +19,8 @@ The most useful options are `--debug`, `--path` or just `-p`, `--output` or just
 Let's study the documentation of the builtin standard library:
 
 ```bash
-  pip install mkdocs
-  ponyc packages/stdlib --docs && cd stdlib-docs && mkdocs serve
+pip install mkdocs
+ponyc packages/stdlib --docs && cd stdlib-docs && mkdocs serve
 ```
 
 And point your web browser to [127.0.0.1:8000](http://127.0.0.1:8000) serving a live-reloading local version of the docs.

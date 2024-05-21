@@ -8,3 +8,6 @@
 
 # Caches and logs
 *.log
+
+# vscode
+/.vscode

@@ -15,11 +15,7 @@ Pony provides different ways of doing arithmetic to give programmers the freedom
 Doing arithmetic on integer types in Pony with the well known operators like `+`, `-`, `*`, `/` etc. tries to balance the needs for performance and correctness. All default arithmetic operations do not expose any undefined behaviour or error conditions. That means it handles both the cases for overflow/underflow and division by zero. Overflow/Underflow are handled with proper wrap around semantics, using one's complement on signed integers. In that respect we get behaviour like:
 
 ```pony
-// unsigned wrap-around on overflow
-U32.max_value() + 1 == 0
-
-// signed wrap-around on overflow/underflow
-I32.min_value() - 1 == I32.max_value()
+--8<-- "arithmetic-default-integer-arithmetic.pony"
 ```
 
 Division by zero is a special case, which affects the division `/` and remainder `%` operators. In Mathematics, division by zero is undefined. In order to avoid either defining division as partial, throwing an error on division by zero or introducing undefined behaviour for that case, the _normal_ division is defined to be `0` when the divisor is `0`. This might lead to silent errors, when used without care. Choose [Partial and checked Arithmetic](#partial-and-checked-arithmetic) to detect division by zero.
@@ -69,21 +65,13 @@ Here is a list with all unsafe operations defined on Integers:
 Converting between integer types in Pony needs to happen explicitly. Each numeric type can be converted explicitly into every other type.
 
 ```pony
-// converting an I32 to a 32 bit floating point
-I32(12).f32()
+--8<-- "arithmetic-explicit-numeric-conversion.pony"
 ```
 
 For each conversion operation there exists an unsafe counterpart, that is much faster when converting from and to floating point numbers. All these unsafe conversion between numeric types are undefined if the target type is smaller than the source type, e.g. if we convert from `I64` to `F32`.
 
 ```pony
-// converting an I32 to a 32 bit floating point, the unsafe way
-I32(12).f32_unsafe()
-
-// an example for an undefined unsafe conversion
-I64.max_value().f32_unsafe()
-
-// an example for an undefined unsafe conversion, that is actually safe
-I64(1).u8_unsafe()
+--8<-- "arithmetic-unsafe-conversion.pony"
 ```
 
 Here is a full list of all available conversions for numeric types:
@@ -116,23 +104,7 @@ Here is a full list of all available conversions for numeric types:
 If overflow or division by zero are cases that need to be avoided and performance is no critical priority, partial or checked arithmetic offer great safety during runtime. Partial arithmetic operators error on overflow/underflow and division by zero. Checked arithmetic methods return a tuple of the result of the operation and a `Boolean` indicating overflow or other exceptional behaviour.
 
 ```pony
-// partial arithmetic
-let result =
-  try
-    USize.max_value() +? env.args.size()
-  else
-    env.out.print("overflow detected")
-  end
-
-// checked arithmetic
-let result =
-  match USize.max_value().addc(env.args.size())
-  | (let result: USize, false) =>
-    // use result
-    ...
-  | (_, true) =>
-    env.out.print("overflow detected")
-  end
+--8<-- "arithmetic-partial-and-check-arithmetic.pony"
 ```
 
 Partial as well as checked arithmetic comes with the burden of handling exceptions on every case and incurs some performance overhead, be warned.

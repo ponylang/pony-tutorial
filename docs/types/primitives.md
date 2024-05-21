@@ -16,30 +16,7 @@ There are three main uses of primitives (four, if you count built-in "machine wo
 3. As a "collection of functions". Since primitives can have functions, you can group functions together in a primitive type. You can see this in the standard library, where path handling functions are grouped in the __primitive__ `Path`, for example.
 
 ```pony
-// 2 "marker values"
-primitive OpenedDoor
-primitive ClosedDoor
-
-// An "enumeration" type
-type DoorState is (OpenedDoor | ClosedDoor)
-
-// A collection of functions
-primitive BasicMath
-  fun add(a: U64, b: U64): U64 =>
-    a + b
-
-  fun multiply(a: U64, b: U64): U64 =>
-    a * b
-
-actor Main
-  new create(env: Env) =>
-    let doorState : DoorState = ClosedDoor
-    let isDoorOpen : Bool = match doorState
-      | OpenedDoor => true
-      | ClosedDoor => false
-    end
-    env.out.print("Is door open? " + isDoorOpen.string())
-    env.out.print("2 + 3 = " + BasicMath.add(2,3).string())
+--8<-- "primitives-doors.pony"
 ```
 
 Primitives are quite powerful, particularly as enumerations. Unlike enumerations in other languages, each "value" in the enumeration is a complete type, which makes attaching data and functionality to enumeration values easy.

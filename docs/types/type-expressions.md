@@ -9,28 +9,25 @@ There are three kinds of type expression: __tuples__, __unions__, and __intersec
 A __tuple__ type is a sequence of types. For example, if we wanted something that was a `String` followed by a `U64`, we would write this:
 
 ```pony
-var x: (String, U64)
-x = ("hi", 3)
-x = ("bye", 7)
+--8<-- "type-expressions-tuple-declaration.pony"
 ```
 
 All type expressions are written in parentheses, and the elements of a tuple are separated by a comma. We can also destructure a tuple using assignment:
 
 ```pony
-(var y, var z) = x
+--8<-- "type-expressions-tuple-destructuring.pony"
 ```
 
 Or we can access the elements of a tuple directly:
 
 ```pony
-var y = x._1
-var z = x._2
+--8<-- "type-expressions-tuple-direct-access.pony"
 ```
 
 Note that there's no way to assign to an element of a tuple. Instead, you can just reassign the entire tuple, like this:
 
 ```pony
-x = ("wombat", x._2)
+--8<-- "type-expressions-tuple-reassignment.pony"
 ```
 
 __Why use a tuple instead of a class?__ Tuples are a way to express a collection of values that doesn't have any associated code or expected behaviour. Basically, if you just need a quick collection of things, maybe to return more than one value from a function, for example, you can use a tuple.
@@ -42,7 +39,7 @@ A __union__ type is written like a __tuple__, but it uses a `|` (pronounced "or"
 Unions can be used for tons of stuff that require multiple concepts in other languages. For example, optional values, enumerations, marker values, and more.
 
 ```pony
-var x: (String | None)
+--8<-- "type-expressions-union.pony"
 ```
 
 Here we have an example of using a union to express an optional type, where `x` might be a `String`, but it also might be `None`.
@@ -54,7 +51,7 @@ An __intersection__ uses a `&` (pronounced "and" when reading the type) between 
 This can be very useful for combining traits or interfaces, for example. Here's something from the standard library:
 
 ```pony
-type Map[K: (Hashable box & Comparable[K] box), V] is HashMap[K, V, HashEq[K]]
+--8<-- "type-expressions-intersection.pony"
 ```
 
 That's a fairly complex type alias, but let's look at the constraint of `K`. It's `(Hashable box & Comparable[K] box)`, which means `K` is `Hashable` _and_ it is `Comparable[K]`, at the same time.
@@ -64,7 +61,7 @@ That's a fairly complex type alias, but let's look at the constraint of `K`. It'
 Type expressions can be combined into more complex types. Here's another example from the standard library:
 
 ```pony
-var _array: Array[((K, V) | _MapEmpty | _MapDeleted)]
+--8<-- "type-expressions-combined.pony"
 ```
 
 Here we have an array where each element is either a tuple of `(K, V)` or a `_MapEmpty` or a `_MapDeleted`.
@@ -72,13 +69,7 @@ Here we have an array where each element is either a tuple of `(K, V)` or a `_Ma
 Because every type expression has parentheses around it, they are actually easy to read once you get the hang of it. However, if you use a complex type expression often, it can be nice to provide a type alias for it.
 
 ```pony
-type Number is (Signed | Unsigned | Float)
-
-type Signed is (I8 | I16 | I32 | I64 | I128)
-
-type Unsigned is (U8 | U16 | U32 | U64 | U128)
-
-type Float is (F32 | F64)
+--8<-- "type-expressions-type-alias.pony"
 ```
 
 Those are all type aliases used by the standard library.

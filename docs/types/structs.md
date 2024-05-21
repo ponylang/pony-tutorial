@@ -23,13 +23,7 @@ Pony struct fields are defined in the same way as they are for Pony classes, usi
 For example:
 
 ```pony
-struct Inner
-  var x: I32 = 0
-
-struct Outer
-  embed inner_embed: Inner = Inner
-  var inner_var: Inner = Inner
-
+--8<-- "structs-fields.pony"
 ```
 
 ### Constructors
@@ -37,23 +31,7 @@ struct Outer
 Struct constructors, like class constructors, have names. Everything you previously learned about Pony class constructors applies to struct constructors.
 
 ```pony
-struct Pointer[A]
-  """
-  A Pointer[A] is a raw memory pointer. It has no descriptor and thus can't be
-  included in a union or intersection, or be a subtype of any interface. Most
-  functions on a Pointer[A] are private to maintain memory safety.
-  """
-  new create() =>
-    """
-    A null pointer.
-    """
-    compile_intrinsic
-
-  new _alloc(len: USize) =>
-    """
-    Space for len instances of A.
-    """
-    compile_intrinsic
+--8<-- "structs-constructors.pony"
 ```
 
 Here we have two constructors. One that creates a new null Pointer, and another creates a Pointer with space for many instances of the type the Pointer is pointing at. Don't worry if you don't follow everything you are seeing in the above example. The important part is, it should basically look like the class constructor example [we saw earlier](/types/classes.md#what-goes-in-a-class).

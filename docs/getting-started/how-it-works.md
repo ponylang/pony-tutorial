@@ -3,9 +3,7 @@
 Let's look at our `helloworld` code again:
 
 ```pony
-actor Main
-  new create(env: Env) =>
-    env.out.print("Hello, world!")
+--8<-- "hello-world-main.pony"
 ```
 
 Let's go through that line by line.
@@ -13,7 +11,7 @@ Let's go through that line by line.
 ## Line 1
 
 ```pony
-actor Main
+--8<-- "hello-world-main.pony::1"
 ```
 
 This is a __type declaration__. The keyword `actor` means we are going to define an actor, which is a bit like a class in Python, Java, C#, C++, etc. Pony has classes too, which we'll see later.
@@ -25,7 +23,7 @@ A Pony program has to have a `Main` actor. It's kind of like the `main` function
 ## Line 2
 
 ```pony
-  new create(env: Env) =>
+--8<-- "hello-world-main.pony:2:2"
 ```
 
 This is a __constructor__. The keyword `new` means it's a function that creates a new instance of the type. In this case, it creates a new __Main__.
@@ -43,7 +41,7 @@ __Wait, what's the body?__ It's the code that comes after the `=>`.
 ## Line 3
 
 ```pony
-    env.out.print("Hello, world!")
+--8<-- "hello-world-main.pony:3:3"
 ```
 
 This is your program! What the heck is it doing?
