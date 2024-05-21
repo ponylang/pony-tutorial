@@ -25,6 +25,7 @@ markdown_extensions:
   - pymdownx.snippets:
       base_path: ['code-samples']
       check_paths: true
+      dedent_subsections: true
   - smarty
   - toc:
       permalink: true
