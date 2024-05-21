@@ -37,7 +37,7 @@ The first parameter of the `TCPConnection` constructor has the type `TCPConnectA
 Now imagine we don't trust the `Connect` actor, so we don't want to provide it with more authority than needed. For example, there is no point in granting it filesystem access, since it is supposed to do network things (specifically, TCP), not access the filesystem. Instead of passing the entire `AmbientAuth` (the root of all authority), we "downgrade" that to a `TCPConnectAuth` (the most restrictive authority in `net`), pass it to the `Connect` actor, and have that pass it to the `TCPConnection` constructor:
 
 ```pony
---8<-- "derived-authority-restrict-then-delegate-your-authority.pony"
+--8<-- "derived-authority-restrict-then-delegate-your-authority.pony:16:22"
 ```
 
 Now we are sure it cannot access the filesystem or listen on a TCP or UDP port. Pay close mind to the authority that code you are calling is asking for. Never give `AmbientAuth` to __any__ code you do not trust completely both now and in the future. You should always create the most specific authority and give the library that authority. If the library is asking for more authority than it needs, __do not use the library__.
