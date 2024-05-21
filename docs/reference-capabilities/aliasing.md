@@ -11,7 +11,7 @@ In Pony, that works for some reference capabilities, but not all.
 The reason for this is that the `iso` reference capability denies other `iso` variables that point to the same object. That is, you can only have one `iso` variable pointing to any given object. The same goes for `trn`.
 
 ```pony
---8<-- "aliasing-multiple-references-to-an-iso-object.pony"
+--8<-- "aliasing-multiple-references-to-an-iso-object.pony:5:6"
 ```
 
 Here we have some function that gets passed an isolated Wombat. If we try to alias `a` by assigning it to `b`, we'll be breaking reference capability guarantees, so the compiler will stop us. Instead, we can only store aliases that are compatible with the original capability.
@@ -19,13 +19,13 @@ Here we have some function that gets passed an isolated Wombat. If we try to ali
 __What can I alias an `iso` as?__ Since an `iso` says no other variable can be used by _any_ actor to read from or write to that object, we can only create aliases to an `iso` that can neither read nor write. Fortunately, we have a reference capability that does exactly that: `tag`. So we can do this and the compiler will be happy:
 
 ```pony
---8<-- "aliasing-iso-to-tag.pony"
+--8<-- "aliasing-iso-to-tag.pony:5:6"
 ```
 
 __What about aliasing `trn`?__ Since a `trn` says no other variable can be used by _any_ actor to write to that object, we need something that doesn't allow writing but also doesn't prevent our `trn` variable from writing. Fortunately, we have a reference capability that does that too: `box`. So we can do this and the compiler will be happy:
 
 ```pony
---8<-- "aliasing-trn-to-box.pony"
+--8<-- "aliasing-trn-to-box.pony:5:6"
 ```
 
 __What about aliasing other stuff?__ For both `iso` and `trn`, the guarantees require that aliases must give up on some ability (reading and writing for `iso`, writing for `trn`). For the other capabilities (`ref`, `val`, `box` and `tag`), aliases allow for the same operations, so such a reference can just be aliased as itself.
