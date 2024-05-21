@@ -19,13 +19,13 @@ What this means is that once you build your program, you can run it over and ove
 But it also means you need to build your program before you can run it. In an interpreted language or a JIT compiled language, you tend to do things like this to run your program:
 
 ```bash
---8<-- "what-you-need-run-python.sh"
+python helloworld.py
 ```
 
 Or maybe you put a __shebang__ in your program (like `#!/usr/bin/env python`), then `chmod` to set the executable bit, and then do:
 
 ```bash
---8<-- "what-you-need-run-python-shebang.sh"
+./helloworld.py
 ```
 
 When you use Pony, you don't do any of that!
@@ -35,13 +35,13 @@ When you use Pony, you don't do any of that!
 If you are in the same directory as your program, you can just do:
 
 ```bash
---8<-- "what-you-need-compile-pony.sh"
+ponyc
 ```
 
 That tells the Pony compiler that your current working directory contains your source code, and to please compile it. If your source code is in some other directory, you can tell ponyc where it is:
 
 ```bash
---8<-- "what-you-need-compile-pony-other-directory.sh"
+ponyc path/to/my/code
 ```
 
 There are other options as well, but we'll cover those later.

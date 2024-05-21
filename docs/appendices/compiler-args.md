@@ -3,7 +3,7 @@
 `ponyc`, the compiler, is usually called in the project directory, where it finds the `.pony` files and its dependencies automatically. There it will create the binary based on the directory name. You can override this and tune the compilation with several options as described via `ponyc --help` and you can pass a separate source directory as an argument.
 
 ```bash
---8<-- "appendices-compiler-args-ponyc.sh"
+ponyc [OPTIONS] <package directory>
 ```
 
 The most useful options are `--debug`, `--path` or just `-p`, `--output` or just `-o` and `--docs` or `-g`.

@@ -19,7 +19,14 @@ Suppose you wrote:
 The error message would be:
 
 ```error
---8<-- "error-messages-left-side-must-be-something-that-can-be-assigned-to-error-message.txt"
+Error:
+main.pony:4:5: can't assign to a let or embed definition more than once
+    x = 12
+    ^
+Error:
+main.pony:4:7: left side must be something that can be assigned to
+    x = 12
+      ^
 ```
 
 What happened is that you declared `x` as a constant, by writing `let x`, and then tried to assign a new value to it, 12. To fix the error, replace `let` with `var` or reconsider what value you want `x` to have.
@@ -37,7 +44,10 @@ Suppose you create a class with a mutable field and added a method to change the
 The error message would be:
 
 ```error
---8<-- "error-messages-left-side-is-immutable-error-message.txt"
+Error:
+main.pony:4:11: left side is immutable
+    color = new_color
+          ^
 ```
 
 To understand this error message, you have to have some background. The field `color` is mutable since it is declared with `var`, but the method `dye` does not have an explicit receiver reference capability. The default receiver reference capability is `box`, which allows `dye` to be called on any mutable or immutable `Wombat`; the `box` reference capability says that the method may read from but not write to the receiver. As a result, it is illegal to attempt to modify the receiver in the method.
@@ -57,7 +67,23 @@ In this example, rather than trying to change the value of a field, the code cal
 The problem is very similar to that of the last section, but the error message is significantly more complicated:
 
 ```error
---8<-- "error-messages-receiver-type-is-not-a-subtype-of-target-type-error-message.txt"
+Error:
+main.pony:4:16: receiver type is not a subtype of target type
+    colors.push(color)
+               ^
+    Info:
+    main.pony:4:5: receiver type: this->Array[String val] ref (which becomes 'Array[String val] box' in this context)
+        colors.push(color)
+        ^
+    /root/.local/share/ponyup/ponyc-release-0.58.0-x86_64-linux-musl/packages/builtin/array.pony:623:3: target type: Array[String val] ref^
+      fun ref push(value: A) =>
+      ^
+    main.pony:2:15: Array[String val] box is not a subtype of Array[String val] ref^: box is not a subcap of ref^
+      let colors: Array[String] = Array[String]
+                  ^
+    main.pony:3:3: you are trying to change state in a box function; this would be possible in a ref function
+      fun add_stripe(color: String) =>
+      ^
 ```
 
 Once again, Pony is trying to be helpful. The first few lines describe the error, in general terms that only a programming language maven would like: an incompatibility between the receiver type and the target type. However, Pony provides more information: the lines immediately after "Info:" tell you what it believes the receiver type to be and the next few lines describe what it believes the target type to be. Finally, the last few lines describe in detail what the problem is.

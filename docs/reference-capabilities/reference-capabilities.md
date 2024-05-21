@@ -9,7 +9,7 @@ In Pony, we do it with _reference capabilities_.
 If you open a file in UNIX and get a file descriptor back, that file descriptor is a token that designates an object - but it isn't a capability. To be a capability, we need to open that file with some permission - some access right. For example:
 
 ```C
---8<-- "reference-capabilities-file-open.c"
+int fd = open("/etc/passwd", O_RDWR);
 ```
 
 Now we have a token and a set of rights.
