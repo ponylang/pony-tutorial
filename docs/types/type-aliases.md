@@ -22,7 +22,7 @@ You can also declare constants like in C or Go like this, making use of `apply`,
 which can be omitted during call (will be discussed further in [Sugar](/expressions/sugar.md)),
 
 ```pony
---8<-- "type-aliases-enumerations-apply.pony"
+--8<-- "type-aliases-enumerations-apply.pony:7:11"
 ```
 
 or namespace them like this
@@ -34,7 +34,11 @@ or namespace them like this
 You might also want to iterate over the enumeration items like this to print their value for debugging purposes
 
 ```pony
---8<-- "type-aliases-enumerations-iteration.pony"
+--8<--
+type-aliases-enumerations-apply.pony:13:15
+
+type-aliases-enumerations-apply.pony:3:5
+--8<--
 ```
 
 ## Complex types
@@ -42,13 +46,13 @@ You might also want to iterate over the enumeration items like this to print the
 If a type is complicated, it can be nice to give it a mnemonic name. For example, if we want to say that a type must implement more than one interface, we could say:
 
 ```pony
---8<-- "type-aliases-complex-types-interface.pony"
+--8<-- "type-aliases-complex-types-interface.pony:6:15"
 ```
 
 This use of complex types applies to traits, not just interfaces:
 
 ```pony
---8<-- "type-aliases-complex-types-trait.pony"
+--8<-- "type-aliases-complex-types-trait.pony:6:15"
 ```
 
 There's another new concept here: the type has a `&` in it. This is similar to the `|` of a __union__ type: it means this is an __intersection__ type. That is, it's something that must be _all_ of `HasName`, `HasAge` _and_ `HasFeelings`.
