@@ -1,2 +1,0 @@
-$ ./helloworld
-Hello, world!

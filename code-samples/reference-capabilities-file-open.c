@@ -1,1 +1,0 @@
-int fd = open("/etc/passwd", O_RDWR);

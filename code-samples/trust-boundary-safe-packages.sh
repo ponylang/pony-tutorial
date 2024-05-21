@@ -1,1 +1,0 @@
-ponyc --safe=files:net:process my_project
