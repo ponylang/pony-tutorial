@@ -1,8 +1,0 @@
-Error:
-main.pony:4:5: can't assign to a let or embed definition more than once
-    x = 12
-    ^
-Error:
-main.pony:4:7: left side must be something that can be assigned to
-    x = 12
-      ^
