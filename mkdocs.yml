@@ -53,6 +53,7 @@ theme:
   features:
     - content.code.copy
     - content.code.select
+    - navigation.footer
     - navigation.instant
     - navigation.indexes
     - navigation.tracking
