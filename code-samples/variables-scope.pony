@@ -1,6 +1,11 @@
-if a > b then
-  var x = "a is bigger"
-  env.out.print(x)  // OK
-end
+actor Main
+  new create(env: Env) =>
+    let a = 2
+    let b = 1
 
-env.out.print(x)  // Illegal
+    if a > b then
+      var x = "a is bigger"
+      env.out.print(x)  // OK
+    end
+    
+    env.out.print(x)  // Illegal

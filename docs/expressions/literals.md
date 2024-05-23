@@ -126,7 +126,7 @@ literals-string-literals-instances.pony:10:10
 Array literals are enclosed by square brackets. Array literal elements can be any kind of expressions. They are separated by semicolon or newline:
 
 ```pony
---8<-- "literals-array-literals.pony"
+--8<-- "literals-array-literals.pony:3:7"
 ```
 
 ### Type inference
