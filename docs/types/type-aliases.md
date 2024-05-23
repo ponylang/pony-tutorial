@@ -22,7 +22,7 @@ You can also declare constants like in C or Go like this, making use of `apply`,
 which can be omitted during call (will be discussed further in [Sugar](/expressions/sugar.md)),
 
 ```pony
---8<-- "type-aliases-enumerations-apply.pony:7:11"
+--8<-- "type-aliases-enumerations-apply.pony:15:19"
 ```
 
 or namespace them like this
@@ -35,9 +35,9 @@ You might also want to iterate over the enumeration items like this to print the
 
 ```pony
 --8<--
-type-aliases-enumerations-apply.pony:13:15
+type-aliases-enumerations-apply.pony:21:23
 
-type-aliases-enumerations-apply.pony:3:5
+type-aliases-enumerations-apply.pony:11:13
 --8<--
 ```
 
