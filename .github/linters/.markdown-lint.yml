@@ -1,5 +1,8 @@
 {
   "MD007": { "indent": 4 },
   "MD013": false,
-  "MD026": false
+  "MD026": false,
+  "MD025": {
+    front_matter_title: ""
+  }
 }
