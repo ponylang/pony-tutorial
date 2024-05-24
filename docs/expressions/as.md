@@ -19,7 +19,7 @@ Note that the type requested as the `as` argument must exist as a type of the ob
 In addition to using `as` with a union of disjoint types, we can also express an intersected type of the object, meaning the object has a type that the alias we have for the object is not directly related to the type we want to express. For example:
 
 ```pony
---8<-- "as-operator-unrelated-type.pony"
+--8<-- "as-operator-unrelated-type.pony:1:10"
 ```
 
 `as` can also be used to get a more specific type of an object from an alias to it that is an interface or a trait. Let's say, for example, that you have a library for doing things with furry, rodent-like creatures. It provides a `Critter` interface which programmers can then use to create specific types of critters.
@@ -37,19 +37,19 @@ The programmer uses this library to create a `Wombat` and a `Capybara` class. Bu
 You can do the same with interfaces as well. In the example below, we have an Array of `Any` which is an interface where we want to try wash any entries that conform to the `Critter` interface.
 
 ```pony
---8<-- "as-operator-more-specific-interface-with-reference-capability.pony"
+--8<-- "as-operator-more-specific-interface-with-reference-capability.pony:11:18"
 ```
 
 Note, All the `as` examples above could be written using a `match` statement where a failure to match results in `error`. For example, our last example written to use `match` would be:
 
 ```pony
---8<-- "as-operator-match-statement-comparison.pony"
+--8<-- "as-operator-match-statement-comparison.pony:11:23"
 ```
 
 Thinking of the `as` keyword as "an attempt to match that will error if not matched" is a good mental model to have. If you don't care about handling the "not matched" case that causes an error when using `as`, you can rewrite an `as` to use match without an error like:
 
 ```pony
---8<-- "as-operator-match-statement-without-try.pony"
+--8<-- "as-operator-match-statement-without-try.pony:11:19"
 ```
 
 You can learn more about matching on type in the [captures section of the match documentation](/expressions/match.md#captures).
