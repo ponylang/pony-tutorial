@@ -41,6 +41,7 @@ plugins:
 
 theme:
   name: material
+  custom_dir: overrides
 
   favicon: assets/logo.png
 
