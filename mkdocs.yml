@@ -1,4 +1,5 @@
 site_name: Pony Tutorial
+site_description: "This tutorial is aimed at people who have some experience programming already. It doesn’t really matter if you know a little Python, or a bit of Ruby, or you are a JavaScript hacker, or Java, or Scala, or C/C++, or Haskell, or OCaml: as long as you’ve written some code before, you should be fine."
 
 copyright: Copyright &copy; 2021 The Pony Developers
 edit_uri: edit/main/docs/
