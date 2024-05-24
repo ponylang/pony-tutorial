@@ -7,7 +7,7 @@ To do real work in a program you have to be able to make decisions, iterate thro
 The simplest control structure is the good old `if`. It allows you to perform some action only when a condition is true. In Pony it looks like this:
 
 ```pony
---8<-- "control-structures-conditionals-if.pony"
+--8<-- "control-structures-conditionals-if.pony:5:7"
 ```
 
 __Can I use integers and pointers for the condition like I can in C?__ No. In Pony `if` conditions must have type `Bool`, i.e. they are always true or false. If you want to test whether a number `a` is not 0, then you need to explicitly say `a != 0`. This restriction removes a whole category of potential bugs from Pony programs.
@@ -15,19 +15,19 @@ __Can I use integers and pointers for the condition like I can in C?__ No. In Po
 If you want some alternative code for when the condition fails just add an `else`:
 
 ```pony
---8<-- "control-structures-conditionals-if-else.pony"
+--8<-- "control-structures-conditionals-if-else.pony:5:9"
 ```
 
 Often you want to test more than one condition in one go, giving you more than two possible outcomes. You can nest `if` statements, but this quickly gets ugly:
 
 ```pony
---8<-- "control-structures-conditionals-nested-if-else.pony"
+--8<-- "control-structures-conditionals-nested-if-else.pony:5:13"
 ```
 
 As an alternative Pony provides the `elseif` keyword that combines an `else` and an `if`. This works the same as saying `else if` in other languages and you can have as many `elseif`s as you like for each `if`.
 
 ```pony
---8<-- "control-structures-conditionals-if-elseif-else.pony"
+--8<-- "control-structures-conditionals-if-elseif-else.pony:5:11"
 ```
 
 __Why can't I just say "else if" like I do in C? Why the extra keyword?__ The relationship between `if` and `else` in C, and other similar languages, is ambiguous. For example:
@@ -52,7 +52,7 @@ In Pony control flow statements like this are all expressions that hand back a v
 This means you can use `if` directly in a calculation:
 
 ```pony
---8<-- "control-structures-conditionals-expressions.pony"
+--8<-- "control-structures-conditionals-expressions.pony:5:5"
 ```
 
 This will give __x__ a value of either 3 or 101, depending on the variable __lots__.
@@ -60,13 +60,13 @@ This will give __x__ a value of either 3 or 101, depending on the variable __lot
 If the `then` and `else` branches of an `if` produce different types then the `if` produces a __union__ of the two.
 
 ```pony
---8<-- "control-structures-conditionals-expression-union-type.pony"
+--8<-- "control-structures-conditionals-expression-union-type.pony:4:9"
 ```
 
 __But what if my if doesn't have an else?__ Any `else` branch that doesn't exist gives an implicit `None`.
 
 ```pony
---8<-- "control-structures-conditionals-expression-implicit-none.pony"
+--8<-- "control-structures-conditionals-expression-implicit-none.pony:4:7"
 ```
 
 The same rules that apply to the value of an `if` expression applies to loops as well. Let's take a look at what a loop value would look like:
@@ -102,7 +102,7 @@ Pony `while` loops are very similar to those in other languages. A condition exp
 Here's an example that prints out the numbers 1 to 10:
 
 ```pony
---8<-- "control-structures-loops-while.pony"
+--8<-- "control-structures-loops-while.pony:3:8"
 ```
 
 Just like `if` expressions, `while` is also an expression. The value returned is just the value of the expression inside the loop the last time we go round it. For this example that will be the value given by `count = count + 1` when count is incremented to 11. Since Pony assignments hand back the _old_ value our `while` loop will return 10.
@@ -120,7 +120,7 @@ Sometimes you want to stop part-way through a loop and give up altogether. Pony 
 Let's have an example. Suppose you want to go through a list of names, looking for either "Jack" or "Jill". If neither of those appear, you'll just take the last name you're given, and if you're not given any names at all, you'll use "Herbert".
 
 ```pony
---8<-- "control-structures-loops-while-break-else.pony"
+--8<-- "control-structures-loops-while-break-else.pony:10:19"
 ```
 
 So first we ask if there are any more names to get. If there are then we get a name and see if it's "Jack" or "Jill". If it is we're done and we break out of the loop, handing back the name we've found. If not we try again.
@@ -150,7 +150,7 @@ The Pony `for` loop iterates over a collection of items using an iterator. On ea
 For example, to print out all the strings in an array:
 
 ```pony
---8<-- "control-structures-loops-for.pony"
+--8<-- "control-structures-loops-for.pony:3:5"
 ```
 
 Note the call to `values()` on the array — this is because the loop needs an iterator, not an array.
@@ -166,7 +166,7 @@ where T is the type of the objects in the collection. You don't need to worry ab
 You can think of the above example as being equivalent to:
 
 ```pony
---8<-- "control-structures-loops-for-while-comparison.pony"
+--8<-- "control-structures-loops-for-while-comparison.pony:4:8"
 ```
 
 Note that the variable __name__ is declared _let_, so you cannot assign to the control variable within the loop.
