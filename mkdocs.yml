@@ -28,6 +28,7 @@ markdown_extensions:
   - smarty
   - toc:
       permalink: true
+  - meta
 
 plugins:
   - search
