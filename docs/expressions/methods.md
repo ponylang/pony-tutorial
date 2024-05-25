@@ -11,7 +11,7 @@ __Can I have some code outside of any methods like I do in Python?__ No. All Pon
 Pony functions are quite like functions (or methods) in other languages. They can have 0 or more parameters and 0 or 1 return values. If the return type is omitted then the function will have a return value of `None`.
 
 ```pony
---8<-- "methods-functions.pony"
+--8<-- "methods-functions.pony:6:11"
 ```
 
 The function parameters (if any) are specified in parentheses after the function name. Functions that don't take any parameters still need to have the parentheses.
@@ -31,7 +31,7 @@ __Can I overload functions by argument type?__ No, you cannot have multiple meth
 Pony constructors are used to initialise newly created objects, as in many languages. However, unlike many languages, Pony constructors are named so you can have as many as you like, taking whatever parameters you like. By convention, the main constructor of each type (if there is such a thing for any given type) is called `create`.
 
 ```pony
---8<-- "methods-constructors.pony"
+--8<-- "methods-constructors.pony:6:13"
 ```
 
 The purpose of a constructor is to set up the internal state of the object being created. To ensure this is done constructors must initialise all the fields in the object being constructed.
