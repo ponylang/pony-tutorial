@@ -9,7 +9,7 @@ An error is raised with the command `error`. At any point, the code may decide t
 Error handlers are declared using the `try`-`else` syntax.
 
 ```pony
---8<-- "errors-try-else.pony"
+--8<-- "errors-try-else.pony:9:15"
 ```
 
 In the above code `callA()` will always be executed and so will `callB()`. If the result of `callB()` is true then we will proceed to `callC()` in the normal fashion and `callD()` will not then be executed.
@@ -37,7 +37,7 @@ Pony does not require that all errors are handled immediately as in our previous
 For example, a somewhat contrived version of the factorial function that accepts a signed integer will error if given a negative input. It's only partially defined over its valid input type.
 
 ```pony
---8<-- "errors-partial-functions.pony"
+--8<-- "errors-partial-functions.pony:16:22"
 ```
 
 Everywhere that an error can be generated in Pony (an error command, a call to a partial function, or certain built-in language constructs) must appear within a `try` block or a function that is marked as partial. This is checked at compile time, ensuring that an error cannot escape handling and crash the program.
@@ -57,7 +57,7 @@ Behaviours are also executed asynchronously and so cannot be partial for the sam
 In addition to an `else` error handler, a `try` command can have a `then` block. This is executed after the rest of the `try`, whether or not an error is raised or handled. Expanding our example from earlier:
 
 ```pony
---8<-- "errors-try-then.pony"
+--8<-- "errors-try-then.pony:9:17"
 ```
 
 The `callE()` will always be executed. If `callB()` returns true then the sequence executed is `callA()`, `callB()`, `callC()`, `callE()`. If `callB()` returns false then the sequence executed is `callA()`, `callB()`, `callD()`, `callE()`.
