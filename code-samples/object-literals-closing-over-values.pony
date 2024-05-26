@@ -6,3 +6,8 @@ class Foo
       fun apply(): String => str
       fun hash(): USize => str.hash()
     end
+
+actor Main
+  new create(env: Env) =>
+    let x = "hello world"
+    env.out.print(x + ": " + Foo.foo(x).hash().string())
