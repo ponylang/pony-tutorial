@@ -1,16 +1,32 @@
-if \likely\ cond then
-  foo
-end
+type T is (U32|U8)
 
-while \unlikely\ cond then
-  bar
-end
+actor Main
+  new create(env: Env) =>
+    let foo = "foo"
+    let bar = "bar"
+    let baz = "baz"
+    var cond = true
+    let obj: U32 = 42
+    let expr: U32 = 42
+  
+    if \likely\ cond then
+      foo
+    end
 
-repeat
-  baz
-until \likely\ cond end
+    cond = false
+    while \unlikely\ cond do
+      bar
+    end
 
-match obj
-| \likely\ expr => foo
-| \unlikely\ let capt: T => bar
-end
+    cond = true
+    repeat
+      baz
+    until \likely\ cond end
+    
+    let res =
+    match obj
+    | \likely\ expr => foo
+    | \unlikely\ let capt: T => bar
+    end
+
+    env.out.print("res = " + res)
