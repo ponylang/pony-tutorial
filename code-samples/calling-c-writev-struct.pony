@@ -10,8 +10,10 @@ struct IOVec
   var base: Pointer[U8] tag = Pointer[U8]
   var len: USize = 0
 
-let data = "Hello from Pony!"
-var iov = IOVec
-iov.base = data.cpointer()
-iov.len = data.size()
-@writev(1, iov, 1) // Will print "Hello from Pony!"
+actor Main
+  new create(env: Env) =>
+    let data = "Hello from Pony!"
+    var iov = IOVec
+    iov.base = data.cpointer()
+    iov.len = data.size()
+    @writev(1, iov, 1) // Will print "Hello from Pony!"

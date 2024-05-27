@@ -61,13 +61,19 @@ The above example would also work if we used `Pointer[None]` for all the pointer
 Like we mentioned above, Pony classes and structs correspond directly to pointers to the class or struct in C. This means that in most cases we won't need to use the `addressof` operator when passing struct types to C. For example, let's imagine we want to use the `writev` function from Pony on Linux:
 
 ```pony
---8<-- "calling-c-writev-struct.pony"
+--8<--
+calling-c-writev-struct.pony:1:12
+calling-c-writev-struct.pony:15:19
+--8<--
 ```
 
 As you saw, a `IOVec` instance in Pony is equivalent to `struct iovec*`. In some cases, like the above example, it can be cumbersome to define a `struct` type in Pony if you only want to use it in a single place. You can also use a pointer to a tuple type as a shorthand for a struct: let's rework the above example:
 
 ```pony
---8<-- "calling-c-writev-tuple.pony"
+--8<--
+calling-c-writev-tuple.pony:1:2
+calling-c-writev-tuple.pony:5:7
+--8<--
 ```
 
 In the example above, the type `Pointer[(Pointer[U8] tag, USize)] tag` is equivalent to the `IOVec` struct type we defined earlier. That is, _a struct type is equivalent to a pointer to a tuple type with the fields of the struct as elements, in the same order as the original struct type defined them_.
@@ -79,7 +85,10 @@ In the example above, the type `Pointer[(Pointer[U8] tag, USize)] tag` is equiva
 A common pattern in C is to pass a struct pointer to a function, and that function will fill in various values in the struct. To do this in Pony, you make a `struct` and then use a `NullablePointer`, which denotes a possibly-null type:
 
 ```pony
---8<-- "calling-c-ioctl-struct.pony"
+--8<--
+calling-c-ioctl-struct.pony:1:8
+calling-c-ioctl-struct.pony:11:15
+--8<--
 ```
 
 A `NullablePointer` type can only be used with `structs`, and is only intended for output parameters (like in the example above) or for return types from C. You don't need to use a `NullablePointer` if you are only passing a `struct` as a regular input parameter.
@@ -87,7 +96,7 @@ A `NullablePointer` type can only be used with `structs`, and is only intended f
 If you are using a C function that returns a struct, remember, that the C function needs to return a pointer to the struct. The following in Pony should be read as **returns a pointer to struct `Rect`**:
 
 ```pony
---8<-- "calling-c-from-c-struct.pony"
+--8<-- "calling-c-from-c-struct.pony:1:5"
 ```
 
 As we saw earlier, you can also use a `Pointer[(U16, U16)]` as well. It is the equivalent to our `Rect`.
@@ -141,7 +150,10 @@ When specifying a different return type for an FFI function, make sure that the 
 Some C functions are variadic, that is, they can take a variable number of parameters. To interact with these functions, you should also specify that fact in the FFI signature:
 
 ```pony
---8<-- "calling-c-variadic-c-functions.pony"
+--8<--
+calling-c-variadic-c-functions.pony:1:2
+calling-c-variadic-c-functions.pony:10:12
+--8<--
 ```
 
 In the example above, the compiler will type-check the first argument to `printf`, but will not be able to check any other argument, since it lacks the necessary type information. It is __very__ important that you use `...` in the FFI signature if the corresponding C function is variadic: if you don't, the compiler might generate a program that is incorrect or crash on some platforms while appearing to work correctly on others.
