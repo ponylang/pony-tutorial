@@ -9,7 +9,7 @@ Writing your own C library for use by Pony is almost as easy as using existing l
 Let's look at a complete example of a C function we may wish to provide to Pony. Let's consider a pure Pony implementation of a [Jump Consistent Hash](https://arxiv.org/abs/1406.2294):
 
 ```pony
---8<-- "c-abi-jump-consistent-hashing.pony"
+--8<-- "c-abi-jump-consistent-hashing.pony:5:18"
 ```
 
 Let's say we wish to compare the pure Pony performance to an existing C function with the following header:
