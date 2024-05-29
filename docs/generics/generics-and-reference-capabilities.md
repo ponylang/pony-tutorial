@@ -50,7 +50,13 @@ That compiles and runs, so `ref` is valid now. The real test though is `iso`. Le
 This fails to compile. The first error is:
 
 ```error
---8<-- "generics-and-reference-capabilities-foo-iso-error-message.txt"
+main.pony:5:8: right side must be a subtype of left side
+    _c = c
+       ^
+    Info:
+    main.pony:4:17: String iso! is not a subtype of String iso: iso! is not a subtype of iso
+      new create(c: String iso) =>
+                ^
 ```
 
 The error is telling us that we are aliasing the `String iso` - The `!` in `iso!` means it is an alias of an existing `iso`. Looking at the code shows the problem:
