@@ -1,4 +1,3 @@
-
 actor Main
   new create(env: Env) =>
     env.out.print(recursive_factorial(42).string())
