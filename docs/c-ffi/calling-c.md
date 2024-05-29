@@ -43,7 +43,11 @@ When dealing with `void*` return types from C, it is good practice to try to nar
 To pass pointers to values to C the `addressof` operator can be used (previously `&`), just like taking an address in C. This is done in the standard library to pass the address of a `U32` to an FFI function that takes a `int*` as an out parameter:
 
 ```pony
---8<-- "calling-c-addressof.pony"
+--8<--
+https://raw.githubusercontent.com/ponylang/ponyc/main/packages/builtin/float.pony:59
+// ...
+https://raw.githubusercontent.com/ponylang/ponyc/main/packages/builtin/float.pony:432:424
+--8<--
 ```
 
 ### Get and Pass Pointers to FFI

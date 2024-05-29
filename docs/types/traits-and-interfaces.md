@@ -29,7 +29,11 @@ Structural typing is very similar to [duck typing](https://en.wikipedia.org/wiki
 You do not declare structural relationships ahead of time, instead it is done by checking if a given concrete type can fulfill the required interface. For example, in the code below, we have the interface `Stringable` from the standard library. Anything can be used as a `Stringable` so long as it provides the method `fun string(): String iso^`. In our example below, `ExecveError` provides the `Stringable` interface and can be used anywhere a `Stringable` is needed. Because `Stringable` is a structural type, `ExecveError` doesn't have to declare a relationship to `Stringable`, it simply has that relationship because it has "the same shape".
 
 ```pony
---8<-- "traits-and-interfaces-structural-subtyping.pony"
+--8<--
+https://raw.githubusercontent.com/ponylang/ponyc/main/packages/builtin/stringable.pony
+
+traits-and-interfaces-structural-subtyping.pony:18:19
+--8<--
 ```
 
 ## Nominal and structural subtyping in Pony

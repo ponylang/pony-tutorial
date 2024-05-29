@@ -23,7 +23,7 @@ This expression returns an `Array[String] iso`, instead of the usual `Array[Stri
 Here's a more complicated example from the standard library:
 
 ```pony
---8<-- "recovering-capabilities-format-int.pony"
+--8<-- "https://raw.githubusercontent.com/ponylang/ponyc/master/packages/format/_format_int.pony:81:101"
 ```
 
 That's from `format/_FormatInt`. It creates a `String ref`, does a bunch of stuff with it, and finally returns it as a `String iso`.

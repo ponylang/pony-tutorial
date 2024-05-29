@@ -62,7 +62,7 @@ But the use of `type` here is exactly the same as the enumeration example above,
 Another example, this time from the standard library, is `SetIs`. Here's the actual definition:
 
 ```pony
---8<-- "type-aliases-set-is.pony"
+--8<-- "https://raw.githubusercontent.com/ponylang/ponyc/main/packages/collections/set.pony:3:3"
 ```
 
 Again there's something new here. After the name `SetIs` comes the name `A` in square brackets. That's because `SetIs` is a __generic type__. That is, you can give a `SetIs` another type as a parameter, to make specific kinds of set. If you've used Java or C#, this will be pretty familiar. If you've used C++, the equivalent concept is templates, but they work quite differently.
