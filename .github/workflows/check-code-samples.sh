@@ -15,7 +15,7 @@ for file in *.pony; do # actors-sequential.pony
     expectations=$(jq --arg file "${file}" ".[\"$file\"]" ../code-samples.json) # -r
     #echo "Expectations for $file $expectations"
     isRunnable=$(echo "$expectations" | jq '.runnable')
-    if ! $isRunnable; then
+    if ! [ -z "$expectations" ] && ! $isRunnable; then
         echo -e "\u2139\uFE0F File not runnable. Skip"
         ((notRunnable++))
         continue
