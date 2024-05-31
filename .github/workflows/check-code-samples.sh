@@ -1,4 +1,4 @@
-cd ./code-samples/
+cd "${GITHUB_WORKSPACE}/code-samples/"
 files=$(ls | wc -l)
 echo "Check $files files …"
 failedFiles=()
