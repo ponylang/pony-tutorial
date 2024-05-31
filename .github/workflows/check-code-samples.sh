@@ -60,6 +60,8 @@ for file in *.pony; do # actors-sequential.pony
 done
 if [ "${#failedFiles[@]}" != 0 ]; then
     echo -e "💥 ${#failedFiles[@]}/$files file(s) had errors"
+    exit 1
 else
     echo -e "🎉 All $files files were checked successfully"
+    exit 0
 fi
