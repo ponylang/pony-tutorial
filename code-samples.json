@@ -1,12 +1,17 @@
 {
     "actors-sequential.pony": {
+        "runnable": true,
         "stdout": "This is printed first\nThis is printed last\n",
         "stderr": null,
         "exitcode": 0
     },
     "actors-sequential2.pony": {
+        "runnable": true,
         "stdout": null,
         "stderr": "This is printed first\nThis is printed last\n",
         "exitcode": 1
+    },
+    "actors-behaviors.pony": {
+        "runnable": false
     }
 }

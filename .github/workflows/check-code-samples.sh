@@ -2,6 +2,7 @@ cd ./code-samples/
 files=$(ls | wc -l)
 echo "Check $files files …"
 failedFiles=()
+notRunnable=0
 i=0
 for file in *.pony; do # actors-sequential.pony
     ((i++))
@@ -13,6 +14,12 @@ for file in *.pony; do # actors-sequential.pony
     regex='^"""\n(.*)\n"""'
     expectations=$(jq --arg file "${file}" ".[\"$file\"]" ../code-samples.json) # -r
     #echo "Expectations for $file $expectations"
+    isRunnable=$(echo "$expectations" | jq '.runnable')
+    if ! $isRunnable; then
+        echo -e "\u2139\uFE0F File not runnable. Skip"
+        ((notRunnable++))
+        break
+    fi
     expectedStdout=$(echo "$expectations" | jq '.stdout')
     expectedStderr=$(echo "$expectations" | jq '.stderr')
     expectedExitcode=$(echo "$expectations" | jq '.exitcode')
@@ -58,10 +65,11 @@ for file in *.pony; do # actors-sequential.pony
     fi
     #break
 done
+runnableFiles=$((files-notRunnable))
 if [ "${#failedFiles[@]}" != 0 ]; then
-    echo  -e "\e[1;31m💥 ${#failedFiles[@]}/$files file(s) had errors\e[0m"
+    echo  -e "\e[1;31m💥 ${#failedFiles[@]}/$runnableFiles file(s) had errors\e[0m"
     exit 1
 else
-    echo -e "\e[1;32m🎉 All $files files were checked successfully\e[0m"
+    echo -e "\e[1;32m🎉 All $files files ($runnableFiles runnable) were checked successfully\e[0m"
     exit 0
 fi
