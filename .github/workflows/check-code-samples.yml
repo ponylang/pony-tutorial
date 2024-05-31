@@ -1,0 +1,17 @@
+name: Check code samples
+
+on:
+    pull_request:
+    push:
+
+jobs:
+    check-code-samples:
+        name: Check code samples
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check out repository code
+              uses: actions/checkout@v4
+            - name: Install jq
+              run: curl -sS https://webi.sh/jq | bash
+            - name: Check code samples
+              run: ./check-code-samples.sh

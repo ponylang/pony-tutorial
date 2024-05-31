@@ -1,0 +1,12 @@
+{
+    "actors-sequential.pony": {
+        "stdout": "This is printed first\nThis is printed last\n",
+        "stderr": null,
+        "exitcode": 0
+    },
+    "actors-sequential2.pony": {
+        "stdout": null,
+        "stderr": "This is printed first\nThis is printed last\n",
+        "exitcode": 1
+    }
+}
