@@ -18,7 +18,7 @@ for file in *.pony; do # actors-sequential.pony
     if ! $isRunnable; then
         echo -e "\u2139\uFE0F File not runnable. Skip"
         ((notRunnable++))
-        break
+        continue
     fi
     expectedStdout=$(echo "$expectations" | jq '.stdout')
     expectedStderr=$(echo "$expectations" | jq '.stderr')
