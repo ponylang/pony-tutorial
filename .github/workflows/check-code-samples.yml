@@ -14,4 +14,4 @@ jobs:
             - name: Install jq
               run: curl -sS https://webi.sh/jq | bash
             - name: Check code samples
-              run: ${GITHUB_WORKSPACE}/.github/workflow/check-code-samples.sh
+              run: ${GITHUB_WORKSPACE}/.github/workflows/check-code-samples.sh
