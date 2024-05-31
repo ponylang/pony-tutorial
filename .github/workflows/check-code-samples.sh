@@ -67,7 +67,7 @@ for file in *.pony; do # actors-sequential.pony
 done
 runnableFiles=$((files-notRunnable))
 if [ "${#failedFiles[@]}" != 0 ]; then
-    echo  -e "\e[1;31m💥 ${#failedFiles[@]}/$runnableFiles file(s) had errors\e[0m"
+    echo  -e "\e[1;31m💥 ${#failedFiles[@]}/$runnableFiles file(s) ($files total) had errors\e[0m"
     exit 1
 else
     echo -e "\e[1;32m🎉 All $files files ($runnableFiles runnable) were checked successfully\e[0m"
