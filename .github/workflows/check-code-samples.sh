@@ -41,12 +41,12 @@ for file in *.pony; do # actors-sequential.pony
     actualStdout=$(echo "$response" | jq '.stdout')
     actualStderr=$(echo "$response" | jq '.stderr')
     if $success && ! [ -z "$expectations" ] && [ "$expectedExitcode" = "0" ] && [ "$actualStdout" = "$expectedStdout" ]; then
-        echo -e "\u2705 File fulfilled expectations"
+        echo -e "\e[1;32m\u2705 File fulfilled expectations\e[0m"
     elif ! $success && ! [ -z "$expectations" ] && [ "$expectedExitcode" = "1" ] && [ "$actualStderr" = "$expectedStderr" ]; then
-        echo -e "\u2705 File fulfilled expectations"
+        echo -e "\e[1;32m\u2705 File fulfilled expectations\e[0m"
     else
         failedFiles+=(file)
-        echo -e "\u274C File didn't fulfill expectations"
+        echo -e "\e[1;31m\u274C File didn't fulfill expectations\e[0m"
         if [ "$expectedExitcode" = "0" ]; then
             echo "Success = true (actual: $success), stdout = $expectedStdout (actual: ${actualStdout-null})"
         else
@@ -59,9 +59,9 @@ for file in *.pony; do # actors-sequential.pony
     #break
 done
 if [ "${#failedFiles[@]}" != 0 ]; then
-    echo -e "💥 ${#failedFiles[@]}/$files file(s) had errors"
+    echo  -e "\e[1;31m💥 ${#failedFiles[@]}/$files file(s) had errors\e[0m"
     exit 1
 else
-    echo -e "🎉 All $files files were checked successfully"
+    echo -e "\e[1;32m🎉 All $files files were checked successfully\e[0m"
     exit 0
 fi
