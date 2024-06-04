@@ -61,7 +61,7 @@ That's a fairly complex type alias, but let's look at the constraint of `K`. It'
 Type expressions can be combined into more complex types. Here's another example from the standard library:
 
 ```pony
---8<-- "https://raw.githubusercontent.com/ponylang/ponyc/main/packages/collections/map.pony:22"
+--8<-- "type-expressions-combined.pony"
 ```
 
 Here we have an array where each element is either a tuple of `(K, V)` or a `_MapEmpty` or a `_MapDeleted`.

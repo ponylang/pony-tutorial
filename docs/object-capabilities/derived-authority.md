@@ -53,13 +53,13 @@ As the package author, it is then our responsibility to realize that the minimal
 Let's have a look at the authorizations available in the standard library's `net` package.
 
 ```pony
---8<-- "https://raw.githubusercontent.com/ponylang/ponyc/main/packages/net/auth.pony"
+--8<-- "derived-authority-authority-hierarchies.pony"
 ```
 
 Look at the constructor for `TCPConnectAuth`:
 
 ```pony
---8<-- "https://raw.githubusercontent.com/ponylang/ponyc/main/packages/net/auth.pony:22:22"
+--8<-- "derived-authority-authority-hierarchies.pony:22:22"
 ```
 
 you might notice that this looks like a hierarchy of authorities:
