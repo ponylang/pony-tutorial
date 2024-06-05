@@ -1,5 +1,5 @@
 from pygments import highlight
-from pygments.lexers import PythonLexer
+from pygments.lexers import PonyLexer
 from pygments.formatters import HtmlFormatter
 
 from pymdownx.superfences import SuperFencesException
@@ -9,7 +9,7 @@ from mkdocs.exceptions import PluginError
 
 def format(source, language, css_class, options, md, classes=None, id_value='', attrs=None, **kwargs):
     try:
-        highlighted = highlight(source, PythonLexer(), HtmlFormatter())
+        highlighted = highlight(source, PonyLexer(), HtmlFormatter())
     except:
         raise SuperFencesException('Could not highlight source code "%s" passed' % (source))
 
