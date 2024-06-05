@@ -21,6 +21,8 @@ In your file, put the following code:
 --8<-- "hello-world-main.pony"
 ```
 
+[:fontawesome-solid-play: Run inline](#){ .md-button .md-button--primary data-snippet="hello-world-main.pony" }
+
 ## Compiling the program
 
 Now compile it:

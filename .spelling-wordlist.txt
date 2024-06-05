@@ -28,6 +28,7 @@ FFI
 filesystem
 finaliser
 finalisers
+fontawesome
 forgeable
 GC
 GDB

@@ -6,6 +6,9 @@ repo_url: https://github.com/ponylang/pony-tutorial/
 site_url: https://tutorial.ponylang.io/
 use_directory_urls: false
 
+extra_javascript:
+  - assets/snippets.js
+
 extra:
   generator: false
   social:
@@ -25,6 +28,10 @@ markdown_extensions:
   - pymdownx.snippets:
       base_path: ['code-samples']
       check_paths: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - attr_list
   - smarty
   - toc:
       permalink: true
