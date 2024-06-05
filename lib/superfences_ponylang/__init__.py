@@ -8,13 +8,29 @@ from pymdownx.superfences import _escape
 from mkdocs.exceptions import PluginError
 
 def format(source, language, css_class, options, md, classes=None, id_value='', attrs=None, **kwargs):
-    if "snippet" in options:
-        snippetPath = options.get(snippet)
+    if "snippet" in attrs: #options
+        snippetPath = attrs.get(snippet)
         if ':' in snippetPath:
-            snippetPath, lines = snippetPath.split(':', 2)
-
-        with open(snippetPath, 'r') as f:
-            source = f.read()
+            snippetPath, lineNumbers = snippetPath.split(':', 2)
+            lines = []
+            if ',' in lineNumbers:
+                lineNumbers = lineNumbers.split(',')
+            else:
+                lineNumbers = [ lineNumbers ]
+            with open(snippetPath, 'r') as f:
+                for i, line in enumerate(f):
+                    for lineNum in enumerate(lineNumbers):
+                        if '-' in lineNum:
+                            start, end = lineNum.split('-')
+                            if i > start and i < end:
+                                lines.append(line)
+                        elif i == lineNum:
+                            lines.append(line)
+            source = '\n'.join(lines)
+                    
+        else:
+            with open(snippetPath, 'r') as f:
+                source = f.read()
     else:
         source = str(options) + str(attrs) + str(classes) + str(kwargs)
 
