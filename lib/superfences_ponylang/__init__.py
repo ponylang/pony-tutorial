@@ -3,6 +3,7 @@ from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter
 
 def format(source, language, css_class, options, md, classes=None, id_value='', attrs=None, **kwargs):
+    return ""
     try:
         highlighted = highlight(source, PythonLexer(), HtmlFormatter())
     except:
