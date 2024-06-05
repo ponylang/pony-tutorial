@@ -14,26 +14,26 @@ def format(source, language, css_class, options, md, classes=None, id_value='', 
         #workingDir = os.getcwd().replace('/lib/superfences_ponylang')
         try:
             snippetPath = attrs.get('snippet')
-            #if ':' in snippetPath:
-            #    snippetPath, lineNumbers = snippetPath.split(':', 2)
-            #    lines = []
-            #    if ',' in lineNumbers:
-            #        lineNumbers = lineNumbers.split(',')
-            #    else:
-            #        lineNumbers = [ lineNumbers ]
-            #    with open(os.getcwd() + "/code-samples/" + snippetPath, 'r') as f:
-            #        for i, line in enumerate(f):
-            #            for lineNum in enumerate(lineNumbers):
-            #                if '-' in lineNum:
-            #                    start, end = lineNum.split('-')
-            #                    if i > start and i < end:
-            #                        lines.append(line)
-            #                elif i == lineNum:
-            #                    lines.append(line)
-            #    source = '\n'.join(lines)                    
-            #else:
-            with open(os.getcwd() + "/code-samples/" + snippetPath, 'r') as f:
-                source = f.read()
+            if ':' in snippetPath:
+                snippetPath, lineNumbers = snippetPath.split(':', 2)
+                lines = []
+                if ',' in lineNumbers:
+                    lineNumbers = lineNumbers.split(',')
+                else:
+                    lineNumbers = [ lineNumbers ]
+                with open(os.getcwd() + "/code-samples/" + snippetPath, 'r') as f:
+                    for i, line in enumerate(f):
+                        for lineNum in enumerate(lineNumbers):
+                            if '-' in lineNum:
+                                start, end = lineNum.split('-')
+                                if i > start and i < end:
+                                    lines.append(line)
+                            elif i == lineNum:
+                                lines.append(line)
+                source = '\n'.join(lines)                    
+            else:
+                with open(os.getcwd() + "/code-samples/" + snippetPath, 'r') as f:
+                    source = f.read()
         except:
             raise SuperFencesException('Snippet "%s" does not work' % (snippetPath))
     else:
