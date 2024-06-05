@@ -16,7 +16,7 @@ def format(source, language, css_class, options, md, classes=None, id_value='', 
         with open(snippetPath, 'r') as f:
             source = f.read()
     else:
-        source = str(options)
+        source = str(options) + str(attrs) + str(classes) + str(kwargs)
 
     try:
         highlighted = highlight(source, PonyLexer(), HtmlFormatter())
