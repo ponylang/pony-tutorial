@@ -4,9 +4,9 @@
   {% set title = config.site_name %}
   {% if page.parent is not none}
     {% set title = title ~ " - " ~ page.parent.title %}
-  {% endif %}
-  {% if page.parent.parent is not none}
-    {% set title = title ~ " - " ~ page.parent.parent.title %}
+    {% if page.parent.parent is not none}
+      {% set title = title ~ " - " ~ page.parent.parent.title %}
+    {% endif %}
   {% endif %}
   {% if page and page.meta and page.meta.title %}
     {% set title = title ~ " - " ~ page.meta.title %}
