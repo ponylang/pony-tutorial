@@ -26,9 +26,9 @@ def format(source, language, css_class, options, md, classes=None, id_value='', 
                         for lineNum in enumerate(lineNumbers):
                             if '-' in lineNum:
                                 start, end = lineNum.split('-')
-                                if i > start and i < end:
+                                if i > int(start) and i < int(end):
                                     lines.append(line)
-                            elif i == lineNum:
+                            elif i == int(lineNum):
                                 lines.append(line)
                     source = str(lines)
                     #source = '\n'.join(lines)                    
