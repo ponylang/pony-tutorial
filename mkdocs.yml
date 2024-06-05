@@ -58,7 +58,7 @@ plugins:
       raise_error_excludes:
         429: ["https://github.com/ponylang", "https://web.archive.org/*"]
         404: ["https://github.com/ponylang"]
-  - social
+  - social:
       cards_layout_options:
         title: *page_title_with_site_name
         description: *page_description
