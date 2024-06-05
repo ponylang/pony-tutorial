@@ -2,9 +2,14 @@
 
 Just like other object-oriented languages, Pony has __classes__. A class is declared with the keyword `class`, and it has to have a name that starts with a capital letter, like this:
 
-```pony
---8<-- "classes-wombat.pony:1:1"
-```
+=== "Snippet"
+    ```pony
+    --8<-- "classes-wombat.pony:1:1"
+    ```
+=== "Full program"
+    ```pony hl_lines="1"
+    --8<-- "classes-wombat.pony"
+    ```
 
 __Do all types start with a capital letter?__ Yes! And nothing else starts with a capital letter. So when you see a name in Pony code, you will instantly know whether it's a type or not.
 
@@ -20,9 +25,14 @@ A class is composed of:
 
 These are just like fields in C structures or fields in classes in C++, C#, Java, Python, Ruby, or basically any language, really. There are three kinds of fields: `var`, `let`, and `embed` fields. A `var` field can be assigned to over and over again, but a `let` field is assigned to in the constructor and never again. Embed fields will be covered in more detail in the documentation on [variables](/expressions/variables.md).
 
-```pony
---8<-- "classes-wombat.pony:1:3"
-```
+=== "Snippet"
+    ```pony
+    --8<-- "classes-wombat.pony:1:3"
+    ```
+=== "Full program"
+    ```pony hl_lines="1-3"
+    --8<-- "classes-wombat.pony"
+    ```
 
 Here, a `Wombat` has a `name`, which is a `String`, and a `_hunger_level`, which is a `U64` (an unsigned 64-bit integer).
 
@@ -50,9 +60,14 @@ Every constructor has to set every field in an object. If it doesn't, the compil
 
 Sometimes it's convenient to set a field the same way for all constructors.
 
-```pony
---8<-- "classes-wombat.pony:1:12"
-```
+=== "Snippet"
+    ```pony
+    --8<-- "classes-wombat.pony:1:12"
+    ```
+=== "Full program"
+    ```pony hl_lines="1-12"
+    --8<-- "classes-wombat.pony"
+    ```
 
 Here, every `Wombat` begins a little bit thirsty, regardless of which constructor is called.
 
