@@ -36,7 +36,7 @@ def format(source, language, css_class, options, md, classes=None, id_value='', 
                                 lines.append(line)
                     #source = str(lines)
                     source = '\n'.join(lines)
-                    source = str(base.Config) + str(options) + str(attrs) + str(classes) + str(kwargs)
+                    source = str(base.Config.__dict__) + str(options) + str(attrs) + str(classes) + str(kwargs)
             else:
                 with open(os.getcwd() + "/code-samples/" + snippetPath, 'r') as f:
                     source = f.read()
