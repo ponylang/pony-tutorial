@@ -15,7 +15,7 @@ for file in *.pony; do
     #docker run -v $(pwd):/src/main docker://ghcr.io/ponylang/ponyc:latest
     #ponyc "./code-samples/$file"
     #$HOME/.local/share/ponyup/bin/ponyc "${{ github.workspace }}/code-samples/$file"
-    $HOME/.local/share/ponyup/bin/ponyc "$GITHUB_WORKSPACE/code-samples/$file"
+    $HOME/.local/share/ponyup/bin/ponyc #"$GITHUB_WORKSPACE/code-samples/$file"
     if [ $? -eq 0 ]; then
         echo -e "\e[1;32m\u2705 File fulfilled expectations\e[0m"
     else
