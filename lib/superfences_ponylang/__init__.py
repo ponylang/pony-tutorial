@@ -8,7 +8,6 @@ from pymdownx.superfences import _escape
 from mkdocs.exceptions import PluginError
 
 def format(source, language, css_class, options, md, classes=None, id_value='', attrs=None, **kwargs):
-    return "<span>Hello world</span>"
     try:
         highlighted = highlight(source, PythonLexer(), HtmlFormatter())
     except:
