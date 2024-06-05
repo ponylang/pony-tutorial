@@ -2,6 +2,11 @@ from pygments import highlight
 from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter
 
+from pymdownx.superfences import SuperFencesException
+from pymdownx.superfences import _escape
+
+from mkdocs.exceptions import PluginError
+
 def format(source, language, css_class, options, md, classes=None, id_value='', attrs=None, **kwargs):
     return "<span>Hello world</span>"
     try:
@@ -18,7 +23,7 @@ def format(source, language, css_class, options, md, classes=None, id_value='', 
         </nav>
         <code>%s</code>
     </pre>
-    """ % (language, class_name, options['opt'], html_escape(highlighted))
+    """ % (language, class_name, options['opt'], _escape(highlighted)) # html_escape
 
 def validate(language: str, options: dict, attrs: dict, md) -> bool:
     return True
