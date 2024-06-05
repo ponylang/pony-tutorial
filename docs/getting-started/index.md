@@ -1,5 +1,4 @@
 ---
-title: Getting Started – Overview
 description: This chapter will get you up and running with Pony from installing the compiler to running your first program.
 ---
 # Overview
