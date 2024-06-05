@@ -3,6 +3,7 @@ from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter
 
 def format(source, language, css_class, options, md, classes=None, id_value='', attrs=None, **kwargs):
+    print(highlight(source, PythonLexer(), HtmlFormatter()))
     return """
     <pre class_name="ponylang %s %s", data-option="%s">
         <nav class="md-code__nav">
@@ -18,5 +19,7 @@ def validate(language: str, options: dict) -> bool:
     allowed_options = { "snippet", "dedent_subsections" } #lambda v: v in ENGINES
     for opt in options.keys():
         if opt not in allowed_options:
+            print('invalid fence')
             return False
+    print('valid fence')
     return True
