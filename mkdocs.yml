@@ -41,6 +41,7 @@ plugins:
       raise_error_excludes:
         429: ["https://github.com/ponylang", "https://web.archive.org/*"]
         404: ["https://github.com/ponylang"]
+        504: ["https://web.archive.org/*"]
 
 theme:
   name: material
