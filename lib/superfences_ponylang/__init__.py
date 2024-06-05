@@ -20,7 +20,7 @@ def format(source, language, css_class, options, md, classes=None, id_value='', 
     </pre>
     """ % (language, class_name, options['opt'], html_escape(highlighted))
 
-def validate(language: str, options: dict) -> bool:
+def validate(language: str, options: dict, attrs: dict, md) -> bool:
     return True
     allowed_options = { "snippet", "dedent_subsections" } #lambda v: v in ENGINES
     for opt in options.keys():
