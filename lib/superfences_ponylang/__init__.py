@@ -18,7 +18,7 @@ def format(source, language, css_class, options, md, classes=None, id_value='', 
             #        lineNumbers = lineNumbers.split(',')
             #    else:
             #        lineNumbers = [ lineNumbers ]
-            #    with open("code-samples/" + snippetPath, 'r') as f:
+            #    with open(os.getcwd() + "/code-samples/" + snippetPath, 'r') as f:
             #        for i, line in enumerate(f):
             #            for lineNum in enumerate(lineNumbers):
             #                if '-' in lineNum:
@@ -29,10 +29,10 @@ def format(source, language, css_class, options, md, classes=None, id_value='', 
             #                    lines.append(line)
             #    source = '\n'.join(lines)                    
             #else:
-            with open("code-samples/" + snippetPath, 'r') as f:
+            with open(os.getcwd() + "/code-samples/" + snippetPath, 'r') as f:
                 source = f.read()
         except:
-            raise SuperFencesException('Snippet "%s" does not work' % (source))
+            raise SuperFencesException('Snippet "%s" does not work' % (snippetPath))
     else:
         source = str(options) + str(attrs) + str(classes) + str(kwargs)
 
