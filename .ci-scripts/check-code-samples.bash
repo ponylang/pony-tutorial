@@ -14,7 +14,7 @@ for file in *.pony; do
     echo -e "#$i Test $file … ($i/$files \u2192 $percentage %)"
     #docker run -v $(pwd):/src/main docker://ghcr.io/ponylang/ponyc:latest
     #ponyc "./code-samples/$file"
-    $HOME/.local/share/ponyup/bin/ponyc "./code-samples/$file"
+    $HOME/.local/share/ponyup/bin/ponyc "${{ github.workspace }}/code-samples/$file"
     if [ $? -eq 0 ]; then
         echo -e "\e[1;32m\u2705 File fulfilled expectations\e[0m"
     else
