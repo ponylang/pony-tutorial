@@ -24,7 +24,8 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
         - name: ponylang
           class: pony
-          format: !!python/name:pymdownx.superfences.fence_code_format
+          format: !!python/name:lib.superfences_ponylang.format
+          validator: !!python/name:lib.superfences_ponylang.validate
   - pymdownx.snippets:
       base_path: ['code-samples']
       check_paths: true
