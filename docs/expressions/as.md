@@ -64,8 +64,8 @@ For example, in the case of the following program, the method `foo` can take eit
 --8<-- "as-operator-array-literal.pony"
 ```
 
-1. Try changing it to:\
-    `foo([1; 2; 3])`\
-    // the compiler would complain about this
+1. Try changing it to:  
+    `foo([1; 2; 3])`  
+    The compiler will complain about this
 
 The requested type must be a valid type for the items in the array. Since these types are checked at compile time they are guaranteed to work, so there is no need for the programmer to handle an error condition.
