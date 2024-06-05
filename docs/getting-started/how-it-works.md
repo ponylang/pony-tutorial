@@ -10,8 +10,8 @@ Let's go through that line by line.
 
 ## Line 1
 
-```pony
---8<-- "hello-world-main.pony::1"
+```{ .ponylang snippet="hello-world-main.pony:1-3,6" dedent_subsections=false }
+Lorem ipsum
 ```
 
 This is a __type declaration__. The keyword `actor` means we are going to define an actor, which is a bit like a class in Python, Java, C#, C++, etc. Pony has classes too, which we'll see later.
