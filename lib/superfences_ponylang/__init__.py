@@ -23,7 +23,7 @@ def format(source, language, css_class, options, md, classes=None, id_value='', 
                     lineNumbers = [ lineNumbers ]
                 with open(os.getcwd() + "/code-samples/" + snippetPath, 'r') as f:
                     for i, line in enumerate(f):
-                        for _, lineNum in enumerate(lineNumbers):
+                        for lineNum in lineNumbers:
                             if '-' in lineNum:
                                 start, end = lineNum.split('-')
                                 if i >= int(start) and i <= int(end):
