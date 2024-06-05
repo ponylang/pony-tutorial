@@ -3,7 +3,11 @@ from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter
 
 def format(source, language, css_class, options, md, classes=None, id_value='', attrs=None, **kwargs):
-    print(highlight(source, PythonLexer(), HtmlFormatter()))
+    try:
+        highlighted = highlight(source, PythonLexer(), HtmlFormatter())
+    except:
+        raise SuperFencesException('Could not highlight source code "%s" passed' % (source))
+
     return """
     <pre class_name="ponylang %s %s", data-option="%s">
         <nav class="md-code__nav">
@@ -13,13 +17,13 @@ def format(source, language, css_class, options, md, classes=None, id_value='', 
         </nav>
         <code>%s</code>
     </pre>
-    """ % (language, class_name, options['opt'], html_escape(highlight(source, PythonLexer(), HtmlFormatter())))
+    """ % (language, class_name, options['opt'], html_escape(highlighted))
 
 def validate(language: str, options: dict) -> bool:
     allowed_options = { "snippet", "dedent_subsections" } #lambda v: v in ENGINES
     for opt in options.keys():
         if opt not in allowed_options:
-            print('invalid fence')
+            raise SuperFencesException('unknown config key "%s" passed' % (opt))
             return False
     print('valid fence')
     return True
