@@ -6,6 +6,10 @@ from pymdownx.superfences import SuperFencesException
 from pymdownx.superfences import _escape
 
 from mkdocs.exceptions import PluginError
+from mkdocs.config import base
+from mkdocs.config import config_options as c
+from mkdocs.structure.pages import Page, _AbsoluteLinksValidationValue
+from mkdocs.utils.yaml import get_yaml_loader, yaml_load
 
 import os
 
@@ -32,7 +36,7 @@ def format(source, language, css_class, options, md, classes=None, id_value='', 
                                 lines.append(line)
                     #source = str(lines)
                     source = '\n'.join(lines)
-                    source = str(md.preprocessors) + str(md.parser) + str(md.registeredExtensions) + str(options) + str(attrs) + str(classes) + str(kwargs)
+                    source = str(base.Config) + str(options) + str(attrs) + str(classes) + str(kwargs)
             else:
                 with open(os.getcwd() + "/code-samples/" + snippetPath, 'r') as f:
                     source = f.read()
