@@ -7,8 +7,11 @@ from pymdownx.superfences import _escape
 
 from mkdocs.exceptions import PluginError
 
+import os
+
 def format(source, language, css_class, options, md, classes=None, id_value='', attrs=None, **kwargs):
     if "snippet" in attrs: #options
+        #workingDir = os.getcwd().replace('/lib/superfences_ponylang')
         try:
             snippetPath = attrs.get('snippet')
             #if ':' in snippetPath:
