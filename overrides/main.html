@@ -2,10 +2,10 @@
 
 {% block extrahead %}
   {% set title = config.site_name %}
-  {% if in page.parent is not none}
+  {% if page.parent is not none}
     {% set title = title ~ " - " ~ page.parent.title %}
   {% endif %}
-  {% if in page.parent.parent is not none}
+  {% if page.parent.parent is not none}
     {% set title = title ~ " - " ~ page.parent.parent.title %}
   {% endif %}
   {% if page and page.meta and page.meta.title %}
