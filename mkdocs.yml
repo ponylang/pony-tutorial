@@ -31,6 +31,25 @@ markdown_extensions:
       permalink: true
   - meta
 
+definitions:
+  - &page_title_with_site_name >-
+    {% set title = config.site_name %}
+    {% if page and page.parent is not none %}
+      {% set title = page.parent.title ~ " - " ~ title %}
+      {% if page.parent.parent is not none %}
+        {% set title = page.parent.parent.title ~ " - " ~ title %}
+      {% endif %}
+    {% endif %}
+    {% if page and page.meta and page.meta.title %}
+      {% set title = page.meta.title ~ " - " ~ title %}
+    {% elif page and page.title and not page.is_homepage %}
+      {% set title = page.title | striptags ~ " - " ~ title %}
+    {% endif %}
+    x{{ title }}
+
+  - &page_description >-
+    {{ page.meta.get("description", config.site_description) or "" }}
+
 plugins:
   - search
   - ezlinks
@@ -40,6 +59,9 @@ plugins:
         429: ["https://github.com/ponylang", "https://web.archive.org/*"]
         404: ["https://github.com/ponylang"]
   - social
+      cards_layout_options:
+        title: *page_title_with_site_name
+        description: *page_description
 
 theme:
   name: material
