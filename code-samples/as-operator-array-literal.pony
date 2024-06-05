@@ -5,4 +5,4 @@ actor Main
 
   new create(env: Env) =>
     foo([as U32: 1; 2; 3])
-    // (1)
+    // (1)!
