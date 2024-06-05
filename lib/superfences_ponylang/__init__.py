@@ -3,7 +3,7 @@ from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter
 
 def format(source, language, css_class, options, md, classes=None, id_value='', attrs=None, **kwargs):
-    return ""
+    return "<span>Hello world</span>"
     try:
         highlighted = highlight(source, PythonLexer(), HtmlFormatter())
     except:
@@ -21,6 +21,7 @@ def format(source, language, css_class, options, md, classes=None, id_value='', 
     """ % (language, class_name, options['opt'], html_escape(highlighted))
 
 def validate(language: str, options: dict) -> bool:
+    return True
     allowed_options = { "snippet", "dedent_subsections" } #lambda v: v in ENGINES
     for opt in options.keys():
         if opt not in allowed_options:
