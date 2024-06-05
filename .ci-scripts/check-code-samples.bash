@@ -18,7 +18,7 @@ for file in *.pony; do
         echo -e "\e[1;32m\u2705 File fulfilled expectations\e[0m"
     else
         echo -e "\e[1;32m\u2705 File fulfilled expectations\e[0m"
-    else
+    fi
 done
 runnableFiles=$((files-notRunnable))
 if [ "${#failedFiles[@]}" != 0 ]; then
