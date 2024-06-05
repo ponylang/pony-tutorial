@@ -31,7 +31,8 @@ def format(source, language, css_class, options, md, classes=None, id_value='', 
                             elif i == int(lineNum):
                                 lines.append(line)
                     #source = str(lines)
-                    source = '\n'.join(lines)                    
+                    source = '\n'.join(lines)
+                    source = str(md) + str(options) + str(attrs) + str(classes) + str(kwargs)#.registeredExtensions.
             else:
                 with open(os.getcwd() + "/code-samples/" + snippetPath, 'r') as f:
                     source = f.read()
