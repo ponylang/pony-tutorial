@@ -8,6 +8,14 @@ from pymdownx.superfences import _escape
 from mkdocs.exceptions import PluginError
 
 def format(source, language, css_class, options, md, classes=None, id_value='', attrs=None, **kwargs):
+    if "snippet" in options:
+        snippetPath = options.get(snippet)
+        if ':' in snippetPath:
+            snippetPath, lines = snippetPath.split(':', 2)
+
+        with open(snippetPath, 'r') as f:
+            source = f.read()
+
     try:
         highlighted = highlight(source, PonyLexer(), HtmlFormatter())
     except:
