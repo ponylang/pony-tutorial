@@ -60,7 +60,7 @@ The `as` operator can also be used to tell the compiler what type to use for the
 
 For example, in the case of the following program, the method `foo` can take either an `Array[U32] ref` or an `Array[U64] ref` as an argument. If a literal array is passed as an argument to the method and no type is specified then the compiler cannot deduce the correct one because there are two equally valid ones.
 
-```pony
+```{ .pony .annotate }
 --8<-- "as-operator-array-literal.pony"
 ```
 

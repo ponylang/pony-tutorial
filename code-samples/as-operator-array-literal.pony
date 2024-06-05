@@ -5,5 +5,6 @@ actor Main
 
   new create(env: Env) =>
     foo([as U32: 1; 2; 3])
-    // the compiler would complain about this:
+    // Try changing it to
     //   foo([1; 2; 3])
+    // the compiler would complain about this:
