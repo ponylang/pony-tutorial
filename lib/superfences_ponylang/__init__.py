@@ -32,7 +32,7 @@ def format(source, language, css_class, options, md, classes=None, id_value='', 
                                 lines.append(line)
                     #source = str(lines)
                     source = '\n'.join(lines)
-                    source = str(md) + str(options) + str(attrs) + str(classes) + str(kwargs)#.registeredExtensions.
+                    source = str(md.preprocessors) + str(md.parser) + str(md.registeredExtensions) + str(options) + str(attrs) + str(classes) + str(kwargs)
             else:
                 with open(os.getcwd() + "/code-samples/" + snippetPath, 'r') as f:
                     source = f.read()
