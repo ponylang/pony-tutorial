@@ -23,7 +23,7 @@ markdown_extensions:
           class: mermaid-experimental
           format: !!python/name:pymdownx.superfences.fence_code_format
         - name: ponylang
-          class: ponylang
+          class: pony
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.snippets:
       base_path: ['code-samples']
