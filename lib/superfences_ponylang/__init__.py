@@ -9,7 +9,7 @@ from mkdocs.exceptions import PluginError
 
 def format(source, language, css_class, options, md, classes=None, id_value='', attrs=None, **kwargs):
     if "snippet" in attrs: #options
-        snippetPath = attrs.get(snippet)
+        snippetPath = attrs.get('snippet')
         #if ':' in snippetPath:
         #    snippetPath, lineNumbers = snippetPath.split(':', 2)
         #    lines = []
