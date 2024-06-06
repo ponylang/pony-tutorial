@@ -74,12 +74,14 @@ def format(source, language, css_class, options, md, classes=None, id_value='', 
         raise SuperFencesException('Could not highlight source code "%s" passed' % (source))
 
     return """
-        <nav class="md-code__nav">
-            <button class="md-code__button" title="Copy to clipboard" data-clipboard-target="#__code_1 &gt; code" data-md-type="copy"></button>
-            <button class="md-code__button" title="Run in playground" data-md-type="run"></button>
-            <button class="md-code__button" title="Run in playground" data-md-type="inline"></button>
-        </nav>
-        <code lang="pony">%s</code>
+        <pre>
+            <nav class="md-code__nav">
+                <button class="md-code__button" title="Copy to clipboard" data-clipboard-target="#__code_1 &gt; code" data-md-type="copy"></button>
+                <button class="md-code__button" title="Run in playground" data-md-type="run"></button>
+                <button class="md-code__button" title="Run in playground" data-md-type="inline"></button>
+            </nav>
+            <code lang="pony">%s</code>
+        </pre>
     """ % highlighted
 
     return """
