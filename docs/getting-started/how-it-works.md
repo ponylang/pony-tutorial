@@ -10,7 +10,7 @@ Let's go through that line by line.
 
 ## Line 1
 
-```{ .ponylang snippet="classes-wombat:1-3,6" dedent_subsections=false }
+```{ .ponylang snippet="classes-wombat.pony:1-3,6" dedent_subsections=false }
 Lorem ipsum
 ```
 
