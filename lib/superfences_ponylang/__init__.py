@@ -35,12 +35,12 @@ def format(source, language, css_class, options, md, classes=None, id_value='', 
                                 start, end = lineNum.split('-')
                                 if (i + 1) >= int(start) and (i + 1) <= int(end):
                                     lines.append(line)
-                                    _lines[i] = (lineNumbers, line)
+                                    _lines[i] = (lineNumbers, line, True)
                             elif (i + 1) == int(lineNum):
                                 lines.append(line)
-                                _lines[i] = (lineNumbers, line)
+                                _lines[i] = (lineNumbers, line, True)
                             else:
-                                _lines[i] = (lineNumbers, None)
+                                _lines[i] = (lineNumbers, line, False)
                     #source = str(lines)
                     source = str(_lines)
 
