@@ -58,7 +58,7 @@ def format(source, language, css_class, options, md, classes=None, id_value='', 
                             for i, line in enumerate(lines):
                                 lines[i] = line[indent:None]
 
-                    source = '\n'.join(lines)
+                    source = ''.join(lines) #'\n'
                     #source = str(base.Config.user_configs.__dict__) + str(TemplateContext) + str(c) + str(options) + str(attrs) + str(classes) + str(kwargs)
             else:
                 with open(os.getcwd() + "/code-samples/" + snippetPath, 'r') as f:
