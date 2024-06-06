@@ -13,6 +13,7 @@ from mkdocs.utils.yaml import get_yaml_loader, yaml_load
 from mkdocs.utils.templates import TemplateContext
 
 import os
+import re
 
 def format(source, language, css_class, options, md, classes=None, id_value='', attrs=None, **kwargs):
     if "snippet" in attrs: #options
@@ -36,8 +37,23 @@ def format(source, language, css_class, options, md, classes=None, id_value='', 
                             elif i == int(lineNum):
                                 lines.append(line)
                     #source = str(lines)
+
+                    if 'dedent_subsections' in attrs and attrs.get('dedent_subsections'):
+                        p = re.compile('^\s+')
+                        indents = []
+                        for line in lines:
+                            m = p.match(line)
+                            if m is None:
+                                indents.append(0)
+                            else:
+                                indents.append(m.span()[1])
+                        indent = min(indents)
+                        if indent > 0:
+                            for i, line in enumerate(lines):
+                                lines[i] = line[indent:None]
+
                     source = '\n'.join(lines)
-                    source = str(base.Config.user_configs.__dict__) + str(TemplateContext) + str(c) + str(options) + str(attrs) + str(classes) + str(kwargs)
+                    #source = str(base.Config.user_configs.__dict__) + str(TemplateContext) + str(c) + str(options) + str(attrs) + str(classes) + str(kwargs)
             else:
                 with open(os.getcwd() + "/code-samples/" + snippetPath, 'r') as f:
                     source = f.read()
