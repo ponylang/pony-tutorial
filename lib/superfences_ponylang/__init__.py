@@ -73,7 +73,7 @@ def format(source, language, css_class, options, md, classes=None, id_value='', 
     except:
         raise SuperFencesException('Could not highlight source code "%s" passed' % (source))
 
-    return highlighted
+    return '<code lang="pony">%s</code>' % highlighted
 
     return """
     <pre class_name="ponylang %s %s", data-option="%s">
