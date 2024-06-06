@@ -17,7 +17,7 @@ __Does the name of the file matter?__ Not to the compiler, no. Pony doesn't care
 
 In your file, put the following code:
 
-```{ .ponylang snippet="hello-world-main.pony" dedent_subsections=false }
+```{ .ponylang snippet="hello-world-main.pony" dedent_subsections=false runnable=false }
 Gibberish
 ```
 
