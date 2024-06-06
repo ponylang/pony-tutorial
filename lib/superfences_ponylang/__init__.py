@@ -23,6 +23,7 @@ def format(source, language, css_class, options, md, classes=None, id_value='', 
             if ':' in snippetPath:
                 snippetPath, lineNumbers = snippetPath.split(':', 2)
                 lines = []
+                _lines = {}
                 if ',' in lineNumbers:
                     lineNumbers = lineNumbers.split(',')
                 else:
@@ -34,9 +35,12 @@ def format(source, language, css_class, options, md, classes=None, id_value='', 
                                 start, end = lineNum.split('-')
                                 if i >= int(start) and i <= int(end):
                                     lines.append(line)
+                                    _lines[i] = (lineNumbers, line)
                             elif i == int(lineNum):
                                 lines.append(line)
+                                _lines[i] = (lineNumbers, line)
                     #source = str(lines)
+                    source = str(_lines)
 
                     if 'dedent_subsections' in attrs and attrs.get('dedent_subsections'):
                         p = re.compile('^\s+')
@@ -52,7 +56,7 @@ def format(source, language, css_class, options, md, classes=None, id_value='', 
                             for i, line in enumerate(lines):
                                 lines[i] = line[indent:None]
 
-                    source = '\n'.join(lines)
+                    #source = '\n'.join(lines)
                     #source = str(base.Config.user_configs.__dict__) + str(TemplateContext) + str(c) + str(options) + str(attrs) + str(classes) + str(kwargs)
             else:
                 with open(os.getcwd() + "/code-samples/" + snippetPath, 'r') as f:
