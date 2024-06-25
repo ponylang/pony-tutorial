@@ -22,6 +22,10 @@ markdown_extensions:
         - name: mermaid
           class: mermaid-experimental
           format: !!python/name:pymdownx.superfences.fence_code_format
+        - name: ponylang
+          class: pony
+          format: !!python/name:lib.superfences_ponylang.format
+          #validator: !!python/name:lib.superfences_ponylang.validate
   - pymdownx.snippets:
       base_path: ['code-samples']
       check_paths: true
@@ -29,6 +33,7 @@ markdown_extensions:
   - smarty
   - toc:
       permalink: true
+  - attr_list
 
 plugins:
   - search
@@ -38,6 +43,7 @@ plugins:
       raise_error_excludes:
         429: ["https://github.com/ponylang", "https://web.archive.org/*"]
         404: ["https://github.com/ponylang"]
+        504: ["https://web.archive.org/*"]
 
 theme:
   name: material
