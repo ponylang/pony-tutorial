@@ -37,7 +37,7 @@ The compiler recognizes a match as exhaustive when the union of the types for al
 The simplest match expression just matches on value.
 
 ```pony
---8<-- "match-values.pony"
+--8<-- "match-values.pony:6:14"
 ```
 
 For value matching the pattern is simply the value we want to match to, just like a C switch statement. The case with the same value as the operand wins and we use its expression.
@@ -53,7 +53,7 @@ The compiler calls the `eq()` function on the operand, passing the pattern as th
 Matching on value is fine if the match operand and case patterns have all the same type. However, match can cope with multiple different types. Each case pattern is first checked to see if it is the same type as the runtime type of the operand. Only then will the values be compared.
 
 ```pony
---8<-- "match-type-and-value.pony"
+--8<-- "match-type-and-value.pony:6:14"
 ```
 
 In many languages using runtime type information is very expensive and so it is generally avoided whenever possible.
@@ -79,7 +79,7 @@ Sometimes you want to be able to match the type, for any value of that type. For
 Captures look just like variable declarations within the pattern. Like normal variables, they can be declared as var or let. If you're not going to reassign them within the case expression it is good practice to use let.
 
 ```pony
---8<-- "match-captures.pony"
+--8<-- "match-captures.pony:6:13"
 ```
 
 __Can I omit the type from a capture, like I can from a local variable?__ Unfortunately no. Since we match on type and value the compiler has to know what type the pattern is, so it can't be inferred.
@@ -105,13 +105,13 @@ does not type check.
 If you want to match on more than one operand at once then you can simply use a tuple. Cases will only match if __all__ the tuple elements match.
 
 ```pony
---8<-- "match-tuples.pony"
+--8<-- "match-tuples.pony:5:13"
 ```
 
 __Do I have to specify all the elements in a tuple?__ No, you don't. Any tuple elements in a pattern can be marked as "don't care" by using an underscore ('_'). The first and fourth cases in our example don't actually care about the U32 element, so we can ignore it.
 
 ```pony
---8<-- "match-tuples-ignore-elements.pony"
+--8<-- "match-tuples-ignore-elements.pony:5:13"
 ```
 
 ## Guards
@@ -123,5 +123,5 @@ Guards are introduced with the `if` keyword (_was `where` until 0.2.1_).
 A guard expression may use any captured variables from that case, which allows for handling ranges and complex functions.
 
 ```pony
---8<-- "match-guards.pony"
+--8<-- "match-guards.pony:6:15"
 ```

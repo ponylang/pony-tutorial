@@ -1,3 +1,7 @@
+actor Main
+  new create(env: Env) =>
+    let wombat = Wombat("Fantastibat", 5)
+    
 class Wombat
   let name: String
   var _hunger_level: U64

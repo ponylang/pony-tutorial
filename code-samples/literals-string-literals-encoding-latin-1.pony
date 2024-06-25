@@ -1,6 +1,6 @@
 actor Main
   new create(env: Env) =>
-    let u_umlaut = "ü"
+    let u_umlaut = "�"
 
     let runes = u_umlaut.runes()
     try

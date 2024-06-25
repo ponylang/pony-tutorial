@@ -43,7 +43,7 @@ Both `trait` and `interface` can establish a relationship via nominal subtyping.
 The primary means of doing nominal subtyping in Pony is using __traits__. A __trait__ looks a bit like a __class__, but it uses the keyword `trait` and it can't have any fields.
 
 ```pony
---8<-- "traits-and-interfaces-trait.pony"
+--8<-- "traits-and-interfaces-trait.pony:6:9"
 ```
 
 Here, we have a trait `Named` that has a single function `name` that returns a String. It also provides a default implementation of `name` that returns the string literal "Bob".
@@ -53,19 +53,19 @@ We also have a class `Bob` that says it `is Named`. This means `Bob` is in the `
 Since `Bob` doesn't have its own `name` function, it uses the one from the trait. If the trait's function didn't have a default implementation, the compiler would complain that `Bob` had no implementation of `name`.
 
 ```pony
---8<-- "traits-and-interfaces-multiple-traits.pony"
+--8<-- "traits-and-interfaces-multiple-traits.pony:6:12"
 ```
 
 It is possible for a class to have relationships with multiple categories. In the above example, the class `Bob` _provides both Named and Bald_.
 
 ```pony
---8<-- "traits-and-interfaces-nested-traits.pony"
+--8<-- "traits-and-interfaces-nested-traits.pony:6:12"
 ```
 
 It is also possible to combine categories together. In the example above, all `Bald` classes are automatically `Named`. Consequently, the `Bob` class has access to both hair() and name() default implementation of their respective trait. One can think of the `Bald` category to be more specific than the `Named` one.
 
 ```pony
---8<-- "traits-and-interfaces-nominal-subtyping-in-pony.pony"
+--8<-- "traits-and-interfaces-nominal-subtyping-in-pony.pony:6:7"
 ```
 
 Here, we have a class `Larry` that has a `name` function with the same signature. But `Larry` does __not__ provide `Named`!
@@ -75,7 +75,7 @@ __Wait, why not?__ Because `Larry` doesn't say it `is Named`. Remember, traits a
 You can also do nominal subtyping using the keyword `interface`. __Interfaces__ in Pony are primarily used for structural subtyping. Like traits, interfaces can also have default method implementations, but in order to use default method implementations, an interface must be used in a nominal fashion. For example:
 
 ```pony
---8<-- "traits-and-interfaces-nominal-and-structural-subtyping.pony"
+--8<-- "traits-and-interfaces-nominal-and-structural-subtyping.pony:8:14"
 ```
 
 Both `Bob` and `Larry` are in the category `HasName`. `Bob` because it has declared that it is a `HasName` and `Larry` because it is structurally a `HasName`.
@@ -123,7 +123,7 @@ In our trait based example, we can add new colors at any time. With the type uni
 Interfaces can't be used for open world enumerations. If we defined `Color` as an interface:
 
 ```pony
---8<-- "traits-and-interfaces-open-world-interface.pony"
+--8<-- "traits-and-interfaces-marker-methods.pony:1:1"
 ```
 
 Then literally everything in Pony would be a `Color` because everything matches the `Color` interface. You can however, do something similar using "marker methods" with an interface:
@@ -141,7 +141,7 @@ We've covered a couple ways that traits can be better than interfaces, let's clo
 Here's a contrived example:
 
 ```pony
---8<-- "traits-and-interfaces-open-world-typing.pony"
+--8<-- "traits-and-interfaces-open-world-typing.pony:20:36"
 ```
 
 The flexibility of `interface` has allowed us to define a type `Compactable` that we can use to allow our `Compactor` to accept a variety of data types including `Array`, `Map`, and `String` from the standard library.

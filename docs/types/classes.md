@@ -3,7 +3,7 @@
 Just like other object-oriented languages, Pony has __classes__. A class is declared with the keyword `class`, and it has to have a name that starts with a capital letter, like this:
 
 ```pony
---8<-- "classes-wombat.pony:1:1"
+--8<-- "classes-wombat.pony:9:9"
 ```
 
 __Do all types start with a capital letter?__ Yes! And nothing else starts with a capital letter. So when you see a name in Pony code, you will instantly know whether it's a type or not.
@@ -21,7 +21,7 @@ A class is composed of:
 These are just like fields in C structures or fields in classes in C++, C#, Java, Python, Ruby, or basically any language, really. There are three kinds of fields: `var`, `let`, and `embed` fields. A `var` field can be assigned to over and over again, but a `let` field is assigned to in the constructor and never again. Embed fields will be covered in more detail in the documentation on [variables](/expressions/variables.md).
 
 ```pony
---8<-- "classes-wombat.pony:1:3"
+--8<-- "classes-wombat.pony:9:11"
 ```
 
 Here, a `Wombat` has a `name`, which is a `String`, and a `_hunger_level`, which is a `U64` (an unsigned 64-bit integer).
@@ -35,13 +35,13 @@ Pony constructors have names. Other than that, they are just like constructors i
 Constructors are introduced with the __new__ keyword.
 
 ```pony
---8<-- "classes-wombat-constructors.pony"
+--8<-- "classes-wombat-constructors.pony:8:18"
 ```
 
 Here, we have two constructors, one that creates a `Wombat` that isn't hungry, and another that creates a `Wombat` that might be hungry or might not. Unlike some other languages that differentiate between constructors with method overloading, Pony won't presume to know which alternate constructor to invoke based on the arity and type of your arguments. To choose a constructor, invoke it like a method with the `.` syntax:
 
 ```pony
---8<-- "classes-wombat-constructor-invocation.pony"
+--8<-- "classes-wombat.pony:3:4"
 ```
 
 __What's with the single quote thing, i.e. name'?__ You can use single quotes in parameter and local variable names. In mathematics, it's called a _prime_, and it's used to say "another one of these, but not the same one". Basically, it's just convenient.
@@ -51,7 +51,7 @@ Every constructor has to set every field in an object. If it doesn't, the compil
 Sometimes it's convenient to set a field the same way for all constructors.
 
 ```pony
---8<-- "classes-wombat.pony:1:12"
+--8<-- "classes-wombat.pony:9:20"
 ```
 
 Here, every `Wombat` begins a little bit thirsty, regardless of which constructor is called.
@@ -59,7 +59,7 @@ Here, every `Wombat` begins a little bit thirsty, regardless of which constructo
 ### Zero Argument Constructors
 
 ```pony
---8<-- "classes-zero-argument-constructors.pony"
+--8<-- "classes-zero-argument-constructors.pony:9:16"
 ```
 
 Here we have two classes, because the `Hawk` class defines no constructors, a default constructor with zero arguments called `create` is generated. The `Owl` defines its own constructor that sets the `_hunger_level`.
@@ -67,7 +67,7 @@ Here we have two classes, because the `Hawk` class defines no constructors, a de
 When constructing instances of classes that have zero-argument constructors, they can be constructed with just the class name:
 
 ```pony
---8<-- "classes-zero-argument-constructors-invocation.pony"
+--8<-- "classes-zero-argument-constructors.pony:5:7"
 ```
 
 This is explained later, in more detail in the [sugar](/expressions/sugar.md) section.
@@ -77,7 +77,7 @@ This is explained later, in more detail in the [sugar](/expressions/sugar.md) se
 Functions in Pony are like methods in Java, C#, C++, Ruby, Python, or pretty much any other object oriented language. They are introduced with the keyword `fun`. They can have parameters like constructors do, and they can also have a result type (if no result type is given, it defaults to `None`).
 
 ```pony
---8<-- "classes-wombat.pony"
+--8<-- "classes-wombat.pony:9:24"
 ```
 
 The first function, `hunger`, is pretty straight forward. It has a result type of `U64`, and it returns `_hunger_level`, which is a `U64`. The only thing a bit different here is that no `return` keyword is used. This is because the result of a function is the result of the last expression in the function, in this case, the value of `_hunger_level`.
@@ -107,13 +107,13 @@ __Wait, seriously? The _old_ value?__ Yes. In Pony, assignment is an expression 
 __...why?__ It's called a "destructive read", and it lets you do awesome things with a capabilities-secure type system. We'll talk about that later. For now, we'll just mention that you can also use it to implement a _swap_ operation. In most languages, to swap the values of `a` and `b` you need to do something like:
 
 ```pony
---8<-- "classes-swap-values.pony"
+--8<-- "classes-swap-values.pony:6:8"
 ```
 
 In Pony, you can just do:
 
 ```pony
---8<-- "classes-swap-values-sugar.pony"
+--8<-- "classes-swap-values-sugar.pony:6:6"
 ```
 
 ### Finalisers

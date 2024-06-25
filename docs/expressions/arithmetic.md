@@ -104,7 +104,12 @@ Here is a full list of all available conversions for numeric types:
 If overflow or division by zero are cases that need to be avoided and performance is no critical priority, partial or checked arithmetic offer great safety during runtime. Partial arithmetic operators error on overflow/underflow and division by zero. Checked arithmetic methods return a tuple of the result of the operation and a `Boolean` indicating overflow or other exceptional behaviour.
 
 ```pony
---8<-- "arithmetic-partial-and-check-arithmetic.pony"
+--8<--
+arithmetic-partial-and-check-arithmetic.pony:7:14
+arithmetic-partial-and-check-arithmetic.pony:16:20
+arithmetic-partial-and-check-arithmetic.pony:22:22
+arithmetic-partial-and-check-arithmetic.pony:24:26
+--8<--
 ```
 
 Partial as well as checked arithmetic comes with the burden of handling exceptions on every case and incurs some performance overhead, be warned.

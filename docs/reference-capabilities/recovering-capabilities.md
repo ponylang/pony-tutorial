@@ -31,7 +31,7 @@ That's from `format/_FormatInt`. It creates a `String ref`, does a bunch of stuf
 You can also give an explicit reference capability:
 
 ```pony
---8<-- "recovering-capabilities-with-explicit-reference-capability.pony"
+--8<-- "recovering-capabilities-with-explicit-reference-capability.pony:5:5"
 ```
 
 That's from `net/http/_PayloadBuilder`. We get a substring of `line`, which is a `String iso^`, then we call strip on it, which returns itself. But since strip is a `ref` function, it returns itself as a `String ref^` - so we use a `recover val` to end up with a `String val`.
@@ -55,7 +55,7 @@ Notice that this technique looks mostly at the call-site, rather than at the def
 This may sound a little complicated, but in practice, it means you can write code that treats an `iso` mostly like a `ref`, and the compiler will complain when it's wrong. For example:
 
 ```pony
---8<-- "recovering-capabilities-string-append.pony"
+--8<-- "recovering-capabilities-string-append.pony:3:4"
 ```
 
 Here, we create a `String iso` and then append some text to it. The append method takes a `ref` receiver and a `box` parameter. We can automatically recover the `iso` receiver since we pass a `val` parameter, so everything is fine.

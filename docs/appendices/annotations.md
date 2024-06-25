@@ -51,7 +51,7 @@ The following annotations are recognised by the Pony compiler. Note that the Pon
 Recognised on a `struct` declaration. Removes padding in the associated `struct`, making it ABI-compatible with a packed C structure with compatible members (declared with the `__attribute__((packed))` extension or the `#pragma pack` preprocessor directive in many C compilers).
 
 ```pony
---8<-- "appendices-annotations-packed-annotation.pony"
+--8<-- "appendices-annotations-packed-annotation.pony:1:3"
 ```
 
 #### `likely` and `unlikely`
@@ -59,7 +59,12 @@ Recognised on a `struct` declaration. Removes padding in the associated `struct`
 Recognised on a conditional expression (`if`, `while`, `until` and `|` (as a pattern matching case)). Gives optimisation hints to the compiler on the likelihood of a given conditional expression.
 
 ```pony
---8<-- "appendices-annotations-likely-and-unlikely-annotations.pony"
+--8<--
+appendices-annotations-likely-and-unlikely-annotations.pony:12:14
+appendices-annotations-likely-and-unlikely-annotations.pony:17:19
+appendices-annotations-likely-and-unlikely-annotations.pony:22:24
+appendices-annotations-likely-and-unlikely-annotations.pony:27:30
+--8<--
 ```
 
 ### `nodoc`
@@ -85,7 +90,7 @@ The above code won't compile because you could supply `Empty ref`. Doing so resu
 By adding `nosupertype` to the definition of `Empty`, we declare that `Empty` is not a subtype of `Any` and thereby allow the code to compile as there is no longer an unsafe match.
 
 ```pony
---8<-- "appendices-annotations-empty-with-nosupertype-annotation.pony"
+--8<-- "appendices-annotations-empty-with-nosupertype-annotation.pony:1:7"
 ```
 
 `nosupertype` is particularly valuable when constructing generic classes like collections that need a marker class to describe "lack of an item".

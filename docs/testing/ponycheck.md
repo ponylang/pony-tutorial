@@ -19,7 +19,7 @@ PonyCheck is heavily inspired by QuickCheck and other great property based testi
 Writing property based tests in PonyCheck is done by implementing the trait [`Property1`](https://stdlib.ponylang.io/pony_check-Property1). A [`Property1`](https://stdlib.ponylang.io/pony_check-Property1) needs to define a type parameter for the type of the input sample, a [`Generator`](https://stdlib.ponylang.io/pony_check-Generator) and a property function. Here is a minimal example:
 
 ```pony
---8<-- "ponycheck-usage.pony"
+--8<-- "ponycheck-usage.pony:2:12"
 ```
 
 A `Property1` needs a name for identification in test output. We created a `Generator` by using one of the many convenience factory methods and combinators defined in the [`Generators`](https://stdlib.ponylang.io/pony_check-Generators) primitive and we used [`PropertyHelper`](https://stdlib.ponylang.io/pony_check-PropertyHelper) to assert on a condition that should hold for all samples
@@ -35,7 +35,10 @@ Below are two classic list reverse properties from the QuickCheck paper adapted 
 PonyCheck properties need to be executed. The test runner for PonyCheck is [PonyTest](https://stdlib.ponylang.io/pony_test--index). To integrate [`Property1`](https://stdlib.ponylang.io/pony_check-Property1) into [PonyTest](https://stdlib.ponylang.io/pony_test--index), `Property1` needs to be wrapped inside a [`Property1UnitTest`](https://stdlib.ponylang.io/pony_check-Property1UnitTest) and passed to the PonyTest `apply` method as a regular PonyTest [`UnitTest`](https://stdlib.ponylang.io/pony_test-UnitTest):
 
 ```pony
---8<-- "ponycheck-ponytest.pony"
+--8<--
+ponycheck-usage.pony:1:3
+ponycheck-usage.pony:14:19
+--8<--
 ```
 
 It is also possible to integrate any number of properties directly into one

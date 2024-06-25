@@ -19,13 +19,13 @@ There are three exceptions:
 That stuff may seem a little esoteric right now, but we'll explain it all later. The `-` part should make sense though.
 
 ```pony
---8<-- "appendices-whitespace-subtract-b-from-a.pony"
+--8<-- "appendices-whitespace-subtract-b-from-a.pony:14:14"
 ```
 
 That means "subtract b from a".
 
 ```pony
---8<-- "appendices-whitespace-do-a-then-do-a-unary-negation-of-b.pony"
+--8<-- "appendices-whitespace-do-a-then-do-a-unary-negation-of-b.pony:14:15"
 ```
 
 That means "first do a, then, in a new expression, do a unary negation of b".

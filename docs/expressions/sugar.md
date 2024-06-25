@@ -87,13 +87,13 @@ The `update` sugar allows any class to use an assignment to accept data. Many la
 In any assignment where the left-hand side is a function call, Pony will translate this to a call to update, with the value from the right-hand side as an extra argument. So:
 
 ```pony
---8<-- "sugar-update-implicit.pony"
+--8<-- "sugar-update-implicit.pony:18:18"
 ```
 
 becomes:
 
 ```pony
---8<-- "sugar-update-explicit.pony"
+--8<-- "sugar-update-explicit.pony:18:18"
 ```
 
 The value from the right-hand side of the assignment is always passed to a parameter named `value`. Any object can allow this syntax simply by providing an appropriate function `update` with an argument `value`.
@@ -101,7 +101,7 @@ The value from the right-hand side of the assignment is always passed to a param
 __Does my update function have to have a single parameter that takes an integer?__ No, you can define update to take whatever parameters you like, as long as there is one called `value`. The following are all fine:
 
 ```pony
---8<-- "sugar-update-additional-parameters.pony"
+--8<-- "sugar-update-additional-parameters.pony:23:25"
 ```
 
 __Does it matter where `value` appears in my parameter list?__ Whilst it doesn't strictly matter it is good practice to put `value` as the last parameter. That way all of the others can be specified by position.

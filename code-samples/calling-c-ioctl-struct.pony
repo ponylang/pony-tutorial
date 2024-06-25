@@ -5,9 +5,11 @@ struct Winsize
   var width: U16 = 0
 
   new create() => None
-
-let size = Winsize
-
-@ioctl(0, 21523, NullablePointer[Winsize](size))
-
-env.out.print(size.height.string())
+  
+actor Main
+  new create(env: Env) =>
+    let size = Winsize
+    
+    @ioctl(0, 21523, NullablePointer[Winsize](size))
+    
+    env.out.print(size.height.string())

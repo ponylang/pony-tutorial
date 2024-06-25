@@ -25,7 +25,10 @@ When defining your own `add` function there is no restriction on the types of th
 Here's a full example for defining a type which allows the use of `+`. This is all you need:
 
 ```pony
---8<-- "operators-add.pony"
+--8<--
+operators-add.pony:8:19
+operators-add.pony:23:29
+--8<--
 ```
 
 It is possible to overload infix operators to some degree using union types or f-bounded polymorphism, but this is beyond the scope of this tutorial. See the Pony standard library for further information.
@@ -115,7 +118,7 @@ In Pony, unary operators always bind stronger than any infix operators: `not a =
 When using infix operators in complex expressions a key question is the __precedence__, i.e. which operator is evaluated first. Given this expression:
 
 ```pony
---8<-- "operators-precedence-without-parentheses.pony"
+--8<-- "operators-precedence-without-parentheses.pony:3:3"
 ```
 
 We will get a value of 9 if we evaluate the addition first and 7 if we evaluate the multiplication first. In mathematics, there are rules about the order in which to evaluate operators and most programming languages follow this approach.
@@ -139,7 +142,7 @@ Repeated use of a single operator, however, is fine:
 Meanwhile, mixing unary and infix operators do not need additional parentheses as unary operators always bind more closely, so if our example above used a negative three:
 
 ```pony
---8<-- "operators-precedence-infix-and-unary-operators-without-parentheses.pony"
+--8<-- "operators-precedence-infix-and-unary-operators-without-parentheses.pony:3:3"
 ```
 
 We would still need parentheses to remove the ambiguity for our infix operators like we did above, but not for the unary arithmetic negative (`-`):

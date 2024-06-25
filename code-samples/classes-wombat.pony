@@ -1,3 +1,11 @@
+actor Main
+  new create(env: Env) =>
+    let defaultWombat = Wombat("Fantastibat") // Invokes the create method by default
+    let hungryWombat = Wombat.hungry("Nomsbat", 12) // Invokes the hungry method
+    defaultWombat.set_hunger(5)
+    env.out.print(defaultWombat.name + " has a hunger level of " + defaultWombat.hunger().string())
+    env.out.print(hungryWombat.name + " has a hunger level of " + hungryWombat.hunger().string())
+
 class Wombat
   let name: String
   var _hunger_level: U64

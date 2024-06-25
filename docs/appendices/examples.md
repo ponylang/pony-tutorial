@@ -5,13 +5,13 @@ Small _how do I_ examples for Pony. These will eventually find another home. Unt
 ## Enumeration with values
 
 ```pony
---8<-- "appendices-examples-enumeration-with-values.pony"
+--8<-- "appendices-examples-enumeration-with-values.pony:4:5"
 ```
 
 ## Enumeration with values with namespace
 
 ```pony
---8<-- "appendices-examples-enumeration-with-values-with-namespace.pony"
+--8<-- "appendices-examples-enumeration-with-values-with-namespace.pony:4:6"
 ```
 
 ## Enumeration which can be iterated
@@ -69,7 +69,7 @@ Some assertions you can make with `TestHelper` are
 Single values can be separated by semicolon or newline.
 
 ```pony
---8<-- "appendices-examples-create-arrays-with-values.pony"
+--8<-- "appendices-examples-create-arrays-with-values.pony:5:9"
 ```
 
 ## How to modify a lexically captured variable in a closure

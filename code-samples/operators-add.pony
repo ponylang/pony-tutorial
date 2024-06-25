@@ -1,3 +1,10 @@
+actor Main
+  new create(env: Env) =>
+    var x = Pair(1, 2)
+    var y = Pair(3, 4)
+    var z = x + y
+    env.out.print(z.string())
+    
 // Define a suitable type
 class Pair
   var _x: U32 = 0
@@ -10,6 +17,9 @@ class Pair
   // Define a + function
   fun add(other: Pair): Pair =>
     Pair(_x + other._x, _y + other._y)
+    
+  fun string(): String =>
+    "(" + _x.string() + ", " + _y.string() + ")"
 
 // Now let's use it
 class Foo

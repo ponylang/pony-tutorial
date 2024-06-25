@@ -9,13 +9,13 @@ Sometimes, you want to _move_ an object from one variable to another. In other w
 You can do this by using `consume`. When you `consume` a variable you take the value out of it, effectively leaving the variable empty. No code can read from that variable again until a new value is written to it. Consuming a local variable or a parameter allows you to move it to a new location, most importantly for `iso` and `trn`.
 
 ```pony
---8<-- "consume-and-destructive-read-consuming-a-variable.pony:1:2"
+--8<-- "consume-and-destructive-read-consuming-a-variable.pony:5:6"
 ```
 
 The compiler is happy with that because by consuming `a`, you've said the value can't be used again and the compiler will complain if you try to.
 
 ```pony
---8<-- "consume-and-destructive-read-consuming-a-variable.pony"
+--8<-- "consume-and-destructive-read-consuming-a-variable-failure.pony:5:7"
 ```
 
 Here's an example of that. When you try to assign `a` to `c`, the compiler will complain.

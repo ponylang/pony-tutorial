@@ -37,7 +37,7 @@ It is possible to help the compiler determine the concrete type of the literal u
 Integer literals can be given as decimal, hexadecimal or binary:
 
 ```pony
---8<-- "literals-number-types.pony"
+--8<-- "literals-number-types.pony:3:5"
 ```
 
 Floating Point literals are expressed as standard floating point or scientific notation:
@@ -53,7 +53,7 @@ Character literals are enclosed with single quotes (`'`).
 Character literals, unlike String literals, encode to a single numeric value. Usually this is a single byte, a `U8`. But they can be coerced to any integer type:
 
 ```pony
---8<-- "literals-character-literals.pony"
+--8<-- "literals-character-literals.pony:3:5"
 ```
 
 The following escape sequences are supported:
@@ -97,7 +97,7 @@ String Literals contain the bytes that were read from their source code file. Th
 Consider the following example:
 
 ```pony
---8<-- "literals-string-literals-encoding.pony"
+--8<-- "literals-string-literals-encoding.pony:3:3"
 ```
 
 If the file containing this code is encoded as `UTF-8` the byte-value of `u_umlaut` will be: `\xc3\xbc`. If the file is encoded with *ISO-8559-1* (Latin-1) its value will be `\xfc`.
@@ -115,7 +115,10 @@ For embedding multi-line text in string literals, there are triple quoted string
 When a single string literal is used several times in your Pony program, all of them will be converted to a single common instance. This means they will always be equal based on identity.
 
 ```pony
---8<-- "literals-string-literals-instances.pony"
+--8<--
+literals-string-literals-instances.pony:3:6
+literals-string-literals-instances.pony:10:10
+--8<--
 ```
 
 ## Array Literals
@@ -123,7 +126,7 @@ When a single string literal is used several times in your Pony program, all of 
 Array literals are enclosed by square brackets. Array literal elements can be any kind of expressions. They are separated by semicolon or newline:
 
 ```pony
---8<-- "literals-array-literals.pony"
+--8<-- "literals-array-literals.pony:3:7"
 ```
 
 ### Type inference

@@ -28,13 +28,17 @@ In this case, the name is `A`, the constraint is `Any` and the reference capabil
 The user of the class must provide a type when referencing the class name. This is done when creating it:
 
 ```pony
---8<-- "generics-generic-class-initialization.pony"
+--8<--
+generics-foo-with-any-val.pony:13:13
+generics-foo-with-any-val.pony:18:18
+generics-foo-with-any-val.pony:21:21
+--8<--
 ```
 
 That tells the compiler what specific class to create, replacing `A` with the type provided. For example, a `Foo[String]` usage becomes equivalent to:
 
 ```pony
---8<-- "generics-foo-string.pony"
+--8<-- "generics-foo-string.pony:1:9"
 ```
 
 ### Type parameter defaults
@@ -43,13 +47,13 @@ Sometimes the same parameter type is used over and over again, and it is tedious
 The class `Bar` expects its type parameter to be a `USize val` by default:
 
 ```pony
---8<-- "generics-type-parameter-defaults-definition.pony"
+--8<-- "generics-type-parameter-defaults.pony:1:9"
 ```
 
 Now, when the default type parameter is the desired one, it can simply be omitted. But it is still possible to be explicit or use a different type.
 
 ```pony
---8<-- "generics-type-parameter-defaults-initialization.pony"
+--8<-- "generics-type-parameter-defaults.pony:13:15"
 ```
 
 Note that we could simply write `class Bar[A: Any box = USize]` because `val` is the default reference capability of the `USize` type.

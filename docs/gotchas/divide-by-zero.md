@@ -9,7 +9,7 @@ In math, divide by zero is undefined. There is no answer to that question as the
 In Pony, *integer division by zero results in zero*. That's right,
 
 ```pony
---8<-- "divide-by-zero.pony"
+--8<-- "divide-by-zero.pony:3:3"
 ```
 
 results in `0` being assigned to `x`. Baffling right? Well, yes and no. From a mathematical standpoint, it is very much baffling. From a practical standpoint, it is very much not.
@@ -37,5 +37,5 @@ In conformance with IEEE 754, *floating point division by zero results in `inf` 
 If you can assert that your denominator cannot be `0`, it is possible to use [Unsafe Division](/expressions/arithmetic.md#floating-point) to gain some performance:
 
 ```pony
---8<-- "divide-by-zero-floats.pony"
+--8<-- "divide-by-zero-floats.pony:4:4"
 ```

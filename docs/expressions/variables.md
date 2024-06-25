@@ -31,7 +31,7 @@ All local variable names start with a lowercase letter. If you want to you can e
 The chunk of code that a variable lives in is known as its __scope__. Exactly what its scope is depends on where it is defined. For example, the scope of a variable defined within the `then` expression of an `if` statement is that `then` expression. We haven't looked at `if` statements yet, but they're very similar to every other language.
 
 ```pony
---8<-- "variables-scope.pony"
+--8<-- "variables-scope.pony:6:1"
 ```
 
 Variables only exist from when they are defined until the end of the current scope. For our variable `x` this is the `end` at the end of the then expression: after that, it cannot be used.
@@ -41,13 +41,13 @@ Variables only exist from when they are defined until the end of the current sco
 Local variables are declared with either a `var` or a `let`. Using `var` means the variable can be assigned and reassigned as many times as you like. Using `let` means the variable can only be assigned once.
 
 ```pony
---8<-- "variables-var-vs-let.pony"
+--8<-- "variables-var-vs-let.pony:3:6"
 ```
 
 Using `let` instead of `var` also means the variable has to be assigned immediately.
 
 ```pony
---8<-- "variables-let-reassignment.pony"
+--8<-- "variables-let-reassignment.pony:3:5"
 ```
 
 Note that a variable having been declared with `let` only restricts reassignment, and does not influence the mutability of the object it references. This is the job of reference capabilities, explained later in this tutorial.
@@ -70,13 +70,13 @@ Just like local variables, fields can be `var` or `let`. Nevertheless, rules for
 In the example below, the initial value of the two fields of the class `Wombat` is assigned at the definition level:
 
 ```pony
---8<-- "variables-fields-definition-assignment.pony"
+--8<-- "variables-fields-definition-assignment.pony:6:8"
 ```
 
 Alternatively, these fields could be assigned in the constructor method:
 
 ```pony
---8<-- "variables-fields-constructor-assignment.pony"
+--8<-- "variables-fields-constructor-assignment.pony:6:12"
 ```
 
 If the assignment is not done at the definition level or in the constructor, an error is raised by the compiler. This is true for both `var` and `let` fields.
@@ -92,7 +92,7 @@ We will see later in the Methods section that a class can have several construct
 As for variables, using `var` means a field can be assigned and reassigned as many times as you like in the class. Using `let` means the field can only be assigned once.
 
 ```pony
---8<-- "variables-fields-let-reassignment.pony"
+--8<-- "variables-fields-let-reassignment.pony:5:17"
 ```
 
 __Can field declarations appear after methods?__ No. If `var` or `let` keywords appear after a `fun` or `be` declaration, they will be treated as variables within the method body rather than fields within the type declaration. As a result, fields must appear prior to methods in the type declaration
