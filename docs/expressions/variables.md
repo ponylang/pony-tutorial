@@ -31,7 +31,7 @@ All local variable names start with a lowercase letter. If you want to you can e
 The chunk of code that a variable lives in is known as its __scope__. Exactly what its scope is depends on where it is defined. For example, the scope of a variable defined within the `then` expression of an `if` statement is that `then` expression. We haven't looked at `if` statements yet, but they're very similar to every other language.
 
 ```pony
---8<-- "variables-scope.pony:6:1"
+--8<-- "variables-scope.pony:6:11"
 ```
 
 Variables only exist from when they are defined until the end of the current scope. For our variable `x` this is the `end` at the end of the then expression: after that, it cannot be used.
