@@ -10,6 +10,7 @@ booleans
 capybaras
 combinators
 compilable
+dedent
 dereference
 deserialise
 deserialised
@@ -52,6 +53,7 @@ polymorphism
 ponyc
 PonyCheck
 Ponylang
+ponylang
 PonyTest
 POSIX
 preprocessor
