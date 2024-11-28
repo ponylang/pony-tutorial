@@ -14,7 +14,7 @@ The most useful options are `--debug`, `--path` or just `-p`, `--output` or just
 
 `--output` or `-o` takes a directory name where the final binary is created.
 
-`--docs` or -`g` creates a directory of the package with documentation in [Read the Docs](http://readthedocs.org) format, i.e. markdown with nice navigation.
+`--docs` or -`g` creates a directory of the package with documentation in [Read the Docs](https://readthedocs.org) format, i.e. markdown with nice navigation.
 
 Let's study the documentation of the builtin standard library:
 
