@@ -118,7 +118,7 @@ __Do I have to specify all the elements in a tuple?__ No, you don't. Any tuple e
 
 In addition to matching on types and values, each case in a match can also have a guard condition. This is simply an expression, evaluated __after__ type and value matching has occurred, that must give the value true for the case to match. If the guard is false then the case doesn't match and we move onto the next in the usual way.
 
-Guards are introduced with the `if` keyword (_was `where` until 0.2.1_).
+Guards are introduced with the `if` keyword.
 
 A guard expression may use any captured variables from that case, which allows for handling ranges and complex functions.
 
