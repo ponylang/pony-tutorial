@@ -5,6 +5,9 @@ on:
   schedule:
     - cron: '0 2 * * *'
 
+permissions:
+  packages: read
+
 jobs:
   test:
     name: Verify site builds
