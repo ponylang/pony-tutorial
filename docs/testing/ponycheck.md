@@ -6,7 +6,7 @@ In traditional unit testing, it is the duty and burden of the developer to provi
 
 Property based testing leaves generation of test input samples to the testing engine which generates random examples taken from a description how to do so, so called `Generators`. The developer needs to define a `Generator` and describe the condition that should hold for each and every input sample.
 
-Property based testing first came up as [`QuickCheck`](http://www.cse.chalmers.se/~rjmh/QuickCheck/) in Haskell. It has the nice property of automatically inferring `Generators` from the type of the property parameter, the test input sample.
+Property based testing first came up as [`QuickCheck`](https://web.archive.org/web/20250602233329/http://www.cse.chalmers.se/~rjmh/QuickCheck/) in Haskell. It has the nice property of automatically inferring `Generators` from the type of the property parameter, the test input sample.
 
 PonyCheck is heavily inspired by QuickCheck and other great property based testing libraries, namely:
 
