@@ -43,7 +43,7 @@ We can also implicitly capture values from the lexical scope by using them in th
 Arbitrarily complex closures are nice, but sometimes we just want a simple closure. In Pony, you can use the lambdas for that. A lambda is written as a function (implicitly named `apply`) enclosed in curly brackets:
 
 ```pony
---8<-- "object-literals-lambda.pony:5:5"
+--8<-- "object-literals-lambda.pony:4:4"
 ```
 
 This produces the same code as:
