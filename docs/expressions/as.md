@@ -60,8 +60,12 @@ The `as` operator can also be used to tell the compiler what type to use for the
 
 For example, in the case of the following program, the method `foo` can take either an `Array[U32] ref` or an `Array[U64] ref` as an argument. If a literal array is passed as an argument to the method and no type is specified then the compiler cannot deduce the correct one because there are two equally valid ones.
 
-```pony
+```{ .pony .annotate }
 --8<-- "as-operator-array-literal.pony"
 ```
+
+1. Try changing it to:  
+    `foo([1; 2; 3])`  
+    The compiler will complain about this
 
 The requested type must be a valid type for the items in the array. Since these types are checked at compile time they are guaranteed to work, so there is no need for the programmer to handle an error condition.
