@@ -31,4 +31,8 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v4.1.1
       - name: Check spelling
-        uses: rojopolis/spellcheck-github-actions@e0dcc87bedf34ff10d6be443753f1c770bacbaa2
+        # streetsidesoftware/cspell-action v8.2.0
+        uses: streetsidesoftware/cspell-action@d5d910b521ad408f1e7383c24609079f5a88bdca
+        with:
+          use_cspell_files: true
+          incremental_files_only: false
