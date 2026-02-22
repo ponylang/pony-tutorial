@@ -1,0 +1,32 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "files": ["docs/**/*.md"],
+  "dictionaries": ["en-gb", "pony-terms"],
+  "dictionaryDefinitions": [
+    {
+      "name": "pony-terms",
+      "path": "./.cspell/pony-terms.txt",
+      "addWords": false
+    }
+  ],
+  "patterns": [
+    {
+      "name": "markdown-fenced-code",
+      "pattern": "/^(\\s*`{3,}).*[\\s\\S]*?^\\1/gm"
+    },
+    {
+      "name": "markdown-inline-code",
+      "pattern": "/`[^`]*`/g"
+    }
+  ],
+  "languageSettings": [
+    {
+      "languageId": "markdown",
+      "ignoreRegExpList": [
+        "markdown-fenced-code",
+        "markdown-inline-code"
+      ]
+    }
+  ]
+}
