@@ -26,7 +26,7 @@ Instead of having permissions lists, access control lists, or other forms of sec
 
 There's a great paper on how the object-capability model works, and it's pretty easy reading:
 
-[Capability Myths Demolished](http://srl.cs.jhu.edu/pubs/SRL2003-02.pdf)
+[Capability Myths Demolished](/assets/capability-myths-demolished.pdf)
 
 ## Capabilities and concurrency
 
