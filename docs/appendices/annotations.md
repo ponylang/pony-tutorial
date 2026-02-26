@@ -99,7 +99,7 @@ By adding `nosupertype` to the definition of `Empty`, we declare that `Empty` is
 
 Recognised on a `match` expression. Asserts that the match must explicitly handle all possible cases. Without this annotation, a non-exhaustive match silently gets an implicit `else None` added by the compiler, which widens the result type to include `None` and often produces a confusing indirect type error like "function body isn't the result type". With `\exhaustive\`, the compiler instead reports `match marked \exhaustive\ is not exhaustive`, making the problem immediately clear.
 
-The annotation is also useful on matches that are already exhaustive as a future-proofing measure. If a new member is later added to the union type and the match isn't updated, the compiler will flag it.
+The annotation is also useful on matches that are already exhaustive as a future-proofing measure. Without it, if a new member is later added to the union type and the match isn't updated, the compiler silently injects `else None`. You'll only get an error if the match result is assigned to a variable whose type doesn't include `None` — otherwise the bug is completely silent. With `\exhaustive\`, the compiler catches the missing case immediately.
 
 ```pony
 --8<-- "appendices-annotations-exhaustive-annotation.pony:8:13"
