@@ -19,3 +19,5 @@ Here's a typical "I'm learning Pony" program:
 ```
 
 This program will never garbage collect before exiting. `create` is run as a behavior on actors, which means that no garbage collection will occur while it's running. Long loops in behaviors are a good way to exhaust memory. Don't do it. If you want to execute something in such a fashion, use a [Timer](https://stdlib.ponylang.io/time-Timer/).
+
+For more on how Pony's garbage collector works and why it behaves this way, see the [Garbage Collection](../runtime-basics/garbage-collection.md) chapter.

@@ -60,3 +60,15 @@ ID = "Your_Site_ID"
   to = "/expressions/as.html"
   status = 301
   force = true
+
+[[redirects]]
+  from = "/appendices/memory-allocation.html"
+  to = "/runtime-basics/garbage-collection.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/appendices/garbage-collection.html"
+  to = "/runtime-basics/garbage-collection.html"
+  status = 301
+  force = true
