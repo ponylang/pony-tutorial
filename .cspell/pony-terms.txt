@@ -25,4 +25,6 @@ backpressure
 ORCA
 quiescence
 quiescent
+unmuted
+unmutes
 Zulip
