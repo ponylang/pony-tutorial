@@ -32,6 +32,8 @@ If the value the match expression results in is used then you need to have an el
 
 The compiler recognizes a match as exhaustive when the union of the types for all patterns that match on type alone is a supertype of the matched expression type. In other words, when your cases cover all possible types for the matched expression, the compiler will not add an implicit `else None` to your match statement.
 
+You can also use the `\exhaustive\` annotation to assert that a match must explicitly handle all cases. Without this annotation, a non-exhaustive match silently gets an implicit `else None` added by the compiler. With `\exhaustive\`, the compiler reports the missing case directly. This is also useful as a future-proofing measure on matches that are already exhaustive — if a new member is later added to the union type, the compiler will catch the missing case immediately instead of silently injecting `else None`. See [Program Annotations](/appendices/annotations.md#exhaustive) for more details.
+
 ## Matching on values
 
 The simplest match expression just matches on value.
