@@ -145,6 +145,14 @@ nav:
       - Linking to C Libraries: "c-ffi/linking-c.md"
       - C ABI: "c-ffi/c-abi.md"
       - Callbacks: "c-ffi/callbacks.md"
+  - Runtime Basics:
+      - Overview: "runtime-basics/index.md"
+      - The Scheduler: "runtime-basics/scheduler.md"
+      - Program Lifecycle: "runtime-basics/program-lifecycle.md"
+      - Garbage Collection: "runtime-basics/garbage-collection.md"
+      - The ASIO Subsystem: "runtime-basics/asio.md"
+      - Backpressure: "runtime-basics/backpressure.md"
+      - Runtime Options: "runtime-basics/runtime-options.md"
   - Gotchas:
       - Overview: "gotchas/index.md"
       - Divide by Zero: "gotchas/divide-by-zero.md"
@@ -163,8 +171,6 @@ nav:
       - Examples: "appendices/examples.md"
       - Whitespace: "appendices/whitespace.md"
       - Compiler Arguments: "appendices/compiler-args.md"
-      - Memory Allocation at Runtime: "appendices/memory-allocation.md"
-      - Garbage Collection with Pony-ORCA: "appendices/garbage-collection.md"
       - Platform-dependent Code: "appendices/platform-dependent-code.md"
       - A Short Guide to Pony Error Messages: "appendices/error-messages.md"
       - Program Annotations: "appendices/annotations.md"
