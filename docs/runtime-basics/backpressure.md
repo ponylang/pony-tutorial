@@ -19,3 +19,5 @@ Backpressure is entirely automatic. You don't need to write any code to enable i
 The main thing to be aware of is that muted actors appear to pause: they stop executing behaviors until they are unmuted. If you observe an actor that seems to have stopped processing messages, it may be muted because it sent a message to an overloaded actor somewhere downstream.
 
 Muting is also relevant to [program lifecycle](program-lifecycle.md): the program will not reach quiescence while any actors are muted. A muted actor may have more messages to send once it resumes, so the runtime cannot conclude that all work is done.
+
+For a deeper look at how the backpressure system works internally, see [Pony VUG #13: An informal tour of the Pony backpressure system](https://vimeo.com/707155973), a recording of a Pony office hours where Sean T. Allen goes through an informal presentation of the inter-actor backpressure system in the Pony runtime.
