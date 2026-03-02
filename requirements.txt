@@ -1,3 +1,4 @@
 mkdocs-material==9.7.1
 mkdocs-htmlproofer-plugin>=0.1.0
 mkdocs-ezlinks-plugin>=0.1.8
+mkdocs-llmstxt==0.5.0
