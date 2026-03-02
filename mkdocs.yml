@@ -1,4 +1,5 @@
 site_name: Pony Tutorial
+site_description: A tutorial for the Pony programming language.
 
 copyright: Copyright &copy; 2025 The Pony Developers
 edit_uri: edit/main/docs/
@@ -39,6 +40,106 @@ plugins:
         429: ["https://github.com/ponylang", "https://web.archive.org/*"]
         404: ["https://github.com/ponylang"]
         403: ["https://readthedocs.org"]
+  - llmstxt:
+      full_output: llms-full.txt
+      markdown_description: >-
+        The Pony Tutorial is a comprehensive guide to the Pony programming
+        language, an object-oriented, actor-model, capabilities-secure language.
+        It covers the type system, reference capabilities, generics, C FFI,
+        testing, and more. The target audience is programmers with some
+        experience in another language.
+      sections:
+        Introduction:
+          - index.md
+        Getting Started:
+          - getting-started/index.md
+          - getting-started/what-you-need.md
+          - getting-started/hello-world.md
+          - getting-started/how-it-works.md
+        Types:
+          - types/index.md
+          - types/at-a-glance.md
+          - types/classes.md
+          - types/primitives.md
+          - types/actors.md
+          - types/traits-and-interfaces.md
+          - types/structs.md
+          - types/type-aliases.md
+          - types/type-expressions.md
+        Expressions:
+          - expressions/index.md
+          - expressions/literals.md
+          - expressions/variables.md
+          - expressions/ops.md
+          - expressions/arithmetic.md
+          - expressions/control-structures.md
+          - expressions/match.md
+          - expressions/as.md
+          - expressions/methods.md
+          - expressions/errors.md
+          - expressions/equality.md
+          - expressions/sugar.md
+          - expressions/object-literals.md
+          - expressions/partial-application.md
+        Reference Capabilities:
+          - reference-capabilities/index.md
+          - reference-capabilities/reference-capabilities.md
+          - reference-capabilities/guarantees.md
+          - reference-capabilities/consume-and-destructive-read.md
+          - reference-capabilities/recovering-capabilities.md
+          - reference-capabilities/aliasing.md
+          - reference-capabilities/passing-and-sharing.md
+          - reference-capabilities/capability-subtyping.md
+          - reference-capabilities/combining-capabilities.md
+          - reference-capabilities/arrow-types.md
+          - reference-capabilities/capability-matrix.md
+        Object Capabilities:
+          - object-capabilities/index.md
+          - object-capabilities/object-capabilities.md
+          - object-capabilities/derived-authority.md
+          - object-capabilities/trust-boundary.md
+        Generics:
+          - generics/index.md
+          - generics/generics-and-reference-capabilities.md
+          - generics/generic-constraints.md
+        Packages:
+          - packages/index.md
+          - packages/use-statement.md
+          - packages/standard-library.md
+        Testing:
+          - testing/index.md
+          - testing/ponytest.md
+          - testing/ponycheck.md
+        C-FFI:
+          - c-ffi/index.md
+          - c-ffi/calling-c.md
+          - c-ffi/linking-c.md
+          - c-ffi/c-abi.md
+          - c-ffi/callbacks.md
+        Gotchas:
+          - gotchas/index.md
+          - gotchas/divide-by-zero.md
+          - gotchas/garbage-collection.md
+          - gotchas/scheduling.md
+          - gotchas/side-effect-ordering-in-function-call-expressions.md
+          - gotchas/recursion.md
+        Where Next?:
+          - where-next/index.md
+        Appendices:
+          - appendices/index.md
+          - appendices/ponypath.md
+          - appendices/lexicon.md
+          - appendices/symbol-lookup-cheat-sheet.md
+          - appendices/keywords.md
+          - appendices/examples.md
+          - appendices/whitespace.md
+          - appendices/compiler-args.md
+          - appendices/memory-allocation.md
+          - appendices/garbage-collection.md
+          - appendices/platform-dependent-code.md
+          - appendices/error-messages.md
+          - appendices/annotations.md
+          - appendices/serialisation.md
 
 theme:
   name: material
