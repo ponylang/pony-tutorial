@@ -35,6 +35,7 @@ plugins:
   - search
   - ezlinks
   - htmlproofer:
+      enabled: !ENV [ENABLED_HTMLPROOFER, True]
       raise_error: True
       raise_error_excludes:
         429: ["https://github.com/ponylang", "https://web.archive.org/*"]
