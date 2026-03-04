@@ -8,11 +8,44 @@ Pony focuses on two goals, performance and safety. From time to time, these two 
 
 Pony provides different ways of doing arithmetic to give programmers the freedom to chose which operation suits best for them, the safe but slower operation or the fast one, because performance is crucial for the use case.
 
+## Numeric Fundamentals
+
+Already familiar with integer widths, signed vs. unsigned, and overflow? [Skip ahead](#integers).
+
+### Integer Widths
+
+The number in a type name like `U8` or `I32` is the number of bits used to store the value. More bits means a wider range of representable values:
+
+| Type  | Bits | Minimum | Maximum |
+| ----- | ---- | ------- | ------- |
+| `U8`  | 8    | 0       | 255     |
+| `I8`  | 8    | -128    | 127     |
+| `U32` | 32   | 0       | 4294967295 |
+| `I32` | 32   | -2147483648 | 2147483647 |
+
+The pattern: an N-bit unsigned type can hold values from 0 to 2<sup>N</sup> - 1. An N-bit signed type splits its range roughly in half, covering -2<sup>N-1</sup> to 2<sup>N-1</sup> - 1.
+
+### Signed vs. Unsigned
+
+Unsigned integer types (`U8`, `U16`, `U32`, etc.) represent only non-negative values. All N bits contribute to the magnitude, so the maximum value for a `U8` is 255 (2<sup>8</sup> - 1).
+
+Signed integer types (`I8`, `I16`, `I32`, etc.) use two's complement representation, which gives them an asymmetric range. For example, `I8` covers -128 to 127, not -127 to 127. There is one more negative value than positive because zero takes up one of the non-negative slots.
+
+### Overflow and Underflow
+
+When an arithmetic operation produces a result outside the representable range, it overflows (too large) or underflows (too small). With fixed-width integers, wrap-around can occur:
+
+```pony
+--8<-- "arithmetic-numeric-fundamentals.pony"
+```
+
+This wrap-around behaviour is a consequence of how fixed-width binary arithmetic works — the result is computed and then only the low N bits are kept. Different languages handle this differently: some leave it undefined, some throw an exception, and Pony wraps around by default. The next section covers Pony's specific approach in detail.
+
 ## Integers
 
 ### Pony's default Integer Arithmetic
 
-Doing arithmetic on integer types in Pony with the well known operators like `+`, `-`, `*`, `/` etc. tries to balance the needs for performance and correctness. All default arithmetic operations do not expose any undefined behaviour or error conditions. That means it handles both the cases for overflow/underflow and division by zero. Overflow/Underflow are handled with proper wrap around semantics, using one's complement on signed integers. In that respect we get behaviour like:
+Doing arithmetic on integer types in Pony with the well known operators like `+`, `-`, `*`, `/` etc. tries to balance the needs for performance and correctness. All default arithmetic operations do not expose any undefined behaviour or error conditions. That means it handles both the cases for overflow/underflow and division by zero. Overflow and underflow are handled with wrap-around semantics, using two's complement representation for signed integers. In that respect we get behaviour like:
 
 ```pony
 --8<-- "arithmetic-default-integer-arithmetic.pony"
