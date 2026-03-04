@@ -4,6 +4,9 @@ U8(255) + 1 == 0
 // Unsigned wrap-around: the value wraps from zero to the maximum
 U8(0) - 1 == 255
 
+// Unsigned integer literal wrap-around: negative literals get wrapped as well
+U8(-1) == 255
+
 // Signed integers: zero is in the middle of the range, not at the edge
 // Compare with U8(0) - 1 above — for signed integers, this is just normal subtraction
 I8(0) - 1 == -1
