@@ -25,3 +25,5 @@ Actors with pending messages are placed on per-thread run queues. When a schedul
 ## Batch Processing
 
 When an actor gets scheduled, it doesn't just process one message. It processes a batch of messages from its queue before yielding, which reduces scheduling overhead. After the batch, the actor goes back onto the run queue if it still has pending messages, giving other actors a chance to run.
+
+This batch-then-yield mechanism is also something you can apply deliberately in your own code. When you have a large amount of work to do, you can break it into batches and send yourself a message between each batch, giving other actors a chance to run. The [Batch and Yield](https://patterns.ponylang.io/async/batch-and-yield) pattern covers this technique in detail.
