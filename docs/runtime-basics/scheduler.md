@@ -10,6 +10,8 @@ This is different from preemptive schedulers (like OS thread schedulers), which 
 
 This is why the [scheduling gotcha](../gotchas/scheduling.md) warns against long-running behaviors. A behavior that loops for a long time (or calls FFI code that blocks) monopolizes a scheduler thread and prevents other actors from making progress on that thread.
 
+When you have a large amount of work to do, you can break it into batches and send yourself a message between each batch, giving other actors a chance to run. The [Batch and Yield](https://patterns.ponylang.io/async/batch-and-yield) pattern covers this technique in detail.
+
 ## Scheduler Threads
 
 By default, the Pony runtime creates one scheduler thread per physical CPU core. Each scheduler thread can execute one actor behavior at a time. If you have 4 cores, you get 4 scheduler threads, and up to 4 actors can execute behaviors simultaneously.
@@ -25,5 +27,3 @@ Actors with pending messages are placed on per-thread run queues. When a schedul
 ## Batch Processing
 
 When an actor gets scheduled, it doesn't just process one message. It processes a batch of messages from its queue before yielding, which reduces scheduling overhead. After the batch, the actor goes back onto the run queue if it still has pending messages, giving other actors a chance to run.
-
-This batch-then-yield mechanism is also something you can apply deliberately in your own code. When you have a large amount of work to do, you can break it into batches and send yourself a message between each batch, giving other actors a chance to run. The [Batch and Yield](https://patterns.ponylang.io/async/batch-and-yield) pattern covers this technique in detail.
