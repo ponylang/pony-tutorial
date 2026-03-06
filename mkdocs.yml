@@ -117,6 +117,14 @@ plugins:
           - c-ffi/linking-c.md
           - c-ffi/c-abi.md
           - c-ffi/callbacks.md
+        Runtime Basics:
+          - runtime-basics/index.md
+          - runtime-basics/scheduler.md
+          - runtime-basics/program-lifecycle.md
+          - runtime-basics/garbage-collection.md
+          - runtime-basics/asio.md
+          - runtime-basics/backpressure.md
+          - runtime-basics/runtime-options.md
         Gotchas:
           - gotchas/index.md
           - gotchas/divide-by-zero.md
@@ -135,8 +143,6 @@ plugins:
           - appendices/examples.md
           - appendices/whitespace.md
           - appendices/compiler-args.md
-          - appendices/memory-allocation.md
-          - appendices/garbage-collection.md
           - appendices/platform-dependent-code.md
           - appendices/error-messages.md
           - appendices/annotations.md
