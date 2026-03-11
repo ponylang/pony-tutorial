@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v6.0.2
       - name: Lint codebase
         uses: docker://github/super-linter:v3.8.3
         env:
@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v6.0.2
       - name: Check spelling
         # streetsidesoftware/cspell-action v8.2.0
         uses: streetsidesoftware/cspell-action@d5d910b521ad408f1e7383c24609079f5a88bdca
