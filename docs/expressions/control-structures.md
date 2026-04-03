@@ -193,3 +193,71 @@ Suppose we're trying to create something and we want to keep trying until it's g
 Just like `while` loops, the value given by a `repeat` loop is the value of the expression within the loop on the last iteration, and `break` and `continue` can be used.
 
 __Since you always go round a repeat loop at least once, do you ever need to give it an else expression?__ Yes, you may need to. A `continue` in the last iteration of a `repeat` loop needs to get a value from somewhere, and an `else` expression is used for that.
+
+## Iftype
+
+`iftype` is a compile-time conditional that selects a code path based on whether a type parameter satisfies a subtype constraint. It uses the `<:` operator to check the subtype relationship: `iftype A <: B` asks "is `A` a subtype of `B`?"
+
+Because the condition is resolved at compile time, only the matching branch is included in the generated code. Both branches are type-checked, but the non-matching one is discarded from the output.
+
+__How is iftype different from match?__ A `match` expression dispatches on the runtime type of a value. `iftype` operates on type parameters as they are known at compile time. If you call a generic function `foo[Animal](Cat)`, the type parameter is `Animal`, not `Cat` — so `iftype A <: Cat` would be false, even though the runtime value is a `Cat`.
+
+Here's a simple example with a generic function that behaves differently depending on whether the type parameter is a specific class:
+
+```pony
+--8<-- "control-structures-iftype-basic.pony"
+```
+
+This prints "meow" and then "woof". When `greet` is called with `Cat`, the compiler sees that `Cat <: Cat` is true and takes the `then` branch. When called with `Dog`, `Dog <: Cat` is false, so it takes the `else` branch.
+
+### Type narrowing
+
+Inside the `then` branch, the compiler knows the subtype relationship holds. This means you can call methods on a value that are only available on the constraining type:
+
+```pony
+--8<-- "control-structures-iftype-narrowing.pony"
+```
+
+In the `then` branch the compiler knows `A <: Cat val`, so calling `a.purr()` is valid even though the method doesn't exist on the `Animal` trait.
+
+### Elseif
+
+You can chain multiple type checks with `elseif`, just like a regular `if`:
+
+```pony
+--8<-- "control-structures-iftype-elseif.pony"
+```
+
+### Capabilities in conditions
+
+The condition can include a reference capability. This lets you write different code depending on what the caller can do with a value:
+
+```pony
+--8<-- "control-structures-iftype-capability.pony"
+```
+
+Here the `ref` branch can call `set_name` because it knows it has write access. The `box` branch can only read.
+
+### Tuple conditions
+
+When a function has multiple type parameters, you can check them together using a tuple condition. Both sides of `<:` must be tuples of the same size:
+
+```pony
+--8<-- "control-structures-iftype-tuple.pony"
+```
+
+The condition `(A, B) <: (Cat, Dog)` is true only when `A` is a subtype of `Cat` __and__ `B` is a subtype of `Dog`.
+
+### Limitations
+
+__Can I use iftype outside of a generic function?__ No. The subtype (the left side of `<:`) must be a type parameter or a tuple of type parameters. You cannot use concrete types. For example, this does not compile:
+
+```pony
+iftype String <: Stringable then
+  ...
+end
+```
+
+Like other control structures in Pony, `iftype` is an expression. Its value is the value of whichever branch is taken. If the `then` and `else` branches produce different types, the `iftype` expression produces a union of those types.
+
+__What if my iftype doesn't have an else?__ Any `else` branch that doesn't exist gives an implicit `None`, just like `if`.

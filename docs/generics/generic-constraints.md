@@ -23,3 +23,5 @@ In the previous section, we went through extra work to support `iso`. If there's
 ```pony
 --8<-- "generic-constraints-foo-any-read.pony"
 ```
+
+Constraints restrict what types a caller can provide. If you need different behavior depending on the actual type used, see [iftype](/expressions/control-structures.md#iftype) — a compile-time conditional that branches on subtype relationships.

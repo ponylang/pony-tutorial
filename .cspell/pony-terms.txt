@@ -27,4 +27,5 @@ quiescence
 quiescent
 unmuted
 unmutes
+iftype
 Zulip
