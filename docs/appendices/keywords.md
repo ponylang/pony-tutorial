@@ -16,10 +16,10 @@ This listing explains the usage of every Pony keyword.
 | `consume`           | move a value to a new variable, leaving the original variable empty                                    |
 | `digestof`          | create a `USize` value that summarizes the Pony object, similar to a Java object's `hashCode()` value. |
 | `do`                | loop statement, or after a with statement                                                              |
-| `else`              | conditional statement in if, for, while, repeat, try (as a catch block), match                         |
-| `elseif`            | conditional statement, also used with `ifdef`                                                            |
+| `else`              | conditional statement in if, iftype, for, while, repeat, try (as a catch block), match                 |
+| `elseif`            | conditional statement, also used with `ifdef` and `iftype`                                               |
 | `embed`             | embed a class as a field of another class                                                              |
-| `end`               | ending of: `if then`, `ifdef`, `while do`, `for in`, `repeat until`, `try`, `object`, `recover`, `match`         |
+| `end`               | ending of: `if then`, `ifdef`, `iftype`, `while do`, `for in`, `repeat until`, `try`, `object`, `recover`, `match` |
 | `error`             | raises an error                                                                                        |
 | `for`               | loop statement                                                                                         |
 | `fun`               | define a function, executed synchronously                                                              |
@@ -45,7 +45,7 @@ This listing explains the usage of every Pony keyword.
 | `repeat`            | loop statement                                                                                         |
 | `return`            | to return early from a function                                                                        |
 | `tag`               | reference capability – neither readable nor writeable, only object identity                            |
-| `then`              | (1) in if conditional statement                                                                        |
+| `then`              | (1) in if and iftype conditional statements                                                            |
 |                   | (2) as a (finally) block in try                                                                        |
 | `this`              | the current object                                                                                     |
 | `trait`             | used in nominal subtyping:  `class Foo is TraitName`                                                     |
