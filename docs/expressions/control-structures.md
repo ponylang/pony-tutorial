@@ -208,7 +208,7 @@ Here's a simple example with a generic function that behaves differently dependi
 --8<-- "control-structures-iftype-basic.pony"
 ```
 
-This prints "meow" and then "woof". When `greet` is called with `Cat`, the compiler sees that `Cat <: Cat` is true and takes the `then` branch. When called with `Dog`, `Dog <: Cat` is false, so it takes the `else` branch.
+This prints "meow" and then "not a meow". When `greet` is called with `Cat`, the compiler sees that `Cat <: Cat` is true and takes the `then` branch. When called with `Dog`, `Dog <: Cat` is false, so it takes the `else` branch.
 
 ### Type narrowing
 
