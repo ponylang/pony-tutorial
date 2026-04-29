@@ -11,5 +11,5 @@ actor Main
     iftype A <: Cat then
       env.out.print("meow")
     else
-      env.out.print("woof")
+      env.out.print("not a meow")
     end
