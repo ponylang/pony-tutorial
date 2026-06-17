@@ -72,3 +72,9 @@ ID = "Your_Site_ID"
   to = "/runtime-basics/garbage-collection.html"
   status = 301
   force = true
+
+[[redirects]]
+  from = "/c-ffi/c-abi.html"
+  to = "/c-ffi/c-shims.html"
+  status = 301
+  force = true
