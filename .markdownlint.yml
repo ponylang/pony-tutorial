@@ -3,5 +3,7 @@
   "MD013": false,
   "MD026": false,
   "MD033": { "allowed_elements": ["sup"] },
-  "MD051": false
+  "MD050": false,
+  "MD051": false,
+  "MD056": false
 }
