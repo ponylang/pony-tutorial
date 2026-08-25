@@ -1,3 +1,8 @@
+actor Main
+  new create(env: Env) =>
+    let aardvark = Aardvark("Arnie")
+    aardvark.eat(99)
+
 actor Aardvark
   let name: String
   var _hunger_level: U64 = 0

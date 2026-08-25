@@ -1,6 +1,23 @@
 # Actors
 
-An __actor__ is similar to a __class__, but with one critical difference: an actor can have __behaviours__.
+In Pony, __classes__ and __actors__ share many similarities and much of what you've already learned about the former directly transfers to the latter.
+
+## Declaration
+
+Let's start by looking at how syntactically similar an actor declaration is to a class declaration. We can take one of our earlier "class Wombat" examples and turn it into an "actor Aardvark" simply by changing the `class` keyword to `actor` and renaming to "Aardvark". 
+
+```pony
+--8<-- "actors-behaviors.pony:6:12"
+```
+## Instantiation
+
+When it comes time to instantiate an Aardvark, the syntactic similarities continue: We instantiate actors the same way we instantiate objects. Unlike other actor-oriented languages and frameworks, there's no special syntax or method to "spawn" an actor in Pony.
+
+```pony
+--8<-- "actors-behaviors.pony:3:3"
+```
+
+Despite these similarities, it's important to note that there are substantial differences between actors and objects when it comes to how the rest of your Pony code will interact with them. After it's instantiated, all interaction with an actor must be through its **behaviours**. Since our Aardvark doesn't yet have any, we'll need to add some if we want it to be useful.
 
 ## Behaviours
 
@@ -15,10 +32,16 @@ Like a function, a behaviour can have parameters. Unlike a function, it doesn't 
 __So what does a behaviour return?__ Behaviours always return `None`, like a function without explicit result type, because they can't return something they calculate (since they haven't run yet).
 
 ```pony
---8<-- "actors-behaviors.pony"
+--8<-- "actors-behaviors.pony:5"
 ```
 
-Here we have an `Aardvark` that can eat asynchronously. Clever Aardvark.
+Here we have an `Aardvark` that can eat asynchronously. Clever Aardvark. To make it eat, we simply call the "eat" behavior on that instance.
+
+```pony
+--8<-- "actors-behaviors.pony:4:5"
+```
+
+This looks just like a synchronous function call but we're actually **passing a message** to `aardvark` requesting that the behavior be executed asynchronously.
 
 ## Message Passing
 
