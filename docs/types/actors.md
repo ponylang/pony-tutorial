@@ -4,14 +4,15 @@ In Pony, __classes__ and __actors__ share many similarities and much of what you
 
 ## Declaration
 
-Let's start by looking at how syntactically similar an actor declaration is to a class declaration. We can take one of our earlier "class Wombat" examples and turn it into an "actor Aardvark" simply by changing the `class` keyword to `actor` and renaming to "Aardvark". 
+Let's start by looking at how syntactically similar an actor declaration is to a class declaration. We can take one of our earlier "class Wombat" examples and turn it into an "actor Aardvark" simply by changing the `class` keyword to `actor` and renaming to "Aardvark".
 
 ```pony
 --8<-- "actors-behaviors.pony:6:12"
 ```
+
 ## Instantiation
 
-When it comes time to instantiate an Aardvark, the syntactic similarities continue: We instantiate actors the same way we instantiate objects. Unlike other actor-oriented languages and frameworks, there's no special syntax or method to "spawn" an actor in Pony.
+When it comes time to instantiate an Aardvark, the syntactic similarities continue: We instantiate actors the same way we instantiate objects. Unlike some other actor-oriented languages and frameworks, there's no special syntax or method to "spawn" an actor in Pony.
 
 ```pony
 --8<-- "actors-behaviors.pony:3:3"
