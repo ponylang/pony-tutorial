@@ -6,7 +6,7 @@ In the examples presented previously we've explicitly set the reference capabili
 --8<-- "generics-foo-with-any-val.pony::1"
 ```
 
-If the capability is left out of the type parameter then the generic class or function can accept any reference capability. This would look like:
+To accept any reference capability, use `#any` as the capability on the constraint. This would look like:
 
 ```pony
 --8<-- "generics-and-reference-capabilities-explicit-constraint-and-default-capability.pony"

@@ -14,7 +14,7 @@ actor Main
     let cat2: Cat val = Cat
     maybe_rename[Cat val](cat2, env)
 
-  fun maybe_rename[A: Animal](a: A, env: Env) =>
+  fun maybe_rename[A: Animal #any](a: A, env: Env) =>
     iftype A <: Cat ref then
       a.set_name("Kitty")
       env.out.print(a.name())

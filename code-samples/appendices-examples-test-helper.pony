@@ -9,7 +9,7 @@ fun tag assert_error(test: ITest, msg: String = "") ?
 fun tag expect_error(test: ITest box, msg: String = ""): Bool
 fun tag assert_is (expect: Any, actual: Any, msg: String = "") ?
 fun tag expect_is (expect: Any, actual: Any, msg: String = ""): Bool
-fun tag assert_eq[A: (Equatable[A] #read & Stringable)]
+fun tag assert_eq[A: (Equatable[A] #read & Stringable #read)]
   (expect: A, actual: A, msg: String = "") ?
-fun tag expect_eq[A: (Equatable[A] #read & Stringable)]
+fun tag expect_eq[A: (Equatable[A] #read & Stringable #read)]
   (expect: A, actual: A, msg: String = ""): Bool
