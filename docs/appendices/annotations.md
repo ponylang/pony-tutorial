@@ -12,6 +12,7 @@ Here, `annotation1` and `annotation2` can be any valid Pony identifier, i.e. a s
 
 Annotations are allowed after any scoping keyword or symbol. The full list is:
 
+- `type`
 - `actor`
 - `class`
 - `struct`
@@ -104,3 +105,13 @@ The annotation is also useful on matches that are already exhaustive as a future
 ```pony
 --8<-- "appendices-annotations-exhaustive-annotation.pony:8:13"
 ```
+
+#### `c_api`
+
+Recognised on type declarations (`class`, `primitive`, `struct`, `actor`, `type`). Generates C-ABI wrapper functions for the type's eligible public methods and a `.h` header that declares them, so C code can call Pony methods on Pony objects. This feature is experimental and may change in future releases.
+
+```pony
+--8<-- "appendices-annotations-c-api-annotation.pony"
+```
+
+See [Exporting Pony Methods to C](/c-ffi/exporting.md) for the full details.

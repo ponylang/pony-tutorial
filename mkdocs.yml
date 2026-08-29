@@ -109,6 +109,7 @@ plugins:
           - c-ffi/calling-c.md
           - c-ffi/linking-c.md
           - c-ffi/c-shims.md
+          - c-ffi/exporting.md
           - c-ffi/callbacks.md
         Runtime Basics:
           - runtime-basics/index.md
@@ -245,6 +246,7 @@ nav:
       - Calling C from Pony: "c-ffi/calling-c.md"
       - Linking to C Libraries: "c-ffi/linking-c.md"
       - C Shims: "c-ffi/c-shims.md"
+      - Exporting Pony Methods to C: "c-ffi/exporting.md"
       - Callbacks: "c-ffi/callbacks.md"
   - Runtime Basics:
       - Overview: "runtime-basics/index.md"
