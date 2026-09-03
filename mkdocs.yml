@@ -94,6 +94,7 @@ plugins:
           - object-capabilities/trust-boundary.md
         Generics:
           - generics/index.md
+          - generics/using-generics.md
           - generics/generics-and-reference-capabilities.md
           - generics/generic-constraints.md
         Packages:
@@ -230,6 +231,7 @@ nav:
       - Trust Boundary: "object-capabilities/trust-boundary.md"
   - Generics:
       - Overview: "generics/index.md"
+      - Using Generics: "generics/using-generics.md"
       - Generics and Reference Capabilities: "generics/generics-and-reference-capabilities.md"
       - Constraints: "generics/generic-constraints.md"
   - Packages:
