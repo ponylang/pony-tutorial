@@ -1,1 +1,1 @@
-class Foo[A: Any]
+class Foo[A: Any #any]
