@@ -173,6 +173,24 @@ Note that the variable __name__ is declared _let_, so you cannot assign to the c
 
 __Can I use break and continue with for loops?__ Yes, `for` loops can have `else` expressions attached and can use `break` and `continue` just as for `while`.
 
+#### Multiple iterators
+
+A `for` loop can iterate over multiple collections at once. Place a tuple of iterators after `in` and a matching tuple of names after `for`:
+
+```pony
+--8<-- "control-structures-loops-for-multi.pony:3:7"
+```
+
+The names after `for` are bound to the values from each iterator in order. The loop stops when any iterator is exhausted, so the shortest one determines the number of iterations.
+
+You can think of the multi-iterator form as equivalent to one iterator variable per position and an AND-chained condition:
+
+```pony
+--8<-- "control-structures-loops-for-multi-while-comparison.pony:6:11"
+```
+
+`break`, `continue`, and `else` work the same as with a single iterator.
+
 ### Repeat
 
 The final loop construct that Pony provides is `repeat` `until`. Here we evaluate the expression in the loop and then evaluate a condition expression to see if we're done or we should go round again.
