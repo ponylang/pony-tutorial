@@ -1,0 +1,1 @@
+use math = "mylib"

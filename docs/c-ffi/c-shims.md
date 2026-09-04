@@ -89,6 +89,8 @@ include/version.h
 
 Building and running prints `answer: 42` and `version: 7`. `answer` returns the macro set by `cdefine:`; `version` returns the constant from the header found via `cincludedir:`.
 
+A shim can also call Pony methods on Pony objects through exported wrappers. The `\c_api\` annotation on a type declaration generates C-ABI wrappers and a header that any shim can include. See [Exporting Pony Methods to C](/c-ffi/exporting.md) for details.
+
 That is everything you need to write and build a shim. The rest of this page is reference material — how shims are discovered and linked, how `--safe` applies, and which platforms are supported.
 
 ## How shims are discovered
