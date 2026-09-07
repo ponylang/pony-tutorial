@@ -34,11 +34,23 @@ It is possible to help the compiler determine the concrete type of the literal u
 --8<-- "literals-numeric-typing.pony"
 ```
 
-Integer literals can be given as decimal, hexadecimal or binary:
+### Hex and Binary Literals
+
+Integer literals can be written in hexadecimal with the `0x` prefix or binary with the `0b` prefix. They represent the same values as their decimal equivalents:
 
 ```pony
 --8<-- "literals-number-types.pony:3:5"
 ```
+
+All three lines above assign 1024 to an I32.
+
+Hex and binary literals are always positive values. The compiler rejects a literal whose value exceeds the signed type's maximum. A hex literal like `0x80000000` is the positive value 2,147,483,648, one more than I32's maximum of 2,147,483,647:
+
+```pony
+let x: I32 = 0x80000000
+```
+
+To express a negative value in hex, negate the positive form. `-0x80000000` gives I32's minimum, and `-0x7FFFA000` gives -2,147,459,072.
 
 Floating Point literals are expressed as standard floating point or scientific notation:
 
