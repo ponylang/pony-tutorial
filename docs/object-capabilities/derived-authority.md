@@ -16,37 +16,39 @@ Here is a program that connects to example.com via TCP on port 80 and quits:
 --8<-- "derived-authority-delegating-and-restricting-authority.pony"
 ```
 
+The `use notifier = "net/notifier"` line imports the `net/notifier` subpackage under the name `notifier`, so its types are accessed as `notifier.ClientTCPConnection`. The [Use Statement](/packages/use-statement.md) page covers this syntax in detail.
+
 The `Main` actor authorizes the `Connect` actor by passing a `TCPConnectAuth` token created from the ambient authority token in `env.root`. The ambient authority token is unforgeable since the `AmbientAuth` constructor is private and the only existing instance is provided by the runtime itself.
 
 The `Connect` actor uses this derived authority when it creates a TCP connection:
 
 ```pony
---8<-- "derived-authority-delegating-and-restricting-authority.pony:18:18"
+--8<-- "derived-authority-delegating-and-restricting-authority.pony:20:21"
 ```
 
-The `TCPConnection` requires an authority as first parameter, and since the compiler checks that the correct type was passed, this guarantees that a `TCPConnection` can only be created by an actor holding the required authorization.
+The `ClientTCPConnection` requires an authority as first parameter, and since the compiler checks that the correct type was passed, this guarantees that a `ClientTCPConnection` can only be created by an actor holding the required authorization.
 
-The implementation of the `TCPConnection` constructor does not even use the authorization parameter at run time, all it does is require it to be of the right type. The type checking done by the compiler is sufficient for this guarantee.
+The implementation of the `ClientTCPConnection` constructor does not even use the authorization parameter at run time; all it does is require it to be of the right type. The type checking done by the compiler is sufficient for this guarantee.
 
 ## Restrict, then delegate your authority
 
 In order to handle our own code and that of others more safely, and also to understand our code better, we want to split up the authority, and only grant the particular authority a piece of code actually requires.
 
-The first parameter of the `TCPConnection` constructor has the type `TCPConnectAuth`. This is what we call "the most specific authority". All classes in the standard library that require an authority token only accept a single type of token; the token of "most specific authority". In the case of `TCPConnection`, this is `TCPConnectAuth`.
+The first parameter of the `ClientTCPConnection` constructor has the type `TCPConnectAuth`. This is what we call "the most specific authority". All types in the standard library that require an authority token only accept a single type of token; the token of "most specific authority". In the case of `ClientTCPConnection`, this is `TCPConnectAuth`.
 
-Now imagine we don't trust the `Connect` actor, so we don't want to provide it with more authority than needed. For example, there is no point in granting it filesystem access, since it is supposed to do network things (specifically, TCP), not access the filesystem. Instead of passing the entire `AmbientAuth` (the root of all authority), we "downgrade" that to a `TCPConnectAuth` (the most restrictive authority in `net`), pass it to the `Connect` actor, and have that pass it to the `TCPConnection` constructor:
+Now imagine we don't trust the `Connect` actor, so we don't want to provide it with more authority than needed. For example, there is no point in granting it filesystem access, since it is supposed to do network things (specifically, TCP), not access the filesystem. Instead of passing the entire `AmbientAuth` (the root of all authority), we "downgrade" that to a `TCPConnectAuth` (the most specific authority for outbound TCP connections), pass it to the `Connect` actor, and have that pass it to the `ClientTCPConnection` constructor:
 
 ```pony
---8<-- "derived-authority-restrict-then-delegate-your-authority.pony:16:22"
+--8<-- "derived-authority-delegating-and-restricting-authority.pony:18:25"
 ```
 
-Now we are sure it cannot access the filesystem or listen on a TCP or UDP port. Pay close mind to the authority that code you are calling is asking for. Never give `AmbientAuth` to __any__ code you do not trust completely both now and in the future. You should always create the most specific authority and give the library that authority. If the library is asking for more authority than it needs, __do not use the library__.
+Now we are sure it cannot access the filesystem or listen on a TCP or UDP port. Pay close attention to the authority that code you are calling is asking for. Never give `AmbientAuth` to __any__ code you do not trust completely both now and in the future. You should always create the most specific authority and give the library that authority. If the library is asking for more authority than it needs, __do not use the library__.
 
 ## Authorization-friendly interface
 
 Consider the above example again, but this time let's think of the `Connect` actor being part of a 3rd party package that we are building. Our goal is to write the actor in such a way that users of our package can grant it only the authority necessary for it to function.
 
-As the package author, it is then our responsibility to realize that the minimal authority possible is the `TCPConnectAuth`. We should only request `TCPConnectAuth` from our users. Our current implementation already satisfies this requirement. Rather than requesting a less specific authority like `AmbientAuth` from our users and creating the `TCPConnectAuth` in our library, we only ask for the `TCPConnetAuth` that is required.
+As the package author, it is then our responsibility to realize that the minimal authority possible is the `TCPConnectAuth`. We should only request `TCPConnectAuth` from our users. Our current implementation already satisfies this requirement. Rather than requesting a less specific authority like `AmbientAuth` from our users and creating the `TCPConnectAuth` in our library, we only ask for the `TCPConnectAuth` that is required.
 
 ## Authority hierarchies
 
@@ -66,7 +68,7 @@ you might notice that this looks like a hierarchy of authorities:
 
 `AmbientAuth >> NetAuth >> TCPAuth >> TCPConnectAuth`
 
-where in this paragraph, ">>" means "grants at least as much authority as". In fact, the `AmbientAuth` encompasses all ambient authority and is a strictly larger authority than `NetAuth`, which grants access to the network, which is more powerful than `TCPAuth` which is restricted to the TCP protocol. Finally, `TCPConnectAuth` is good only for creating a `TCPConnection`.
+where in this paragraph, ">>" means "grants at least as much authority as". In fact, the `AmbientAuth` encompasses all ambient authority and is a strictly larger authority than `NetAuth`, which grants access to the network, which is more powerful than `TCPAuth` which is restricted to the TCP protocol. Finally, `TCPConnectAuth` is good only for making outbound TCP connections.
 
 This hierarchy is established by means of the constructor of the weaker authority accepting one of the stronger authorities, for example:
 
@@ -74,4 +76,4 @@ This hierarchy is established by means of the constructor of the weaker authorit
 --8<-- "derived-authority-authority-hierarchies.pony:13:15"
 ```
 
-Where `TCPAuth` grants less authority than `NetAuth`. `NetAuth` can be used to create any of the derived authorities `DNSAuth`, `UDPAuth`, `TCPAuth`, `TCPListenAuth`, `TCPConnectAuth` whereas `TCPAuth` can only be used to derive `TCPListenAuth` and `TCPConnectAuth`.
+Where `TCPAuth` grants less authority than `NetAuth`. `NetAuth` can be used to derive any of the derived authorities `DNSAuth`, `UDPAuth`, `TCPAuth`, `TCPListenAuth`, `TCPConnectAuth`, and `TCPServerAuth`, whereas `TCPAuth` can only be used to derive `TCPListenAuth`, `TCPConnectAuth`, and `TCPServerAuth`. `TCPServerAuth` authorizes running the server side of an accepted TCP connection and can also be derived from `TCPListenAuth`, since accepting inbound connections requires listening authority.
