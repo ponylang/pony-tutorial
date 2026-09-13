@@ -78,7 +78,17 @@ calling-c-writev-tuple.pony:5:7
 
 In the example above, the type `Pointer[(Pointer[U8] tag, USize)] tag` is equivalent to the `IOVec` struct type we defined earlier. That is, _a struct type is equivalent to a pointer to a tuple type with the fields of the struct as elements, in the same order as the original struct type defined them_.
 
-**Can I pass struct types by value, instead of passing a pointer?** Not at the moment. This is a known limitation of the current FFI system, but it is something the Pony team is interested in fixing. If you'd like to work on adding support for passing structs by value, contact us [on the Zulip](https://ponylang.zulipchat.com/#narrow/stream/192795-contribute-to-Pony).
+#### Passing structs by value
+
+Some C functions take structs by value rather than by pointer. Pony's FFI normally passes all structs as pointers, so calling such a function directly would pass the wrong thing. The `\by_value\` annotation on a parameter causes the compiler to generate a wrapper that dereferences the pointer and passes the struct by value, matching the C function's signature.
+
+```pony
+--8<-- "calling-c-by-value-param.pony:1:6"
+```
+
+Annotate each parameter that the C function takes by value. Parameters without the annotation are passed as pointers as usual.
+
+Struct fields must be primitives or pointers. Nested embedded structs, zero-field structs, 128-bit integers, and variadic functions are not supported. If your struct doesn't meet these requirements, a [C shim](/c-ffi/c-shims.md) that wraps the function can bridge the gap.
 
 ### Working with Structs: from C to Pony
 
@@ -93,7 +103,7 @@ calling-c-ioctl-struct.pony:11:15
 
 A `NullablePointer` type can only be used with `structs`, and is only intended for output parameters (like in the example above) or for return types from C. You don't need to use a `NullablePointer` if you are only passing a `struct` as a regular input parameter.
 
-If you are using a C function that returns a struct, remember, that the C function needs to return a pointer to the struct. The following in Pony should be read as **returns a pointer to struct `Rect`**:
+Without the `\by_value\` annotation, a C function that returns a struct must return a pointer to it. The following in Pony should be read as **returns a pointer to struct `Rect`**:
 
 ```pony
 --8<-- "calling-c-from-c-struct.pony:1:5"
@@ -101,7 +111,21 @@ If you are using a C function that returns a struct, remember, that the C functi
 
 As we saw earlier, you can also use a `Pointer[(U16, U16)]` as well. It is the equivalent to our `Rect`.
 
-**Can I return struct types by value, instead of passing a pointer?** Not at the moment. This is a known limitation of the current FFI system, but it is something the Pony team is interested in fixing. If you'd like to work on adding support for returning structs by value, contact us [on the Zulip](https://ponylang.zulipchat.com/#narrow/stream/192795-contribute-to-Pony).
+#### Returning structs by value
+
+The `\by_value\` annotation also works on return types. When a C function returns a struct by value, annotate the return type in the declaration:
+
+```pony
+--8<-- "calling-c-by-value-return.pony:1:6"
+```
+
+The compiler generates a wrapper that receives the struct by value from C and writes it into a Pony-allocated struct. The call returns a pointer to the filled-in struct, just like any other Pony struct. The same [struct field restrictions](#passing-structs-by-value) apply.
+
+You can combine both — annotate parameters and the return type in the same declaration:
+
+```pony
+--8<-- "calling-c-by-value-both.pony:1:4"
+```
 
 ### Return-type Polymorphism
 
