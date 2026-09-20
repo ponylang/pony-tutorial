@@ -28,6 +28,6 @@ Pony solves this with ORCA, a concurrent garbage collection protocol for actors.
 
 A dedicated cycle detector actor periodically scans for groups of blocked actors that reference each other but are unreachable from any alive actor. When it finds such a group, it collects the entire cycle.
 
-The cycle detector's scan interval can be tuned with the `--ponycdinterval` [runtime option](runtime-options.md), and it can be disabled entirely with `--ponynoblock` (though this means dead actor cycles will never be collected).
+The cycle detector's scan interval can be tuned with the `--ponycdinterval` [runtime option](runtime-options.md), and it can be disabled entirely with `--ponynoblock` (though this means dead actor cycles will never be collected, and their finalisers will not run).
 
 For the full details of the ORCA protocol, see [Orca: GC and Type System Co-Design for Actor Languages](https://www.ponylang.io/media/papers/orca_gc_and_type_system_co-design_for_actor_languages.pdf).

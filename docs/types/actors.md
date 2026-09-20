@@ -85,3 +85,5 @@ It's pretty normal to write a Pony program that uses hundreds of thousands of ac
 ## Actor finalisers
 
 Like classes, actors can have finalisers. The finaliser definition is the same (`fun _final()`). All guarantees and restrictions for a class finaliser are also valid for an actor finaliser. In addition, an actor will not receive any further message after its finaliser is called.
+
+When [`--ponynoblock`](../runtime-basics/runtime-options.md) is used, the [cycle detector](../runtime-basics/garbage-collection.md) is disabled. Dead actors in a cycle will never be collected, and their finalisers will not run. Actors that are not part of a cycle are still collected and finalised normally.

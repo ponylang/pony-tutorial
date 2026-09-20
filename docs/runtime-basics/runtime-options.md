@@ -31,7 +31,7 @@ You can see the full list by running any compiled Pony program with `--ponyhelp`
 | `--ponycdinterval` | N | Run cycle detection every N milliseconds (range: 10--1000 ms). Defaults to 100 ms. |
 | `--ponygcinitial` | N | Defer garbage collection until an actor is using at least 2^N bytes of heap memory. Defaults to 14 (16 KB). |
 | `--ponygcfactor` | N | After GC, next collection triggers when heap usage reaches N times the current size. This is a floating-point value. Defaults to 2.0. |
-| `--ponynoblock` | none | Disable the cycle detector. Dead actor cycles will never be collected. |
+| `--ponynoblock` | none | Disable the cycle detector. Dead actor cycles will never be collected, and their finalisers will not run. |
 
 ### Diagnostics
 
