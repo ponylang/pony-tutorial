@@ -130,6 +130,6 @@ On macOS, shims resolve system headers through the SDK's `usr/include`; framewor
 
 ## Build artifacts
 
-Shims are recompiled on every build. Their object files live in the output directory during the build and are cleaned up after a successful link. Under a non-link mode (`--pass c`, `--pass obj`, and similar) or after a failed link they stay behind, and renaming or deleting a shim source can leave an old object in the output directory. They are plain files, safe to delete.
+Shims are recompiled on every build. Their object files live in the output directory during the build and are cleaned up after a successful link. Under a non-link mode (`--pass c`, `--pass ir`, and similar) or after a failed link they stay behind, and renaming or deleting a shim source can leave an old object in the output directory. They are plain files, safe to delete.
 
 Because ponyc now carries clang inside it, the compiler binary is noticeably larger than before.
