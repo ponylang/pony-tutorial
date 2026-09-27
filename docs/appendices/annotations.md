@@ -39,6 +39,8 @@ Annotations are allowed after any scoping keyword or symbol. The full list is:
 - `try`
 - `then` (only when part of a `try` block)
 
+Annotations are also allowed on parameter types and return types in FFI declarations (`use @`). See [`by_value`](#by_value) below for the annotation recognised in these positions.
+
 ## The effect of annotations
 
 Annotations are entirely implementation-specific. In other words, the Pony compiler (or any other tool that processes Pony programs) is free to take any action for any annotation that it encounters, including not doing anything at all. Annotations starting with `ponyint` are reserved by the compiler for internal use and shouldn't be used by external tools.
@@ -115,3 +117,15 @@ Recognised on type declarations (`class`, `primitive`, `struct`, `actor`, `type`
 ```
 
 See [Exporting Pony Methods to C](/c-ffi/exporting.md) for the full details.
+
+#### `by_value`
+
+Recognised on parameter types and return types in FFI declarations (`use @`). Causes the compiler to pass or return the annotated struct by value instead of by pointer when calling the C function.
+
+```pony
+--8<-- "appendices-annotations-by-value-annotation.pony"
+```
+
+Struct fields must be primitives or pointers. Nested embedded structs, zero-field structs, 128-bit integers, and variadic functions are not supported.
+
+See [Passing structs by value](/c-ffi/calling-c.md#passing-structs-by-value) and [Returning structs by value](/c-ffi/calling-c.md#returning-structs-by-value) for the full details.
