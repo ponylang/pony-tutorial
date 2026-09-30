@@ -104,7 +104,7 @@ plugins:
         Testing:
           - testing/index.md
           - testing/ponytest.md
-          - testing/ponycheck.md
+          - testing/property-testing.md
         C-FFI:
           - c-ffi/index.md
           - c-ffi/calling-c.md
@@ -242,7 +242,7 @@ nav:
   - Testing:
       - Overview: "testing/index.md"
       - Testing with PonyTest: "testing/ponytest.md"
-      - Testing with PonyCheck: "testing/ponycheck.md"
+      - Property-Based Testing: "testing/property-testing.md"
   - C-FFI:
       - Overview: "c-ffi/index.md"
       - Calling C from Pony: "c-ffi/calling-c.md"
