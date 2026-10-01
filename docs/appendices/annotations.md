@@ -6,7 +6,7 @@ In Pony, we provide a special syntax for implementation-specific annotations to 
 --8<-- "appendices-annotations-syntax.pony"
 ```
 
-Here, `annotation1` and `annotation2` can be any valid Pony identifier, i.e. a sequence of alphanumeric characters starting with a letter or an underscore.
+Here, `annotation1` and `annotation2` can be any valid Pony identifier, i.e. a sequence of alphanumeric characters starting with a letter or an underscore. An annotation can optionally carry an integer argument in parentheses, as shown with `annotation_with_argument(100)` above.
 
 ## What can be annotated
 
@@ -129,3 +129,19 @@ Recognised on parameter types and return types in FFI declarations (`use @`). Ca
 Struct fields must be primitives or pointers. Nested embedded structs, zero-field structs, 128-bit integers, and variadic functions are not supported.
 
 See [Passing structs by value](/c-ffi/calling-c.md#passing-structs-by-value) and [Returning structs by value](/c-ffi/calling-c.md#returning-structs-by-value) for the full details.
+
+#### `inline`, `inline(N)`, and `noinline`
+
+Recognised on `fun` declarations (not `be` or `new`). These annotations control LLVM's inlining decisions for the annotated function.
+
+`\inline\` forces the function to be inlined at every call site. `\inline(N)\` raises LLVM's inline cost threshold to `N` for the function, making it more likely to be inlined without forcing it. `\noinline\` prevents the function from being inlined.
+
+```pony
+--8<--
+appendices-annotations-inline-annotations.pony:1:2
+appendices-annotations-inline-annotations.pony:4:5
+appendices-annotations-inline-annotations.pony:7:8
+--8<--
+```
+
+These annotations cannot be combined with each other — `\inline, noinline\` or `\inline, inline(500)\` will produce a compiler error.
