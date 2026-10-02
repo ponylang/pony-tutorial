@@ -279,3 +279,5 @@ end
 Like other control structures in Pony, `iftype` is an expression. Its value is the value of whichever branch is taken. If the `then` and `else` branches produce different types, the `iftype` expression produces a union of those types.
 
 __What if my iftype doesn't have an else?__ Any `else` branch that doesn't exist gives an implicit `None`, just like `if`.
+
+__Can I use iftype on a method declaration instead of inside a method body?__ Yes. [Iftype specialization](/generics/iftype-specialization.md) puts the guard on the method declaration itself, giving you a separate method body for each case rather than branching inside a single body.

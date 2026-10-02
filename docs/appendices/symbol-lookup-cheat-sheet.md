@@ -14,7 +14,7 @@ Pony, like just about any other programming language, has plenty of odd symbols 
 | `~`    | Partial application   |
 | `?`    | Partial function      |
 | `'`    | Prime                 |
-| `<:`   | Subtype, iftype       |
+| `<:`   | Subtype, iftype, specialization |
 
 Here is a more elaborate explanation of Pony's use of special characters: (a line with (2) or (3) means an alternate usage of the symbol of the previous  line)
 
@@ -69,3 +69,4 @@ Here is a more elaborate explanation of Pony's use of special characters: (a lin
 | `._i`   | where `i = 1,2,…`  means the item at position i in the tuple                                |
 | `<:`    | (1) "is a subtype of" or "can be substituted for"                               |
 |         | (2) used in `iftype` conditions to check subtype relationships                  |
+|         | (3) used in [iftype specialization](/generics/iftype-specialization.md) guards on method declarations |

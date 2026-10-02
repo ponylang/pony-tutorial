@@ -26,7 +26,8 @@ This listing explains the usage of every Pony keyword.
 | `if`                | (1) conditional statement                                                                              |
 |                   | (2) to define a guard in a pattern match                                                               |
 | `ifdef`             | when defining a build flag at compile time:  ponyc –D "foo"                                            |
-| `iftype`            | type conditional statement `iftype A <: B` checks if `A` is a subtype of `B`                           |
+| `iftype`            | (1) type conditional statement `iftype A <: B` checks if `A` is a subtype of `B`                       |
+|                   | (2) method specialization guard: provides an alternate method body selected at compile time             |
 | `in`                | used in a for in - loop statement                                                                      |
 | `interface`         | used in structural subtyping                                                                           |
 | `is`                | (1) used in nominal subtyping                                                                          |
