@@ -28,7 +28,9 @@ Words are hard. We can all be saying the same thing but do we _mean_ the same th
 
 **Method**: Something callable on a concrete type/object. Function, behaviour or constructor.
 
-**Override**: When a concrete type has its own body for a method with a default body provided by a trait.
+**Method group**: A set of method definitions sharing the same name, consisting of one unguarded default and zero or more iftype-guarded specializations. See [iftype specialization](/generics/iftype-specialization.md).
+
+**Override**: When a concrete type has its own body for a method with a default body provided by a trait. A concrete type can also override individual specializations within a method group.
 
 **Parentheses**: ( ). Synonymous with round brackets.
 
@@ -37,6 +39,8 @@ Words are hard. We can all be saying the same thing but do we _mean_ the same th
 **Round brackets**: ( ). Synonymous with parentheses.
 
 **Single type**: Any type which is not defined as a collection of other types. Actors, classes, primitives, traits and structural types are all single types. Opposite of a compound type.
+
+**Specialization**: A method definition with an `iftype` guard on a type parameter. The compiler selects it when the type parameter satisfies the guard's constraint. See [iftype specialization](/generics/iftype-specialization.md).
 
 **Square brackets**: [ ]
 

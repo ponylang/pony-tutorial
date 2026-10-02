@@ -97,6 +97,7 @@ plugins:
           - generics/using-generics.md
           - generics/generics-and-reference-capabilities.md
           - generics/generic-constraints.md
+          - generics/iftype-specialization.md
         Packages:
           - packages/index.md
           - packages/use-statement.md
@@ -235,6 +236,7 @@ nav:
       - Using Generics: "generics/using-generics.md"
       - Generics and Reference Capabilities: "generics/generics-and-reference-capabilities.md"
       - Constraints: "generics/generic-constraints.md"
+      - Iftype Specialization: "generics/iftype-specialization.md"
   - Packages:
       - Overview: "packages/index.md"
       - Use Statement: "packages/use-statement.md"
