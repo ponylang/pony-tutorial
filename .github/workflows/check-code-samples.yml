@@ -1,0 +1,17 @@
+name: Check code samples
+
+on:
+    pull_request:
+    push:
+
+jobs:
+    check-code-samples:
+        name: Check code samples
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check out repository code
+              uses: actions/checkout@v4
+            - name: Setup ponyc
+              run: ${GITHUB_WORKSPACE}/.ci-scripts/setup-ponyc.bash
+            - name: Check code samples
+              run: ${GITHUB_WORKSPACE}/.ci-scripts/check-code-samples.bash
