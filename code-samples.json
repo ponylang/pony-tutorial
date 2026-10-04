@@ -1,0 +1,23 @@
+{
+    "actors-sequential.pony": {
+        "runnable": true,
+        "stdout": "This is printed first\nThis is printed last\n",
+        "stderr": null,
+        "exitcode": 0
+    },
+    "traits-and-interfaces-private-methods.pony": {
+        "runnable": true,
+        "stdout": null,
+        "stderr": "interfaces can't have private methods, only traits can\n",
+        "exitcode": 1
+    },
+    "actors-behaviors.pony": {
+        "runnable": false
+    },
+    "appendices-examples-access-command-line-arguments.pony": {
+        "runnable": true,
+        "stdout": "This is printed first\nThis is printed last\n",
+        "stderr": null,
+        "exitcode": 0
+    }
+}
