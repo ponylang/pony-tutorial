@@ -52,7 +52,7 @@ As the package author, it is then our responsibility to realize that the minimal
 
 ## Authority hierarchies
 
-Let's have a look at the authorizations available in the standard library's `net` module.
+Let's have a look at the authorizations available in the standard library's `net` package.
 
 ```pony
 --8<-- "derived-authority-authority-hierarchies.pony"
