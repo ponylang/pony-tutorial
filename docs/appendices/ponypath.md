@@ -1,6 +1,6 @@
 # `PONYPATH`
 
-When searching for Pony packages, `ponyc` checks both the installation directory (where the standard libraries reside) and any directories listed in the optional environment variable `PONYPATH`.
+When searching for Pony modules, `ponyc` checks both the installation directory (where the standard library resides) and any directories listed in the optional environment variable `PONYPATH`.
 
 ## Adding to `PONYPATH`
 

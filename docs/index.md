@@ -81,7 +81,7 @@ Throughout the design and development of the language the following principles s
 
 * Interoperability. Must be interoperable with other languages, but this may require a shim layer if non primitive types are used.
 
-* Avoid library pain. Use of 3rd party Pony libraries should be as easy as possible, with no surprises. This includes writing and distributing libraries and using multiple versions of a library in a single program.
+* Avoid library pain. Use of 3rd party Pony packages should be as easy as possible, with no surprises. This includes writing and distributing packages and using multiple versions of a package in a single program.
 
 ## More help
 
