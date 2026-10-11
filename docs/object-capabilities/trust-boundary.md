@@ -10,7 +10,7 @@ In Pony, when you use the C-FFI, you are basically declaring that you trust the 
 
 ## Safe modules
 
-The normal way to handle that is to be sure you're using just the code you need to use in your program. Pretty simple! Don't use some random module from the internet without looking at the code and making sure it doesn't do nasty FFI stuff.
+The normal way to handle that is to be sure you're using just the code you need to use in your program. Pretty simple! Don't use some random package from the internet without looking at the code and making sure it doesn't do nasty FFI stuff.
 
 But we can do better than that.
 
@@ -20,4 +20,4 @@ In Pony, you can optionally declare a set of _safe_ modules on the `ponyc` comma
 ponyc --safe=files:net:process my_project
 ```
 
-Here, we are declaring that only the `files`, `net` and `process` modules are allowed to use C-FFI calls. We've established our trust boundary: any other modules that try to use C-FFI calls will result in a compile-time error.
+Here, we are declaring that only the `files`, `net` and `process` packages are allowed to use C-FFI calls. We've established our trust boundary: any other packages that try to use C-FFI calls will result in a compile-time error.

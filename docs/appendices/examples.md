@@ -32,7 +32,7 @@ Small _how do I_ examples for Pony. These will eventually find another home. Unt
 --8<-- "appendices-examples-access-command-line-arguments.pony"
 ```
 
-## How to use the `cli` module to parse command line arguments
+## How to use the `cli` package to parse command line arguments
 
 ```pony
 --8<-- "appendices-examples-use-cli-package-to-parse-command-line-arguments.pony"

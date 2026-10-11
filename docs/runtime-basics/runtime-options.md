@@ -51,4 +51,4 @@ You can override the default values of runtime options in your program by adding
 
 The function is called during runtime initialization, before command-line arguments are parsed. This means command-line arguments still take precedence: if your code sets `ponymaxthreads` to 4 but the user passes `--ponymaxthreads 2`, the program will use 2 threads.
 
-The `RuntimeOptions` struct is defined in the `builtin` module and has a field for each runtime option. See the [standard library documentation](https://stdlib.ponylang.io/builtin-RuntimeOptions/) for the full list of fields.
+The `RuntimeOptions` struct is defined in the `builtin` package and has a field for each runtime option. See the [standard library documentation](https://stdlib.ponylang.io/builtin-RuntimeOptions/) for the full list of fields.

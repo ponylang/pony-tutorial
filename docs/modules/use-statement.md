@@ -8,9 +8,9 @@ Use commands are a similar concept to Python and Java "import", C/C++ "#include"
 --8<-- "use-statement-collections.pony"
 ```
 
-This will find all of the publicly visible types defined in the _collections_ module and add them to the type namespace of the file containing the `use` command. These types are then available to use within that file, just as if they were defined locally.
+This will find all of the publicly visible types defined in the _collections_ package and add them to the type namespace of the file containing the `use` command. These types are then available to use within that file, just as if they were defined locally.
 
-For example, the standard library contains the module _time_. This contains the following definition (among others):
+For example, the standard library contains the package _time_. This contains the following definition (among others):
 
 ```pony
 --8<-- "use-statement-time.pony"
@@ -32,7 +32,7 @@ As we saw above the use command adds all the public types from a module into the
 
 The declarations of _x is an error because we don't know which `Foo` is being referred to. Actually using 'Foo' is not even required, simply using both `moduleA` and `moduleB` is enough to cause an error here.
 
-To avoid this problem the use command allows you to specify an alias. If you do this then only that alias is put into your namespace. The types from the used module can then be accessed using this alias as a qualifier. Our example now becomes:
+To avoid this problem the use command allows you to specify an alias. If you do this then only that alias is put into your namespace. The types from the used package can then be accessed using this alias as a qualifier. Our example now becomes:
 
 ```pony
 --8<-- "use-statement-use-names-resolution.pony"
