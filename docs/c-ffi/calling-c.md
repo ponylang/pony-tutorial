@@ -230,7 +230,7 @@ Consider the following example:
 --8<-- "calling-c-type-signature-compatibility.pony"
 ```
 
-These two declarations have different types for the `src` and `len` parameters. In the case of `src`, the types are compatible since an integer can be cast as a pointer, and vice versa. For `len`, the types will not be compatible on 32 bit platforms, where `USize` is equivalent to `U32`. It is important to take the rules around casting into account when writing type declarations in packages that will be used by others, as it will avoid any compatibility problems with other packages.
+These two declarations have different types for the `src` and `len` parameters. In the case of `src`, the types are compatible since an integer can be cast as a pointer, and vice versa. For `len`, the types will not be compatible on 32 bit platforms, where `USize` is equivalent to `U32`. It is important to take the rules around casting into account when writing type declarations in libraries that will be used by others, as it will avoid any compatibility problems with other libraries.
 
 ## Calling FFI functions from Interfaces or Traits
 
