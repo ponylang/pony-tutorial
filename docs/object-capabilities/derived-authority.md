@@ -42,17 +42,17 @@ Now imagine we don't trust the `Connect` actor, so we don't want to provide it w
 --8<-- "derived-authority-delegating-and-restricting-authority.pony:18:25"
 ```
 
-Now we are sure it cannot access the filesystem or listen on a TCP or UDP port. Pay close attention to the authority that code you are calling is asking for. Never give `AmbientAuth` to __any__ code you do not trust completely both now and in the future. You should always create the most specific authority and give the library that authority. If the library is asking for more authority than it needs, __do not use the library__.
+Now we are sure it cannot access the filesystem or listen on a TCP or UDP port. Pay close attention to the authority that code you are calling is asking for. Never give `AmbientAuth` to __any__ code you do not trust completely both now and in the future. You should always create the most specific authority and give the package that authority. If the package is asking for more authority than it needs, __do not use the package__.
 
 ## Authorization-friendly interface
 
 Consider the above example again, but this time let's think of the `Connect` actor being part of a 3rd party package that we are building. Our goal is to write the actor in such a way that users of our package can grant it only the authority necessary for it to function.
 
-As the package author, it is then our responsibility to realize that the minimal authority possible is the `TCPConnectAuth`. We should only request `TCPConnectAuth` from our users. Our current implementation already satisfies this requirement. Rather than requesting a less specific authority like `AmbientAuth` from our users and creating the `TCPConnectAuth` in our library, we only ask for the `TCPConnectAuth` that is required.
+As the package author, it is then our responsibility to realize that the minimal authority possible is the `TCPConnectAuth`. We should only request `TCPConnectAuth` from our users. Our current implementation already satisfies this requirement. Rather than requesting a less specific authority like `AmbientAuth` from our users and creating the `TCPConnectAuth` in our package, we only ask for the `TCPConnectAuth` that is required.
 
 ## Authority hierarchies
 
-Let's have a look at the authorizations available in the standard library's `net` package.
+Let's have a look at the authorizations available in the standard library's `net` module.
 
 ```pony
 --8<-- "derived-authority-authority-hierarchies.pony"

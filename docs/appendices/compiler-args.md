@@ -3,18 +3,18 @@
 `ponyc`, the compiler, is usually called in the project directory, where it finds the `.pony` files and its dependencies automatically. There it will create the binary based on the directory name. You can override this and tune the compilation with several options as described via `ponyc --help` and you can pass a separate source directory as an argument.
 
 ```bash
-ponyc [OPTIONS] <package directory>
+ponyc [OPTIONS] <module directory>
 ```
 
 The most useful options are `--debug`, `--path` or just `-p`, `--output` or just `-o` and `--docs` or `-g`.
 
 `--debug` will skip the LLVM optimizations passes. This should not be mixed up with `make config=debug`, the default make configuration target. `config=debug` will create DWARF symbols, and add slower assertions to ponyc, but not to the generated binaries. For those, you can omit DWARF symbols with the `--strip` or `-s` option.
 
-`--path` or `-p` take a `:` separated path list as the argument and adds those to the compile-time library paths for the linker to find source packages and the native libraries, static or dynamic, being linked at compile-time or via the FFI at run-time. The system adds several paths already, e.g. on windows it queries the registry to find the compiler run-time paths, you can also use `use "lib:path"` statements in the source code and as a final possibility, you can add `-p` paths. But if you want the generated binary to accept such a path to find a dynamic library on your client system, you need to handle that in your source code by yourself. See the `options` package for this.
+`--path` or `-p` take a `:` separated path list as the argument and adds those to the compile-time library paths for the linker to find source modules and the native libraries, static or dynamic, being linked at compile-time or via the FFI at run-time. The system adds several paths already, e.g. on windows it queries the registry to find the compiler run-time paths, you can also use `use "lib:path"` statements in the source code and as a final possibility, you can add `-p` paths. But if you want the generated binary to accept such a path to find a dynamic library on your client system, you need to handle that in your source code by yourself. See the `options` module for this.
 
 `--output` or `-o` takes a directory name where the final binary is created.
 
-`--docs` or -`g` creates a directory of the package with documentation in [Read the Docs](https://readthedocs.org) format, i.e. markdown with nice navigation.
+`--docs` or -`g` creates a directory of the module with documentation in [Read the Docs](https://readthedocs.org) format, i.e. markdown with nice navigation.
 
 Let's study the documentation of the builtin standard library:
 

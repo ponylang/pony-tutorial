@@ -20,7 +20,7 @@ The use @ command can take a condition just like other `use` commands. This is u
 
 If the name of the C function that you want to call is also a [reserved keyword in Pony](/appendices/keywords.md) (such as `box`), you will need to wrap the name in double quotes (`@"box"`). If you forget to do so, your program will not compile.
 
-An FFI signature is public to all Pony files inside the same package, so you only need to write them once.
+An FFI signature is public to all Pony files inside the same module, so you only need to write them once.
 
 ## C types
 
@@ -219,7 +219,7 @@ A function that calls the `pony_error` function should only be called from insid
 
 ## Type signature compatibility
 
-Since type signature declarations are scoped to a single Pony package, separate packages might define different FFI signatures for the same C function. In this case, as well as the case where you specify a different return type for an FFI call, the compiler will make sure that all calls and declarations are compatible with each other. Two functions are compatible if their arguments and return types are compatible. Two types are compatible with each other if they have the same ABI size and they can be safely cast to each other. The compiler allows the following type casts:
+Since type signature declarations are scoped to a single Pony module, separate modules might define different FFI signatures for the same C function. In this case, as well as the case where you specify a different return type for an FFI call, the compiler will make sure that all calls and declarations are compatible with each other. Two functions are compatible if their arguments and return types are compatible. Two types are compatible with each other if they have the same ABI size and they can be safely cast to each other. The compiler allows the following type casts:
 
 * Any `struct` type can be cast to any other `struct` (as they are both pointer types)
 * Pointers and integers can be cast to each other.
@@ -230,11 +230,11 @@ Consider the following example:
 --8<-- "calling-c-type-signature-compatibility.pony"
 ```
 
-These two declarations have different types for the `src` and `len` parameters. In the case of `src`, the types are compatible since an integer can be cast as a pointer, and vice versa. For `len`, the types will not be compatible on 32 bit platforms, where `USize` is equivalent to `U32`. It is important to take the rules around casting into account when writing type declarations in libraries that will be used by others, as it will avoid any compatibility problems with other libraries.
+These two declarations have different types for the `src` and `len` parameters. In the case of `src`, the types are compatible since an integer can be cast as a pointer, and vice versa. For `len`, the types will not be compatible on 32 bit platforms, where `USize` is equivalent to `U32`. It is important to take the rules around casting into account when writing type declarations in packages that will be used by others, as it will avoid any compatibility problems with other packages.
 
 ## Calling FFI functions from Interfaces or Traits
 
-We mentioned in the previous section that FFI declarations are scoped to a single Pony package, with separate packages possibly defining different FFI signatures for the same C function. Importing an external package will not import any FFI declarations, since any name collisions would produce multiple declarations for the same C function name, and thus deciding which declaration to use would be ambiguous.
+We mentioned in the previous section that FFI declarations are scoped to a single Pony module, with separate modules possibly defining different FFI signatures for the same C function. Importing an external module will not import any FFI declarations, since any name collisions would produce multiple declarations for the same C function name, and thus deciding which declaration to use would be ambiguous.
 
 Given the above fact, if you define any default methods (or behaviors) in an interface or trait, you will not be able to perform an FFI call from them. For example, the code below will fail to compile:
 
@@ -242,7 +242,7 @@ Given the above fact, if you define any default methods (or behaviors) in an int
 --8<-- "calling-c-default-method-in-trait.pony"
 ```
 
-If the trait `Foo` above was part of the public API of a package, allowing its `apply` method to perform an FFI call would render `Foo` unusable for any external users, given that the declaration for `printf` would not be in scope.
+If the trait `Foo` above was part of the public API of a module, allowing its `apply` method to perform an FFI call would render `Foo` unusable for any external users, given that the declaration for `printf` would not be in scope.
 
 Fortunately, avoiding this limitation is relatively painless. Whenever you need to call an FFI function from a default method implementation, consider moving said function to a separate type:
 

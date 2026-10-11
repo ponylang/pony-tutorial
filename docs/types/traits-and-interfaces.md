@@ -118,7 +118,7 @@ Here we are using a trait to provide a category of things, `Color`, that any oth
 --8<-- "traits-and-interfaces-type-union.pony"
 ```
 
-In our trait based example, we can add new colors at any time. With the type union based approach, we can only add them by modifying definition of `Color` in the package that provides it.
+In our trait based example, we can add new colors at any time. With the type union based approach, we can only add them by modifying definition of `Color` in the module that provides it.
 
 Interfaces can't be used for open world enumerations. If we defined `Color` as an interface:
 

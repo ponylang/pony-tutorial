@@ -10,7 +10,7 @@ When any assertion function fails the test is counted as a fail. However, tests 
 
 ## Example program
 
-To use PonyTest simply write a class for each test and a `TestList` type that tells the PonyTest object about the tests. Typically the `TestList` will be Main for the package.
+To use PonyTest simply write a class for each test and a `TestList` type that tells the PonyTest object about the tests. Typically the `TestList` will be Main for the module.
 
 The following is a complete program with 2 trivial tests.
 
@@ -20,7 +20,7 @@ The following is a complete program with 2 trivial tests.
 
  The make() constructor is not needed for this example. However, it allows for easy aggregation of tests (see below) so it is recommended that all test Mains provide it.
 
-Main.create() is called only for program invocations on the current package. Main.make() is called during aggregation. If so desired extra code can be added to either of these constructors to perform additional tasks.
+Main.create() is called only for program invocations on the current module. Main.make() is called during aggregation. If so desired extra code can be added to either of these constructors to perform additional tasks.
 
 ## Test names
 
@@ -30,9 +30,9 @@ Arbitrary strings can be used for these names, but for large projects, it is str
 
 ## Aggregation
 
-Often it is desirable to run a collection of unit tests from multiple different source files. For example, if several packages within a bundle each have their own unit tests it may be useful to run all tests for the bundle together.
+Often it is desirable to run a collection of unit tests from multiple different source files. For example, if several modules within a project each have their own unit tests it may be useful to run all tests together.
 
-This can be achieved by writing an aggregate test list class, which calls the list function for each package. The following is an example that aggregates the tests from packages `foo` and `bar`.
+This can be achieved by writing an aggregate test list class, which calls the list function for each module. The following is an example that aggregates the tests from modules `foo` and `bar`.
 
 ```pony
 --8<-- "ponytest-aggregation.pony"

@@ -24,11 +24,17 @@ Words are hard. We can all be saying the same thing but do we _mean_ the same th
 
 **Explicit type**: An actor, class or primitive.
 
+**File**: A single `.pony` source file.
+
 **Member**: Method or field.
 
 **Method**: Something callable on a concrete type/object. Function, behaviour or constructor.
 
+**Module**: A directory of `.pony` files; the unit of compilation and the privacy boundary.
+
 **Override**: When a concrete type has its own body for a method with a default body provided by a trait.
+
+**Package**: A tree of directories of `.pony` files; a reusable unit of Pony code.
 
 **Parentheses**: ( ). Synonymous with round brackets.
 

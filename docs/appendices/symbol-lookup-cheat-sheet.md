@@ -22,7 +22,7 @@ Here is a more elaborate explanation of Pony's use of special characters: (a lin
 | ------- | ------------------------------------------------------------------------------- |
 | `,`     | to separate parameters in a function signature, or the items of a tuple         |
 | `.`     | (1) to call a field or a function on a variable (field access or method call)   |
-|         | (2) to qualify a type/method with its package name                              |
+|         | (2) to qualify a type/method with its module name                               |
 | `.>`    | to call a method on an object and return the receiver (chaining)                |
 | `'`     | used as alternative name in parameters (prime)                                  |
 | `"`     | to delineate a literal string                                                   |
@@ -42,7 +42,7 @@ Here is a more elaborate explanation of Pony's use of special characters: (a lin
 |         | (3) a type constraint                                                           |
 | `;`     | only used to separate expressions on the same line                              |
 | `=`     | (1) (destructive) assignment                                                    |
-|         | (2) in: use alias = package name                                                    |
+|         | (2) in: use alias = module name                                                     |
 |         | (3) supply default argument for method                                          |
 |         | (4) supply default type for generics                                            |
 | `!`     | (1) boolean negation                                                            |

@@ -53,7 +53,7 @@ This listing explains the usage of every Pony keyword.
 | `try`               | error handling                                                                                         |
 | `type`              | to declare a type alias                                                                                |
 | `until`             | loop statement                                                                                         |
-| `use`               | (1) using a package                                                                                    |
+| `use`               | (1) using a module                                                                                     |
 |                   | (2) using an external library foo: use "lib:foo"                                                       |
 |                   | (3) declaration of an FFI signature                                                                    |
 |                   | (4) add a search path for external libraries: `use "path:/usr/local/lib"`                                |

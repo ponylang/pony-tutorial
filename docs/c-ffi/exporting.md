@@ -8,7 +8,7 @@ This feature is experimental and may change in future releases.
 
 ## A basic example
 
-This example has two packages. The `Adder` class lives in a library package called `mylib/`, and the main package consumes it through a C shim.
+This example has two modules. The `Adder` class lives in a module called `mylib/`, and the main module consumes it through a C shim.
 
 Annotate the class with `\c_api\` to export its public methods:
 
@@ -16,10 +16,10 @@ Annotate the class with `\c_api\` to export its public methods:
 --8<-- "c-ffi-exporting-basic.pony"
 ```
 
-ponyc generates a wrapper function for each eligible public method (`add` and `base` in this example) and writes their declarations to `mylib_export.h`. A C shim in the main package can include that header and call the wrappers:
+ponyc generates a wrapper function for each eligible public method (`add` and `base` in this example) and writes their declarations to `mylib_export.h`. A C shim in the main module can include that header and call the wrappers:
 
 ```c
-// shim.c (in the main package directory)
+// shim.c (in the main module directory)
 #include "mylib_export.h"
 
 int64_t add_from_c(void* adder, int64_t x) {
@@ -27,7 +27,7 @@ int64_t add_from_c(void* adder, int64_t x) {
 }
 ```
 
-The main package's Pony code calls the shim function via FFI, which in turn calls the Pony method through the generated wrapper:
+The main module's Pony code calls the shim function via FFI, which in turn calls the Pony method through the generated wrapper:
 
 ```pony
 --8<-- "c-ffi-exporting-use-package.pony"
@@ -50,7 +50,7 @@ Generic types cannot be exported directly. To export a concrete reification of a
 
 The C-facing name of each wrapper function is `[prefix_]TypeName_method_name`.
 
-The prefix comes from the `use` statement in the package that imports the exported type's package. With `use "mylib"`, the prefix is `mylib`. With an alias — `use math = "mylib"` — the prefix is the alias:
+The prefix comes from the `use` statement in the module that imports the exported type's module. With `use "mylib"`, the prefix is `mylib`. With an alias — `use math = "mylib"` — the prefix is the alias:
 
 ```pony
 --8<-- "c-ffi-exporting-use-alias.pony"
@@ -60,7 +60,7 @@ The prefix comes from the `use` statement in the package that imports the export
 |---|---|---|
 | `use "mylib"` | `mylib_Adder_add` | `mylib_export.h` |
 | `use math = "mylib"` | `math_Adder_add` | `math_export.h` |
-| Main package (no `use`) | `Adder_add` | `<binary>_export.h` |
+| Main module (no `use`) | `Adder_add` | `<binary>_export.h` |
 
 Characters that are not valid in C identifiers are replaced with underscores.
 
@@ -138,6 +138,6 @@ Pony types map to C types in the generated header as follows:
 
 ## Working with C shims
 
-The generated header is written to the output directory before C shim files are compiled. Packages that `use` a package with exports get `-I<output-dir>` added to their C compiler flags automatically, so `#include "mylib_export.h"` resolves without any `cincludedir:` configuration.
+The generated header is written to the output directory before C shim files are compiled. Modules that `use` a module with exports get `-I<output-dir>` added to their C compiler flags automatically, so `#include "mylib_export.h"` resolves without any `cincludedir:` configuration.
 
-A typical pattern: a Pony library package annotates its types with `\c_api\`, and a consuming package provides a C shim that includes the generated header, defines C functions, and calls the exported wrappers. The Pony code in the consuming package then calls those C functions via FFI.
+A typical pattern: a Pony module annotates its types with `\c_api\`, and a consuming module provides a C shim that includes the generated header, defines C functions, and calls the exported wrappers. The Pony code in the consuming module then calls those C functions via FFI.

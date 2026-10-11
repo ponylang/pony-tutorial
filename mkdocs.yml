@@ -97,10 +97,10 @@ plugins:
           - generics/using-generics.md
           - generics/generics-and-reference-capabilities.md
           - generics/generic-constraints.md
-        Packages:
-          - packages/index.md
-          - packages/use-statement.md
-          - packages/standard-library.md
+        Modules:
+          - modules/index.md
+          - modules/use-statement.md
+          - modules/standard-library.md
         Testing:
           - testing/index.md
           - testing/ponytest.md
@@ -235,10 +235,10 @@ nav:
       - Using Generics: "generics/using-generics.md"
       - Generics and Reference Capabilities: "generics/generics-and-reference-capabilities.md"
       - Constraints: "generics/generic-constraints.md"
-  - Packages:
-      - Overview: "packages/index.md"
-      - Use Statement: "packages/use-statement.md"
-      - Standard Library: "packages/standard-library.md"
+  - Modules:
+      - Overview: "modules/index.md"
+      - Use Statement: "modules/use-statement.md"
+      - Standard Library: "modules/standard-library.md"
   - Testing:
       - Overview: "testing/index.md"
       - Testing with PonyTest: "testing/ponytest.md"
