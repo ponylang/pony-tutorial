@@ -145,3 +145,7 @@ Here's a contrived example:
 ```
 
 The flexibility of `interface` has allowed us to define a type `Compactable` that we can use to allow our `Compactor` to accept a variety of data types including `Array`, `Map`, and `String` from the standard library.
+
+### Method groups
+
+Traits and interfaces can declare [method groups](/generics/iftype-specialization.md) — a default method body paired with one or more `iftype`-guarded specializations. A concrete type that provides the trait inherits the entire group, including the specializations, unless it overrides them with its own definitions. When an interface declares a method group, the compiler checks that a conforming type provides both the default and each declared specialization.

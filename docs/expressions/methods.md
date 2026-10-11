@@ -24,7 +24,7 @@ After the return value, there's a `=>` and then finally the function body. The v
 
 If you want to exit a function early then use the `return` command. If the function has a return type then you need to provide a value to return. If the function does not have a return type then `return` should appear on its own, without a value.
 
-__Can I overload functions by argument type?__ No, you cannot have multiple methods with the same name in the same type.
+__Can I overload functions by argument type?__ Not by argument type, no. However, any method with type parameters — whether from the enclosing type or the method itself — can have multiple definitions distinguished by [`iftype` guards](/generics/iftype-specialization.md). Each definition must have the same parameter types and receiver capability — the guard selects which body to use based on the type parameter's constraint, not on argument types. The compiler selects the matching body at compile time.
 
 ## Constructors
 

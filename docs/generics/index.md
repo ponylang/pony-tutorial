@@ -4,4 +4,4 @@ Often when writing code you want to create similar classes or functions that dif
 
 A generic class or method takes type parameters — types that the caller provides, much like a method takes value parameters. Pony uses square brackets for type parameters and parentheses for value parameters, so `Foo[U32]` creates a `Foo` whose type parameter is `U32`, and `Foo[U32](42)` also passes the value `42` to its constructor.
 
-The following sections cover [how to use generics](using-generics.md) in Pony, how generics interact with [reference capabilities](generics-and-reference-capabilities.md), and how to [constrain](generic-constraints.md) what types a generic accepts.
+The following sections cover [how to use generics](using-generics.md) in Pony, how generics interact with [reference capabilities](generics-and-reference-capabilities.md), how to [constrain](generic-constraints.md) what types a generic accepts, and how to provide [specialized method bodies](iftype-specialization.md) depending on what the type parameter turns out to be.
