@@ -145,3 +145,17 @@ appendices-annotations-inline-annotations.pony:7:8
 ```
 
 These annotations cannot be combined with each other — `\inline, noinline\` or `\inline, inline(500)\` will produce a compiler error.
+
+#### `noalloc`
+
+Recognised on method declarations (`fun`, `be`, `new`). In release builds, the compiler checks that the method's body and everything it transitively calls allocates nothing on the heap. If it finds a heap allocation, compilation fails.
+
+```pony
+--8<-- "appendices-annotations-noalloc-annotation.pony"
+```
+
+A trait method can carry `\noalloc\`, requiring every implementer to match. Inside a `\noalloc\` method, a virtual call through a trait requires the trait method to be `\noalloc\` too. Virtual calls through interfaces are not supported — `\noalloc\` cannot appear on interface methods.
+
+A `\noalloc\` method cannot call C functions through FFI, call bare lambdas, send messages, or create actors.
+
+The body check runs only in release builds. The release optimizer can move short-lived objects to the stack, and those pass the check. Signature conformance (a trait requiring `\noalloc\`) is checked in every build.
