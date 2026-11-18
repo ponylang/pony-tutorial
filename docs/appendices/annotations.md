@@ -6,7 +6,7 @@ In Pony, we provide a special syntax for implementation-specific annotations to 
 --8<-- "appendices-annotations-syntax.pony"
 ```
 
-Here, `annotation1` and `annotation2` can be any valid Pony identifier, i.e. a sequence of alphanumeric characters starting with a letter or an underscore. An annotation can optionally carry an integer argument in parentheses, as shown with `annotation_with_argument(100)` above.
+Here, `annotation1` and `annotation2` can be any valid Pony identifier, i.e. a sequence of alphanumeric characters starting with a letter or an underscore. An annotation can take an integer argument in parentheses, as in `annotation_with_argument(100)`, or a comma-separated list of one or more identifiers, as in `mutate_only(aor, ror)`. The allowed arguments depend on the annotation.
 
 ## What can be annotated
 
@@ -47,7 +47,7 @@ Annotations are entirely implementation-specific. In other words, the Pony compi
 
 ### Annotations in the Pony compiler
 
-The following annotations are recognised by the Pony compiler. Note that the Pony compiler will ignore annotations that it doesn't recognise, as well as the annotations described here if they're encountered in an unexpected place.
+The following annotations are recognised by the Pony compiler.
 
 #### `packed`
 
@@ -159,3 +159,23 @@ A trait method can carry `\noalloc\`, requiring every implementer to match. Insi
 A `\noalloc\` method cannot call C functions through FFI, call bare lambdas, send messages, or create actors.
 
 The body check runs only in release builds. The release optimizer can move short-lived objects to the stack, and those pass the check. Signature conformance (a trait requiring `\noalloc\`) is checked in every build.
+
+#### `nomutate`
+
+Recognised on concrete types (`actor`, `class`, `struct`, `primitive`) and methods (`new`, `fun`, `be`), including method signatures without bodies. On a method that defines its body, `\nomutate\` suppresses mutations in the method. For bodyless signatures, see the [rules for inherited bodies](#mutate_only-and-mutate_except).
+
+```pony
+--8<-- "appendices-annotations-nomutate-annotation.pony"
+```
+
+On a type, `\nomutate\` suppresses mutations by default. To enable mutations in an individual method, annotate it with `mutate_only`.
+
+#### `mutate_only` and `mutate_except`
+
+Recognised on concrete types (`actor`, `class`, `struct`, `primitive`) and methods (`new`, `fun`, `be`) with bodies, including default methods in traits and interfaces. Each takes one or more mutation category codes. `\mutate_only(aor, ror)\` selects just the listed categories. `\mutate_except(aor, ror)\` removes the listed categories from the current selection.
+
+A type's selection limits all its methods. A method's `mutate_only` must list only categories allowed by the type's `mutate_only` or `mutate_except`. The compiler checks this even without `--mutate`. Use at most one of `nomutate`, `mutate_only` and `mutate_except` on a declaration.
+
+When a method inherits a default body from a trait or interface, a mutation annotation on the method that supplies the body governs mutations in that body, subject to the implementing type's selection. If the supplying method has no mutation annotation, `nomutate` on the receiving signature can suppress mutations in the inherited body. For default argument expressions on the receiving signature, the compiler uses that signature's mutation annotation, within the limits set by the implementing type and the command-line filters.
+
+See [Mutation Testing](/testing/mutation-testing.md#selecting-mutations-in-source) for a worked example.
