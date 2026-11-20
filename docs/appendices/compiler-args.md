@@ -14,6 +14,8 @@ The most useful options are `--debug`, `--path` or just `-p`, and `--output` or 
 
 `--output` or `-o` takes a directory name where the final binary is created.
 
+`--mutate` instruments the binary for mutation testing and produces a `.mutants.json` file listing every mutation site. Two companion flags narrow the scope: `--mutate-operators` restricts which mutation categories are applied and `--mutate-scope` restricts mutations to specific files or line ranges. See [Mutation Testing](/testing/mutation-testing.md) for the full workflow.
+
 Note that there is _no built-in debugger_ to interactively step through your program and interpret the results. But ponyc creates proper DWARF symbols and you can step through your programs with a conventional debugger, such as GDB or LLDB.
 
 ## Runtime options for Pony programs
