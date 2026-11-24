@@ -8,10 +8,6 @@ There are two levels of garbage collection in Pony: collecting objects within an
 
 Each actor has its own private heap. When an actor's heap grows large enough, the runtime performs garbage collection on that actor's heap to reclaim unused objects.
 
-The key property of intra-actor GC is that it only runs between behaviors, never during one. While an actor is executing a behavior, its heap will not be collected. This gives you completely predictable performance within a behavior: no GC pauses, no surprise interruptions.
-
-The tradeoff is that a behavior that allocates a lot of memory will not get any of it back until the behavior finishes. This is why long-running behaviors that allocate in a loop can exhaust memory: the GC never gets a chance to run. The [garbage collection gotcha](../gotchas/garbage-collection.md) covers this anti-pattern in detail.
-
 Because each actor has its own heap, there is no global stop-the-world pause. When one actor is being garbage collected, every other actor continues running normally. This is a significant advantage for latency-sensitive applications.
 
 The GC's aggressiveness can be tuned with the `--ponygcinitial` and `--ponygcfactor` [runtime options](runtime-options.md).

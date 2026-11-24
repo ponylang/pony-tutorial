@@ -6,7 +6,7 @@ The [Actors](../types/actors.md) chapter introduced the idea that Pony runs acto
 
 Pony's scheduler is cooperative. An actor that is executing a behavior will not be interrupted partway through. Instead, the actor runs its behavior to completion, then yields the scheduler thread so another actor can run.
 
-This is different from preemptive schedulers (like OS thread schedulers), which can interrupt a running thread at any point. Cooperative scheduling gives you predictable performance within a behavior: no surprise pauses, no GC interruptions, no context switches. The tradeoff is that a behavior that takes a long time to finish will hold onto its scheduler thread for that entire duration.
+This is different from preemptive schedulers (like OS thread schedulers), which can interrupt a running thread at any point. Cooperative scheduling gives you predictable performance within a behavior: no surprise pauses, no context switches. The tradeoff is that a behavior that takes a long time to finish will hold onto its scheduler thread for that entire duration.
 
 This is why the [scheduling gotcha](../gotchas/scheduling.md) warns against long-running behaviors. A behavior that loops for a long time (or calls FFI code that blocks) monopolizes a scheduler thread and prevents other actors from making progress on that thread.
 

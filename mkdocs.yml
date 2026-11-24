@@ -124,7 +124,6 @@ plugins:
         Gotchas:
           - gotchas/index.md
           - gotchas/divide-by-zero.md
-          - gotchas/garbage-collection.md
           - gotchas/scheduling.md
           - gotchas/side-effect-ordering-in-function-call-expressions.md
           - gotchas/recursion.md
@@ -263,7 +262,6 @@ nav:
   - Gotchas:
       - Overview: "gotchas/index.md"
       - Divide by Zero: "gotchas/divide-by-zero.md"
-      - Garbage Collection: "gotchas/garbage-collection.md"
       - Scheduling: "gotchas/scheduling.md"
       - Function Call Side Effects: "gotchas/side-effect-ordering-in-function-call-expressions.md"
       - Recursion: "gotchas/recursion.md"
